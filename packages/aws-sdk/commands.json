@@ -1,0 +1,40 @@
+{
+    "name": "aws-sdk",
+    "commands": [
+        {
+            "name": "generate-sdk",
+            "config": {
+                "fs": {
+                    "path": "dist/cli/generate-sdk.js",
+                    "source": "src/cli/generate-sdk.ts",
+                    "inject": [
+                        "ignore",
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "$http",
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "cli": {
+                    "usage": "generate [output] [service]",
+                    "inject": [
+                        "$http",
+                        "options.service",
+                        "options.output"
+                    ],
+                    "options": {
+                        "output": {
+                            "normalize": true
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/container-schema.json"
+}

@@ -1,0 +1,1553 @@
+{
+    "name": "osis",
+    "commands": [
+        {
+            "name": "CreatePipeline",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreatePipeline"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreatePipelineResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreatePipelineRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeletePipeline",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeletePipeline"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeletePipelineResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeletePipelineRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetPipeline",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetPipeline"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetPipelineResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetPipelineRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetPipelineBlueprint",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetPipelineBlueprint"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetPipelineBlueprintResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetPipelineBlueprintRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetPipelineChangeProgress",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetPipelineChangeProgress"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetPipelineChangeProgressResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetPipelineChangeProgressRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListPipelineBlueprints",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListPipelineBlueprints"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListPipelineBlueprintsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListPipelineBlueprintsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListPipelines",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListPipelines"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListPipelinesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListPipelinesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartPipeline",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartPipeline"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartPipelineResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartPipelineRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StopPipeline",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StopPipeline"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StopPipelineResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StopPipelineRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdatePipeline",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdatePipeline"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdatePipelineResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdatePipelineRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ValidatePipeline",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ValidatePipeline"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ValidatePipelineResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ValidatePipelineRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CreatePipelineResponse": {
+            "type": "object",
+            "properties": {
+                "Pipeline": {
+                    "$ref": "#/$defs/Pipeline"
+                }
+            }
+        },
+        "Pipeline": {
+            "type": "object",
+            "properties": {
+                "PipelineName": {
+                    "$ref": "#/$defs/String"
+                },
+                "PipelineArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "MinUnits": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "MaxUnits": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Status": {
+                    "$ref": "#/$defs/PipelineStatus"
+                },
+                "StatusReason": {
+                    "$ref": "#/$defs/PipelineStatusReason"
+                },
+                "PipelineConfigurationBody": {
+                    "$ref": "#/$defs/String"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastUpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "IngestEndpointUrls": {
+                    "$ref": "#/$defs/IngestEndpointUrlsList"
+                },
+                "LogPublishingOptions": {
+                    "$ref": "#/$defs/LogPublishingOptions"
+                },
+                "VpcEndpoints": {
+                    "$ref": "#/$defs/VpcEndpointsList"
+                },
+                "BufferOptions": {
+                    "$ref": "#/$defs/BufferOptions"
+                },
+                "EncryptionAtRestOptions": {
+                    "$ref": "#/$defs/EncryptionAtRestOptions"
+                },
+                "VpcEndpointService": {
+                    "$ref": "#/$defs/String"
+                },
+                "ServiceVpcEndpoints": {
+                    "$ref": "#/$defs/ServiceVpcEndpointsList"
+                },
+                "Destinations": {
+                    "$ref": "#/$defs/PipelineDestinationList"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "String": {
+            "type": "string"
+        },
+        "Integer": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "PipelineStatus": {
+            "enum": [
+                "CREATING",
+                "ACTIVE",
+                "UPDATING",
+                "DELETING",
+                "CREATE_FAILED",
+                "UPDATE_FAILED",
+                "STARTING",
+                "START_FAILED",
+                "STOPPING",
+                "STOPPED"
+            ]
+        },
+        "PipelineStatusReason": {
+            "type": "object",
+            "properties": {
+                "Description": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "IngestEndpointUrlsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "LogPublishingOptions": {
+            "type": "object",
+            "properties": {
+                "IsLoggingEnabled": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "CloudWatchLogDestination": {
+                    "$ref": "#/$defs/CloudWatchLogDestination"
+                }
+            }
+        },
+        "Boolean": {
+            "type": "boolean"
+        },
+        "CloudWatchLogDestination": {
+            "type": "object",
+            "properties": {
+                "LogGroup": {
+                    "$ref": "#/$defs/LogGroup"
+                }
+            }
+        },
+        "LogGroup": {
+            "type": "string"
+        },
+        "VpcEndpointsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/VpcEndpoint"
+            }
+        },
+        "VpcEndpoint": {
+            "type": "object",
+            "properties": {
+                "VpcEndpointId": {
+                    "$ref": "#/$defs/String"
+                },
+                "VpcId": {
+                    "$ref": "#/$defs/String"
+                },
+                "VpcOptions": {
+                    "$ref": "#/$defs/VpcOptions"
+                }
+            }
+        },
+        "VpcOptions": {
+            "type": "object",
+            "properties": {
+                "SubnetIds": {
+                    "$ref": "#/$defs/SubnetIds"
+                },
+                "SecurityGroupIds": {
+                    "$ref": "#/$defs/SecurityGroupIds"
+                },
+                "VpcAttachmentOptions": {
+                    "$ref": "#/$defs/VpcAttachmentOptions"
+                },
+                "VpcEndpointManagement": {
+                    "$ref": "#/$defs/VpcEndpointManagement"
+                }
+            }
+        },
+        "SubnetIds": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SubnetId"
+            }
+        },
+        "SubnetId": {
+            "type": "string"
+        },
+        "SecurityGroupIds": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SecurityGroupId"
+            }
+        },
+        "SecurityGroupId": {
+            "type": "string"
+        },
+        "VpcAttachmentOptions": {
+            "type": "object",
+            "properties": {
+                "AttachToVpc": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "CidrBlock": {
+                    "$ref": "#/$defs/CidrBlock"
+                }
+            }
+        },
+        "CidrBlock": {
+            "type": "string"
+        },
+        "VpcEndpointManagement": {
+            "enum": [
+                "CUSTOMER",
+                "SERVICE"
+            ]
+        },
+        "BufferOptions": {
+            "type": "object",
+            "properties": {
+                "PersistentBufferEnabled": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "EncryptionAtRestOptions": {
+            "type": "object",
+            "properties": {
+                "KmsKeyArn": {
+                    "$ref": "#/$defs/KmsKeyArn"
+                }
+            }
+        },
+        "KmsKeyArn": {
+            "type": "string"
+        },
+        "ServiceVpcEndpointsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ServiceVpcEndpoint"
+            }
+        },
+        "ServiceVpcEndpoint": {
+            "type": "object",
+            "properties": {
+                "ServiceName": {
+                    "$ref": "#/$defs/VpcEndpointServiceName"
+                },
+                "VpcEndpointId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "VpcEndpointServiceName": {
+            "enum": [
+                "OPENSEARCH_SERVERLESS"
+            ]
+        },
+        "PipelineDestinationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PipelineDestination"
+            }
+        },
+        "PipelineDestination": {
+            "type": "object",
+            "properties": {
+                "ServiceName": {
+                    "$ref": "#/$defs/String"
+                },
+                "Endpoint": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "CreatePipelineRequest": {
+            "type": "object",
+            "properties": {
+                "PipelineName": {
+                    "$ref": "#/$defs/PipelineName"
+                },
+                "MinUnits": {
+                    "$ref": "#/$defs/PipelineUnits"
+                },
+                "MaxUnits": {
+                    "$ref": "#/$defs/PipelineUnits"
+                },
+                "PipelineConfigurationBody": {
+                    "$ref": "#/$defs/PipelineConfigurationBody"
+                },
+                "LogPublishingOptions": {
+                    "$ref": "#/$defs/LogPublishingOptions"
+                },
+                "VpcOptions": {
+                    "$ref": "#/$defs/VpcOptions"
+                },
+                "BufferOptions": {
+                    "$ref": "#/$defs/BufferOptions"
+                },
+                "EncryptionAtRestOptions": {
+                    "$ref": "#/$defs/EncryptionAtRestOptions"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "PipelineName": {
+            "type": "string"
+        },
+        "PipelineUnits": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "PipelineConfigurationBody": {
+            "type": "string"
+        },
+        "DeletePipelineResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeletePipelineRequest": {
+            "type": "object",
+            "properties": {
+                "PipelineName": {
+                    "$ref": "#/$defs/PipelineName"
+                }
+            }
+        },
+        "GetPipelineResponse": {
+            "type": "object",
+            "properties": {
+                "Pipeline": {
+                    "$ref": "#/$defs/Pipeline"
+                }
+            }
+        },
+        "GetPipelineRequest": {
+            "type": "object",
+            "properties": {
+                "PipelineName": {
+                    "$ref": "#/$defs/PipelineName"
+                }
+            }
+        },
+        "GetPipelineBlueprintResponse": {
+            "type": "object",
+            "properties": {
+                "Blueprint": {
+                    "$ref": "#/$defs/PipelineBlueprint"
+                },
+                "Format": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "PipelineBlueprint": {
+            "type": "object",
+            "properties": {
+                "BlueprintName": {
+                    "$ref": "#/$defs/String"
+                },
+                "PipelineConfigurationBody": {
+                    "$ref": "#/$defs/String"
+                },
+                "DisplayName": {
+                    "$ref": "#/$defs/String"
+                },
+                "DisplayDescription": {
+                    "$ref": "#/$defs/String"
+                },
+                "Service": {
+                    "$ref": "#/$defs/String"
+                },
+                "UseCase": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetPipelineBlueprintRequest": {
+            "type": "object",
+            "properties": {
+                "BlueprintName": {
+                    "$ref": "#/$defs/String"
+                },
+                "Format": {
+                    "$ref": "#/$defs/BlueprintFormat"
+                }
+            }
+        },
+        "BlueprintFormat": {
+            "type": "string"
+        },
+        "GetPipelineChangeProgressResponse": {
+            "type": "object",
+            "properties": {
+                "ChangeProgressStatuses": {
+                    "$ref": "#/$defs/ChangeProgressStatusList"
+                }
+            }
+        },
+        "ChangeProgressStatusList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ChangeProgressStatus"
+            }
+        },
+        "ChangeProgressStatus": {
+            "type": "object",
+            "properties": {
+                "StartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ChangeProgressStatuses"
+                },
+                "TotalNumberOfStages": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "ChangeProgressStages": {
+                    "$ref": "#/$defs/ChangeProgressStageList"
+                }
+            }
+        },
+        "ChangeProgressStatuses": {
+            "enum": [
+                "PENDING",
+                "IN_PROGRESS",
+                "COMPLETED",
+                "FAILED"
+            ]
+        },
+        "ChangeProgressStageList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ChangeProgressStage"
+            }
+        },
+        "ChangeProgressStage": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ChangeProgressStageStatuses"
+                },
+                "Description": {
+                    "$ref": "#/$defs/String"
+                },
+                "LastUpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ChangeProgressStageStatuses": {
+            "enum": [
+                "PENDING",
+                "IN_PROGRESS",
+                "COMPLETED",
+                "FAILED"
+            ]
+        },
+        "GetPipelineChangeProgressRequest": {
+            "type": "object",
+            "properties": {
+                "PipelineName": {
+                    "$ref": "#/$defs/PipelineName"
+                }
+            }
+        },
+        "ListPipelineBlueprintsResponse": {
+            "type": "object",
+            "properties": {
+                "Blueprints": {
+                    "$ref": "#/$defs/PipelineBlueprintsSummaryList"
+                }
+            }
+        },
+        "PipelineBlueprintsSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PipelineBlueprintSummary"
+            }
+        },
+        "PipelineBlueprintSummary": {
+            "type": "object",
+            "properties": {
+                "BlueprintName": {
+                    "$ref": "#/$defs/String"
+                },
+                "DisplayName": {
+                    "$ref": "#/$defs/String"
+                },
+                "DisplayDescription": {
+                    "$ref": "#/$defs/String"
+                },
+                "Service": {
+                    "$ref": "#/$defs/String"
+                },
+                "UseCase": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListPipelineBlueprintsRequest": {
+            "type": "object",
+            "properties": {}
+        },
+        "ListPipelinesResponse": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "Pipelines": {
+                    "$ref": "#/$defs/PipelineSummaryList"
+                }
+            }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "PipelineSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PipelineSummary"
+            }
+        },
+        "PipelineSummary": {
+            "type": "object",
+            "properties": {
+                "Status": {
+                    "$ref": "#/$defs/PipelineStatus"
+                },
+                "StatusReason": {
+                    "$ref": "#/$defs/PipelineStatusReason"
+                },
+                "PipelineName": {
+                    "$ref": "#/$defs/PipelineName"
+                },
+                "PipelineArn": {
+                    "$ref": "#/$defs/PipelineArn"
+                },
+                "MinUnits": {
+                    "$ref": "#/$defs/PipelineUnits"
+                },
+                "MaxUnits": {
+                    "$ref": "#/$defs/PipelineUnits"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastUpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Destinations": {
+                    "$ref": "#/$defs/PipelineDestinationList"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "PipelineArn": {
+            "type": "string"
+        },
+        "ListPipelinesRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/PipelineArn"
+                }
+            }
+        },
+        "StartPipelineResponse": {
+            "type": "object",
+            "properties": {
+                "Pipeline": {
+                    "$ref": "#/$defs/Pipeline"
+                }
+            }
+        },
+        "StartPipelineRequest": {
+            "type": "object",
+            "properties": {
+                "PipelineName": {
+                    "$ref": "#/$defs/PipelineName"
+                }
+            }
+        },
+        "StopPipelineResponse": {
+            "type": "object",
+            "properties": {
+                "Pipeline": {
+                    "$ref": "#/$defs/Pipeline"
+                }
+            }
+        },
+        "StopPipelineRequest": {
+            "type": "object",
+            "properties": {
+                "PipelineName": {
+                    "$ref": "#/$defs/PipelineName"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/PipelineArn"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/PipelineArn"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/StringList"
+                }
+            }
+        },
+        "StringList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "UpdatePipelineResponse": {
+            "type": "object",
+            "properties": {
+                "Pipeline": {
+                    "$ref": "#/$defs/Pipeline"
+                }
+            }
+        },
+        "UpdatePipelineRequest": {
+            "type": "object",
+            "properties": {
+                "PipelineName": {
+                    "$ref": "#/$defs/PipelineName"
+                },
+                "MinUnits": {
+                    "$ref": "#/$defs/PipelineUnits"
+                },
+                "MaxUnits": {
+                    "$ref": "#/$defs/PipelineUnits"
+                },
+                "PipelineConfigurationBody": {
+                    "$ref": "#/$defs/PipelineConfigurationBody"
+                },
+                "LogPublishingOptions": {
+                    "$ref": "#/$defs/LogPublishingOptions"
+                },
+                "BufferOptions": {
+                    "$ref": "#/$defs/BufferOptions"
+                },
+                "EncryptionAtRestOptions": {
+                    "$ref": "#/$defs/EncryptionAtRestOptions"
+                }
+            }
+        },
+        "ValidatePipelineResponse": {
+            "type": "object",
+            "properties": {
+                "isValid": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "Errors": {
+                    "$ref": "#/$defs/ValidationMessageList"
+                }
+            }
+        },
+        "ValidationMessageList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ValidationMessage"
+            }
+        },
+        "ValidationMessage": {
+            "type": "object",
+            "properties": {
+                "Message": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ValidatePipelineRequest": {
+            "type": "object",
+            "properties": {
+                "PipelineConfigurationBody": {
+                    "$ref": "#/$defs/PipelineConfigurationBody"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                                "type": "error"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": {
+                                        "ref": "Endpoint"
+                                    },
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "isSet",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ]
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "aws.partition",
+                                        "argv": [
+                                            {
+                                                "ref": "Region"
+                                            }
+                                        ],
+                                        "assign": "PartitionResult"
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseFIPS"
+                                                    },
+                                                    true
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseDualStack"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsFIPS"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsDualStack"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://osis-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ],
+                                                        "type": "tree"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseFIPS"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsFIPS"
+                                                                ]
+                                                            },
+                                                            true
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://osis-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ],
+                                                        "type": "tree"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "FIPS is enabled but this partition does not support FIPS",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseDualStack"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsDualStack"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://osis.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ],
+                                                        "type": "tree"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "DualStack is enabled but this partition does not support DualStack",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://osis.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    }
+                                ],
+                                "type": "tree"
+                            }
+                        ],
+                        "type": "tree"
+                    },
+                    {
+                        "conditions": [],
+                        "error": "Invalid Configuration: Missing Region",
+                        "type": "error"
+                    }
+                ],
+                "type": "tree"
+            }
+        ]
+    }
+}

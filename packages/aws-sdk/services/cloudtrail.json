@@ -1,0 +1,4271 @@
+{
+    "name": "cloudtrail",
+    "commands": [
+        {
+            "name": "AddTags",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AddTags"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AddTagsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AddTagsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CancelQuery",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CancelQuery"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CancelQueryResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CancelQueryRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateChannel",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateChannel"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateChannelResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateChannelRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateEventDataStore",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateEventDataStore"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateEventDataStoreResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateEventDataStoreRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateTrail",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateTrail"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateTrailResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateTrailRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteChannel",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteChannel"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteChannelResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteChannelRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteEventDataStore",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteEventDataStore"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteEventDataStoreResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteEventDataStoreRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteResourcePolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteResourcePolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteResourcePolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteResourcePolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteTrail",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteTrail"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteTrailResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteTrailRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeregisterOrganizationDelegatedAdmin",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeregisterOrganizationDelegatedAdmin"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeregisterOrganizationDelegatedAdminResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeregisterOrganizationDelegatedAdminRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeQuery",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeQuery"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeQueryResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeQueryRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeTrails",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeTrails"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeTrailsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeTrailsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DisableFederation",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DisableFederation"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DisableFederationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DisableFederationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "EnableFederation",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "EnableFederation"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/EnableFederationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/EnableFederationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetChannel",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetChannel"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetChannelResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetChannelRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetEventDataStore",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetEventDataStore"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetEventDataStoreResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetEventDataStoreRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetEventSelectors",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetEventSelectors"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetEventSelectorsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetEventSelectorsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetImport",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetImport"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetImportResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetImportRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetInsightSelectors",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetInsightSelectors"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetInsightSelectorsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetInsightSelectorsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetQueryResults",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetQueryResults"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetQueryResultsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetQueryResultsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetResourcePolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetResourcePolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetResourcePolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetResourcePolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetTrail",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetTrail"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetTrailResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetTrailRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetTrailStatus",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetTrailStatus"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetTrailStatusResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetTrailStatusRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListChannels",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListChannels"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListChannelsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListChannelsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListEventDataStores",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListEventDataStores"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListEventDataStoresResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListEventDataStoresRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListImportFailures",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListImportFailures"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListImportFailuresResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListImportFailuresRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListImports",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListImports"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListImportsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListImportsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListInsightsMetricData",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListInsightsMetricData"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListInsightsMetricDataResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListInsightsMetricDataRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListPublicKeys",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListPublicKeys"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListPublicKeysResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListPublicKeysRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListQueries",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListQueries"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListQueriesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListQueriesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTags",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTags"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTrails",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTrails"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTrailsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTrailsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "LookupEvents",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "LookupEvents"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/LookupEventsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/LookupEventsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutEventSelectors",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutEventSelectors"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutEventSelectorsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutEventSelectorsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutInsightSelectors",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutInsightSelectors"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutInsightSelectorsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutInsightSelectorsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutResourcePolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutResourcePolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutResourcePolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutResourcePolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RegisterOrganizationDelegatedAdmin",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RegisterOrganizationDelegatedAdmin"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RegisterOrganizationDelegatedAdminResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RegisterOrganizationDelegatedAdminRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RemoveTags",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RemoveTags"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RemoveTagsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RemoveTagsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RestoreEventDataStore",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RestoreEventDataStore"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RestoreEventDataStoreResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RestoreEventDataStoreRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartEventDataStoreIngestion",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartEventDataStoreIngestion"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartEventDataStoreIngestionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartEventDataStoreIngestionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartImport",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartImport"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartImportResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartImportRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartLogging",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartLogging"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartLoggingResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartLoggingRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartQuery",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartQuery"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartQueryResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartQueryRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StopEventDataStoreIngestion",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StopEventDataStoreIngestion"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StopEventDataStoreIngestionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StopEventDataStoreIngestionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StopImport",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StopImport"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StopImportResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StopImportRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StopLogging",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StopLogging"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StopLoggingResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StopLoggingRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateChannel",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateChannel"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateChannelResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateChannelRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateEventDataStore",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateEventDataStore"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateEventDataStoreResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateEventDataStoreRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateTrail",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateTrail"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateTrailResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateTrailRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "AddTagsResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "AddTagsRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceId": {
+                    "$ref": "#/$defs/String"
+                },
+                "TagsList": {
+                    "$ref": "#/$defs/TagsList"
+                }
+            }
+        },
+        "String": {
+            "type": "string"
+        },
+        "TagsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "CancelQueryResponse": {
+            "type": "object",
+            "properties": {
+                "QueryId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "QueryStatus": {
+                    "$ref": "#/$defs/QueryStatus"
+                }
+            }
+        },
+        "UUID": {
+            "type": "string"
+        },
+        "QueryStatus": {
+            "enum": [
+                "QUEUED",
+                "RUNNING",
+                "FINISHED",
+                "FAILED",
+                "CANCELLED",
+                "TIMED_OUT"
+            ]
+        },
+        "CancelQueryRequest": {
+            "type": "object",
+            "properties": {
+                "EventDataStore": {
+                    "$ref": "#/$defs/EventDataStoreArn"
+                },
+                "QueryId": {
+                    "$ref": "#/$defs/UUID"
+                }
+            }
+        },
+        "EventDataStoreArn": {
+            "type": "string"
+        },
+        "CreateChannelResponse": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChannelArn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/ChannelName"
+                },
+                "Source": {
+                    "$ref": "#/$defs/Source"
+                },
+                "Destinations": {
+                    "$ref": "#/$defs/Destinations"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagsList"
+                }
+            }
+        },
+        "ChannelArn": {
+            "type": "string"
+        },
+        "ChannelName": {
+            "type": "string"
+        },
+        "Source": {
+            "type": "string"
+        },
+        "Destinations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Destination"
+            }
+        },
+        "Destination": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "$ref": "#/$defs/DestinationType"
+                },
+                "Location": {
+                    "$ref": "#/$defs/Location"
+                }
+            }
+        },
+        "DestinationType": {
+            "enum": [
+                "EVENT_DATA_STORE",
+                "AWS_SERVICE"
+            ]
+        },
+        "Location": {
+            "type": "string"
+        },
+        "CreateChannelRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/ChannelName"
+                },
+                "Source": {
+                    "$ref": "#/$defs/Source"
+                },
+                "Destinations": {
+                    "$ref": "#/$defs/Destinations"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagsList"
+                }
+            }
+        },
+        "CreateEventDataStoreResponse": {
+            "type": "object",
+            "properties": {
+                "EventDataStoreArn": {
+                    "$ref": "#/$defs/EventDataStoreArn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/EventDataStoreName"
+                },
+                "Status": {
+                    "$ref": "#/$defs/EventDataStoreStatus"
+                },
+                "AdvancedEventSelectors": {
+                    "$ref": "#/$defs/AdvancedEventSelectors"
+                },
+                "MultiRegionEnabled": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "OrganizationEnabled": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "RetentionPeriod": {
+                    "$ref": "#/$defs/RetentionPeriod"
+                },
+                "TerminationProtectionEnabled": {
+                    "$ref": "#/$defs/TerminationProtectionEnabled"
+                },
+                "TagsList": {
+                    "$ref": "#/$defs/TagsList"
+                },
+                "CreatedTimestamp": {
+                    "$ref": "#/$defs/Date"
+                },
+                "UpdatedTimestamp": {
+                    "$ref": "#/$defs/Date"
+                },
+                "KmsKeyId": {
+                    "$ref": "#/$defs/EventDataStoreKmsKeyId"
+                },
+                "BillingMode": {
+                    "$ref": "#/$defs/BillingMode"
+                }
+            }
+        },
+        "EventDataStoreName": {
+            "type": "string"
+        },
+        "EventDataStoreStatus": {
+            "enum": [
+                "CREATED",
+                "ENABLED",
+                "PENDING_DELETION",
+                "STARTING_INGESTION",
+                "STOPPING_INGESTION",
+                "STOPPED_INGESTION"
+            ]
+        },
+        "AdvancedEventSelectors": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AdvancedEventSelector"
+            }
+        },
+        "AdvancedEventSelector": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/SelectorName"
+                },
+                "FieldSelectors": {
+                    "$ref": "#/$defs/AdvancedFieldSelectors"
+                }
+            }
+        },
+        "SelectorName": {
+            "type": "string"
+        },
+        "AdvancedFieldSelectors": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AdvancedFieldSelector"
+            }
+        },
+        "AdvancedFieldSelector": {
+            "type": "object",
+            "properties": {
+                "Field": {
+                    "$ref": "#/$defs/SelectorField"
+                },
+                "Equals": {
+                    "$ref": "#/$defs/Operator"
+                },
+                "StartsWith": {
+                    "$ref": "#/$defs/Operator"
+                },
+                "EndsWith": {
+                    "$ref": "#/$defs/Operator"
+                },
+                "NotEquals": {
+                    "$ref": "#/$defs/Operator"
+                },
+                "NotStartsWith": {
+                    "$ref": "#/$defs/Operator"
+                },
+                "NotEndsWith": {
+                    "$ref": "#/$defs/Operator"
+                }
+            }
+        },
+        "SelectorField": {
+            "type": "string"
+        },
+        "Operator": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/OperatorValue"
+            }
+        },
+        "OperatorValue": {
+            "type": "string"
+        },
+        "Boolean": {
+            "type": "boolean"
+        },
+        "RetentionPeriod": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "TerminationProtectionEnabled": {
+            "type": "boolean"
+        },
+        "Date": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "EventDataStoreKmsKeyId": {
+            "type": "string"
+        },
+        "BillingMode": {
+            "enum": [
+                "EXTENDABLE_RETENTION_PRICING",
+                "FIXED_RETENTION_PRICING"
+            ]
+        },
+        "CreateEventDataStoreRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/EventDataStoreName"
+                },
+                "AdvancedEventSelectors": {
+                    "$ref": "#/$defs/AdvancedEventSelectors"
+                },
+                "MultiRegionEnabled": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "OrganizationEnabled": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "RetentionPeriod": {
+                    "$ref": "#/$defs/RetentionPeriod"
+                },
+                "TerminationProtectionEnabled": {
+                    "$ref": "#/$defs/TerminationProtectionEnabled"
+                },
+                "TagsList": {
+                    "$ref": "#/$defs/TagsList"
+                },
+                "KmsKeyId": {
+                    "$ref": "#/$defs/EventDataStoreKmsKeyId"
+                },
+                "StartIngestion": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "BillingMode": {
+                    "$ref": "#/$defs/BillingMode"
+                }
+            }
+        },
+        "CreateTrailResponse": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "S3BucketName": {
+                    "$ref": "#/$defs/String"
+                },
+                "S3KeyPrefix": {
+                    "$ref": "#/$defs/String"
+                },
+                "SnsTopicName": {
+                    "$ref": "#/$defs/String"
+                },
+                "SnsTopicARN": {
+                    "$ref": "#/$defs/String"
+                },
+                "IncludeGlobalServiceEvents": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "IsMultiRegionTrail": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "TrailARN": {
+                    "$ref": "#/$defs/String"
+                },
+                "LogFileValidationEnabled": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "CloudWatchLogsLogGroupArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "CloudWatchLogsRoleArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "KmsKeyId": {
+                    "$ref": "#/$defs/String"
+                },
+                "IsOrganizationTrail": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "CreateTrailRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "S3BucketName": {
+                    "$ref": "#/$defs/String"
+                },
+                "S3KeyPrefix": {
+                    "$ref": "#/$defs/String"
+                },
+                "SnsTopicName": {
+                    "$ref": "#/$defs/String"
+                },
+                "IncludeGlobalServiceEvents": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "IsMultiRegionTrail": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "EnableLogFileValidation": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "CloudWatchLogsLogGroupArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "CloudWatchLogsRoleArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "KmsKeyId": {
+                    "$ref": "#/$defs/String"
+                },
+                "IsOrganizationTrail": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "TagsList": {
+                    "$ref": "#/$defs/TagsList"
+                }
+            }
+        },
+        "DeleteChannelResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteChannelRequest": {
+            "type": "object",
+            "properties": {
+                "Channel": {
+                    "$ref": "#/$defs/ChannelArn"
+                }
+            }
+        },
+        "DeleteEventDataStoreResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteEventDataStoreRequest": {
+            "type": "object",
+            "properties": {
+                "EventDataStore": {
+                    "$ref": "#/$defs/EventDataStoreArn"
+                }
+            }
+        },
+        "DeleteResourcePolicyResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteResourcePolicyRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                }
+            }
+        },
+        "ResourceArn": {
+            "type": "string"
+        },
+        "DeleteTrailResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteTrailRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DeregisterOrganizationDelegatedAdminResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeregisterOrganizationDelegatedAdminRequest": {
+            "type": "object",
+            "properties": {
+                "DelegatedAdminAccountId": {
+                    "$ref": "#/$defs/AccountId"
+                }
+            }
+        },
+        "AccountId": {
+            "type": "string"
+        },
+        "DescribeQueryResponse": {
+            "type": "object",
+            "properties": {
+                "QueryId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "QueryString": {
+                    "$ref": "#/$defs/QueryStatement"
+                },
+                "QueryStatus": {
+                    "$ref": "#/$defs/QueryStatus"
+                },
+                "QueryStatistics": {
+                    "$ref": "#/$defs/QueryStatisticsForDescribeQuery"
+                },
+                "ErrorMessage": {
+                    "$ref": "#/$defs/ErrorMessage"
+                },
+                "DeliveryS3Uri": {
+                    "$ref": "#/$defs/DeliveryS3Uri"
+                },
+                "DeliveryStatus": {
+                    "$ref": "#/$defs/DeliveryStatus"
+                }
+            }
+        },
+        "QueryStatement": {
+            "type": "string"
+        },
+        "QueryStatisticsForDescribeQuery": {
+            "type": "object",
+            "properties": {
+                "EventsMatched": {
+                    "$ref": "#/$defs/Long"
+                },
+                "EventsScanned": {
+                    "$ref": "#/$defs/Long"
+                },
+                "BytesScanned": {
+                    "$ref": "#/$defs/Long"
+                },
+                "ExecutionTimeInMillis": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Date"
+                }
+            }
+        },
+        "Long": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "Integer": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ErrorMessage": {
+            "type": "string"
+        },
+        "DeliveryS3Uri": {
+            "type": "string"
+        },
+        "DeliveryStatus": {
+            "enum": [
+                "SUCCESS",
+                "FAILED",
+                "FAILED_SIGNING_FILE",
+                "PENDING",
+                "RESOURCE_NOT_FOUND",
+                "ACCESS_DENIED",
+                "ACCESS_DENIED_SIGNING_FILE",
+                "CANCELLED",
+                "UNKNOWN"
+            ]
+        },
+        "DescribeQueryRequest": {
+            "type": "object",
+            "properties": {
+                "EventDataStore": {
+                    "$ref": "#/$defs/EventDataStoreArn"
+                },
+                "QueryId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "QueryAlias": {
+                    "$ref": "#/$defs/QueryAlias"
+                }
+            }
+        },
+        "QueryAlias": {
+            "type": "string"
+        },
+        "DescribeTrailsResponse": {
+            "type": "object",
+            "properties": {
+                "trailList": {
+                    "$ref": "#/$defs/TrailList"
+                }
+            }
+        },
+        "TrailList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Trail"
+            }
+        },
+        "Trail": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "S3BucketName": {
+                    "$ref": "#/$defs/String"
+                },
+                "S3KeyPrefix": {
+                    "$ref": "#/$defs/String"
+                },
+                "SnsTopicName": {
+                    "$ref": "#/$defs/String"
+                },
+                "SnsTopicARN": {
+                    "$ref": "#/$defs/String"
+                },
+                "IncludeGlobalServiceEvents": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "IsMultiRegionTrail": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "HomeRegion": {
+                    "$ref": "#/$defs/String"
+                },
+                "TrailARN": {
+                    "$ref": "#/$defs/String"
+                },
+                "LogFileValidationEnabled": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "CloudWatchLogsLogGroupArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "CloudWatchLogsRoleArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "KmsKeyId": {
+                    "$ref": "#/$defs/String"
+                },
+                "HasCustomEventSelectors": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "HasInsightSelectors": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "IsOrganizationTrail": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "DescribeTrailsRequest": {
+            "type": "object",
+            "properties": {
+                "trailNameList": {
+                    "$ref": "#/$defs/TrailNameList"
+                },
+                "includeShadowTrails": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "TrailNameList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "DisableFederationResponse": {
+            "type": "object",
+            "properties": {
+                "EventDataStoreArn": {
+                    "$ref": "#/$defs/EventDataStoreArn"
+                },
+                "FederationStatus": {
+                    "$ref": "#/$defs/FederationStatus"
+                }
+            }
+        },
+        "FederationStatus": {
+            "enum": [
+                "ENABLING",
+                "ENABLED",
+                "DISABLING",
+                "DISABLED"
+            ]
+        },
+        "DisableFederationRequest": {
+            "type": "object",
+            "properties": {
+                "EventDataStore": {
+                    "$ref": "#/$defs/EventDataStoreArn"
+                }
+            }
+        },
+        "EnableFederationResponse": {
+            "type": "object",
+            "properties": {
+                "EventDataStoreArn": {
+                    "$ref": "#/$defs/EventDataStoreArn"
+                },
+                "FederationStatus": {
+                    "$ref": "#/$defs/FederationStatus"
+                },
+                "FederationRoleArn": {
+                    "$ref": "#/$defs/FederationRoleArn"
+                }
+            }
+        },
+        "FederationRoleArn": {
+            "type": "string"
+        },
+        "EnableFederationRequest": {
+            "type": "object",
+            "properties": {
+                "EventDataStore": {
+                    "$ref": "#/$defs/EventDataStoreArn"
+                },
+                "FederationRoleArn": {
+                    "$ref": "#/$defs/FederationRoleArn"
+                }
+            }
+        },
+        "GetChannelResponse": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChannelArn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/ChannelName"
+                },
+                "Source": {
+                    "$ref": "#/$defs/Source"
+                },
+                "SourceConfig": {
+                    "$ref": "#/$defs/SourceConfig"
+                },
+                "Destinations": {
+                    "$ref": "#/$defs/Destinations"
+                },
+                "IngestionStatus": {
+                    "$ref": "#/$defs/IngestionStatus"
+                }
+            }
+        },
+        "SourceConfig": {
+            "type": "object",
+            "properties": {
+                "ApplyToAllRegions": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "AdvancedEventSelectors": {
+                    "$ref": "#/$defs/AdvancedEventSelectors"
+                }
+            }
+        },
+        "IngestionStatus": {
+            "type": "object",
+            "properties": {
+                "LatestIngestionSuccessTime": {
+                    "$ref": "#/$defs/Date"
+                },
+                "LatestIngestionSuccessEventID": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "LatestIngestionErrorCode": {
+                    "$ref": "#/$defs/ErrorMessage"
+                },
+                "LatestIngestionAttemptTime": {
+                    "$ref": "#/$defs/Date"
+                },
+                "LatestIngestionAttemptEventID": {
+                    "$ref": "#/$defs/UUID"
+                }
+            }
+        },
+        "GetChannelRequest": {
+            "type": "object",
+            "properties": {
+                "Channel": {
+                    "$ref": "#/$defs/ChannelArn"
+                }
+            }
+        },
+        "GetEventDataStoreResponse": {
+            "type": "object",
+            "properties": {
+                "EventDataStoreArn": {
+                    "$ref": "#/$defs/EventDataStoreArn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/EventDataStoreName"
+                },
+                "Status": {
+                    "$ref": "#/$defs/EventDataStoreStatus"
+                },
+                "AdvancedEventSelectors": {
+                    "$ref": "#/$defs/AdvancedEventSelectors"
+                },
+                "MultiRegionEnabled": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "OrganizationEnabled": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "RetentionPeriod": {
+                    "$ref": "#/$defs/RetentionPeriod"
+                },
+                "TerminationProtectionEnabled": {
+                    "$ref": "#/$defs/TerminationProtectionEnabled"
+                },
+                "CreatedTimestamp": {
+                    "$ref": "#/$defs/Date"
+                },
+                "UpdatedTimestamp": {
+                    "$ref": "#/$defs/Date"
+                },
+                "KmsKeyId": {
+                    "$ref": "#/$defs/EventDataStoreKmsKeyId"
+                },
+                "BillingMode": {
+                    "$ref": "#/$defs/BillingMode"
+                },
+                "FederationStatus": {
+                    "$ref": "#/$defs/FederationStatus"
+                },
+                "FederationRoleArn": {
+                    "$ref": "#/$defs/FederationRoleArn"
+                },
+                "PartitionKeys": {
+                    "$ref": "#/$defs/PartitionKeyList"
+                }
+            }
+        },
+        "PartitionKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PartitionKey"
+            }
+        },
+        "PartitionKey": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/PartitionKeyName"
+                },
+                "Type": {
+                    "$ref": "#/$defs/PartitionKeyType"
+                }
+            }
+        },
+        "PartitionKeyName": {
+            "type": "string"
+        },
+        "PartitionKeyType": {
+            "type": "string"
+        },
+        "GetEventDataStoreRequest": {
+            "type": "object",
+            "properties": {
+                "EventDataStore": {
+                    "$ref": "#/$defs/EventDataStoreArn"
+                }
+            }
+        },
+        "GetEventSelectorsResponse": {
+            "type": "object",
+            "properties": {
+                "TrailARN": {
+                    "$ref": "#/$defs/String"
+                },
+                "EventSelectors": {
+                    "$ref": "#/$defs/EventSelectors"
+                },
+                "AdvancedEventSelectors": {
+                    "$ref": "#/$defs/AdvancedEventSelectors"
+                }
+            }
+        },
+        "EventSelectors": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EventSelector"
+            }
+        },
+        "EventSelector": {
+            "type": "object",
+            "properties": {
+                "ReadWriteType": {
+                    "$ref": "#/$defs/ReadWriteType"
+                },
+                "IncludeManagementEvents": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "DataResources": {
+                    "$ref": "#/$defs/DataResources"
+                },
+                "ExcludeManagementEventSources": {
+                    "$ref": "#/$defs/ExcludeManagementEventSources"
+                }
+            }
+        },
+        "ReadWriteType": {
+            "enum": [
+                "ReadOnly",
+                "WriteOnly",
+                "All"
+            ]
+        },
+        "DataResources": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DataResource"
+            }
+        },
+        "DataResource": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "$ref": "#/$defs/String"
+                },
+                "Values": {
+                    "$ref": "#/$defs/DataResourceValues"
+                }
+            }
+        },
+        "DataResourceValues": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "ExcludeManagementEventSources": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "GetEventSelectorsRequest": {
+            "type": "object",
+            "properties": {
+                "TrailName": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetImportResponse": {
+            "type": "object",
+            "properties": {
+                "ImportId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "Destinations": {
+                    "$ref": "#/$defs/ImportDestinations"
+                },
+                "ImportSource": {
+                    "$ref": "#/$defs/ImportSource"
+                },
+                "StartEventTime": {
+                    "$ref": "#/$defs/Date"
+                },
+                "EndEventTime": {
+                    "$ref": "#/$defs/Date"
+                },
+                "ImportStatus": {
+                    "$ref": "#/$defs/ImportStatus"
+                },
+                "CreatedTimestamp": {
+                    "$ref": "#/$defs/Date"
+                },
+                "UpdatedTimestamp": {
+                    "$ref": "#/$defs/Date"
+                },
+                "ImportStatistics": {
+                    "$ref": "#/$defs/ImportStatistics"
+                }
+            }
+        },
+        "ImportDestinations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EventDataStoreArn"
+            }
+        },
+        "ImportSource": {
+            "type": "object",
+            "properties": {
+                "S3": {
+                    "$ref": "#/$defs/S3ImportSource"
+                }
+            }
+        },
+        "S3ImportSource": {
+            "type": "object",
+            "properties": {
+                "S3LocationUri": {
+                    "$ref": "#/$defs/String"
+                },
+                "S3BucketRegion": {
+                    "$ref": "#/$defs/String"
+                },
+                "S3BucketAccessRoleArn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ImportStatus": {
+            "enum": [
+                "INITIALIZING",
+                "IN_PROGRESS",
+                "FAILED",
+                "STOPPED",
+                "COMPLETED"
+            ]
+        },
+        "ImportStatistics": {
+            "type": "object",
+            "properties": {
+                "PrefixesFound": {
+                    "$ref": "#/$defs/Long"
+                },
+                "PrefixesCompleted": {
+                    "$ref": "#/$defs/Long"
+                },
+                "FilesCompleted": {
+                    "$ref": "#/$defs/Long"
+                },
+                "EventsCompleted": {
+                    "$ref": "#/$defs/Long"
+                },
+                "FailedEntries": {
+                    "$ref": "#/$defs/Long"
+                }
+            }
+        },
+        "GetImportRequest": {
+            "type": "object",
+            "properties": {
+                "ImportId": {
+                    "$ref": "#/$defs/UUID"
+                }
+            }
+        },
+        "GetInsightSelectorsResponse": {
+            "type": "object",
+            "properties": {
+                "TrailARN": {
+                    "$ref": "#/$defs/String"
+                },
+                "InsightSelectors": {
+                    "$ref": "#/$defs/InsightSelectors"
+                },
+                "EventDataStoreArn": {
+                    "$ref": "#/$defs/EventDataStoreArn"
+                },
+                "InsightsDestination": {
+                    "$ref": "#/$defs/EventDataStoreArn"
+                }
+            }
+        },
+        "InsightSelectors": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/InsightSelector"
+            }
+        },
+        "InsightSelector": {
+            "type": "object",
+            "properties": {
+                "InsightType": {
+                    "$ref": "#/$defs/InsightType"
+                }
+            }
+        },
+        "InsightType": {
+            "enum": [
+                "ApiCallRateInsight",
+                "ApiErrorRateInsight"
+            ]
+        },
+        "GetInsightSelectorsRequest": {
+            "type": "object",
+            "properties": {
+                "TrailName": {
+                    "$ref": "#/$defs/String"
+                },
+                "EventDataStore": {
+                    "$ref": "#/$defs/EventDataStoreArn"
+                }
+            }
+        },
+        "GetQueryResultsResponse": {
+            "type": "object",
+            "properties": {
+                "QueryStatus": {
+                    "$ref": "#/$defs/QueryStatus"
+                },
+                "QueryStatistics": {
+                    "$ref": "#/$defs/QueryStatistics"
+                },
+                "QueryResultRows": {
+                    "$ref": "#/$defs/QueryResultRows"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "ErrorMessage": {
+                    "$ref": "#/$defs/ErrorMessage"
+                }
+            }
+        },
+        "QueryStatistics": {
+            "type": "object",
+            "properties": {
+                "ResultsCount": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "TotalResultsCount": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "BytesScanned": {
+                    "$ref": "#/$defs/Long"
+                }
+            }
+        },
+        "QueryResultRows": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/QueryResultRow"
+            }
+        },
+        "QueryResultRow": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/QueryResultColumn"
+            }
+        },
+        "QueryResultColumn": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/QueryResultValue"
+            }
+        },
+        "QueryResultValue": {
+            "type": "string"
+        },
+        "PaginationToken": {
+            "type": "string"
+        },
+        "GetQueryResultsRequest": {
+            "type": "object",
+            "properties": {
+                "EventDataStore": {
+                    "$ref": "#/$defs/EventDataStoreArn"
+                },
+                "QueryId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "MaxQueryResults": {
+                    "$ref": "#/$defs/MaxQueryResults"
+                }
+            }
+        },
+        "MaxQueryResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "GetResourcePolicyResponse": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "ResourcePolicy": {
+                    "$ref": "#/$defs/ResourcePolicy"
+                }
+            }
+        },
+        "ResourcePolicy": {
+            "type": "string"
+        },
+        "GetResourcePolicyRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                }
+            }
+        },
+        "GetTrailResponse": {
+            "type": "object",
+            "properties": {
+                "Trail": {
+                    "$ref": "#/$defs/Trail"
+                }
+            }
+        },
+        "GetTrailRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetTrailStatusResponse": {
+            "type": "object",
+            "properties": {
+                "IsLogging": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "LatestDeliveryError": {
+                    "$ref": "#/$defs/String"
+                },
+                "LatestNotificationError": {
+                    "$ref": "#/$defs/String"
+                },
+                "LatestDeliveryTime": {
+                    "$ref": "#/$defs/Date"
+                },
+                "LatestNotificationTime": {
+                    "$ref": "#/$defs/Date"
+                },
+                "StartLoggingTime": {
+                    "$ref": "#/$defs/Date"
+                },
+                "StopLoggingTime": {
+                    "$ref": "#/$defs/Date"
+                },
+                "LatestCloudWatchLogsDeliveryError": {
+                    "$ref": "#/$defs/String"
+                },
+                "LatestCloudWatchLogsDeliveryTime": {
+                    "$ref": "#/$defs/Date"
+                },
+                "LatestDigestDeliveryTime": {
+                    "$ref": "#/$defs/Date"
+                },
+                "LatestDigestDeliveryError": {
+                    "$ref": "#/$defs/String"
+                },
+                "LatestDeliveryAttemptTime": {
+                    "$ref": "#/$defs/String"
+                },
+                "LatestNotificationAttemptTime": {
+                    "$ref": "#/$defs/String"
+                },
+                "LatestNotificationAttemptSucceeded": {
+                    "$ref": "#/$defs/String"
+                },
+                "LatestDeliveryAttemptSucceeded": {
+                    "$ref": "#/$defs/String"
+                },
+                "TimeLoggingStarted": {
+                    "$ref": "#/$defs/String"
+                },
+                "TimeLoggingStopped": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetTrailStatusRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListChannelsResponse": {
+            "type": "object",
+            "properties": {
+                "Channels": {
+                    "$ref": "#/$defs/Channels"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "Channels": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Channel"
+            }
+        },
+        "Channel": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChannelArn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/ChannelName"
+                }
+            }
+        },
+        "ListChannelsRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/ListChannelsMaxResultsCount"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "ListChannelsMaxResultsCount": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListEventDataStoresResponse": {
+            "type": "object",
+            "properties": {
+                "EventDataStores": {
+                    "$ref": "#/$defs/EventDataStores"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "EventDataStores": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EventDataStore"
+            }
+        },
+        "EventDataStore": {
+            "type": "object",
+            "properties": {
+                "EventDataStoreArn": {
+                    "$ref": "#/$defs/EventDataStoreArn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/EventDataStoreName"
+                },
+                "TerminationProtectionEnabled": {
+                    "$ref": "#/$defs/TerminationProtectionEnabled"
+                },
+                "Status": {
+                    "$ref": "#/$defs/EventDataStoreStatus"
+                },
+                "AdvancedEventSelectors": {
+                    "$ref": "#/$defs/AdvancedEventSelectors"
+                },
+                "MultiRegionEnabled": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "OrganizationEnabled": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "RetentionPeriod": {
+                    "$ref": "#/$defs/RetentionPeriod"
+                },
+                "CreatedTimestamp": {
+                    "$ref": "#/$defs/Date"
+                },
+                "UpdatedTimestamp": {
+                    "$ref": "#/$defs/Date"
+                }
+            }
+        },
+        "ListEventDataStoresRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/ListEventDataStoresMaxResultsCount"
+                }
+            }
+        },
+        "ListEventDataStoresMaxResultsCount": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListImportFailuresResponse": {
+            "type": "object",
+            "properties": {
+                "Failures": {
+                    "$ref": "#/$defs/ImportFailureList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "ImportFailureList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ImportFailureListItem"
+            }
+        },
+        "ImportFailureListItem": {
+            "type": "object",
+            "properties": {
+                "Location": {
+                    "$ref": "#/$defs/String"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ImportFailureStatus"
+                },
+                "ErrorType": {
+                    "$ref": "#/$defs/String"
+                },
+                "ErrorMessage": {
+                    "$ref": "#/$defs/String"
+                },
+                "LastUpdatedTime": {
+                    "$ref": "#/$defs/Date"
+                }
+            }
+        },
+        "ImportFailureStatus": {
+            "enum": [
+                "FAILED",
+                "RETRY",
+                "SUCCEEDED"
+            ]
+        },
+        "ListImportFailuresRequest": {
+            "type": "object",
+            "properties": {
+                "ImportId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/ListImportFailuresMaxResultsCount"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "ListImportFailuresMaxResultsCount": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListImportsResponse": {
+            "type": "object",
+            "properties": {
+                "Imports": {
+                    "$ref": "#/$defs/ImportsList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "ImportsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ImportsListItem"
+            }
+        },
+        "ImportsListItem": {
+            "type": "object",
+            "properties": {
+                "ImportId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "ImportStatus": {
+                    "$ref": "#/$defs/ImportStatus"
+                },
+                "Destinations": {
+                    "$ref": "#/$defs/ImportDestinations"
+                },
+                "CreatedTimestamp": {
+                    "$ref": "#/$defs/Date"
+                },
+                "UpdatedTimestamp": {
+                    "$ref": "#/$defs/Date"
+                }
+            }
+        },
+        "ListImportsRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/ListImportsMaxResultsCount"
+                },
+                "Destination": {
+                    "$ref": "#/$defs/EventDataStoreArn"
+                },
+                "ImportStatus": {
+                    "$ref": "#/$defs/ImportStatus"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "ListImportsMaxResultsCount": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListInsightsMetricDataResponse": {
+            "type": "object",
+            "properties": {
+                "EventSource": {
+                    "$ref": "#/$defs/EventSource"
+                },
+                "EventName": {
+                    "$ref": "#/$defs/EventName"
+                },
+                "InsightType": {
+                    "$ref": "#/$defs/InsightType"
+                },
+                "ErrorCode": {
+                    "$ref": "#/$defs/ErrorCode"
+                },
+                "Timestamps": {
+                    "$ref": "#/$defs/Timestamps"
+                },
+                "Values": {
+                    "$ref": "#/$defs/InsightsMetricValues"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/InsightsMetricNextToken"
+                }
+            }
+        },
+        "EventSource": {
+            "type": "string"
+        },
+        "EventName": {
+            "type": "string"
+        },
+        "ErrorCode": {
+            "type": "string"
+        },
+        "Timestamps": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Date"
+            }
+        },
+        "InsightsMetricValues": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Double"
+            }
+        },
+        "Double": {
+            "type": "number",
+            "format": "double"
+        },
+        "InsightsMetricNextToken": {
+            "type": "string"
+        },
+        "ListInsightsMetricDataRequest": {
+            "type": "object",
+            "properties": {
+                "EventSource": {
+                    "$ref": "#/$defs/EventSource"
+                },
+                "EventName": {
+                    "$ref": "#/$defs/EventName"
+                },
+                "InsightType": {
+                    "$ref": "#/$defs/InsightType"
+                },
+                "ErrorCode": {
+                    "$ref": "#/$defs/ErrorCode"
+                },
+                "StartTime": {
+                    "$ref": "#/$defs/Date"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/Date"
+                },
+                "Period": {
+                    "$ref": "#/$defs/InsightsMetricPeriod"
+                },
+                "DataType": {
+                    "$ref": "#/$defs/InsightsMetricDataType"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/InsightsMetricMaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/InsightsMetricNextToken"
+                }
+            }
+        },
+        "InsightsMetricPeriod": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "InsightsMetricDataType": {
+            "enum": [
+                "FILL_WITH_ZEROS",
+                "NON_ZERO_DATA"
+            ]
+        },
+        "InsightsMetricMaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListPublicKeysResponse": {
+            "type": "object",
+            "properties": {
+                "PublicKeyList": {
+                    "$ref": "#/$defs/PublicKeyList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "PublicKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PublicKey"
+            }
+        },
+        "PublicKey": {
+            "type": "object",
+            "properties": {
+                "Value": {
+                    "$ref": "#/$defs/ByteBuffer"
+                },
+                "ValidityStartTime": {
+                    "$ref": "#/$defs/Date"
+                },
+                "ValidityEndTime": {
+                    "$ref": "#/$defs/Date"
+                },
+                "Fingerprint": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ByteBuffer": {
+            "type": "string",
+            "format": "binary"
+        },
+        "ListPublicKeysRequest": {
+            "type": "object",
+            "properties": {
+                "StartTime": {
+                    "$ref": "#/$defs/Date"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/Date"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListQueriesResponse": {
+            "type": "object",
+            "properties": {
+                "Queries": {
+                    "$ref": "#/$defs/Queries"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "Queries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Query"
+            }
+        },
+        "Query": {
+            "type": "object",
+            "properties": {
+                "QueryId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "QueryStatus": {
+                    "$ref": "#/$defs/QueryStatus"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Date"
+                }
+            }
+        },
+        "ListQueriesRequest": {
+            "type": "object",
+            "properties": {
+                "EventDataStore": {
+                    "$ref": "#/$defs/EventDataStoreArn"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/ListQueriesMaxResultsCount"
+                },
+                "StartTime": {
+                    "$ref": "#/$defs/Date"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/Date"
+                },
+                "QueryStatus": {
+                    "$ref": "#/$defs/QueryStatus"
+                }
+            }
+        },
+        "ListQueriesMaxResultsCount": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListTagsResponse": {
+            "type": "object",
+            "properties": {
+                "ResourceTagList": {
+                    "$ref": "#/$defs/ResourceTagList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ResourceTagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourceTag"
+            }
+        },
+        "ResourceTag": {
+            "type": "object",
+            "properties": {
+                "ResourceId": {
+                    "$ref": "#/$defs/String"
+                },
+                "TagsList": {
+                    "$ref": "#/$defs/TagsList"
+                }
+            }
+        },
+        "ListTagsRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceIdList": {
+                    "$ref": "#/$defs/ResourceIdList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ResourceIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "ListTrailsResponse": {
+            "type": "object",
+            "properties": {
+                "Trails": {
+                    "$ref": "#/$defs/Trails"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "Trails": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TrailInfo"
+            }
+        },
+        "TrailInfo": {
+            "type": "object",
+            "properties": {
+                "TrailARN": {
+                    "$ref": "#/$defs/String"
+                },
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "HomeRegion": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListTrailsRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "LookupEventsResponse": {
+            "type": "object",
+            "properties": {
+                "Events": {
+                    "$ref": "#/$defs/EventsList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "EventsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Event"
+            }
+        },
+        "Event": {
+            "type": "object",
+            "properties": {
+                "EventId": {
+                    "$ref": "#/$defs/String"
+                },
+                "EventName": {
+                    "$ref": "#/$defs/String"
+                },
+                "ReadOnly": {
+                    "$ref": "#/$defs/String"
+                },
+                "AccessKeyId": {
+                    "$ref": "#/$defs/String"
+                },
+                "EventTime": {
+                    "$ref": "#/$defs/Date"
+                },
+                "EventSource": {
+                    "$ref": "#/$defs/String"
+                },
+                "Username": {
+                    "$ref": "#/$defs/String"
+                },
+                "Resources": {
+                    "$ref": "#/$defs/ResourceList"
+                },
+                "CloudTrailEvent": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ResourceList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Resource"
+            }
+        },
+        "Resource": {
+            "type": "object",
+            "properties": {
+                "ResourceType": {
+                    "$ref": "#/$defs/String"
+                },
+                "ResourceName": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "LookupEventsRequest": {
+            "type": "object",
+            "properties": {
+                "LookupAttributes": {
+                    "$ref": "#/$defs/LookupAttributesList"
+                },
+                "StartTime": {
+                    "$ref": "#/$defs/Date"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/Date"
+                },
+                "EventCategory": {
+                    "$ref": "#/$defs/EventCategory"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "LookupAttributesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LookupAttribute"
+            }
+        },
+        "LookupAttribute": {
+            "type": "object",
+            "properties": {
+                "AttributeKey": {
+                    "$ref": "#/$defs/LookupAttributeKey"
+                },
+                "AttributeValue": {
+                    "$ref": "#/$defs/LookupAttributeValue"
+                }
+            }
+        },
+        "LookupAttributeKey": {
+            "enum": [
+                "EVENT_ID",
+                "EVENT_NAME",
+                "READ_ONLY",
+                "USERNAME",
+                "RESOURCE_TYPE",
+                "RESOURCE_NAME",
+                "EVENT_SOURCE",
+                "ACCESS_KEY_ID"
+            ]
+        },
+        "LookupAttributeValue": {
+            "type": "string"
+        },
+        "EventCategory": {
+            "enum": [
+                "Insight"
+            ]
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "PutEventSelectorsResponse": {
+            "type": "object",
+            "properties": {
+                "TrailARN": {
+                    "$ref": "#/$defs/String"
+                },
+                "EventSelectors": {
+                    "$ref": "#/$defs/EventSelectors"
+                },
+                "AdvancedEventSelectors": {
+                    "$ref": "#/$defs/AdvancedEventSelectors"
+                }
+            }
+        },
+        "PutEventSelectorsRequest": {
+            "type": "object",
+            "properties": {
+                "TrailName": {
+                    "$ref": "#/$defs/String"
+                },
+                "EventSelectors": {
+                    "$ref": "#/$defs/EventSelectors"
+                },
+                "AdvancedEventSelectors": {
+                    "$ref": "#/$defs/AdvancedEventSelectors"
+                }
+            }
+        },
+        "PutInsightSelectorsResponse": {
+            "type": "object",
+            "properties": {
+                "TrailARN": {
+                    "$ref": "#/$defs/String"
+                },
+                "InsightSelectors": {
+                    "$ref": "#/$defs/InsightSelectors"
+                },
+                "EventDataStoreArn": {
+                    "$ref": "#/$defs/EventDataStoreArn"
+                },
+                "InsightsDestination": {
+                    "$ref": "#/$defs/EventDataStoreArn"
+                }
+            }
+        },
+        "PutInsightSelectorsRequest": {
+            "type": "object",
+            "properties": {
+                "TrailName": {
+                    "$ref": "#/$defs/String"
+                },
+                "InsightSelectors": {
+                    "$ref": "#/$defs/InsightSelectors"
+                },
+                "EventDataStore": {
+                    "$ref": "#/$defs/EventDataStoreArn"
+                },
+                "InsightsDestination": {
+                    "$ref": "#/$defs/EventDataStoreArn"
+                }
+            }
+        },
+        "PutResourcePolicyResponse": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "ResourcePolicy": {
+                    "$ref": "#/$defs/ResourcePolicy"
+                }
+            }
+        },
+        "PutResourcePolicyRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "ResourcePolicy": {
+                    "$ref": "#/$defs/ResourcePolicy"
+                }
+            }
+        },
+        "RegisterOrganizationDelegatedAdminResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "RegisterOrganizationDelegatedAdminRequest": {
+            "type": "object",
+            "properties": {
+                "MemberAccountId": {
+                    "$ref": "#/$defs/AccountId"
+                }
+            }
+        },
+        "RemoveTagsResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "RemoveTagsRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceId": {
+                    "$ref": "#/$defs/String"
+                },
+                "TagsList": {
+                    "$ref": "#/$defs/TagsList"
+                }
+            }
+        },
+        "RestoreEventDataStoreResponse": {
+            "type": "object",
+            "properties": {
+                "EventDataStoreArn": {
+                    "$ref": "#/$defs/EventDataStoreArn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/EventDataStoreName"
+                },
+                "Status": {
+                    "$ref": "#/$defs/EventDataStoreStatus"
+                },
+                "AdvancedEventSelectors": {
+                    "$ref": "#/$defs/AdvancedEventSelectors"
+                },
+                "MultiRegionEnabled": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "OrganizationEnabled": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "RetentionPeriod": {
+                    "$ref": "#/$defs/RetentionPeriod"
+                },
+                "TerminationProtectionEnabled": {
+                    "$ref": "#/$defs/TerminationProtectionEnabled"
+                },
+                "CreatedTimestamp": {
+                    "$ref": "#/$defs/Date"
+                },
+                "UpdatedTimestamp": {
+                    "$ref": "#/$defs/Date"
+                },
+                "KmsKeyId": {
+                    "$ref": "#/$defs/EventDataStoreKmsKeyId"
+                },
+                "BillingMode": {
+                    "$ref": "#/$defs/BillingMode"
+                }
+            }
+        },
+        "RestoreEventDataStoreRequest": {
+            "type": "object",
+            "properties": {
+                "EventDataStore": {
+                    "$ref": "#/$defs/EventDataStoreArn"
+                }
+            }
+        },
+        "StartEventDataStoreIngestionResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "StartEventDataStoreIngestionRequest": {
+            "type": "object",
+            "properties": {
+                "EventDataStore": {
+                    "$ref": "#/$defs/EventDataStoreArn"
+                }
+            }
+        },
+        "StartImportResponse": {
+            "type": "object",
+            "properties": {
+                "ImportId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "Destinations": {
+                    "$ref": "#/$defs/ImportDestinations"
+                },
+                "ImportSource": {
+                    "$ref": "#/$defs/ImportSource"
+                },
+                "StartEventTime": {
+                    "$ref": "#/$defs/Date"
+                },
+                "EndEventTime": {
+                    "$ref": "#/$defs/Date"
+                },
+                "ImportStatus": {
+                    "$ref": "#/$defs/ImportStatus"
+                },
+                "CreatedTimestamp": {
+                    "$ref": "#/$defs/Date"
+                },
+                "UpdatedTimestamp": {
+                    "$ref": "#/$defs/Date"
+                }
+            }
+        },
+        "StartImportRequest": {
+            "type": "object",
+            "properties": {
+                "Destinations": {
+                    "$ref": "#/$defs/ImportDestinations"
+                },
+                "ImportSource": {
+                    "$ref": "#/$defs/ImportSource"
+                },
+                "StartEventTime": {
+                    "$ref": "#/$defs/Date"
+                },
+                "EndEventTime": {
+                    "$ref": "#/$defs/Date"
+                },
+                "ImportId": {
+                    "$ref": "#/$defs/UUID"
+                }
+            }
+        },
+        "StartLoggingResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "StartLoggingRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "StartQueryResponse": {
+            "type": "object",
+            "properties": {
+                "QueryId": {
+                    "$ref": "#/$defs/UUID"
+                }
+            }
+        },
+        "StartQueryRequest": {
+            "type": "object",
+            "properties": {
+                "QueryStatement": {
+                    "$ref": "#/$defs/QueryStatement"
+                },
+                "DeliveryS3Uri": {
+                    "$ref": "#/$defs/DeliveryS3Uri"
+                },
+                "QueryAlias": {
+                    "$ref": "#/$defs/QueryAlias"
+                },
+                "QueryParameters": {
+                    "$ref": "#/$defs/QueryParameters"
+                }
+            }
+        },
+        "QueryParameters": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/QueryParameter"
+            }
+        },
+        "QueryParameter": {
+            "type": "string"
+        },
+        "StopEventDataStoreIngestionResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "StopEventDataStoreIngestionRequest": {
+            "type": "object",
+            "properties": {
+                "EventDataStore": {
+                    "$ref": "#/$defs/EventDataStoreArn"
+                }
+            }
+        },
+        "StopImportResponse": {
+            "type": "object",
+            "properties": {
+                "ImportId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "ImportSource": {
+                    "$ref": "#/$defs/ImportSource"
+                },
+                "Destinations": {
+                    "$ref": "#/$defs/ImportDestinations"
+                },
+                "ImportStatus": {
+                    "$ref": "#/$defs/ImportStatus"
+                },
+                "CreatedTimestamp": {
+                    "$ref": "#/$defs/Date"
+                },
+                "UpdatedTimestamp": {
+                    "$ref": "#/$defs/Date"
+                },
+                "StartEventTime": {
+                    "$ref": "#/$defs/Date"
+                },
+                "EndEventTime": {
+                    "$ref": "#/$defs/Date"
+                },
+                "ImportStatistics": {
+                    "$ref": "#/$defs/ImportStatistics"
+                }
+            }
+        },
+        "StopImportRequest": {
+            "type": "object",
+            "properties": {
+                "ImportId": {
+                    "$ref": "#/$defs/UUID"
+                }
+            }
+        },
+        "StopLoggingResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "StopLoggingRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "UpdateChannelResponse": {
+            "type": "object",
+            "properties": {
+                "ChannelArn": {
+                    "$ref": "#/$defs/ChannelArn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/ChannelName"
+                },
+                "Source": {
+                    "$ref": "#/$defs/Source"
+                },
+                "Destinations": {
+                    "$ref": "#/$defs/Destinations"
+                }
+            }
+        },
+        "UpdateChannelRequest": {
+            "type": "object",
+            "properties": {
+                "Channel": {
+                    "$ref": "#/$defs/ChannelArn"
+                },
+                "Destinations": {
+                    "$ref": "#/$defs/Destinations"
+                },
+                "Name": {
+                    "$ref": "#/$defs/ChannelName"
+                }
+            }
+        },
+        "UpdateEventDataStoreResponse": {
+            "type": "object",
+            "properties": {
+                "EventDataStoreArn": {
+                    "$ref": "#/$defs/EventDataStoreArn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/EventDataStoreName"
+                },
+                "Status": {
+                    "$ref": "#/$defs/EventDataStoreStatus"
+                },
+                "AdvancedEventSelectors": {
+                    "$ref": "#/$defs/AdvancedEventSelectors"
+                },
+                "MultiRegionEnabled": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "OrganizationEnabled": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "RetentionPeriod": {
+                    "$ref": "#/$defs/RetentionPeriod"
+                },
+                "TerminationProtectionEnabled": {
+                    "$ref": "#/$defs/TerminationProtectionEnabled"
+                },
+                "CreatedTimestamp": {
+                    "$ref": "#/$defs/Date"
+                },
+                "UpdatedTimestamp": {
+                    "$ref": "#/$defs/Date"
+                },
+                "KmsKeyId": {
+                    "$ref": "#/$defs/EventDataStoreKmsKeyId"
+                },
+                "BillingMode": {
+                    "$ref": "#/$defs/BillingMode"
+                },
+                "FederationStatus": {
+                    "$ref": "#/$defs/FederationStatus"
+                },
+                "FederationRoleArn": {
+                    "$ref": "#/$defs/FederationRoleArn"
+                }
+            }
+        },
+        "UpdateEventDataStoreRequest": {
+            "type": "object",
+            "properties": {
+                "EventDataStore": {
+                    "$ref": "#/$defs/EventDataStoreArn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/EventDataStoreName"
+                },
+                "AdvancedEventSelectors": {
+                    "$ref": "#/$defs/AdvancedEventSelectors"
+                },
+                "MultiRegionEnabled": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "OrganizationEnabled": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "RetentionPeriod": {
+                    "$ref": "#/$defs/RetentionPeriod"
+                },
+                "TerminationProtectionEnabled": {
+                    "$ref": "#/$defs/TerminationProtectionEnabled"
+                },
+                "KmsKeyId": {
+                    "$ref": "#/$defs/EventDataStoreKmsKeyId"
+                },
+                "BillingMode": {
+                    "$ref": "#/$defs/BillingMode"
+                }
+            }
+        },
+        "UpdateTrailResponse": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "S3BucketName": {
+                    "$ref": "#/$defs/String"
+                },
+                "S3KeyPrefix": {
+                    "$ref": "#/$defs/String"
+                },
+                "SnsTopicName": {
+                    "$ref": "#/$defs/String"
+                },
+                "SnsTopicARN": {
+                    "$ref": "#/$defs/String"
+                },
+                "IncludeGlobalServiceEvents": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "IsMultiRegionTrail": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "TrailARN": {
+                    "$ref": "#/$defs/String"
+                },
+                "LogFileValidationEnabled": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "CloudWatchLogsLogGroupArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "CloudWatchLogsRoleArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "KmsKeyId": {
+                    "$ref": "#/$defs/String"
+                },
+                "IsOrganizationTrail": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "UpdateTrailRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "S3BucketName": {
+                    "$ref": "#/$defs/String"
+                },
+                "S3KeyPrefix": {
+                    "$ref": "#/$defs/String"
+                },
+                "SnsTopicName": {
+                    "$ref": "#/$defs/String"
+                },
+                "IncludeGlobalServiceEvents": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "IsMultiRegionTrail": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "EnableLogFileValidation": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "CloudWatchLogsLogGroupArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "CloudWatchLogsRoleArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "KmsKeyId": {
+                    "$ref": "#/$defs/String"
+                },
+                "IsOrganizationTrail": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://cloudtrail-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "stringEquals",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "Region"
+                                                            },
+                                                            "us-gov-east-1"
+                                                        ]
+                                                    }
+                                                ],
+                                                "endpoint": {
+                                                    "url": "https://cloudtrail.us-gov-east-1.amazonaws.com",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            },
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "stringEquals",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "Region"
+                                                            },
+                                                            "us-gov-west-1"
+                                                        ]
+                                                    }
+                                                ],
+                                                "endpoint": {
+                                                    "url": "https://cloudtrail.us-gov-west-1.amazonaws.com",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://cloudtrail-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://cloudtrail.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://cloudtrail.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

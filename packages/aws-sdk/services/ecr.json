@@ -1,0 +1,4612 @@
+{
+    "name": "ecr",
+    "commands": [
+        {
+            "name": "BatchCheckLayerAvailability",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchCheckLayerAvailability"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchCheckLayerAvailabilityResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchCheckLayerAvailabilityRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "BatchDeleteImage",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchDeleteImage"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchDeleteImageResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchDeleteImageRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "BatchGetImage",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchGetImage"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchGetImageResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchGetImageRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "BatchGetRepositoryScanningConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchGetRepositoryScanningConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchGetRepositoryScanningConfigurationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchGetRepositoryScanningConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CompleteLayerUpload",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CompleteLayerUpload"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CompleteLayerUploadResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CompleteLayerUploadRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreatePullThroughCacheRule",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreatePullThroughCacheRule"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreatePullThroughCacheRuleResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreatePullThroughCacheRuleRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateRepository",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateRepository"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateRepositoryResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateRepositoryRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateRepositoryCreationTemplate",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateRepositoryCreationTemplate"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateRepositoryCreationTemplateResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateRepositoryCreationTemplateRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteLifecyclePolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteLifecyclePolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteLifecyclePolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteLifecyclePolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeletePullThroughCacheRule",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeletePullThroughCacheRule"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeletePullThroughCacheRuleResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeletePullThroughCacheRuleRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteRegistryPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteRegistryPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteRegistryPolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteRegistryPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteRepository",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteRepository"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteRepositoryResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteRepositoryRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteRepositoryCreationTemplate",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteRepositoryCreationTemplate"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteRepositoryCreationTemplateResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteRepositoryCreationTemplateRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteRepositoryPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteRepositoryPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteRepositoryPolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteRepositoryPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeImageReplicationStatus",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeImageReplicationStatus"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeImageReplicationStatusResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeImageReplicationStatusRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeImages",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeImages"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeImagesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeImagesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeImageScanFindings",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeImageScanFindings"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeImageScanFindingsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeImageScanFindingsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribePullThroughCacheRules",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribePullThroughCacheRules"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribePullThroughCacheRulesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribePullThroughCacheRulesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeRegistry",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeRegistry"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeRegistryResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeRegistryRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeRepositories",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeRepositories"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeRepositoriesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeRepositoriesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeRepositoryCreationTemplates",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeRepositoryCreationTemplates"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeRepositoryCreationTemplatesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeRepositoryCreationTemplatesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetAccountSetting",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetAccountSetting"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetAccountSettingResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetAccountSettingRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetAuthorizationToken",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetAuthorizationToken"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetAuthorizationTokenResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetAuthorizationTokenRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetDownloadUrlForLayer",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetDownloadUrlForLayer"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetDownloadUrlForLayerResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetDownloadUrlForLayerRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetLifecyclePolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetLifecyclePolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetLifecyclePolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetLifecyclePolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetLifecyclePolicyPreview",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetLifecyclePolicyPreview"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetLifecyclePolicyPreviewResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetLifecyclePolicyPreviewRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetRegistryPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetRegistryPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetRegistryPolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetRegistryPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetRegistryScanningConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetRegistryScanningConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetRegistryScanningConfigurationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetRegistryScanningConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetRepositoryPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetRepositoryPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetRepositoryPolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetRepositoryPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "InitiateLayerUpload",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "InitiateLayerUpload"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/InitiateLayerUploadResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/InitiateLayerUploadRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListImages",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListImages"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListImagesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListImagesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutAccountSetting",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutAccountSetting"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutAccountSettingResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutAccountSettingRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutImage",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutImage"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutImageResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutImageRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutImageScanningConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutImageScanningConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutImageScanningConfigurationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutImageScanningConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutImageTagMutability",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutImageTagMutability"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutImageTagMutabilityResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutImageTagMutabilityRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutLifecyclePolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutLifecyclePolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutLifecyclePolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutLifecyclePolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutRegistryPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutRegistryPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutRegistryPolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutRegistryPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutRegistryScanningConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutRegistryScanningConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutRegistryScanningConfigurationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutRegistryScanningConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutReplicationConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutReplicationConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutReplicationConfigurationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutReplicationConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SetRepositoryPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SetRepositoryPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/SetRepositoryPolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SetRepositoryPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartImageScan",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartImageScan"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartImageScanResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartImageScanRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartLifecyclePolicyPreview",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartLifecyclePolicyPreview"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartLifecyclePolicyPreviewResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartLifecyclePolicyPreviewRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdatePullThroughCacheRule",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdatePullThroughCacheRule"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdatePullThroughCacheRuleResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdatePullThroughCacheRuleRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateRepositoryCreationTemplate",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateRepositoryCreationTemplate"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateRepositoryCreationTemplateResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateRepositoryCreationTemplateRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UploadLayerPart",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UploadLayerPart"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UploadLayerPartResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UploadLayerPartRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ValidatePullThroughCacheRule",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ValidatePullThroughCacheRule"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ValidatePullThroughCacheRuleResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ValidatePullThroughCacheRuleRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "BatchCheckLayerAvailabilityResponse": {
+            "type": "object",
+            "properties": {
+                "layers": {
+                    "$ref": "#/$defs/LayerList"
+                },
+                "failures": {
+                    "$ref": "#/$defs/LayerFailureList"
+                }
+            }
+        },
+        "LayerList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Layer"
+            }
+        },
+        "Layer": {
+            "type": "object",
+            "properties": {
+                "layerDigest": {
+                    "$ref": "#/$defs/LayerDigest"
+                },
+                "layerAvailability": {
+                    "$ref": "#/$defs/LayerAvailability"
+                },
+                "layerSize": {
+                    "$ref": "#/$defs/LayerSizeInBytes"
+                },
+                "mediaType": {
+                    "$ref": "#/$defs/MediaType"
+                }
+            }
+        },
+        "LayerDigest": {
+            "type": "string"
+        },
+        "LayerAvailability": {
+            "enum": [
+                "AVAILABLE",
+                "UNAVAILABLE"
+            ]
+        },
+        "LayerSizeInBytes": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "MediaType": {
+            "type": "string"
+        },
+        "LayerFailureList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LayerFailure"
+            }
+        },
+        "LayerFailure": {
+            "type": "object",
+            "properties": {
+                "layerDigest": {
+                    "$ref": "#/$defs/BatchedOperationLayerDigest"
+                },
+                "failureCode": {
+                    "$ref": "#/$defs/LayerFailureCode"
+                },
+                "failureReason": {
+                    "$ref": "#/$defs/LayerFailureReason"
+                }
+            }
+        },
+        "BatchedOperationLayerDigest": {
+            "type": "string"
+        },
+        "LayerFailureCode": {
+            "enum": [
+                "InvalidLayerDigest",
+                "MissingLayerDigest"
+            ]
+        },
+        "LayerFailureReason": {
+            "type": "string"
+        },
+        "BatchCheckLayerAvailabilityRequest": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "layerDigests": {
+                    "$ref": "#/$defs/BatchedOperationLayerDigestList"
+                }
+            }
+        },
+        "RegistryId": {
+            "type": "string"
+        },
+        "RepositoryName": {
+            "type": "string"
+        },
+        "BatchedOperationLayerDigestList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BatchedOperationLayerDigest"
+            }
+        },
+        "BatchDeleteImageResponse": {
+            "type": "object",
+            "properties": {
+                "imageIds": {
+                    "$ref": "#/$defs/ImageIdentifierList"
+                },
+                "failures": {
+                    "$ref": "#/$defs/ImageFailureList"
+                }
+            }
+        },
+        "ImageIdentifierList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ImageIdentifier"
+            }
+        },
+        "ImageIdentifier": {
+            "type": "object",
+            "properties": {
+                "imageDigest": {
+                    "$ref": "#/$defs/ImageDigest"
+                },
+                "imageTag": {
+                    "$ref": "#/$defs/ImageTag"
+                }
+            }
+        },
+        "ImageDigest": {
+            "type": "string"
+        },
+        "ImageTag": {
+            "type": "string"
+        },
+        "ImageFailureList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ImageFailure"
+            }
+        },
+        "ImageFailure": {
+            "type": "object",
+            "properties": {
+                "imageId": {
+                    "$ref": "#/$defs/ImageIdentifier"
+                },
+                "failureCode": {
+                    "$ref": "#/$defs/ImageFailureCode"
+                },
+                "failureReason": {
+                    "$ref": "#/$defs/ImageFailureReason"
+                }
+            }
+        },
+        "ImageFailureCode": {
+            "enum": [
+                "InvalidImageDigest",
+                "InvalidImageTag",
+                "ImageTagDoesNotMatchDigest",
+                "ImageNotFound",
+                "MissingDigestAndTag",
+                "ImageReferencedByManifestList",
+                "KmsError",
+                "UpstreamAccessDenied",
+                "UpstreamTooManyRequests",
+                "UpstreamUnavailable"
+            ]
+        },
+        "ImageFailureReason": {
+            "type": "string"
+        },
+        "BatchDeleteImageRequest": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "imageIds": {
+                    "$ref": "#/$defs/ImageIdentifierList"
+                }
+            }
+        },
+        "BatchGetImageResponse": {
+            "type": "object",
+            "properties": {
+                "images": {
+                    "$ref": "#/$defs/ImageList"
+                },
+                "failures": {
+                    "$ref": "#/$defs/ImageFailureList"
+                }
+            }
+        },
+        "ImageList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Image"
+            }
+        },
+        "Image": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "imageId": {
+                    "$ref": "#/$defs/ImageIdentifier"
+                },
+                "imageManifest": {
+                    "$ref": "#/$defs/ImageManifest"
+                },
+                "imageManifestMediaType": {
+                    "$ref": "#/$defs/MediaType"
+                }
+            }
+        },
+        "ImageManifest": {
+            "type": "string"
+        },
+        "BatchGetImageRequest": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "imageIds": {
+                    "$ref": "#/$defs/ImageIdentifierList"
+                },
+                "acceptedMediaTypes": {
+                    "$ref": "#/$defs/MediaTypeList"
+                }
+            }
+        },
+        "MediaTypeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MediaType"
+            }
+        },
+        "BatchGetRepositoryScanningConfigurationResponse": {
+            "type": "object",
+            "properties": {
+                "scanningConfigurations": {
+                    "$ref": "#/$defs/RepositoryScanningConfigurationList"
+                },
+                "failures": {
+                    "$ref": "#/$defs/RepositoryScanningConfigurationFailureList"
+                }
+            }
+        },
+        "RepositoryScanningConfigurationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RepositoryScanningConfiguration"
+            }
+        },
+        "RepositoryScanningConfiguration": {
+            "type": "object",
+            "properties": {
+                "repositoryArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "scanOnPush": {
+                    "$ref": "#/$defs/ScanOnPushFlag"
+                },
+                "scanFrequency": {
+                    "$ref": "#/$defs/ScanFrequency"
+                },
+                "appliedScanFilters": {
+                    "$ref": "#/$defs/ScanningRepositoryFilterList"
+                }
+            }
+        },
+        "Arn": {
+            "type": "string"
+        },
+        "ScanOnPushFlag": {
+            "type": "boolean"
+        },
+        "ScanFrequency": {
+            "enum": [
+                "SCAN_ON_PUSH",
+                "CONTINUOUS_SCAN",
+                "MANUAL"
+            ]
+        },
+        "ScanningRepositoryFilterList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ScanningRepositoryFilter"
+            }
+        },
+        "ScanningRepositoryFilter": {
+            "type": "object",
+            "properties": {
+                "filter": {
+                    "$ref": "#/$defs/ScanningRepositoryFilterValue"
+                },
+                "filterType": {
+                    "$ref": "#/$defs/ScanningRepositoryFilterType"
+                }
+            }
+        },
+        "ScanningRepositoryFilterValue": {
+            "type": "string"
+        },
+        "ScanningRepositoryFilterType": {
+            "enum": [
+                "WILDCARD"
+            ]
+        },
+        "RepositoryScanningConfigurationFailureList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RepositoryScanningConfigurationFailure"
+            }
+        },
+        "RepositoryScanningConfigurationFailure": {
+            "type": "object",
+            "properties": {
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "failureCode": {
+                    "$ref": "#/$defs/ScanningConfigurationFailureCode"
+                },
+                "failureReason": {
+                    "$ref": "#/$defs/ScanningConfigurationFailureReason"
+                }
+            }
+        },
+        "ScanningConfigurationFailureCode": {
+            "enum": [
+                "REPOSITORY_NOT_FOUND"
+            ]
+        },
+        "ScanningConfigurationFailureReason": {
+            "type": "string"
+        },
+        "BatchGetRepositoryScanningConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "repositoryNames": {
+                    "$ref": "#/$defs/ScanningConfigurationRepositoryNameList"
+                }
+            }
+        },
+        "ScanningConfigurationRepositoryNameList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RepositoryName"
+            }
+        },
+        "CompleteLayerUploadResponse": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "uploadId": {
+                    "$ref": "#/$defs/UploadId"
+                },
+                "layerDigest": {
+                    "$ref": "#/$defs/LayerDigest"
+                }
+            }
+        },
+        "UploadId": {
+            "type": "string"
+        },
+        "CompleteLayerUploadRequest": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "uploadId": {
+                    "$ref": "#/$defs/UploadId"
+                },
+                "layerDigests": {
+                    "$ref": "#/$defs/LayerDigestList"
+                }
+            }
+        },
+        "LayerDigestList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LayerDigest"
+            }
+        },
+        "CreatePullThroughCacheRuleResponse": {
+            "type": "object",
+            "properties": {
+                "ecrRepositoryPrefix": {
+                    "$ref": "#/$defs/PullThroughCacheRuleRepositoryPrefix"
+                },
+                "upstreamRegistryUrl": {
+                    "$ref": "#/$defs/Url"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/CreationTimestamp"
+                },
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "upstreamRegistry": {
+                    "$ref": "#/$defs/UpstreamRegistry"
+                },
+                "credentialArn": {
+                    "$ref": "#/$defs/CredentialArn"
+                }
+            }
+        },
+        "PullThroughCacheRuleRepositoryPrefix": {
+            "type": "string"
+        },
+        "Url": {
+            "type": "string"
+        },
+        "CreationTimestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "UpstreamRegistry": {
+            "enum": [
+                "EcrPublic",
+                "Quay",
+                "K8s",
+                "DockerHub",
+                "GitHubContainerRegistry",
+                "AzureContainerRegistry",
+                "GitLabContainerRegistry"
+            ]
+        },
+        "CredentialArn": {
+            "type": "string"
+        },
+        "CreatePullThroughCacheRuleRequest": {
+            "type": "object",
+            "properties": {
+                "ecrRepositoryPrefix": {
+                    "$ref": "#/$defs/PullThroughCacheRuleRepositoryPrefix"
+                },
+                "upstreamRegistryUrl": {
+                    "$ref": "#/$defs/Url"
+                },
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "upstreamRegistry": {
+                    "$ref": "#/$defs/UpstreamRegistry"
+                },
+                "credentialArn": {
+                    "$ref": "#/$defs/CredentialArn"
+                }
+            }
+        },
+        "CreateRepositoryResponse": {
+            "type": "object",
+            "properties": {
+                "repository": {
+                    "$ref": "#/$defs/Repository"
+                }
+            }
+        },
+        "Repository": {
+            "type": "object",
+            "properties": {
+                "repositoryArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "repositoryUri": {
+                    "$ref": "#/$defs/Url"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/CreationTimestamp"
+                },
+                "imageTagMutability": {
+                    "$ref": "#/$defs/ImageTagMutability"
+                },
+                "imageScanningConfiguration": {
+                    "$ref": "#/$defs/ImageScanningConfiguration"
+                },
+                "encryptionConfiguration": {
+                    "$ref": "#/$defs/EncryptionConfiguration"
+                }
+            }
+        },
+        "ImageTagMutability": {
+            "enum": [
+                "MUTABLE",
+                "IMMUTABLE"
+            ]
+        },
+        "ImageScanningConfiguration": {
+            "type": "object",
+            "properties": {
+                "scanOnPush": {
+                    "$ref": "#/$defs/ScanOnPushFlag"
+                }
+            }
+        },
+        "EncryptionConfiguration": {
+            "type": "object",
+            "properties": {
+                "encryptionType": {
+                    "$ref": "#/$defs/EncryptionType"
+                },
+                "kmsKey": {
+                    "$ref": "#/$defs/KmsKey"
+                }
+            }
+        },
+        "EncryptionType": {
+            "enum": [
+                "AES256",
+                "KMS",
+                "KMS_DSSE"
+            ]
+        },
+        "KmsKey": {
+            "type": "string"
+        },
+        "CreateRepositoryRequest": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "imageTagMutability": {
+                    "$ref": "#/$defs/ImageTagMutability"
+                },
+                "imageScanningConfiguration": {
+                    "$ref": "#/$defs/ImageScanningConfiguration"
+                },
+                "encryptionConfiguration": {
+                    "$ref": "#/$defs/EncryptionConfiguration"
+                }
+            }
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "CreateRepositoryCreationTemplateResponse": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryCreationTemplate": {
+                    "$ref": "#/$defs/RepositoryCreationTemplate"
+                }
+            }
+        },
+        "RepositoryCreationTemplate": {
+            "type": "object",
+            "properties": {
+                "prefix": {
+                    "$ref": "#/$defs/Prefix"
+                },
+                "description": {
+                    "$ref": "#/$defs/RepositoryTemplateDescription"
+                },
+                "encryptionConfiguration": {
+                    "$ref": "#/$defs/EncryptionConfigurationForRepositoryCreationTemplate"
+                },
+                "resourceTags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "imageTagMutability": {
+                    "$ref": "#/$defs/ImageTagMutability"
+                },
+                "repositoryPolicy": {
+                    "$ref": "#/$defs/RepositoryPolicyText"
+                },
+                "lifecyclePolicy": {
+                    "$ref": "#/$defs/LifecyclePolicyTextForRepositoryCreationTemplate"
+                },
+                "appliedFor": {
+                    "$ref": "#/$defs/RCTAppliedForList"
+                },
+                "customRoleArn": {
+                    "$ref": "#/$defs/CustomRoleArn"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Date"
+                },
+                "updatedAt": {
+                    "$ref": "#/$defs/Date"
+                }
+            }
+        },
+        "Prefix": {
+            "type": "string"
+        },
+        "RepositoryTemplateDescription": {
+            "type": "string"
+        },
+        "EncryptionConfigurationForRepositoryCreationTemplate": {
+            "type": "object",
+            "properties": {
+                "encryptionType": {
+                    "$ref": "#/$defs/EncryptionType"
+                },
+                "kmsKey": {
+                    "$ref": "#/$defs/KmsKeyForRepositoryCreationTemplate"
+                }
+            }
+        },
+        "KmsKeyForRepositoryCreationTemplate": {
+            "type": "string"
+        },
+        "RepositoryPolicyText": {
+            "type": "string"
+        },
+        "LifecyclePolicyTextForRepositoryCreationTemplate": {
+            "type": "string"
+        },
+        "RCTAppliedForList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RCTAppliedFor"
+            }
+        },
+        "RCTAppliedFor": {
+            "enum": [
+                "REPLICATION",
+                "PULL_THROUGH_CACHE"
+            ]
+        },
+        "CustomRoleArn": {
+            "type": "string"
+        },
+        "Date": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "CreateRepositoryCreationTemplateRequest": {
+            "type": "object",
+            "properties": {
+                "prefix": {
+                    "$ref": "#/$defs/Prefix"
+                },
+                "description": {
+                    "$ref": "#/$defs/RepositoryTemplateDescription"
+                },
+                "encryptionConfiguration": {
+                    "$ref": "#/$defs/EncryptionConfigurationForRepositoryCreationTemplate"
+                },
+                "resourceTags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "imageTagMutability": {
+                    "$ref": "#/$defs/ImageTagMutability"
+                },
+                "repositoryPolicy": {
+                    "$ref": "#/$defs/RepositoryPolicyText"
+                },
+                "lifecyclePolicy": {
+                    "$ref": "#/$defs/LifecyclePolicyTextForRepositoryCreationTemplate"
+                },
+                "appliedFor": {
+                    "$ref": "#/$defs/RCTAppliedForList"
+                },
+                "customRoleArn": {
+                    "$ref": "#/$defs/CustomRoleArn"
+                }
+            }
+        },
+        "DeleteLifecyclePolicyResponse": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "lifecyclePolicyText": {
+                    "$ref": "#/$defs/LifecyclePolicyText"
+                },
+                "lastEvaluatedAt": {
+                    "$ref": "#/$defs/EvaluationTimestamp"
+                }
+            }
+        },
+        "LifecyclePolicyText": {
+            "type": "string"
+        },
+        "EvaluationTimestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "DeleteLifecyclePolicyRequest": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                }
+            }
+        },
+        "DeletePullThroughCacheRuleResponse": {
+            "type": "object",
+            "properties": {
+                "ecrRepositoryPrefix": {
+                    "$ref": "#/$defs/PullThroughCacheRuleRepositoryPrefix"
+                },
+                "upstreamRegistryUrl": {
+                    "$ref": "#/$defs/Url"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/CreationTimestamp"
+                },
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "credentialArn": {
+                    "$ref": "#/$defs/CredentialArn"
+                }
+            }
+        },
+        "DeletePullThroughCacheRuleRequest": {
+            "type": "object",
+            "properties": {
+                "ecrRepositoryPrefix": {
+                    "$ref": "#/$defs/PullThroughCacheRuleRepositoryPrefix"
+                },
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                }
+            }
+        },
+        "DeleteRegistryPolicyResponse": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "policyText": {
+                    "$ref": "#/$defs/RegistryPolicyText"
+                }
+            }
+        },
+        "RegistryPolicyText": {
+            "type": "string"
+        },
+        "DeleteRegistryPolicyRequest": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteRepositoryResponse": {
+            "type": "object",
+            "properties": {
+                "repository": {
+                    "$ref": "#/$defs/Repository"
+                }
+            }
+        },
+        "DeleteRepositoryRequest": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "force": {
+                    "$ref": "#/$defs/ForceFlag"
+                }
+            }
+        },
+        "ForceFlag": {
+            "type": "boolean"
+        },
+        "DeleteRepositoryCreationTemplateResponse": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryCreationTemplate": {
+                    "$ref": "#/$defs/RepositoryCreationTemplate"
+                }
+            }
+        },
+        "DeleteRepositoryCreationTemplateRequest": {
+            "type": "object",
+            "properties": {
+                "prefix": {
+                    "$ref": "#/$defs/Prefix"
+                }
+            }
+        },
+        "DeleteRepositoryPolicyResponse": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "policyText": {
+                    "$ref": "#/$defs/RepositoryPolicyText"
+                }
+            }
+        },
+        "DeleteRepositoryPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                }
+            }
+        },
+        "DescribeImageReplicationStatusResponse": {
+            "type": "object",
+            "properties": {
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "imageId": {
+                    "$ref": "#/$defs/ImageIdentifier"
+                },
+                "replicationStatuses": {
+                    "$ref": "#/$defs/ImageReplicationStatusList"
+                }
+            }
+        },
+        "ImageReplicationStatusList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ImageReplicationStatus"
+            }
+        },
+        "ImageReplicationStatus": {
+            "type": "object",
+            "properties": {
+                "region": {
+                    "$ref": "#/$defs/Region"
+                },
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "status": {
+                    "$ref": "#/$defs/ReplicationStatus"
+                },
+                "failureCode": {
+                    "$ref": "#/$defs/ReplicationError"
+                }
+            }
+        },
+        "Region": {
+            "type": "string"
+        },
+        "ReplicationStatus": {
+            "enum": [
+                "IN_PROGRESS",
+                "COMPLETE",
+                "FAILED"
+            ]
+        },
+        "ReplicationError": {
+            "type": "string"
+        },
+        "DescribeImageReplicationStatusRequest": {
+            "type": "object",
+            "properties": {
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "imageId": {
+                    "$ref": "#/$defs/ImageIdentifier"
+                },
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                }
+            }
+        },
+        "DescribeImagesResponse": {
+            "type": "object",
+            "properties": {
+                "imageDetails": {
+                    "$ref": "#/$defs/ImageDetailList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ImageDetailList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ImageDetail"
+            }
+        },
+        "ImageDetail": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "imageDigest": {
+                    "$ref": "#/$defs/ImageDigest"
+                },
+                "imageTags": {
+                    "$ref": "#/$defs/ImageTagList"
+                },
+                "imageSizeInBytes": {
+                    "$ref": "#/$defs/ImageSizeInBytes"
+                },
+                "imagePushedAt": {
+                    "$ref": "#/$defs/PushTimestamp"
+                },
+                "imageScanStatus": {
+                    "$ref": "#/$defs/ImageScanStatus"
+                },
+                "imageScanFindingsSummary": {
+                    "$ref": "#/$defs/ImageScanFindingsSummary"
+                },
+                "imageManifestMediaType": {
+                    "$ref": "#/$defs/MediaType"
+                },
+                "artifactMediaType": {
+                    "$ref": "#/$defs/MediaType"
+                },
+                "lastRecordedPullTime": {
+                    "$ref": "#/$defs/RecordedPullTimestamp"
+                }
+            }
+        },
+        "ImageTagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ImageTag"
+            }
+        },
+        "ImageSizeInBytes": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "PushTimestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "ImageScanStatus": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "$ref": "#/$defs/ScanStatus"
+                },
+                "description": {
+                    "$ref": "#/$defs/ScanStatusDescription"
+                }
+            }
+        },
+        "ScanStatus": {
+            "enum": [
+                "IN_PROGRESS",
+                "COMPLETE",
+                "FAILED",
+                "UNSUPPORTED_IMAGE",
+                "ACTIVE",
+                "PENDING",
+                "SCAN_ELIGIBILITY_EXPIRED",
+                "FINDINGS_UNAVAILABLE"
+            ]
+        },
+        "ScanStatusDescription": {
+            "type": "string"
+        },
+        "ImageScanFindingsSummary": {
+            "type": "object",
+            "properties": {
+                "imageScanCompletedAt": {
+                    "$ref": "#/$defs/ScanTimestamp"
+                },
+                "vulnerabilitySourceUpdatedAt": {
+                    "$ref": "#/$defs/VulnerabilitySourceUpdateTimestamp"
+                },
+                "findingSeverityCounts": {
+                    "$ref": "#/$defs/FindingSeverityCounts"
+                }
+            }
+        },
+        "ScanTimestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "VulnerabilitySourceUpdateTimestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "FindingSeverityCounts": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/SeverityCount"
+            }
+        },
+        "SeverityCount": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "RecordedPullTimestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "DescribeImagesRequest": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "imageIds": {
+                    "$ref": "#/$defs/ImageIdentifierList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "filter": {
+                    "$ref": "#/$defs/DescribeImagesFilter"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DescribeImagesFilter": {
+            "type": "object",
+            "properties": {
+                "tagStatus": {
+                    "$ref": "#/$defs/TagStatus"
+                }
+            }
+        },
+        "TagStatus": {
+            "enum": [
+                "TAGGED",
+                "UNTAGGED",
+                "ANY"
+            ]
+        },
+        "DescribeImageScanFindingsResponse": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "imageId": {
+                    "$ref": "#/$defs/ImageIdentifier"
+                },
+                "imageScanStatus": {
+                    "$ref": "#/$defs/ImageScanStatus"
+                },
+                "imageScanFindings": {
+                    "$ref": "#/$defs/ImageScanFindings"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ImageScanFindings": {
+            "type": "object",
+            "properties": {
+                "imageScanCompletedAt": {
+                    "$ref": "#/$defs/ScanTimestamp"
+                },
+                "vulnerabilitySourceUpdatedAt": {
+                    "$ref": "#/$defs/VulnerabilitySourceUpdateTimestamp"
+                },
+                "findingSeverityCounts": {
+                    "$ref": "#/$defs/FindingSeverityCounts"
+                },
+                "findings": {
+                    "$ref": "#/$defs/ImageScanFindingList"
+                },
+                "enhancedFindings": {
+                    "$ref": "#/$defs/EnhancedImageScanFindingList"
+                }
+            }
+        },
+        "ImageScanFindingList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ImageScanFinding"
+            }
+        },
+        "ImageScanFinding": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/FindingName"
+                },
+                "description": {
+                    "$ref": "#/$defs/FindingDescription"
+                },
+                "uri": {
+                    "$ref": "#/$defs/Url"
+                },
+                "severity": {
+                    "$ref": "#/$defs/FindingSeverity"
+                },
+                "attributes": {
+                    "$ref": "#/$defs/AttributeList"
+                }
+            }
+        },
+        "FindingName": {
+            "type": "string"
+        },
+        "FindingDescription": {
+            "type": "string"
+        },
+        "FindingSeverity": {
+            "enum": [
+                "INFORMATIONAL",
+                "LOW",
+                "MEDIUM",
+                "HIGH",
+                "CRITICAL",
+                "UNDEFINED"
+            ]
+        },
+        "AttributeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Attribute"
+            }
+        },
+        "Attribute": {
+            "type": "object",
+            "properties": {
+                "key": {
+                    "$ref": "#/$defs/AttributeKey"
+                },
+                "value": {
+                    "$ref": "#/$defs/AttributeValue"
+                }
+            }
+        },
+        "AttributeKey": {
+            "type": "string"
+        },
+        "AttributeValue": {
+            "type": "string"
+        },
+        "EnhancedImageScanFindingList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EnhancedImageScanFinding"
+            }
+        },
+        "EnhancedImageScanFinding": {
+            "type": "object",
+            "properties": {
+                "awsAccountId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "description": {
+                    "$ref": "#/$defs/FindingDescription"
+                },
+                "findingArn": {
+                    "$ref": "#/$defs/FindingArn"
+                },
+                "firstObservedAt": {
+                    "$ref": "#/$defs/Date"
+                },
+                "lastObservedAt": {
+                    "$ref": "#/$defs/Date"
+                },
+                "packageVulnerabilityDetails": {
+                    "$ref": "#/$defs/PackageVulnerabilityDetails"
+                },
+                "remediation": {
+                    "$ref": "#/$defs/Remediation"
+                },
+                "resources": {
+                    "$ref": "#/$defs/ResourceList"
+                },
+                "score": {
+                    "$ref": "#/$defs/Score"
+                },
+                "scoreDetails": {
+                    "$ref": "#/$defs/ScoreDetails"
+                },
+                "severity": {
+                    "$ref": "#/$defs/Severity"
+                },
+                "status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "title": {
+                    "$ref": "#/$defs/Title"
+                },
+                "type": {
+                    "$ref": "#/$defs/Type"
+                },
+                "updatedAt": {
+                    "$ref": "#/$defs/Date"
+                },
+                "fixAvailable": {
+                    "$ref": "#/$defs/FixAvailable"
+                },
+                "exploitAvailable": {
+                    "$ref": "#/$defs/ExploitAvailable"
+                }
+            }
+        },
+        "FindingArn": {
+            "type": "string"
+        },
+        "PackageVulnerabilityDetails": {
+            "type": "object",
+            "properties": {
+                "cvss": {
+                    "$ref": "#/$defs/CvssScoreList"
+                },
+                "referenceUrls": {
+                    "$ref": "#/$defs/ReferenceUrlsList"
+                },
+                "relatedVulnerabilities": {
+                    "$ref": "#/$defs/RelatedVulnerabilitiesList"
+                },
+                "source": {
+                    "$ref": "#/$defs/Source"
+                },
+                "sourceUrl": {
+                    "$ref": "#/$defs/Url"
+                },
+                "vendorCreatedAt": {
+                    "$ref": "#/$defs/Date"
+                },
+                "vendorSeverity": {
+                    "$ref": "#/$defs/Severity"
+                },
+                "vendorUpdatedAt": {
+                    "$ref": "#/$defs/Date"
+                },
+                "vulnerabilityId": {
+                    "$ref": "#/$defs/VulnerabilityId"
+                },
+                "vulnerablePackages": {
+                    "$ref": "#/$defs/VulnerablePackagesList"
+                }
+            }
+        },
+        "CvssScoreList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CvssScore"
+            }
+        },
+        "CvssScore": {
+            "type": "object",
+            "properties": {
+                "baseScore": {
+                    "$ref": "#/$defs/BaseScore"
+                },
+                "scoringVector": {
+                    "$ref": "#/$defs/ScoringVector"
+                },
+                "source": {
+                    "$ref": "#/$defs/Source"
+                },
+                "version": {
+                    "$ref": "#/$defs/Version"
+                }
+            }
+        },
+        "BaseScore": {
+            "type": "number",
+            "format": "double"
+        },
+        "ScoringVector": {
+            "type": "string"
+        },
+        "Source": {
+            "type": "string"
+        },
+        "Version": {
+            "type": "string"
+        },
+        "ReferenceUrlsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Url"
+            }
+        },
+        "RelatedVulnerabilitiesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RelatedVulnerability"
+            }
+        },
+        "RelatedVulnerability": {
+            "type": "string"
+        },
+        "Severity": {
+            "type": "string"
+        },
+        "VulnerabilityId": {
+            "type": "string"
+        },
+        "VulnerablePackagesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/VulnerablePackage"
+            }
+        },
+        "VulnerablePackage": {
+            "type": "object",
+            "properties": {
+                "arch": {
+                    "$ref": "#/$defs/Arch"
+                },
+                "epoch": {
+                    "$ref": "#/$defs/Epoch"
+                },
+                "filePath": {
+                    "$ref": "#/$defs/FilePath"
+                },
+                "name": {
+                    "$ref": "#/$defs/VulnerablePackageName"
+                },
+                "packageManager": {
+                    "$ref": "#/$defs/PackageManager"
+                },
+                "release": {
+                    "$ref": "#/$defs/Release"
+                },
+                "sourceLayerHash": {
+                    "$ref": "#/$defs/SourceLayerHash"
+                },
+                "version": {
+                    "$ref": "#/$defs/Version"
+                },
+                "fixedInVersion": {
+                    "$ref": "#/$defs/FixedInVersion"
+                }
+            }
+        },
+        "Arch": {
+            "type": "string"
+        },
+        "Epoch": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "FilePath": {
+            "type": "string"
+        },
+        "VulnerablePackageName": {
+            "type": "string"
+        },
+        "PackageManager": {
+            "type": "string"
+        },
+        "Release": {
+            "type": "string"
+        },
+        "SourceLayerHash": {
+            "type": "string"
+        },
+        "FixedInVersion": {
+            "type": "string"
+        },
+        "Remediation": {
+            "type": "object",
+            "properties": {
+                "recommendation": {
+                    "$ref": "#/$defs/Recommendation"
+                }
+            }
+        },
+        "Recommendation": {
+            "type": "object",
+            "properties": {
+                "url": {
+                    "$ref": "#/$defs/Url"
+                },
+                "text": {
+                    "$ref": "#/$defs/RecommendationText"
+                }
+            }
+        },
+        "RecommendationText": {
+            "type": "string"
+        },
+        "ResourceList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Resource"
+            }
+        },
+        "Resource": {
+            "type": "object",
+            "properties": {
+                "details": {
+                    "$ref": "#/$defs/ResourceDetails"
+                },
+                "id": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                },
+                "type": {
+                    "$ref": "#/$defs/Type"
+                }
+            }
+        },
+        "ResourceDetails": {
+            "type": "object",
+            "properties": {
+                "awsEcrContainerImage": {
+                    "$ref": "#/$defs/AwsEcrContainerImageDetails"
+                }
+            }
+        },
+        "AwsEcrContainerImageDetails": {
+            "type": "object",
+            "properties": {
+                "architecture": {
+                    "$ref": "#/$defs/Arch"
+                },
+                "author": {
+                    "$ref": "#/$defs/Author"
+                },
+                "imageHash": {
+                    "$ref": "#/$defs/ImageDigest"
+                },
+                "imageTags": {
+                    "$ref": "#/$defs/ImageTagsList"
+                },
+                "platform": {
+                    "$ref": "#/$defs/Platform"
+                },
+                "pushedAt": {
+                    "$ref": "#/$defs/Date"
+                },
+                "registry": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                }
+            }
+        },
+        "Author": {
+            "type": "string"
+        },
+        "ImageTagsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ImageTag"
+            }
+        },
+        "Platform": {
+            "type": "string"
+        },
+        "ResourceId": {
+            "type": "string"
+        },
+        "Tags": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TagValue"
+            }
+        },
+        "Type": {
+            "type": "string"
+        },
+        "Score": {
+            "type": "number",
+            "format": "double"
+        },
+        "ScoreDetails": {
+            "type": "object",
+            "properties": {
+                "cvss": {
+                    "$ref": "#/$defs/CvssScoreDetails"
+                }
+            }
+        },
+        "CvssScoreDetails": {
+            "type": "object",
+            "properties": {
+                "adjustments": {
+                    "$ref": "#/$defs/CvssScoreAdjustmentList"
+                },
+                "score": {
+                    "$ref": "#/$defs/Score"
+                },
+                "scoreSource": {
+                    "$ref": "#/$defs/Source"
+                },
+                "scoringVector": {
+                    "$ref": "#/$defs/ScoringVector"
+                },
+                "version": {
+                    "$ref": "#/$defs/Version"
+                }
+            }
+        },
+        "CvssScoreAdjustmentList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CvssScoreAdjustment"
+            }
+        },
+        "CvssScoreAdjustment": {
+            "type": "object",
+            "properties": {
+                "metric": {
+                    "$ref": "#/$defs/Metric"
+                },
+                "reason": {
+                    "$ref": "#/$defs/Reason"
+                }
+            }
+        },
+        "Metric": {
+            "type": "string"
+        },
+        "Reason": {
+            "type": "string"
+        },
+        "Status": {
+            "type": "string"
+        },
+        "Title": {
+            "type": "string"
+        },
+        "FixAvailable": {
+            "type": "string"
+        },
+        "ExploitAvailable": {
+            "type": "string"
+        },
+        "DescribeImageScanFindingsRequest": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "imageId": {
+                    "$ref": "#/$defs/ImageIdentifier"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "DescribePullThroughCacheRulesResponse": {
+            "type": "object",
+            "properties": {
+                "pullThroughCacheRules": {
+                    "$ref": "#/$defs/PullThroughCacheRuleList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "PullThroughCacheRuleList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PullThroughCacheRule"
+            }
+        },
+        "PullThroughCacheRule": {
+            "type": "object",
+            "properties": {
+                "ecrRepositoryPrefix": {
+                    "$ref": "#/$defs/PullThroughCacheRuleRepositoryPrefix"
+                },
+                "upstreamRegistryUrl": {
+                    "$ref": "#/$defs/Url"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/CreationTimestamp"
+                },
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "credentialArn": {
+                    "$ref": "#/$defs/CredentialArn"
+                },
+                "upstreamRegistry": {
+                    "$ref": "#/$defs/UpstreamRegistry"
+                },
+                "updatedAt": {
+                    "$ref": "#/$defs/UpdatedTimestamp"
+                }
+            }
+        },
+        "UpdatedTimestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "DescribePullThroughCacheRulesRequest": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "ecrRepositoryPrefixes": {
+                    "$ref": "#/$defs/PullThroughCacheRuleRepositoryPrefixList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "PullThroughCacheRuleRepositoryPrefixList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PullThroughCacheRuleRepositoryPrefix"
+            }
+        },
+        "DescribeRegistryResponse": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "replicationConfiguration": {
+                    "$ref": "#/$defs/ReplicationConfiguration"
+                }
+            }
+        },
+        "ReplicationConfiguration": {
+            "type": "object",
+            "properties": {
+                "rules": {
+                    "$ref": "#/$defs/ReplicationRuleList"
+                }
+            }
+        },
+        "ReplicationRuleList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ReplicationRule"
+            }
+        },
+        "ReplicationRule": {
+            "type": "object",
+            "properties": {
+                "destinations": {
+                    "$ref": "#/$defs/ReplicationDestinationList"
+                },
+                "repositoryFilters": {
+                    "$ref": "#/$defs/RepositoryFilterList"
+                }
+            }
+        },
+        "ReplicationDestinationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ReplicationDestination"
+            }
+        },
+        "ReplicationDestination": {
+            "type": "object",
+            "properties": {
+                "region": {
+                    "$ref": "#/$defs/Region"
+                },
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                }
+            }
+        },
+        "RepositoryFilterList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RepositoryFilter"
+            }
+        },
+        "RepositoryFilter": {
+            "type": "object",
+            "properties": {
+                "filter": {
+                    "$ref": "#/$defs/RepositoryFilterValue"
+                },
+                "filterType": {
+                    "$ref": "#/$defs/RepositoryFilterType"
+                }
+            }
+        },
+        "RepositoryFilterValue": {
+            "type": "string"
+        },
+        "RepositoryFilterType": {
+            "enum": [
+                "PREFIX_MATCH"
+            ]
+        },
+        "DescribeRegistryRequest": {
+            "type": "object",
+            "properties": {}
+        },
+        "DescribeRepositoriesResponse": {
+            "type": "object",
+            "properties": {
+                "repositories": {
+                    "$ref": "#/$defs/RepositoryList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "RepositoryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Repository"
+            }
+        },
+        "DescribeRepositoriesRequest": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryNames": {
+                    "$ref": "#/$defs/RepositoryNameList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "RepositoryNameList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RepositoryName"
+            }
+        },
+        "DescribeRepositoryCreationTemplatesResponse": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryCreationTemplates": {
+                    "$ref": "#/$defs/RepositoryCreationTemplateList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "RepositoryCreationTemplateList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RepositoryCreationTemplate"
+            }
+        },
+        "DescribeRepositoryCreationTemplatesRequest": {
+            "type": "object",
+            "properties": {
+                "prefixes": {
+                    "$ref": "#/$defs/PrefixList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "PrefixList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Prefix"
+            }
+        },
+        "GetAccountSettingResponse": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/AccountSettingName"
+                },
+                "value": {
+                    "$ref": "#/$defs/AccountSettingName"
+                }
+            }
+        },
+        "AccountSettingName": {
+            "type": "string"
+        },
+        "GetAccountSettingRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/AccountSettingName"
+                }
+            }
+        },
+        "GetAuthorizationTokenResponse": {
+            "type": "object",
+            "properties": {
+                "authorizationData": {
+                    "$ref": "#/$defs/AuthorizationDataList"
+                }
+            }
+        },
+        "AuthorizationDataList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AuthorizationData"
+            }
+        },
+        "AuthorizationData": {
+            "type": "object",
+            "properties": {
+                "authorizationToken": {
+                    "$ref": "#/$defs/Base64"
+                },
+                "expiresAt": {
+                    "$ref": "#/$defs/ExpirationTimestamp"
+                },
+                "proxyEndpoint": {
+                    "$ref": "#/$defs/ProxyEndpoint"
+                }
+            }
+        },
+        "Base64": {
+            "type": "string"
+        },
+        "ExpirationTimestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "ProxyEndpoint": {
+            "type": "string"
+        },
+        "GetAuthorizationTokenRequest": {
+            "type": "object",
+            "properties": {
+                "registryIds": {
+                    "$ref": "#/$defs/GetAuthorizationTokenRegistryIdList"
+                }
+            }
+        },
+        "GetAuthorizationTokenRegistryIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RegistryId"
+            }
+        },
+        "GetDownloadUrlForLayerResponse": {
+            "type": "object",
+            "properties": {
+                "downloadUrl": {
+                    "$ref": "#/$defs/Url"
+                },
+                "layerDigest": {
+                    "$ref": "#/$defs/LayerDigest"
+                }
+            }
+        },
+        "GetDownloadUrlForLayerRequest": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "layerDigest": {
+                    "$ref": "#/$defs/LayerDigest"
+                }
+            }
+        },
+        "GetLifecyclePolicyResponse": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "lifecyclePolicyText": {
+                    "$ref": "#/$defs/LifecyclePolicyText"
+                },
+                "lastEvaluatedAt": {
+                    "$ref": "#/$defs/EvaluationTimestamp"
+                }
+            }
+        },
+        "GetLifecyclePolicyRequest": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                }
+            }
+        },
+        "GetLifecyclePolicyPreviewResponse": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "lifecyclePolicyText": {
+                    "$ref": "#/$defs/LifecyclePolicyText"
+                },
+                "status": {
+                    "$ref": "#/$defs/LifecyclePolicyPreviewStatus"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "previewResults": {
+                    "$ref": "#/$defs/LifecyclePolicyPreviewResultList"
+                },
+                "summary": {
+                    "$ref": "#/$defs/LifecyclePolicyPreviewSummary"
+                }
+            }
+        },
+        "LifecyclePolicyPreviewStatus": {
+            "enum": [
+                "IN_PROGRESS",
+                "COMPLETE",
+                "EXPIRED",
+                "FAILED"
+            ]
+        },
+        "LifecyclePolicyPreviewResultList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LifecyclePolicyPreviewResult"
+            }
+        },
+        "LifecyclePolicyPreviewResult": {
+            "type": "object",
+            "properties": {
+                "imageTags": {
+                    "$ref": "#/$defs/ImageTagList"
+                },
+                "imageDigest": {
+                    "$ref": "#/$defs/ImageDigest"
+                },
+                "imagePushedAt": {
+                    "$ref": "#/$defs/PushTimestamp"
+                },
+                "action": {
+                    "$ref": "#/$defs/LifecyclePolicyRuleAction"
+                },
+                "appliedRulePriority": {
+                    "$ref": "#/$defs/LifecyclePolicyRulePriority"
+                }
+            }
+        },
+        "LifecyclePolicyRuleAction": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/$defs/ImageActionType"
+                }
+            }
+        },
+        "ImageActionType": {
+            "enum": [
+                "EXPIRE"
+            ]
+        },
+        "LifecyclePolicyRulePriority": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "LifecyclePolicyPreviewSummary": {
+            "type": "object",
+            "properties": {
+                "expiringImageTotalCount": {
+                    "$ref": "#/$defs/ImageCount"
+                }
+            }
+        },
+        "ImageCount": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "GetLifecyclePolicyPreviewRequest": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "imageIds": {
+                    "$ref": "#/$defs/ImageIdentifierList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/LifecyclePreviewMaxResults"
+                },
+                "filter": {
+                    "$ref": "#/$defs/LifecyclePolicyPreviewFilter"
+                }
+            }
+        },
+        "LifecyclePreviewMaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "LifecyclePolicyPreviewFilter": {
+            "type": "object",
+            "properties": {
+                "tagStatus": {
+                    "$ref": "#/$defs/TagStatus"
+                }
+            }
+        },
+        "GetRegistryPolicyResponse": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "policyText": {
+                    "$ref": "#/$defs/RegistryPolicyText"
+                }
+            }
+        },
+        "GetRegistryPolicyRequest": {
+            "type": "object",
+            "properties": {}
+        },
+        "GetRegistryScanningConfigurationResponse": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "scanningConfiguration": {
+                    "$ref": "#/$defs/RegistryScanningConfiguration"
+                }
+            }
+        },
+        "RegistryScanningConfiguration": {
+            "type": "object",
+            "properties": {
+                "scanType": {
+                    "$ref": "#/$defs/ScanType"
+                },
+                "rules": {
+                    "$ref": "#/$defs/RegistryScanningRuleList"
+                }
+            }
+        },
+        "ScanType": {
+            "enum": [
+                "BASIC",
+                "ENHANCED"
+            ]
+        },
+        "RegistryScanningRuleList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RegistryScanningRule"
+            }
+        },
+        "RegistryScanningRule": {
+            "type": "object",
+            "properties": {
+                "scanFrequency": {
+                    "$ref": "#/$defs/ScanFrequency"
+                },
+                "repositoryFilters": {
+                    "$ref": "#/$defs/ScanningRepositoryFilterList"
+                }
+            }
+        },
+        "GetRegistryScanningConfigurationRequest": {
+            "type": "object",
+            "properties": {}
+        },
+        "GetRepositoryPolicyResponse": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "policyText": {
+                    "$ref": "#/$defs/RepositoryPolicyText"
+                }
+            }
+        },
+        "GetRepositoryPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                }
+            }
+        },
+        "InitiateLayerUploadResponse": {
+            "type": "object",
+            "properties": {
+                "uploadId": {
+                    "$ref": "#/$defs/UploadId"
+                },
+                "partSize": {
+                    "$ref": "#/$defs/PartSize"
+                }
+            }
+        },
+        "PartSize": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "InitiateLayerUploadRequest": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                }
+            }
+        },
+        "ListImagesResponse": {
+            "type": "object",
+            "properties": {
+                "imageIds": {
+                    "$ref": "#/$defs/ImageIdentifierList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListImagesRequest": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "filter": {
+                    "$ref": "#/$defs/ListImagesFilter"
+                }
+            }
+        },
+        "ListImagesFilter": {
+            "type": "object",
+            "properties": {
+                "tagStatus": {
+                    "$ref": "#/$defs/TagStatus"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "PutAccountSettingResponse": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/AccountSettingName"
+                },
+                "value": {
+                    "$ref": "#/$defs/AccountSettingValue"
+                }
+            }
+        },
+        "AccountSettingValue": {
+            "type": "string"
+        },
+        "PutAccountSettingRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/AccountSettingName"
+                },
+                "value": {
+                    "$ref": "#/$defs/AccountSettingValue"
+                }
+            }
+        },
+        "PutImageResponse": {
+            "type": "object",
+            "properties": {
+                "image": {
+                    "$ref": "#/$defs/Image"
+                }
+            }
+        },
+        "PutImageRequest": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "imageManifest": {
+                    "$ref": "#/$defs/ImageManifest"
+                },
+                "imageManifestMediaType": {
+                    "$ref": "#/$defs/MediaType"
+                },
+                "imageTag": {
+                    "$ref": "#/$defs/ImageTag"
+                },
+                "imageDigest": {
+                    "$ref": "#/$defs/ImageDigest"
+                }
+            }
+        },
+        "PutImageScanningConfigurationResponse": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "imageScanningConfiguration": {
+                    "$ref": "#/$defs/ImageScanningConfiguration"
+                }
+            }
+        },
+        "PutImageScanningConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "imageScanningConfiguration": {
+                    "$ref": "#/$defs/ImageScanningConfiguration"
+                }
+            }
+        },
+        "PutImageTagMutabilityResponse": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "imageTagMutability": {
+                    "$ref": "#/$defs/ImageTagMutability"
+                }
+            }
+        },
+        "PutImageTagMutabilityRequest": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "imageTagMutability": {
+                    "$ref": "#/$defs/ImageTagMutability"
+                }
+            }
+        },
+        "PutLifecyclePolicyResponse": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "lifecyclePolicyText": {
+                    "$ref": "#/$defs/LifecyclePolicyText"
+                }
+            }
+        },
+        "PutLifecyclePolicyRequest": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "lifecyclePolicyText": {
+                    "$ref": "#/$defs/LifecyclePolicyText"
+                }
+            }
+        },
+        "PutRegistryPolicyResponse": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "policyText": {
+                    "$ref": "#/$defs/RegistryPolicyText"
+                }
+            }
+        },
+        "PutRegistryPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "policyText": {
+                    "$ref": "#/$defs/RegistryPolicyText"
+                }
+            }
+        },
+        "PutRegistryScanningConfigurationResponse": {
+            "type": "object",
+            "properties": {
+                "registryScanningConfiguration": {
+                    "$ref": "#/$defs/RegistryScanningConfiguration"
+                }
+            }
+        },
+        "PutRegistryScanningConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "scanType": {
+                    "$ref": "#/$defs/ScanType"
+                },
+                "rules": {
+                    "$ref": "#/$defs/RegistryScanningRuleList"
+                }
+            }
+        },
+        "PutReplicationConfigurationResponse": {
+            "type": "object",
+            "properties": {
+                "replicationConfiguration": {
+                    "$ref": "#/$defs/ReplicationConfiguration"
+                }
+            }
+        },
+        "PutReplicationConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "replicationConfiguration": {
+                    "$ref": "#/$defs/ReplicationConfiguration"
+                }
+            }
+        },
+        "SetRepositoryPolicyResponse": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "policyText": {
+                    "$ref": "#/$defs/RepositoryPolicyText"
+                }
+            }
+        },
+        "SetRepositoryPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "policyText": {
+                    "$ref": "#/$defs/RepositoryPolicyText"
+                },
+                "force": {
+                    "$ref": "#/$defs/ForceFlag"
+                }
+            }
+        },
+        "StartImageScanResponse": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "imageId": {
+                    "$ref": "#/$defs/ImageIdentifier"
+                },
+                "imageScanStatus": {
+                    "$ref": "#/$defs/ImageScanStatus"
+                }
+            }
+        },
+        "StartImageScanRequest": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "imageId": {
+                    "$ref": "#/$defs/ImageIdentifier"
+                }
+            }
+        },
+        "StartLifecyclePolicyPreviewResponse": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "lifecyclePolicyText": {
+                    "$ref": "#/$defs/LifecyclePolicyText"
+                },
+                "status": {
+                    "$ref": "#/$defs/LifecyclePolicyPreviewStatus"
+                }
+            }
+        },
+        "StartLifecyclePolicyPreviewRequest": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "lifecyclePolicyText": {
+                    "$ref": "#/$defs/LifecyclePolicyText"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "tagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "UpdatePullThroughCacheRuleResponse": {
+            "type": "object",
+            "properties": {
+                "ecrRepositoryPrefix": {
+                    "$ref": "#/$defs/PullThroughCacheRuleRepositoryPrefix"
+                },
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "updatedAt": {
+                    "$ref": "#/$defs/UpdatedTimestamp"
+                },
+                "credentialArn": {
+                    "$ref": "#/$defs/CredentialArn"
+                }
+            }
+        },
+        "UpdatePullThroughCacheRuleRequest": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "ecrRepositoryPrefix": {
+                    "$ref": "#/$defs/PullThroughCacheRuleRepositoryPrefix"
+                },
+                "credentialArn": {
+                    "$ref": "#/$defs/CredentialArn"
+                }
+            }
+        },
+        "UpdateRepositoryCreationTemplateResponse": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryCreationTemplate": {
+                    "$ref": "#/$defs/RepositoryCreationTemplate"
+                }
+            }
+        },
+        "UpdateRepositoryCreationTemplateRequest": {
+            "type": "object",
+            "properties": {
+                "prefix": {
+                    "$ref": "#/$defs/Prefix"
+                },
+                "description": {
+                    "$ref": "#/$defs/RepositoryTemplateDescription"
+                },
+                "encryptionConfiguration": {
+                    "$ref": "#/$defs/EncryptionConfigurationForRepositoryCreationTemplate"
+                },
+                "resourceTags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "imageTagMutability": {
+                    "$ref": "#/$defs/ImageTagMutability"
+                },
+                "repositoryPolicy": {
+                    "$ref": "#/$defs/RepositoryPolicyText"
+                },
+                "lifecyclePolicy": {
+                    "$ref": "#/$defs/LifecyclePolicyTextForRepositoryCreationTemplate"
+                },
+                "appliedFor": {
+                    "$ref": "#/$defs/RCTAppliedForList"
+                },
+                "customRoleArn": {
+                    "$ref": "#/$defs/CustomRoleArn"
+                }
+            }
+        },
+        "UploadLayerPartResponse": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "uploadId": {
+                    "$ref": "#/$defs/UploadId"
+                },
+                "lastByteReceived": {
+                    "$ref": "#/$defs/PartSize"
+                }
+            }
+        },
+        "UploadLayerPartRequest": {
+            "type": "object",
+            "properties": {
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "repositoryName": {
+                    "$ref": "#/$defs/RepositoryName"
+                },
+                "uploadId": {
+                    "$ref": "#/$defs/UploadId"
+                },
+                "partFirstByte": {
+                    "$ref": "#/$defs/PartSize"
+                },
+                "partLastByte": {
+                    "$ref": "#/$defs/PartSize"
+                },
+                "layerPartBlob": {
+                    "$ref": "#/$defs/LayerPartBlob"
+                }
+            }
+        },
+        "LayerPartBlob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "ValidatePullThroughCacheRuleResponse": {
+            "type": "object",
+            "properties": {
+                "ecrRepositoryPrefix": {
+                    "$ref": "#/$defs/PullThroughCacheRuleRepositoryPrefix"
+                },
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                },
+                "upstreamRegistryUrl": {
+                    "$ref": "#/$defs/Url"
+                },
+                "credentialArn": {
+                    "$ref": "#/$defs/CredentialArn"
+                },
+                "isValid": {
+                    "$ref": "#/$defs/IsPTCRuleValid"
+                },
+                "failure": {
+                    "$ref": "#/$defs/PTCValidateFailure"
+                }
+            }
+        },
+        "IsPTCRuleValid": {
+            "type": "boolean"
+        },
+        "PTCValidateFailure": {
+            "type": "string"
+        },
+        "ValidatePullThroughCacheRuleRequest": {
+            "type": "object",
+            "properties": {
+                "ecrRepositoryPrefix": {
+                    "$ref": "#/$defs/PullThroughCacheRuleRepositoryPrefix"
+                },
+                "registryId": {
+                    "$ref": "#/$defs/RegistryId"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://api.ecr-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "stringEquals",
+                                                        "argv": [
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "name"
+                                                                ]
+                                                            },
+                                                            "aws"
+                                                        ]
+                                                    }
+                                                ],
+                                                "endpoint": {
+                                                    "url": "https://ecr-fips.{Region}.amazonaws.com",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            },
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "stringEquals",
+                                                        "argv": [
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "name"
+                                                                ]
+                                                            },
+                                                            "aws-us-gov"
+                                                        ]
+                                                    }
+                                                ],
+                                                "endpoint": {
+                                                    "url": "https://ecr-fips.{Region}.amazonaws.com",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://api.ecr-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://api.ecr.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://api.ecr.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

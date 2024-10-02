@@ -1,0 +1,1289 @@
+{
+    "name": "polly",
+    "commands": [
+        {
+            "name": "DeleteLexicon",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteLexicon"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteLexiconOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteLexiconInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeVoices",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeVoices"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeVoicesOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeVoicesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetLexicon",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetLexicon"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetLexiconOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetLexiconInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetSpeechSynthesisTask",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetSpeechSynthesisTask"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetSpeechSynthesisTaskOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetSpeechSynthesisTaskInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListLexicons",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListLexicons"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListLexiconsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListLexiconsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListSpeechSynthesisTasks",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListSpeechSynthesisTasks"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListSpeechSynthesisTasksOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListSpeechSynthesisTasksInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutLexicon",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutLexicon"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutLexiconOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutLexiconInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartSpeechSynthesisTask",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartSpeechSynthesisTask"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartSpeechSynthesisTaskOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartSpeechSynthesisTaskInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SynthesizeSpeech",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SynthesizeSpeech"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/SynthesizeSpeechOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SynthesizeSpeechInput"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "DeleteLexiconOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteLexiconInput": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/LexiconName"
+                }
+            }
+        },
+        "LexiconName": {
+            "type": "string"
+        },
+        "DescribeVoicesOutput": {
+            "type": "object",
+            "properties": {
+                "Voices": {
+                    "$ref": "#/$defs/VoiceList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "VoiceList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Voice"
+            }
+        },
+        "Voice": {
+            "type": "object",
+            "properties": {
+                "Gender": {
+                    "$ref": "#/$defs/Gender"
+                },
+                "Id": {
+                    "$ref": "#/$defs/VoiceId"
+                },
+                "LanguageCode": {
+                    "$ref": "#/$defs/LanguageCode"
+                },
+                "LanguageName": {
+                    "$ref": "#/$defs/LanguageName"
+                },
+                "Name": {
+                    "$ref": "#/$defs/VoiceName"
+                },
+                "AdditionalLanguageCodes": {
+                    "$ref": "#/$defs/LanguageCodeList"
+                },
+                "SupportedEngines": {
+                    "$ref": "#/$defs/EngineList"
+                }
+            }
+        },
+        "Gender": {
+            "enum": [
+                "Female",
+                "Male"
+            ]
+        },
+        "VoiceId": {
+            "enum": [
+                "Aditi",
+                "Amy",
+                "Astrid",
+                "Bianca",
+                "Brian",
+                "Camila",
+                "Carla",
+                "Carmen",
+                "Celine",
+                "Chantal",
+                "Conchita",
+                "Cristiano",
+                "Dora",
+                "Emma",
+                "Enrique",
+                "Ewa",
+                "Filiz",
+                "Gabrielle",
+                "Geraint",
+                "Giorgio",
+                "Gwyneth",
+                "Hans",
+                "Ines",
+                "Ivy",
+                "Jacek",
+                "Jan",
+                "Joanna",
+                "Joey",
+                "Justin",
+                "Karl",
+                "Kendra",
+                "Kevin",
+                "Kimberly",
+                "Lea",
+                "Liv",
+                "Lotte",
+                "Lucia",
+                "Lupe",
+                "Mads",
+                "Maja",
+                "Marlene",
+                "Mathieu",
+                "Matthew",
+                "Maxim",
+                "Mia",
+                "Miguel",
+                "Mizuki",
+                "Naja",
+                "Nicole",
+                "Olivia",
+                "Penelope",
+                "Raveena",
+                "Ricardo",
+                "Ruben",
+                "Russell",
+                "Salli",
+                "Seoyeon",
+                "Takumi",
+                "Tatyana",
+                "Vicki",
+                "Vitoria",
+                "Zeina",
+                "Zhiyu",
+                "Aria",
+                "Ayanda",
+                "Arlet",
+                "Hannah",
+                "Arthur",
+                "Daniel",
+                "Liam",
+                "Pedro",
+                "Kajal",
+                "Hiujin",
+                "Laura",
+                "Elin",
+                "Ida",
+                "Suvi",
+                "Ola",
+                "Hala",
+                "Andres",
+                "Sergio",
+                "Remi",
+                "Adriano",
+                "Thiago",
+                "Ruth",
+                "Stephen",
+                "Kazuha",
+                "Tomoko",
+                "Niamh",
+                "Sofie",
+                "Lisa",
+                "Isabelle",
+                "Zayd",
+                "Danielle",
+                "Gregory",
+                "Burcu",
+                "Jitka",
+                "Sabrina"
+            ]
+        },
+        "LanguageCode": {
+            "enum": [
+                "arb",
+                "cmn_CN",
+                "cy_GB",
+                "da_DK",
+                "de_DE",
+                "en_AU",
+                "en_GB",
+                "en_GB_WLS",
+                "en_IN",
+                "en_US",
+                "es_ES",
+                "es_MX",
+                "es_US",
+                "fr_CA",
+                "fr_FR",
+                "is_IS",
+                "it_IT",
+                "ja_JP",
+                "hi_IN",
+                "ko_KR",
+                "nb_NO",
+                "nl_NL",
+                "pl_PL",
+                "pt_BR",
+                "pt_PT",
+                "ro_RO",
+                "ru_RU",
+                "sv_SE",
+                "tr_TR",
+                "en_NZ",
+                "en_ZA",
+                "ca_ES",
+                "de_AT",
+                "yue_CN",
+                "ar_AE",
+                "fi_FI",
+                "en_IE",
+                "nl_BE",
+                "fr_BE",
+                "cs_CZ",
+                "de_CH"
+            ]
+        },
+        "LanguageName": {
+            "type": "string"
+        },
+        "VoiceName": {
+            "type": "string"
+        },
+        "LanguageCodeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LanguageCode"
+            }
+        },
+        "EngineList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Engine"
+            }
+        },
+        "Engine": {
+            "enum": [
+                "STANDARD",
+                "NEURAL",
+                "LONG_FORM",
+                "GENERATIVE"
+            ]
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "DescribeVoicesInput": {
+            "type": "object",
+            "properties": {
+                "Engine": {
+                    "$ref": "#/$defs/Engine"
+                },
+                "LanguageCode": {
+                    "$ref": "#/$defs/LanguageCode"
+                },
+                "IncludeAdditionalLanguageCodes": {
+                    "$ref": "#/$defs/IncludeAdditionalLanguageCodes"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "IncludeAdditionalLanguageCodes": {
+            "type": "boolean"
+        },
+        "GetLexiconOutput": {
+            "type": "object",
+            "properties": {
+                "Lexicon": {
+                    "$ref": "#/$defs/Lexicon"
+                },
+                "LexiconAttributes": {
+                    "$ref": "#/$defs/LexiconAttributes"
+                }
+            }
+        },
+        "Lexicon": {
+            "type": "object",
+            "properties": {
+                "Content": {
+                    "$ref": "#/$defs/LexiconContent"
+                },
+                "Name": {
+                    "$ref": "#/$defs/LexiconName"
+                }
+            }
+        },
+        "LexiconContent": {
+            "type": "string"
+        },
+        "LexiconAttributes": {
+            "type": "object",
+            "properties": {
+                "Alphabet": {
+                    "$ref": "#/$defs/Alphabet"
+                },
+                "LanguageCode": {
+                    "$ref": "#/$defs/LanguageCode"
+                },
+                "LastModified": {
+                    "$ref": "#/$defs/LastModified"
+                },
+                "LexiconArn": {
+                    "$ref": "#/$defs/LexiconArn"
+                },
+                "LexemesCount": {
+                    "$ref": "#/$defs/LexemesCount"
+                },
+                "Size": {
+                    "$ref": "#/$defs/Size"
+                }
+            }
+        },
+        "Alphabet": {
+            "type": "string"
+        },
+        "LastModified": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "LexiconArn": {
+            "type": "string"
+        },
+        "LexemesCount": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "Size": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "GetLexiconInput": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/LexiconName"
+                }
+            }
+        },
+        "GetSpeechSynthesisTaskOutput": {
+            "type": "object",
+            "properties": {
+                "SynthesisTask": {
+                    "$ref": "#/$defs/SynthesisTask"
+                }
+            }
+        },
+        "SynthesisTask": {
+            "type": "object",
+            "properties": {
+                "Engine": {
+                    "$ref": "#/$defs/Engine"
+                },
+                "TaskId": {
+                    "$ref": "#/$defs/TaskId"
+                },
+                "TaskStatus": {
+                    "$ref": "#/$defs/TaskStatus"
+                },
+                "TaskStatusReason": {
+                    "$ref": "#/$defs/TaskStatusReason"
+                },
+                "OutputUri": {
+                    "$ref": "#/$defs/OutputUri"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/DateTime"
+                },
+                "RequestCharacters": {
+                    "$ref": "#/$defs/RequestCharacters"
+                },
+                "SnsTopicArn": {
+                    "$ref": "#/$defs/SnsTopicArn"
+                },
+                "LexiconNames": {
+                    "$ref": "#/$defs/LexiconNameList"
+                },
+                "OutputFormat": {
+                    "$ref": "#/$defs/OutputFormat"
+                },
+                "SampleRate": {
+                    "$ref": "#/$defs/SampleRate"
+                },
+                "SpeechMarkTypes": {
+                    "$ref": "#/$defs/SpeechMarkTypeList"
+                },
+                "TextType": {
+                    "$ref": "#/$defs/TextType"
+                },
+                "VoiceId": {
+                    "$ref": "#/$defs/VoiceId"
+                },
+                "LanguageCode": {
+                    "$ref": "#/$defs/LanguageCode"
+                }
+            }
+        },
+        "TaskId": {
+            "type": "string"
+        },
+        "TaskStatus": {
+            "enum": [
+                "SCHEDULED",
+                "IN_PROGRESS",
+                "COMPLETED",
+                "FAILED"
+            ]
+        },
+        "TaskStatusReason": {
+            "type": "string"
+        },
+        "OutputUri": {
+            "type": "string"
+        },
+        "DateTime": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "RequestCharacters": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "SnsTopicArn": {
+            "type": "string"
+        },
+        "LexiconNameList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LexiconName"
+            }
+        },
+        "OutputFormat": {
+            "enum": [
+                "JSON",
+                "MP3",
+                "OGG_VORBIS",
+                "PCM"
+            ]
+        },
+        "SampleRate": {
+            "type": "string"
+        },
+        "SpeechMarkTypeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SpeechMarkType"
+            }
+        },
+        "SpeechMarkType": {
+            "enum": [
+                "SENTENCE",
+                "SSML",
+                "VISEME",
+                "WORD"
+            ]
+        },
+        "TextType": {
+            "enum": [
+                "SSML",
+                "TEXT"
+            ]
+        },
+        "GetSpeechSynthesisTaskInput": {
+            "type": "object",
+            "properties": {
+                "TaskId": {
+                    "$ref": "#/$defs/TaskId"
+                }
+            }
+        },
+        "ListLexiconsOutput": {
+            "type": "object",
+            "properties": {
+                "Lexicons": {
+                    "$ref": "#/$defs/LexiconDescriptionList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "LexiconDescriptionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LexiconDescription"
+            }
+        },
+        "LexiconDescription": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/LexiconName"
+                },
+                "Attributes": {
+                    "$ref": "#/$defs/LexiconAttributes"
+                }
+            }
+        },
+        "ListLexiconsInput": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListSpeechSynthesisTasksOutput": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "SynthesisTasks": {
+                    "$ref": "#/$defs/SynthesisTasks"
+                }
+            }
+        },
+        "SynthesisTasks": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SynthesisTask"
+            }
+        },
+        "ListSpeechSynthesisTasksInput": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "Status": {
+                    "$ref": "#/$defs/TaskStatus"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "PutLexiconOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "PutLexiconInput": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/LexiconName"
+                },
+                "Content": {
+                    "$ref": "#/$defs/LexiconContent"
+                }
+            }
+        },
+        "StartSpeechSynthesisTaskOutput": {
+            "type": "object",
+            "properties": {
+                "SynthesisTask": {
+                    "$ref": "#/$defs/SynthesisTask"
+                }
+            }
+        },
+        "StartSpeechSynthesisTaskInput": {
+            "type": "object",
+            "properties": {
+                "Engine": {
+                    "$ref": "#/$defs/Engine"
+                },
+                "LanguageCode": {
+                    "$ref": "#/$defs/LanguageCode"
+                },
+                "LexiconNames": {
+                    "$ref": "#/$defs/LexiconNameList"
+                },
+                "OutputFormat": {
+                    "$ref": "#/$defs/OutputFormat"
+                },
+                "OutputS3BucketName": {
+                    "$ref": "#/$defs/OutputS3BucketName"
+                },
+                "OutputS3KeyPrefix": {
+                    "$ref": "#/$defs/OutputS3KeyPrefix"
+                },
+                "SampleRate": {
+                    "$ref": "#/$defs/SampleRate"
+                },
+                "SnsTopicArn": {
+                    "$ref": "#/$defs/SnsTopicArn"
+                },
+                "SpeechMarkTypes": {
+                    "$ref": "#/$defs/SpeechMarkTypeList"
+                },
+                "Text": {
+                    "$ref": "#/$defs/Text"
+                },
+                "TextType": {
+                    "$ref": "#/$defs/TextType"
+                },
+                "VoiceId": {
+                    "$ref": "#/$defs/VoiceId"
+                }
+            }
+        },
+        "OutputS3BucketName": {
+            "type": "string"
+        },
+        "OutputS3KeyPrefix": {
+            "type": "string"
+        },
+        "Text": {
+            "type": "string"
+        },
+        "SynthesizeSpeechOutput": {
+            "type": "object",
+            "properties": {
+                "AudioStream": {
+                    "$ref": "#/$defs/AudioStream"
+                },
+                "ContentType": {
+                    "$ref": "#/$defs/ContentType"
+                },
+                "RequestCharacters": {
+                    "$ref": "#/$defs/RequestCharacters"
+                }
+            }
+        },
+        "AudioStream": {
+            "type": "string",
+            "format": "binary"
+        },
+        "ContentType": {
+            "type": "string"
+        },
+        "SynthesizeSpeechInput": {
+            "type": "object",
+            "properties": {
+                "Engine": {
+                    "$ref": "#/$defs/Engine"
+                },
+                "LanguageCode": {
+                    "$ref": "#/$defs/LanguageCode"
+                },
+                "LexiconNames": {
+                    "$ref": "#/$defs/LexiconNameList"
+                },
+                "OutputFormat": {
+                    "$ref": "#/$defs/OutputFormat"
+                },
+                "SampleRate": {
+                    "$ref": "#/$defs/SampleRate"
+                },
+                "SpeechMarkTypes": {
+                    "$ref": "#/$defs/SpeechMarkTypeList"
+                },
+                "Text": {
+                    "$ref": "#/$defs/Text"
+                },
+                "TextType": {
+                    "$ref": "#/$defs/TextType"
+                },
+                "VoiceId": {
+                    "$ref": "#/$defs/VoiceId"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://polly-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://polly-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://polly.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://polly.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

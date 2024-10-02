@@ -1,0 +1,3455 @@
+{
+    "name": "xray",
+    "commands": [
+        {
+            "name": "BatchGetTraces",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchGetTraces"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchGetTracesResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchGetTracesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateGroup",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateGroup"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateGroupResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateGroupRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateSamplingRule",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateSamplingRule"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateSamplingRuleResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateSamplingRuleRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteGroup",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteGroup"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteGroupResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteGroupRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteResourcePolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteResourcePolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteResourcePolicyResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteResourcePolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteSamplingRule",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteSamplingRule"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteSamplingRuleResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteSamplingRuleRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetEncryptionConfig",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetEncryptionConfig"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetEncryptionConfigResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetEncryptionConfigRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetGroup",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetGroup"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetGroupResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetGroupRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetGroups",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetGroups"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetGroupsResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetGroupsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetInsight",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetInsight"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetInsightResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetInsightRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetInsightEvents",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetInsightEvents"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetInsightEventsResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetInsightEventsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetInsightImpactGraph",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetInsightImpactGraph"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetInsightImpactGraphResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetInsightImpactGraphRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetInsightSummaries",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetInsightSummaries"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetInsightSummariesResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetInsightSummariesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetSamplingRules",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetSamplingRules"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetSamplingRulesResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetSamplingRulesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetSamplingStatisticSummaries",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetSamplingStatisticSummaries"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetSamplingStatisticSummariesResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetSamplingStatisticSummariesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetSamplingTargets",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetSamplingTargets"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetSamplingTargetsResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetSamplingTargetsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetServiceGraph",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetServiceGraph"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetServiceGraphResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetServiceGraphRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetTimeSeriesServiceStatistics",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetTimeSeriesServiceStatistics"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetTimeSeriesServiceStatisticsResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetTimeSeriesServiceStatisticsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetTraceGraph",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetTraceGraph"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetTraceGraphResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetTraceGraphRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetTraceSummaries",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetTraceSummaries"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetTraceSummariesResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetTraceSummariesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListResourcePolicies",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListResourcePolicies"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListResourcePoliciesResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListResourcePoliciesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutEncryptionConfig",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutEncryptionConfig"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutEncryptionConfigResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutEncryptionConfigRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutResourcePolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutResourcePolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutResourcePolicyResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutResourcePolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutTelemetryRecords",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutTelemetryRecords"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutTelemetryRecordsResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutTelemetryRecordsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutTraceSegments",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutTraceSegments"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutTraceSegmentsResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutTraceSegmentsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateGroup",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateGroup"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateGroupResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateGroupRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateSamplingRule",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateSamplingRule"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateSamplingRuleResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateSamplingRuleRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "BatchGetTracesResult": {
+            "type": "object",
+            "properties": {
+                "Traces": {
+                    "$ref": "#/$defs/TraceList"
+                },
+                "UnprocessedTraceIds": {
+                    "$ref": "#/$defs/UnprocessedTraceIdList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "TraceList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Trace"
+            }
+        },
+        "Trace": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/TraceId"
+                },
+                "Duration": {
+                    "$ref": "#/$defs/NullableDouble"
+                },
+                "LimitExceeded": {
+                    "$ref": "#/$defs/NullableBoolean"
+                },
+                "Segments": {
+                    "$ref": "#/$defs/SegmentList"
+                }
+            }
+        },
+        "TraceId": {
+            "type": "string"
+        },
+        "NullableDouble": {
+            "type": "number",
+            "format": "double"
+        },
+        "NullableBoolean": {
+            "type": "boolean"
+        },
+        "SegmentList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Segment"
+            }
+        },
+        "Segment": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/SegmentId"
+                },
+                "Document": {
+                    "$ref": "#/$defs/SegmentDocument"
+                }
+            }
+        },
+        "SegmentId": {
+            "type": "string"
+        },
+        "SegmentDocument": {
+            "type": "string"
+        },
+        "UnprocessedTraceIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TraceId"
+            }
+        },
+        "String": {
+            "type": "string"
+        },
+        "BatchGetTracesRequest": {
+            "type": "object",
+            "properties": {
+                "TraceIds": {
+                    "$ref": "#/$defs/TraceIdList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "TraceIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TraceId"
+            }
+        },
+        "CreateGroupResult": {
+            "type": "object",
+            "properties": {
+                "Group": {
+                    "$ref": "#/$defs/Group"
+                }
+            }
+        },
+        "Group": {
+            "type": "object",
+            "properties": {
+                "GroupName": {
+                    "$ref": "#/$defs/String"
+                },
+                "GroupARN": {
+                    "$ref": "#/$defs/String"
+                },
+                "FilterExpression": {
+                    "$ref": "#/$defs/String"
+                },
+                "InsightsConfiguration": {
+                    "$ref": "#/$defs/InsightsConfiguration"
+                }
+            }
+        },
+        "InsightsConfiguration": {
+            "type": "object",
+            "properties": {
+                "InsightsEnabled": {
+                    "$ref": "#/$defs/NullableBoolean"
+                },
+                "NotificationsEnabled": {
+                    "$ref": "#/$defs/NullableBoolean"
+                }
+            }
+        },
+        "CreateGroupRequest": {
+            "type": "object",
+            "properties": {
+                "GroupName": {
+                    "$ref": "#/$defs/GroupName"
+                },
+                "FilterExpression": {
+                    "$ref": "#/$defs/FilterExpression"
+                },
+                "InsightsConfiguration": {
+                    "$ref": "#/$defs/InsightsConfiguration"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "GroupName": {
+            "type": "string"
+        },
+        "FilterExpression": {
+            "type": "string"
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "CreateSamplingRuleResult": {
+            "type": "object",
+            "properties": {
+                "SamplingRuleRecord": {
+                    "$ref": "#/$defs/SamplingRuleRecord"
+                }
+            }
+        },
+        "SamplingRuleRecord": {
+            "type": "object",
+            "properties": {
+                "SamplingRule": {
+                    "$ref": "#/$defs/SamplingRule"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "ModifiedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "SamplingRule": {
+            "type": "object",
+            "properties": {
+                "RuleName": {
+                    "$ref": "#/$defs/RuleName"
+                },
+                "RuleARN": {
+                    "$ref": "#/$defs/String"
+                },
+                "ResourceARN": {
+                    "$ref": "#/$defs/ResourceARN"
+                },
+                "Priority": {
+                    "$ref": "#/$defs/Priority"
+                },
+                "FixedRate": {
+                    "$ref": "#/$defs/FixedRate"
+                },
+                "ReservoirSize": {
+                    "$ref": "#/$defs/ReservoirSize"
+                },
+                "ServiceName": {
+                    "$ref": "#/$defs/ServiceName"
+                },
+                "ServiceType": {
+                    "$ref": "#/$defs/ServiceType"
+                },
+                "Host": {
+                    "$ref": "#/$defs/Host"
+                },
+                "HTTPMethod": {
+                    "$ref": "#/$defs/HTTPMethod"
+                },
+                "URLPath": {
+                    "$ref": "#/$defs/URLPath"
+                },
+                "Version": {
+                    "$ref": "#/$defs/Version"
+                },
+                "Attributes": {
+                    "$ref": "#/$defs/AttributeMap"
+                }
+            }
+        },
+        "RuleName": {
+            "type": "string"
+        },
+        "ResourceARN": {
+            "type": "string"
+        },
+        "Priority": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "FixedRate": {
+            "type": "number",
+            "format": "double"
+        },
+        "ReservoirSize": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ServiceName": {
+            "type": "string"
+        },
+        "ServiceType": {
+            "type": "string"
+        },
+        "Host": {
+            "type": "string"
+        },
+        "HTTPMethod": {
+            "type": "string"
+        },
+        "URLPath": {
+            "type": "string"
+        },
+        "Version": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "AttributeMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/AttributeValue"
+            }
+        },
+        "AttributeValue": {
+            "type": "string"
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "CreateSamplingRuleRequest": {
+            "type": "object",
+            "properties": {
+                "SamplingRule": {
+                    "$ref": "#/$defs/SamplingRule"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "DeleteGroupResult": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteGroupRequest": {
+            "type": "object",
+            "properties": {
+                "GroupName": {
+                    "$ref": "#/$defs/GroupName"
+                },
+                "GroupARN": {
+                    "$ref": "#/$defs/GroupARN"
+                }
+            }
+        },
+        "GroupARN": {
+            "type": "string"
+        },
+        "DeleteResourcePolicyResult": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteResourcePolicyRequest": {
+            "type": "object",
+            "properties": {
+                "PolicyName": {
+                    "$ref": "#/$defs/PolicyName"
+                },
+                "PolicyRevisionId": {
+                    "$ref": "#/$defs/PolicyRevisionId"
+                }
+            }
+        },
+        "PolicyName": {
+            "type": "string"
+        },
+        "PolicyRevisionId": {
+            "type": "string"
+        },
+        "DeleteSamplingRuleResult": {
+            "type": "object",
+            "properties": {
+                "SamplingRuleRecord": {
+                    "$ref": "#/$defs/SamplingRuleRecord"
+                }
+            }
+        },
+        "DeleteSamplingRuleRequest": {
+            "type": "object",
+            "properties": {
+                "RuleName": {
+                    "$ref": "#/$defs/String"
+                },
+                "RuleARN": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetEncryptionConfigResult": {
+            "type": "object",
+            "properties": {
+                "EncryptionConfig": {
+                    "$ref": "#/$defs/EncryptionConfig"
+                }
+            }
+        },
+        "EncryptionConfig": {
+            "type": "object",
+            "properties": {
+                "KeyId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Status": {
+                    "$ref": "#/$defs/EncryptionStatus"
+                },
+                "Type": {
+                    "$ref": "#/$defs/EncryptionType"
+                }
+            }
+        },
+        "EncryptionStatus": {
+            "enum": [
+                "UPDATING",
+                "ACTIVE"
+            ]
+        },
+        "EncryptionType": {
+            "enum": [
+                "NONE",
+                "KMS"
+            ]
+        },
+        "GetEncryptionConfigRequest": {
+            "type": "object",
+            "properties": {}
+        },
+        "GetGroupResult": {
+            "type": "object",
+            "properties": {
+                "Group": {
+                    "$ref": "#/$defs/Group"
+                }
+            }
+        },
+        "GetGroupRequest": {
+            "type": "object",
+            "properties": {
+                "GroupName": {
+                    "$ref": "#/$defs/GroupName"
+                },
+                "GroupARN": {
+                    "$ref": "#/$defs/GroupARN"
+                }
+            }
+        },
+        "GetGroupsResult": {
+            "type": "object",
+            "properties": {
+                "Groups": {
+                    "$ref": "#/$defs/GroupSummaryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GroupSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/GroupSummary"
+            }
+        },
+        "GroupSummary": {
+            "type": "object",
+            "properties": {
+                "GroupName": {
+                    "$ref": "#/$defs/String"
+                },
+                "GroupARN": {
+                    "$ref": "#/$defs/String"
+                },
+                "FilterExpression": {
+                    "$ref": "#/$defs/String"
+                },
+                "InsightsConfiguration": {
+                    "$ref": "#/$defs/InsightsConfiguration"
+                }
+            }
+        },
+        "GetGroupsRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/GetGroupsNextToken"
+                }
+            }
+        },
+        "GetGroupsNextToken": {
+            "type": "string"
+        },
+        "GetInsightResult": {
+            "type": "object",
+            "properties": {
+                "Insight": {
+                    "$ref": "#/$defs/Insight"
+                }
+            }
+        },
+        "Insight": {
+            "type": "object",
+            "properties": {
+                "InsightId": {
+                    "$ref": "#/$defs/InsightId"
+                },
+                "GroupARN": {
+                    "$ref": "#/$defs/GroupARN"
+                },
+                "GroupName": {
+                    "$ref": "#/$defs/GroupName"
+                },
+                "RootCauseServiceId": {
+                    "$ref": "#/$defs/ServiceId"
+                },
+                "Categories": {
+                    "$ref": "#/$defs/InsightCategoryList"
+                },
+                "State": {
+                    "$ref": "#/$defs/InsightState"
+                },
+                "StartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Summary": {
+                    "$ref": "#/$defs/InsightSummaryText"
+                },
+                "ClientRequestImpactStatistics": {
+                    "$ref": "#/$defs/RequestImpactStatistics"
+                },
+                "RootCauseServiceRequestImpactStatistics": {
+                    "$ref": "#/$defs/RequestImpactStatistics"
+                },
+                "TopAnomalousServices": {
+                    "$ref": "#/$defs/AnomalousServiceList"
+                }
+            }
+        },
+        "InsightId": {
+            "type": "string"
+        },
+        "ServiceId": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Names": {
+                    "$ref": "#/$defs/ServiceNames"
+                },
+                "AccountId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Type": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ServiceNames": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "InsightCategoryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/InsightCategory"
+            }
+        },
+        "InsightCategory": {
+            "enum": [
+                "FAULT"
+            ]
+        },
+        "InsightState": {
+            "enum": [
+                "ACTIVE",
+                "CLOSED"
+            ]
+        },
+        "InsightSummaryText": {
+            "type": "string"
+        },
+        "RequestImpactStatistics": {
+            "type": "object",
+            "properties": {
+                "FaultCount": {
+                    "$ref": "#/$defs/NullableLong"
+                },
+                "OkCount": {
+                    "$ref": "#/$defs/NullableLong"
+                },
+                "TotalCount": {
+                    "$ref": "#/$defs/NullableLong"
+                }
+            }
+        },
+        "NullableLong": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "AnomalousServiceList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AnomalousService"
+            }
+        },
+        "AnomalousService": {
+            "type": "object",
+            "properties": {
+                "ServiceId": {
+                    "$ref": "#/$defs/ServiceId"
+                }
+            }
+        },
+        "GetInsightRequest": {
+            "type": "object",
+            "properties": {
+                "InsightId": {
+                    "$ref": "#/$defs/InsightId"
+                }
+            }
+        },
+        "GetInsightEventsResult": {
+            "type": "object",
+            "properties": {
+                "InsightEvents": {
+                    "$ref": "#/$defs/InsightEventList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "InsightEventList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/InsightEvent"
+            }
+        },
+        "InsightEvent": {
+            "type": "object",
+            "properties": {
+                "Summary": {
+                    "$ref": "#/$defs/EventSummaryText"
+                },
+                "EventTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "ClientRequestImpactStatistics": {
+                    "$ref": "#/$defs/RequestImpactStatistics"
+                },
+                "RootCauseServiceRequestImpactStatistics": {
+                    "$ref": "#/$defs/RequestImpactStatistics"
+                },
+                "TopAnomalousServices": {
+                    "$ref": "#/$defs/AnomalousServiceList"
+                }
+            }
+        },
+        "EventSummaryText": {
+            "type": "string"
+        },
+        "Token": {
+            "type": "string"
+        },
+        "GetInsightEventsRequest": {
+            "type": "object",
+            "properties": {
+                "InsightId": {
+                    "$ref": "#/$defs/InsightId"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/GetInsightEventsMaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "GetInsightEventsMaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "GetInsightImpactGraphResult": {
+            "type": "object",
+            "properties": {
+                "InsightId": {
+                    "$ref": "#/$defs/InsightId"
+                },
+                "StartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "ServiceGraphStartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "ServiceGraphEndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Services": {
+                    "$ref": "#/$defs/InsightImpactGraphServiceList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "InsightImpactGraphServiceList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/InsightImpactGraphService"
+            }
+        },
+        "InsightImpactGraphService": {
+            "type": "object",
+            "properties": {
+                "ReferenceId": {
+                    "$ref": "#/$defs/NullableInteger"
+                },
+                "Type": {
+                    "$ref": "#/$defs/String"
+                },
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Names": {
+                    "$ref": "#/$defs/ServiceNames"
+                },
+                "AccountId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Edges": {
+                    "$ref": "#/$defs/InsightImpactGraphEdgeList"
+                }
+            }
+        },
+        "NullableInteger": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "InsightImpactGraphEdgeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/InsightImpactGraphEdge"
+            }
+        },
+        "InsightImpactGraphEdge": {
+            "type": "object",
+            "properties": {
+                "ReferenceId": {
+                    "$ref": "#/$defs/NullableInteger"
+                }
+            }
+        },
+        "GetInsightImpactGraphRequest": {
+            "type": "object",
+            "properties": {
+                "InsightId": {
+                    "$ref": "#/$defs/InsightId"
+                },
+                "StartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "GetInsightSummariesResult": {
+            "type": "object",
+            "properties": {
+                "InsightSummaries": {
+                    "$ref": "#/$defs/InsightSummaryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "InsightSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/InsightSummary"
+            }
+        },
+        "InsightSummary": {
+            "type": "object",
+            "properties": {
+                "InsightId": {
+                    "$ref": "#/$defs/InsightId"
+                },
+                "GroupARN": {
+                    "$ref": "#/$defs/GroupARN"
+                },
+                "GroupName": {
+                    "$ref": "#/$defs/GroupName"
+                },
+                "RootCauseServiceId": {
+                    "$ref": "#/$defs/ServiceId"
+                },
+                "Categories": {
+                    "$ref": "#/$defs/InsightCategoryList"
+                },
+                "State": {
+                    "$ref": "#/$defs/InsightState"
+                },
+                "StartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Summary": {
+                    "$ref": "#/$defs/InsightSummaryText"
+                },
+                "ClientRequestImpactStatistics": {
+                    "$ref": "#/$defs/RequestImpactStatistics"
+                },
+                "RootCauseServiceRequestImpactStatistics": {
+                    "$ref": "#/$defs/RequestImpactStatistics"
+                },
+                "TopAnomalousServices": {
+                    "$ref": "#/$defs/AnomalousServiceList"
+                },
+                "LastUpdateTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "GetInsightSummariesRequest": {
+            "type": "object",
+            "properties": {
+                "States": {
+                    "$ref": "#/$defs/InsightStateList"
+                },
+                "GroupARN": {
+                    "$ref": "#/$defs/GroupARN"
+                },
+                "GroupName": {
+                    "$ref": "#/$defs/GroupName"
+                },
+                "StartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/GetInsightSummariesMaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "InsightStateList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/InsightState"
+            }
+        },
+        "GetInsightSummariesMaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "GetSamplingRulesResult": {
+            "type": "object",
+            "properties": {
+                "SamplingRuleRecords": {
+                    "$ref": "#/$defs/SamplingRuleRecordList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "SamplingRuleRecordList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SamplingRuleRecord"
+            }
+        },
+        "GetSamplingRulesRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetSamplingStatisticSummariesResult": {
+            "type": "object",
+            "properties": {
+                "SamplingStatisticSummaries": {
+                    "$ref": "#/$defs/SamplingStatisticSummaryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "SamplingStatisticSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SamplingStatisticSummary"
+            }
+        },
+        "SamplingStatisticSummary": {
+            "type": "object",
+            "properties": {
+                "RuleName": {
+                    "$ref": "#/$defs/String"
+                },
+                "Timestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "RequestCount": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "BorrowCount": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "SampledCount": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "Integer": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "GetSamplingStatisticSummariesRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetSamplingTargetsResult": {
+            "type": "object",
+            "properties": {
+                "SamplingTargetDocuments": {
+                    "$ref": "#/$defs/SamplingTargetDocumentList"
+                },
+                "LastRuleModification": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "UnprocessedStatistics": {
+                    "$ref": "#/$defs/UnprocessedStatisticsList"
+                }
+            }
+        },
+        "SamplingTargetDocumentList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SamplingTargetDocument"
+            }
+        },
+        "SamplingTargetDocument": {
+            "type": "object",
+            "properties": {
+                "RuleName": {
+                    "$ref": "#/$defs/String"
+                },
+                "FixedRate": {
+                    "$ref": "#/$defs/Double"
+                },
+                "ReservoirQuota": {
+                    "$ref": "#/$defs/NullableInteger"
+                },
+                "ReservoirQuotaTTL": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Interval": {
+                    "$ref": "#/$defs/NullableInteger"
+                }
+            }
+        },
+        "Double": {
+            "type": "number",
+            "format": "double"
+        },
+        "UnprocessedStatisticsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/UnprocessedStatistics"
+            }
+        },
+        "UnprocessedStatistics": {
+            "type": "object",
+            "properties": {
+                "RuleName": {
+                    "$ref": "#/$defs/String"
+                },
+                "ErrorCode": {
+                    "$ref": "#/$defs/String"
+                },
+                "Message": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetSamplingTargetsRequest": {
+            "type": "object",
+            "properties": {
+                "SamplingStatisticsDocuments": {
+                    "$ref": "#/$defs/SamplingStatisticsDocumentList"
+                }
+            }
+        },
+        "SamplingStatisticsDocumentList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SamplingStatisticsDocument"
+            }
+        },
+        "SamplingStatisticsDocument": {
+            "type": "object",
+            "properties": {
+                "RuleName": {
+                    "$ref": "#/$defs/RuleName"
+                },
+                "ClientID": {
+                    "$ref": "#/$defs/ClientID"
+                },
+                "Timestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "RequestCount": {
+                    "$ref": "#/$defs/RequestCount"
+                },
+                "SampledCount": {
+                    "$ref": "#/$defs/SampledCount"
+                },
+                "BorrowCount": {
+                    "$ref": "#/$defs/BorrowCount"
+                }
+            }
+        },
+        "ClientID": {
+            "type": "string"
+        },
+        "RequestCount": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "SampledCount": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "BorrowCount": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "GetServiceGraphResult": {
+            "type": "object",
+            "properties": {
+                "StartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Services": {
+                    "$ref": "#/$defs/ServiceList"
+                },
+                "ContainsOldGroupVersions": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ServiceList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Service"
+            }
+        },
+        "Service": {
+            "type": "object",
+            "properties": {
+                "ReferenceId": {
+                    "$ref": "#/$defs/NullableInteger"
+                },
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Names": {
+                    "$ref": "#/$defs/ServiceNames"
+                },
+                "Root": {
+                    "$ref": "#/$defs/NullableBoolean"
+                },
+                "AccountId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Type": {
+                    "$ref": "#/$defs/String"
+                },
+                "State": {
+                    "$ref": "#/$defs/String"
+                },
+                "StartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Edges": {
+                    "$ref": "#/$defs/EdgeList"
+                },
+                "SummaryStatistics": {
+                    "$ref": "#/$defs/ServiceStatistics"
+                },
+                "DurationHistogram": {
+                    "$ref": "#/$defs/Histogram"
+                },
+                "ResponseTimeHistogram": {
+                    "$ref": "#/$defs/Histogram"
+                }
+            }
+        },
+        "EdgeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Edge"
+            }
+        },
+        "Edge": {
+            "type": "object",
+            "properties": {
+                "ReferenceId": {
+                    "$ref": "#/$defs/NullableInteger"
+                },
+                "StartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "SummaryStatistics": {
+                    "$ref": "#/$defs/EdgeStatistics"
+                },
+                "ResponseTimeHistogram": {
+                    "$ref": "#/$defs/Histogram"
+                },
+                "Aliases": {
+                    "$ref": "#/$defs/AliasList"
+                },
+                "EdgeType": {
+                    "$ref": "#/$defs/String"
+                },
+                "ReceivedEventAgeHistogram": {
+                    "$ref": "#/$defs/Histogram"
+                }
+            }
+        },
+        "EdgeStatistics": {
+            "type": "object",
+            "properties": {
+                "OkCount": {
+                    "$ref": "#/$defs/NullableLong"
+                },
+                "ErrorStatistics": {
+                    "$ref": "#/$defs/ErrorStatistics"
+                },
+                "FaultStatistics": {
+                    "$ref": "#/$defs/FaultStatistics"
+                },
+                "TotalCount": {
+                    "$ref": "#/$defs/NullableLong"
+                },
+                "TotalResponseTime": {
+                    "$ref": "#/$defs/NullableDouble"
+                }
+            }
+        },
+        "ErrorStatistics": {
+            "type": "object",
+            "properties": {
+                "ThrottleCount": {
+                    "$ref": "#/$defs/NullableLong"
+                },
+                "OtherCount": {
+                    "$ref": "#/$defs/NullableLong"
+                },
+                "TotalCount": {
+                    "$ref": "#/$defs/NullableLong"
+                }
+            }
+        },
+        "FaultStatistics": {
+            "type": "object",
+            "properties": {
+                "OtherCount": {
+                    "$ref": "#/$defs/NullableLong"
+                },
+                "TotalCount": {
+                    "$ref": "#/$defs/NullableLong"
+                }
+            }
+        },
+        "Histogram": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/HistogramEntry"
+            }
+        },
+        "HistogramEntry": {
+            "type": "object",
+            "properties": {
+                "Value": {
+                    "$ref": "#/$defs/Double"
+                },
+                "Count": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "AliasList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Alias"
+            }
+        },
+        "Alias": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Names": {
+                    "$ref": "#/$defs/AliasNames"
+                },
+                "Type": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "AliasNames": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "ServiceStatistics": {
+            "type": "object",
+            "properties": {
+                "OkCount": {
+                    "$ref": "#/$defs/NullableLong"
+                },
+                "ErrorStatistics": {
+                    "$ref": "#/$defs/ErrorStatistics"
+                },
+                "FaultStatistics": {
+                    "$ref": "#/$defs/FaultStatistics"
+                },
+                "TotalCount": {
+                    "$ref": "#/$defs/NullableLong"
+                },
+                "TotalResponseTime": {
+                    "$ref": "#/$defs/NullableDouble"
+                }
+            }
+        },
+        "Boolean": {
+            "type": "boolean"
+        },
+        "GetServiceGraphRequest": {
+            "type": "object",
+            "properties": {
+                "StartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "GroupName": {
+                    "$ref": "#/$defs/GroupName"
+                },
+                "GroupARN": {
+                    "$ref": "#/$defs/GroupARN"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetTimeSeriesServiceStatisticsResult": {
+            "type": "object",
+            "properties": {
+                "TimeSeriesServiceStatistics": {
+                    "$ref": "#/$defs/TimeSeriesServiceStatisticsList"
+                },
+                "ContainsOldGroupVersions": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "TimeSeriesServiceStatisticsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TimeSeriesServiceStatistics"
+            }
+        },
+        "TimeSeriesServiceStatistics": {
+            "type": "object",
+            "properties": {
+                "Timestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EdgeSummaryStatistics": {
+                    "$ref": "#/$defs/EdgeStatistics"
+                },
+                "ServiceSummaryStatistics": {
+                    "$ref": "#/$defs/ServiceStatistics"
+                },
+                "ServiceForecastStatistics": {
+                    "$ref": "#/$defs/ForecastStatistics"
+                },
+                "ResponseTimeHistogram": {
+                    "$ref": "#/$defs/Histogram"
+                }
+            }
+        },
+        "ForecastStatistics": {
+            "type": "object",
+            "properties": {
+                "FaultCountHigh": {
+                    "$ref": "#/$defs/NullableLong"
+                },
+                "FaultCountLow": {
+                    "$ref": "#/$defs/NullableLong"
+                }
+            }
+        },
+        "GetTimeSeriesServiceStatisticsRequest": {
+            "type": "object",
+            "properties": {
+                "StartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "GroupName": {
+                    "$ref": "#/$defs/GroupName"
+                },
+                "GroupARN": {
+                    "$ref": "#/$defs/GroupARN"
+                },
+                "EntitySelectorExpression": {
+                    "$ref": "#/$defs/EntitySelectorExpression"
+                },
+                "Period": {
+                    "$ref": "#/$defs/NullableInteger"
+                },
+                "ForecastStatistics": {
+                    "$ref": "#/$defs/NullableBoolean"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "EntitySelectorExpression": {
+            "type": "string"
+        },
+        "GetTraceGraphResult": {
+            "type": "object",
+            "properties": {
+                "Services": {
+                    "$ref": "#/$defs/ServiceList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetTraceGraphRequest": {
+            "type": "object",
+            "properties": {
+                "TraceIds": {
+                    "$ref": "#/$defs/TraceIdList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetTraceSummariesResult": {
+            "type": "object",
+            "properties": {
+                "TraceSummaries": {
+                    "$ref": "#/$defs/TraceSummaryList"
+                },
+                "ApproximateTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "TracesProcessedCount": {
+                    "$ref": "#/$defs/NullableLong"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "TraceSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TraceSummary"
+            }
+        },
+        "TraceSummary": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/TraceId"
+                },
+                "StartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Duration": {
+                    "$ref": "#/$defs/NullableDouble"
+                },
+                "ResponseTime": {
+                    "$ref": "#/$defs/NullableDouble"
+                },
+                "HasFault": {
+                    "$ref": "#/$defs/NullableBoolean"
+                },
+                "HasError": {
+                    "$ref": "#/$defs/NullableBoolean"
+                },
+                "HasThrottle": {
+                    "$ref": "#/$defs/NullableBoolean"
+                },
+                "IsPartial": {
+                    "$ref": "#/$defs/NullableBoolean"
+                },
+                "Http": {
+                    "$ref": "#/$defs/Http"
+                },
+                "Annotations": {
+                    "$ref": "#/$defs/Annotations"
+                },
+                "Users": {
+                    "$ref": "#/$defs/TraceUsers"
+                },
+                "ServiceIds": {
+                    "$ref": "#/$defs/ServiceIds"
+                },
+                "ResourceARNs": {
+                    "$ref": "#/$defs/TraceResourceARNs"
+                },
+                "InstanceIds": {
+                    "$ref": "#/$defs/TraceInstanceIds"
+                },
+                "AvailabilityZones": {
+                    "$ref": "#/$defs/TraceAvailabilityZones"
+                },
+                "EntryPoint": {
+                    "$ref": "#/$defs/ServiceId"
+                },
+                "FaultRootCauses": {
+                    "$ref": "#/$defs/FaultRootCauses"
+                },
+                "ErrorRootCauses": {
+                    "$ref": "#/$defs/ErrorRootCauses"
+                },
+                "ResponseTimeRootCauses": {
+                    "$ref": "#/$defs/ResponseTimeRootCauses"
+                },
+                "Revision": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "MatchedEventTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "Http": {
+            "type": "object",
+            "properties": {
+                "HttpURL": {
+                    "$ref": "#/$defs/String"
+                },
+                "HttpStatus": {
+                    "$ref": "#/$defs/NullableInteger"
+                },
+                "HttpMethod": {
+                    "$ref": "#/$defs/String"
+                },
+                "UserAgent": {
+                    "$ref": "#/$defs/String"
+                },
+                "ClientIp": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "Annotations": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/ValuesWithServiceIds"
+            }
+        },
+        "ValuesWithServiceIds": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ValueWithServiceIds"
+            }
+        },
+        "ValueWithServiceIds": {
+            "type": "object",
+            "properties": {
+                "AnnotationValue": {
+                    "$ref": "#/$defs/AnnotationValue"
+                },
+                "ServiceIds": {
+                    "$ref": "#/$defs/ServiceIds"
+                }
+            }
+        },
+        "AnnotationValue": {
+            "type": "object",
+            "properties": {
+                "NumberValue": {
+                    "$ref": "#/$defs/NullableDouble"
+                },
+                "BooleanValue": {
+                    "$ref": "#/$defs/NullableBoolean"
+                },
+                "StringValue": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ServiceIds": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ServiceId"
+            }
+        },
+        "TraceUsers": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TraceUser"
+            }
+        },
+        "TraceUser": {
+            "type": "object",
+            "properties": {
+                "UserName": {
+                    "$ref": "#/$defs/String"
+                },
+                "ServiceIds": {
+                    "$ref": "#/$defs/ServiceIds"
+                }
+            }
+        },
+        "TraceResourceARNs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourceARNDetail"
+            }
+        },
+        "ResourceARNDetail": {
+            "type": "object",
+            "properties": {
+                "ARN": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "TraceInstanceIds": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/InstanceIdDetail"
+            }
+        },
+        "InstanceIdDetail": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "TraceAvailabilityZones": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AvailabilityZoneDetail"
+            }
+        },
+        "AvailabilityZoneDetail": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "FaultRootCauses": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FaultRootCause"
+            }
+        },
+        "FaultRootCause": {
+            "type": "object",
+            "properties": {
+                "Services": {
+                    "$ref": "#/$defs/FaultRootCauseServices"
+                },
+                "ClientImpacting": {
+                    "$ref": "#/$defs/NullableBoolean"
+                }
+            }
+        },
+        "FaultRootCauseServices": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FaultRootCauseService"
+            }
+        },
+        "FaultRootCauseService": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Names": {
+                    "$ref": "#/$defs/ServiceNames"
+                },
+                "Type": {
+                    "$ref": "#/$defs/String"
+                },
+                "AccountId": {
+                    "$ref": "#/$defs/String"
+                },
+                "EntityPath": {
+                    "$ref": "#/$defs/FaultRootCauseEntityPath"
+                },
+                "Inferred": {
+                    "$ref": "#/$defs/NullableBoolean"
+                }
+            }
+        },
+        "FaultRootCauseEntityPath": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FaultRootCauseEntity"
+            }
+        },
+        "FaultRootCauseEntity": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Exceptions": {
+                    "$ref": "#/$defs/RootCauseExceptions"
+                },
+                "Remote": {
+                    "$ref": "#/$defs/NullableBoolean"
+                }
+            }
+        },
+        "RootCauseExceptions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RootCauseException"
+            }
+        },
+        "RootCauseException": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Message": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ErrorRootCauses": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ErrorRootCause"
+            }
+        },
+        "ErrorRootCause": {
+            "type": "object",
+            "properties": {
+                "Services": {
+                    "$ref": "#/$defs/ErrorRootCauseServices"
+                },
+                "ClientImpacting": {
+                    "$ref": "#/$defs/NullableBoolean"
+                }
+            }
+        },
+        "ErrorRootCauseServices": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ErrorRootCauseService"
+            }
+        },
+        "ErrorRootCauseService": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Names": {
+                    "$ref": "#/$defs/ServiceNames"
+                },
+                "Type": {
+                    "$ref": "#/$defs/String"
+                },
+                "AccountId": {
+                    "$ref": "#/$defs/String"
+                },
+                "EntityPath": {
+                    "$ref": "#/$defs/ErrorRootCauseEntityPath"
+                },
+                "Inferred": {
+                    "$ref": "#/$defs/NullableBoolean"
+                }
+            }
+        },
+        "ErrorRootCauseEntityPath": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ErrorRootCauseEntity"
+            }
+        },
+        "ErrorRootCauseEntity": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Exceptions": {
+                    "$ref": "#/$defs/RootCauseExceptions"
+                },
+                "Remote": {
+                    "$ref": "#/$defs/NullableBoolean"
+                }
+            }
+        },
+        "ResponseTimeRootCauses": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResponseTimeRootCause"
+            }
+        },
+        "ResponseTimeRootCause": {
+            "type": "object",
+            "properties": {
+                "Services": {
+                    "$ref": "#/$defs/ResponseTimeRootCauseServices"
+                },
+                "ClientImpacting": {
+                    "$ref": "#/$defs/NullableBoolean"
+                }
+            }
+        },
+        "ResponseTimeRootCauseServices": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResponseTimeRootCauseService"
+            }
+        },
+        "ResponseTimeRootCauseService": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Names": {
+                    "$ref": "#/$defs/ServiceNames"
+                },
+                "Type": {
+                    "$ref": "#/$defs/String"
+                },
+                "AccountId": {
+                    "$ref": "#/$defs/String"
+                },
+                "EntityPath": {
+                    "$ref": "#/$defs/ResponseTimeRootCauseEntityPath"
+                },
+                "Inferred": {
+                    "$ref": "#/$defs/NullableBoolean"
+                }
+            }
+        },
+        "ResponseTimeRootCauseEntityPath": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResponseTimeRootCauseEntity"
+            }
+        },
+        "ResponseTimeRootCauseEntity": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Coverage": {
+                    "$ref": "#/$defs/NullableDouble"
+                },
+                "Remote": {
+                    "$ref": "#/$defs/NullableBoolean"
+                }
+            }
+        },
+        "GetTraceSummariesRequest": {
+            "type": "object",
+            "properties": {
+                "StartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "TimeRangeType": {
+                    "$ref": "#/$defs/TimeRangeType"
+                },
+                "Sampling": {
+                    "$ref": "#/$defs/NullableBoolean"
+                },
+                "SamplingStrategy": {
+                    "$ref": "#/$defs/SamplingStrategy"
+                },
+                "FilterExpression": {
+                    "$ref": "#/$defs/FilterExpression"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "TimeRangeType": {
+            "enum": [
+                "TraceId",
+                "Event",
+                "Service"
+            ]
+        },
+        "SamplingStrategy": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/SamplingStrategyName"
+                },
+                "Value": {
+                    "$ref": "#/$defs/NullableDouble"
+                }
+            }
+        },
+        "SamplingStrategyName": {
+            "enum": [
+                "PartialScan",
+                "FixedRate"
+            ]
+        },
+        "ListResourcePoliciesResult": {
+            "type": "object",
+            "properties": {
+                "ResourcePolicies": {
+                    "$ref": "#/$defs/ResourcePolicyList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/ResourcePolicyNextToken"
+                }
+            }
+        },
+        "ResourcePolicyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourcePolicy"
+            }
+        },
+        "ResourcePolicy": {
+            "type": "object",
+            "properties": {
+                "PolicyName": {
+                    "$ref": "#/$defs/PolicyName"
+                },
+                "PolicyDocument": {
+                    "$ref": "#/$defs/PolicyDocument"
+                },
+                "PolicyRevisionId": {
+                    "$ref": "#/$defs/PolicyRevisionId"
+                },
+                "LastUpdatedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "PolicyDocument": {
+            "type": "string"
+        },
+        "ResourcePolicyNextToken": {
+            "type": "string"
+        },
+        "ListResourcePoliciesRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/ResourcePolicyNextToken"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceARN": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "AmazonResourceName": {
+            "type": "string"
+        },
+        "PutEncryptionConfigResult": {
+            "type": "object",
+            "properties": {
+                "EncryptionConfig": {
+                    "$ref": "#/$defs/EncryptionConfig"
+                }
+            }
+        },
+        "PutEncryptionConfigRequest": {
+            "type": "object",
+            "properties": {
+                "KeyId": {
+                    "$ref": "#/$defs/EncryptionKeyId"
+                },
+                "Type": {
+                    "$ref": "#/$defs/EncryptionType"
+                }
+            }
+        },
+        "EncryptionKeyId": {
+            "type": "string"
+        },
+        "PutResourcePolicyResult": {
+            "type": "object",
+            "properties": {
+                "ResourcePolicy": {
+                    "$ref": "#/$defs/ResourcePolicy"
+                }
+            }
+        },
+        "PutResourcePolicyRequest": {
+            "type": "object",
+            "properties": {
+                "PolicyName": {
+                    "$ref": "#/$defs/PolicyName"
+                },
+                "PolicyDocument": {
+                    "$ref": "#/$defs/PolicyDocument"
+                },
+                "PolicyRevisionId": {
+                    "$ref": "#/$defs/PolicyRevisionId"
+                },
+                "BypassPolicyLockoutCheck": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "PutTelemetryRecordsResult": {
+            "type": "object",
+            "properties": {}
+        },
+        "PutTelemetryRecordsRequest": {
+            "type": "object",
+            "properties": {
+                "TelemetryRecords": {
+                    "$ref": "#/$defs/TelemetryRecordList"
+                },
+                "EC2InstanceId": {
+                    "$ref": "#/$defs/EC2InstanceId"
+                },
+                "Hostname": {
+                    "$ref": "#/$defs/Hostname"
+                },
+                "ResourceARN": {
+                    "$ref": "#/$defs/ResourceARN"
+                }
+            }
+        },
+        "TelemetryRecordList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TelemetryRecord"
+            }
+        },
+        "TelemetryRecord": {
+            "type": "object",
+            "properties": {
+                "Timestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "SegmentsReceivedCount": {
+                    "$ref": "#/$defs/NullableInteger"
+                },
+                "SegmentsSentCount": {
+                    "$ref": "#/$defs/NullableInteger"
+                },
+                "SegmentsSpilloverCount": {
+                    "$ref": "#/$defs/NullableInteger"
+                },
+                "SegmentsRejectedCount": {
+                    "$ref": "#/$defs/NullableInteger"
+                },
+                "BackendConnectionErrors": {
+                    "$ref": "#/$defs/BackendConnectionErrors"
+                }
+            }
+        },
+        "BackendConnectionErrors": {
+            "type": "object",
+            "properties": {
+                "TimeoutCount": {
+                    "$ref": "#/$defs/NullableInteger"
+                },
+                "ConnectionRefusedCount": {
+                    "$ref": "#/$defs/NullableInteger"
+                },
+                "HTTPCode4XXCount": {
+                    "$ref": "#/$defs/NullableInteger"
+                },
+                "HTTPCode5XXCount": {
+                    "$ref": "#/$defs/NullableInteger"
+                },
+                "UnknownHostCount": {
+                    "$ref": "#/$defs/NullableInteger"
+                },
+                "OtherCount": {
+                    "$ref": "#/$defs/NullableInteger"
+                }
+            }
+        },
+        "EC2InstanceId": {
+            "type": "string"
+        },
+        "Hostname": {
+            "type": "string"
+        },
+        "PutTraceSegmentsResult": {
+            "type": "object",
+            "properties": {
+                "UnprocessedTraceSegments": {
+                    "$ref": "#/$defs/UnprocessedTraceSegmentList"
+                }
+            }
+        },
+        "UnprocessedTraceSegmentList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/UnprocessedTraceSegment"
+            }
+        },
+        "UnprocessedTraceSegment": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/String"
+                },
+                "ErrorCode": {
+                    "$ref": "#/$defs/String"
+                },
+                "Message": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "PutTraceSegmentsRequest": {
+            "type": "object",
+            "properties": {
+                "TraceSegmentDocuments": {
+                    "$ref": "#/$defs/TraceSegmentDocumentList"
+                }
+            }
+        },
+        "TraceSegmentDocumentList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TraceSegmentDocument"
+            }
+        },
+        "TraceSegmentDocument": {
+            "type": "string"
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceARN": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceARN": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "UpdateGroupResult": {
+            "type": "object",
+            "properties": {
+                "Group": {
+                    "$ref": "#/$defs/Group"
+                }
+            }
+        },
+        "UpdateGroupRequest": {
+            "type": "object",
+            "properties": {
+                "GroupName": {
+                    "$ref": "#/$defs/GroupName"
+                },
+                "GroupARN": {
+                    "$ref": "#/$defs/GroupARN"
+                },
+                "FilterExpression": {
+                    "$ref": "#/$defs/FilterExpression"
+                },
+                "InsightsConfiguration": {
+                    "$ref": "#/$defs/InsightsConfiguration"
+                }
+            }
+        },
+        "UpdateSamplingRuleResult": {
+            "type": "object",
+            "properties": {
+                "SamplingRuleRecord": {
+                    "$ref": "#/$defs/SamplingRuleRecord"
+                }
+            }
+        },
+        "UpdateSamplingRuleRequest": {
+            "type": "object",
+            "properties": {
+                "SamplingRuleUpdate": {
+                    "$ref": "#/$defs/SamplingRuleUpdate"
+                }
+            }
+        },
+        "SamplingRuleUpdate": {
+            "type": "object",
+            "properties": {
+                "RuleName": {
+                    "$ref": "#/$defs/RuleName"
+                },
+                "RuleARN": {
+                    "$ref": "#/$defs/String"
+                },
+                "ResourceARN": {
+                    "$ref": "#/$defs/ResourceARN"
+                },
+                "Priority": {
+                    "$ref": "#/$defs/NullableInteger"
+                },
+                "FixedRate": {
+                    "$ref": "#/$defs/NullableDouble"
+                },
+                "ReservoirSize": {
+                    "$ref": "#/$defs/NullableInteger"
+                },
+                "Host": {
+                    "$ref": "#/$defs/Host"
+                },
+                "ServiceName": {
+                    "$ref": "#/$defs/ServiceName"
+                },
+                "ServiceType": {
+                    "$ref": "#/$defs/ServiceType"
+                },
+                "HTTPMethod": {
+                    "$ref": "#/$defs/HTTPMethod"
+                },
+                "URLPath": {
+                    "$ref": "#/$defs/URLPath"
+                },
+                "Attributes": {
+                    "$ref": "#/$defs/AttributeMap"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://xray-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://xray-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://xray.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://xray.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

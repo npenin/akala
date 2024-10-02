@@ -1,0 +1,1079 @@
+{
+    "name": "dynamodb",
+    "commands": [
+        {
+            "name": "DescribeStream",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeStream"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeStreamOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeStreamInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetRecords",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetRecords"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetRecordsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetRecordsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetShardIterator",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetShardIterator"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetShardIteratorOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetShardIteratorInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListStreams",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListStreams"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListStreamsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListStreamsInput"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "DescribeStreamOutput": {
+            "type": "object",
+            "properties": {
+                "StreamDescription": {
+                    "$ref": "#/$defs/StreamDescription"
+                }
+            }
+        },
+        "StreamDescription": {
+            "type": "object",
+            "properties": {
+                "StreamArn": {
+                    "$ref": "#/$defs/StreamArn"
+                },
+                "StreamLabel": {
+                    "$ref": "#/$defs/String"
+                },
+                "StreamStatus": {
+                    "$ref": "#/$defs/StreamStatus"
+                },
+                "StreamViewType": {
+                    "$ref": "#/$defs/StreamViewType"
+                },
+                "CreationRequestDateTime": {
+                    "$ref": "#/$defs/Date"
+                },
+                "TableName": {
+                    "$ref": "#/$defs/TableName"
+                },
+                "KeySchema": {
+                    "$ref": "#/$defs/KeySchema"
+                },
+                "Shards": {
+                    "$ref": "#/$defs/ShardDescriptionList"
+                },
+                "LastEvaluatedShardId": {
+                    "$ref": "#/$defs/ShardId"
+                }
+            }
+        },
+        "StreamArn": {
+            "type": "string"
+        },
+        "String": {
+            "type": "string"
+        },
+        "StreamStatus": {
+            "enum": [
+                "ENABLING",
+                "ENABLED",
+                "DISABLING",
+                "DISABLED"
+            ]
+        },
+        "StreamViewType": {
+            "enum": [
+                "NEW_IMAGE",
+                "OLD_IMAGE",
+                "NEW_AND_OLD_IMAGES",
+                "KEYS_ONLY"
+            ]
+        },
+        "Date": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "TableName": {
+            "type": "string"
+        },
+        "KeySchema": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/KeySchemaElement"
+            }
+        },
+        "KeySchemaElement": {
+            "type": "object",
+            "properties": {
+                "AttributeName": {
+                    "$ref": "#/$defs/KeySchemaAttributeName"
+                },
+                "KeyType": {
+                    "$ref": "#/$defs/KeyType"
+                }
+            }
+        },
+        "KeySchemaAttributeName": {
+            "type": "string"
+        },
+        "KeyType": {
+            "enum": [
+                "HASH",
+                "RANGE"
+            ]
+        },
+        "ShardDescriptionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Shard"
+            }
+        },
+        "Shard": {
+            "type": "object",
+            "properties": {
+                "ShardId": {
+                    "$ref": "#/$defs/ShardId"
+                },
+                "SequenceNumberRange": {
+                    "$ref": "#/$defs/SequenceNumberRange"
+                },
+                "ParentShardId": {
+                    "$ref": "#/$defs/ShardId"
+                }
+            }
+        },
+        "ShardId": {
+            "type": "string"
+        },
+        "SequenceNumberRange": {
+            "type": "object",
+            "properties": {
+                "StartingSequenceNumber": {
+                    "$ref": "#/$defs/SequenceNumber"
+                },
+                "EndingSequenceNumber": {
+                    "$ref": "#/$defs/SequenceNumber"
+                }
+            }
+        },
+        "SequenceNumber": {
+            "type": "string"
+        },
+        "DescribeStreamInput": {
+            "type": "object",
+            "properties": {
+                "StreamArn": {
+                    "$ref": "#/$defs/StreamArn"
+                },
+                "Limit": {
+                    "$ref": "#/$defs/PositiveIntegerObject"
+                },
+                "ExclusiveStartShardId": {
+                    "$ref": "#/$defs/ShardId"
+                }
+            }
+        },
+        "PositiveIntegerObject": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "GetRecordsOutput": {
+            "type": "object",
+            "properties": {
+                "Records": {
+                    "$ref": "#/$defs/RecordList"
+                },
+                "NextShardIterator": {
+                    "$ref": "#/$defs/ShardIterator"
+                }
+            }
+        },
+        "RecordList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Record"
+            }
+        },
+        "Record": {
+            "type": "object",
+            "properties": {
+                "eventID": {
+                    "$ref": "#/$defs/String"
+                },
+                "eventName": {
+                    "$ref": "#/$defs/OperationType"
+                },
+                "eventVersion": {
+                    "$ref": "#/$defs/String"
+                },
+                "eventSource": {
+                    "$ref": "#/$defs/String"
+                },
+                "awsRegion": {
+                    "$ref": "#/$defs/String"
+                },
+                "dynamodb": {
+                    "$ref": "#/$defs/StreamRecord"
+                },
+                "userIdentity": {
+                    "$ref": "#/$defs/Identity"
+                }
+            }
+        },
+        "OperationType": {
+            "enum": [
+                "INSERT",
+                "MODIFY",
+                "REMOVE"
+            ]
+        },
+        "StreamRecord": {
+            "type": "object",
+            "properties": {
+                "ApproximateCreationDateTime": {
+                    "$ref": "#/$defs/Date"
+                },
+                "Keys": {
+                    "$ref": "#/$defs/AttributeMap"
+                },
+                "NewImage": {
+                    "$ref": "#/$defs/AttributeMap"
+                },
+                "OldImage": {
+                    "$ref": "#/$defs/AttributeMap"
+                },
+                "SequenceNumber": {
+                    "$ref": "#/$defs/SequenceNumber"
+                },
+                "SizeBytes": {
+                    "$ref": "#/$defs/PositiveLongObject"
+                },
+                "StreamViewType": {
+                    "$ref": "#/$defs/StreamViewType"
+                }
+            }
+        },
+        "AttributeMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/AttributeValue"
+            }
+        },
+        "AttributeValue": {
+            "type": "object",
+            "properties": {
+                "S": {
+                    "$ref": "#/$defs/StringAttributeValue"
+                },
+                "N": {
+                    "$ref": "#/$defs/NumberAttributeValue"
+                },
+                "B": {
+                    "$ref": "#/$defs/BinaryAttributeValue"
+                },
+                "SS": {
+                    "$ref": "#/$defs/StringSetAttributeValue"
+                },
+                "NS": {
+                    "$ref": "#/$defs/NumberSetAttributeValue"
+                },
+                "BS": {
+                    "$ref": "#/$defs/BinarySetAttributeValue"
+                },
+                "M": {
+                    "$ref": "#/$defs/MapAttributeValue"
+                },
+                "L": {
+                    "$ref": "#/$defs/ListAttributeValue"
+                },
+                "NULL": {
+                    "$ref": "#/$defs/NullAttributeValue"
+                },
+                "BOOL": {
+                    "$ref": "#/$defs/BooleanAttributeValue"
+                }
+            }
+        },
+        "StringAttributeValue": {
+            "type": "string"
+        },
+        "NumberAttributeValue": {
+            "type": "string"
+        },
+        "BinaryAttributeValue": {
+            "type": "string",
+            "format": "binary"
+        },
+        "StringSetAttributeValue": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/StringAttributeValue"
+            }
+        },
+        "NumberSetAttributeValue": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NumberAttributeValue"
+            }
+        },
+        "BinarySetAttributeValue": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BinaryAttributeValue"
+            }
+        },
+        "MapAttributeValue": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/AttributeValue"
+            }
+        },
+        "ListAttributeValue": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AttributeValue"
+            }
+        },
+        "NullAttributeValue": {
+            "type": "boolean"
+        },
+        "BooleanAttributeValue": {
+            "type": "boolean"
+        },
+        "PositiveLongObject": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "Identity": {
+            "type": "object",
+            "properties": {
+                "PrincipalId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Type": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ShardIterator": {
+            "type": "string"
+        },
+        "GetRecordsInput": {
+            "type": "object",
+            "properties": {
+                "ShardIterator": {
+                    "$ref": "#/$defs/ShardIterator"
+                },
+                "Limit": {
+                    "$ref": "#/$defs/PositiveIntegerObject"
+                }
+            }
+        },
+        "GetShardIteratorOutput": {
+            "type": "object",
+            "properties": {
+                "ShardIterator": {
+                    "$ref": "#/$defs/ShardIterator"
+                }
+            }
+        },
+        "GetShardIteratorInput": {
+            "type": "object",
+            "properties": {
+                "StreamArn": {
+                    "$ref": "#/$defs/StreamArn"
+                },
+                "ShardId": {
+                    "$ref": "#/$defs/ShardId"
+                },
+                "ShardIteratorType": {
+                    "$ref": "#/$defs/ShardIteratorType"
+                },
+                "SequenceNumber": {
+                    "$ref": "#/$defs/SequenceNumber"
+                }
+            }
+        },
+        "ShardIteratorType": {
+            "enum": [
+                "TRIM_HORIZON",
+                "LATEST",
+                "AT_SEQUENCE_NUMBER",
+                "AFTER_SEQUENCE_NUMBER"
+            ]
+        },
+        "ListStreamsOutput": {
+            "type": "object",
+            "properties": {
+                "Streams": {
+                    "$ref": "#/$defs/StreamList"
+                },
+                "LastEvaluatedStreamArn": {
+                    "$ref": "#/$defs/StreamArn"
+                }
+            }
+        },
+        "StreamList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Stream"
+            }
+        },
+        "Stream": {
+            "type": "object",
+            "properties": {
+                "StreamArn": {
+                    "$ref": "#/$defs/StreamArn"
+                },
+                "TableName": {
+                    "$ref": "#/$defs/TableName"
+                },
+                "StreamLabel": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListStreamsInput": {
+            "type": "object",
+            "properties": {
+                "TableName": {
+                    "$ref": "#/$defs/TableName"
+                },
+                "Limit": {
+                    "$ref": "#/$defs/PositiveIntegerObject"
+                },
+                "ExclusiveStartStreamArn": {
+                    "$ref": "#/$defs/StreamArn"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://streams.dynamodb-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "stringEquals",
+                                                        "argv": [
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "name"
+                                                                ]
+                                                            },
+                                                            "aws-us-gov"
+                                                        ]
+                                                    }
+                                                ],
+                                                "endpoint": {
+                                                    "url": "https://streams.dynamodb.{Region}.amazonaws.com",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://streams.dynamodb-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://streams.dynamodb.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "stringEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "Region"
+                                            },
+                                            "local"
+                                        ]
+                                    }
+                                ],
+                                "endpoint": {
+                                    "url": "http://localhost:8000",
+                                    "properties": {
+                                        "authSchemes": [
+                                            {
+                                                "name": "sigv4",
+                                                "signingName": "dynamodb",
+                                                "signingRegion": "us-east-1"
+                                            }
+                                        ]
+                                    },
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "stringEquals",
+                                        "argv": [
+                                            "aws",
+                                            {
+                                                "fn": "getAttr",
+                                                "argv": [
+                                                    {
+                                                        "ref": "PartitionResult"
+                                                    },
+                                                    "name"
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "endpoint": {
+                                    "url": "https://streams.dynamodb.{Region}.amazonaws.com",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "stringEquals",
+                                        "argv": [
+                                            "aws-cn",
+                                            {
+                                                "fn": "getAttr",
+                                                "argv": [
+                                                    {
+                                                        "ref": "PartitionResult"
+                                                    },
+                                                    "name"
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "endpoint": {
+                                    "url": "https://streams.dynamodb.{Region}.amazonaws.com.cn",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "stringEquals",
+                                        "argv": [
+                                            "aws-us-gov",
+                                            {
+                                                "fn": "getAttr",
+                                                "argv": [
+                                                    {
+                                                        "ref": "PartitionResult"
+                                                    },
+                                                    "name"
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "endpoint": {
+                                    "url": "https://streams.dynamodb.{Region}.amazonaws.com",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "stringEquals",
+                                        "argv": [
+                                            "aws-iso",
+                                            {
+                                                "fn": "getAttr",
+                                                "argv": [
+                                                    {
+                                                        "ref": "PartitionResult"
+                                                    },
+                                                    "name"
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "endpoint": {
+                                    "url": "https://streams.dynamodb.{Region}.c2s.ic.gov",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "stringEquals",
+                                        "argv": [
+                                            "aws-iso-b",
+                                            {
+                                                "fn": "getAttr",
+                                                "argv": [
+                                                    {
+                                                        "ref": "PartitionResult"
+                                                    },
+                                                    "name"
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "endpoint": {
+                                    "url": "https://streams.dynamodb.{Region}.sc2s.sgov.gov",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://streams.dynamodb.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

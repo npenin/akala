@@ -1,0 +1,2201 @@
+{
+    "name": "lookoutvision",
+    "commands": [
+        {
+            "name": "CreateDataset",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateDataset"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateDatasetResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateDatasetRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateModel",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateModel"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateModelResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateModelRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateProject",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateProject"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateProjectResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateProjectRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteDataset",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteDataset"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteDatasetResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteDatasetRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteModel",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteModel"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteModelResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteModelRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteProject",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteProject"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteProjectResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteProjectRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeDataset",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeDataset"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeDatasetResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeDatasetRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeModel",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeModel"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeModelResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeModelRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeModelPackagingJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeModelPackagingJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeModelPackagingJobResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeModelPackagingJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeProject",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeProject"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeProjectResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeProjectRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DetectAnomalies",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DetectAnomalies"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DetectAnomaliesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DetectAnomaliesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListDatasetEntries",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListDatasetEntries"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListDatasetEntriesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListDatasetEntriesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListModelPackagingJobs",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListModelPackagingJobs"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListModelPackagingJobsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListModelPackagingJobsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListModels",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListModels"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListModelsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListModelsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListProjects",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListProjects"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListProjectsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListProjectsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartModel",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartModel"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartModelResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartModelRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartModelPackagingJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartModelPackagingJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartModelPackagingJobResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartModelPackagingJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StopModel",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StopModel"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StopModelResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StopModelRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateDatasetEntries",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateDatasetEntries"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateDatasetEntriesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateDatasetEntriesRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CreateDatasetResponse": {
+            "type": "object",
+            "properties": {
+                "DatasetMetadata": {
+                    "$ref": "#/$defs/DatasetMetadata"
+                }
+            }
+        },
+        "DatasetMetadata": {
+            "type": "object",
+            "properties": {
+                "DatasetType": {
+                    "$ref": "#/$defs/DatasetType"
+                },
+                "CreationTimestamp": {
+                    "$ref": "#/$defs/DateTime"
+                },
+                "Status": {
+                    "$ref": "#/$defs/DatasetStatus"
+                },
+                "StatusMessage": {
+                    "$ref": "#/$defs/DatasetStatusMessage"
+                }
+            }
+        },
+        "DatasetType": {
+            "type": "string"
+        },
+        "DateTime": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "DatasetStatus": {
+            "enum": [
+                "CREATE_IN_PROGRESS",
+                "CREATE_COMPLETE",
+                "CREATE_FAILED",
+                "UPDATE_IN_PROGRESS",
+                "UPDATE_COMPLETE",
+                "UPDATE_FAILED_ROLLBACK_IN_PROGRESS",
+                "UPDATE_FAILED_ROLLBACK_COMPLETE",
+                "DELETE_IN_PROGRESS",
+                "DELETE_COMPLETE",
+                "DELETE_FAILED"
+            ]
+        },
+        "DatasetStatusMessage": {
+            "type": "string"
+        },
+        "CreateDatasetRequest": {
+            "type": "object",
+            "properties": {
+                "ProjectName": {
+                    "$ref": "#/$defs/ProjectName"
+                },
+                "DatasetType": {
+                    "$ref": "#/$defs/DatasetType"
+                },
+                "DatasetSource": {
+                    "$ref": "#/$defs/DatasetSource"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                }
+            }
+        },
+        "ProjectName": {
+            "type": "string"
+        },
+        "DatasetSource": {
+            "type": "object",
+            "properties": {
+                "GroundTruthManifest": {
+                    "$ref": "#/$defs/DatasetGroundTruthManifest"
+                }
+            }
+        },
+        "DatasetGroundTruthManifest": {
+            "type": "object",
+            "properties": {
+                "S3Object": {
+                    "$ref": "#/$defs/InputS3Object"
+                }
+            }
+        },
+        "InputS3Object": {
+            "type": "object",
+            "properties": {
+                "Bucket": {
+                    "$ref": "#/$defs/S3BucketName"
+                },
+                "Key": {
+                    "$ref": "#/$defs/S3ObjectKey"
+                },
+                "VersionId": {
+                    "$ref": "#/$defs/S3ObjectVersion"
+                }
+            }
+        },
+        "S3BucketName": {
+            "type": "string"
+        },
+        "S3ObjectKey": {
+            "type": "string"
+        },
+        "S3ObjectVersion": {
+            "type": "string"
+        },
+        "ClientToken": {
+            "type": "string"
+        },
+        "CreateModelResponse": {
+            "type": "object",
+            "properties": {
+                "ModelMetadata": {
+                    "$ref": "#/$defs/ModelMetadata"
+                }
+            }
+        },
+        "ModelMetadata": {
+            "type": "object",
+            "properties": {
+                "CreationTimestamp": {
+                    "$ref": "#/$defs/DateTime"
+                },
+                "ModelVersion": {
+                    "$ref": "#/$defs/ModelVersion"
+                },
+                "ModelArn": {
+                    "$ref": "#/$defs/ModelArn"
+                },
+                "Description": {
+                    "$ref": "#/$defs/ModelDescriptionMessage"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ModelStatus"
+                },
+                "StatusMessage": {
+                    "$ref": "#/$defs/ModelStatusMessage"
+                },
+                "Performance": {
+                    "$ref": "#/$defs/ModelPerformance"
+                }
+            }
+        },
+        "ModelVersion": {
+            "type": "string"
+        },
+        "ModelArn": {
+            "type": "string"
+        },
+        "ModelDescriptionMessage": {
+            "type": "string"
+        },
+        "ModelStatus": {
+            "enum": [
+                "TRAINING",
+                "TRAINED",
+                "TRAINING_FAILED",
+                "STARTING_HOSTING",
+                "HOSTED",
+                "HOSTING_FAILED",
+                "STOPPING_HOSTING",
+                "SYSTEM_UPDATING",
+                "DELETING"
+            ]
+        },
+        "ModelStatusMessage": {
+            "type": "string"
+        },
+        "ModelPerformance": {
+            "type": "object",
+            "properties": {
+                "F1Score": {
+                    "$ref": "#/$defs/Float"
+                },
+                "Recall": {
+                    "$ref": "#/$defs/Float"
+                },
+                "Precision": {
+                    "$ref": "#/$defs/Float"
+                }
+            }
+        },
+        "Float": {
+            "type": "number",
+            "format": "float"
+        },
+        "CreateModelRequest": {
+            "type": "object",
+            "properties": {
+                "ProjectName": {
+                    "$ref": "#/$defs/ProjectName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/ModelDescriptionMessage"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                },
+                "OutputConfig": {
+                    "$ref": "#/$defs/OutputConfig"
+                },
+                "KmsKeyId": {
+                    "$ref": "#/$defs/KmsKeyId"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "OutputConfig": {
+            "type": "object",
+            "properties": {
+                "S3Location": {
+                    "$ref": "#/$defs/S3Location"
+                }
+            }
+        },
+        "S3Location": {
+            "type": "object",
+            "properties": {
+                "Bucket": {
+                    "$ref": "#/$defs/S3BucketName"
+                },
+                "Prefix": {
+                    "$ref": "#/$defs/S3KeyPrefix"
+                }
+            }
+        },
+        "S3KeyPrefix": {
+            "type": "string"
+        },
+        "KmsKeyId": {
+            "type": "string"
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "CreateProjectResponse": {
+            "type": "object",
+            "properties": {
+                "ProjectMetadata": {
+                    "$ref": "#/$defs/ProjectMetadata"
+                }
+            }
+        },
+        "ProjectMetadata": {
+            "type": "object",
+            "properties": {
+                "ProjectArn": {
+                    "$ref": "#/$defs/ProjectArn"
+                },
+                "ProjectName": {
+                    "$ref": "#/$defs/ProjectName"
+                },
+                "CreationTimestamp": {
+                    "$ref": "#/$defs/DateTime"
+                }
+            }
+        },
+        "ProjectArn": {
+            "type": "string"
+        },
+        "CreateProjectRequest": {
+            "type": "object",
+            "properties": {
+                "ProjectName": {
+                    "$ref": "#/$defs/ProjectName"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                }
+            }
+        },
+        "DeleteDatasetResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteDatasetRequest": {
+            "type": "object",
+            "properties": {
+                "ProjectName": {
+                    "$ref": "#/$defs/ProjectName"
+                },
+                "DatasetType": {
+                    "$ref": "#/$defs/DatasetType"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                }
+            }
+        },
+        "DeleteModelResponse": {
+            "type": "object",
+            "properties": {
+                "ModelArn": {
+                    "$ref": "#/$defs/ModelArn"
+                }
+            }
+        },
+        "DeleteModelRequest": {
+            "type": "object",
+            "properties": {
+                "ProjectName": {
+                    "$ref": "#/$defs/ProjectName"
+                },
+                "ModelVersion": {
+                    "$ref": "#/$defs/ModelVersionNoLatest"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                }
+            }
+        },
+        "ModelVersionNoLatest": {
+            "type": "string"
+        },
+        "DeleteProjectResponse": {
+            "type": "object",
+            "properties": {
+                "ProjectArn": {
+                    "$ref": "#/$defs/ProjectArn"
+                }
+            }
+        },
+        "DeleteProjectRequest": {
+            "type": "object",
+            "properties": {
+                "ProjectName": {
+                    "$ref": "#/$defs/ProjectName"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                }
+            }
+        },
+        "DescribeDatasetResponse": {
+            "type": "object",
+            "properties": {
+                "DatasetDescription": {
+                    "$ref": "#/$defs/DatasetDescription"
+                }
+            }
+        },
+        "DatasetDescription": {
+            "type": "object",
+            "properties": {
+                "ProjectName": {
+                    "$ref": "#/$defs/ProjectName"
+                },
+                "DatasetType": {
+                    "$ref": "#/$defs/DatasetType"
+                },
+                "CreationTimestamp": {
+                    "$ref": "#/$defs/DateTime"
+                },
+                "LastUpdatedTimestamp": {
+                    "$ref": "#/$defs/DateTime"
+                },
+                "Status": {
+                    "$ref": "#/$defs/DatasetStatus"
+                },
+                "StatusMessage": {
+                    "$ref": "#/$defs/DatasetStatusMessage"
+                },
+                "ImageStats": {
+                    "$ref": "#/$defs/DatasetImageStats"
+                }
+            }
+        },
+        "DatasetImageStats": {
+            "type": "object",
+            "properties": {
+                "Total": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Labeled": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Normal": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Anomaly": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "Integer": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DescribeDatasetRequest": {
+            "type": "object",
+            "properties": {
+                "ProjectName": {
+                    "$ref": "#/$defs/ProjectName"
+                },
+                "DatasetType": {
+                    "$ref": "#/$defs/DatasetType"
+                }
+            }
+        },
+        "DescribeModelResponse": {
+            "type": "object",
+            "properties": {
+                "ModelDescription": {
+                    "$ref": "#/$defs/ModelDescription"
+                }
+            }
+        },
+        "ModelDescription": {
+            "type": "object",
+            "properties": {
+                "ModelVersion": {
+                    "$ref": "#/$defs/ModelVersion"
+                },
+                "ModelArn": {
+                    "$ref": "#/$defs/ModelArn"
+                },
+                "CreationTimestamp": {
+                    "$ref": "#/$defs/DateTime"
+                },
+                "Description": {
+                    "$ref": "#/$defs/ModelDescriptionMessage"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ModelStatus"
+                },
+                "StatusMessage": {
+                    "$ref": "#/$defs/ModelStatusMessage"
+                },
+                "Performance": {
+                    "$ref": "#/$defs/ModelPerformance"
+                },
+                "OutputConfig": {
+                    "$ref": "#/$defs/OutputConfig"
+                },
+                "EvaluationManifest": {
+                    "$ref": "#/$defs/OutputS3Object"
+                },
+                "EvaluationResult": {
+                    "$ref": "#/$defs/OutputS3Object"
+                },
+                "EvaluationEndTimestamp": {
+                    "$ref": "#/$defs/DateTime"
+                },
+                "KmsKeyId": {
+                    "$ref": "#/$defs/KmsKeyId"
+                },
+                "MinInferenceUnits": {
+                    "$ref": "#/$defs/InferenceUnits"
+                },
+                "MaxInferenceUnits": {
+                    "$ref": "#/$defs/InferenceUnits"
+                }
+            }
+        },
+        "OutputS3Object": {
+            "type": "object",
+            "properties": {
+                "Bucket": {
+                    "$ref": "#/$defs/S3BucketName"
+                },
+                "Key": {
+                    "$ref": "#/$defs/S3ObjectKey"
+                }
+            }
+        },
+        "InferenceUnits": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DescribeModelRequest": {
+            "type": "object",
+            "properties": {
+                "ProjectName": {
+                    "$ref": "#/$defs/ProjectName"
+                },
+                "ModelVersion": {
+                    "$ref": "#/$defs/ModelVersion"
+                }
+            }
+        },
+        "DescribeModelPackagingJobResponse": {
+            "type": "object",
+            "properties": {
+                "ModelPackagingDescription": {
+                    "$ref": "#/$defs/ModelPackagingDescription"
+                }
+            }
+        },
+        "ModelPackagingDescription": {
+            "type": "object",
+            "properties": {
+                "JobName": {
+                    "$ref": "#/$defs/ModelPackagingJobName"
+                },
+                "ProjectName": {
+                    "$ref": "#/$defs/ProjectName"
+                },
+                "ModelVersion": {
+                    "$ref": "#/$defs/ModelVersion"
+                },
+                "ModelPackagingConfiguration": {
+                    "$ref": "#/$defs/ModelPackagingConfiguration"
+                },
+                "ModelPackagingJobDescription": {
+                    "$ref": "#/$defs/ModelPackagingJobDescription"
+                },
+                "ModelPackagingMethod": {
+                    "$ref": "#/$defs/ModelPackagingMethod"
+                },
+                "ModelPackagingOutputDetails": {
+                    "$ref": "#/$defs/ModelPackagingOutputDetails"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ModelPackagingJobStatus"
+                },
+                "StatusMessage": {
+                    "$ref": "#/$defs/ModelPackagingStatusMessage"
+                },
+                "CreationTimestamp": {
+                    "$ref": "#/$defs/DateTime"
+                },
+                "LastUpdatedTimestamp": {
+                    "$ref": "#/$defs/DateTime"
+                }
+            }
+        },
+        "ModelPackagingJobName": {
+            "type": "string"
+        },
+        "ModelPackagingConfiguration": {
+            "type": "object",
+            "properties": {
+                "Greengrass": {
+                    "$ref": "#/$defs/GreengrassConfiguration"
+                }
+            }
+        },
+        "GreengrassConfiguration": {
+            "type": "object",
+            "properties": {
+                "CompilerOptions": {
+                    "$ref": "#/$defs/CompilerOptions"
+                },
+                "TargetDevice": {
+                    "$ref": "#/$defs/TargetDevice"
+                },
+                "TargetPlatform": {
+                    "$ref": "#/$defs/TargetPlatform"
+                },
+                "S3OutputLocation": {
+                    "$ref": "#/$defs/S3Location"
+                },
+                "ComponentName": {
+                    "$ref": "#/$defs/ComponentName"
+                },
+                "ComponentVersion": {
+                    "$ref": "#/$defs/ComponentVersion"
+                },
+                "ComponentDescription": {
+                    "$ref": "#/$defs/ComponentDescription"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "CompilerOptions": {
+            "type": "string"
+        },
+        "TargetDevice": {
+            "enum": [
+                "JETSON_XAVIER"
+            ]
+        },
+        "TargetPlatform": {
+            "type": "object",
+            "properties": {
+                "Os": {
+                    "$ref": "#/$defs/TargetPlatformOs"
+                },
+                "Arch": {
+                    "$ref": "#/$defs/TargetPlatformArch"
+                },
+                "Accelerator": {
+                    "$ref": "#/$defs/TargetPlatformAccelerator"
+                }
+            }
+        },
+        "TargetPlatformOs": {
+            "enum": [
+                "LINUX"
+            ]
+        },
+        "TargetPlatformArch": {
+            "enum": [
+                "ARM64",
+                "X86_64"
+            ]
+        },
+        "TargetPlatformAccelerator": {
+            "enum": [
+                "NVIDIA"
+            ]
+        },
+        "ComponentName": {
+            "type": "string"
+        },
+        "ComponentVersion": {
+            "type": "string"
+        },
+        "ComponentDescription": {
+            "type": "string"
+        },
+        "ModelPackagingJobDescription": {
+            "type": "string"
+        },
+        "ModelPackagingMethod": {
+            "type": "string"
+        },
+        "ModelPackagingOutputDetails": {
+            "type": "object",
+            "properties": {
+                "Greengrass": {
+                    "$ref": "#/$defs/GreengrassOutputDetails"
+                }
+            }
+        },
+        "GreengrassOutputDetails": {
+            "type": "object",
+            "properties": {
+                "ComponentVersionArn": {
+                    "$ref": "#/$defs/ComponentVersionArn"
+                },
+                "ComponentName": {
+                    "$ref": "#/$defs/ComponentName"
+                },
+                "ComponentVersion": {
+                    "$ref": "#/$defs/ComponentVersion"
+                }
+            }
+        },
+        "ComponentVersionArn": {
+            "type": "string"
+        },
+        "ModelPackagingJobStatus": {
+            "enum": [
+                "CREATED",
+                "RUNNING",
+                "SUCCEEDED",
+                "FAILED"
+            ]
+        },
+        "ModelPackagingStatusMessage": {
+            "type": "string"
+        },
+        "DescribeModelPackagingJobRequest": {
+            "type": "object",
+            "properties": {
+                "ProjectName": {
+                    "$ref": "#/$defs/ProjectName"
+                },
+                "JobName": {
+                    "$ref": "#/$defs/ModelPackagingJobName"
+                }
+            }
+        },
+        "DescribeProjectResponse": {
+            "type": "object",
+            "properties": {
+                "ProjectDescription": {
+                    "$ref": "#/$defs/ProjectDescription"
+                }
+            }
+        },
+        "ProjectDescription": {
+            "type": "object",
+            "properties": {
+                "ProjectArn": {
+                    "$ref": "#/$defs/ProjectArn"
+                },
+                "ProjectName": {
+                    "$ref": "#/$defs/ProjectName"
+                },
+                "CreationTimestamp": {
+                    "$ref": "#/$defs/DateTime"
+                },
+                "Datasets": {
+                    "$ref": "#/$defs/DatasetMetadataList"
+                }
+            }
+        },
+        "DatasetMetadataList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DatasetMetadata"
+            }
+        },
+        "DescribeProjectRequest": {
+            "type": "object",
+            "properties": {
+                "ProjectName": {
+                    "$ref": "#/$defs/ProjectName"
+                }
+            }
+        },
+        "DetectAnomaliesResponse": {
+            "type": "object",
+            "properties": {
+                "DetectAnomalyResult": {
+                    "$ref": "#/$defs/DetectAnomalyResult"
+                }
+            }
+        },
+        "DetectAnomalyResult": {
+            "type": "object",
+            "properties": {
+                "Source": {
+                    "$ref": "#/$defs/ImageSource"
+                },
+                "IsAnomalous": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "Confidence": {
+                    "$ref": "#/$defs/Float"
+                },
+                "Anomalies": {
+                    "$ref": "#/$defs/AnomalyList"
+                },
+                "AnomalyMask": {
+                    "$ref": "#/$defs/AnomalyMask"
+                }
+            }
+        },
+        "ImageSource": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "$ref": "#/$defs/ImageSourceType"
+                }
+            }
+        },
+        "ImageSourceType": {
+            "type": "string"
+        },
+        "Boolean": {
+            "type": "boolean"
+        },
+        "AnomalyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Anomaly"
+            }
+        },
+        "Anomaly": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/AnomalyName"
+                },
+                "PixelAnomaly": {
+                    "$ref": "#/$defs/PixelAnomaly"
+                }
+            }
+        },
+        "AnomalyName": {
+            "type": "string"
+        },
+        "PixelAnomaly": {
+            "type": "object",
+            "properties": {
+                "TotalPercentageArea": {
+                    "$ref": "#/$defs/Float"
+                },
+                "Color": {
+                    "$ref": "#/$defs/Color"
+                }
+            }
+        },
+        "Color": {
+            "type": "string"
+        },
+        "AnomalyMask": {
+            "type": "string",
+            "format": "binary"
+        },
+        "DetectAnomaliesRequest": {
+            "type": "object",
+            "properties": {
+                "ProjectName": {
+                    "$ref": "#/$defs/ProjectName"
+                },
+                "ModelVersion": {
+                    "$ref": "#/$defs/ModelVersion"
+                },
+                "Body": {
+                    "$ref": "#/$defs/Stream"
+                },
+                "ContentType": {
+                    "$ref": "#/$defs/ContentType"
+                }
+            }
+        },
+        "Stream": {
+            "type": "string",
+            "format": "binary"
+        },
+        "ContentType": {
+            "type": "string"
+        },
+        "ListDatasetEntriesResponse": {
+            "type": "object",
+            "properties": {
+                "DatasetEntries": {
+                    "$ref": "#/$defs/DatasetEntryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "DatasetEntryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DatasetEntry"
+            }
+        },
+        "DatasetEntry": {
+            "type": "string"
+        },
+        "PaginationToken": {
+            "type": "string"
+        },
+        "ListDatasetEntriesRequest": {
+            "type": "object",
+            "properties": {
+                "ProjectName": {
+                    "$ref": "#/$defs/ProjectName"
+                },
+                "DatasetType": {
+                    "$ref": "#/$defs/DatasetType"
+                },
+                "Labeled": {
+                    "$ref": "#/$defs/IsLabeled"
+                },
+                "AnomalyClass": {
+                    "$ref": "#/$defs/AnomalyClassFilter"
+                },
+                "BeforeCreationDate": {
+                    "$ref": "#/$defs/DateTime"
+                },
+                "AfterCreationDate": {
+                    "$ref": "#/$defs/DateTime"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/PageSize"
+                },
+                "SourceRefContains": {
+                    "$ref": "#/$defs/QueryString"
+                }
+            }
+        },
+        "IsLabeled": {
+            "type": "boolean"
+        },
+        "AnomalyClassFilter": {
+            "type": "string"
+        },
+        "PageSize": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "QueryString": {
+            "type": "string"
+        },
+        "ListModelPackagingJobsResponse": {
+            "type": "object",
+            "properties": {
+                "ModelPackagingJobs": {
+                    "$ref": "#/$defs/ModelPackagingJobsList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "ModelPackagingJobsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ModelPackagingJobMetadata"
+            }
+        },
+        "ModelPackagingJobMetadata": {
+            "type": "object",
+            "properties": {
+                "JobName": {
+                    "$ref": "#/$defs/ModelPackagingJobName"
+                },
+                "ProjectName": {
+                    "$ref": "#/$defs/ProjectName"
+                },
+                "ModelVersion": {
+                    "$ref": "#/$defs/ModelVersion"
+                },
+                "ModelPackagingJobDescription": {
+                    "$ref": "#/$defs/ModelPackagingJobDescription"
+                },
+                "ModelPackagingMethod": {
+                    "$ref": "#/$defs/ModelPackagingMethod"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ModelPackagingJobStatus"
+                },
+                "StatusMessage": {
+                    "$ref": "#/$defs/ModelPackagingStatusMessage"
+                },
+                "CreationTimestamp": {
+                    "$ref": "#/$defs/DateTime"
+                },
+                "LastUpdatedTimestamp": {
+                    "$ref": "#/$defs/DateTime"
+                }
+            }
+        },
+        "ListModelPackagingJobsRequest": {
+            "type": "object",
+            "properties": {
+                "ProjectName": {
+                    "$ref": "#/$defs/ProjectName"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/PageSize"
+                }
+            }
+        },
+        "ListModelsResponse": {
+            "type": "object",
+            "properties": {
+                "Models": {
+                    "$ref": "#/$defs/ModelMetadataList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "ModelMetadataList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ModelMetadata"
+            }
+        },
+        "ListModelsRequest": {
+            "type": "object",
+            "properties": {
+                "ProjectName": {
+                    "$ref": "#/$defs/ProjectName"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/PageSize"
+                }
+            }
+        },
+        "ListProjectsResponse": {
+            "type": "object",
+            "properties": {
+                "Projects": {
+                    "$ref": "#/$defs/ProjectMetadataList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "ProjectMetadataList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ProjectMetadata"
+            }
+        },
+        "ListProjectsRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/PageSize"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/TagArn"
+                }
+            }
+        },
+        "TagArn": {
+            "type": "string"
+        },
+        "StartModelResponse": {
+            "type": "object",
+            "properties": {
+                "Status": {
+                    "$ref": "#/$defs/ModelHostingStatus"
+                }
+            }
+        },
+        "ModelHostingStatus": {
+            "enum": [
+                "STARTING_HOSTING",
+                "HOSTED",
+                "HOSTING_FAILED",
+                "STOPPING_HOSTING",
+                "SYSTEM_UPDATING"
+            ]
+        },
+        "StartModelRequest": {
+            "type": "object",
+            "properties": {
+                "ProjectName": {
+                    "$ref": "#/$defs/ProjectName"
+                },
+                "ModelVersion": {
+                    "$ref": "#/$defs/ModelVersion"
+                },
+                "MinInferenceUnits": {
+                    "$ref": "#/$defs/InferenceUnits"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                },
+                "MaxInferenceUnits": {
+                    "$ref": "#/$defs/InferenceUnits"
+                }
+            }
+        },
+        "StartModelPackagingJobResponse": {
+            "type": "object",
+            "properties": {
+                "JobName": {
+                    "$ref": "#/$defs/ModelPackagingJobName"
+                }
+            }
+        },
+        "StartModelPackagingJobRequest": {
+            "type": "object",
+            "properties": {
+                "ProjectName": {
+                    "$ref": "#/$defs/ProjectName"
+                },
+                "ModelVersion": {
+                    "$ref": "#/$defs/ModelVersion"
+                },
+                "JobName": {
+                    "$ref": "#/$defs/ModelPackagingJobName"
+                },
+                "Configuration": {
+                    "$ref": "#/$defs/ModelPackagingConfiguration"
+                },
+                "Description": {
+                    "$ref": "#/$defs/ModelPackagingJobDescription"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                }
+            }
+        },
+        "StopModelResponse": {
+            "type": "object",
+            "properties": {
+                "Status": {
+                    "$ref": "#/$defs/ModelHostingStatus"
+                }
+            }
+        },
+        "StopModelRequest": {
+            "type": "object",
+            "properties": {
+                "ProjectName": {
+                    "$ref": "#/$defs/ProjectName"
+                },
+                "ModelVersion": {
+                    "$ref": "#/$defs/ModelVersion"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/TagArn"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/TagArn"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "UpdateDatasetEntriesResponse": {
+            "type": "object",
+            "properties": {
+                "Status": {
+                    "$ref": "#/$defs/DatasetStatus"
+                }
+            }
+        },
+        "UpdateDatasetEntriesRequest": {
+            "type": "object",
+            "properties": {
+                "ProjectName": {
+                    "$ref": "#/$defs/ProjectName"
+                },
+                "DatasetType": {
+                    "$ref": "#/$defs/DatasetType"
+                },
+                "Changes": {
+                    "$ref": "#/$defs/DatasetChanges"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                }
+            }
+        },
+        "DatasetChanges": {
+            "type": "string",
+            "format": "binary"
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://lookoutvision-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://lookoutvision-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://lookoutvision.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://lookoutvision.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

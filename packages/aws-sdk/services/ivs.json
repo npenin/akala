@@ -1,0 +1,2905 @@
+{
+    "name": "ivs",
+    "commands": [
+        {
+            "name": "BatchGetChannel",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchGetChannel"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchGetChannelResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchGetChannelRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "BatchGetStreamKey",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchGetStreamKey"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchGetStreamKeyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchGetStreamKeyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "BatchStartViewerSessionRevocation",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchStartViewerSessionRevocation"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchStartViewerSessionRevocationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchStartViewerSessionRevocationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateChannel",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateChannel"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateChannelResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateChannelRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreatePlaybackRestrictionPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreatePlaybackRestrictionPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreatePlaybackRestrictionPolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreatePlaybackRestrictionPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateRecordingConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateRecordingConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateRecordingConfigurationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateRecordingConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateStreamKey",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateStreamKey"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateStreamKeyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateStreamKeyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteChannel",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteChannel"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteChannelRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeletePlaybackKeyPair",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeletePlaybackKeyPair"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeletePlaybackKeyPairResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeletePlaybackKeyPairRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeletePlaybackRestrictionPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeletePlaybackRestrictionPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeletePlaybackRestrictionPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteRecordingConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteRecordingConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteRecordingConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteStreamKey",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteStreamKey"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteStreamKeyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetChannel",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetChannel"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetChannelResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetChannelRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetPlaybackKeyPair",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetPlaybackKeyPair"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetPlaybackKeyPairResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetPlaybackKeyPairRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetPlaybackRestrictionPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetPlaybackRestrictionPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetPlaybackRestrictionPolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetPlaybackRestrictionPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetRecordingConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetRecordingConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetRecordingConfigurationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetRecordingConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetStream",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetStream"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetStreamResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetStreamRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetStreamKey",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetStreamKey"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetStreamKeyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetStreamKeyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetStreamSession",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetStreamSession"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetStreamSessionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetStreamSessionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ImportPlaybackKeyPair",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ImportPlaybackKeyPair"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ImportPlaybackKeyPairResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ImportPlaybackKeyPairRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListChannels",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListChannels"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListChannelsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListChannelsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListPlaybackKeyPairs",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListPlaybackKeyPairs"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListPlaybackKeyPairsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListPlaybackKeyPairsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListPlaybackRestrictionPolicies",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListPlaybackRestrictionPolicies"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListPlaybackRestrictionPoliciesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListPlaybackRestrictionPoliciesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListRecordingConfigurations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListRecordingConfigurations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListRecordingConfigurationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListRecordingConfigurationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListStreamKeys",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListStreamKeys"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListStreamKeysResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListStreamKeysRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListStreams",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListStreams"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListStreamsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListStreamsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListStreamSessions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListStreamSessions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListStreamSessionsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListStreamSessionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutMetadata",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutMetadata"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutMetadataRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartViewerSessionRevocation",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartViewerSessionRevocation"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartViewerSessionRevocationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartViewerSessionRevocationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StopStream",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StopStream"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StopStreamResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StopStreamRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateChannel",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateChannel"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateChannelResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateChannelRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdatePlaybackRestrictionPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdatePlaybackRestrictionPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdatePlaybackRestrictionPolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdatePlaybackRestrictionPolicyRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "BatchGetChannelResponse": {
+            "type": "object",
+            "properties": {
+                "channels": {
+                    "$ref": "#/$defs/Channels"
+                },
+                "errors": {
+                    "$ref": "#/$defs/BatchErrors"
+                }
+            }
+        },
+        "Channels": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Channel"
+            }
+        },
+        "Channel": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/ChannelArn"
+                },
+                "name": {
+                    "$ref": "#/$defs/ChannelName"
+                },
+                "latencyMode": {
+                    "$ref": "#/$defs/ChannelLatencyMode"
+                },
+                "type": {
+                    "$ref": "#/$defs/ChannelType"
+                },
+                "recordingConfigurationArn": {
+                    "$ref": "#/$defs/ChannelRecordingConfigurationArn"
+                },
+                "ingestEndpoint": {
+                    "$ref": "#/$defs/IngestEndpoint"
+                },
+                "playbackUrl": {
+                    "$ref": "#/$defs/PlaybackURL"
+                },
+                "authorized": {
+                    "$ref": "#/$defs/IsAuthorized"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                },
+                "insecureIngest": {
+                    "$ref": "#/$defs/InsecureIngest"
+                },
+                "preset": {
+                    "$ref": "#/$defs/TranscodePreset"
+                },
+                "srt": {
+                    "$ref": "#/$defs/Srt"
+                },
+                "playbackRestrictionPolicyArn": {
+                    "$ref": "#/$defs/ChannelPlaybackRestrictionPolicyArn"
+                }
+            }
+        },
+        "ChannelArn": {
+            "type": "string"
+        },
+        "ChannelName": {
+            "type": "string"
+        },
+        "ChannelLatencyMode": {
+            "type": "string"
+        },
+        "ChannelType": {
+            "enum": [
+                "BasicChannelType",
+                "StandardChannelType",
+                "AdvancedSDChannelType",
+                "AdvancedHDChannelType"
+            ]
+        },
+        "ChannelRecordingConfigurationArn": {
+            "type": "string"
+        },
+        "IngestEndpoint": {
+            "type": "string"
+        },
+        "PlaybackURL": {
+            "type": "string"
+        },
+        "IsAuthorized": {
+            "type": "boolean"
+        },
+        "Tags": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TagValue"
+            }
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "InsecureIngest": {
+            "type": "boolean"
+        },
+        "TranscodePreset": {
+            "enum": [
+                "HigherBandwidthTranscodePreset",
+                "ConstrainedBandwidthTranscodePreset"
+            ]
+        },
+        "Srt": {
+            "type": "object",
+            "properties": {
+                "endpoint": {
+                    "$ref": "#/$defs/SrtEndpoint"
+                },
+                "passphrase": {
+                    "$ref": "#/$defs/SrtPassphrase"
+                }
+            }
+        },
+        "SrtEndpoint": {
+            "type": "string"
+        },
+        "SrtPassphrase": {
+            "type": "string"
+        },
+        "ChannelPlaybackRestrictionPolicyArn": {
+            "type": "string"
+        },
+        "BatchErrors": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BatchError"
+            }
+        },
+        "BatchError": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "code": {
+                    "$ref": "#/$defs/errorCode"
+                },
+                "message": {
+                    "$ref": "#/$defs/errorMessage"
+                }
+            }
+        },
+        "ResourceArn": {
+            "type": "string"
+        },
+        "errorCode": {
+            "type": "string"
+        },
+        "errorMessage": {
+            "type": "string"
+        },
+        "BatchGetChannelRequest": {
+            "type": "object",
+            "properties": {
+                "arns": {
+                    "$ref": "#/$defs/ChannelArnList"
+                }
+            }
+        },
+        "ChannelArnList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ChannelArn"
+            }
+        },
+        "BatchGetStreamKeyResponse": {
+            "type": "object",
+            "properties": {
+                "streamKeys": {
+                    "$ref": "#/$defs/StreamKeys"
+                },
+                "errors": {
+                    "$ref": "#/$defs/BatchErrors"
+                }
+            }
+        },
+        "StreamKeys": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/StreamKey"
+            }
+        },
+        "StreamKey": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/StreamKeyArn"
+                },
+                "value": {
+                    "$ref": "#/$defs/StreamKeyValue"
+                },
+                "channelArn": {
+                    "$ref": "#/$defs/ChannelArn"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "StreamKeyArn": {
+            "type": "string"
+        },
+        "StreamKeyValue": {
+            "type": "string"
+        },
+        "BatchGetStreamKeyRequest": {
+            "type": "object",
+            "properties": {
+                "arns": {
+                    "$ref": "#/$defs/StreamKeyArnList"
+                }
+            }
+        },
+        "StreamKeyArnList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/StreamKeyArn"
+            }
+        },
+        "BatchStartViewerSessionRevocationResponse": {
+            "type": "object",
+            "properties": {
+                "errors": {
+                    "$ref": "#/$defs/BatchStartViewerSessionRevocationErrors"
+                }
+            }
+        },
+        "BatchStartViewerSessionRevocationErrors": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BatchStartViewerSessionRevocationError"
+            }
+        },
+        "BatchStartViewerSessionRevocationError": {
+            "type": "object",
+            "properties": {
+                "channelArn": {
+                    "$ref": "#/$defs/ChannelArn"
+                },
+                "viewerId": {
+                    "$ref": "#/$defs/ViewerId"
+                },
+                "code": {
+                    "$ref": "#/$defs/errorCode"
+                },
+                "message": {
+                    "$ref": "#/$defs/errorMessage"
+                }
+            }
+        },
+        "ViewerId": {
+            "type": "string"
+        },
+        "BatchStartViewerSessionRevocationRequest": {
+            "type": "object",
+            "properties": {
+                "viewerSessions": {
+                    "$ref": "#/$defs/BatchStartViewerSessionRevocationViewerSessionList"
+                }
+            }
+        },
+        "BatchStartViewerSessionRevocationViewerSessionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BatchStartViewerSessionRevocationViewerSession"
+            }
+        },
+        "BatchStartViewerSessionRevocationViewerSession": {
+            "type": "object",
+            "properties": {
+                "channelArn": {
+                    "$ref": "#/$defs/ChannelArn"
+                },
+                "viewerId": {
+                    "$ref": "#/$defs/ViewerId"
+                },
+                "viewerSessionVersionsLessThanOrEqualTo": {
+                    "$ref": "#/$defs/ViewerSessionVersion"
+                }
+            }
+        },
+        "ViewerSessionVersion": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "CreateChannelResponse": {
+            "type": "object",
+            "properties": {
+                "channel": {
+                    "$ref": "#/$defs/Channel"
+                },
+                "streamKey": {
+                    "$ref": "#/$defs/StreamKey"
+                }
+            }
+        },
+        "CreateChannelRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/ChannelName"
+                },
+                "latencyMode": {
+                    "$ref": "#/$defs/ChannelLatencyMode"
+                },
+                "type": {
+                    "$ref": "#/$defs/ChannelType"
+                },
+                "authorized": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "recordingConfigurationArn": {
+                    "$ref": "#/$defs/ChannelRecordingConfigurationArn"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                },
+                "insecureIngest": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "preset": {
+                    "$ref": "#/$defs/TranscodePreset"
+                },
+                "playbackRestrictionPolicyArn": {
+                    "$ref": "#/$defs/ChannelPlaybackRestrictionPolicyArn"
+                }
+            }
+        },
+        "Boolean": {
+            "type": "boolean"
+        },
+        "CreatePlaybackRestrictionPolicyResponse": {
+            "type": "object",
+            "properties": {
+                "playbackRestrictionPolicy": {
+                    "$ref": "#/$defs/PlaybackRestrictionPolicy"
+                }
+            }
+        },
+        "PlaybackRestrictionPolicy": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/PlaybackRestrictionPolicyArn"
+                },
+                "allowedCountries": {
+                    "$ref": "#/$defs/PlaybackRestrictionPolicyAllowedCountryList"
+                },
+                "allowedOrigins": {
+                    "$ref": "#/$defs/PlaybackRestrictionPolicyAllowedOriginList"
+                },
+                "enableStrictOriginEnforcement": {
+                    "$ref": "#/$defs/PlaybackRestrictionPolicyEnableStrictOriginEnforcement"
+                },
+                "name": {
+                    "$ref": "#/$defs/PlaybackRestrictionPolicyName"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "PlaybackRestrictionPolicyArn": {
+            "type": "string"
+        },
+        "PlaybackRestrictionPolicyAllowedCountryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PlaybackRestrictionPolicyAllowedCountry"
+            }
+        },
+        "PlaybackRestrictionPolicyAllowedCountry": {
+            "type": "string"
+        },
+        "PlaybackRestrictionPolicyAllowedOriginList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PlaybackRestrictionPolicyAllowedOrigin"
+            }
+        },
+        "PlaybackRestrictionPolicyAllowedOrigin": {
+            "type": "string"
+        },
+        "PlaybackRestrictionPolicyEnableStrictOriginEnforcement": {
+            "type": "boolean"
+        },
+        "PlaybackRestrictionPolicyName": {
+            "type": "string"
+        },
+        "CreatePlaybackRestrictionPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "allowedCountries": {
+                    "$ref": "#/$defs/PlaybackRestrictionPolicyAllowedCountryList"
+                },
+                "allowedOrigins": {
+                    "$ref": "#/$defs/PlaybackRestrictionPolicyAllowedOriginList"
+                },
+                "enableStrictOriginEnforcement": {
+                    "$ref": "#/$defs/PlaybackRestrictionPolicyEnableStrictOriginEnforcement"
+                },
+                "name": {
+                    "$ref": "#/$defs/PlaybackRestrictionPolicyName"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "CreateRecordingConfigurationResponse": {
+            "type": "object",
+            "properties": {
+                "recordingConfiguration": {
+                    "$ref": "#/$defs/RecordingConfiguration"
+                }
+            }
+        },
+        "RecordingConfiguration": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/RecordingConfigurationArn"
+                },
+                "name": {
+                    "$ref": "#/$defs/RecordingConfigurationName"
+                },
+                "destinationConfiguration": {
+                    "$ref": "#/$defs/DestinationConfiguration"
+                },
+                "state": {
+                    "$ref": "#/$defs/RecordingConfigurationState"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                },
+                "thumbnailConfiguration": {
+                    "$ref": "#/$defs/ThumbnailConfiguration"
+                },
+                "recordingReconnectWindowSeconds": {
+                    "$ref": "#/$defs/RecordingReconnectWindowSeconds"
+                },
+                "renditionConfiguration": {
+                    "$ref": "#/$defs/RenditionConfiguration"
+                }
+            }
+        },
+        "RecordingConfigurationArn": {
+            "type": "string"
+        },
+        "RecordingConfigurationName": {
+            "type": "string"
+        },
+        "DestinationConfiguration": {
+            "type": "object",
+            "properties": {
+                "s3": {
+                    "$ref": "#/$defs/S3DestinationConfiguration"
+                }
+            }
+        },
+        "S3DestinationConfiguration": {
+            "type": "object",
+            "properties": {
+                "bucketName": {
+                    "$ref": "#/$defs/S3DestinationBucketName"
+                }
+            }
+        },
+        "S3DestinationBucketName": {
+            "type": "string"
+        },
+        "RecordingConfigurationState": {
+            "type": "string"
+        },
+        "ThumbnailConfiguration": {
+            "type": "object",
+            "properties": {
+                "recordingMode": {
+                    "$ref": "#/$defs/RecordingMode"
+                },
+                "targetIntervalSeconds": {
+                    "$ref": "#/$defs/TargetIntervalSeconds"
+                },
+                "resolution": {
+                    "$ref": "#/$defs/ThumbnailConfigurationResolution"
+                },
+                "storage": {
+                    "$ref": "#/$defs/ThumbnailConfigurationStorageList"
+                }
+            }
+        },
+        "RecordingMode": {
+            "type": "string"
+        },
+        "TargetIntervalSeconds": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "ThumbnailConfigurationResolution": {
+            "enum": [
+                "SD",
+                "HD",
+                "FULL_HD",
+                "LOWEST_RESOLUTION"
+            ]
+        },
+        "ThumbnailConfigurationStorageList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ThumbnailConfigurationStorage"
+            }
+        },
+        "ThumbnailConfigurationStorage": {
+            "type": "string"
+        },
+        "RecordingReconnectWindowSeconds": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "RenditionConfiguration": {
+            "type": "object",
+            "properties": {
+                "renditionSelection": {
+                    "$ref": "#/$defs/RenditionConfigurationRenditionSelection"
+                },
+                "renditions": {
+                    "$ref": "#/$defs/RenditionConfigurationRenditionList"
+                }
+            }
+        },
+        "RenditionConfigurationRenditionSelection": {
+            "type": "string"
+        },
+        "RenditionConfigurationRenditionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RenditionConfigurationRendition"
+            }
+        },
+        "RenditionConfigurationRendition": {
+            "enum": [
+                "SD",
+                "HD",
+                "FULL_HD",
+                "LOWEST_RESOLUTION"
+            ]
+        },
+        "CreateRecordingConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/RecordingConfigurationName"
+                },
+                "destinationConfiguration": {
+                    "$ref": "#/$defs/DestinationConfiguration"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                },
+                "thumbnailConfiguration": {
+                    "$ref": "#/$defs/ThumbnailConfiguration"
+                },
+                "recordingReconnectWindowSeconds": {
+                    "$ref": "#/$defs/RecordingReconnectWindowSeconds"
+                },
+                "renditionConfiguration": {
+                    "$ref": "#/$defs/RenditionConfiguration"
+                }
+            }
+        },
+        "CreateStreamKeyResponse": {
+            "type": "object",
+            "properties": {
+                "streamKey": {
+                    "$ref": "#/$defs/StreamKey"
+                }
+            }
+        },
+        "CreateStreamKeyRequest": {
+            "type": "object",
+            "properties": {
+                "channelArn": {
+                    "$ref": "#/$defs/ChannelArn"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "DeleteChannelRequest": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/ChannelArn"
+                }
+            }
+        },
+        "DeletePlaybackKeyPairResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeletePlaybackKeyPairRequest": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/PlaybackKeyPairArn"
+                }
+            }
+        },
+        "PlaybackKeyPairArn": {
+            "type": "string"
+        },
+        "DeletePlaybackRestrictionPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/PlaybackRestrictionPolicyArn"
+                }
+            }
+        },
+        "DeleteRecordingConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/RecordingConfigurationArn"
+                }
+            }
+        },
+        "DeleteStreamKeyRequest": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/StreamKeyArn"
+                }
+            }
+        },
+        "GetChannelResponse": {
+            "type": "object",
+            "properties": {
+                "channel": {
+                    "$ref": "#/$defs/Channel"
+                }
+            }
+        },
+        "GetChannelRequest": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/ChannelArn"
+                }
+            }
+        },
+        "GetPlaybackKeyPairResponse": {
+            "type": "object",
+            "properties": {
+                "keyPair": {
+                    "$ref": "#/$defs/PlaybackKeyPair"
+                }
+            }
+        },
+        "PlaybackKeyPair": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/PlaybackKeyPairArn"
+                },
+                "name": {
+                    "$ref": "#/$defs/PlaybackKeyPairName"
+                },
+                "fingerprint": {
+                    "$ref": "#/$defs/PlaybackKeyPairFingerprint"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "PlaybackKeyPairName": {
+            "type": "string"
+        },
+        "PlaybackKeyPairFingerprint": {
+            "type": "string"
+        },
+        "GetPlaybackKeyPairRequest": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/PlaybackKeyPairArn"
+                }
+            }
+        },
+        "GetPlaybackRestrictionPolicyResponse": {
+            "type": "object",
+            "properties": {
+                "playbackRestrictionPolicy": {
+                    "$ref": "#/$defs/PlaybackRestrictionPolicy"
+                }
+            }
+        },
+        "GetPlaybackRestrictionPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/PlaybackRestrictionPolicyArn"
+                }
+            }
+        },
+        "GetRecordingConfigurationResponse": {
+            "type": "object",
+            "properties": {
+                "recordingConfiguration": {
+                    "$ref": "#/$defs/RecordingConfiguration"
+                }
+            }
+        },
+        "GetRecordingConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/RecordingConfigurationArn"
+                }
+            }
+        },
+        "GetStreamResponse": {
+            "type": "object",
+            "properties": {
+                "stream": {
+                    "$ref": "#/$defs/Stream"
+                }
+            }
+        },
+        "Stream": {
+            "type": "object",
+            "properties": {
+                "channelArn": {
+                    "$ref": "#/$defs/ChannelArn"
+                },
+                "streamId": {
+                    "$ref": "#/$defs/StreamId"
+                },
+                "playbackUrl": {
+                    "$ref": "#/$defs/PlaybackURL"
+                },
+                "startTime": {
+                    "$ref": "#/$defs/StreamStartTime"
+                },
+                "state": {
+                    "$ref": "#/$defs/StreamState"
+                },
+                "health": {
+                    "$ref": "#/$defs/StreamHealth"
+                },
+                "viewerCount": {
+                    "$ref": "#/$defs/StreamViewerCount"
+                }
+            }
+        },
+        "StreamId": {
+            "type": "string"
+        },
+        "StreamStartTime": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "StreamState": {
+            "type": "string"
+        },
+        "StreamHealth": {
+            "type": "string"
+        },
+        "StreamViewerCount": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "GetStreamRequest": {
+            "type": "object",
+            "properties": {
+                "channelArn": {
+                    "$ref": "#/$defs/ChannelArn"
+                }
+            }
+        },
+        "GetStreamKeyResponse": {
+            "type": "object",
+            "properties": {
+                "streamKey": {
+                    "$ref": "#/$defs/StreamKey"
+                }
+            }
+        },
+        "GetStreamKeyRequest": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/StreamKeyArn"
+                }
+            }
+        },
+        "GetStreamSessionResponse": {
+            "type": "object",
+            "properties": {
+                "streamSession": {
+                    "$ref": "#/$defs/StreamSession"
+                }
+            }
+        },
+        "StreamSession": {
+            "type": "object",
+            "properties": {
+                "streamId": {
+                    "$ref": "#/$defs/StreamId"
+                },
+                "startTime": {
+                    "$ref": "#/$defs/Time"
+                },
+                "endTime": {
+                    "$ref": "#/$defs/Time"
+                },
+                "channel": {
+                    "$ref": "#/$defs/Channel"
+                },
+                "ingestConfiguration": {
+                    "$ref": "#/$defs/IngestConfiguration"
+                },
+                "recordingConfiguration": {
+                    "$ref": "#/$defs/RecordingConfiguration"
+                },
+                "truncatedEvents": {
+                    "$ref": "#/$defs/StreamEvents"
+                }
+            }
+        },
+        "Time": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "IngestConfiguration": {
+            "type": "object",
+            "properties": {
+                "video": {
+                    "$ref": "#/$defs/VideoConfiguration"
+                },
+                "audio": {
+                    "$ref": "#/$defs/AudioConfiguration"
+                }
+            }
+        },
+        "VideoConfiguration": {
+            "type": "object",
+            "properties": {
+                "avcProfile": {
+                    "$ref": "#/$defs/String"
+                },
+                "avcLevel": {
+                    "$ref": "#/$defs/String"
+                },
+                "codec": {
+                    "$ref": "#/$defs/String"
+                },
+                "encoder": {
+                    "$ref": "#/$defs/String"
+                },
+                "targetBitrate": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "targetFramerate": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "videoHeight": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "videoWidth": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "String": {
+            "type": "string"
+        },
+        "Integer": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "AudioConfiguration": {
+            "type": "object",
+            "properties": {
+                "codec": {
+                    "$ref": "#/$defs/String"
+                },
+                "targetBitrate": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "sampleRate": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "channels": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "StreamEvents": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/StreamEvent"
+            }
+        },
+        "StreamEvent": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/String"
+                },
+                "type": {
+                    "$ref": "#/$defs/String"
+                },
+                "eventTime": {
+                    "$ref": "#/$defs/Time"
+                }
+            }
+        },
+        "GetStreamSessionRequest": {
+            "type": "object",
+            "properties": {
+                "channelArn": {
+                    "$ref": "#/$defs/ChannelArn"
+                },
+                "streamId": {
+                    "$ref": "#/$defs/StreamId"
+                }
+            }
+        },
+        "ImportPlaybackKeyPairResponse": {
+            "type": "object",
+            "properties": {
+                "keyPair": {
+                    "$ref": "#/$defs/PlaybackKeyPair"
+                }
+            }
+        },
+        "ImportPlaybackKeyPairRequest": {
+            "type": "object",
+            "properties": {
+                "publicKeyMaterial": {
+                    "$ref": "#/$defs/PlaybackPublicKeyMaterial"
+                },
+                "name": {
+                    "$ref": "#/$defs/PlaybackKeyPairName"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "PlaybackPublicKeyMaterial": {
+            "type": "string"
+        },
+        "ListChannelsResponse": {
+            "type": "object",
+            "properties": {
+                "channels": {
+                    "$ref": "#/$defs/ChannelList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "ChannelList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ChannelSummary"
+            }
+        },
+        "ChannelSummary": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/ChannelArn"
+                },
+                "name": {
+                    "$ref": "#/$defs/ChannelName"
+                },
+                "latencyMode": {
+                    "$ref": "#/$defs/ChannelLatencyMode"
+                },
+                "authorized": {
+                    "$ref": "#/$defs/IsAuthorized"
+                },
+                "recordingConfigurationArn": {
+                    "$ref": "#/$defs/ChannelRecordingConfigurationArn"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                },
+                "insecureIngest": {
+                    "$ref": "#/$defs/InsecureIngest"
+                },
+                "type": {
+                    "$ref": "#/$defs/ChannelType"
+                },
+                "preset": {
+                    "$ref": "#/$defs/TranscodePreset"
+                },
+                "playbackRestrictionPolicyArn": {
+                    "$ref": "#/$defs/ChannelPlaybackRestrictionPolicyArn"
+                }
+            }
+        },
+        "PaginationToken": {
+            "type": "string"
+        },
+        "ListChannelsRequest": {
+            "type": "object",
+            "properties": {
+                "filterByName": {
+                    "$ref": "#/$defs/ChannelName"
+                },
+                "filterByRecordingConfigurationArn": {
+                    "$ref": "#/$defs/ChannelRecordingConfigurationArn"
+                },
+                "filterByPlaybackRestrictionPolicyArn": {
+                    "$ref": "#/$defs/ChannelPlaybackRestrictionPolicyArn"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxChannelResults"
+                }
+            }
+        },
+        "MaxChannelResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListPlaybackKeyPairsResponse": {
+            "type": "object",
+            "properties": {
+                "keyPairs": {
+                    "$ref": "#/$defs/PlaybackKeyPairList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "PlaybackKeyPairList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PlaybackKeyPairSummary"
+            }
+        },
+        "PlaybackKeyPairSummary": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/PlaybackKeyPairArn"
+                },
+                "name": {
+                    "$ref": "#/$defs/PlaybackKeyPairName"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "ListPlaybackKeyPairsRequest": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxPlaybackKeyPairResults"
+                }
+            }
+        },
+        "MaxPlaybackKeyPairResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListPlaybackRestrictionPoliciesResponse": {
+            "type": "object",
+            "properties": {
+                "playbackRestrictionPolicies": {
+                    "$ref": "#/$defs/PlaybackRestrictionPolicyList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "PlaybackRestrictionPolicyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PlaybackRestrictionPolicySummary"
+            }
+        },
+        "PlaybackRestrictionPolicySummary": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/PlaybackRestrictionPolicyArn"
+                },
+                "allowedCountries": {
+                    "$ref": "#/$defs/PlaybackRestrictionPolicyAllowedCountryList"
+                },
+                "allowedOrigins": {
+                    "$ref": "#/$defs/PlaybackRestrictionPolicyAllowedOriginList"
+                },
+                "enableStrictOriginEnforcement": {
+                    "$ref": "#/$defs/PlaybackRestrictionPolicyEnableStrictOriginEnforcement"
+                },
+                "name": {
+                    "$ref": "#/$defs/PlaybackRestrictionPolicyName"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "ListPlaybackRestrictionPoliciesRequest": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxPlaybackRestrictionPolicyResults"
+                }
+            }
+        },
+        "MaxPlaybackRestrictionPolicyResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListRecordingConfigurationsResponse": {
+            "type": "object",
+            "properties": {
+                "recordingConfigurations": {
+                    "$ref": "#/$defs/RecordingConfigurationList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "RecordingConfigurationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RecordingConfigurationSummary"
+            }
+        },
+        "RecordingConfigurationSummary": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/RecordingConfigurationArn"
+                },
+                "name": {
+                    "$ref": "#/$defs/RecordingConfigurationName"
+                },
+                "destinationConfiguration": {
+                    "$ref": "#/$defs/DestinationConfiguration"
+                },
+                "state": {
+                    "$ref": "#/$defs/RecordingConfigurationState"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "ListRecordingConfigurationsRequest": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxRecordingConfigurationResults"
+                }
+            }
+        },
+        "MaxRecordingConfigurationResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListStreamKeysResponse": {
+            "type": "object",
+            "properties": {
+                "streamKeys": {
+                    "$ref": "#/$defs/StreamKeyList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "StreamKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/StreamKeySummary"
+            }
+        },
+        "StreamKeySummary": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/StreamKeyArn"
+                },
+                "channelArn": {
+                    "$ref": "#/$defs/ChannelArn"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "ListStreamKeysRequest": {
+            "type": "object",
+            "properties": {
+                "channelArn": {
+                    "$ref": "#/$defs/ChannelArn"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxStreamKeyResults"
+                }
+            }
+        },
+        "MaxStreamKeyResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListStreamsResponse": {
+            "type": "object",
+            "properties": {
+                "streams": {
+                    "$ref": "#/$defs/StreamList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "StreamList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/StreamSummary"
+            }
+        },
+        "StreamSummary": {
+            "type": "object",
+            "properties": {
+                "channelArn": {
+                    "$ref": "#/$defs/ChannelArn"
+                },
+                "streamId": {
+                    "$ref": "#/$defs/StreamId"
+                },
+                "state": {
+                    "$ref": "#/$defs/StreamState"
+                },
+                "health": {
+                    "$ref": "#/$defs/StreamHealth"
+                },
+                "viewerCount": {
+                    "$ref": "#/$defs/StreamViewerCount"
+                },
+                "startTime": {
+                    "$ref": "#/$defs/StreamStartTime"
+                }
+            }
+        },
+        "ListStreamsRequest": {
+            "type": "object",
+            "properties": {
+                "filterBy": {
+                    "$ref": "#/$defs/StreamFilters"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxStreamResults"
+                }
+            }
+        },
+        "StreamFilters": {
+            "type": "object",
+            "properties": {
+                "health": {
+                    "$ref": "#/$defs/StreamHealth"
+                }
+            }
+        },
+        "MaxStreamResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListStreamSessionsResponse": {
+            "type": "object",
+            "properties": {
+                "streamSessions": {
+                    "$ref": "#/$defs/StreamSessionList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "StreamSessionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/StreamSessionSummary"
+            }
+        },
+        "StreamSessionSummary": {
+            "type": "object",
+            "properties": {
+                "streamId": {
+                    "$ref": "#/$defs/StreamId"
+                },
+                "startTime": {
+                    "$ref": "#/$defs/Time"
+                },
+                "endTime": {
+                    "$ref": "#/$defs/Time"
+                },
+                "hasErrorEvent": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "ListStreamSessionsRequest": {
+            "type": "object",
+            "properties": {
+                "channelArn": {
+                    "$ref": "#/$defs/ChannelArn"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxStreamResults"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                }
+            }
+        },
+        "PutMetadataRequest": {
+            "type": "object",
+            "properties": {
+                "channelArn": {
+                    "$ref": "#/$defs/ChannelArn"
+                },
+                "metadata": {
+                    "$ref": "#/$defs/StreamMetadata"
+                }
+            }
+        },
+        "StreamMetadata": {
+            "type": "string"
+        },
+        "StartViewerSessionRevocationResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "StartViewerSessionRevocationRequest": {
+            "type": "object",
+            "properties": {
+                "channelArn": {
+                    "$ref": "#/$defs/ChannelArn"
+                },
+                "viewerId": {
+                    "$ref": "#/$defs/ViewerId"
+                },
+                "viewerSessionVersionsLessThanOrEqualTo": {
+                    "$ref": "#/$defs/ViewerSessionVersion"
+                }
+            }
+        },
+        "StopStreamResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "StopStreamRequest": {
+            "type": "object",
+            "properties": {
+                "channelArn": {
+                    "$ref": "#/$defs/ChannelArn"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "tagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "UpdateChannelResponse": {
+            "type": "object",
+            "properties": {
+                "channel": {
+                    "$ref": "#/$defs/Channel"
+                }
+            }
+        },
+        "UpdateChannelRequest": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/ChannelArn"
+                },
+                "name": {
+                    "$ref": "#/$defs/ChannelName"
+                },
+                "latencyMode": {
+                    "$ref": "#/$defs/ChannelLatencyMode"
+                },
+                "type": {
+                    "$ref": "#/$defs/ChannelType"
+                },
+                "authorized": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "recordingConfigurationArn": {
+                    "$ref": "#/$defs/ChannelRecordingConfigurationArn"
+                },
+                "insecureIngest": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "preset": {
+                    "$ref": "#/$defs/TranscodePreset"
+                },
+                "playbackRestrictionPolicyArn": {
+                    "$ref": "#/$defs/ChannelPlaybackRestrictionPolicyArn"
+                }
+            }
+        },
+        "UpdatePlaybackRestrictionPolicyResponse": {
+            "type": "object",
+            "properties": {
+                "playbackRestrictionPolicy": {
+                    "$ref": "#/$defs/PlaybackRestrictionPolicy"
+                }
+            }
+        },
+        "UpdatePlaybackRestrictionPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/PlaybackRestrictionPolicyArn"
+                },
+                "allowedCountries": {
+                    "$ref": "#/$defs/PlaybackRestrictionPolicyAllowedCountryList"
+                },
+                "allowedOrigins": {
+                    "$ref": "#/$defs/PlaybackRestrictionPolicyAllowedOriginList"
+                },
+                "enableStrictOriginEnforcement": {
+                    "$ref": "#/$defs/PlaybackRestrictionPolicyEnableStrictOriginEnforcement"
+                },
+                "name": {
+                    "$ref": "#/$defs/PlaybackRestrictionPolicyName"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://ivs-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://ivs-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://ivs.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://ivs.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

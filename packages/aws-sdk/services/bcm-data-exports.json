@@ -1,0 +1,1333 @@
+{
+    "name": "bcm-data-exports",
+    "commands": [
+        {
+            "name": "CreateExport",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateExport"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateExportResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateExportRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteExport",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteExport"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteExportResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteExportRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetExecution",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetExecution"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetExecutionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetExecutionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetExport",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetExport"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetExportResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetExportRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetTable",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetTable"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetTableResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetTableRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListExecutions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListExecutions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListExecutionsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListExecutionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListExports",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListExports"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListExportsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListExportsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTables",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTables"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTablesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTablesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateExport",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateExport"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateExportResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateExportRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CreateExportResponse": {
+            "type": "object",
+            "properties": {
+                "ExportArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "Arn": {
+            "type": "string"
+        },
+        "CreateExportRequest": {
+            "type": "object",
+            "properties": {
+                "Export": {
+                    "$ref": "#/$defs/Export"
+                },
+                "ResourceTags": {
+                    "$ref": "#/$defs/ResourceTagList"
+                }
+            }
+        },
+        "Export": {
+            "type": "object",
+            "properties": {
+                "ExportArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/ExportName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "DataQuery": {
+                    "$ref": "#/$defs/DataQuery"
+                },
+                "DestinationConfigurations": {
+                    "$ref": "#/$defs/DestinationConfigurations"
+                },
+                "RefreshCadence": {
+                    "$ref": "#/$defs/RefreshCadence"
+                }
+            }
+        },
+        "ExportName": {
+            "type": "string"
+        },
+        "GenericString": {
+            "type": "string"
+        },
+        "DataQuery": {
+            "type": "object",
+            "properties": {
+                "QueryStatement": {
+                    "$ref": "#/$defs/QueryStatement"
+                },
+                "TableConfigurations": {
+                    "$ref": "#/$defs/TableConfigurations"
+                }
+            }
+        },
+        "QueryStatement": {
+            "type": "string"
+        },
+        "TableConfigurations": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TableProperties"
+            }
+        },
+        "TableProperties": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/GenericString"
+            }
+        },
+        "DestinationConfigurations": {
+            "type": "object",
+            "properties": {
+                "S3Destination": {
+                    "$ref": "#/$defs/S3Destination"
+                }
+            }
+        },
+        "S3Destination": {
+            "type": "object",
+            "properties": {
+                "S3Bucket": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "S3Prefix": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "S3Region": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "S3OutputConfigurations": {
+                    "$ref": "#/$defs/S3OutputConfigurations"
+                }
+            }
+        },
+        "S3OutputConfigurations": {
+            "type": "object",
+            "properties": {
+                "OutputType": {
+                    "$ref": "#/$defs/S3OutputType"
+                },
+                "Format": {
+                    "$ref": "#/$defs/FormatOption"
+                },
+                "Compression": {
+                    "$ref": "#/$defs/CompressionOption"
+                },
+                "Overwrite": {
+                    "$ref": "#/$defs/OverwriteOption"
+                }
+            }
+        },
+        "S3OutputType": {
+            "enum": [
+                "CUSTOM"
+            ]
+        },
+        "FormatOption": {
+            "enum": [
+                "TEXT_OR_CSV",
+                "PARQUET"
+            ]
+        },
+        "CompressionOption": {
+            "enum": [
+                "GZIP",
+                "PARQUET"
+            ]
+        },
+        "OverwriteOption": {
+            "enum": [
+                "CREATE_NEW_REPORT",
+                "OVERWRITE_REPORT"
+            ]
+        },
+        "RefreshCadence": {
+            "type": "object",
+            "properties": {
+                "Frequency": {
+                    "$ref": "#/$defs/FrequencyOption"
+                }
+            }
+        },
+        "FrequencyOption": {
+            "enum": [
+                "SYNCHRONOUS"
+            ]
+        },
+        "ResourceTagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourceTag"
+            }
+        },
+        "ResourceTag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/ResourceTagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/ResourceTagValue"
+                }
+            }
+        },
+        "ResourceTagKey": {
+            "type": "string"
+        },
+        "ResourceTagValue": {
+            "type": "string"
+        },
+        "DeleteExportResponse": {
+            "type": "object",
+            "properties": {
+                "ExportArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "DeleteExportRequest": {
+            "type": "object",
+            "properties": {
+                "ExportArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "GetExecutionResponse": {
+            "type": "object",
+            "properties": {
+                "ExecutionId": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "Export": {
+                    "$ref": "#/$defs/Export"
+                },
+                "ExecutionStatus": {
+                    "$ref": "#/$defs/ExecutionStatus"
+                }
+            }
+        },
+        "ExecutionStatus": {
+            "type": "object",
+            "properties": {
+                "StatusCode": {
+                    "$ref": "#/$defs/ExecutionStatusCode"
+                },
+                "StatusReason": {
+                    "$ref": "#/$defs/ExecutionStatusReason"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "CompletedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "LastUpdatedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                }
+            }
+        },
+        "ExecutionStatusCode": {
+            "enum": [
+                "INITIATION_IN_PROCESS",
+                "QUERY_QUEUED",
+                "QUERY_IN_PROCESS",
+                "QUERY_FAILURE",
+                "DELIVERY_IN_PROCESS",
+                "DELIVERY_SUCCESS",
+                "DELIVERY_FAILURE"
+            ]
+        },
+        "ExecutionStatusReason": {
+            "enum": [
+                "INSUFFICIENT_PERMISSION",
+                "BILL_OWNER_CHANGED",
+                "INTERNAL_FAILURE"
+            ]
+        },
+        "GetExecutionRequest": {
+            "type": "object",
+            "properties": {
+                "ExportArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "ExecutionId": {
+                    "$ref": "#/$defs/GenericString"
+                }
+            }
+        },
+        "GetExportResponse": {
+            "type": "object",
+            "properties": {
+                "Export": {
+                    "$ref": "#/$defs/Export"
+                },
+                "ExportStatus": {
+                    "$ref": "#/$defs/ExportStatus"
+                }
+            }
+        },
+        "ExportStatus": {
+            "type": "object",
+            "properties": {
+                "StatusCode": {
+                    "$ref": "#/$defs/ExportStatusCode"
+                },
+                "StatusReason": {
+                    "$ref": "#/$defs/ExecutionStatusReason"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "LastUpdatedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "LastRefreshedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                }
+            }
+        },
+        "ExportStatusCode": {
+            "enum": [
+                "HEALTHY",
+                "UNHEALTHY"
+            ]
+        },
+        "GetExportRequest": {
+            "type": "object",
+            "properties": {
+                "ExportArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "GetTableResponse": {
+            "type": "object",
+            "properties": {
+                "TableName": {
+                    "$ref": "#/$defs/TableName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "TableProperties": {
+                    "$ref": "#/$defs/TableProperties"
+                },
+                "Schema": {
+                    "$ref": "#/$defs/ColumnList"
+                }
+            }
+        },
+        "TableName": {
+            "type": "string"
+        },
+        "ColumnList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Column"
+            }
+        },
+        "Column": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "Type": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "Description": {
+                    "$ref": "#/$defs/GenericString"
+                }
+            }
+        },
+        "GetTableRequest": {
+            "type": "object",
+            "properties": {
+                "TableName": {
+                    "$ref": "#/$defs/TableName"
+                },
+                "TableProperties": {
+                    "$ref": "#/$defs/TableProperties"
+                }
+            }
+        },
+        "ListExecutionsResponse": {
+            "type": "object",
+            "properties": {
+                "Executions": {
+                    "$ref": "#/$defs/ExecutionReferenceList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextPageToken"
+                }
+            }
+        },
+        "ExecutionReferenceList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ExecutionReference"
+            }
+        },
+        "ExecutionReference": {
+            "type": "object",
+            "properties": {
+                "ExecutionId": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "ExecutionStatus": {
+                    "$ref": "#/$defs/ExecutionStatus"
+                }
+            }
+        },
+        "NextPageToken": {
+            "type": "string"
+        },
+        "ListExecutionsRequest": {
+            "type": "object",
+            "properties": {
+                "ExportArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextPageToken"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListExportsResponse": {
+            "type": "object",
+            "properties": {
+                "Exports": {
+                    "$ref": "#/$defs/ExportReferenceList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextPageToken"
+                }
+            }
+        },
+        "ExportReferenceList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ExportReference"
+            }
+        },
+        "ExportReference": {
+            "type": "object",
+            "properties": {
+                "ExportArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "ExportName": {
+                    "$ref": "#/$defs/ExportName"
+                },
+                "ExportStatus": {
+                    "$ref": "#/$defs/ExportStatus"
+                }
+            }
+        },
+        "ListExportsRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextPageToken"
+                }
+            }
+        },
+        "ListTablesResponse": {
+            "type": "object",
+            "properties": {
+                "Tables": {
+                    "$ref": "#/$defs/TableList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextPageToken"
+                }
+            }
+        },
+        "TableList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Table"
+            }
+        },
+        "Table": {
+            "type": "object",
+            "properties": {
+                "TableName": {
+                    "$ref": "#/$defs/TableName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "TableProperties": {
+                    "$ref": "#/$defs/TablePropertyDescriptionList"
+                }
+            }
+        },
+        "TablePropertyDescriptionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TablePropertyDescription"
+            }
+        },
+        "TablePropertyDescription": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "ValidValues": {
+                    "$ref": "#/$defs/GenericStringList"
+                },
+                "DefaultValue": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "Description": {
+                    "$ref": "#/$defs/GenericString"
+                }
+            }
+        },
+        "GenericStringList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/GenericString"
+            }
+        },
+        "ListTablesRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextPageToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "ResourceTags": {
+                    "$ref": "#/$defs/ResourceTagList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextPageToken"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextPageToken"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "ResourceTags": {
+                    "$ref": "#/$defs/ResourceTagList"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "ResourceTagKeys": {
+                    "$ref": "#/$defs/ResourceTagKeyList"
+                }
+            }
+        },
+        "ResourceTagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourceTagKey"
+            }
+        },
+        "UpdateExportResponse": {
+            "type": "object",
+            "properties": {
+                "ExportArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "UpdateExportRequest": {
+            "type": "object",
+            "properties": {
+                "ExportArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Export": {
+                    "$ref": "#/$defs/Export"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "stringEquals",
+                                        "argv": [
+                                            {
+                                                "fn": "getAttr",
+                                                "argv": [
+                                                    {
+                                                        "ref": "PartitionResult"
+                                                    },
+                                                    "name"
+                                                ]
+                                            },
+                                            "aws"
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseFIPS"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsFIPS"
+                                                                ]
+                                                            },
+                                                            true
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "endpoint": {
+                                                            "url": "https://bcm-data-exports-fips.{Region}.api.aws",
+                                                            "properties": {},
+                                                            "headers": {}
+                                                        },
+                                                        "type": "endpoint"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "FIPS is enabled but this partition does not support FIPS",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "endpoint": {
+                                            "url": "https://bcm-data-exports.us-east-1.api.aws",
+                                            "properties": {
+                                                "authSchemes": [
+                                                    {
+                                                        "name": "sigv4",
+                                                        "signingName": "bcm-data-exports",
+                                                        "signingRegion": "us-east-1"
+                                                    }
+                                                ]
+                                            },
+                                            "headers": {}
+                                        },
+                                        "type": "endpoint"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            true,
+                                            {
+                                                "fn": "getAttr",
+                                                "argv": [
+                                                    {
+                                                        "ref": "PartitionResult"
+                                                    },
+                                                    "supportsDualStack"
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseFIPS"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsFIPS"
+                                                                ]
+                                                            },
+                                                            true
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "endpoint": {
+                                                            "url": "https://bcm-data-exports-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                            "properties": {},
+                                                            "headers": {}
+                                                        },
+                                                        "type": "endpoint"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "FIPS is enabled but this partition does not support FIPS",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "endpoint": {
+                                            "url": "https://bcm-data-exports.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                            "properties": {},
+                                            "headers": {}
+                                        },
+                                        "type": "endpoint"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://bcm-data-exports-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://bcm-data-exports.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

@@ -1,0 +1,2443 @@
+{
+    "name": "detective",
+    "commands": [
+        {
+            "name": "AcceptInvitation",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AcceptInvitation"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AcceptInvitationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "BatchGetGraphMemberDatasources",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchGetGraphMemberDatasources"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchGetGraphMemberDatasourcesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchGetGraphMemberDatasourcesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "BatchGetMembershipDatasources",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchGetMembershipDatasources"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchGetMembershipDatasourcesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchGetMembershipDatasourcesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateGraph",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateGraph"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateGraphResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateGraphRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateMembers",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateMembers"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateMembersResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateMembersRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteGraph",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteGraph"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteGraphRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteMembers",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteMembers"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteMembersResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteMembersRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeOrganizationConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeOrganizationConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeOrganizationConfigurationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeOrganizationConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DisableOrganizationAdminAccount",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DisableOrganizationAdminAccount"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DisassociateMembership",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DisassociateMembership"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DisassociateMembershipRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "EnableOrganizationAdminAccount",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "EnableOrganizationAdminAccount"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/EnableOrganizationAdminAccountRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetInvestigation",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetInvestigation"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetInvestigationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetInvestigationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetMembers",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetMembers"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetMembersResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetMembersRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListDatasourcePackages",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListDatasourcePackages"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListDatasourcePackagesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListDatasourcePackagesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListGraphs",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListGraphs"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListGraphsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListGraphsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListIndicators",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListIndicators"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListIndicatorsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListIndicatorsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListInvestigations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListInvestigations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListInvestigationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListInvestigationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListInvitations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListInvitations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListInvitationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListInvitationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListMembers",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListMembers"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListMembersResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListMembersRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListOrganizationAdminAccounts",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListOrganizationAdminAccounts"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListOrganizationAdminAccountsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListOrganizationAdminAccountsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RejectInvitation",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RejectInvitation"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RejectInvitationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartInvestigation",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartInvestigation"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartInvestigationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartInvestigationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartMonitoringMember",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartMonitoringMember"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartMonitoringMemberRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateDatasourcePackages",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateDatasourcePackages"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateDatasourcePackagesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateInvestigationState",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateInvestigationState"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateInvestigationStateRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateOrganizationConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateOrganizationConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateOrganizationConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "AcceptInvitationRequest": {
+            "type": "object",
+            "properties": {
+                "GraphArn": {
+                    "$ref": "#/$defs/GraphArn"
+                }
+            }
+        },
+        "GraphArn": {
+            "type": "string"
+        },
+        "BatchGetGraphMemberDatasourcesResponse": {
+            "type": "object",
+            "properties": {
+                "MemberDatasources": {
+                    "$ref": "#/$defs/MembershipDatasourcesList"
+                },
+                "UnprocessedAccounts": {
+                    "$ref": "#/$defs/UnprocessedAccountList"
+                }
+            }
+        },
+        "MembershipDatasourcesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MembershipDatasources"
+            }
+        },
+        "MembershipDatasources": {
+            "type": "object",
+            "properties": {
+                "AccountId": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "GraphArn": {
+                    "$ref": "#/$defs/GraphArn"
+                },
+                "DatasourcePackageIngestHistory": {
+                    "$ref": "#/$defs/DatasourcePackageIngestHistory"
+                }
+            }
+        },
+        "AccountId": {
+            "type": "string"
+        },
+        "DatasourcePackageIngestHistory": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/LastIngestStateChangeDates"
+            }
+        },
+        "LastIngestStateChangeDates": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TimestampForCollection"
+            }
+        },
+        "TimestampForCollection": {
+            "type": "object",
+            "properties": {
+                "Timestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "UnprocessedAccountList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/UnprocessedAccount"
+            }
+        },
+        "UnprocessedAccount": {
+            "type": "object",
+            "properties": {
+                "AccountId": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "Reason": {
+                    "$ref": "#/$defs/UnprocessedReason"
+                }
+            }
+        },
+        "UnprocessedReason": {
+            "type": "string"
+        },
+        "BatchGetGraphMemberDatasourcesRequest": {
+            "type": "object",
+            "properties": {
+                "GraphArn": {
+                    "$ref": "#/$defs/GraphArn"
+                },
+                "AccountIds": {
+                    "$ref": "#/$defs/AccountIdExtendedList"
+                }
+            }
+        },
+        "AccountIdExtendedList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AccountId"
+            }
+        },
+        "BatchGetMembershipDatasourcesResponse": {
+            "type": "object",
+            "properties": {
+                "MembershipDatasources": {
+                    "$ref": "#/$defs/MembershipDatasourcesList"
+                },
+                "UnprocessedGraphs": {
+                    "$ref": "#/$defs/UnprocessedGraphList"
+                }
+            }
+        },
+        "UnprocessedGraphList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/UnprocessedGraph"
+            }
+        },
+        "UnprocessedGraph": {
+            "type": "object",
+            "properties": {
+                "GraphArn": {
+                    "$ref": "#/$defs/GraphArn"
+                },
+                "Reason": {
+                    "$ref": "#/$defs/UnprocessedReason"
+                }
+            }
+        },
+        "BatchGetMembershipDatasourcesRequest": {
+            "type": "object",
+            "properties": {
+                "GraphArns": {
+                    "$ref": "#/$defs/GraphArnList"
+                }
+            }
+        },
+        "GraphArnList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/GraphArn"
+            }
+        },
+        "CreateGraphResponse": {
+            "type": "object",
+            "properties": {
+                "GraphArn": {
+                    "$ref": "#/$defs/GraphArn"
+                }
+            }
+        },
+        "CreateGraphRequest": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "TagMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TagValue"
+            }
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "CreateMembersResponse": {
+            "type": "object",
+            "properties": {
+                "Members": {
+                    "$ref": "#/$defs/MemberDetailList"
+                },
+                "UnprocessedAccounts": {
+                    "$ref": "#/$defs/UnprocessedAccountList"
+                }
+            }
+        },
+        "MemberDetailList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MemberDetail"
+            }
+        },
+        "MemberDetail": {
+            "type": "object",
+            "properties": {
+                "AccountId": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "EmailAddress": {
+                    "$ref": "#/$defs/EmailAddress"
+                },
+                "GraphArn": {
+                    "$ref": "#/$defs/GraphArn"
+                },
+                "MasterId": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "AdministratorId": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "Status": {
+                    "$ref": "#/$defs/MemberStatus"
+                },
+                "DisabledReason": {
+                    "$ref": "#/$defs/MemberDisabledReason"
+                },
+                "InvitedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "UpdatedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "VolumeUsageInBytes": {
+                    "$ref": "#/$defs/ByteValue"
+                },
+                "VolumeUsageUpdatedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "PercentOfGraphUtilization": {
+                    "$ref": "#/$defs/Percentage"
+                },
+                "PercentOfGraphUtilizationUpdatedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "InvitationType": {
+                    "$ref": "#/$defs/InvitationType"
+                },
+                "VolumeUsageByDatasourcePackage": {
+                    "$ref": "#/$defs/VolumeUsageByDatasourcePackage"
+                },
+                "DatasourcePackageIngestStates": {
+                    "$ref": "#/$defs/DatasourcePackageIngestStates"
+                }
+            }
+        },
+        "EmailAddress": {
+            "type": "string"
+        },
+        "MemberStatus": {
+            "enum": [
+                "INVITED",
+                "VERIFICATION_IN_PROGRESS",
+                "VERIFICATION_FAILED",
+                "ENABLED",
+                "ACCEPTED_BUT_DISABLED"
+            ]
+        },
+        "MemberDisabledReason": {
+            "enum": [
+                "VOLUME_TOO_HIGH",
+                "VOLUME_UNKNOWN"
+            ]
+        },
+        "ByteValue": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "Percentage": {
+            "type": "number",
+            "format": "double"
+        },
+        "InvitationType": {
+            "enum": [
+                "INVITATION",
+                "ORGANIZATION"
+            ]
+        },
+        "VolumeUsageByDatasourcePackage": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/DatasourcePackageUsageInfo"
+            }
+        },
+        "DatasourcePackageUsageInfo": {
+            "type": "object",
+            "properties": {
+                "VolumeUsageInBytes": {
+                    "$ref": "#/$defs/ByteValue"
+                },
+                "VolumeUsageUpdateTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "DatasourcePackageIngestStates": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/DatasourcePackageIngestState"
+            }
+        },
+        "DatasourcePackageIngestState": {
+            "enum": [
+                "STARTED",
+                "STOPPED",
+                "DISABLED"
+            ]
+        },
+        "CreateMembersRequest": {
+            "type": "object",
+            "properties": {
+                "GraphArn": {
+                    "$ref": "#/$defs/GraphArn"
+                },
+                "Message": {
+                    "$ref": "#/$defs/EmailMessage"
+                },
+                "DisableEmailNotification": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "Accounts": {
+                    "$ref": "#/$defs/AccountList"
+                }
+            }
+        },
+        "EmailMessage": {
+            "type": "string"
+        },
+        "Boolean": {
+            "type": "boolean"
+        },
+        "AccountList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Account"
+            }
+        },
+        "Account": {
+            "type": "object",
+            "properties": {
+                "AccountId": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "EmailAddress": {
+                    "$ref": "#/$defs/EmailAddress"
+                }
+            }
+        },
+        "DeleteGraphRequest": {
+            "type": "object",
+            "properties": {
+                "GraphArn": {
+                    "$ref": "#/$defs/GraphArn"
+                }
+            }
+        },
+        "DeleteMembersResponse": {
+            "type": "object",
+            "properties": {
+                "AccountIds": {
+                    "$ref": "#/$defs/AccountIdList"
+                },
+                "UnprocessedAccounts": {
+                    "$ref": "#/$defs/UnprocessedAccountList"
+                }
+            }
+        },
+        "AccountIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AccountId"
+            }
+        },
+        "DeleteMembersRequest": {
+            "type": "object",
+            "properties": {
+                "GraphArn": {
+                    "$ref": "#/$defs/GraphArn"
+                },
+                "AccountIds": {
+                    "$ref": "#/$defs/AccountIdList"
+                }
+            }
+        },
+        "DescribeOrganizationConfigurationResponse": {
+            "type": "object",
+            "properties": {
+                "AutoEnable": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "DescribeOrganizationConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "GraphArn": {
+                    "$ref": "#/$defs/GraphArn"
+                }
+            }
+        },
+        "DisassociateMembershipRequest": {
+            "type": "object",
+            "properties": {
+                "GraphArn": {
+                    "$ref": "#/$defs/GraphArn"
+                }
+            }
+        },
+        "EnableOrganizationAdminAccountRequest": {
+            "type": "object",
+            "properties": {
+                "AccountId": {
+                    "$ref": "#/$defs/AccountId"
+                }
+            }
+        },
+        "GetInvestigationResponse": {
+            "type": "object",
+            "properties": {
+                "GraphArn": {
+                    "$ref": "#/$defs/GraphArn"
+                },
+                "InvestigationId": {
+                    "$ref": "#/$defs/InvestigationId"
+                },
+                "EntityArn": {
+                    "$ref": "#/$defs/EntityArn"
+                },
+                "EntityType": {
+                    "$ref": "#/$defs/EntityType"
+                },
+                "CreatedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "ScopeStartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "ScopeEndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "Severity": {
+                    "$ref": "#/$defs/Severity"
+                },
+                "State": {
+                    "$ref": "#/$defs/State"
+                }
+            }
+        },
+        "InvestigationId": {
+            "type": "string"
+        },
+        "EntityArn": {
+            "type": "string"
+        },
+        "EntityType": {
+            "enum": [
+                "IAM_ROLE",
+                "IAM_USER"
+            ]
+        },
+        "Status": {
+            "enum": [
+                "RUNNING",
+                "FAILED",
+                "SUCCESSFUL"
+            ]
+        },
+        "Severity": {
+            "enum": [
+                "INFORMATIONAL",
+                "LOW",
+                "MEDIUM",
+                "HIGH",
+                "CRITICAL"
+            ]
+        },
+        "State": {
+            "enum": [
+                "ACTIVE",
+                "ARCHIVED"
+            ]
+        },
+        "GetInvestigationRequest": {
+            "type": "object",
+            "properties": {
+                "GraphArn": {
+                    "$ref": "#/$defs/GraphArn"
+                },
+                "InvestigationId": {
+                    "$ref": "#/$defs/InvestigationId"
+                }
+            }
+        },
+        "GetMembersResponse": {
+            "type": "object",
+            "properties": {
+                "MemberDetails": {
+                    "$ref": "#/$defs/MemberDetailList"
+                },
+                "UnprocessedAccounts": {
+                    "$ref": "#/$defs/UnprocessedAccountList"
+                }
+            }
+        },
+        "GetMembersRequest": {
+            "type": "object",
+            "properties": {
+                "GraphArn": {
+                    "$ref": "#/$defs/GraphArn"
+                },
+                "AccountIds": {
+                    "$ref": "#/$defs/AccountIdList"
+                }
+            }
+        },
+        "ListDatasourcePackagesResponse": {
+            "type": "object",
+            "properties": {
+                "DatasourcePackages": {
+                    "$ref": "#/$defs/DatasourcePackageIngestDetails"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "DatasourcePackageIngestDetails": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/DatasourcePackageIngestDetail"
+            }
+        },
+        "DatasourcePackageIngestDetail": {
+            "type": "object",
+            "properties": {
+                "DatasourcePackageIngestState": {
+                    "$ref": "#/$defs/DatasourcePackageIngestState"
+                },
+                "LastIngestStateChange": {
+                    "$ref": "#/$defs/LastIngestStateChangeDates"
+                }
+            }
+        },
+        "PaginationToken": {
+            "type": "string"
+        },
+        "ListDatasourcePackagesRequest": {
+            "type": "object",
+            "properties": {
+                "GraphArn": {
+                    "$ref": "#/$defs/GraphArn"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MemberResultsLimit"
+                }
+            }
+        },
+        "MemberResultsLimit": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListGraphsResponse": {
+            "type": "object",
+            "properties": {
+                "GraphList": {
+                    "$ref": "#/$defs/GraphList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "GraphList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Graph"
+            }
+        },
+        "Graph": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/GraphArn"
+                },
+                "CreatedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListGraphsRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MemberResultsLimit"
+                }
+            }
+        },
+        "ListIndicatorsResponse": {
+            "type": "object",
+            "properties": {
+                "GraphArn": {
+                    "$ref": "#/$defs/GraphArn"
+                },
+                "InvestigationId": {
+                    "$ref": "#/$defs/InvestigationId"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/AiPaginationToken"
+                },
+                "Indicators": {
+                    "$ref": "#/$defs/Indicators"
+                }
+            }
+        },
+        "AiPaginationToken": {
+            "type": "string"
+        },
+        "Indicators": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Indicator"
+            }
+        },
+        "Indicator": {
+            "type": "object",
+            "properties": {
+                "IndicatorType": {
+                    "$ref": "#/$defs/IndicatorType"
+                },
+                "IndicatorDetail": {
+                    "$ref": "#/$defs/IndicatorDetail"
+                }
+            }
+        },
+        "IndicatorType": {
+            "enum": [
+                "TTP_OBSERVED",
+                "IMPOSSIBLE_TRAVEL",
+                "FLAGGED_IP_ADDRESS",
+                "NEW_GEOLOCATION",
+                "NEW_ASO",
+                "NEW_USER_AGENT",
+                "RELATED_FINDING",
+                "RELATED_FINDING_GROUP"
+            ]
+        },
+        "IndicatorDetail": {
+            "type": "object",
+            "properties": {
+                "TTPsObservedDetail": {
+                    "$ref": "#/$defs/TTPsObservedDetail"
+                },
+                "ImpossibleTravelDetail": {
+                    "$ref": "#/$defs/ImpossibleTravelDetail"
+                },
+                "FlaggedIpAddressDetail": {
+                    "$ref": "#/$defs/FlaggedIpAddressDetail"
+                },
+                "NewGeolocationDetail": {
+                    "$ref": "#/$defs/NewGeolocationDetail"
+                },
+                "NewAsoDetail": {
+                    "$ref": "#/$defs/NewAsoDetail"
+                },
+                "NewUserAgentDetail": {
+                    "$ref": "#/$defs/NewUserAgentDetail"
+                },
+                "RelatedFindingDetail": {
+                    "$ref": "#/$defs/RelatedFindingDetail"
+                },
+                "RelatedFindingGroupDetail": {
+                    "$ref": "#/$defs/RelatedFindingGroupDetail"
+                }
+            }
+        },
+        "TTPsObservedDetail": {
+            "type": "object",
+            "properties": {
+                "Tactic": {
+                    "$ref": "#/$defs/Tactic"
+                },
+                "Technique": {
+                    "$ref": "#/$defs/Technique"
+                },
+                "Procedure": {
+                    "$ref": "#/$defs/Procedure"
+                },
+                "IpAddress": {
+                    "$ref": "#/$defs/IpAddress"
+                },
+                "APIName": {
+                    "$ref": "#/$defs/APIName"
+                },
+                "APISuccessCount": {
+                    "$ref": "#/$defs/APISuccessCount"
+                },
+                "APIFailureCount": {
+                    "$ref": "#/$defs/APIFailureCount"
+                }
+            }
+        },
+        "Tactic": {
+            "type": "string"
+        },
+        "Technique": {
+            "type": "string"
+        },
+        "Procedure": {
+            "type": "string"
+        },
+        "IpAddress": {
+            "type": "string"
+        },
+        "APIName": {
+            "type": "string"
+        },
+        "APISuccessCount": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "APIFailureCount": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "ImpossibleTravelDetail": {
+            "type": "object",
+            "properties": {
+                "StartingIpAddress": {
+                    "$ref": "#/$defs/IpAddress"
+                },
+                "EndingIpAddress": {
+                    "$ref": "#/$defs/IpAddress"
+                },
+                "StartingLocation": {
+                    "$ref": "#/$defs/Location"
+                },
+                "EndingLocation": {
+                    "$ref": "#/$defs/Location"
+                },
+                "HourlyTimeDelta": {
+                    "$ref": "#/$defs/HourlyTimeDelta"
+                }
+            }
+        },
+        "Location": {
+            "type": "string"
+        },
+        "HourlyTimeDelta": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "FlaggedIpAddressDetail": {
+            "type": "object",
+            "properties": {
+                "IpAddress": {
+                    "$ref": "#/$defs/IpAddress"
+                },
+                "Reason": {
+                    "$ref": "#/$defs/Reason"
+                }
+            }
+        },
+        "Reason": {
+            "enum": [
+                "AWS_THREAT_INTELLIGENCE"
+            ]
+        },
+        "NewGeolocationDetail": {
+            "type": "object",
+            "properties": {
+                "Location": {
+                    "$ref": "#/$defs/Location"
+                },
+                "IpAddress": {
+                    "$ref": "#/$defs/IpAddress"
+                },
+                "IsNewForEntireAccount": {
+                    "$ref": "#/$defs/IsNewForEntireAccount"
+                }
+            }
+        },
+        "IsNewForEntireAccount": {
+            "type": "boolean"
+        },
+        "NewAsoDetail": {
+            "type": "object",
+            "properties": {
+                "Aso": {
+                    "$ref": "#/$defs/Aso"
+                },
+                "IsNewForEntireAccount": {
+                    "$ref": "#/$defs/IsNewForEntireAccount"
+                }
+            }
+        },
+        "Aso": {
+            "type": "string"
+        },
+        "NewUserAgentDetail": {
+            "type": "object",
+            "properties": {
+                "UserAgent": {
+                    "$ref": "#/$defs/UserAgent"
+                },
+                "IsNewForEntireAccount": {
+                    "$ref": "#/$defs/IsNewForEntireAccount"
+                }
+            }
+        },
+        "UserAgent": {
+            "type": "string"
+        },
+        "RelatedFindingDetail": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/EntityArn"
+                },
+                "Type": {
+                    "$ref": "#/$defs/Type"
+                },
+                "IpAddress": {
+                    "$ref": "#/$defs/IpAddress"
+                }
+            }
+        },
+        "Type": {
+            "type": "string"
+        },
+        "RelatedFindingGroupDetail": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/Id"
+                }
+            }
+        },
+        "Id": {
+            "type": "string"
+        },
+        "ListIndicatorsRequest": {
+            "type": "object",
+            "properties": {
+                "GraphArn": {
+                    "$ref": "#/$defs/GraphArn"
+                },
+                "InvestigationId": {
+                    "$ref": "#/$defs/InvestigationId"
+                },
+                "IndicatorType": {
+                    "$ref": "#/$defs/IndicatorType"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/AiPaginationToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListInvestigationsResponse": {
+            "type": "object",
+            "properties": {
+                "InvestigationDetails": {
+                    "$ref": "#/$defs/InvestigationDetails"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/AiPaginationToken"
+                }
+            }
+        },
+        "InvestigationDetails": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/InvestigationDetail"
+            }
+        },
+        "InvestigationDetail": {
+            "type": "object",
+            "properties": {
+                "InvestigationId": {
+                    "$ref": "#/$defs/InvestigationId"
+                },
+                "Severity": {
+                    "$ref": "#/$defs/Severity"
+                },
+                "Status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "State": {
+                    "$ref": "#/$defs/State"
+                },
+                "CreatedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EntityArn": {
+                    "$ref": "#/$defs/EntityArn"
+                },
+                "EntityType": {
+                    "$ref": "#/$defs/EntityType"
+                }
+            }
+        },
+        "ListInvestigationsRequest": {
+            "type": "object",
+            "properties": {
+                "GraphArn": {
+                    "$ref": "#/$defs/GraphArn"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/AiPaginationToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "FilterCriteria": {
+                    "$ref": "#/$defs/FilterCriteria"
+                },
+                "SortCriteria": {
+                    "$ref": "#/$defs/SortCriteria"
+                }
+            }
+        },
+        "FilterCriteria": {
+            "type": "object",
+            "properties": {
+                "Severity": {
+                    "$ref": "#/$defs/StringFilter"
+                },
+                "Status": {
+                    "$ref": "#/$defs/StringFilter"
+                },
+                "State": {
+                    "$ref": "#/$defs/StringFilter"
+                },
+                "EntityArn": {
+                    "$ref": "#/$defs/StringFilter"
+                },
+                "CreatedTime": {
+                    "$ref": "#/$defs/DateFilter"
+                }
+            }
+        },
+        "StringFilter": {
+            "type": "object",
+            "properties": {
+                "Value": {
+                    "$ref": "#/$defs/Value"
+                }
+            }
+        },
+        "Value": {
+            "type": "string"
+        },
+        "DateFilter": {
+            "type": "object",
+            "properties": {
+                "StartInclusive": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EndInclusive": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "SortCriteria": {
+            "type": "object",
+            "properties": {
+                "Field": {
+                    "$ref": "#/$defs/Field"
+                },
+                "SortOrder": {
+                    "$ref": "#/$defs/SortOrder"
+                }
+            }
+        },
+        "Field": {
+            "enum": [
+                "SEVERITY",
+                "STATUS",
+                "CREATED_TIME"
+            ]
+        },
+        "SortOrder": {
+            "enum": [
+                "ASC",
+                "DESC"
+            ]
+        },
+        "ListInvitationsResponse": {
+            "type": "object",
+            "properties": {
+                "Invitations": {
+                    "$ref": "#/$defs/MemberDetailList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "ListInvitationsRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MemberResultsLimit"
+                }
+            }
+        },
+        "ListMembersResponse": {
+            "type": "object",
+            "properties": {
+                "MemberDetails": {
+                    "$ref": "#/$defs/MemberDetailList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "ListMembersRequest": {
+            "type": "object",
+            "properties": {
+                "GraphArn": {
+                    "$ref": "#/$defs/GraphArn"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MemberResultsLimit"
+                }
+            }
+        },
+        "ListOrganizationAdminAccountsResponse": {
+            "type": "object",
+            "properties": {
+                "Administrators": {
+                    "$ref": "#/$defs/AdministratorList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "AdministratorList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Administrator"
+            }
+        },
+        "Administrator": {
+            "type": "object",
+            "properties": {
+                "AccountId": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "GraphArn": {
+                    "$ref": "#/$defs/GraphArn"
+                },
+                "DelegationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListOrganizationAdminAccountsRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MemberResultsLimit"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/GraphArn"
+                }
+            }
+        },
+        "RejectInvitationRequest": {
+            "type": "object",
+            "properties": {
+                "GraphArn": {
+                    "$ref": "#/$defs/GraphArn"
+                }
+            }
+        },
+        "StartInvestigationResponse": {
+            "type": "object",
+            "properties": {
+                "InvestigationId": {
+                    "$ref": "#/$defs/InvestigationId"
+                }
+            }
+        },
+        "StartInvestigationRequest": {
+            "type": "object",
+            "properties": {
+                "GraphArn": {
+                    "$ref": "#/$defs/GraphArn"
+                },
+                "EntityArn": {
+                    "$ref": "#/$defs/EntityArn"
+                },
+                "ScopeStartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "ScopeEndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "StartMonitoringMemberRequest": {
+            "type": "object",
+            "properties": {
+                "GraphArn": {
+                    "$ref": "#/$defs/GraphArn"
+                },
+                "AccountId": {
+                    "$ref": "#/$defs/AccountId"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/GraphArn"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/GraphArn"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "UpdateDatasourcePackagesRequest": {
+            "type": "object",
+            "properties": {
+                "GraphArn": {
+                    "$ref": "#/$defs/GraphArn"
+                },
+                "DatasourcePackages": {
+                    "$ref": "#/$defs/DatasourcePackageList"
+                }
+            }
+        },
+        "DatasourcePackageList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DatasourcePackage"
+            }
+        },
+        "DatasourcePackage": {
+            "enum": [
+                "DETECTIVE_CORE",
+                "EKS_AUDIT",
+                "ASFF_SECURITYHUB_FINDING"
+            ]
+        },
+        "UpdateInvestigationStateRequest": {
+            "type": "object",
+            "properties": {
+                "GraphArn": {
+                    "$ref": "#/$defs/GraphArn"
+                },
+                "InvestigationId": {
+                    "$ref": "#/$defs/InvestigationId"
+                },
+                "State": {
+                    "$ref": "#/$defs/State"
+                }
+            }
+        },
+        "UpdateOrganizationConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "GraphArn": {
+                    "$ref": "#/$defs/GraphArn"
+                },
+                "AutoEnable": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://api.detective-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://api.detective-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://api.detective.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://api.detective.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

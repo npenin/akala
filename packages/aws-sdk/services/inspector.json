@@ -1,0 +1,3301 @@
+{
+    "name": "inspector",
+    "commands": [
+        {
+            "name": "AddAttributesToFindings",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AddAttributesToFindings"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AddAttributesToFindingsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AddAttributesToFindingsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateAssessmentTarget",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateAssessmentTarget"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateAssessmentTargetResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateAssessmentTargetRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateAssessmentTemplate",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateAssessmentTemplate"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateAssessmentTemplateResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateAssessmentTemplateRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateExclusionsPreview",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateExclusionsPreview"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateExclusionsPreviewResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateExclusionsPreviewRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateResourceGroup",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateResourceGroup"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateResourceGroupResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateResourceGroupRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteAssessmentRun",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteAssessmentRun"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteAssessmentRunRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteAssessmentTarget",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteAssessmentTarget"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteAssessmentTargetRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteAssessmentTemplate",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteAssessmentTemplate"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteAssessmentTemplateRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeAssessmentRuns",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeAssessmentRuns"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeAssessmentRunsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeAssessmentRunsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeAssessmentTargets",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeAssessmentTargets"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeAssessmentTargetsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeAssessmentTargetsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeAssessmentTemplates",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeAssessmentTemplates"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeAssessmentTemplatesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeAssessmentTemplatesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeCrossAccountAccessRole",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeCrossAccountAccessRole"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeCrossAccountAccessRoleResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeExclusions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeExclusions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeExclusionsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeExclusionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeFindings",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeFindings"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeFindingsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeFindingsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeResourceGroups",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeResourceGroups"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeResourceGroupsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeResourceGroupsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeRulesPackages",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeRulesPackages"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeRulesPackagesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeRulesPackagesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetAssessmentReport",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetAssessmentReport"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetAssessmentReportResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetAssessmentReportRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetExclusionsPreview",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetExclusionsPreview"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetExclusionsPreviewResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetExclusionsPreviewRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetTelemetryMetadata",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetTelemetryMetadata"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetTelemetryMetadataResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetTelemetryMetadataRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListAssessmentRunAgents",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListAssessmentRunAgents"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListAssessmentRunAgentsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListAssessmentRunAgentsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListAssessmentRuns",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListAssessmentRuns"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListAssessmentRunsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListAssessmentRunsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListAssessmentTargets",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListAssessmentTargets"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListAssessmentTargetsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListAssessmentTargetsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListAssessmentTemplates",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListAssessmentTemplates"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListAssessmentTemplatesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListAssessmentTemplatesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListEventSubscriptions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListEventSubscriptions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListEventSubscriptionsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListEventSubscriptionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListExclusions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListExclusions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListExclusionsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListExclusionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListFindings",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListFindings"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListFindingsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListFindingsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListRulesPackages",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListRulesPackages"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListRulesPackagesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListRulesPackagesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PreviewAgents",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PreviewAgents"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PreviewAgentsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PreviewAgentsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RegisterCrossAccountAccessRole",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RegisterCrossAccountAccessRole"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RegisterCrossAccountAccessRoleRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RemoveAttributesFromFindings",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RemoveAttributesFromFindings"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RemoveAttributesFromFindingsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RemoveAttributesFromFindingsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SetTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SetTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SetTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartAssessmentRun",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartAssessmentRun"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartAssessmentRunResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartAssessmentRunRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StopAssessmentRun",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StopAssessmentRun"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StopAssessmentRunRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SubscribeToEvent",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SubscribeToEvent"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SubscribeToEventRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UnsubscribeFromEvent",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UnsubscribeFromEvent"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UnsubscribeFromEventRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateAssessmentTarget",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateAssessmentTarget"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateAssessmentTargetRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "AddAttributesToFindingsResponse": {
+            "type": "object",
+            "properties": {
+                "failedItems": {
+                    "$ref": "#/$defs/FailedItems"
+                }
+            }
+        },
+        "FailedItems": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/FailedItemDetails"
+            }
+        },
+        "FailedItemDetails": {
+            "type": "object",
+            "properties": {
+                "failureCode": {
+                    "$ref": "#/$defs/FailedItemErrorCode"
+                },
+                "retryable": {
+                    "$ref": "#/$defs/Bool"
+                }
+            }
+        },
+        "FailedItemErrorCode": {
+            "enum": [
+                "INVALID_ARN",
+                "DUPLICATE_ARN",
+                "ITEM_DOES_NOT_EXIST",
+                "ACCESS_DENIED",
+                "LIMIT_EXCEEDED",
+                "INTERNAL_ERROR"
+            ]
+        },
+        "Bool": {
+            "type": "boolean"
+        },
+        "AddAttributesToFindingsRequest": {
+            "type": "object",
+            "properties": {
+                "findingArns": {
+                    "$ref": "#/$defs/AddRemoveAttributesFindingArnList"
+                },
+                "attributes": {
+                    "$ref": "#/$defs/UserAttributeList"
+                }
+            }
+        },
+        "AddRemoveAttributesFindingArnList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Arn"
+            }
+        },
+        "Arn": {
+            "type": "string"
+        },
+        "UserAttributeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Attribute"
+            }
+        },
+        "Attribute": {
+            "type": "object",
+            "properties": {
+                "key": {
+                    "$ref": "#/$defs/AttributeKey"
+                },
+                "value": {
+                    "$ref": "#/$defs/AttributeValue"
+                }
+            }
+        },
+        "AttributeKey": {
+            "type": "string"
+        },
+        "AttributeValue": {
+            "type": "string"
+        },
+        "CreateAssessmentTargetResponse": {
+            "type": "object",
+            "properties": {
+                "assessmentTargetArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "CreateAssessmentTargetRequest": {
+            "type": "object",
+            "properties": {
+                "assessmentTargetName": {
+                    "$ref": "#/$defs/AssessmentTargetName"
+                },
+                "resourceGroupArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "AssessmentTargetName": {
+            "type": "string"
+        },
+        "CreateAssessmentTemplateResponse": {
+            "type": "object",
+            "properties": {
+                "assessmentTemplateArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "CreateAssessmentTemplateRequest": {
+            "type": "object",
+            "properties": {
+                "assessmentTargetArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "assessmentTemplateName": {
+                    "$ref": "#/$defs/AssessmentTemplateName"
+                },
+                "durationInSeconds": {
+                    "$ref": "#/$defs/AssessmentRunDuration"
+                },
+                "rulesPackageArns": {
+                    "$ref": "#/$defs/AssessmentTemplateRulesPackageArnList"
+                },
+                "userAttributesForFindings": {
+                    "$ref": "#/$defs/UserAttributeList"
+                }
+            }
+        },
+        "AssessmentTemplateName": {
+            "type": "string"
+        },
+        "AssessmentRunDuration": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "AssessmentTemplateRulesPackageArnList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Arn"
+            }
+        },
+        "CreateExclusionsPreviewResponse": {
+            "type": "object",
+            "properties": {
+                "previewToken": {
+                    "$ref": "#/$defs/UUID"
+                }
+            }
+        },
+        "UUID": {
+            "type": "string"
+        },
+        "CreateExclusionsPreviewRequest": {
+            "type": "object",
+            "properties": {
+                "assessmentTemplateArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "CreateResourceGroupResponse": {
+            "type": "object",
+            "properties": {
+                "resourceGroupArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "CreateResourceGroupRequest": {
+            "type": "object",
+            "properties": {
+                "resourceGroupTags": {
+                    "$ref": "#/$defs/ResourceGroupTags"
+                }
+            }
+        },
+        "ResourceGroupTags": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourceGroupTag"
+            }
+        },
+        "ResourceGroupTag": {
+            "type": "object",
+            "properties": {
+                "key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "DeleteAssessmentRunRequest": {
+            "type": "object",
+            "properties": {
+                "assessmentRunArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "DeleteAssessmentTargetRequest": {
+            "type": "object",
+            "properties": {
+                "assessmentTargetArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "DeleteAssessmentTemplateRequest": {
+            "type": "object",
+            "properties": {
+                "assessmentTemplateArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "DescribeAssessmentRunsResponse": {
+            "type": "object",
+            "properties": {
+                "assessmentRuns": {
+                    "$ref": "#/$defs/AssessmentRunList"
+                },
+                "failedItems": {
+                    "$ref": "#/$defs/FailedItems"
+                }
+            }
+        },
+        "AssessmentRunList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AssessmentRun"
+            }
+        },
+        "AssessmentRun": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "name": {
+                    "$ref": "#/$defs/AssessmentRunName"
+                },
+                "assessmentTemplateArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "state": {
+                    "$ref": "#/$defs/AssessmentRunState"
+                },
+                "durationInSeconds": {
+                    "$ref": "#/$defs/AssessmentRunDuration"
+                },
+                "rulesPackageArns": {
+                    "$ref": "#/$defs/AssessmentRulesPackageArnList"
+                },
+                "userAttributesForFindings": {
+                    "$ref": "#/$defs/UserAttributeList"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "startedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "completedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "stateChangedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "dataCollected": {
+                    "$ref": "#/$defs/Bool"
+                },
+                "stateChanges": {
+                    "$ref": "#/$defs/AssessmentRunStateChangeList"
+                },
+                "notifications": {
+                    "$ref": "#/$defs/AssessmentRunNotificationList"
+                },
+                "findingCounts": {
+                    "$ref": "#/$defs/AssessmentRunFindingCounts"
+                }
+            }
+        },
+        "AssessmentRunName": {
+            "type": "string"
+        },
+        "AssessmentRunState": {
+            "enum": [
+                "CREATED",
+                "START_DATA_COLLECTION_PENDING",
+                "START_DATA_COLLECTION_IN_PROGRESS",
+                "COLLECTING_DATA",
+                "STOP_DATA_COLLECTION_PENDING",
+                "DATA_COLLECTED",
+                "START_EVALUATING_RULES_PENDING",
+                "EVALUATING_RULES",
+                "FAILED",
+                "ERROR",
+                "COMPLETED",
+                "COMPLETED_WITH_ERRORS",
+                "CANCELED"
+            ]
+        },
+        "AssessmentRulesPackageArnList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Arn"
+            }
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "AssessmentRunStateChangeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AssessmentRunStateChange"
+            }
+        },
+        "AssessmentRunStateChange": {
+            "type": "object",
+            "properties": {
+                "stateChangedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "state": {
+                    "$ref": "#/$defs/AssessmentRunState"
+                }
+            }
+        },
+        "AssessmentRunNotificationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AssessmentRunNotification"
+            }
+        },
+        "AssessmentRunNotification": {
+            "type": "object",
+            "properties": {
+                "date": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "event": {
+                    "$ref": "#/$defs/InspectorEvent"
+                },
+                "message": {
+                    "$ref": "#/$defs/Message"
+                },
+                "error": {
+                    "$ref": "#/$defs/Bool"
+                },
+                "snsTopicArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "snsPublishStatusCode": {
+                    "$ref": "#/$defs/AssessmentRunNotificationSnsStatusCode"
+                }
+            }
+        },
+        "InspectorEvent": {
+            "enum": [
+                "ASSESSMENT_RUN_STARTED",
+                "ASSESSMENT_RUN_COMPLETED",
+                "ASSESSMENT_RUN_STATE_CHANGED",
+                "FINDING_REPORTED",
+                "OTHER"
+            ]
+        },
+        "Message": {
+            "type": "string"
+        },
+        "AssessmentRunNotificationSnsStatusCode": {
+            "enum": [
+                "SUCCESS",
+                "TOPIC_DOES_NOT_EXIST",
+                "ACCESS_DENIED",
+                "INTERNAL_ERROR"
+            ]
+        },
+        "AssessmentRunFindingCounts": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/FindingCount"
+            }
+        },
+        "FindingCount": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DescribeAssessmentRunsRequest": {
+            "type": "object",
+            "properties": {
+                "assessmentRunArns": {
+                    "$ref": "#/$defs/BatchDescribeArnList"
+                }
+            }
+        },
+        "BatchDescribeArnList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Arn"
+            }
+        },
+        "DescribeAssessmentTargetsResponse": {
+            "type": "object",
+            "properties": {
+                "assessmentTargets": {
+                    "$ref": "#/$defs/AssessmentTargetList"
+                },
+                "failedItems": {
+                    "$ref": "#/$defs/FailedItems"
+                }
+            }
+        },
+        "AssessmentTargetList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AssessmentTarget"
+            }
+        },
+        "AssessmentTarget": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "name": {
+                    "$ref": "#/$defs/AssessmentTargetName"
+                },
+                "resourceGroupArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "updatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "DescribeAssessmentTargetsRequest": {
+            "type": "object",
+            "properties": {
+                "assessmentTargetArns": {
+                    "$ref": "#/$defs/BatchDescribeArnList"
+                }
+            }
+        },
+        "DescribeAssessmentTemplatesResponse": {
+            "type": "object",
+            "properties": {
+                "assessmentTemplates": {
+                    "$ref": "#/$defs/AssessmentTemplateList"
+                },
+                "failedItems": {
+                    "$ref": "#/$defs/FailedItems"
+                }
+            }
+        },
+        "AssessmentTemplateList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AssessmentTemplate"
+            }
+        },
+        "AssessmentTemplate": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "name": {
+                    "$ref": "#/$defs/AssessmentTemplateName"
+                },
+                "assessmentTargetArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "durationInSeconds": {
+                    "$ref": "#/$defs/AssessmentRunDuration"
+                },
+                "rulesPackageArns": {
+                    "$ref": "#/$defs/AssessmentTemplateRulesPackageArnList"
+                },
+                "userAttributesForFindings": {
+                    "$ref": "#/$defs/UserAttributeList"
+                },
+                "lastAssessmentRunArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "assessmentRunCount": {
+                    "$ref": "#/$defs/ArnCount"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ArnCount": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DescribeAssessmentTemplatesRequest": {
+            "type": "object",
+            "properties": {
+                "assessmentTemplateArns": {
+                    "$ref": "#/$defs/BatchDescribeArnList"
+                }
+            }
+        },
+        "DescribeCrossAccountAccessRoleResponse": {
+            "type": "object",
+            "properties": {
+                "roleArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "valid": {
+                    "$ref": "#/$defs/Bool"
+                },
+                "registeredAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "DescribeExclusionsResponse": {
+            "type": "object",
+            "properties": {
+                "exclusions": {
+                    "$ref": "#/$defs/ExclusionMap"
+                },
+                "failedItems": {
+                    "$ref": "#/$defs/FailedItems"
+                }
+            }
+        },
+        "ExclusionMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/Exclusion"
+            }
+        },
+        "Exclusion": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "title": {
+                    "$ref": "#/$defs/Text"
+                },
+                "description": {
+                    "$ref": "#/$defs/Text"
+                },
+                "recommendation": {
+                    "$ref": "#/$defs/Text"
+                },
+                "scopes": {
+                    "$ref": "#/$defs/ScopeList"
+                },
+                "attributes": {
+                    "$ref": "#/$defs/AttributeList"
+                }
+            }
+        },
+        "Text": {
+            "type": "string"
+        },
+        "ScopeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Scope"
+            }
+        },
+        "Scope": {
+            "type": "object",
+            "properties": {
+                "key": {
+                    "$ref": "#/$defs/ScopeType"
+                },
+                "value": {
+                    "$ref": "#/$defs/ScopeValue"
+                }
+            }
+        },
+        "ScopeType": {
+            "enum": [
+                "INSTANCE_ID",
+                "RULES_PACKAGE_ARN"
+            ]
+        },
+        "ScopeValue": {
+            "type": "string"
+        },
+        "AttributeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Attribute"
+            }
+        },
+        "DescribeExclusionsRequest": {
+            "type": "object",
+            "properties": {
+                "exclusionArns": {
+                    "$ref": "#/$defs/BatchDescribeExclusionsArnList"
+                },
+                "locale": {
+                    "$ref": "#/$defs/Locale"
+                }
+            }
+        },
+        "BatchDescribeExclusionsArnList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Arn"
+            }
+        },
+        "Locale": {
+            "enum": [
+                "EN_US"
+            ]
+        },
+        "DescribeFindingsResponse": {
+            "type": "object",
+            "properties": {
+                "findings": {
+                    "$ref": "#/$defs/FindingList"
+                },
+                "failedItems": {
+                    "$ref": "#/$defs/FailedItems"
+                }
+            }
+        },
+        "FindingList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Finding"
+            }
+        },
+        "Finding": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "schemaVersion": {
+                    "$ref": "#/$defs/NumericVersion"
+                },
+                "service": {
+                    "$ref": "#/$defs/ServiceName"
+                },
+                "serviceAttributes": {
+                    "$ref": "#/$defs/InspectorServiceAttributes"
+                },
+                "assetType": {
+                    "$ref": "#/$defs/AssetType"
+                },
+                "assetAttributes": {
+                    "$ref": "#/$defs/AssetAttributes"
+                },
+                "id": {
+                    "$ref": "#/$defs/FindingId"
+                },
+                "title": {
+                    "$ref": "#/$defs/Text"
+                },
+                "description": {
+                    "$ref": "#/$defs/Text"
+                },
+                "recommendation": {
+                    "$ref": "#/$defs/Text"
+                },
+                "severity": {
+                    "$ref": "#/$defs/Severity"
+                },
+                "numericSeverity": {
+                    "$ref": "#/$defs/NumericSeverity"
+                },
+                "confidence": {
+                    "$ref": "#/$defs/IocConfidence"
+                },
+                "indicatorOfCompromise": {
+                    "$ref": "#/$defs/Bool"
+                },
+                "attributes": {
+                    "$ref": "#/$defs/AttributeList"
+                },
+                "userAttributes": {
+                    "$ref": "#/$defs/UserAttributeList"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "updatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "NumericVersion": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ServiceName": {
+            "type": "string"
+        },
+        "InspectorServiceAttributes": {
+            "type": "object",
+            "properties": {
+                "schemaVersion": {
+                    "$ref": "#/$defs/NumericVersion"
+                },
+                "assessmentRunArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "rulesPackageArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "AssetType": {
+            "enum": [
+                "EC2_INSTANCE"
+            ]
+        },
+        "AssetAttributes": {
+            "type": "object",
+            "properties": {
+                "schemaVersion": {
+                    "$ref": "#/$defs/NumericVersion"
+                },
+                "agentId": {
+                    "$ref": "#/$defs/AgentId"
+                },
+                "autoScalingGroup": {
+                    "$ref": "#/$defs/AutoScalingGroup"
+                },
+                "amiId": {
+                    "$ref": "#/$defs/AmiId"
+                },
+                "hostname": {
+                    "$ref": "#/$defs/Hostname"
+                },
+                "ipv4Addresses": {
+                    "$ref": "#/$defs/Ipv4AddressList"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                },
+                "networkInterfaces": {
+                    "$ref": "#/$defs/NetworkInterfaces"
+                }
+            }
+        },
+        "AgentId": {
+            "type": "string"
+        },
+        "AutoScalingGroup": {
+            "type": "string"
+        },
+        "AmiId": {
+            "type": "string"
+        },
+        "Hostname": {
+            "type": "string"
+        },
+        "Ipv4AddressList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Ipv4Address"
+            }
+        },
+        "Ipv4Address": {
+            "type": "string"
+        },
+        "Tags": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "NetworkInterfaces": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NetworkInterface"
+            }
+        },
+        "NetworkInterface": {
+            "type": "object",
+            "properties": {
+                "networkInterfaceId": {
+                    "$ref": "#/$defs/Text"
+                },
+                "subnetId": {
+                    "$ref": "#/$defs/Text"
+                },
+                "vpcId": {
+                    "$ref": "#/$defs/Text"
+                },
+                "privateDnsName": {
+                    "$ref": "#/$defs/Text"
+                },
+                "privateIpAddress": {
+                    "$ref": "#/$defs/Text"
+                },
+                "privateIpAddresses": {
+                    "$ref": "#/$defs/PrivateIpAddresses"
+                },
+                "publicDnsName": {
+                    "$ref": "#/$defs/Text"
+                },
+                "publicIp": {
+                    "$ref": "#/$defs/Text"
+                },
+                "ipv6Addresses": {
+                    "$ref": "#/$defs/Ipv6Addresses"
+                },
+                "securityGroups": {
+                    "$ref": "#/$defs/SecurityGroups"
+                }
+            }
+        },
+        "PrivateIpAddresses": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PrivateIp"
+            }
+        },
+        "PrivateIp": {
+            "type": "object",
+            "properties": {
+                "privateDnsName": {
+                    "$ref": "#/$defs/Text"
+                },
+                "privateIpAddress": {
+                    "$ref": "#/$defs/Text"
+                }
+            }
+        },
+        "Ipv6Addresses": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Text"
+            }
+        },
+        "SecurityGroups": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SecurityGroup"
+            }
+        },
+        "SecurityGroup": {
+            "type": "object",
+            "properties": {
+                "groupName": {
+                    "$ref": "#/$defs/Text"
+                },
+                "groupId": {
+                    "$ref": "#/$defs/Text"
+                }
+            }
+        },
+        "FindingId": {
+            "type": "string"
+        },
+        "Severity": {
+            "enum": [
+                "LOW",
+                "MEDIUM",
+                "HIGH",
+                "INFORMATIONAL",
+                "UNDEFINED"
+            ]
+        },
+        "NumericSeverity": {
+            "type": "number",
+            "format": "double"
+        },
+        "IocConfidence": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DescribeFindingsRequest": {
+            "type": "object",
+            "properties": {
+                "findingArns": {
+                    "$ref": "#/$defs/BatchDescribeArnList"
+                },
+                "locale": {
+                    "$ref": "#/$defs/Locale"
+                }
+            }
+        },
+        "DescribeResourceGroupsResponse": {
+            "type": "object",
+            "properties": {
+                "resourceGroups": {
+                    "$ref": "#/$defs/ResourceGroupList"
+                },
+                "failedItems": {
+                    "$ref": "#/$defs/FailedItems"
+                }
+            }
+        },
+        "ResourceGroupList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourceGroup"
+            }
+        },
+        "ResourceGroup": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "tags": {
+                    "$ref": "#/$defs/ResourceGroupTags"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "DescribeResourceGroupsRequest": {
+            "type": "object",
+            "properties": {
+                "resourceGroupArns": {
+                    "$ref": "#/$defs/BatchDescribeArnList"
+                }
+            }
+        },
+        "DescribeRulesPackagesResponse": {
+            "type": "object",
+            "properties": {
+                "rulesPackages": {
+                    "$ref": "#/$defs/RulesPackageList"
+                },
+                "failedItems": {
+                    "$ref": "#/$defs/FailedItems"
+                }
+            }
+        },
+        "RulesPackageList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RulesPackage"
+            }
+        },
+        "RulesPackage": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "name": {
+                    "$ref": "#/$defs/RulesPackageName"
+                },
+                "version": {
+                    "$ref": "#/$defs/Version"
+                },
+                "provider": {
+                    "$ref": "#/$defs/ProviderName"
+                },
+                "description": {
+                    "$ref": "#/$defs/Text"
+                }
+            }
+        },
+        "RulesPackageName": {
+            "type": "string"
+        },
+        "Version": {
+            "type": "string"
+        },
+        "ProviderName": {
+            "type": "string"
+        },
+        "DescribeRulesPackagesRequest": {
+            "type": "object",
+            "properties": {
+                "rulesPackageArns": {
+                    "$ref": "#/$defs/BatchDescribeArnList"
+                },
+                "locale": {
+                    "$ref": "#/$defs/Locale"
+                }
+            }
+        },
+        "GetAssessmentReportResponse": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "$ref": "#/$defs/ReportStatus"
+                },
+                "url": {
+                    "$ref": "#/$defs/Url"
+                }
+            }
+        },
+        "ReportStatus": {
+            "enum": [
+                "WORK_IN_PROGRESS",
+                "FAILED",
+                "COMPLETED"
+            ]
+        },
+        "Url": {
+            "type": "string"
+        },
+        "GetAssessmentReportRequest": {
+            "type": "object",
+            "properties": {
+                "assessmentRunArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "reportFileFormat": {
+                    "$ref": "#/$defs/ReportFileFormat"
+                },
+                "reportType": {
+                    "$ref": "#/$defs/ReportType"
+                }
+            }
+        },
+        "ReportFileFormat": {
+            "enum": [
+                "HTML",
+                "PDF"
+            ]
+        },
+        "ReportType": {
+            "enum": [
+                "FINDING",
+                "FULL"
+            ]
+        },
+        "GetExclusionsPreviewResponse": {
+            "type": "object",
+            "properties": {
+                "previewStatus": {
+                    "$ref": "#/$defs/PreviewStatus"
+                },
+                "exclusionPreviews": {
+                    "$ref": "#/$defs/ExclusionPreviewList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "PreviewStatus": {
+            "enum": [
+                "WORK_IN_PROGRESS",
+                "COMPLETED"
+            ]
+        },
+        "ExclusionPreviewList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ExclusionPreview"
+            }
+        },
+        "ExclusionPreview": {
+            "type": "object",
+            "properties": {
+                "title": {
+                    "$ref": "#/$defs/Text"
+                },
+                "description": {
+                    "$ref": "#/$defs/Text"
+                },
+                "recommendation": {
+                    "$ref": "#/$defs/Text"
+                },
+                "scopes": {
+                    "$ref": "#/$defs/ScopeList"
+                },
+                "attributes": {
+                    "$ref": "#/$defs/AttributeList"
+                }
+            }
+        },
+        "PaginationToken": {
+            "type": "string"
+        },
+        "GetExclusionsPreviewRequest": {
+            "type": "object",
+            "properties": {
+                "assessmentTemplateArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "previewToken": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/ListMaxResults"
+                },
+                "locale": {
+                    "$ref": "#/$defs/Locale"
+                }
+            }
+        },
+        "ListMaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "GetTelemetryMetadataResponse": {
+            "type": "object",
+            "properties": {
+                "telemetryMetadata": {
+                    "$ref": "#/$defs/TelemetryMetadataList"
+                }
+            }
+        },
+        "TelemetryMetadataList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TelemetryMetadata"
+            }
+        },
+        "TelemetryMetadata": {
+            "type": "object",
+            "properties": {
+                "messageType": {
+                    "$ref": "#/$defs/MessageType"
+                },
+                "count": {
+                    "$ref": "#/$defs/Long"
+                },
+                "dataSize": {
+                    "$ref": "#/$defs/Long"
+                }
+            }
+        },
+        "MessageType": {
+            "type": "string"
+        },
+        "Long": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "GetTelemetryMetadataRequest": {
+            "type": "object",
+            "properties": {
+                "assessmentRunArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "ListAssessmentRunAgentsResponse": {
+            "type": "object",
+            "properties": {
+                "assessmentRunAgents": {
+                    "$ref": "#/$defs/AssessmentRunAgentList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "AssessmentRunAgentList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AssessmentRunAgent"
+            }
+        },
+        "AssessmentRunAgent": {
+            "type": "object",
+            "properties": {
+                "agentId": {
+                    "$ref": "#/$defs/AgentId"
+                },
+                "assessmentRunArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "agentHealth": {
+                    "$ref": "#/$defs/AgentHealth"
+                },
+                "agentHealthCode": {
+                    "$ref": "#/$defs/AgentHealthCode"
+                },
+                "agentHealthDetails": {
+                    "$ref": "#/$defs/Message"
+                },
+                "autoScalingGroup": {
+                    "$ref": "#/$defs/AutoScalingGroup"
+                },
+                "telemetryMetadata": {
+                    "$ref": "#/$defs/TelemetryMetadataList"
+                }
+            }
+        },
+        "AgentHealth": {
+            "enum": [
+                "HEALTHY",
+                "UNHEALTHY",
+                "UNKNOWN"
+            ]
+        },
+        "AgentHealthCode": {
+            "enum": [
+                "IDLE",
+                "RUNNING",
+                "SHUTDOWN",
+                "UNHEALTHY",
+                "THROTTLED",
+                "UNKNOWN"
+            ]
+        },
+        "ListAssessmentRunAgentsRequest": {
+            "type": "object",
+            "properties": {
+                "assessmentRunArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "filter": {
+                    "$ref": "#/$defs/AgentFilter"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/ListMaxResults"
+                }
+            }
+        },
+        "AgentFilter": {
+            "type": "object",
+            "properties": {
+                "agentHealths": {
+                    "$ref": "#/$defs/AgentHealthList"
+                },
+                "agentHealthCodes": {
+                    "$ref": "#/$defs/AgentHealthCodeList"
+                }
+            }
+        },
+        "AgentHealthList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AgentHealth"
+            }
+        },
+        "AgentHealthCodeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AgentHealthCode"
+            }
+        },
+        "ListAssessmentRunsResponse": {
+            "type": "object",
+            "properties": {
+                "assessmentRunArns": {
+                    "$ref": "#/$defs/ListReturnedArnList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "ListReturnedArnList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Arn"
+            }
+        },
+        "ListAssessmentRunsRequest": {
+            "type": "object",
+            "properties": {
+                "assessmentTemplateArns": {
+                    "$ref": "#/$defs/ListParentArnList"
+                },
+                "filter": {
+                    "$ref": "#/$defs/AssessmentRunFilter"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/ListMaxResults"
+                }
+            }
+        },
+        "ListParentArnList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Arn"
+            }
+        },
+        "AssessmentRunFilter": {
+            "type": "object",
+            "properties": {
+                "namePattern": {
+                    "$ref": "#/$defs/NamePattern"
+                },
+                "states": {
+                    "$ref": "#/$defs/AssessmentRunStateList"
+                },
+                "durationRange": {
+                    "$ref": "#/$defs/DurationRange"
+                },
+                "rulesPackageArns": {
+                    "$ref": "#/$defs/FilterRulesPackageArnList"
+                },
+                "startTimeRange": {
+                    "$ref": "#/$defs/TimestampRange"
+                },
+                "completionTimeRange": {
+                    "$ref": "#/$defs/TimestampRange"
+                },
+                "stateChangeTimeRange": {
+                    "$ref": "#/$defs/TimestampRange"
+                }
+            }
+        },
+        "NamePattern": {
+            "type": "string"
+        },
+        "AssessmentRunStateList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AssessmentRunState"
+            }
+        },
+        "DurationRange": {
+            "type": "object",
+            "properties": {
+                "minSeconds": {
+                    "$ref": "#/$defs/AssessmentRunDuration"
+                },
+                "maxSeconds": {
+                    "$ref": "#/$defs/AssessmentRunDuration"
+                }
+            }
+        },
+        "FilterRulesPackageArnList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Arn"
+            }
+        },
+        "TimestampRange": {
+            "type": "object",
+            "properties": {
+                "beginDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "endDate": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListAssessmentTargetsResponse": {
+            "type": "object",
+            "properties": {
+                "assessmentTargetArns": {
+                    "$ref": "#/$defs/ListReturnedArnList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "ListAssessmentTargetsRequest": {
+            "type": "object",
+            "properties": {
+                "filter": {
+                    "$ref": "#/$defs/AssessmentTargetFilter"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/ListMaxResults"
+                }
+            }
+        },
+        "AssessmentTargetFilter": {
+            "type": "object",
+            "properties": {
+                "assessmentTargetNamePattern": {
+                    "$ref": "#/$defs/NamePattern"
+                }
+            }
+        },
+        "ListAssessmentTemplatesResponse": {
+            "type": "object",
+            "properties": {
+                "assessmentTemplateArns": {
+                    "$ref": "#/$defs/ListReturnedArnList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "ListAssessmentTemplatesRequest": {
+            "type": "object",
+            "properties": {
+                "assessmentTargetArns": {
+                    "$ref": "#/$defs/ListParentArnList"
+                },
+                "filter": {
+                    "$ref": "#/$defs/AssessmentTemplateFilter"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/ListMaxResults"
+                }
+            }
+        },
+        "AssessmentTemplateFilter": {
+            "type": "object",
+            "properties": {
+                "namePattern": {
+                    "$ref": "#/$defs/NamePattern"
+                },
+                "durationRange": {
+                    "$ref": "#/$defs/DurationRange"
+                },
+                "rulesPackageArns": {
+                    "$ref": "#/$defs/FilterRulesPackageArnList"
+                }
+            }
+        },
+        "ListEventSubscriptionsResponse": {
+            "type": "object",
+            "properties": {
+                "subscriptions": {
+                    "$ref": "#/$defs/SubscriptionList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "SubscriptionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Subscription"
+            }
+        },
+        "Subscription": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "topicArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "eventSubscriptions": {
+                    "$ref": "#/$defs/EventSubscriptionList"
+                }
+            }
+        },
+        "EventSubscriptionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EventSubscription"
+            }
+        },
+        "EventSubscription": {
+            "type": "object",
+            "properties": {
+                "event": {
+                    "$ref": "#/$defs/InspectorEvent"
+                },
+                "subscribedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListEventSubscriptionsRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/ListEventSubscriptionsMaxResults"
+                }
+            }
+        },
+        "ListEventSubscriptionsMaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListExclusionsResponse": {
+            "type": "object",
+            "properties": {
+                "exclusionArns": {
+                    "$ref": "#/$defs/ListReturnedArnList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "ListExclusionsRequest": {
+            "type": "object",
+            "properties": {
+                "assessmentRunArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/ListMaxResults"
+                }
+            }
+        },
+        "ListFindingsResponse": {
+            "type": "object",
+            "properties": {
+                "findingArns": {
+                    "$ref": "#/$defs/ListReturnedArnList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "ListFindingsRequest": {
+            "type": "object",
+            "properties": {
+                "assessmentRunArns": {
+                    "$ref": "#/$defs/ListParentArnList"
+                },
+                "filter": {
+                    "$ref": "#/$defs/FindingFilter"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/ListMaxResults"
+                }
+            }
+        },
+        "FindingFilter": {
+            "type": "object",
+            "properties": {
+                "agentIds": {
+                    "$ref": "#/$defs/AgentIdList"
+                },
+                "autoScalingGroups": {
+                    "$ref": "#/$defs/AutoScalingGroupList"
+                },
+                "ruleNames": {
+                    "$ref": "#/$defs/RuleNameList"
+                },
+                "severities": {
+                    "$ref": "#/$defs/SeverityList"
+                },
+                "rulesPackageArns": {
+                    "$ref": "#/$defs/FilterRulesPackageArnList"
+                },
+                "attributes": {
+                    "$ref": "#/$defs/AttributeList"
+                },
+                "userAttributes": {
+                    "$ref": "#/$defs/AttributeList"
+                },
+                "creationTimeRange": {
+                    "$ref": "#/$defs/TimestampRange"
+                }
+            }
+        },
+        "AgentIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AgentId"
+            }
+        },
+        "AutoScalingGroupList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AutoScalingGroup"
+            }
+        },
+        "RuleNameList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RuleName"
+            }
+        },
+        "RuleName": {
+            "type": "string"
+        },
+        "SeverityList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Severity"
+            }
+        },
+        "ListRulesPackagesResponse": {
+            "type": "object",
+            "properties": {
+                "rulesPackageArns": {
+                    "$ref": "#/$defs/ListReturnedArnList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "ListRulesPackagesRequest": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/ListMaxResults"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "PreviewAgentsResponse": {
+            "type": "object",
+            "properties": {
+                "agentPreviews": {
+                    "$ref": "#/$defs/AgentPreviewList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "AgentPreviewList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AgentPreview"
+            }
+        },
+        "AgentPreview": {
+            "type": "object",
+            "properties": {
+                "hostname": {
+                    "$ref": "#/$defs/Hostname"
+                },
+                "agentId": {
+                    "$ref": "#/$defs/AgentId"
+                },
+                "autoScalingGroup": {
+                    "$ref": "#/$defs/AutoScalingGroup"
+                },
+                "agentHealth": {
+                    "$ref": "#/$defs/AgentHealth"
+                },
+                "agentVersion": {
+                    "$ref": "#/$defs/AgentVersion"
+                },
+                "operatingSystem": {
+                    "$ref": "#/$defs/OperatingSystem"
+                },
+                "kernelVersion": {
+                    "$ref": "#/$defs/KernelVersion"
+                },
+                "ipv4Address": {
+                    "$ref": "#/$defs/Ipv4Address"
+                }
+            }
+        },
+        "AgentVersion": {
+            "type": "string"
+        },
+        "OperatingSystem": {
+            "type": "string"
+        },
+        "KernelVersion": {
+            "type": "string"
+        },
+        "PreviewAgentsRequest": {
+            "type": "object",
+            "properties": {
+                "previewAgentsArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/PreviewAgentsMaxResults"
+                }
+            }
+        },
+        "PreviewAgentsMaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "RegisterCrossAccountAccessRoleRequest": {
+            "type": "object",
+            "properties": {
+                "roleArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "RemoveAttributesFromFindingsResponse": {
+            "type": "object",
+            "properties": {
+                "failedItems": {
+                    "$ref": "#/$defs/FailedItems"
+                }
+            }
+        },
+        "RemoveAttributesFromFindingsRequest": {
+            "type": "object",
+            "properties": {
+                "findingArns": {
+                    "$ref": "#/$defs/AddRemoveAttributesFindingArnList"
+                },
+                "attributeKeys": {
+                    "$ref": "#/$defs/UserAttributeKeyList"
+                }
+            }
+        },
+        "UserAttributeKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AttributeKey"
+            }
+        },
+        "SetTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "StartAssessmentRunResponse": {
+            "type": "object",
+            "properties": {
+                "assessmentRunArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "StartAssessmentRunRequest": {
+            "type": "object",
+            "properties": {
+                "assessmentTemplateArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "assessmentRunName": {
+                    "$ref": "#/$defs/AssessmentRunName"
+                }
+            }
+        },
+        "StopAssessmentRunRequest": {
+            "type": "object",
+            "properties": {
+                "assessmentRunArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "stopAction": {
+                    "$ref": "#/$defs/StopAction"
+                }
+            }
+        },
+        "StopAction": {
+            "enum": [
+                "START_EVALUATION",
+                "SKIP_EVALUATION"
+            ]
+        },
+        "SubscribeToEventRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "event": {
+                    "$ref": "#/$defs/InspectorEvent"
+                },
+                "topicArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "UnsubscribeFromEventRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "event": {
+                    "$ref": "#/$defs/InspectorEvent"
+                },
+                "topicArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "UpdateAssessmentTargetRequest": {
+            "type": "object",
+            "properties": {
+                "assessmentTargetArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "assessmentTargetName": {
+                    "$ref": "#/$defs/AssessmentTargetName"
+                },
+                "resourceGroupArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://inspector-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://inspector-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://inspector.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://inspector.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

@@ -1,0 +1,1635 @@
+{
+    "name": "cassandra",
+    "commands": [
+        {
+            "name": "CreateKeyspace",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateKeyspace"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateKeyspaceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateKeyspaceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateTable",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateTable"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateTableResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateTableRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteKeyspace",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteKeyspace"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteKeyspaceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteKeyspaceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteTable",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteTable"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteTableResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteTableRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetKeyspace",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetKeyspace"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetKeyspaceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetKeyspaceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetTable",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetTable"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetTableResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetTableRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetTableAutoScalingSettings",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetTableAutoScalingSettings"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetTableAutoScalingSettingsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetTableAutoScalingSettingsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListKeyspaces",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListKeyspaces"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListKeyspacesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListKeyspacesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTables",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTables"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTablesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTablesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RestoreTable",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RestoreTable"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RestoreTableResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RestoreTableRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateTable",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateTable"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateTableResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateTableRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CreateKeyspaceResponse": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/ARN"
+                }
+            }
+        },
+        "ARN": {
+            "type": "string"
+        },
+        "CreateKeyspaceRequest": {
+            "type": "object",
+            "properties": {
+                "keyspaceName": {
+                    "$ref": "#/$defs/KeyspaceName"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "replicationSpecification": {
+                    "$ref": "#/$defs/ReplicationSpecification"
+                }
+            }
+        },
+        "KeyspaceName": {
+            "type": "string"
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "ReplicationSpecification": {
+            "type": "object",
+            "properties": {
+                "replicationStrategy": {
+                    "$ref": "#/$defs/rs"
+                },
+                "regionList": {
+                    "$ref": "#/$defs/RegionList"
+                }
+            }
+        },
+        "rs": {
+            "type": "string"
+        },
+        "RegionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/region"
+            }
+        },
+        "region": {
+            "type": "string"
+        },
+        "CreateTableResponse": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/ARN"
+                }
+            }
+        },
+        "CreateTableRequest": {
+            "type": "object",
+            "properties": {
+                "keyspaceName": {
+                    "$ref": "#/$defs/KeyspaceName"
+                },
+                "tableName": {
+                    "$ref": "#/$defs/TableName"
+                },
+                "schemaDefinition": {
+                    "$ref": "#/$defs/SchemaDefinition"
+                },
+                "comment": {
+                    "$ref": "#/$defs/Comment"
+                },
+                "capacitySpecification": {
+                    "$ref": "#/$defs/CapacitySpecification"
+                },
+                "encryptionSpecification": {
+                    "$ref": "#/$defs/EncryptionSpecification"
+                },
+                "pointInTimeRecovery": {
+                    "$ref": "#/$defs/PointInTimeRecovery"
+                },
+                "ttl": {
+                    "$ref": "#/$defs/TimeToLive"
+                },
+                "defaultTimeToLive": {
+                    "$ref": "#/$defs/DefaultTimeToLive"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "clientSideTimestamps": {
+                    "$ref": "#/$defs/ClientSideTimestamps"
+                },
+                "autoScalingSpecification": {
+                    "$ref": "#/$defs/AutoScalingSpecification"
+                },
+                "replicaSpecifications": {
+                    "$ref": "#/$defs/ReplicaSpecificationList"
+                }
+            }
+        },
+        "TableName": {
+            "type": "string"
+        },
+        "SchemaDefinition": {
+            "type": "object",
+            "properties": {
+                "allColumns": {
+                    "$ref": "#/$defs/ColumnDefinitionList"
+                },
+                "partitionKeys": {
+                    "$ref": "#/$defs/PartitionKeyList"
+                },
+                "clusteringKeys": {
+                    "$ref": "#/$defs/ClusteringKeyList"
+                },
+                "staticColumns": {
+                    "$ref": "#/$defs/StaticColumnList"
+                }
+            }
+        },
+        "ColumnDefinitionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ColumnDefinition"
+            }
+        },
+        "ColumnDefinition": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "type": {
+                    "$ref": "#/$defs/GenericString"
+                }
+            }
+        },
+        "GenericString": {
+            "type": "string"
+        },
+        "PartitionKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PartitionKey"
+            }
+        },
+        "PartitionKey": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/GenericString"
+                }
+            }
+        },
+        "ClusteringKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ClusteringKey"
+            }
+        },
+        "ClusteringKey": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "orderBy": {
+                    "$ref": "#/$defs/SortOrder"
+                }
+            }
+        },
+        "SortOrder": {
+            "type": "string"
+        },
+        "StaticColumnList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/StaticColumn"
+            }
+        },
+        "StaticColumn": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/GenericString"
+                }
+            }
+        },
+        "Comment": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "CapacitySpecification": {
+            "type": "object",
+            "properties": {
+                "throughputMode": {
+                    "$ref": "#/$defs/ThroughputMode"
+                },
+                "readCapacityUnits": {
+                    "$ref": "#/$defs/CapacityUnits"
+                },
+                "writeCapacityUnits": {
+                    "$ref": "#/$defs/CapacityUnits"
+                }
+            }
+        },
+        "ThroughputMode": {
+            "type": "string"
+        },
+        "CapacityUnits": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "EncryptionSpecification": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/$defs/EncryptionType"
+                },
+                "kmsKeyIdentifier": {
+                    "$ref": "#/$defs/kmsKeyARN"
+                }
+            }
+        },
+        "EncryptionType": {
+            "type": "string"
+        },
+        "kmsKeyARN": {
+            "type": "string"
+        },
+        "PointInTimeRecovery": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "$ref": "#/$defs/PointInTimeRecoveryStatus"
+                }
+            }
+        },
+        "PointInTimeRecoveryStatus": {
+            "type": "string"
+        },
+        "TimeToLive": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "$ref": "#/$defs/TimeToLiveStatus"
+                }
+            }
+        },
+        "TimeToLiveStatus": {
+            "type": "string"
+        },
+        "DefaultTimeToLive": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ClientSideTimestamps": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "$ref": "#/$defs/ClientSideTimestampsStatus"
+                }
+            }
+        },
+        "ClientSideTimestampsStatus": {
+            "type": "string"
+        },
+        "AutoScalingSpecification": {
+            "type": "object",
+            "properties": {
+                "writeCapacityAutoScaling": {
+                    "$ref": "#/$defs/AutoScalingSettings"
+                },
+                "readCapacityAutoScaling": {
+                    "$ref": "#/$defs/AutoScalingSettings"
+                }
+            }
+        },
+        "AutoScalingSettings": {
+            "type": "object",
+            "properties": {
+                "autoScalingDisabled": {
+                    "$ref": "#/$defs/BooleanObject"
+                },
+                "minimumUnits": {
+                    "$ref": "#/$defs/CapacityUnits"
+                },
+                "maximumUnits": {
+                    "$ref": "#/$defs/CapacityUnits"
+                },
+                "scalingPolicy": {
+                    "$ref": "#/$defs/AutoScalingPolicy"
+                }
+            }
+        },
+        "BooleanObject": {
+            "type": "boolean"
+        },
+        "AutoScalingPolicy": {
+            "type": "object",
+            "properties": {
+                "targetTrackingScalingPolicyConfiguration": {
+                    "$ref": "#/$defs/TargetTrackingScalingPolicyConfiguration"
+                }
+            }
+        },
+        "TargetTrackingScalingPolicyConfiguration": {
+            "type": "object",
+            "properties": {
+                "disableScaleIn": {
+                    "$ref": "#/$defs/BooleanObject"
+                },
+                "scaleInCooldown": {
+                    "$ref": "#/$defs/IntegerObject"
+                },
+                "scaleOutCooldown": {
+                    "$ref": "#/$defs/IntegerObject"
+                },
+                "targetValue": {
+                    "$ref": "#/$defs/DoubleObject"
+                }
+            }
+        },
+        "IntegerObject": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DoubleObject": {
+            "type": "number",
+            "format": "double"
+        },
+        "ReplicaSpecificationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ReplicaSpecification"
+            }
+        },
+        "ReplicaSpecification": {
+            "type": "object",
+            "properties": {
+                "region": {
+                    "$ref": "#/$defs/region"
+                },
+                "readCapacityUnits": {
+                    "$ref": "#/$defs/CapacityUnits"
+                },
+                "readCapacityAutoScaling": {
+                    "$ref": "#/$defs/AutoScalingSettings"
+                }
+            }
+        },
+        "DeleteKeyspaceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteKeyspaceRequest": {
+            "type": "object",
+            "properties": {
+                "keyspaceName": {
+                    "$ref": "#/$defs/KeyspaceName"
+                }
+            }
+        },
+        "DeleteTableResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteTableRequest": {
+            "type": "object",
+            "properties": {
+                "keyspaceName": {
+                    "$ref": "#/$defs/KeyspaceName"
+                },
+                "tableName": {
+                    "$ref": "#/$defs/TableName"
+                }
+            }
+        },
+        "GetKeyspaceResponse": {
+            "type": "object",
+            "properties": {
+                "keyspaceName": {
+                    "$ref": "#/$defs/KeyspaceName"
+                },
+                "resourceArn": {
+                    "$ref": "#/$defs/ARN"
+                },
+                "replicationStrategy": {
+                    "$ref": "#/$defs/rs"
+                },
+                "replicationRegions": {
+                    "$ref": "#/$defs/RegionList"
+                }
+            }
+        },
+        "GetKeyspaceRequest": {
+            "type": "object",
+            "properties": {
+                "keyspaceName": {
+                    "$ref": "#/$defs/KeyspaceName"
+                }
+            }
+        },
+        "GetTableResponse": {
+            "type": "object",
+            "properties": {
+                "keyspaceName": {
+                    "$ref": "#/$defs/KeyspaceName"
+                },
+                "tableName": {
+                    "$ref": "#/$defs/TableName"
+                },
+                "resourceArn": {
+                    "$ref": "#/$defs/ARN"
+                },
+                "creationTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "status": {
+                    "$ref": "#/$defs/TableStatus"
+                },
+                "schemaDefinition": {
+                    "$ref": "#/$defs/SchemaDefinition"
+                },
+                "capacitySpecification": {
+                    "$ref": "#/$defs/CapacitySpecificationSummary"
+                },
+                "encryptionSpecification": {
+                    "$ref": "#/$defs/EncryptionSpecification"
+                },
+                "pointInTimeRecovery": {
+                    "$ref": "#/$defs/PointInTimeRecoverySummary"
+                },
+                "ttl": {
+                    "$ref": "#/$defs/TimeToLive"
+                },
+                "defaultTimeToLive": {
+                    "$ref": "#/$defs/DefaultTimeToLive"
+                },
+                "comment": {
+                    "$ref": "#/$defs/Comment"
+                },
+                "clientSideTimestamps": {
+                    "$ref": "#/$defs/ClientSideTimestamps"
+                },
+                "replicaSpecifications": {
+                    "$ref": "#/$defs/ReplicaSpecificationSummaryList"
+                }
+            }
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "TableStatus": {
+            "type": "string"
+        },
+        "CapacitySpecificationSummary": {
+            "type": "object",
+            "properties": {
+                "throughputMode": {
+                    "$ref": "#/$defs/ThroughputMode"
+                },
+                "readCapacityUnits": {
+                    "$ref": "#/$defs/CapacityUnits"
+                },
+                "writeCapacityUnits": {
+                    "$ref": "#/$defs/CapacityUnits"
+                },
+                "lastUpdateToPayPerRequestTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "PointInTimeRecoverySummary": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "$ref": "#/$defs/PointInTimeRecoveryStatus"
+                },
+                "earliestRestorableTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ReplicaSpecificationSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ReplicaSpecificationSummary"
+            }
+        },
+        "ReplicaSpecificationSummary": {
+            "type": "object",
+            "properties": {
+                "region": {
+                    "$ref": "#/$defs/region"
+                },
+                "status": {
+                    "$ref": "#/$defs/TableStatus"
+                },
+                "capacitySpecification": {
+                    "$ref": "#/$defs/CapacitySpecificationSummary"
+                }
+            }
+        },
+        "GetTableRequest": {
+            "type": "object",
+            "properties": {
+                "keyspaceName": {
+                    "$ref": "#/$defs/KeyspaceName"
+                },
+                "tableName": {
+                    "$ref": "#/$defs/TableName"
+                }
+            }
+        },
+        "GetTableAutoScalingSettingsResponse": {
+            "type": "object",
+            "properties": {
+                "keyspaceName": {
+                    "$ref": "#/$defs/KeyspaceName"
+                },
+                "tableName": {
+                    "$ref": "#/$defs/TableName"
+                },
+                "resourceArn": {
+                    "$ref": "#/$defs/ARN"
+                },
+                "autoScalingSpecification": {
+                    "$ref": "#/$defs/AutoScalingSpecification"
+                },
+                "replicaSpecifications": {
+                    "$ref": "#/$defs/ReplicaAutoScalingSpecificationList"
+                }
+            }
+        },
+        "ReplicaAutoScalingSpecificationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ReplicaAutoScalingSpecification"
+            }
+        },
+        "ReplicaAutoScalingSpecification": {
+            "type": "object",
+            "properties": {
+                "region": {
+                    "$ref": "#/$defs/region"
+                },
+                "autoScalingSpecification": {
+                    "$ref": "#/$defs/AutoScalingSpecification"
+                }
+            }
+        },
+        "GetTableAutoScalingSettingsRequest": {
+            "type": "object",
+            "properties": {
+                "keyspaceName": {
+                    "$ref": "#/$defs/KeyspaceName"
+                },
+                "tableName": {
+                    "$ref": "#/$defs/TableName"
+                }
+            }
+        },
+        "ListKeyspacesResponse": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "keyspaces": {
+                    "$ref": "#/$defs/KeyspaceSummaryList"
+                }
+            }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "KeyspaceSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/KeyspaceSummary"
+            }
+        },
+        "KeyspaceSummary": {
+            "type": "object",
+            "properties": {
+                "keyspaceName": {
+                    "$ref": "#/$defs/KeyspaceName"
+                },
+                "resourceArn": {
+                    "$ref": "#/$defs/ARN"
+                },
+                "replicationStrategy": {
+                    "$ref": "#/$defs/rs"
+                },
+                "replicationRegions": {
+                    "$ref": "#/$defs/RegionList"
+                }
+            }
+        },
+        "ListKeyspacesRequest": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListTablesResponse": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "tables": {
+                    "$ref": "#/$defs/TableSummaryList"
+                }
+            }
+        },
+        "TableSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TableSummary"
+            }
+        },
+        "TableSummary": {
+            "type": "object",
+            "properties": {
+                "keyspaceName": {
+                    "$ref": "#/$defs/KeyspaceName"
+                },
+                "tableName": {
+                    "$ref": "#/$defs/TableName"
+                },
+                "resourceArn": {
+                    "$ref": "#/$defs/ARN"
+                }
+            }
+        },
+        "ListTablesRequest": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "keyspaceName": {
+                    "$ref": "#/$defs/KeyspaceName"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/ARN"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "RestoreTableResponse": {
+            "type": "object",
+            "properties": {
+                "restoredTableARN": {
+                    "$ref": "#/$defs/ARN"
+                }
+            }
+        },
+        "RestoreTableRequest": {
+            "type": "object",
+            "properties": {
+                "sourceKeyspaceName": {
+                    "$ref": "#/$defs/KeyspaceName"
+                },
+                "sourceTableName": {
+                    "$ref": "#/$defs/TableName"
+                },
+                "targetKeyspaceName": {
+                    "$ref": "#/$defs/KeyspaceName"
+                },
+                "targetTableName": {
+                    "$ref": "#/$defs/TableName"
+                },
+                "restoreTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "capacitySpecificationOverride": {
+                    "$ref": "#/$defs/CapacitySpecification"
+                },
+                "encryptionSpecificationOverride": {
+                    "$ref": "#/$defs/EncryptionSpecification"
+                },
+                "pointInTimeRecoveryOverride": {
+                    "$ref": "#/$defs/PointInTimeRecovery"
+                },
+                "tagsOverride": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "autoScalingSpecification": {
+                    "$ref": "#/$defs/AutoScalingSpecification"
+                },
+                "replicaSpecifications": {
+                    "$ref": "#/$defs/ReplicaSpecificationList"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/ARN"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/ARN"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "UpdateTableResponse": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/ARN"
+                }
+            }
+        },
+        "UpdateTableRequest": {
+            "type": "object",
+            "properties": {
+                "keyspaceName": {
+                    "$ref": "#/$defs/KeyspaceName"
+                },
+                "tableName": {
+                    "$ref": "#/$defs/TableName"
+                },
+                "addColumns": {
+                    "$ref": "#/$defs/ColumnDefinitionList"
+                },
+                "capacitySpecification": {
+                    "$ref": "#/$defs/CapacitySpecification"
+                },
+                "encryptionSpecification": {
+                    "$ref": "#/$defs/EncryptionSpecification"
+                },
+                "pointInTimeRecovery": {
+                    "$ref": "#/$defs/PointInTimeRecovery"
+                },
+                "ttl": {
+                    "$ref": "#/$defs/TimeToLive"
+                },
+                "defaultTimeToLive": {
+                    "$ref": "#/$defs/DefaultTimeToLive"
+                },
+                "clientSideTimestamps": {
+                    "$ref": "#/$defs/ClientSideTimestamps"
+                },
+                "autoScalingSpecification": {
+                    "$ref": "#/$defs/AutoScalingSpecification"
+                },
+                "replicaSpecifications": {
+                    "$ref": "#/$defs/ReplicaSpecificationList"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://cassandra-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "stringEquals",
+                                                        "argv": [
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "name"
+                                                                ]
+                                                            },
+                                                            "aws-us-gov"
+                                                        ]
+                                                    }
+                                                ],
+                                                "endpoint": {
+                                                    "url": "https://cassandra.{Region}.amazonaws.com",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://cassandra-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://cassandra.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://cassandra.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

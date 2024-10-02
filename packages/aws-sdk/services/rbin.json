@@ -1,0 +1,1149 @@
+{
+    "name": "rbin",
+    "commands": [
+        {
+            "name": "CreateRule",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateRule"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateRuleResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateRuleRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteRule",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteRule"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteRuleResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteRuleRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetRule",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetRule"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetRuleResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetRuleRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListRules",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListRules"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListRulesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListRulesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "LockRule",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "LockRule"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/LockRuleResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/LockRuleRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UnlockRule",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UnlockRule"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UnlockRuleResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UnlockRuleRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateRule",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateRule"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateRuleResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateRuleRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CreateRuleResponse": {
+            "type": "object",
+            "properties": {
+                "Identifier": {
+                    "$ref": "#/$defs/RuleIdentifier"
+                },
+                "RetentionPeriod": {
+                    "$ref": "#/$defs/RetentionPeriod"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "ResourceType": {
+                    "$ref": "#/$defs/ResourceType"
+                },
+                "ResourceTags": {
+                    "$ref": "#/$defs/ResourceTags"
+                },
+                "Status": {
+                    "$ref": "#/$defs/RuleStatus"
+                },
+                "LockConfiguration": {
+                    "$ref": "#/$defs/LockConfiguration"
+                },
+                "LockState": {
+                    "$ref": "#/$defs/LockState"
+                },
+                "RuleArn": {
+                    "$ref": "#/$defs/RuleArn"
+                }
+            }
+        },
+        "RuleIdentifier": {
+            "type": "string"
+        },
+        "RetentionPeriod": {
+            "type": "object",
+            "properties": {
+                "RetentionPeriodValue": {
+                    "$ref": "#/$defs/RetentionPeriodValue"
+                },
+                "RetentionPeriodUnit": {
+                    "$ref": "#/$defs/RetentionPeriodUnit"
+                }
+            }
+        },
+        "RetentionPeriodValue": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "RetentionPeriodUnit": {
+            "enum": [
+                "DAYS"
+            ]
+        },
+        "Description": {
+            "type": "string"
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "ResourceType": {
+            "enum": [
+                "EBS_SNAPSHOT",
+                "EC2_IMAGE"
+            ]
+        },
+        "ResourceTags": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourceTag"
+            }
+        },
+        "ResourceTag": {
+            "type": "object",
+            "properties": {
+                "ResourceTagKey": {
+                    "$ref": "#/$defs/ResourceTagKey"
+                },
+                "ResourceTagValue": {
+                    "$ref": "#/$defs/ResourceTagValue"
+                }
+            }
+        },
+        "ResourceTagKey": {
+            "type": "string"
+        },
+        "ResourceTagValue": {
+            "type": "string"
+        },
+        "RuleStatus": {
+            "enum": [
+                "PENDING",
+                "AVAILABLE"
+            ]
+        },
+        "LockConfiguration": {
+            "type": "object",
+            "properties": {
+                "UnlockDelay": {
+                    "$ref": "#/$defs/UnlockDelay"
+                }
+            }
+        },
+        "UnlockDelay": {
+            "type": "object",
+            "properties": {
+                "UnlockDelayValue": {
+                    "$ref": "#/$defs/UnlockDelayValue"
+                },
+                "UnlockDelayUnit": {
+                    "$ref": "#/$defs/UnlockDelayUnit"
+                }
+            }
+        },
+        "UnlockDelayValue": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "UnlockDelayUnit": {
+            "enum": [
+                "DAYS"
+            ]
+        },
+        "LockState": {
+            "enum": [
+                "LOCKED",
+                "PENDING_UNLOCK",
+                "UNLOCKED"
+            ]
+        },
+        "RuleArn": {
+            "type": "string"
+        },
+        "CreateRuleRequest": {
+            "type": "object",
+            "properties": {
+                "RetentionPeriod": {
+                    "$ref": "#/$defs/RetentionPeriod"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "ResourceType": {
+                    "$ref": "#/$defs/ResourceType"
+                },
+                "ResourceTags": {
+                    "$ref": "#/$defs/ResourceTags"
+                },
+                "LockConfiguration": {
+                    "$ref": "#/$defs/LockConfiguration"
+                }
+            }
+        },
+        "DeleteRuleResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteRuleRequest": {
+            "type": "object",
+            "properties": {
+                "Identifier": {
+                    "$ref": "#/$defs/RuleIdentifier"
+                }
+            }
+        },
+        "GetRuleResponse": {
+            "type": "object",
+            "properties": {
+                "Identifier": {
+                    "$ref": "#/$defs/RuleIdentifier"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "ResourceType": {
+                    "$ref": "#/$defs/ResourceType"
+                },
+                "RetentionPeriod": {
+                    "$ref": "#/$defs/RetentionPeriod"
+                },
+                "ResourceTags": {
+                    "$ref": "#/$defs/ResourceTags"
+                },
+                "Status": {
+                    "$ref": "#/$defs/RuleStatus"
+                },
+                "LockConfiguration": {
+                    "$ref": "#/$defs/LockConfiguration"
+                },
+                "LockState": {
+                    "$ref": "#/$defs/LockState"
+                },
+                "LockEndTime": {
+                    "$ref": "#/$defs/TimeStamp"
+                },
+                "RuleArn": {
+                    "$ref": "#/$defs/RuleArn"
+                }
+            }
+        },
+        "TimeStamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "GetRuleRequest": {
+            "type": "object",
+            "properties": {
+                "Identifier": {
+                    "$ref": "#/$defs/RuleIdentifier"
+                }
+            }
+        },
+        "ListRulesResponse": {
+            "type": "object",
+            "properties": {
+                "Rules": {
+                    "$ref": "#/$defs/RuleSummaryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "RuleSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RuleSummary"
+            }
+        },
+        "RuleSummary": {
+            "type": "object",
+            "properties": {
+                "Identifier": {
+                    "$ref": "#/$defs/RuleIdentifier"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "RetentionPeriod": {
+                    "$ref": "#/$defs/RetentionPeriod"
+                },
+                "LockState": {
+                    "$ref": "#/$defs/LockState"
+                },
+                "RuleArn": {
+                    "$ref": "#/$defs/RuleArn"
+                }
+            }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "ListRulesRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "ResourceType": {
+                    "$ref": "#/$defs/ResourceType"
+                },
+                "ResourceTags": {
+                    "$ref": "#/$defs/ResourceTags"
+                },
+                "LockState": {
+                    "$ref": "#/$defs/LockState"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/RuleArn"
+                }
+            }
+        },
+        "LockRuleResponse": {
+            "type": "object",
+            "properties": {
+                "Identifier": {
+                    "$ref": "#/$defs/RuleIdentifier"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "ResourceType": {
+                    "$ref": "#/$defs/ResourceType"
+                },
+                "RetentionPeriod": {
+                    "$ref": "#/$defs/RetentionPeriod"
+                },
+                "ResourceTags": {
+                    "$ref": "#/$defs/ResourceTags"
+                },
+                "Status": {
+                    "$ref": "#/$defs/RuleStatus"
+                },
+                "LockConfiguration": {
+                    "$ref": "#/$defs/LockConfiguration"
+                },
+                "LockState": {
+                    "$ref": "#/$defs/LockState"
+                },
+                "RuleArn": {
+                    "$ref": "#/$defs/RuleArn"
+                }
+            }
+        },
+        "LockRuleRequest": {
+            "type": "object",
+            "properties": {
+                "Identifier": {
+                    "$ref": "#/$defs/RuleIdentifier"
+                },
+                "LockConfiguration": {
+                    "$ref": "#/$defs/LockConfiguration"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/RuleArn"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "UnlockRuleResponse": {
+            "type": "object",
+            "properties": {
+                "Identifier": {
+                    "$ref": "#/$defs/RuleIdentifier"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "ResourceType": {
+                    "$ref": "#/$defs/ResourceType"
+                },
+                "RetentionPeriod": {
+                    "$ref": "#/$defs/RetentionPeriod"
+                },
+                "ResourceTags": {
+                    "$ref": "#/$defs/ResourceTags"
+                },
+                "Status": {
+                    "$ref": "#/$defs/RuleStatus"
+                },
+                "LockConfiguration": {
+                    "$ref": "#/$defs/LockConfiguration"
+                },
+                "LockState": {
+                    "$ref": "#/$defs/LockState"
+                },
+                "LockEndTime": {
+                    "$ref": "#/$defs/TimeStamp"
+                },
+                "RuleArn": {
+                    "$ref": "#/$defs/RuleArn"
+                }
+            }
+        },
+        "UnlockRuleRequest": {
+            "type": "object",
+            "properties": {
+                "Identifier": {
+                    "$ref": "#/$defs/RuleIdentifier"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/RuleArn"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "UpdateRuleResponse": {
+            "type": "object",
+            "properties": {
+                "Identifier": {
+                    "$ref": "#/$defs/RuleIdentifier"
+                },
+                "RetentionPeriod": {
+                    "$ref": "#/$defs/RetentionPeriod"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "ResourceType": {
+                    "$ref": "#/$defs/ResourceType"
+                },
+                "ResourceTags": {
+                    "$ref": "#/$defs/ResourceTags"
+                },
+                "Status": {
+                    "$ref": "#/$defs/RuleStatus"
+                },
+                "LockState": {
+                    "$ref": "#/$defs/LockState"
+                },
+                "LockEndTime": {
+                    "$ref": "#/$defs/TimeStamp"
+                },
+                "RuleArn": {
+                    "$ref": "#/$defs/RuleArn"
+                }
+            }
+        },
+        "UpdateRuleRequest": {
+            "type": "object",
+            "properties": {
+                "Identifier": {
+                    "$ref": "#/$defs/RuleIdentifier"
+                },
+                "RetentionPeriod": {
+                    "$ref": "#/$defs/RetentionPeriod"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "ResourceType": {
+                    "$ref": "#/$defs/ResourceType"
+                },
+                "ResourceTags": {
+                    "$ref": "#/$defs/ResourceTags"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://rbin-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://rbin-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://rbin.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://rbin.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

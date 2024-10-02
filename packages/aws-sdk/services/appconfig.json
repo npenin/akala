@@ -1,0 +1,3304 @@
+{
+    "name": "appconfig",
+    "commands": [
+        {
+            "name": "CreateApplication",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateApplication"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/Application"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateApplicationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateConfigurationProfile",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateConfigurationProfile"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ConfigurationProfile"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateConfigurationProfileRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateDeploymentStrategy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateDeploymentStrategy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeploymentStrategy"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateDeploymentStrategyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateEnvironment",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateEnvironment"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/Environment"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateEnvironmentRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateExtension",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateExtension"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/Extension"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateExtensionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateExtensionAssociation",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateExtensionAssociation"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ExtensionAssociation"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateExtensionAssociationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateHostedConfigurationVersion",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateHostedConfigurationVersion"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/HostedConfigurationVersion"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateHostedConfigurationVersionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteApplication",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteApplication"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteApplicationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteConfigurationProfile",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteConfigurationProfile"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteConfigurationProfileRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteDeploymentStrategy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteDeploymentStrategy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteDeploymentStrategyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteEnvironment",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteEnvironment"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteEnvironmentRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteExtension",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteExtension"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteExtensionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteExtensionAssociation",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteExtensionAssociation"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteExtensionAssociationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteHostedConfigurationVersion",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteHostedConfigurationVersion"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteHostedConfigurationVersionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetAccountSettings",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetAccountSettings"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AccountSettings"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetApplication",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetApplication"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/Application"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetApplicationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/Configuration"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetConfigurationProfile",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetConfigurationProfile"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ConfigurationProfile"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetConfigurationProfileRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetDeployment",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetDeployment"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/Deployment"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetDeploymentRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetDeploymentStrategy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetDeploymentStrategy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeploymentStrategy"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetDeploymentStrategyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetEnvironment",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetEnvironment"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/Environment"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetEnvironmentRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetExtension",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetExtension"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/Extension"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetExtensionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetExtensionAssociation",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetExtensionAssociation"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ExtensionAssociation"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetExtensionAssociationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetHostedConfigurationVersion",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetHostedConfigurationVersion"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/HostedConfigurationVersion"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetHostedConfigurationVersionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListApplications",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListApplications"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/Applications"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListApplicationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListConfigurationProfiles",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListConfigurationProfiles"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ConfigurationProfiles"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListConfigurationProfilesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListDeployments",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListDeployments"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/Deployments"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListDeploymentsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListDeploymentStrategies",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListDeploymentStrategies"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeploymentStrategies"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListDeploymentStrategiesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListEnvironments",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListEnvironments"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/Environments"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListEnvironmentsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListExtensionAssociations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListExtensionAssociations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ExtensionAssociations"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListExtensionAssociationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListExtensions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListExtensions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/Extensions"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListExtensionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListHostedConfigurationVersions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListHostedConfigurationVersions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/HostedConfigurationVersions"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListHostedConfigurationVersionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ResourceTags"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartDeployment",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartDeployment"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/Deployment"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartDeploymentRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StopDeployment",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StopDeployment"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/Deployment"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StopDeploymentRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateAccountSettings",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateAccountSettings"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AccountSettings"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateAccountSettingsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateApplication",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateApplication"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/Application"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateApplicationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateConfigurationProfile",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateConfigurationProfile"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ConfigurationProfile"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateConfigurationProfileRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateDeploymentStrategy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateDeploymentStrategy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeploymentStrategy"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateDeploymentStrategyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateEnvironment",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateEnvironment"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/Environment"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateEnvironmentRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateExtension",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateExtension"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/Extension"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateExtensionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateExtensionAssociation",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateExtensionAssociation"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ExtensionAssociation"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateExtensionAssociationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ValidateConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ValidateConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ValidateConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "Application": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                }
+            }
+        },
+        "Id": {
+            "type": "string"
+        },
+        "Name": {
+            "type": "string"
+        },
+        "Description": {
+            "type": "string"
+        },
+        "CreateApplicationRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "TagMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TagValue"
+            }
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "ConfigurationProfile": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Id": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Name": {
+                    "$ref": "#/$defs/LongName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "LocationUri": {
+                    "$ref": "#/$defs/Uri"
+                },
+                "RetrievalRoleArn": {
+                    "$ref": "#/$defs/RoleArn"
+                },
+                "Validators": {
+                    "$ref": "#/$defs/ValidatorList"
+                },
+                "Type": {
+                    "$ref": "#/$defs/ConfigurationProfileType"
+                },
+                "KmsKeyArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "KmsKeyIdentifier": {
+                    "$ref": "#/$defs/KmsKeyIdentifier"
+                }
+            }
+        },
+        "LongName": {
+            "type": "string"
+        },
+        "Uri": {
+            "type": "string"
+        },
+        "RoleArn": {
+            "type": "string"
+        },
+        "ValidatorList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Validator"
+            }
+        },
+        "Validator": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "$ref": "#/$defs/ValidatorType"
+                },
+                "Content": {
+                    "$ref": "#/$defs/StringWithLengthBetween0And32768"
+                }
+            }
+        },
+        "ValidatorType": {
+            "enum": [
+                "JSON_SCHEMA",
+                "LAMBDA"
+            ]
+        },
+        "StringWithLengthBetween0And32768": {
+            "type": "string"
+        },
+        "ConfigurationProfileType": {
+            "type": "string"
+        },
+        "Arn": {
+            "type": "string"
+        },
+        "KmsKeyIdentifier": {
+            "type": "string"
+        },
+        "CreateConfigurationProfileRequest": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Name": {
+                    "$ref": "#/$defs/LongName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "LocationUri": {
+                    "$ref": "#/$defs/Uri"
+                },
+                "RetrievalRoleArn": {
+                    "$ref": "#/$defs/RoleArn"
+                },
+                "Validators": {
+                    "$ref": "#/$defs/ValidatorList"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                },
+                "Type": {
+                    "$ref": "#/$defs/ConfigurationProfileType"
+                },
+                "KmsKeyIdentifier": {
+                    "$ref": "#/$defs/KmsKeyIdentifier"
+                }
+            }
+        },
+        "DeploymentStrategy": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "DeploymentDurationInMinutes": {
+                    "$ref": "#/$defs/MinutesBetween0And24Hours"
+                },
+                "GrowthType": {
+                    "$ref": "#/$defs/GrowthType"
+                },
+                "GrowthFactor": {
+                    "$ref": "#/$defs/Percentage"
+                },
+                "FinalBakeTimeInMinutes": {
+                    "$ref": "#/$defs/MinutesBetween0And24Hours"
+                },
+                "ReplicateTo": {
+                    "$ref": "#/$defs/ReplicateTo"
+                }
+            }
+        },
+        "MinutesBetween0And24Hours": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "GrowthType": {
+            "enum": [
+                "LINEAR",
+                "EXPONENTIAL"
+            ]
+        },
+        "Percentage": {
+            "type": "number",
+            "format": "float"
+        },
+        "ReplicateTo": {
+            "enum": [
+                "NONE",
+                "SSM_DOCUMENT"
+            ]
+        },
+        "CreateDeploymentStrategyRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "DeploymentDurationInMinutes": {
+                    "$ref": "#/$defs/MinutesBetween0And24Hours"
+                },
+                "FinalBakeTimeInMinutes": {
+                    "$ref": "#/$defs/MinutesBetween0And24Hours"
+                },
+                "GrowthFactor": {
+                    "$ref": "#/$defs/GrowthFactor"
+                },
+                "GrowthType": {
+                    "$ref": "#/$defs/GrowthType"
+                },
+                "ReplicateTo": {
+                    "$ref": "#/$defs/ReplicateTo"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "GrowthFactor": {
+            "type": "number",
+            "format": "float"
+        },
+        "Environment": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Id": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "State": {
+                    "$ref": "#/$defs/EnvironmentState"
+                },
+                "Monitors": {
+                    "$ref": "#/$defs/MonitorList"
+                }
+            }
+        },
+        "EnvironmentState": {
+            "enum": [
+                "READY_FOR_DEPLOYMENT",
+                "DEPLOYING",
+                "ROLLING_BACK",
+                "ROLLED_BACK"
+            ]
+        },
+        "MonitorList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Monitor"
+            }
+        },
+        "Monitor": {
+            "type": "object",
+            "properties": {
+                "AlarmArn": {
+                    "$ref": "#/$defs/StringWithLengthBetween1And2048"
+                },
+                "AlarmRoleArn": {
+                    "$ref": "#/$defs/RoleArn"
+                }
+            }
+        },
+        "StringWithLengthBetween1And2048": {
+            "type": "string"
+        },
+        "CreateEnvironmentRequest": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "Monitors": {
+                    "$ref": "#/$defs/MonitorList"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "Extension": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "VersionNumber": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "Actions": {
+                    "$ref": "#/$defs/ActionsMap"
+                },
+                "Parameters": {
+                    "$ref": "#/$defs/ParameterMap"
+                }
+            }
+        },
+        "Integer": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ActionsMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/ActionList"
+            }
+        },
+        "ActionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Action"
+            }
+        },
+        "Action": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "Uri": {
+                    "$ref": "#/$defs/Uri"
+                },
+                "RoleArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "ParameterMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/Parameter"
+            }
+        },
+        "Parameter": {
+            "type": "object",
+            "properties": {
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "Required": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "Dynamic": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "Boolean": {
+            "type": "boolean"
+        },
+        "CreateExtensionRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/ExtensionOrParameterName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "Actions": {
+                    "$ref": "#/$defs/ActionsMap"
+                },
+                "Parameters": {
+                    "$ref": "#/$defs/ParameterMap"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                },
+                "LatestVersionNumber": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "ExtensionOrParameterName": {
+            "type": "string"
+        },
+        "ExtensionAssociation": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/Identifier"
+                },
+                "ExtensionArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Parameters": {
+                    "$ref": "#/$defs/ParameterValueMap"
+                },
+                "ExtensionVersionNumber": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "Identifier": {
+            "type": "string"
+        },
+        "ParameterValueMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/StringWithLengthBetween1And2048"
+            }
+        },
+        "CreateExtensionAssociationRequest": {
+            "type": "object",
+            "properties": {
+                "ExtensionIdentifier": {
+                    "$ref": "#/$defs/Identifier"
+                },
+                "ExtensionVersionNumber": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "ResourceIdentifier": {
+                    "$ref": "#/$defs/Identifier"
+                },
+                "Parameters": {
+                    "$ref": "#/$defs/ParameterValueMap"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "HostedConfigurationVersion": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "ConfigurationProfileId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "VersionNumber": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "Content": {
+                    "$ref": "#/$defs/Blob"
+                },
+                "ContentType": {
+                    "$ref": "#/$defs/StringWithLengthBetween1And255"
+                },
+                "VersionLabel": {
+                    "$ref": "#/$defs/VersionLabel"
+                },
+                "KmsKeyArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "StringWithLengthBetween1And255": {
+            "type": "string"
+        },
+        "VersionLabel": {
+            "type": "string"
+        },
+        "CreateHostedConfigurationVersionRequest": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "ConfigurationProfileId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "Content": {
+                    "$ref": "#/$defs/Blob"
+                },
+                "ContentType": {
+                    "$ref": "#/$defs/StringWithLengthBetween1And255"
+                },
+                "LatestVersionNumber": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "VersionLabel": {
+                    "$ref": "#/$defs/VersionLabel"
+                }
+            }
+        },
+        "DeleteApplicationRequest": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/Id"
+                }
+            }
+        },
+        "DeleteConfigurationProfileRequest": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "ConfigurationProfileId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "DeletionProtectionCheck": {
+                    "$ref": "#/$defs/DeletionProtectionCheck"
+                }
+            }
+        },
+        "DeletionProtectionCheck": {
+            "enum": [
+                "ACCOUNT_DEFAULT",
+                "APPLY",
+                "BYPASS"
+            ]
+        },
+        "DeleteDeploymentStrategyRequest": {
+            "type": "object",
+            "properties": {
+                "DeploymentStrategyId": {
+                    "$ref": "#/$defs/DeploymentStrategyId"
+                }
+            }
+        },
+        "DeploymentStrategyId": {
+            "type": "string"
+        },
+        "DeleteEnvironmentRequest": {
+            "type": "object",
+            "properties": {
+                "EnvironmentId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "ApplicationId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "DeletionProtectionCheck": {
+                    "$ref": "#/$defs/DeletionProtectionCheck"
+                }
+            }
+        },
+        "DeleteExtensionRequest": {
+            "type": "object",
+            "properties": {
+                "ExtensionIdentifier": {
+                    "$ref": "#/$defs/Identifier"
+                },
+                "VersionNumber": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "DeleteExtensionAssociationRequest": {
+            "type": "object",
+            "properties": {
+                "ExtensionAssociationId": {
+                    "$ref": "#/$defs/Id"
+                }
+            }
+        },
+        "DeleteHostedConfigurationVersionRequest": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "ConfigurationProfileId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "VersionNumber": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "AccountSettings": {
+            "type": "object",
+            "properties": {
+                "DeletionProtection": {
+                    "$ref": "#/$defs/DeletionProtectionSettings"
+                }
+            }
+        },
+        "DeletionProtectionSettings": {
+            "type": "object",
+            "properties": {
+                "Enabled": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "ProtectionPeriodInMinutes": {
+                    "$ref": "#/$defs/DeletionProtectionDuration"
+                }
+            }
+        },
+        "DeletionProtectionDuration": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "GetApplicationRequest": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/Id"
+                }
+            }
+        },
+        "Configuration": {
+            "type": "object",
+            "properties": {
+                "Content": {
+                    "$ref": "#/$defs/Blob"
+                },
+                "ConfigurationVersion": {
+                    "$ref": "#/$defs/Version"
+                },
+                "ContentType": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "Version": {
+            "type": "string"
+        },
+        "String": {
+            "type": "string"
+        },
+        "GetConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "Application": {
+                    "$ref": "#/$defs/StringWithLengthBetween1And64"
+                },
+                "Environment": {
+                    "$ref": "#/$defs/StringWithLengthBetween1And64"
+                },
+                "Configuration": {
+                    "$ref": "#/$defs/StringWithLengthBetween1And64"
+                },
+                "ClientId": {
+                    "$ref": "#/$defs/StringWithLengthBetween1And64"
+                },
+                "ClientConfigurationVersion": {
+                    "$ref": "#/$defs/Version"
+                }
+            }
+        },
+        "StringWithLengthBetween1And64": {
+            "type": "string"
+        },
+        "GetConfigurationProfileRequest": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "ConfigurationProfileId": {
+                    "$ref": "#/$defs/Id"
+                }
+            }
+        },
+        "Deployment": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "EnvironmentId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "DeploymentStrategyId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "ConfigurationProfileId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "DeploymentNumber": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "ConfigurationName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "ConfigurationLocationUri": {
+                    "$ref": "#/$defs/Uri"
+                },
+                "ConfigurationVersion": {
+                    "$ref": "#/$defs/Version"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "DeploymentDurationInMinutes": {
+                    "$ref": "#/$defs/MinutesBetween0And24Hours"
+                },
+                "GrowthType": {
+                    "$ref": "#/$defs/GrowthType"
+                },
+                "GrowthFactor": {
+                    "$ref": "#/$defs/Percentage"
+                },
+                "FinalBakeTimeInMinutes": {
+                    "$ref": "#/$defs/MinutesBetween0And24Hours"
+                },
+                "State": {
+                    "$ref": "#/$defs/DeploymentState"
+                },
+                "EventLog": {
+                    "$ref": "#/$defs/DeploymentEvents"
+                },
+                "PercentageComplete": {
+                    "$ref": "#/$defs/Percentage"
+                },
+                "StartedAt": {
+                    "$ref": "#/$defs/Iso8601DateTime"
+                },
+                "CompletedAt": {
+                    "$ref": "#/$defs/Iso8601DateTime"
+                },
+                "AppliedExtensions": {
+                    "$ref": "#/$defs/AppliedExtensions"
+                },
+                "KmsKeyArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "KmsKeyIdentifier": {
+                    "$ref": "#/$defs/KmsKeyIdentifier"
+                },
+                "VersionLabel": {
+                    "$ref": "#/$defs/VersionLabel"
+                }
+            }
+        },
+        "DeploymentState": {
+            "enum": [
+                "BAKING",
+                "VALIDATING",
+                "DEPLOYING",
+                "COMPLETE",
+                "ROLLING_BACK",
+                "ROLLED_BACK"
+            ]
+        },
+        "DeploymentEvents": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DeploymentEvent"
+            }
+        },
+        "DeploymentEvent": {
+            "type": "object",
+            "properties": {
+                "EventType": {
+                    "$ref": "#/$defs/DeploymentEventType"
+                },
+                "TriggeredBy": {
+                    "$ref": "#/$defs/TriggeredBy"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "ActionInvocations": {
+                    "$ref": "#/$defs/ActionInvocations"
+                },
+                "OccurredAt": {
+                    "$ref": "#/$defs/Iso8601DateTime"
+                }
+            }
+        },
+        "DeploymentEventType": {
+            "enum": [
+                "PERCENTAGE_UPDATED",
+                "ROLLBACK_STARTED",
+                "ROLLBACK_COMPLETED",
+                "BAKE_TIME_STARTED",
+                "DEPLOYMENT_STARTED",
+                "DEPLOYMENT_COMPLETED"
+            ]
+        },
+        "TriggeredBy": {
+            "enum": [
+                "USER",
+                "APPCONFIG",
+                "CLOUDWATCH_ALARM",
+                "INTERNAL_ERROR"
+            ]
+        },
+        "ActionInvocations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ActionInvocation"
+            }
+        },
+        "ActionInvocation": {
+            "type": "object",
+            "properties": {
+                "ExtensionIdentifier": {
+                    "$ref": "#/$defs/Identifier"
+                },
+                "ActionName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Uri": {
+                    "$ref": "#/$defs/Uri"
+                },
+                "RoleArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "ErrorMessage": {
+                    "$ref": "#/$defs/String"
+                },
+                "ErrorCode": {
+                    "$ref": "#/$defs/String"
+                },
+                "InvocationId": {
+                    "$ref": "#/$defs/Id"
+                }
+            }
+        },
+        "Iso8601DateTime": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "AppliedExtensions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AppliedExtension"
+            }
+        },
+        "AppliedExtension": {
+            "type": "object",
+            "properties": {
+                "ExtensionId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "ExtensionAssociationId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "VersionNumber": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Parameters": {
+                    "$ref": "#/$defs/ParameterValueMap"
+                }
+            }
+        },
+        "GetDeploymentRequest": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "EnvironmentId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "DeploymentNumber": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "GetDeploymentStrategyRequest": {
+            "type": "object",
+            "properties": {
+                "DeploymentStrategyId": {
+                    "$ref": "#/$defs/DeploymentStrategyId"
+                }
+            }
+        },
+        "GetEnvironmentRequest": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "EnvironmentId": {
+                    "$ref": "#/$defs/Id"
+                }
+            }
+        },
+        "GetExtensionRequest": {
+            "type": "object",
+            "properties": {
+                "ExtensionIdentifier": {
+                    "$ref": "#/$defs/Identifier"
+                },
+                "VersionNumber": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "GetExtensionAssociationRequest": {
+            "type": "object",
+            "properties": {
+                "ExtensionAssociationId": {
+                    "$ref": "#/$defs/Id"
+                }
+            }
+        },
+        "GetHostedConfigurationVersionRequest": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "ConfigurationProfileId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "VersionNumber": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "Applications": {
+            "type": "object",
+            "properties": {
+                "Items": {
+                    "$ref": "#/$defs/ApplicationList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ApplicationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Application"
+            }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "ListApplicationsRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ConfigurationProfiles": {
+            "type": "object",
+            "properties": {
+                "Items": {
+                    "$ref": "#/$defs/ConfigurationProfileSummaryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ConfigurationProfileSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ConfigurationProfileSummary"
+            }
+        },
+        "ConfigurationProfileSummary": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Id": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Name": {
+                    "$ref": "#/$defs/LongName"
+                },
+                "LocationUri": {
+                    "$ref": "#/$defs/Uri"
+                },
+                "ValidatorTypes": {
+                    "$ref": "#/$defs/ValidatorTypeList"
+                },
+                "Type": {
+                    "$ref": "#/$defs/ConfigurationProfileType"
+                }
+            }
+        },
+        "ValidatorTypeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ValidatorType"
+            }
+        },
+        "ListConfigurationProfilesRequest": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "Type": {
+                    "$ref": "#/$defs/ConfigurationProfileType"
+                }
+            }
+        },
+        "Deployments": {
+            "type": "object",
+            "properties": {
+                "Items": {
+                    "$ref": "#/$defs/DeploymentList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "DeploymentList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DeploymentSummary"
+            }
+        },
+        "DeploymentSummary": {
+            "type": "object",
+            "properties": {
+                "DeploymentNumber": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "ConfigurationName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "ConfigurationVersion": {
+                    "$ref": "#/$defs/Version"
+                },
+                "DeploymentDurationInMinutes": {
+                    "$ref": "#/$defs/MinutesBetween0And24Hours"
+                },
+                "GrowthType": {
+                    "$ref": "#/$defs/GrowthType"
+                },
+                "GrowthFactor": {
+                    "$ref": "#/$defs/Percentage"
+                },
+                "FinalBakeTimeInMinutes": {
+                    "$ref": "#/$defs/MinutesBetween0And24Hours"
+                },
+                "State": {
+                    "$ref": "#/$defs/DeploymentState"
+                },
+                "PercentageComplete": {
+                    "$ref": "#/$defs/Percentage"
+                },
+                "StartedAt": {
+                    "$ref": "#/$defs/Iso8601DateTime"
+                },
+                "CompletedAt": {
+                    "$ref": "#/$defs/Iso8601DateTime"
+                },
+                "VersionLabel": {
+                    "$ref": "#/$defs/VersionLabel"
+                }
+            }
+        },
+        "ListDeploymentsRequest": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "EnvironmentId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "DeploymentStrategies": {
+            "type": "object",
+            "properties": {
+                "Items": {
+                    "$ref": "#/$defs/DeploymentStrategyList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "DeploymentStrategyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DeploymentStrategy"
+            }
+        },
+        "ListDeploymentStrategiesRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "Environments": {
+            "type": "object",
+            "properties": {
+                "Items": {
+                    "$ref": "#/$defs/EnvironmentList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "EnvironmentList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Environment"
+            }
+        },
+        "ListEnvironmentsRequest": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ExtensionAssociations": {
+            "type": "object",
+            "properties": {
+                "Items": {
+                    "$ref": "#/$defs/ExtensionAssociationSummaries"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ExtensionAssociationSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ExtensionAssociationSummary"
+            }
+        },
+        "ExtensionAssociationSummary": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/Identifier"
+                },
+                "ExtensionArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "ListExtensionAssociationsRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceIdentifier": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "ExtensionIdentifier": {
+                    "$ref": "#/$defs/Identifier"
+                },
+                "ExtensionVersionNumber": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "Extensions": {
+            "type": "object",
+            "properties": {
+                "Items": {
+                    "$ref": "#/$defs/ExtensionSummaries"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ExtensionSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ExtensionSummary"
+            }
+        },
+        "ExtensionSummary": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "VersionNumber": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                }
+            }
+        },
+        "ListExtensionsRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "Name": {
+                    "$ref": "#/$defs/QueryName"
+                }
+            }
+        },
+        "QueryName": {
+            "type": "string"
+        },
+        "HostedConfigurationVersions": {
+            "type": "object",
+            "properties": {
+                "Items": {
+                    "$ref": "#/$defs/HostedConfigurationVersionSummaryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "HostedConfigurationVersionSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/HostedConfigurationVersionSummary"
+            }
+        },
+        "HostedConfigurationVersionSummary": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "ConfigurationProfileId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "VersionNumber": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "ContentType": {
+                    "$ref": "#/$defs/StringWithLengthBetween1And255"
+                },
+                "VersionLabel": {
+                    "$ref": "#/$defs/VersionLabel"
+                },
+                "KmsKeyArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "ListHostedConfigurationVersionsRequest": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "ConfigurationProfileId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "VersionLabel": {
+                    "$ref": "#/$defs/QueryName"
+                }
+            }
+        },
+        "ResourceTags": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "StartDeploymentRequest": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "EnvironmentId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "DeploymentStrategyId": {
+                    "$ref": "#/$defs/DeploymentStrategyId"
+                },
+                "ConfigurationProfileId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "ConfigurationVersion": {
+                    "$ref": "#/$defs/Version"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                },
+                "KmsKeyIdentifier": {
+                    "$ref": "#/$defs/KmsKeyIdentifier"
+                },
+                "DynamicExtensionParameters": {
+                    "$ref": "#/$defs/DynamicParameterMap"
+                }
+            }
+        },
+        "DynamicParameterMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/StringWithLengthBetween1And2048"
+            }
+        },
+        "StopDeploymentRequest": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "EnvironmentId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "DeploymentNumber": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "UpdateAccountSettingsRequest": {
+            "type": "object",
+            "properties": {
+                "DeletionProtection": {
+                    "$ref": "#/$defs/DeletionProtectionSettings"
+                }
+            }
+        },
+        "UpdateApplicationRequest": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                }
+            }
+        },
+        "UpdateConfigurationProfileRequest": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "ConfigurationProfileId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Name": {
+                    "$ref": "#/$defs/LongName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "RetrievalRoleArn": {
+                    "$ref": "#/$defs/RoleArn"
+                },
+                "Validators": {
+                    "$ref": "#/$defs/ValidatorList"
+                },
+                "KmsKeyIdentifier": {
+                    "$ref": "#/$defs/KmsKeyIdentifierOrEmpty"
+                }
+            }
+        },
+        "KmsKeyIdentifierOrEmpty": {
+            "type": "string"
+        },
+        "UpdateDeploymentStrategyRequest": {
+            "type": "object",
+            "properties": {
+                "DeploymentStrategyId": {
+                    "$ref": "#/$defs/DeploymentStrategyId"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "DeploymentDurationInMinutes": {
+                    "$ref": "#/$defs/MinutesBetween0And24Hours"
+                },
+                "FinalBakeTimeInMinutes": {
+                    "$ref": "#/$defs/MinutesBetween0And24Hours"
+                },
+                "GrowthFactor": {
+                    "$ref": "#/$defs/GrowthFactor"
+                },
+                "GrowthType": {
+                    "$ref": "#/$defs/GrowthType"
+                }
+            }
+        },
+        "UpdateEnvironmentRequest": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "EnvironmentId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "Monitors": {
+                    "$ref": "#/$defs/MonitorList"
+                }
+            }
+        },
+        "UpdateExtensionRequest": {
+            "type": "object",
+            "properties": {
+                "ExtensionIdentifier": {
+                    "$ref": "#/$defs/Identifier"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "Actions": {
+                    "$ref": "#/$defs/ActionsMap"
+                },
+                "Parameters": {
+                    "$ref": "#/$defs/ParameterMap"
+                },
+                "VersionNumber": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "UpdateExtensionAssociationRequest": {
+            "type": "object",
+            "properties": {
+                "ExtensionAssociationId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Parameters": {
+                    "$ref": "#/$defs/ParameterValueMap"
+                }
+            }
+        },
+        "ValidateConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "ConfigurationProfileId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "ConfigurationVersion": {
+                    "$ref": "#/$defs/Version"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://appconfig-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "stringEquals",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "Region"
+                                                            },
+                                                            "us-gov-east-1"
+                                                        ]
+                                                    }
+                                                ],
+                                                "endpoint": {
+                                                    "url": "https://appconfig.us-gov-east-1.amazonaws.com",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            },
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "stringEquals",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "Region"
+                                                            },
+                                                            "us-gov-west-1"
+                                                        ]
+                                                    }
+                                                ],
+                                                "endpoint": {
+                                                    "url": "https://appconfig.us-gov-west-1.amazonaws.com",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://appconfig-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://appconfig.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://appconfig.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

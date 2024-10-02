@@ -1,0 +1,3273 @@
+{
+    "name": "qbusiness",
+    "commands": [
+        {
+            "name": "BatchDeleteDocument",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchDeleteDocument"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchDeleteDocumentResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchDeleteDocumentRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "BatchPutDocument",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchPutDocument"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchPutDocumentResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchPutDocumentRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "Chat",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "Chat"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ChatOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ChatInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ChatSync",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ChatSync"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ChatSyncOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ChatSyncInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateUser",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateUser"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateUserResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateUserRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteChatControlsConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteChatControlsConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteChatControlsConfigurationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteChatControlsConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteConversation",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteConversation"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteConversationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteConversationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteGroup",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteGroup"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteGroupResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteGroupRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteUser",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteUser"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteUserResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteUserRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetChatControlsConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetChatControlsConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetChatControlsConfigurationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetChatControlsConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetGroup",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetGroup"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetGroupResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetGroupRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetUser",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetUser"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetUserResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetUserRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListConversations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListConversations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListConversationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListConversationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListDataSourceSyncJobs",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListDataSourceSyncJobs"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListDataSourceSyncJobsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListDataSourceSyncJobsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListDocuments",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListDocuments"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListDocumentsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListDocumentsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListGroups",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListGroups"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListGroupsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListGroupsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListMessages",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListMessages"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListMessagesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListMessagesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutFeedback",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutFeedback"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutFeedbackRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutGroup",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutGroup"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutGroupResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutGroupRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartDataSourceSyncJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartDataSourceSyncJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartDataSourceSyncJobResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartDataSourceSyncJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StopDataSourceSyncJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StopDataSourceSyncJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StopDataSourceSyncJobResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StopDataSourceSyncJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateChatControlsConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateChatControlsConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateChatControlsConfigurationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateChatControlsConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateUser",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateUser"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateUserResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateUserRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "BatchDeleteDocumentResponse": {
+            "type": "object",
+            "properties": {
+                "failedDocuments": {
+                    "$ref": "#/$defs/FailedDocuments"
+                }
+            }
+        },
+        "FailedDocuments": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FailedDocument"
+            }
+        },
+        "FailedDocument": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/DocumentId"
+                },
+                "error": {
+                    "$ref": "#/$defs/ErrorDetail"
+                },
+                "dataSourceId": {
+                    "$ref": "#/$defs/DataSourceId"
+                }
+            }
+        },
+        "DocumentId": {
+            "type": "string"
+        },
+        "ErrorDetail": {
+            "type": "object",
+            "properties": {
+                "errorMessage": {
+                    "$ref": "#/$defs/ErrorMessage"
+                },
+                "errorCode": {
+                    "$ref": "#/$defs/ErrorCode"
+                }
+            }
+        },
+        "ErrorMessage": {
+            "type": "string"
+        },
+        "ErrorCode": {
+            "enum": [
+                "INTERNAL_ERROR",
+                "INVALID_REQUEST",
+                "RESOURCE_INACTIVE",
+                "RESOURCE_NOT_FOUND"
+            ]
+        },
+        "DataSourceId": {
+            "type": "string"
+        },
+        "BatchDeleteDocumentRequest": {
+            "type": "object",
+            "properties": {
+                "applicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "indexId": {
+                    "$ref": "#/$defs/IndexId"
+                },
+                "documents": {
+                    "$ref": "#/$defs/DeleteDocuments"
+                },
+                "dataSourceSyncId": {
+                    "$ref": "#/$defs/ExecutionId"
+                }
+            }
+        },
+        "ApplicationId": {
+            "type": "string"
+        },
+        "IndexId": {
+            "type": "string"
+        },
+        "DeleteDocuments": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DeleteDocument"
+            }
+        },
+        "DeleteDocument": {
+            "type": "object",
+            "properties": {
+                "documentId": {
+                    "$ref": "#/$defs/DocumentId"
+                }
+            }
+        },
+        "ExecutionId": {
+            "type": "string"
+        },
+        "BatchPutDocumentResponse": {
+            "type": "object",
+            "properties": {
+                "failedDocuments": {
+                    "$ref": "#/$defs/FailedDocuments"
+                }
+            }
+        },
+        "BatchPutDocumentRequest": {
+            "type": "object",
+            "properties": {
+                "applicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "indexId": {
+                    "$ref": "#/$defs/IndexId"
+                },
+                "documents": {
+                    "$ref": "#/$defs/Documents"
+                },
+                "roleArn": {
+                    "$ref": "#/$defs/RoleArn"
+                },
+                "dataSourceSyncId": {
+                    "$ref": "#/$defs/ExecutionId"
+                }
+            }
+        },
+        "Documents": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Document"
+            }
+        },
+        "Document": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/DocumentId"
+                },
+                "attributes": {
+                    "$ref": "#/$defs/DocumentAttributes"
+                },
+                "content": {
+                    "$ref": "#/$defs/DocumentContent"
+                },
+                "contentType": {
+                    "$ref": "#/$defs/ContentType"
+                },
+                "title": {
+                    "$ref": "#/$defs/Title"
+                },
+                "accessConfiguration": {
+                    "$ref": "#/$defs/AccessConfiguration"
+                },
+                "documentEnrichmentConfiguration": {
+                    "$ref": "#/$defs/DocumentEnrichmentConfiguration"
+                }
+            }
+        },
+        "DocumentAttributes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DocumentAttribute"
+            }
+        },
+        "DocumentAttribute": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/DocumentAttributeKey"
+                },
+                "value": {
+                    "$ref": "#/$defs/DocumentAttributeValue"
+                }
+            }
+        },
+        "DocumentAttributeKey": {
+            "type": "string"
+        },
+        "DocumentAttributeValue": {
+            "type": "object",
+            "properties": {
+                "stringValue": {
+                    "$ref": "#/$defs/DocumentAttributeStringValue"
+                },
+                "stringListValue": {
+                    "$ref": "#/$defs/DocumentAttributeStringListValue"
+                },
+                "longValue": {
+                    "$ref": "#/$defs/Long"
+                },
+                "dateValue": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "DocumentAttributeStringValue": {
+            "type": "string"
+        },
+        "DocumentAttributeStringListValue": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "String": {
+            "type": "string"
+        },
+        "Long": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "DocumentContent": {
+            "type": "object",
+            "properties": {
+                "blob": {
+                    "$ref": "#/$defs/smithy.api#Blob"
+                },
+                "s3": {
+                    "$ref": "#/$defs/S3"
+                }
+            }
+        },
+        "S3": {
+            "type": "object",
+            "properties": {
+                "bucket": {
+                    "$ref": "#/$defs/S3BucketName"
+                },
+                "key": {
+                    "$ref": "#/$defs/S3ObjectKey"
+                }
+            }
+        },
+        "S3BucketName": {
+            "type": "string"
+        },
+        "S3ObjectKey": {
+            "type": "string"
+        },
+        "ContentType": {
+            "enum": [
+                "PDF",
+                "HTML",
+                "MS_WORD",
+                "PLAIN_TEXT",
+                "PPT",
+                "RTF",
+                "XML",
+                "XSLT",
+                "MS_EXCEL",
+                "CSV",
+                "JSON",
+                "MD"
+            ]
+        },
+        "Title": {
+            "type": "string"
+        },
+        "AccessConfiguration": {
+            "type": "object",
+            "properties": {
+                "accessControls": {
+                    "$ref": "#/$defs/AccessControls"
+                },
+                "memberRelation": {
+                    "$ref": "#/$defs/MemberRelation"
+                }
+            }
+        },
+        "AccessControls": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AccessControl"
+            }
+        },
+        "AccessControl": {
+            "type": "object",
+            "properties": {
+                "principals": {
+                    "$ref": "#/$defs/Principals"
+                },
+                "memberRelation": {
+                    "$ref": "#/$defs/MemberRelation"
+                }
+            }
+        },
+        "Principals": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Principal"
+            }
+        },
+        "Principal": {
+            "type": "object",
+            "properties": {
+                "user": {
+                    "$ref": "#/$defs/PrincipalUser"
+                },
+                "group": {
+                    "$ref": "#/$defs/PrincipalGroup"
+                }
+            }
+        },
+        "PrincipalUser": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/UserId"
+                },
+                "access": {
+                    "$ref": "#/$defs/ReadAccessType"
+                },
+                "membershipType": {
+                    "$ref": "#/$defs/MembershipType"
+                }
+            }
+        },
+        "UserId": {
+            "type": "string"
+        },
+        "ReadAccessType": {
+            "enum": [
+                "ALLOW",
+                "DENY"
+            ]
+        },
+        "MembershipType": {
+            "enum": [
+                "INDEX",
+                "DATASOURCE"
+            ]
+        },
+        "PrincipalGroup": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/GroupName"
+                },
+                "access": {
+                    "$ref": "#/$defs/ReadAccessType"
+                },
+                "membershipType": {
+                    "$ref": "#/$defs/MembershipType"
+                }
+            }
+        },
+        "GroupName": {
+            "type": "string"
+        },
+        "MemberRelation": {
+            "enum": [
+                "AND",
+                "OR"
+            ]
+        },
+        "DocumentEnrichmentConfiguration": {
+            "type": "object",
+            "properties": {
+                "inlineConfigurations": {
+                    "$ref": "#/$defs/InlineDocumentEnrichmentConfigurations"
+                },
+                "preExtractionHookConfiguration": {
+                    "$ref": "#/$defs/HookConfiguration"
+                },
+                "postExtractionHookConfiguration": {
+                    "$ref": "#/$defs/HookConfiguration"
+                }
+            }
+        },
+        "InlineDocumentEnrichmentConfigurations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/InlineDocumentEnrichmentConfiguration"
+            }
+        },
+        "InlineDocumentEnrichmentConfiguration": {
+            "type": "object",
+            "properties": {
+                "condition": {
+                    "$ref": "#/$defs/DocumentAttributeCondition"
+                },
+                "target": {
+                    "$ref": "#/$defs/DocumentAttributeTarget"
+                },
+                "documentContentOperator": {
+                    "$ref": "#/$defs/DocumentContentOperator"
+                }
+            }
+        },
+        "DocumentAttributeCondition": {
+            "type": "object",
+            "properties": {
+                "key": {
+                    "$ref": "#/$defs/DocumentAttributeKey"
+                },
+                "operator": {
+                    "$ref": "#/$defs/DocumentEnrichmentConditionOperator"
+                },
+                "value": {
+                    "$ref": "#/$defs/DocumentAttributeValue"
+                }
+            }
+        },
+        "DocumentEnrichmentConditionOperator": {
+            "enum": [
+                "GREATER_THAN",
+                "GREATER_THAN_OR_EQUALS",
+                "LESS_THAN",
+                "LESS_THAN_OR_EQUALS",
+                "EQUALS",
+                "NOT_EQUALS",
+                "CONTAINS",
+                "NOT_CONTAINS",
+                "EXISTS",
+                "NOT_EXISTS",
+                "BEGINS_WITH"
+            ]
+        },
+        "DocumentAttributeTarget": {
+            "type": "object",
+            "properties": {
+                "key": {
+                    "$ref": "#/$defs/DocumentAttributeKey"
+                },
+                "value": {
+                    "$ref": "#/$defs/DocumentAttributeValue"
+                },
+                "attributeValueOperator": {
+                    "$ref": "#/$defs/AttributeValueOperator"
+                }
+            }
+        },
+        "AttributeValueOperator": {
+            "enum": [
+                "DELETE"
+            ]
+        },
+        "DocumentContentOperator": {
+            "enum": [
+                "DELETE"
+            ]
+        },
+        "HookConfiguration": {
+            "type": "object",
+            "properties": {
+                "invocationCondition": {
+                    "$ref": "#/$defs/DocumentAttributeCondition"
+                },
+                "lambdaArn": {
+                    "$ref": "#/$defs/LambdaArn"
+                },
+                "s3BucketName": {
+                    "$ref": "#/$defs/S3BucketName"
+                },
+                "roleArn": {
+                    "$ref": "#/$defs/RoleArn"
+                }
+            }
+        },
+        "LambdaArn": {
+            "type": "string"
+        },
+        "RoleArn": {
+            "type": "string"
+        },
+        "ChatOutput": {
+            "type": "object",
+            "properties": {
+                "outputStream": {
+                    "$ref": "#/$defs/ChatOutputStream"
+                }
+            }
+        },
+        "ChatOutputStream": {
+            "type": "object",
+            "properties": {
+                "textEvent": {
+                    "$ref": "#/$defs/TextOutputEvent"
+                },
+                "metadataEvent": {
+                    "$ref": "#/$defs/MetadataEvent"
+                },
+                "actionReviewEvent": {
+                    "$ref": "#/$defs/ActionReviewEvent"
+                },
+                "failedAttachmentEvent": {
+                    "$ref": "#/$defs/FailedAttachmentEvent"
+                },
+                "authChallengeRequestEvent": {
+                    "$ref": "#/$defs/AuthChallengeRequestEvent"
+                }
+            }
+        },
+        "TextOutputEvent": {
+            "type": "object",
+            "properties": {
+                "conversationId": {
+                    "$ref": "#/$defs/ConversationId"
+                },
+                "userMessageId": {
+                    "$ref": "#/$defs/MessageId"
+                },
+                "systemMessageId": {
+                    "$ref": "#/$defs/MessageId"
+                },
+                "systemMessage": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ConversationId": {
+            "type": "string"
+        },
+        "MessageId": {
+            "type": "string"
+        },
+        "MetadataEvent": {
+            "type": "object",
+            "properties": {
+                "conversationId": {
+                    "$ref": "#/$defs/ConversationId"
+                },
+                "userMessageId": {
+                    "$ref": "#/$defs/MessageId"
+                },
+                "systemMessageId": {
+                    "$ref": "#/$defs/MessageId"
+                },
+                "sourceAttributions": {
+                    "$ref": "#/$defs/SourceAttributions"
+                },
+                "finalTextMessage": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "SourceAttributions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SourceAttribution"
+            }
+        },
+        "SourceAttribution": {
+            "type": "object",
+            "properties": {
+                "title": {
+                    "$ref": "#/$defs/String"
+                },
+                "snippet": {
+                    "$ref": "#/$defs/String"
+                },
+                "url": {
+                    "$ref": "#/$defs/String"
+                },
+                "citationNumber": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "updatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "textMessageSegments": {
+                    "$ref": "#/$defs/TextSegmentList"
+                }
+            }
+        },
+        "Integer": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "TextSegmentList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TextSegment"
+            }
+        },
+        "TextSegment": {
+            "type": "object",
+            "properties": {
+                "beginOffset": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "endOffset": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "snippetExcerpt": {
+                    "$ref": "#/$defs/SnippetExcerpt"
+                }
+            }
+        },
+        "SnippetExcerpt": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "$ref": "#/$defs/SnippetExcerptText"
+                }
+            }
+        },
+        "SnippetExcerptText": {
+            "type": "string"
+        },
+        "ActionReviewEvent": {
+            "type": "object",
+            "properties": {
+                "conversationId": {
+                    "$ref": "#/$defs/ConversationId"
+                },
+                "userMessageId": {
+                    "$ref": "#/$defs/MessageId"
+                },
+                "systemMessageId": {
+                    "$ref": "#/$defs/MessageId"
+                },
+                "pluginId": {
+                    "$ref": "#/$defs/PluginId"
+                },
+                "pluginType": {
+                    "$ref": "#/$defs/PluginType"
+                },
+                "payload": {
+                    "$ref": "#/$defs/ActionReviewPayload"
+                },
+                "payloadFieldNameSeparator": {
+                    "$ref": "#/$defs/ActionPayloadFieldNameSeparator"
+                }
+            }
+        },
+        "PluginId": {
+            "type": "string"
+        },
+        "PluginType": {
+            "enum": [
+                "SERVICE_NOW",
+                "SALESFORCE",
+                "JIRA",
+                "ZENDESK",
+                "CUSTOM"
+            ]
+        },
+        "ActionReviewPayload": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/ActionReviewPayloadField"
+            }
+        },
+        "ActionReviewPayloadField": {
+            "type": "object",
+            "properties": {
+                "displayName": {
+                    "$ref": "#/$defs/String"
+                },
+                "displayOrder": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "displayDescription": {
+                    "$ref": "#/$defs/String"
+                },
+                "type": {
+                    "$ref": "#/$defs/ActionPayloadFieldType"
+                },
+                "value": {
+                    "$ref": "#/$defs/ActionPayloadFieldValue"
+                },
+                "allowedValues": {
+                    "$ref": "#/$defs/ActionReviewPayloadFieldAllowedValues"
+                },
+                "allowedFormat": {
+                    "$ref": "#/$defs/String"
+                },
+                "required": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                }
+            }
+        },
+        "ActionPayloadFieldType": {
+            "enum": [
+                "STRING",
+                "NUMBER",
+                "ARRAY",
+                "BOOLEAN"
+            ]
+        },
+        "ActionPayloadFieldValue": {},
+        "ActionReviewPayloadFieldAllowedValues": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ActionReviewPayloadFieldAllowedValue"
+            }
+        },
+        "ActionReviewPayloadFieldAllowedValue": {
+            "type": "object",
+            "properties": {
+                "value": {
+                    "$ref": "#/$defs/ActionPayloadFieldValue"
+                },
+                "displayValue": {
+                    "$ref": "#/$defs/ActionPayloadFieldValue"
+                }
+            }
+        },
+        "ActionPayloadFieldNameSeparator": {
+            "type": "string"
+        },
+        "FailedAttachmentEvent": {
+            "type": "object",
+            "properties": {
+                "conversationId": {
+                    "$ref": "#/$defs/ConversationId"
+                },
+                "userMessageId": {
+                    "$ref": "#/$defs/MessageId"
+                },
+                "systemMessageId": {
+                    "$ref": "#/$defs/MessageId"
+                },
+                "attachment": {
+                    "$ref": "#/$defs/AttachmentOutput"
+                }
+            }
+        },
+        "AttachmentOutput": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/AttachmentName"
+                },
+                "status": {
+                    "$ref": "#/$defs/AttachmentStatus"
+                },
+                "error": {
+                    "$ref": "#/$defs/ErrorDetail"
+                }
+            }
+        },
+        "AttachmentName": {
+            "type": "string"
+        },
+        "AttachmentStatus": {
+            "enum": [
+                "FAILED",
+                "SUCCEEDED"
+            ]
+        },
+        "AuthChallengeRequestEvent": {
+            "type": "object",
+            "properties": {
+                "authorizationUrl": {
+                    "$ref": "#/$defs/Url"
+                }
+            }
+        },
+        "Url": {
+            "type": "string"
+        },
+        "ChatInput": {
+            "type": "object",
+            "properties": {
+                "applicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "userId": {
+                    "$ref": "#/$defs/UserId"
+                },
+                "userGroups": {
+                    "$ref": "#/$defs/UserGroups"
+                },
+                "conversationId": {
+                    "$ref": "#/$defs/ConversationId"
+                },
+                "parentMessageId": {
+                    "$ref": "#/$defs/MessageId"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                },
+                "inputStream": {
+                    "$ref": "#/$defs/ChatInputStream"
+                }
+            }
+        },
+        "UserGroups": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "ClientToken": {
+            "type": "string"
+        },
+        "ChatInputStream": {
+            "type": "object",
+            "properties": {
+                "configurationEvent": {
+                    "$ref": "#/$defs/ConfigurationEvent"
+                },
+                "textEvent": {
+                    "$ref": "#/$defs/TextInputEvent"
+                },
+                "attachmentEvent": {
+                    "$ref": "#/$defs/AttachmentInputEvent"
+                },
+                "actionExecutionEvent": {
+                    "$ref": "#/$defs/ActionExecutionEvent"
+                },
+                "endOfInputEvent": {
+                    "$ref": "#/$defs/EndOfInputEvent"
+                },
+                "authChallengeResponseEvent": {
+                    "$ref": "#/$defs/AuthChallengeResponseEvent"
+                }
+            }
+        },
+        "ConfigurationEvent": {
+            "type": "object",
+            "properties": {
+                "chatMode": {
+                    "$ref": "#/$defs/ChatMode"
+                },
+                "chatModeConfiguration": {
+                    "$ref": "#/$defs/ChatModeConfiguration"
+                },
+                "attributeFilter": {
+                    "$ref": "#/$defs/AttributeFilter"
+                }
+            }
+        },
+        "ChatMode": {
+            "enum": [
+                "RETRIEVAL_MODE",
+                "CREATOR_MODE",
+                "PLUGIN_MODE"
+            ]
+        },
+        "ChatModeConfiguration": {
+            "type": "object",
+            "properties": {
+                "pluginConfiguration": {
+                    "$ref": "#/$defs/PluginConfiguration"
+                }
+            }
+        },
+        "PluginConfiguration": {
+            "type": "object",
+            "properties": {
+                "pluginId": {
+                    "$ref": "#/$defs/PluginId"
+                }
+            }
+        },
+        "AttributeFilter": {
+            "type": "object",
+            "properties": {
+                "andAllFilters": {
+                    "$ref": "#/$defs/AttributeFilters"
+                },
+                "orAllFilters": {
+                    "$ref": "#/$defs/AttributeFilters"
+                },
+                "notFilter": {
+                    "$ref": "#/$defs/AttributeFilter"
+                },
+                "equalsTo": {
+                    "$ref": "#/$defs/DocumentAttribute"
+                },
+                "containsAll": {
+                    "$ref": "#/$defs/DocumentAttribute"
+                },
+                "containsAny": {
+                    "$ref": "#/$defs/DocumentAttribute"
+                },
+                "greaterThan": {
+                    "$ref": "#/$defs/DocumentAttribute"
+                },
+                "greaterThanOrEquals": {
+                    "$ref": "#/$defs/DocumentAttribute"
+                },
+                "lessThan": {
+                    "$ref": "#/$defs/DocumentAttribute"
+                },
+                "lessThanOrEquals": {
+                    "$ref": "#/$defs/DocumentAttribute"
+                }
+            }
+        },
+        "AttributeFilters": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AttributeFilter"
+            }
+        },
+        "TextInputEvent": {
+            "type": "object",
+            "properties": {
+                "userMessage": {
+                    "$ref": "#/$defs/UserMessage"
+                }
+            }
+        },
+        "UserMessage": {
+            "type": "string"
+        },
+        "AttachmentInputEvent": {
+            "type": "object",
+            "properties": {
+                "attachment": {
+                    "$ref": "#/$defs/AttachmentInput"
+                }
+            }
+        },
+        "AttachmentInput": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/AttachmentName"
+                },
+                "data": {
+                    "$ref": "#/$defs/Blob"
+                }
+            }
+        },
+        "Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "ActionExecutionEvent": {
+            "type": "object",
+            "properties": {
+                "pluginId": {
+                    "$ref": "#/$defs/PluginId"
+                },
+                "payload": {
+                    "$ref": "#/$defs/ActionExecutionPayload"
+                },
+                "payloadFieldNameSeparator": {
+                    "$ref": "#/$defs/ActionPayloadFieldNameSeparator"
+                }
+            }
+        },
+        "ActionExecutionPayload": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/ActionExecutionPayloadField"
+            }
+        },
+        "ActionExecutionPayloadField": {
+            "type": "object",
+            "properties": {
+                "value": {
+                    "$ref": "#/$defs/ActionPayloadFieldValue"
+                }
+            }
+        },
+        "EndOfInputEvent": {
+            "type": "object",
+            "properties": {}
+        },
+        "AuthChallengeResponseEvent": {
+            "type": "object",
+            "properties": {
+                "responseMap": {
+                    "$ref": "#/$defs/AuthorizationResponseMap"
+                }
+            }
+        },
+        "AuthorizationResponseMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/AuthResponseValue"
+            }
+        },
+        "AuthResponseValue": {
+            "type": "string"
+        },
+        "ChatSyncOutput": {
+            "type": "object",
+            "properties": {
+                "conversationId": {
+                    "$ref": "#/$defs/ConversationId"
+                },
+                "systemMessage": {
+                    "$ref": "#/$defs/String"
+                },
+                "systemMessageId": {
+                    "$ref": "#/$defs/MessageId"
+                },
+                "userMessageId": {
+                    "$ref": "#/$defs/MessageId"
+                },
+                "actionReview": {
+                    "$ref": "#/$defs/ActionReview"
+                },
+                "authChallengeRequest": {
+                    "$ref": "#/$defs/AuthChallengeRequest"
+                },
+                "sourceAttributions": {
+                    "$ref": "#/$defs/SourceAttributions"
+                },
+                "failedAttachments": {
+                    "$ref": "#/$defs/AttachmentsOutput"
+                }
+            }
+        },
+        "ActionReview": {
+            "type": "object",
+            "properties": {
+                "pluginId": {
+                    "$ref": "#/$defs/PluginId"
+                },
+                "pluginType": {
+                    "$ref": "#/$defs/PluginType"
+                },
+                "payload": {
+                    "$ref": "#/$defs/ActionReviewPayload"
+                },
+                "payloadFieldNameSeparator": {
+                    "$ref": "#/$defs/ActionPayloadFieldNameSeparator"
+                }
+            }
+        },
+        "AuthChallengeRequest": {
+            "type": "object",
+            "properties": {
+                "authorizationUrl": {
+                    "$ref": "#/$defs/Url"
+                }
+            }
+        },
+        "AttachmentsOutput": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AttachmentOutput"
+            }
+        },
+        "ChatSyncInput": {
+            "type": "object",
+            "properties": {
+                "applicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "userId": {
+                    "$ref": "#/$defs/UserId"
+                },
+                "userGroups": {
+                    "$ref": "#/$defs/UserGroups"
+                },
+                "userMessage": {
+                    "$ref": "#/$defs/UserMessage"
+                },
+                "attachments": {
+                    "$ref": "#/$defs/AttachmentsInput"
+                },
+                "actionExecution": {
+                    "$ref": "#/$defs/ActionExecution"
+                },
+                "authChallengeResponse": {
+                    "$ref": "#/$defs/AuthChallengeResponse"
+                },
+                "conversationId": {
+                    "$ref": "#/$defs/ConversationId"
+                },
+                "parentMessageId": {
+                    "$ref": "#/$defs/MessageId"
+                },
+                "attributeFilter": {
+                    "$ref": "#/$defs/AttributeFilter"
+                },
+                "chatMode": {
+                    "$ref": "#/$defs/ChatMode"
+                },
+                "chatModeConfiguration": {
+                    "$ref": "#/$defs/ChatModeConfiguration"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                }
+            }
+        },
+        "AttachmentsInput": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AttachmentInput"
+            }
+        },
+        "ActionExecution": {
+            "type": "object",
+            "properties": {
+                "pluginId": {
+                    "$ref": "#/$defs/PluginId"
+                },
+                "payload": {
+                    "$ref": "#/$defs/ActionExecutionPayload"
+                },
+                "payloadFieldNameSeparator": {
+                    "$ref": "#/$defs/ActionPayloadFieldNameSeparator"
+                }
+            }
+        },
+        "AuthChallengeResponse": {
+            "type": "object",
+            "properties": {
+                "responseMap": {
+                    "$ref": "#/$defs/AuthorizationResponseMap"
+                }
+            }
+        },
+        "CreateUserResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "CreateUserRequest": {
+            "type": "object",
+            "properties": {
+                "applicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "userId": {
+                    "$ref": "#/$defs/String"
+                },
+                "userAliases": {
+                    "$ref": "#/$defs/UserAliases"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                }
+            }
+        },
+        "UserAliases": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/UserAlias"
+            }
+        },
+        "UserAlias": {
+            "type": "object",
+            "properties": {
+                "indexId": {
+                    "$ref": "#/$defs/IndexId"
+                },
+                "dataSourceId": {
+                    "$ref": "#/$defs/DataSourceId"
+                },
+                "userId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DeleteChatControlsConfigurationResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteChatControlsConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "applicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                }
+            }
+        },
+        "DeleteConversationResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteConversationRequest": {
+            "type": "object",
+            "properties": {
+                "conversationId": {
+                    "$ref": "#/$defs/ConversationId"
+                },
+                "applicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "userId": {
+                    "$ref": "#/$defs/UserId"
+                }
+            }
+        },
+        "DeleteGroupResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteGroupRequest": {
+            "type": "object",
+            "properties": {
+                "applicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "indexId": {
+                    "$ref": "#/$defs/IndexId"
+                },
+                "groupName": {
+                    "$ref": "#/$defs/GroupName"
+                },
+                "dataSourceId": {
+                    "$ref": "#/$defs/DataSourceId"
+                }
+            }
+        },
+        "DeleteUserResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteUserRequest": {
+            "type": "object",
+            "properties": {
+                "applicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "userId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetChatControlsConfigurationResponse": {
+            "type": "object",
+            "properties": {
+                "responseScope": {
+                    "$ref": "#/$defs/ResponseScope"
+                },
+                "blockedPhrases": {
+                    "$ref": "#/$defs/BlockedPhrasesConfiguration"
+                },
+                "topicConfigurations": {
+                    "$ref": "#/$defs/TopicConfigurations"
+                },
+                "creatorModeConfiguration": {
+                    "$ref": "#/$defs/AppliedCreatorModeConfiguration"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ResponseScope": {
+            "enum": [
+                "ENTERPRISE_CONTENT_ONLY",
+                "EXTENDED_KNOWLEDGE_ENABLED"
+            ]
+        },
+        "BlockedPhrasesConfiguration": {
+            "type": "object",
+            "properties": {
+                "blockedPhrases": {
+                    "$ref": "#/$defs/BlockedPhrases"
+                },
+                "systemMessageOverride": {
+                    "$ref": "#/$defs/SystemMessageOverride"
+                }
+            }
+        },
+        "BlockedPhrases": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BlockedPhrase"
+            }
+        },
+        "BlockedPhrase": {
+            "type": "string"
+        },
+        "SystemMessageOverride": {
+            "type": "string"
+        },
+        "TopicConfigurations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TopicConfiguration"
+            }
+        },
+        "TopicConfiguration": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/TopicConfigurationName"
+                },
+                "description": {
+                    "$ref": "#/$defs/TopicDescription"
+                },
+                "exampleChatMessages": {
+                    "$ref": "#/$defs/ExampleChatMessages"
+                },
+                "rules": {
+                    "$ref": "#/$defs/Rules"
+                }
+            }
+        },
+        "TopicConfigurationName": {
+            "type": "string"
+        },
+        "TopicDescription": {
+            "type": "string"
+        },
+        "ExampleChatMessages": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ExampleChatMessage"
+            }
+        },
+        "ExampleChatMessage": {
+            "type": "string"
+        },
+        "Rules": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Rule"
+            }
+        },
+        "Rule": {
+            "type": "object",
+            "properties": {
+                "includedUsersAndGroups": {
+                    "$ref": "#/$defs/UsersAndGroups"
+                },
+                "excludedUsersAndGroups": {
+                    "$ref": "#/$defs/UsersAndGroups"
+                },
+                "ruleType": {
+                    "$ref": "#/$defs/RuleType"
+                },
+                "ruleConfiguration": {
+                    "$ref": "#/$defs/RuleConfiguration"
+                }
+            }
+        },
+        "UsersAndGroups": {
+            "type": "object",
+            "properties": {
+                "userIds": {
+                    "$ref": "#/$defs/UserIds"
+                },
+                "userGroups": {
+                    "$ref": "#/$defs/UserGroups"
+                }
+            }
+        },
+        "UserIds": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "RuleType": {
+            "enum": [
+                "CONTENT_BLOCKER_RULE",
+                "CONTENT_RETRIEVAL_RULE"
+            ]
+        },
+        "RuleConfiguration": {
+            "type": "object",
+            "properties": {
+                "contentBlockerRule": {
+                    "$ref": "#/$defs/ContentBlockerRule"
+                },
+                "contentRetrievalRule": {
+                    "$ref": "#/$defs/ContentRetrievalRule"
+                }
+            }
+        },
+        "ContentBlockerRule": {
+            "type": "object",
+            "properties": {
+                "systemMessageOverride": {
+                    "$ref": "#/$defs/SystemMessageOverride"
+                }
+            }
+        },
+        "ContentRetrievalRule": {
+            "type": "object",
+            "properties": {
+                "eligibleDataSources": {
+                    "$ref": "#/$defs/EligibleDataSources"
+                }
+            }
+        },
+        "EligibleDataSources": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EligibleDataSource"
+            }
+        },
+        "EligibleDataSource": {
+            "type": "object",
+            "properties": {
+                "indexId": {
+                    "$ref": "#/$defs/IndexId"
+                },
+                "dataSourceId": {
+                    "$ref": "#/$defs/DataSourceId"
+                }
+            }
+        },
+        "AppliedCreatorModeConfiguration": {
+            "type": "object",
+            "properties": {
+                "creatorModeControl": {
+                    "$ref": "#/$defs/CreatorModeControl"
+                }
+            }
+        },
+        "CreatorModeControl": {
+            "enum": [
+                "ENABLED",
+                "DISABLED"
+            ]
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "GetChatControlsConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "applicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResultsIntegerForGetTopicConfigurations"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "MaxResultsIntegerForGetTopicConfigurations": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "GetGroupResponse": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "$ref": "#/$defs/GroupStatusDetail"
+                },
+                "statusHistory": {
+                    "$ref": "#/$defs/GroupStatusDetails"
+                }
+            }
+        },
+        "GroupStatusDetail": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "$ref": "#/$defs/GroupStatus"
+                },
+                "lastUpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "errorDetail": {
+                    "$ref": "#/$defs/ErrorDetail"
+                }
+            }
+        },
+        "GroupStatus": {
+            "enum": [
+                "FAILED",
+                "SUCCEEDED",
+                "PROCESSING",
+                "DELETING",
+                "DELETED"
+            ]
+        },
+        "GroupStatusDetails": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/GroupStatusDetail"
+            }
+        },
+        "GetGroupRequest": {
+            "type": "object",
+            "properties": {
+                "applicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "indexId": {
+                    "$ref": "#/$defs/IndexId"
+                },
+                "groupName": {
+                    "$ref": "#/$defs/GroupName"
+                },
+                "dataSourceId": {
+                    "$ref": "#/$defs/DataSourceId"
+                }
+            }
+        },
+        "GetUserResponse": {
+            "type": "object",
+            "properties": {
+                "userAliases": {
+                    "$ref": "#/$defs/UserAliases"
+                }
+            }
+        },
+        "GetUserRequest": {
+            "type": "object",
+            "properties": {
+                "applicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "userId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListConversationsResponse": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "conversations": {
+                    "$ref": "#/$defs/Conversations"
+                }
+            }
+        },
+        "Conversations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Conversation"
+            }
+        },
+        "Conversation": {
+            "type": "object",
+            "properties": {
+                "conversationId": {
+                    "$ref": "#/$defs/ConversationId"
+                },
+                "title": {
+                    "$ref": "#/$defs/ConversationTitle"
+                },
+                "startTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ConversationTitle": {
+            "type": "string"
+        },
+        "ListConversationsRequest": {
+            "type": "object",
+            "properties": {
+                "applicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "userId": {
+                    "$ref": "#/$defs/UserId"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResultsIntegerForListConversations"
+                }
+            }
+        },
+        "MaxResultsIntegerForListConversations": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListDataSourceSyncJobsResponse": {
+            "type": "object",
+            "properties": {
+                "history": {
+                    "$ref": "#/$defs/DataSourceSyncJobs"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "DataSourceSyncJobs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DataSourceSyncJob"
+            }
+        },
+        "DataSourceSyncJob": {
+            "type": "object",
+            "properties": {
+                "executionId": {
+                    "$ref": "#/$defs/ExecutionId"
+                },
+                "startTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "endTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "status": {
+                    "$ref": "#/$defs/DataSourceSyncJobStatus"
+                },
+                "error": {
+                    "$ref": "#/$defs/ErrorDetail"
+                },
+                "dataSourceErrorCode": {
+                    "$ref": "#/$defs/String"
+                },
+                "metrics": {
+                    "$ref": "#/$defs/DataSourceSyncJobMetrics"
+                }
+            }
+        },
+        "DataSourceSyncJobStatus": {
+            "enum": [
+                "FAILED",
+                "SUCCEEDED",
+                "SYNCING",
+                "INCOMPLETE",
+                "STOPPING",
+                "ABORTED",
+                "SYNCING_INDEXING"
+            ]
+        },
+        "DataSourceSyncJobMetrics": {
+            "type": "object",
+            "properties": {
+                "documentsAdded": {
+                    "$ref": "#/$defs/MetricValue"
+                },
+                "documentsModified": {
+                    "$ref": "#/$defs/MetricValue"
+                },
+                "documentsDeleted": {
+                    "$ref": "#/$defs/MetricValue"
+                },
+                "documentsFailed": {
+                    "$ref": "#/$defs/MetricValue"
+                },
+                "documentsScanned": {
+                    "$ref": "#/$defs/MetricValue"
+                }
+            }
+        },
+        "MetricValue": {
+            "type": "string"
+        },
+        "ListDataSourceSyncJobsRequest": {
+            "type": "object",
+            "properties": {
+                "dataSourceId": {
+                    "$ref": "#/$defs/DataSourceId"
+                },
+                "applicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "indexId": {
+                    "$ref": "#/$defs/IndexId"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResultsIntegerForListDataSourcesSyncJobs"
+                },
+                "startTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "endTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "statusFilter": {
+                    "$ref": "#/$defs/DataSourceSyncJobStatus"
+                }
+            }
+        },
+        "MaxResultsIntegerForListDataSourcesSyncJobs": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListDocumentsResponse": {
+            "type": "object",
+            "properties": {
+                "documentDetailList": {
+                    "$ref": "#/$defs/DocumentDetailList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "DocumentDetailList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DocumentDetails"
+            }
+        },
+        "DocumentDetails": {
+            "type": "object",
+            "properties": {
+                "documentId": {
+                    "$ref": "#/$defs/DocumentId"
+                },
+                "status": {
+                    "$ref": "#/$defs/DocumentStatus"
+                },
+                "error": {
+                    "$ref": "#/$defs/ErrorDetail"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "updatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "DocumentStatus": {
+            "enum": [
+                "RECEIVED",
+                "PROCESSING",
+                "INDEXED",
+                "UPDATED",
+                "FAILED",
+                "DELETING",
+                "DELETED",
+                "DOCUMENT_FAILED_TO_INDEX"
+            ]
+        },
+        "ListDocumentsRequest": {
+            "type": "object",
+            "properties": {
+                "applicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "indexId": {
+                    "$ref": "#/$defs/IndexId"
+                },
+                "dataSourceIds": {
+                    "$ref": "#/$defs/DataSourceIds"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResultsIntegerForListDocuments"
+                }
+            }
+        },
+        "DataSourceIds": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DataSourceId"
+            }
+        },
+        "MaxResultsIntegerForListDocuments": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListGroupsResponse": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "items": {
+                    "$ref": "#/$defs/GroupSummaryList"
+                }
+            }
+        },
+        "GroupSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/GroupSummary"
+            }
+        },
+        "GroupSummary": {
+            "type": "object",
+            "properties": {
+                "groupName": {
+                    "$ref": "#/$defs/GroupName"
+                }
+            }
+        },
+        "ListGroupsRequest": {
+            "type": "object",
+            "properties": {
+                "applicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "indexId": {
+                    "$ref": "#/$defs/IndexId"
+                },
+                "updatedEarlierThan": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "dataSourceId": {
+                    "$ref": "#/$defs/DataSourceId"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResultsIntegerForListGroupsRequest"
+                }
+            }
+        },
+        "MaxResultsIntegerForListGroupsRequest": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListMessagesResponse": {
+            "type": "object",
+            "properties": {
+                "messages": {
+                    "$ref": "#/$defs/Messages"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "Messages": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Message"
+            }
+        },
+        "Message": {
+            "type": "object",
+            "properties": {
+                "messageId": {
+                    "$ref": "#/$defs/String"
+                },
+                "body": {
+                    "$ref": "#/$defs/MessageBody"
+                },
+                "time": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "type": {
+                    "$ref": "#/$defs/MessageType"
+                },
+                "attachments": {
+                    "$ref": "#/$defs/AttachmentsOutput"
+                },
+                "sourceAttribution": {
+                    "$ref": "#/$defs/SourceAttributions"
+                },
+                "actionReview": {
+                    "$ref": "#/$defs/ActionReview"
+                },
+                "actionExecution": {
+                    "$ref": "#/$defs/ActionExecution"
+                }
+            }
+        },
+        "MessageBody": {
+            "type": "string"
+        },
+        "MessageType": {
+            "enum": [
+                "USER",
+                "SYSTEM"
+            ]
+        },
+        "ListMessagesRequest": {
+            "type": "object",
+            "properties": {
+                "conversationId": {
+                    "$ref": "#/$defs/ConversationId"
+                },
+                "applicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "userId": {
+                    "$ref": "#/$defs/UserId"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResultsIntegerForListMessages"
+                }
+            }
+        },
+        "MaxResultsIntegerForListMessages": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "Tags": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceARN": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                }
+            }
+        },
+        "AmazonResourceName": {
+            "type": "string"
+        },
+        "PutFeedbackRequest": {
+            "type": "object",
+            "properties": {
+                "applicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "userId": {
+                    "$ref": "#/$defs/UserId"
+                },
+                "conversationId": {
+                    "$ref": "#/$defs/ConversationId"
+                },
+                "messageId": {
+                    "$ref": "#/$defs/SystemMessageId"
+                },
+                "messageCopiedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "messageUsefulness": {
+                    "$ref": "#/$defs/MessageUsefulnessFeedback"
+                }
+            }
+        },
+        "SystemMessageId": {
+            "type": "string"
+        },
+        "MessageUsefulnessFeedback": {
+            "type": "object",
+            "properties": {
+                "usefulness": {
+                    "$ref": "#/$defs/MessageUsefulness"
+                },
+                "reason": {
+                    "$ref": "#/$defs/MessageUsefulnessReason"
+                },
+                "comment": {
+                    "$ref": "#/$defs/MessageUsefulnessComment"
+                },
+                "submittedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "MessageUsefulness": {
+            "enum": [
+                "USEFUL",
+                "NOT_USEFUL"
+            ]
+        },
+        "MessageUsefulnessReason": {
+            "enum": [
+                "NOT_FACTUALLY_CORRECT",
+                "HARMFUL_OR_UNSAFE",
+                "INCORRECT_OR_MISSING_SOURCES",
+                "NOT_HELPFUL",
+                "FACTUALLY_CORRECT",
+                "COMPLETE",
+                "RELEVANT_SOURCES",
+                "HELPFUL",
+                "NOT_BASED_ON_DOCUMENTS",
+                "NOT_COMPLETE",
+                "NOT_CONCISE",
+                "OTHER"
+            ]
+        },
+        "MessageUsefulnessComment": {
+            "type": "string"
+        },
+        "PutGroupResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "PutGroupRequest": {
+            "type": "object",
+            "properties": {
+                "applicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "indexId": {
+                    "$ref": "#/$defs/IndexId"
+                },
+                "groupName": {
+                    "$ref": "#/$defs/GroupName"
+                },
+                "dataSourceId": {
+                    "$ref": "#/$defs/DataSourceId"
+                },
+                "type": {
+                    "$ref": "#/$defs/MembershipType"
+                },
+                "groupMembers": {
+                    "$ref": "#/$defs/GroupMembers"
+                }
+            }
+        },
+        "GroupMembers": {
+            "type": "object",
+            "properties": {
+                "memberGroups": {
+                    "$ref": "#/$defs/MemberGroups"
+                },
+                "memberUsers": {
+                    "$ref": "#/$defs/MemberUsers"
+                }
+            }
+        },
+        "MemberGroups": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MemberGroup"
+            }
+        },
+        "MemberGroup": {
+            "type": "object",
+            "properties": {
+                "groupName": {
+                    "$ref": "#/$defs/GroupName"
+                },
+                "type": {
+                    "$ref": "#/$defs/MembershipType"
+                }
+            }
+        },
+        "MemberUsers": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MemberUser"
+            }
+        },
+        "MemberUser": {
+            "type": "object",
+            "properties": {
+                "userId": {
+                    "$ref": "#/$defs/DataSourceUserId"
+                },
+                "type": {
+                    "$ref": "#/$defs/MembershipType"
+                }
+            }
+        },
+        "DataSourceUserId": {
+            "type": "string"
+        },
+        "StartDataSourceSyncJobResponse": {
+            "type": "object",
+            "properties": {
+                "executionId": {
+                    "$ref": "#/$defs/ExecutionId"
+                }
+            }
+        },
+        "StartDataSourceSyncJobRequest": {
+            "type": "object",
+            "properties": {
+                "dataSourceId": {
+                    "$ref": "#/$defs/DataSourceId"
+                },
+                "applicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "indexId": {
+                    "$ref": "#/$defs/IndexId"
+                }
+            }
+        },
+        "StopDataSourceSyncJobResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "StopDataSourceSyncJobRequest": {
+            "type": "object",
+            "properties": {
+                "dataSourceId": {
+                    "$ref": "#/$defs/DataSourceId"
+                },
+                "applicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "indexId": {
+                    "$ref": "#/$defs/IndexId"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceARN": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceARN": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "tagKeys": {
+                    "$ref": "#/$defs/TagKeys"
+                }
+            }
+        },
+        "TagKeys": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "UpdateChatControlsConfigurationResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateChatControlsConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "applicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                },
+                "responseScope": {
+                    "$ref": "#/$defs/ResponseScope"
+                },
+                "blockedPhrasesConfigurationUpdate": {
+                    "$ref": "#/$defs/BlockedPhrasesConfigurationUpdate"
+                },
+                "topicConfigurationsToCreateOrUpdate": {
+                    "$ref": "#/$defs/TopicConfigurations"
+                },
+                "topicConfigurationsToDelete": {
+                    "$ref": "#/$defs/TopicConfigurations"
+                },
+                "creatorModeConfiguration": {
+                    "$ref": "#/$defs/CreatorModeConfiguration"
+                }
+            }
+        },
+        "BlockedPhrasesConfigurationUpdate": {
+            "type": "object",
+            "properties": {
+                "blockedPhrasesToCreateOrUpdate": {
+                    "$ref": "#/$defs/BlockedPhrases"
+                },
+                "blockedPhrasesToDelete": {
+                    "$ref": "#/$defs/BlockedPhrases"
+                },
+                "systemMessageOverride": {
+                    "$ref": "#/$defs/SystemMessageOverride"
+                }
+            }
+        },
+        "CreatorModeConfiguration": {
+            "type": "object",
+            "properties": {
+                "creatorModeControl": {
+                    "$ref": "#/$defs/CreatorModeControl"
+                }
+            }
+        },
+        "UpdateUserResponse": {
+            "type": "object",
+            "properties": {
+                "userAliasesAdded": {
+                    "$ref": "#/$defs/UserAliases"
+                },
+                "userAliasesUpdated": {
+                    "$ref": "#/$defs/UserAliases"
+                },
+                "userAliasesDeleted": {
+                    "$ref": "#/$defs/UserAliases"
+                }
+            }
+        },
+        "UpdateUserRequest": {
+            "type": "object",
+            "properties": {
+                "applicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "userId": {
+                    "$ref": "#/$defs/String"
+                },
+                "userAliasesToUpdate": {
+                    "$ref": "#/$defs/UserAliases"
+                },
+                "userAliasesToDelete": {
+                    "$ref": "#/$defs/UserAliases"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            true,
+                                            {
+                                                "fn": "getAttr",
+                                                "argv": [
+                                                    {
+                                                        "ref": "PartitionResult"
+                                                    },
+                                                    "supportsDualStack"
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseFIPS"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsFIPS"
+                                                                ]
+                                                            },
+                                                            true
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "endpoint": {
+                                                            "url": "https://qbusiness-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                            "properties": {},
+                                                            "headers": {}
+                                                        },
+                                                        "type": "endpoint"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "FIPS is enabled but this partition does not support FIPS",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "endpoint": {
+                                            "url": "https://qbusiness.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                            "properties": {},
+                                            "headers": {}
+                                        },
+                                        "type": "endpoint"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://qbusiness-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://qbusiness.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

@@ -1,0 +1,1794 @@
+{
+    "name": "medical-imaging",
+    "commands": [
+        {
+            "name": "CopyImageSet",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CopyImageSet"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CopyImageSetResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CopyImageSetRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteImageSet",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteImageSet"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteImageSetResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteImageSetRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetDICOMImportJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetDICOMImportJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetDICOMImportJobResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetDICOMImportJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetImageFrame",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetImageFrame"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetImageFrameResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetImageFrameRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetImageSet",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetImageSet"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetImageSetResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetImageSetRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetImageSetMetadata",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetImageSetMetadata"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetImageSetMetadataResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetImageSetMetadataRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListDICOMImportJobs",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListDICOMImportJobs"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListDICOMImportJobsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListDICOMImportJobsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListImageSetVersions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListImageSetVersions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListImageSetVersionsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListImageSetVersionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SearchImageSets",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SearchImageSets"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/SearchImageSetsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SearchImageSetsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartDICOMImportJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartDICOMImportJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartDICOMImportJobResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartDICOMImportJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateImageSetMetadata",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateImageSetMetadata"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateImageSetMetadataResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateImageSetMetadataRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CopyImageSetResponse": {
+            "type": "object",
+            "properties": {
+                "datastoreId": {
+                    "$ref": "#/$defs/DatastoreId"
+                },
+                "sourceImageSetProperties": {
+                    "$ref": "#/$defs/CopySourceImageSetProperties"
+                },
+                "destinationImageSetProperties": {
+                    "$ref": "#/$defs/CopyDestinationImageSetProperties"
+                }
+            }
+        },
+        "DatastoreId": {
+            "type": "string"
+        },
+        "CopySourceImageSetProperties": {
+            "type": "object",
+            "properties": {
+                "imageSetId": {
+                    "$ref": "#/$defs/ImageSetId"
+                },
+                "latestVersionId": {
+                    "$ref": "#/$defs/ImageSetExternalVersionId"
+                },
+                "imageSetState": {
+                    "$ref": "#/$defs/ImageSetState"
+                },
+                "imageSetWorkflowStatus": {
+                    "$ref": "#/$defs/ImageSetWorkflowStatus"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Date"
+                },
+                "updatedAt": {
+                    "$ref": "#/$defs/Date"
+                },
+                "imageSetArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "ImageSetId": {
+            "type": "string"
+        },
+        "ImageSetExternalVersionId": {
+            "type": "string"
+        },
+        "ImageSetState": {
+            "enum": [
+                "ACTIVE",
+                "LOCKED",
+                "DELETED"
+            ]
+        },
+        "ImageSetWorkflowStatus": {
+            "enum": [
+                "CREATED",
+                "COPIED",
+                "COPYING",
+                "COPYING_WITH_READ_ONLY_ACCESS",
+                "COPY_FAILED",
+                "UPDATING",
+                "UPDATED",
+                "UPDATE_FAILED",
+                "DELETING",
+                "DELETED"
+            ]
+        },
+        "Date": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "Arn": {
+            "type": "string"
+        },
+        "CopyDestinationImageSetProperties": {
+            "type": "object",
+            "properties": {
+                "imageSetId": {
+                    "$ref": "#/$defs/ImageSetId"
+                },
+                "latestVersionId": {
+                    "$ref": "#/$defs/ImageSetExternalVersionId"
+                },
+                "imageSetState": {
+                    "$ref": "#/$defs/ImageSetState"
+                },
+                "imageSetWorkflowStatus": {
+                    "$ref": "#/$defs/ImageSetWorkflowStatus"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Date"
+                },
+                "updatedAt": {
+                    "$ref": "#/$defs/Date"
+                },
+                "imageSetArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "CopyImageSetRequest": {
+            "type": "object",
+            "properties": {
+                "datastoreId": {
+                    "$ref": "#/$defs/DatastoreId"
+                },
+                "sourceImageSetId": {
+                    "$ref": "#/$defs/ImageSetId"
+                },
+                "copyImageSetInformation": {
+                    "$ref": "#/$defs/CopyImageSetInformation"
+                },
+                "force": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                }
+            }
+        },
+        "CopyImageSetInformation": {
+            "type": "object",
+            "properties": {
+                "sourceImageSet": {
+                    "$ref": "#/$defs/CopySourceImageSetInformation"
+                },
+                "destinationImageSet": {
+                    "$ref": "#/$defs/CopyDestinationImageSet"
+                }
+            }
+        },
+        "CopySourceImageSetInformation": {
+            "type": "object",
+            "properties": {
+                "latestVersionId": {
+                    "$ref": "#/$defs/ImageSetExternalVersionId"
+                },
+                "DICOMCopies": {
+                    "$ref": "#/$defs/MetadataCopies"
+                }
+            }
+        },
+        "MetadataCopies": {
+            "type": "object",
+            "properties": {
+                "copiableAttributes": {
+                    "$ref": "#/$defs/CopiableAttributes"
+                }
+            }
+        },
+        "CopiableAttributes": {
+            "type": "string"
+        },
+        "CopyDestinationImageSet": {
+            "type": "object",
+            "properties": {
+                "imageSetId": {
+                    "$ref": "#/$defs/ImageSetId"
+                },
+                "latestVersionId": {
+                    "$ref": "#/$defs/ImageSetExternalVersionId"
+                }
+            }
+        },
+        "DeleteImageSetResponse": {
+            "type": "object",
+            "properties": {
+                "datastoreId": {
+                    "$ref": "#/$defs/DatastoreId"
+                },
+                "imageSetId": {
+                    "$ref": "#/$defs/ImageSetId"
+                },
+                "imageSetState": {
+                    "$ref": "#/$defs/ImageSetState"
+                },
+                "imageSetWorkflowStatus": {
+                    "$ref": "#/$defs/ImageSetWorkflowStatus"
+                }
+            }
+        },
+        "DeleteImageSetRequest": {
+            "type": "object",
+            "properties": {
+                "datastoreId": {
+                    "$ref": "#/$defs/DatastoreId"
+                },
+                "imageSetId": {
+                    "$ref": "#/$defs/ImageSetId"
+                }
+            }
+        },
+        "GetDICOMImportJobResponse": {
+            "type": "object",
+            "properties": {
+                "jobProperties": {
+                    "$ref": "#/$defs/DICOMImportJobProperties"
+                }
+            }
+        },
+        "DICOMImportJobProperties": {
+            "type": "object",
+            "properties": {
+                "jobId": {
+                    "$ref": "#/$defs/JobId"
+                },
+                "jobName": {
+                    "$ref": "#/$defs/JobName"
+                },
+                "jobStatus": {
+                    "$ref": "#/$defs/JobStatus"
+                },
+                "datastoreId": {
+                    "$ref": "#/$defs/DatastoreId"
+                },
+                "dataAccessRoleArn": {
+                    "$ref": "#/$defs/RoleArn"
+                },
+                "endedAt": {
+                    "$ref": "#/$defs/Date"
+                },
+                "submittedAt": {
+                    "$ref": "#/$defs/Date"
+                },
+                "inputS3Uri": {
+                    "$ref": "#/$defs/S3Uri"
+                },
+                "outputS3Uri": {
+                    "$ref": "#/$defs/S3Uri"
+                },
+                "message": {
+                    "$ref": "#/$defs/Message"
+                }
+            }
+        },
+        "JobId": {
+            "type": "string"
+        },
+        "JobName": {
+            "type": "string"
+        },
+        "JobStatus": {
+            "enum": [
+                "SUBMITTED",
+                "IN_PROGRESS",
+                "COMPLETED",
+                "FAILED"
+            ]
+        },
+        "RoleArn": {
+            "type": "string"
+        },
+        "S3Uri": {
+            "type": "string"
+        },
+        "Message": {
+            "type": "string"
+        },
+        "GetDICOMImportJobRequest": {
+            "type": "object",
+            "properties": {
+                "datastoreId": {
+                    "$ref": "#/$defs/DatastoreId"
+                },
+                "jobId": {
+                    "$ref": "#/$defs/JobId"
+                }
+            }
+        },
+        "GetImageFrameResponse": {
+            "type": "object",
+            "properties": {
+                "imageFrameBlob": {
+                    "$ref": "#/$defs/PayloadBlob"
+                },
+                "contentType": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "PayloadBlob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "GetImageFrameRequest": {
+            "type": "object",
+            "properties": {
+                "datastoreId": {
+                    "$ref": "#/$defs/DatastoreId"
+                },
+                "imageSetId": {
+                    "$ref": "#/$defs/ImageSetId"
+                },
+                "imageFrameInformation": {
+                    "$ref": "#/$defs/ImageFrameInformation"
+                }
+            }
+        },
+        "ImageFrameInformation": {
+            "type": "object",
+            "properties": {
+                "imageFrameId": {
+                    "$ref": "#/$defs/ImageFrameId"
+                }
+            }
+        },
+        "ImageFrameId": {
+            "type": "string"
+        },
+        "GetImageSetResponse": {
+            "type": "object",
+            "properties": {
+                "datastoreId": {
+                    "$ref": "#/$defs/DatastoreId"
+                },
+                "imageSetId": {
+                    "$ref": "#/$defs/ImageSetId"
+                },
+                "versionId": {
+                    "$ref": "#/$defs/ImageSetExternalVersionId"
+                },
+                "imageSetState": {
+                    "$ref": "#/$defs/ImageSetState"
+                },
+                "imageSetWorkflowStatus": {
+                    "$ref": "#/$defs/ImageSetWorkflowStatus"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Date"
+                },
+                "updatedAt": {
+                    "$ref": "#/$defs/Date"
+                },
+                "deletedAt": {
+                    "$ref": "#/$defs/Date"
+                },
+                "message": {
+                    "$ref": "#/$defs/Message"
+                },
+                "imageSetArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "overrides": {
+                    "$ref": "#/$defs/Overrides"
+                }
+            }
+        },
+        "Overrides": {
+            "type": "object",
+            "properties": {
+                "forced": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                }
+            }
+        },
+        "GetImageSetRequest": {
+            "type": "object",
+            "properties": {
+                "datastoreId": {
+                    "$ref": "#/$defs/DatastoreId"
+                },
+                "imageSetId": {
+                    "$ref": "#/$defs/ImageSetId"
+                },
+                "versionId": {
+                    "$ref": "#/$defs/ImageSetExternalVersionId"
+                }
+            }
+        },
+        "GetImageSetMetadataResponse": {
+            "type": "object",
+            "properties": {
+                "imageSetMetadataBlob": {
+                    "$ref": "#/$defs/ImageSetMetadataBlob"
+                },
+                "contentType": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "contentEncoding": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "ImageSetMetadataBlob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "GetImageSetMetadataRequest": {
+            "type": "object",
+            "properties": {
+                "datastoreId": {
+                    "$ref": "#/$defs/DatastoreId"
+                },
+                "imageSetId": {
+                    "$ref": "#/$defs/ImageSetId"
+                },
+                "versionId": {
+                    "$ref": "#/$defs/ImageSetExternalVersionId"
+                }
+            }
+        },
+        "ListDICOMImportJobsResponse": {
+            "type": "object",
+            "properties": {
+                "jobSummaries": {
+                    "$ref": "#/$defs/DICOMImportJobSummaries"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "DICOMImportJobSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DICOMImportJobSummary"
+            }
+        },
+        "DICOMImportJobSummary": {
+            "type": "object",
+            "properties": {
+                "jobId": {
+                    "$ref": "#/$defs/JobId"
+                },
+                "jobName": {
+                    "$ref": "#/$defs/JobName"
+                },
+                "jobStatus": {
+                    "$ref": "#/$defs/JobStatus"
+                },
+                "datastoreId": {
+                    "$ref": "#/$defs/DatastoreId"
+                },
+                "dataAccessRoleArn": {
+                    "$ref": "#/$defs/RoleArn"
+                },
+                "endedAt": {
+                    "$ref": "#/$defs/Date"
+                },
+                "submittedAt": {
+                    "$ref": "#/$defs/Date"
+                },
+                "message": {
+                    "$ref": "#/$defs/Message"
+                }
+            }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "ListDICOMImportJobsRequest": {
+            "type": "object",
+            "properties": {
+                "datastoreId": {
+                    "$ref": "#/$defs/DatastoreId"
+                },
+                "jobStatus": {
+                    "$ref": "#/$defs/JobStatus"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                }
+            }
+        },
+        "ListImageSetVersionsResponse": {
+            "type": "object",
+            "properties": {
+                "imageSetPropertiesList": {
+                    "$ref": "#/$defs/ImageSetPropertiesList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ImageSetPropertiesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ImageSetProperties"
+            }
+        },
+        "ImageSetProperties": {
+            "type": "object",
+            "properties": {
+                "imageSetId": {
+                    "$ref": "#/$defs/ImageSetId"
+                },
+                "versionId": {
+                    "$ref": "#/$defs/ImageSetExternalVersionId"
+                },
+                "imageSetState": {
+                    "$ref": "#/$defs/ImageSetState"
+                },
+                "ImageSetWorkflowStatus": {
+                    "$ref": "#/$defs/ImageSetWorkflowStatus"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Date"
+                },
+                "updatedAt": {
+                    "$ref": "#/$defs/Date"
+                },
+                "deletedAt": {
+                    "$ref": "#/$defs/Date"
+                },
+                "message": {
+                    "$ref": "#/$defs/Message"
+                },
+                "overrides": {
+                    "$ref": "#/$defs/Overrides"
+                }
+            }
+        },
+        "ListImageSetVersionsRequest": {
+            "type": "object",
+            "properties": {
+                "datastoreId": {
+                    "$ref": "#/$defs/DatastoreId"
+                },
+                "imageSetId": {
+                    "$ref": "#/$defs/ImageSetId"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "TagMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TagValue"
+            }
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "SearchImageSetsResponse": {
+            "type": "object",
+            "properties": {
+                "imageSetsMetadataSummaries": {
+                    "$ref": "#/$defs/ImageSetsMetadataSummaries"
+                },
+                "sort": {
+                    "$ref": "#/$defs/Sort"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ImageSetsMetadataSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ImageSetsMetadataSummary"
+            }
+        },
+        "ImageSetsMetadataSummary": {
+            "type": "object",
+            "properties": {
+                "imageSetId": {
+                    "$ref": "#/$defs/ImageSetId"
+                },
+                "version": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Date"
+                },
+                "updatedAt": {
+                    "$ref": "#/$defs/Date"
+                },
+                "DICOMTags": {
+                    "$ref": "#/$defs/DICOMTags"
+                }
+            }
+        },
+        "DICOMTags": {
+            "type": "object",
+            "properties": {
+                "DICOMPatientId": {
+                    "$ref": "#/$defs/DICOMPatientId"
+                },
+                "DICOMPatientName": {
+                    "$ref": "#/$defs/DICOMPatientName"
+                },
+                "DICOMPatientBirthDate": {
+                    "$ref": "#/$defs/DICOMPatientBirthDate"
+                },
+                "DICOMPatientSex": {
+                    "$ref": "#/$defs/DICOMPatientSex"
+                },
+                "DICOMStudyInstanceUID": {
+                    "$ref": "#/$defs/DICOMStudyInstanceUID"
+                },
+                "DICOMStudyId": {
+                    "$ref": "#/$defs/DICOMStudyId"
+                },
+                "DICOMStudyDescription": {
+                    "$ref": "#/$defs/DICOMStudyDescription"
+                },
+                "DICOMNumberOfStudyRelatedSeries": {
+                    "$ref": "#/$defs/DICOMNumberOfStudyRelatedSeries"
+                },
+                "DICOMNumberOfStudyRelatedInstances": {
+                    "$ref": "#/$defs/DICOMNumberOfStudyRelatedInstances"
+                },
+                "DICOMAccessionNumber": {
+                    "$ref": "#/$defs/DICOMAccessionNumber"
+                },
+                "DICOMSeriesInstanceUID": {
+                    "$ref": "#/$defs/DICOMSeriesInstanceUID"
+                },
+                "DICOMSeriesModality": {
+                    "$ref": "#/$defs/DICOMSeriesModality"
+                },
+                "DICOMSeriesBodyPart": {
+                    "$ref": "#/$defs/DICOMSeriesBodyPart"
+                },
+                "DICOMSeriesNumber": {
+                    "$ref": "#/$defs/DICOMSeriesNumber"
+                },
+                "DICOMStudyDate": {
+                    "$ref": "#/$defs/DICOMStudyDate"
+                },
+                "DICOMStudyTime": {
+                    "$ref": "#/$defs/DICOMStudyTime"
+                }
+            }
+        },
+        "DICOMPatientId": {
+            "type": "string"
+        },
+        "DICOMPatientName": {
+            "type": "string"
+        },
+        "DICOMPatientBirthDate": {
+            "type": "string"
+        },
+        "DICOMPatientSex": {
+            "type": "string"
+        },
+        "DICOMStudyInstanceUID": {
+            "type": "string"
+        },
+        "DICOMStudyId": {
+            "type": "string"
+        },
+        "DICOMStudyDescription": {
+            "type": "string"
+        },
+        "DICOMNumberOfStudyRelatedSeries": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DICOMNumberOfStudyRelatedInstances": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DICOMAccessionNumber": {
+            "type": "string"
+        },
+        "DICOMSeriesInstanceUID": {
+            "type": "string"
+        },
+        "DICOMSeriesModality": {
+            "type": "string"
+        },
+        "DICOMSeriesBodyPart": {
+            "type": "string"
+        },
+        "DICOMSeriesNumber": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DICOMStudyDate": {
+            "type": "string"
+        },
+        "DICOMStudyTime": {
+            "type": "string"
+        },
+        "Sort": {
+            "type": "object",
+            "properties": {
+                "sortOrder": {
+                    "$ref": "#/$defs/SortOrder"
+                },
+                "sortField": {
+                    "$ref": "#/$defs/SortField"
+                }
+            }
+        },
+        "SortOrder": {
+            "enum": [
+                "ASC",
+                "DESC"
+            ]
+        },
+        "SortField": {
+            "enum": [
+                "updatedAt",
+                "createdAt",
+                "DICOMStudyDateAndTime"
+            ]
+        },
+        "SearchImageSetsRequest": {
+            "type": "object",
+            "properties": {
+                "datastoreId": {
+                    "$ref": "#/$defs/DatastoreId"
+                },
+                "searchCriteria": {
+                    "$ref": "#/$defs/SearchCriteria"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "SearchCriteria": {
+            "type": "object",
+            "properties": {
+                "filters": {
+                    "$ref": "#/$defs/SearchFilters"
+                },
+                "sort": {
+                    "$ref": "#/$defs/Sort"
+                }
+            }
+        },
+        "SearchFilters": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SearchFilter"
+            }
+        },
+        "SearchFilter": {
+            "type": "object",
+            "properties": {
+                "values": {
+                    "$ref": "#/$defs/SearchByAttributeValues"
+                },
+                "operator": {
+                    "$ref": "#/$defs/Operator"
+                }
+            }
+        },
+        "SearchByAttributeValues": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SearchByAttributeValue"
+            }
+        },
+        "SearchByAttributeValue": {
+            "type": "object",
+            "properties": {
+                "DICOMPatientId": {
+                    "$ref": "#/$defs/DICOMPatientId"
+                },
+                "DICOMAccessionNumber": {
+                    "$ref": "#/$defs/DICOMAccessionNumber"
+                },
+                "DICOMStudyId": {
+                    "$ref": "#/$defs/DICOMStudyId"
+                },
+                "DICOMStudyInstanceUID": {
+                    "$ref": "#/$defs/DICOMStudyInstanceUID"
+                },
+                "DICOMSeriesInstanceUID": {
+                    "$ref": "#/$defs/DICOMSeriesInstanceUID"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Date"
+                },
+                "updatedAt": {
+                    "$ref": "#/$defs/Date"
+                },
+                "DICOMStudyDateAndTime": {
+                    "$ref": "#/$defs/DICOMStudyDateAndTime"
+                }
+            }
+        },
+        "DICOMStudyDateAndTime": {
+            "type": "object",
+            "properties": {
+                "DICOMStudyDate": {
+                    "$ref": "#/$defs/DICOMStudyDate"
+                },
+                "DICOMStudyTime": {
+                    "$ref": "#/$defs/DICOMStudyTime"
+                }
+            }
+        },
+        "Operator": {
+            "enum": [
+                "EQUAL",
+                "BETWEEN"
+            ]
+        },
+        "StartDICOMImportJobResponse": {
+            "type": "object",
+            "properties": {
+                "datastoreId": {
+                    "$ref": "#/$defs/DatastoreId"
+                },
+                "jobId": {
+                    "$ref": "#/$defs/JobId"
+                },
+                "jobStatus": {
+                    "$ref": "#/$defs/JobStatus"
+                },
+                "submittedAt": {
+                    "$ref": "#/$defs/Date"
+                }
+            }
+        },
+        "StartDICOMImportJobRequest": {
+            "type": "object",
+            "properties": {
+                "jobName": {
+                    "$ref": "#/$defs/JobName"
+                },
+                "dataAccessRoleArn": {
+                    "$ref": "#/$defs/RoleArn"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                },
+                "datastoreId": {
+                    "$ref": "#/$defs/DatastoreId"
+                },
+                "inputS3Uri": {
+                    "$ref": "#/$defs/S3Uri"
+                },
+                "outputS3Uri": {
+                    "$ref": "#/$defs/S3Uri"
+                },
+                "inputOwnerAccountId": {
+                    "$ref": "#/$defs/AwsAccountId"
+                }
+            }
+        },
+        "ClientToken": {
+            "type": "string"
+        },
+        "AwsAccountId": {
+            "type": "string"
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "tagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "UpdateImageSetMetadataResponse": {
+            "type": "object",
+            "properties": {
+                "datastoreId": {
+                    "$ref": "#/$defs/DatastoreId"
+                },
+                "imageSetId": {
+                    "$ref": "#/$defs/ImageSetId"
+                },
+                "latestVersionId": {
+                    "$ref": "#/$defs/ImageSetExternalVersionId"
+                },
+                "imageSetState": {
+                    "$ref": "#/$defs/ImageSetState"
+                },
+                "imageSetWorkflowStatus": {
+                    "$ref": "#/$defs/ImageSetWorkflowStatus"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Date"
+                },
+                "updatedAt": {
+                    "$ref": "#/$defs/Date"
+                },
+                "message": {
+                    "$ref": "#/$defs/Message"
+                }
+            }
+        },
+        "UpdateImageSetMetadataRequest": {
+            "type": "object",
+            "properties": {
+                "datastoreId": {
+                    "$ref": "#/$defs/DatastoreId"
+                },
+                "imageSetId": {
+                    "$ref": "#/$defs/ImageSetId"
+                },
+                "latestVersionId": {
+                    "$ref": "#/$defs/ImageSetExternalVersionId"
+                },
+                "force": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                },
+                "updateImageSetMetadataUpdates": {
+                    "$ref": "#/$defs/MetadataUpdates"
+                }
+            }
+        },
+        "MetadataUpdates": {
+            "type": "object",
+            "properties": {
+                "DICOMUpdates": {
+                    "$ref": "#/$defs/DICOMUpdates"
+                },
+                "revertToVersionId": {
+                    "$ref": "#/$defs/ImageSetExternalVersionId"
+                }
+            }
+        },
+        "DICOMUpdates": {
+            "type": "object",
+            "properties": {
+                "removableAttributes": {
+                    "$ref": "#/$defs/DICOMAttribute"
+                },
+                "updatableAttributes": {
+                    "$ref": "#/$defs/DICOMAttribute"
+                }
+            }
+        },
+        "DICOMAttribute": {
+            "type": "string",
+            "format": "binary"
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                                "type": "error"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": {
+                                        "ref": "Endpoint"
+                                    },
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "isSet",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ]
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "aws.partition",
+                                        "argv": [
+                                            {
+                                                "ref": "Region"
+                                            }
+                                        ],
+                                        "assign": "PartitionResult"
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseFIPS"
+                                                    },
+                                                    true
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseDualStack"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsFIPS"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsDualStack"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://medical-imaging-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ],
+                                                        "type": "tree"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseFIPS"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsFIPS"
+                                                                ]
+                                                            },
+                                                            true
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://medical-imaging-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ],
+                                                        "type": "tree"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "FIPS is enabled but this partition does not support FIPS",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseDualStack"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsDualStack"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://medical-imaging.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ],
+                                                        "type": "tree"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "DualStack is enabled but this partition does not support DualStack",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://medical-imaging.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    }
+                                ],
+                                "type": "tree"
+                            }
+                        ],
+                        "type": "tree"
+                    },
+                    {
+                        "conditions": [],
+                        "error": "Invalid Configuration: Missing Region",
+                        "type": "error"
+                    }
+                ],
+                "type": "tree"
+            }
+        ]
+    }
+}

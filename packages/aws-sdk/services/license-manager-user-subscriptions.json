@@ -1,0 +1,1162 @@
+{
+    "name": "license-manager-user-subscriptions",
+    "commands": [
+        {
+            "name": "AssociateUser",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AssociateUser"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AssociateUserResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AssociateUserRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeregisterIdentityProvider",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeregisterIdentityProvider"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeregisterIdentityProviderResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeregisterIdentityProviderRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DisassociateUser",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DisassociateUser"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DisassociateUserResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DisassociateUserRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListIdentityProviders",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListIdentityProviders"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListIdentityProvidersResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListIdentityProvidersRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListInstances",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListInstances"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListInstancesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListInstancesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListProductSubscriptions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListProductSubscriptions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListProductSubscriptionsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListProductSubscriptionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListUserAssociations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListUserAssociations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListUserAssociationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListUserAssociationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RegisterIdentityProvider",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RegisterIdentityProvider"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RegisterIdentityProviderResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RegisterIdentityProviderRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartProductSubscription",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartProductSubscription"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartProductSubscriptionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartProductSubscriptionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StopProductSubscription",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StopProductSubscription"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StopProductSubscriptionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StopProductSubscriptionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateIdentityProviderSettings",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateIdentityProviderSettings"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateIdentityProviderSettingsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateIdentityProviderSettingsRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "AssociateUserResponse": {
+            "type": "object",
+            "properties": {
+                "InstanceUserSummary": {
+                    "$ref": "#/$defs/InstanceUserSummary"
+                }
+            }
+        },
+        "InstanceUserSummary": {
+            "type": "object",
+            "properties": {
+                "Username": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "InstanceId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "IdentityProvider": {
+                    "$ref": "#/$defs/IdentityProvider"
+                },
+                "Status": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "StatusMessage": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Domain": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "AssociationDate": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "DisassociationDate": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "IdentityProvider": {
+            "type": "object",
+            "properties": {
+                "ActiveDirectoryIdentityProvider": {
+                    "$ref": "#/$defs/ActiveDirectoryIdentityProvider"
+                }
+            }
+        },
+        "ActiveDirectoryIdentityProvider": {
+            "type": "object",
+            "properties": {
+                "DirectoryId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "AssociateUserRequest": {
+            "type": "object",
+            "properties": {
+                "Username": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "InstanceId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "IdentityProvider": {
+                    "$ref": "#/$defs/IdentityProvider"
+                },
+                "Domain": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "DeregisterIdentityProviderResponse": {
+            "type": "object",
+            "properties": {
+                "IdentityProviderSummary": {
+                    "$ref": "#/$defs/IdentityProviderSummary"
+                }
+            }
+        },
+        "IdentityProviderSummary": {
+            "type": "object",
+            "properties": {
+                "IdentityProvider": {
+                    "$ref": "#/$defs/IdentityProvider"
+                },
+                "Settings": {
+                    "$ref": "#/$defs/Settings"
+                },
+                "Product": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Status": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "FailureMessage": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "Settings": {
+            "type": "object",
+            "properties": {
+                "Subnets": {
+                    "$ref": "#/$defs/Subnets"
+                },
+                "SecurityGroupId": {
+                    "$ref": "#/$defs/SecurityGroup"
+                }
+            }
+        },
+        "Subnets": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Subnet"
+            }
+        },
+        "Subnet": {
+            "type": "string"
+        },
+        "SecurityGroup": {
+            "type": "string"
+        },
+        "DeregisterIdentityProviderRequest": {
+            "type": "object",
+            "properties": {
+                "IdentityProvider": {
+                    "$ref": "#/$defs/IdentityProvider"
+                },
+                "Product": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "DisassociateUserResponse": {
+            "type": "object",
+            "properties": {
+                "InstanceUserSummary": {
+                    "$ref": "#/$defs/InstanceUserSummary"
+                }
+            }
+        },
+        "DisassociateUserRequest": {
+            "type": "object",
+            "properties": {
+                "Username": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "InstanceId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "IdentityProvider": {
+                    "$ref": "#/$defs/IdentityProvider"
+                },
+                "Domain": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "ListIdentityProvidersResponse": {
+            "type": "object",
+            "properties": {
+                "IdentityProviderSummaries": {
+                    "$ref": "#/$defs/IdentityProviderSummaryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "IdentityProviderSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/IdentityProviderSummary"
+            }
+        },
+        "ListIdentityProvidersRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/BoxInteger"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "BoxInteger": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListInstancesResponse": {
+            "type": "object",
+            "properties": {
+                "InstanceSummaries": {
+                    "$ref": "#/$defs/InstanceSummaryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "InstanceSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/InstanceSummary"
+            }
+        },
+        "InstanceSummary": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Status": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Products": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "LastStatusCheckDate": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "StatusMessage": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "StringList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "ListInstancesRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/BoxInteger"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/FilterList"
+                }
+            }
+        },
+        "FilterList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Filter"
+            }
+        },
+        "Filter": {
+            "type": "object",
+            "properties": {
+                "Attribute": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Operation": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Value": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "ListProductSubscriptionsResponse": {
+            "type": "object",
+            "properties": {
+                "ProductUserSummaries": {
+                    "$ref": "#/$defs/ProductUserSummaryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "ProductUserSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ProductUserSummary"
+            }
+        },
+        "ProductUserSummary": {
+            "type": "object",
+            "properties": {
+                "Username": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Product": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "IdentityProvider": {
+                    "$ref": "#/$defs/IdentityProvider"
+                },
+                "Status": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "StatusMessage": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Domain": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "SubscriptionStartDate": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "SubscriptionEndDate": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "ListProductSubscriptionsRequest": {
+            "type": "object",
+            "properties": {
+                "Product": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "IdentityProvider": {
+                    "$ref": "#/$defs/IdentityProvider"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/BoxInteger"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/FilterList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "ListUserAssociationsResponse": {
+            "type": "object",
+            "properties": {
+                "InstanceUserSummaries": {
+                    "$ref": "#/$defs/InstanceUserSummaryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "InstanceUserSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/InstanceUserSummary"
+            }
+        },
+        "ListUserAssociationsRequest": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "IdentityProvider": {
+                    "$ref": "#/$defs/IdentityProvider"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/BoxInteger"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/FilterList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "RegisterIdentityProviderResponse": {
+            "type": "object",
+            "properties": {
+                "IdentityProviderSummary": {
+                    "$ref": "#/$defs/IdentityProviderSummary"
+                }
+            }
+        },
+        "RegisterIdentityProviderRequest": {
+            "type": "object",
+            "properties": {
+                "IdentityProvider": {
+                    "$ref": "#/$defs/IdentityProvider"
+                },
+                "Product": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Settings": {
+                    "$ref": "#/$defs/Settings"
+                }
+            }
+        },
+        "StartProductSubscriptionResponse": {
+            "type": "object",
+            "properties": {
+                "ProductUserSummary": {
+                    "$ref": "#/$defs/ProductUserSummary"
+                }
+            }
+        },
+        "StartProductSubscriptionRequest": {
+            "type": "object",
+            "properties": {
+                "Username": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "IdentityProvider": {
+                    "$ref": "#/$defs/IdentityProvider"
+                },
+                "Product": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Domain": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "StopProductSubscriptionResponse": {
+            "type": "object",
+            "properties": {
+                "ProductUserSummary": {
+                    "$ref": "#/$defs/ProductUserSummary"
+                }
+            }
+        },
+        "StopProductSubscriptionRequest": {
+            "type": "object",
+            "properties": {
+                "Username": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "IdentityProvider": {
+                    "$ref": "#/$defs/IdentityProvider"
+                },
+                "Product": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Domain": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "UpdateIdentityProviderSettingsResponse": {
+            "type": "object",
+            "properties": {
+                "IdentityProviderSummary": {
+                    "$ref": "#/$defs/IdentityProviderSummary"
+                }
+            }
+        },
+        "UpdateIdentityProviderSettingsRequest": {
+            "type": "object",
+            "properties": {
+                "IdentityProvider": {
+                    "$ref": "#/$defs/IdentityProvider"
+                },
+                "Product": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "UpdateSettings": {
+                    "$ref": "#/$defs/UpdateSettings"
+                }
+            }
+        },
+        "UpdateSettings": {
+            "type": "object",
+            "properties": {
+                "AddSubnets": {
+                    "$ref": "#/$defs/Subnets"
+                },
+                "RemoveSubnets": {
+                    "$ref": "#/$defs/Subnets"
+                },
+                "SecurityGroupId": {
+                    "$ref": "#/$defs/SecurityGroup"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://license-manager-user-subscriptions-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://license-manager-user-subscriptions-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://license-manager-user-subscriptions.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://license-manager-user-subscriptions.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

@@ -2,21 +2,25 @@
     "name": "@akala/aws-sdk",
     "version": "0.0.1",
     "private": true,
-    "main": "dist/cjs/index.js",
-    "types": "dist/cjs/index.d.ts",
+    "main": "dist/esm/index.js",
+    "types": "dist/esm/index.d.ts",
+    "type": "module",
     "exports": {
         ".": {
             "import": {
                 "types": "./dist/esm/index.d.ts",
                 "default": "./dist/esm/index.js"
-            },
-            "require": {
-                "types": "./dist/cjs/index.d.ts",
-                "default": "./dist/cjs/index.js"
             }
         }
     },
+    "devDependencies": {
+        "@akala/commands": "workspace:^"
+    },
     "scripts": {
-        "test": "echo \"Error: no test specified\""
+        "test": "echo \"Error: no test specified\"",
+        "generate-cli": "ac generate dist/cli commands.json --name aws-sdk",
+        "generate-metadata-cli": "ac generate-metadata commands.json src/commands.ts --name aws-sdk",
+        "generate": "yarn run generate-cli",
+        "generate-metadata": "yarn run generate-metadata-cli"
     }
 }

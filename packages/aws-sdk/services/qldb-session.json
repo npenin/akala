@@ -1,0 +1,680 @@
+{
+    "name": "qldb",
+    "commands": [
+        {
+            "name": "SendCommand",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SendCommand"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/SendCommandResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SendCommandRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "SendCommandResult": {
+            "type": "object",
+            "properties": {
+                "StartSession": {
+                    "$ref": "#/$defs/StartSessionResult"
+                },
+                "StartTransaction": {
+                    "$ref": "#/$defs/StartTransactionResult"
+                },
+                "EndSession": {
+                    "$ref": "#/$defs/EndSessionResult"
+                },
+                "CommitTransaction": {
+                    "$ref": "#/$defs/CommitTransactionResult"
+                },
+                "AbortTransaction": {
+                    "$ref": "#/$defs/AbortTransactionResult"
+                },
+                "ExecuteStatement": {
+                    "$ref": "#/$defs/ExecuteStatementResult"
+                },
+                "FetchPage": {
+                    "$ref": "#/$defs/FetchPageResult"
+                }
+            }
+        },
+        "StartSessionResult": {
+            "type": "object",
+            "properties": {
+                "SessionToken": {
+                    "$ref": "#/$defs/SessionToken"
+                },
+                "TimingInformation": {
+                    "$ref": "#/$defs/TimingInformation"
+                }
+            }
+        },
+        "SessionToken": {
+            "type": "string"
+        },
+        "TimingInformation": {
+            "type": "object",
+            "properties": {
+                "ProcessingTimeMilliseconds": {
+                    "$ref": "#/$defs/ProcessingTimeMilliseconds"
+                }
+            }
+        },
+        "ProcessingTimeMilliseconds": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "StartTransactionResult": {
+            "type": "object",
+            "properties": {
+                "TransactionId": {
+                    "$ref": "#/$defs/TransactionId"
+                },
+                "TimingInformation": {
+                    "$ref": "#/$defs/TimingInformation"
+                }
+            }
+        },
+        "TransactionId": {
+            "type": "string"
+        },
+        "EndSessionResult": {
+            "type": "object",
+            "properties": {
+                "TimingInformation": {
+                    "$ref": "#/$defs/TimingInformation"
+                }
+            }
+        },
+        "CommitTransactionResult": {
+            "type": "object",
+            "properties": {
+                "TransactionId": {
+                    "$ref": "#/$defs/TransactionId"
+                },
+                "CommitDigest": {
+                    "$ref": "#/$defs/CommitDigest"
+                },
+                "TimingInformation": {
+                    "$ref": "#/$defs/TimingInformation"
+                },
+                "ConsumedIOs": {
+                    "$ref": "#/$defs/IOUsage"
+                }
+            }
+        },
+        "CommitDigest": {
+            "type": "string",
+            "format": "binary"
+        },
+        "IOUsage": {
+            "type": "object",
+            "properties": {
+                "ReadIOs": {
+                    "$ref": "#/$defs/ReadIOs"
+                },
+                "WriteIOs": {
+                    "$ref": "#/$defs/WriteIOs"
+                }
+            }
+        },
+        "ReadIOs": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "WriteIOs": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "AbortTransactionResult": {
+            "type": "object",
+            "properties": {
+                "TimingInformation": {
+                    "$ref": "#/$defs/TimingInformation"
+                }
+            }
+        },
+        "ExecuteStatementResult": {
+            "type": "object",
+            "properties": {
+                "FirstPage": {
+                    "$ref": "#/$defs/Page"
+                },
+                "TimingInformation": {
+                    "$ref": "#/$defs/TimingInformation"
+                },
+                "ConsumedIOs": {
+                    "$ref": "#/$defs/IOUsage"
+                }
+            }
+        },
+        "Page": {
+            "type": "object",
+            "properties": {
+                "Values": {
+                    "$ref": "#/$defs/ValueHolders"
+                },
+                "NextPageToken": {
+                    "$ref": "#/$defs/PageToken"
+                }
+            }
+        },
+        "ValueHolders": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ValueHolder"
+            }
+        },
+        "ValueHolder": {
+            "type": "object",
+            "properties": {
+                "IonBinary": {
+                    "$ref": "#/$defs/IonBinary"
+                },
+                "IonText": {
+                    "$ref": "#/$defs/IonText"
+                }
+            }
+        },
+        "IonBinary": {
+            "type": "string",
+            "format": "binary"
+        },
+        "IonText": {
+            "type": "string"
+        },
+        "PageToken": {
+            "type": "string"
+        },
+        "FetchPageResult": {
+            "type": "object",
+            "properties": {
+                "Page": {
+                    "$ref": "#/$defs/Page"
+                },
+                "TimingInformation": {
+                    "$ref": "#/$defs/TimingInformation"
+                },
+                "ConsumedIOs": {
+                    "$ref": "#/$defs/IOUsage"
+                }
+            }
+        },
+        "SendCommandRequest": {
+            "type": "object",
+            "properties": {
+                "SessionToken": {
+                    "$ref": "#/$defs/SessionToken"
+                },
+                "StartSession": {
+                    "$ref": "#/$defs/StartSessionRequest"
+                },
+                "StartTransaction": {
+                    "$ref": "#/$defs/StartTransactionRequest"
+                },
+                "EndSession": {
+                    "$ref": "#/$defs/EndSessionRequest"
+                },
+                "CommitTransaction": {
+                    "$ref": "#/$defs/CommitTransactionRequest"
+                },
+                "AbortTransaction": {
+                    "$ref": "#/$defs/AbortTransactionRequest"
+                },
+                "ExecuteStatement": {
+                    "$ref": "#/$defs/ExecuteStatementRequest"
+                },
+                "FetchPage": {
+                    "$ref": "#/$defs/FetchPageRequest"
+                }
+            }
+        },
+        "StartSessionRequest": {
+            "type": "object",
+            "properties": {
+                "LedgerName": {
+                    "$ref": "#/$defs/LedgerName"
+                }
+            }
+        },
+        "LedgerName": {
+            "type": "string"
+        },
+        "StartTransactionRequest": {
+            "type": "object",
+            "properties": {}
+        },
+        "EndSessionRequest": {
+            "type": "object",
+            "properties": {}
+        },
+        "CommitTransactionRequest": {
+            "type": "object",
+            "properties": {
+                "TransactionId": {
+                    "$ref": "#/$defs/TransactionId"
+                },
+                "CommitDigest": {
+                    "$ref": "#/$defs/CommitDigest"
+                }
+            }
+        },
+        "AbortTransactionRequest": {
+            "type": "object",
+            "properties": {}
+        },
+        "ExecuteStatementRequest": {
+            "type": "object",
+            "properties": {
+                "TransactionId": {
+                    "$ref": "#/$defs/TransactionId"
+                },
+                "Statement": {
+                    "$ref": "#/$defs/Statement"
+                },
+                "Parameters": {
+                    "$ref": "#/$defs/StatementParameters"
+                }
+            }
+        },
+        "Statement": {
+            "type": "string"
+        },
+        "StatementParameters": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ValueHolder"
+            }
+        },
+        "FetchPageRequest": {
+            "type": "object",
+            "properties": {
+                "TransactionId": {
+                    "$ref": "#/$defs/TransactionId"
+                },
+                "NextPageToken": {
+                    "$ref": "#/$defs/PageToken"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://session.qldb-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://session.qldb-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://session.qldb.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://session.qldb.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

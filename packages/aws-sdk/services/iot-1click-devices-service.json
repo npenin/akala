@@ -1,0 +1,1103 @@
+{
+    "name": "iot1click",
+    "commands": [
+        {
+            "name": "ClaimDevicesByClaimCode",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ClaimDevicesByClaimCode"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ClaimDevicesByClaimCodeResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ClaimDevicesByClaimCodeRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeDevice",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeDevice"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeDeviceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeDeviceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "FinalizeDeviceClaim",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "FinalizeDeviceClaim"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/FinalizeDeviceClaimResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/FinalizeDeviceClaimRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetDeviceMethods",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetDeviceMethods"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetDeviceMethodsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetDeviceMethodsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "InitiateDeviceClaim",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "InitiateDeviceClaim"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/InitiateDeviceClaimResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/InitiateDeviceClaimRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "InvokeDeviceMethod",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "InvokeDeviceMethod"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/InvokeDeviceMethodResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/InvokeDeviceMethodRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListDeviceEvents",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListDeviceEvents"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListDeviceEventsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListDeviceEventsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListDevices",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListDevices"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListDevicesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListDevicesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UnclaimDevice",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UnclaimDevice"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UnclaimDeviceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UnclaimDeviceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateDeviceState",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateDeviceState"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateDeviceStateResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateDeviceStateRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "ClaimDevicesByClaimCodeResponse": {
+            "type": "object",
+            "properties": {
+                "ClaimCode": {
+                    "$ref": "#/$defs/__stringMin12Max40"
+                },
+                "Total": {
+                    "$ref": "#/$defs/__integer"
+                }
+            }
+        },
+        "__stringMin12Max40": {
+            "type": "string"
+        },
+        "__integer": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ClaimDevicesByClaimCodeRequest": {
+            "type": "object",
+            "properties": {
+                "ClaimCode": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "__string": {
+            "type": "string"
+        },
+        "DescribeDeviceResponse": {
+            "type": "object",
+            "properties": {
+                "DeviceDescription": {
+                    "$ref": "#/$defs/DeviceDescription"
+                }
+            }
+        },
+        "DeviceDescription": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Attributes": {
+                    "$ref": "#/$defs/DeviceAttributes"
+                },
+                "DeviceId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Enabled": {
+                    "$ref": "#/$defs/__boolean"
+                },
+                "RemainingLife": {
+                    "$ref": "#/$defs/__doubleMin0Max100"
+                },
+                "Type": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/__mapOf__string"
+                }
+            }
+        },
+        "DeviceAttributes": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/__string"
+            }
+        },
+        "__boolean": {
+            "type": "boolean"
+        },
+        "__doubleMin0Max100": {
+            "type": "number",
+            "format": "double"
+        },
+        "__mapOf__string": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/__string"
+            }
+        },
+        "DescribeDeviceRequest": {
+            "type": "object",
+            "properties": {
+                "DeviceId": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "FinalizeDeviceClaimResponse": {
+            "type": "object",
+            "properties": {
+                "State": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "FinalizeDeviceClaimRequest": {
+            "type": "object",
+            "properties": {
+                "DeviceId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/__mapOf__string"
+                }
+            }
+        },
+        "GetDeviceMethodsResponse": {
+            "type": "object",
+            "properties": {
+                "DeviceMethods": {
+                    "$ref": "#/$defs/__listOfDeviceMethod"
+                }
+            }
+        },
+        "__listOfDeviceMethod": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DeviceMethod"
+            }
+        },
+        "DeviceMethod": {
+            "type": "object",
+            "properties": {
+                "DeviceType": {
+                    "$ref": "#/$defs/__string"
+                },
+                "MethodName": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "GetDeviceMethodsRequest": {
+            "type": "object",
+            "properties": {
+                "DeviceId": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "InitiateDeviceClaimResponse": {
+            "type": "object",
+            "properties": {
+                "State": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "InitiateDeviceClaimRequest": {
+            "type": "object",
+            "properties": {
+                "DeviceId": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "InvokeDeviceMethodResponse": {
+            "type": "object",
+            "properties": {
+                "DeviceMethodResponse": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "InvokeDeviceMethodRequest": {
+            "type": "object",
+            "properties": {
+                "DeviceId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "DeviceMethod": {
+                    "$ref": "#/$defs/DeviceMethod"
+                },
+                "DeviceMethodParameters": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "ListDeviceEventsResponse": {
+            "type": "object",
+            "properties": {
+                "Events": {
+                    "$ref": "#/$defs/__listOfDeviceEvent"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "__listOfDeviceEvent": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DeviceEvent"
+            }
+        },
+        "DeviceEvent": {
+            "type": "object",
+            "properties": {
+                "Device": {
+                    "$ref": "#/$defs/Device"
+                },
+                "StdEvent": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "Device": {
+            "type": "object",
+            "properties": {
+                "Attributes": {
+                    "$ref": "#/$defs/Attributes"
+                },
+                "DeviceId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Type": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "Attributes": {
+            "type": "object",
+            "properties": {}
+        },
+        "ListDeviceEventsRequest": {
+            "type": "object",
+            "properties": {
+                "DeviceId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "FromTimeStamp": {
+                    "$ref": "#/$defs/__timestampIso8601"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ToTimeStamp": {
+                    "$ref": "#/$defs/__timestampIso8601"
+                }
+            }
+        },
+        "__timestampIso8601": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListDevicesResponse": {
+            "type": "object",
+            "properties": {
+                "Devices": {
+                    "$ref": "#/$defs/__listOfDeviceDescription"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "__listOfDeviceDescription": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DeviceDescription"
+            }
+        },
+        "ListDevicesRequest": {
+            "type": "object",
+            "properties": {
+                "DeviceType": {
+                    "$ref": "#/$defs/__string"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/__mapOf__string"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/__mapOf__string"
+                }
+            }
+        },
+        "UnclaimDeviceResponse": {
+            "type": "object",
+            "properties": {
+                "State": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "UnclaimDeviceRequest": {
+            "type": "object",
+            "properties": {
+                "DeviceId": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/__listOf__string"
+                }
+            }
+        },
+        "__listOf__string": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/__string"
+            }
+        },
+        "UpdateDeviceStateResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateDeviceStateRequest": {
+            "type": "object",
+            "properties": {
+                "DeviceId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Enabled": {
+                    "$ref": "#/$defs/__boolean"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://devices.iot1click-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://devices.iot1click-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://devices.iot1click.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://devices.iot1click.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

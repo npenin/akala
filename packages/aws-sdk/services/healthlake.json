@@ -1,0 +1,1484 @@
+{
+    "name": "healthlake",
+    "commands": [
+        {
+            "name": "CreateFHIRDatastore",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateFHIRDatastore"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateFHIRDatastoreResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateFHIRDatastoreRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteFHIRDatastore",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteFHIRDatastore"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteFHIRDatastoreResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteFHIRDatastoreRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeFHIRDatastore",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeFHIRDatastore"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeFHIRDatastoreResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeFHIRDatastoreRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeFHIRExportJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeFHIRExportJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeFHIRExportJobResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeFHIRExportJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeFHIRImportJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeFHIRImportJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeFHIRImportJobResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeFHIRImportJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListFHIRDatastores",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListFHIRDatastores"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListFHIRDatastoresResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListFHIRDatastoresRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListFHIRExportJobs",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListFHIRExportJobs"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListFHIRExportJobsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListFHIRExportJobsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListFHIRImportJobs",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListFHIRImportJobs"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListFHIRImportJobsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListFHIRImportJobsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartFHIRExportJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartFHIRExportJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartFHIRExportJobResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartFHIRExportJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartFHIRImportJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartFHIRImportJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartFHIRImportJobResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartFHIRImportJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CreateFHIRDatastoreResponse": {
+            "type": "object",
+            "properties": {
+                "DatastoreId": {
+                    "$ref": "#/$defs/DatastoreId"
+                },
+                "DatastoreArn": {
+                    "$ref": "#/$defs/DatastoreArn"
+                },
+                "DatastoreStatus": {
+                    "$ref": "#/$defs/DatastoreStatus"
+                },
+                "DatastoreEndpoint": {
+                    "$ref": "#/$defs/BoundedLengthString"
+                }
+            }
+        },
+        "DatastoreId": {
+            "type": "string"
+        },
+        "DatastoreArn": {
+            "type": "string"
+        },
+        "DatastoreStatus": {
+            "enum": [
+                "CREATING",
+                "ACTIVE",
+                "DELETING",
+                "DELETED",
+                "CREATE_FAILED"
+            ]
+        },
+        "BoundedLengthString": {
+            "type": "string"
+        },
+        "CreateFHIRDatastoreRequest": {
+            "type": "object",
+            "properties": {
+                "DatastoreName": {
+                    "$ref": "#/$defs/DatastoreName"
+                },
+                "DatastoreTypeVersion": {
+                    "$ref": "#/$defs/FHIRVersion"
+                },
+                "SseConfiguration": {
+                    "$ref": "#/$defs/SseConfiguration"
+                },
+                "PreloadDataConfig": {
+                    "$ref": "#/$defs/PreloadDataConfig"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientTokenString"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "IdentityProviderConfiguration": {
+                    "$ref": "#/$defs/IdentityProviderConfiguration"
+                }
+            }
+        },
+        "DatastoreName": {
+            "type": "string"
+        },
+        "FHIRVersion": {
+            "enum": [
+                "R4"
+            ]
+        },
+        "SseConfiguration": {
+            "type": "object",
+            "properties": {
+                "KmsEncryptionConfig": {
+                    "$ref": "#/$defs/KmsEncryptionConfig"
+                }
+            }
+        },
+        "KmsEncryptionConfig": {
+            "type": "object",
+            "properties": {
+                "CmkType": {
+                    "$ref": "#/$defs/CmkType"
+                },
+                "KmsKeyId": {
+                    "$ref": "#/$defs/EncryptionKeyID"
+                }
+            }
+        },
+        "CmkType": {
+            "enum": [
+                "CM_CMK",
+                "AO_CMK"
+            ]
+        },
+        "EncryptionKeyID": {
+            "type": "string"
+        },
+        "PreloadDataConfig": {
+            "type": "object",
+            "properties": {
+                "PreloadDataType": {
+                    "$ref": "#/$defs/PreloadDataType"
+                }
+            }
+        },
+        "PreloadDataType": {
+            "enum": [
+                "SYNTHEA"
+            ]
+        },
+        "ClientTokenString": {
+            "type": "string"
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "IdentityProviderConfiguration": {
+            "type": "object",
+            "properties": {
+                "AuthorizationStrategy": {
+                    "$ref": "#/$defs/AuthorizationStrategy"
+                },
+                "FineGrainedAuthorizationEnabled": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "Metadata": {
+                    "$ref": "#/$defs/ConfigurationMetadata"
+                },
+                "IdpLambdaArn": {
+                    "$ref": "#/$defs/LambdaArn"
+                }
+            }
+        },
+        "AuthorizationStrategy": {
+            "enum": [
+                "SMARTV1",
+                "AWS_AUTH"
+            ]
+        },
+        "Boolean": {
+            "type": "boolean"
+        },
+        "ConfigurationMetadata": {
+            "type": "string"
+        },
+        "LambdaArn": {
+            "type": "string"
+        },
+        "DeleteFHIRDatastoreResponse": {
+            "type": "object",
+            "properties": {
+                "DatastoreId": {
+                    "$ref": "#/$defs/DatastoreId"
+                },
+                "DatastoreArn": {
+                    "$ref": "#/$defs/DatastoreArn"
+                },
+                "DatastoreStatus": {
+                    "$ref": "#/$defs/DatastoreStatus"
+                },
+                "DatastoreEndpoint": {
+                    "$ref": "#/$defs/BoundedLengthString"
+                }
+            }
+        },
+        "DeleteFHIRDatastoreRequest": {
+            "type": "object",
+            "properties": {
+                "DatastoreId": {
+                    "$ref": "#/$defs/DatastoreId"
+                }
+            }
+        },
+        "DescribeFHIRDatastoreResponse": {
+            "type": "object",
+            "properties": {
+                "DatastoreProperties": {
+                    "$ref": "#/$defs/DatastoreProperties"
+                }
+            }
+        },
+        "DatastoreProperties": {
+            "type": "object",
+            "properties": {
+                "DatastoreId": {
+                    "$ref": "#/$defs/DatastoreId"
+                },
+                "DatastoreArn": {
+                    "$ref": "#/$defs/DatastoreArn"
+                },
+                "DatastoreName": {
+                    "$ref": "#/$defs/DatastoreName"
+                },
+                "DatastoreStatus": {
+                    "$ref": "#/$defs/DatastoreStatus"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "DatastoreTypeVersion": {
+                    "$ref": "#/$defs/FHIRVersion"
+                },
+                "DatastoreEndpoint": {
+                    "$ref": "#/$defs/String"
+                },
+                "SseConfiguration": {
+                    "$ref": "#/$defs/SseConfiguration"
+                },
+                "PreloadDataConfig": {
+                    "$ref": "#/$defs/PreloadDataConfig"
+                },
+                "IdentityProviderConfiguration": {
+                    "$ref": "#/$defs/IdentityProviderConfiguration"
+                },
+                "ErrorCause": {
+                    "$ref": "#/$defs/ErrorCause"
+                }
+            }
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "String": {
+            "type": "string"
+        },
+        "ErrorCause": {
+            "type": "object",
+            "properties": {
+                "ErrorMessage": {
+                    "$ref": "#/$defs/ErrorMessage"
+                },
+                "ErrorCategory": {
+                    "$ref": "#/$defs/ErrorCategory"
+                }
+            }
+        },
+        "ErrorMessage": {
+            "type": "string"
+        },
+        "ErrorCategory": {
+            "enum": [
+                "RETRYABLE_ERROR",
+                "NON_RETRYABLE_ERROR"
+            ]
+        },
+        "DescribeFHIRDatastoreRequest": {
+            "type": "object",
+            "properties": {
+                "DatastoreId": {
+                    "$ref": "#/$defs/DatastoreId"
+                }
+            }
+        },
+        "DescribeFHIRExportJobResponse": {
+            "type": "object",
+            "properties": {
+                "ExportJobProperties": {
+                    "$ref": "#/$defs/ExportJobProperties"
+                }
+            }
+        },
+        "ExportJobProperties": {
+            "type": "object",
+            "properties": {
+                "JobId": {
+                    "$ref": "#/$defs/JobId"
+                },
+                "JobName": {
+                    "$ref": "#/$defs/JobName"
+                },
+                "JobStatus": {
+                    "$ref": "#/$defs/JobStatus"
+                },
+                "SubmitTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "DatastoreId": {
+                    "$ref": "#/$defs/DatastoreId"
+                },
+                "OutputDataConfig": {
+                    "$ref": "#/$defs/OutputDataConfig"
+                },
+                "DataAccessRoleArn": {
+                    "$ref": "#/$defs/IamRoleArn"
+                },
+                "Message": {
+                    "$ref": "#/$defs/Message"
+                }
+            }
+        },
+        "JobId": {
+            "type": "string"
+        },
+        "JobName": {
+            "type": "string"
+        },
+        "JobStatus": {
+            "enum": [
+                "SUBMITTED",
+                "IN_PROGRESS",
+                "COMPLETED_WITH_ERRORS",
+                "COMPLETED",
+                "FAILED",
+                "CANCEL_SUBMITTED",
+                "CANCEL_IN_PROGRESS",
+                "CANCEL_COMPLETED",
+                "CANCEL_FAILED"
+            ]
+        },
+        "OutputDataConfig": {
+            "type": "object",
+            "properties": {
+                "S3Configuration": {
+                    "$ref": "#/$defs/S3Configuration"
+                }
+            }
+        },
+        "S3Configuration": {
+            "type": "object",
+            "properties": {
+                "S3Uri": {
+                    "$ref": "#/$defs/S3Uri"
+                },
+                "KmsKeyId": {
+                    "$ref": "#/$defs/EncryptionKeyID"
+                }
+            }
+        },
+        "S3Uri": {
+            "type": "string"
+        },
+        "IamRoleArn": {
+            "type": "string"
+        },
+        "Message": {
+            "type": "string"
+        },
+        "DescribeFHIRExportJobRequest": {
+            "type": "object",
+            "properties": {
+                "DatastoreId": {
+                    "$ref": "#/$defs/DatastoreId"
+                },
+                "JobId": {
+                    "$ref": "#/$defs/JobId"
+                }
+            }
+        },
+        "DescribeFHIRImportJobResponse": {
+            "type": "object",
+            "properties": {
+                "ImportJobProperties": {
+                    "$ref": "#/$defs/ImportJobProperties"
+                }
+            }
+        },
+        "ImportJobProperties": {
+            "type": "object",
+            "properties": {
+                "JobId": {
+                    "$ref": "#/$defs/JobId"
+                },
+                "JobName": {
+                    "$ref": "#/$defs/JobName"
+                },
+                "JobStatus": {
+                    "$ref": "#/$defs/JobStatus"
+                },
+                "SubmitTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "DatastoreId": {
+                    "$ref": "#/$defs/DatastoreId"
+                },
+                "InputDataConfig": {
+                    "$ref": "#/$defs/InputDataConfig"
+                },
+                "JobOutputDataConfig": {
+                    "$ref": "#/$defs/OutputDataConfig"
+                },
+                "JobProgressReport": {
+                    "$ref": "#/$defs/JobProgressReport"
+                },
+                "DataAccessRoleArn": {
+                    "$ref": "#/$defs/IamRoleArn"
+                },
+                "Message": {
+                    "$ref": "#/$defs/Message"
+                }
+            }
+        },
+        "InputDataConfig": {
+            "type": "object",
+            "properties": {
+                "S3Uri": {
+                    "$ref": "#/$defs/S3Uri"
+                }
+            }
+        },
+        "JobProgressReport": {
+            "type": "object",
+            "properties": {
+                "TotalNumberOfScannedFiles": {
+                    "$ref": "#/$defs/GenericLong"
+                },
+                "TotalSizeOfScannedFilesInMB": {
+                    "$ref": "#/$defs/GenericDouble"
+                },
+                "TotalNumberOfImportedFiles": {
+                    "$ref": "#/$defs/GenericLong"
+                },
+                "TotalNumberOfResourcesScanned": {
+                    "$ref": "#/$defs/GenericLong"
+                },
+                "TotalNumberOfResourcesImported": {
+                    "$ref": "#/$defs/GenericLong"
+                },
+                "TotalNumberOfResourcesWithCustomerError": {
+                    "$ref": "#/$defs/GenericLong"
+                },
+                "TotalNumberOfFilesReadWithCustomerError": {
+                    "$ref": "#/$defs/GenericLong"
+                },
+                "Throughput": {
+                    "$ref": "#/$defs/GenericDouble"
+                }
+            }
+        },
+        "GenericLong": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "GenericDouble": {
+            "type": "number",
+            "format": "double"
+        },
+        "DescribeFHIRImportJobRequest": {
+            "type": "object",
+            "properties": {
+                "DatastoreId": {
+                    "$ref": "#/$defs/DatastoreId"
+                },
+                "JobId": {
+                    "$ref": "#/$defs/JobId"
+                }
+            }
+        },
+        "ListFHIRDatastoresResponse": {
+            "type": "object",
+            "properties": {
+                "DatastorePropertiesList": {
+                    "$ref": "#/$defs/DatastorePropertiesList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "DatastorePropertiesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DatastoreProperties"
+            }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "ListFHIRDatastoresRequest": {
+            "type": "object",
+            "properties": {
+                "Filter": {
+                    "$ref": "#/$defs/DatastoreFilter"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResultsInteger"
+                }
+            }
+        },
+        "DatastoreFilter": {
+            "type": "object",
+            "properties": {
+                "DatastoreName": {
+                    "$ref": "#/$defs/DatastoreName"
+                },
+                "DatastoreStatus": {
+                    "$ref": "#/$defs/DatastoreStatus"
+                },
+                "CreatedBefore": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "CreatedAfter": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "MaxResultsInteger": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListFHIRExportJobsResponse": {
+            "type": "object",
+            "properties": {
+                "ExportJobPropertiesList": {
+                    "$ref": "#/$defs/ExportJobPropertiesList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ExportJobPropertiesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ExportJobProperties"
+            }
+        },
+        "ListFHIRExportJobsRequest": {
+            "type": "object",
+            "properties": {
+                "DatastoreId": {
+                    "$ref": "#/$defs/DatastoreId"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResultsInteger"
+                },
+                "JobName": {
+                    "$ref": "#/$defs/JobName"
+                },
+                "JobStatus": {
+                    "$ref": "#/$defs/JobStatus"
+                },
+                "SubmittedBefore": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "SubmittedAfter": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListFHIRImportJobsResponse": {
+            "type": "object",
+            "properties": {
+                "ImportJobPropertiesList": {
+                    "$ref": "#/$defs/ImportJobPropertiesList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ImportJobPropertiesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ImportJobProperties"
+            }
+        },
+        "ListFHIRImportJobsRequest": {
+            "type": "object",
+            "properties": {
+                "DatastoreId": {
+                    "$ref": "#/$defs/DatastoreId"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResultsInteger"
+                },
+                "JobName": {
+                    "$ref": "#/$defs/JobName"
+                },
+                "JobStatus": {
+                    "$ref": "#/$defs/JobStatus"
+                },
+                "SubmittedBefore": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "SubmittedAfter": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceARN": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                }
+            }
+        },
+        "AmazonResourceName": {
+            "type": "string"
+        },
+        "StartFHIRExportJobResponse": {
+            "type": "object",
+            "properties": {
+                "JobId": {
+                    "$ref": "#/$defs/JobId"
+                },
+                "JobStatus": {
+                    "$ref": "#/$defs/JobStatus"
+                },
+                "DatastoreId": {
+                    "$ref": "#/$defs/DatastoreId"
+                }
+            }
+        },
+        "StartFHIRExportJobRequest": {
+            "type": "object",
+            "properties": {
+                "JobName": {
+                    "$ref": "#/$defs/JobName"
+                },
+                "OutputDataConfig": {
+                    "$ref": "#/$defs/OutputDataConfig"
+                },
+                "DatastoreId": {
+                    "$ref": "#/$defs/DatastoreId"
+                },
+                "DataAccessRoleArn": {
+                    "$ref": "#/$defs/IamRoleArn"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientTokenString"
+                }
+            }
+        },
+        "StartFHIRImportJobResponse": {
+            "type": "object",
+            "properties": {
+                "JobId": {
+                    "$ref": "#/$defs/JobId"
+                },
+                "JobStatus": {
+                    "$ref": "#/$defs/JobStatus"
+                },
+                "DatastoreId": {
+                    "$ref": "#/$defs/DatastoreId"
+                }
+            }
+        },
+        "StartFHIRImportJobRequest": {
+            "type": "object",
+            "properties": {
+                "JobName": {
+                    "$ref": "#/$defs/JobName"
+                },
+                "InputDataConfig": {
+                    "$ref": "#/$defs/InputDataConfig"
+                },
+                "JobOutputDataConfig": {
+                    "$ref": "#/$defs/OutputDataConfig"
+                },
+                "DatastoreId": {
+                    "$ref": "#/$defs/DatastoreId"
+                },
+                "DataAccessRoleArn": {
+                    "$ref": "#/$defs/IamRoleArn"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientTokenString"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceARN": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceARN": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://healthlake-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://healthlake-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://healthlake.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://healthlake.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

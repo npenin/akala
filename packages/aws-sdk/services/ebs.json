@@ -1,0 +1,931 @@
+{
+    "name": "ebs",
+    "commands": [
+        {
+            "name": "CompleteSnapshot",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CompleteSnapshot"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CompleteSnapshotResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CompleteSnapshotRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetSnapshotBlock",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetSnapshotBlock"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetSnapshotBlockResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetSnapshotBlockRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListChangedBlocks",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListChangedBlocks"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListChangedBlocksResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListChangedBlocksRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListSnapshotBlocks",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListSnapshotBlocks"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListSnapshotBlocksResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListSnapshotBlocksRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutSnapshotBlock",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutSnapshotBlock"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutSnapshotBlockResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutSnapshotBlockRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartSnapshot",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartSnapshot"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartSnapshotResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartSnapshotRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CompleteSnapshotResponse": {
+            "type": "object",
+            "properties": {
+                "Status": {
+                    "$ref": "#/$defs/Status"
+                }
+            }
+        },
+        "Status": {
+            "enum": [
+                "COMPLETED",
+                "PENDING",
+                "ERROR"
+            ]
+        },
+        "CompleteSnapshotRequest": {
+            "type": "object",
+            "properties": {
+                "SnapshotId": {
+                    "$ref": "#/$defs/SnapshotId"
+                },
+                "ChangedBlocksCount": {
+                    "$ref": "#/$defs/ChangedBlocksCount"
+                },
+                "Checksum": {
+                    "$ref": "#/$defs/Checksum"
+                },
+                "ChecksumAlgorithm": {
+                    "$ref": "#/$defs/ChecksumAlgorithm"
+                },
+                "ChecksumAggregationMethod": {
+                    "$ref": "#/$defs/ChecksumAggregationMethod"
+                }
+            }
+        },
+        "SnapshotId": {
+            "type": "string"
+        },
+        "ChangedBlocksCount": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "Checksum": {
+            "type": "string"
+        },
+        "ChecksumAlgorithm": {
+            "enum": [
+                "CHECKSUM_ALGORITHM_SHA256"
+            ]
+        },
+        "ChecksumAggregationMethod": {
+            "enum": [
+                "CHECKSUM_AGGREGATION_LINEAR"
+            ]
+        },
+        "GetSnapshotBlockResponse": {
+            "type": "object",
+            "properties": {
+                "DataLength": {
+                    "$ref": "#/$defs/DataLength"
+                },
+                "BlockData": {
+                    "$ref": "#/$defs/BlockData"
+                },
+                "Checksum": {
+                    "$ref": "#/$defs/Checksum"
+                },
+                "ChecksumAlgorithm": {
+                    "$ref": "#/$defs/ChecksumAlgorithm"
+                }
+            }
+        },
+        "DataLength": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "BlockData": {
+            "type": "string",
+            "format": "binary"
+        },
+        "GetSnapshotBlockRequest": {
+            "type": "object",
+            "properties": {
+                "SnapshotId": {
+                    "$ref": "#/$defs/SnapshotId"
+                },
+                "BlockIndex": {
+                    "$ref": "#/$defs/BlockIndex"
+                },
+                "BlockToken": {
+                    "$ref": "#/$defs/BlockToken"
+                }
+            }
+        },
+        "BlockIndex": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "BlockToken": {
+            "type": "string"
+        },
+        "ListChangedBlocksResponse": {
+            "type": "object",
+            "properties": {
+                "ChangedBlocks": {
+                    "$ref": "#/$defs/ChangedBlocks"
+                },
+                "ExpiryTime": {
+                    "$ref": "#/$defs/TimeStamp"
+                },
+                "VolumeSize": {
+                    "$ref": "#/$defs/VolumeSize"
+                },
+                "BlockSize": {
+                    "$ref": "#/$defs/BlockSize"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PageToken"
+                }
+            }
+        },
+        "ChangedBlocks": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ChangedBlock"
+            }
+        },
+        "ChangedBlock": {
+            "type": "object",
+            "properties": {
+                "BlockIndex": {
+                    "$ref": "#/$defs/BlockIndex"
+                },
+                "FirstBlockToken": {
+                    "$ref": "#/$defs/BlockToken"
+                },
+                "SecondBlockToken": {
+                    "$ref": "#/$defs/BlockToken"
+                }
+            }
+        },
+        "TimeStamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "VolumeSize": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "BlockSize": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "PageToken": {
+            "type": "string"
+        },
+        "ListChangedBlocksRequest": {
+            "type": "object",
+            "properties": {
+                "FirstSnapshotId": {
+                    "$ref": "#/$defs/SnapshotId"
+                },
+                "SecondSnapshotId": {
+                    "$ref": "#/$defs/SnapshotId"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PageToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "StartingBlockIndex": {
+                    "$ref": "#/$defs/BlockIndex"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListSnapshotBlocksResponse": {
+            "type": "object",
+            "properties": {
+                "Blocks": {
+                    "$ref": "#/$defs/Blocks"
+                },
+                "ExpiryTime": {
+                    "$ref": "#/$defs/TimeStamp"
+                },
+                "VolumeSize": {
+                    "$ref": "#/$defs/VolumeSize"
+                },
+                "BlockSize": {
+                    "$ref": "#/$defs/BlockSize"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PageToken"
+                }
+            }
+        },
+        "Blocks": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Block"
+            }
+        },
+        "Block": {
+            "type": "object",
+            "properties": {
+                "BlockIndex": {
+                    "$ref": "#/$defs/BlockIndex"
+                },
+                "BlockToken": {
+                    "$ref": "#/$defs/BlockToken"
+                }
+            }
+        },
+        "ListSnapshotBlocksRequest": {
+            "type": "object",
+            "properties": {
+                "SnapshotId": {
+                    "$ref": "#/$defs/SnapshotId"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PageToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "StartingBlockIndex": {
+                    "$ref": "#/$defs/BlockIndex"
+                }
+            }
+        },
+        "PutSnapshotBlockResponse": {
+            "type": "object",
+            "properties": {
+                "Checksum": {
+                    "$ref": "#/$defs/Checksum"
+                },
+                "ChecksumAlgorithm": {
+                    "$ref": "#/$defs/ChecksumAlgorithm"
+                }
+            }
+        },
+        "PutSnapshotBlockRequest": {
+            "type": "object",
+            "properties": {
+                "SnapshotId": {
+                    "$ref": "#/$defs/SnapshotId"
+                },
+                "BlockIndex": {
+                    "$ref": "#/$defs/BlockIndex"
+                },
+                "BlockData": {
+                    "$ref": "#/$defs/BlockData"
+                },
+                "DataLength": {
+                    "$ref": "#/$defs/DataLength"
+                },
+                "Progress": {
+                    "$ref": "#/$defs/Progress"
+                },
+                "Checksum": {
+                    "$ref": "#/$defs/Checksum"
+                },
+                "ChecksumAlgorithm": {
+                    "$ref": "#/$defs/ChecksumAlgorithm"
+                }
+            }
+        },
+        "Progress": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "StartSnapshotResponse": {
+            "type": "object",
+            "properties": {
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "SnapshotId": {
+                    "$ref": "#/$defs/SnapshotId"
+                },
+                "OwnerId": {
+                    "$ref": "#/$defs/OwnerId"
+                },
+                "Status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "StartTime": {
+                    "$ref": "#/$defs/TimeStamp"
+                },
+                "VolumeSize": {
+                    "$ref": "#/$defs/VolumeSize"
+                },
+                "BlockSize": {
+                    "$ref": "#/$defs/BlockSize"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                },
+                "ParentSnapshotId": {
+                    "$ref": "#/$defs/SnapshotId"
+                },
+                "KmsKeyArn": {
+                    "$ref": "#/$defs/KmsKeyArn"
+                },
+                "SseType": {
+                    "$ref": "#/$defs/SSEType"
+                }
+            }
+        },
+        "Description": {
+            "type": "string"
+        },
+        "OwnerId": {
+            "type": "string"
+        },
+        "Tags": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "KmsKeyArn": {
+            "type": "string"
+        },
+        "SSEType": {
+            "enum": [
+                "SSE_EBS",
+                "SSE_KMS",
+                "NONE"
+            ]
+        },
+        "StartSnapshotRequest": {
+            "type": "object",
+            "properties": {
+                "VolumeSize": {
+                    "$ref": "#/$defs/VolumeSize"
+                },
+                "ParentSnapshotId": {
+                    "$ref": "#/$defs/SnapshotId"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/IdempotencyToken"
+                },
+                "Encrypted": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "KmsKeyArn": {
+                    "$ref": "#/$defs/KmsKeyArn"
+                },
+                "Timeout": {
+                    "$ref": "#/$defs/Timeout"
+                }
+            }
+        },
+        "IdempotencyToken": {
+            "type": "string"
+        },
+        "Boolean": {
+            "type": "boolean"
+        },
+        "Timeout": {
+            "type": "integer",
+            "format": "int32"
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://ebs-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://ebs-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://ebs.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://ebs.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

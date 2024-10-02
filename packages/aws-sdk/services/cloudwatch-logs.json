@@ -1,0 +1,5807 @@
+{
+    "name": "logs",
+    "commands": [
+        {
+            "name": "AssociateKmsKey",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AssociateKmsKey"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AssociateKmsKeyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CancelExportTask",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CancelExportTask"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CancelExportTaskRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateDelivery",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateDelivery"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateDeliveryResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateDeliveryRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateExportTask",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateExportTask"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateExportTaskResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateExportTaskRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateLogAnomalyDetector",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateLogAnomalyDetector"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateLogAnomalyDetectorResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateLogAnomalyDetectorRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateLogGroup",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateLogGroup"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateLogGroupRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateLogStream",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateLogStream"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateLogStreamRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteAccountPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteAccountPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteAccountPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteDataProtectionPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteDataProtectionPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteDataProtectionPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteDelivery",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteDelivery"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteDeliveryRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteDeliveryDestination",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteDeliveryDestination"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteDeliveryDestinationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteDeliveryDestinationPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteDeliveryDestinationPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteDeliveryDestinationPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteDeliverySource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteDeliverySource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteDeliverySourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteDestination",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteDestination"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteDestinationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteLogAnomalyDetector",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteLogAnomalyDetector"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteLogAnomalyDetectorRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteLogGroup",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteLogGroup"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteLogGroupRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteLogStream",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteLogStream"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteLogStreamRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteMetricFilter",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteMetricFilter"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteMetricFilterRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteQueryDefinition",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteQueryDefinition"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteQueryDefinitionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteQueryDefinitionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteResourcePolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteResourcePolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteResourcePolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteRetentionPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteRetentionPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteRetentionPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteSubscriptionFilter",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteSubscriptionFilter"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteSubscriptionFilterRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeAccountPolicies",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeAccountPolicies"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeAccountPoliciesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeAccountPoliciesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeConfigurationTemplates",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeConfigurationTemplates"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeConfigurationTemplatesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeConfigurationTemplatesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeDeliveries",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeDeliveries"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeDeliveriesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeDeliveriesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeDeliveryDestinations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeDeliveryDestinations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeDeliveryDestinationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeDeliveryDestinationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeDeliverySources",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeDeliverySources"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeDeliverySourcesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeDeliverySourcesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeDestinations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeDestinations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeDestinationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeDestinationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeExportTasks",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeExportTasks"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeExportTasksResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeExportTasksRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeLogGroups",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeLogGroups"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeLogGroupsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeLogGroupsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeLogStreams",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeLogStreams"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeLogStreamsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeLogStreamsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeMetricFilters",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeMetricFilters"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeMetricFiltersResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeMetricFiltersRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeQueries",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeQueries"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeQueriesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeQueriesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeQueryDefinitions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeQueryDefinitions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeQueryDefinitionsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeQueryDefinitionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeResourcePolicies",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeResourcePolicies"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeResourcePoliciesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeResourcePoliciesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeSubscriptionFilters",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeSubscriptionFilters"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeSubscriptionFiltersResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeSubscriptionFiltersRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DisassociateKmsKey",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DisassociateKmsKey"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DisassociateKmsKeyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "FilterLogEvents",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "FilterLogEvents"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/FilterLogEventsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/FilterLogEventsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetDataProtectionPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetDataProtectionPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetDataProtectionPolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetDataProtectionPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetDelivery",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetDelivery"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetDeliveryResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetDeliveryRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetDeliveryDestination",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetDeliveryDestination"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetDeliveryDestinationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetDeliveryDestinationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetDeliveryDestinationPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetDeliveryDestinationPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetDeliveryDestinationPolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetDeliveryDestinationPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetDeliverySource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetDeliverySource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetDeliverySourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetDeliverySourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetLogAnomalyDetector",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetLogAnomalyDetector"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetLogAnomalyDetectorResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetLogAnomalyDetectorRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetLogEvents",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetLogEvents"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetLogEventsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetLogEventsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetLogGroupFields",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetLogGroupFields"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetLogGroupFieldsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetLogGroupFieldsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetLogRecord",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetLogRecord"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetLogRecordResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetLogRecordRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetQueryResults",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetQueryResults"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetQueryResultsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetQueryResultsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListAnomalies",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListAnomalies"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListAnomaliesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListAnomaliesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListLogAnomalyDetectors",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListLogAnomalyDetectors"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListLogAnomalyDetectorsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListLogAnomalyDetectorsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsLogGroup",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsLogGroup"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsLogGroupResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsLogGroupRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutAccountPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutAccountPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutAccountPolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutAccountPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutDataProtectionPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutDataProtectionPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutDataProtectionPolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutDataProtectionPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutDeliveryDestination",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutDeliveryDestination"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutDeliveryDestinationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutDeliveryDestinationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutDeliveryDestinationPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutDeliveryDestinationPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutDeliveryDestinationPolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutDeliveryDestinationPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutDeliverySource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutDeliverySource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutDeliverySourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutDeliverySourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutDestination",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutDestination"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutDestinationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutDestinationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutDestinationPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutDestinationPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutDestinationPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutLogEvents",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutLogEvents"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutLogEventsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutLogEventsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutMetricFilter",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutMetricFilter"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutMetricFilterRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutQueryDefinition",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutQueryDefinition"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutQueryDefinitionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutQueryDefinitionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutResourcePolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutResourcePolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutResourcePolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutResourcePolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutRetentionPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutRetentionPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutRetentionPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutSubscriptionFilter",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutSubscriptionFilter"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutSubscriptionFilterRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartLiveTail",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartLiveTail"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartLiveTailResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartLiveTailRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartQuery",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartQuery"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartQueryResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartQueryRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StopQuery",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StopQuery"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StopQueryResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StopQueryRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagLogGroup",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagLogGroup"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagLogGroupRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TestMetricFilter",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TestMetricFilter"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TestMetricFilterResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TestMetricFilterRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagLogGroup",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagLogGroup"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagLogGroupRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateAnomaly",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateAnomaly"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateAnomalyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateDeliveryConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateDeliveryConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateDeliveryConfigurationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateDeliveryConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateLogAnomalyDetector",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateLogAnomalyDetector"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateLogAnomalyDetectorRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "AssociateKmsKeyRequest": {
+            "type": "object",
+            "properties": {
+                "logGroupName": {
+                    "$ref": "#/$defs/LogGroupName"
+                },
+                "kmsKeyId": {
+                    "$ref": "#/$defs/KmsKeyId"
+                },
+                "resourceIdentifier": {
+                    "$ref": "#/$defs/ResourceIdentifier"
+                }
+            }
+        },
+        "LogGroupName": {
+            "type": "string"
+        },
+        "KmsKeyId": {
+            "type": "string"
+        },
+        "ResourceIdentifier": {
+            "type": "string"
+        },
+        "CancelExportTaskRequest": {
+            "type": "object",
+            "properties": {
+                "taskId": {
+                    "$ref": "#/$defs/ExportTaskId"
+                }
+            }
+        },
+        "ExportTaskId": {
+            "type": "string"
+        },
+        "CreateDeliveryResponse": {
+            "type": "object",
+            "properties": {
+                "delivery": {
+                    "$ref": "#/$defs/Delivery"
+                }
+            }
+        },
+        "Delivery": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/DeliveryId"
+                },
+                "arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "deliverySourceName": {
+                    "$ref": "#/$defs/DeliverySourceName"
+                },
+                "deliveryDestinationArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "deliveryDestinationType": {
+                    "$ref": "#/$defs/DeliveryDestinationType"
+                },
+                "recordFields": {
+                    "$ref": "#/$defs/RecordFields"
+                },
+                "fieldDelimiter": {
+                    "$ref": "#/$defs/FieldDelimiter"
+                },
+                "s3DeliveryConfiguration": {
+                    "$ref": "#/$defs/S3DeliveryConfiguration"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "DeliveryId": {
+            "type": "string"
+        },
+        "Arn": {
+            "type": "string"
+        },
+        "DeliverySourceName": {
+            "type": "string"
+        },
+        "DeliveryDestinationType": {
+            "enum": [
+                "S3",
+                "CWL",
+                "FH"
+            ]
+        },
+        "RecordFields": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FieldHeader"
+            }
+        },
+        "FieldHeader": {
+            "type": "string"
+        },
+        "FieldDelimiter": {
+            "type": "string"
+        },
+        "S3DeliveryConfiguration": {
+            "type": "object",
+            "properties": {
+                "suffixPath": {
+                    "$ref": "#/$defs/DeliverySuffixPath"
+                },
+                "enableHiveCompatiblePath": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "DeliverySuffixPath": {
+            "type": "string"
+        },
+        "Boolean": {
+            "type": "boolean"
+        },
+        "Tags": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TagValue"
+            }
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "CreateDeliveryRequest": {
+            "type": "object",
+            "properties": {
+                "deliverySourceName": {
+                    "$ref": "#/$defs/DeliverySourceName"
+                },
+                "deliveryDestinationArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "recordFields": {
+                    "$ref": "#/$defs/RecordFields"
+                },
+                "fieldDelimiter": {
+                    "$ref": "#/$defs/FieldDelimiter"
+                },
+                "s3DeliveryConfiguration": {
+                    "$ref": "#/$defs/S3DeliveryConfiguration"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "CreateExportTaskResponse": {
+            "type": "object",
+            "properties": {
+                "taskId": {
+                    "$ref": "#/$defs/ExportTaskId"
+                }
+            }
+        },
+        "CreateExportTaskRequest": {
+            "type": "object",
+            "properties": {
+                "taskName": {
+                    "$ref": "#/$defs/ExportTaskName"
+                },
+                "logGroupName": {
+                    "$ref": "#/$defs/LogGroupName"
+                },
+                "logStreamNamePrefix": {
+                    "$ref": "#/$defs/LogStreamName"
+                },
+                "from": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "to": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "destination": {
+                    "$ref": "#/$defs/ExportDestinationBucket"
+                },
+                "destinationPrefix": {
+                    "$ref": "#/$defs/ExportDestinationPrefix"
+                }
+            }
+        },
+        "ExportTaskName": {
+            "type": "string"
+        },
+        "LogStreamName": {
+            "type": "string"
+        },
+        "Timestamp": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "ExportDestinationBucket": {
+            "type": "string"
+        },
+        "ExportDestinationPrefix": {
+            "type": "string"
+        },
+        "CreateLogAnomalyDetectorResponse": {
+            "type": "object",
+            "properties": {
+                "anomalyDetectorArn": {
+                    "$ref": "#/$defs/AnomalyDetectorArn"
+                }
+            }
+        },
+        "AnomalyDetectorArn": {
+            "type": "string"
+        },
+        "CreateLogAnomalyDetectorRequest": {
+            "type": "object",
+            "properties": {
+                "logGroupArnList": {
+                    "$ref": "#/$defs/LogGroupArnList"
+                },
+                "detectorName": {
+                    "$ref": "#/$defs/DetectorName"
+                },
+                "evaluationFrequency": {
+                    "$ref": "#/$defs/EvaluationFrequency"
+                },
+                "filterPattern": {
+                    "$ref": "#/$defs/FilterPattern"
+                },
+                "kmsKeyId": {
+                    "$ref": "#/$defs/KmsKeyId"
+                },
+                "anomalyVisibilityTime": {
+                    "$ref": "#/$defs/AnomalyVisibilityTime"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "LogGroupArnList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LogGroupArn"
+            }
+        },
+        "LogGroupArn": {
+            "type": "string"
+        },
+        "DetectorName": {
+            "type": "string"
+        },
+        "EvaluationFrequency": {
+            "enum": [
+                "ONE_MIN",
+                "FIVE_MIN",
+                "TEN_MIN",
+                "FIFTEEN_MIN",
+                "THIRTY_MIN",
+                "ONE_HOUR"
+            ]
+        },
+        "FilterPattern": {
+            "type": "string"
+        },
+        "AnomalyVisibilityTime": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "CreateLogGroupRequest": {
+            "type": "object",
+            "properties": {
+                "logGroupName": {
+                    "$ref": "#/$defs/LogGroupName"
+                },
+                "kmsKeyId": {
+                    "$ref": "#/$defs/KmsKeyId"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                },
+                "logGroupClass": {
+                    "$ref": "#/$defs/LogGroupClass"
+                }
+            }
+        },
+        "LogGroupClass": {
+            "enum": [
+                "STANDARD",
+                "INFREQUENT_ACCESS"
+            ]
+        },
+        "CreateLogStreamRequest": {
+            "type": "object",
+            "properties": {
+                "logGroupName": {
+                    "$ref": "#/$defs/LogGroupName"
+                },
+                "logStreamName": {
+                    "$ref": "#/$defs/LogStreamName"
+                }
+            }
+        },
+        "DeleteAccountPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "policyName": {
+                    "$ref": "#/$defs/PolicyName"
+                },
+                "policyType": {
+                    "$ref": "#/$defs/PolicyType"
+                }
+            }
+        },
+        "PolicyName": {
+            "type": "string"
+        },
+        "PolicyType": {
+            "enum": [
+                "DATA_PROTECTION_POLICY",
+                "SUBSCRIPTION_FILTER_POLICY"
+            ]
+        },
+        "DeleteDataProtectionPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "logGroupIdentifier": {
+                    "$ref": "#/$defs/LogGroupIdentifier"
+                }
+            }
+        },
+        "LogGroupIdentifier": {
+            "type": "string"
+        },
+        "DeleteDeliveryRequest": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/DeliveryId"
+                }
+            }
+        },
+        "DeleteDeliveryDestinationRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/DeliveryDestinationName"
+                }
+            }
+        },
+        "DeliveryDestinationName": {
+            "type": "string"
+        },
+        "DeleteDeliveryDestinationPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "deliveryDestinationName": {
+                    "$ref": "#/$defs/DeliveryDestinationName"
+                }
+            }
+        },
+        "DeleteDeliverySourceRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/DeliverySourceName"
+                }
+            }
+        },
+        "DeleteDestinationRequest": {
+            "type": "object",
+            "properties": {
+                "destinationName": {
+                    "$ref": "#/$defs/DestinationName"
+                }
+            }
+        },
+        "DestinationName": {
+            "type": "string"
+        },
+        "DeleteLogAnomalyDetectorRequest": {
+            "type": "object",
+            "properties": {
+                "anomalyDetectorArn": {
+                    "$ref": "#/$defs/AnomalyDetectorArn"
+                }
+            }
+        },
+        "DeleteLogGroupRequest": {
+            "type": "object",
+            "properties": {
+                "logGroupName": {
+                    "$ref": "#/$defs/LogGroupName"
+                }
+            }
+        },
+        "DeleteLogStreamRequest": {
+            "type": "object",
+            "properties": {
+                "logGroupName": {
+                    "$ref": "#/$defs/LogGroupName"
+                },
+                "logStreamName": {
+                    "$ref": "#/$defs/LogStreamName"
+                }
+            }
+        },
+        "DeleteMetricFilterRequest": {
+            "type": "object",
+            "properties": {
+                "logGroupName": {
+                    "$ref": "#/$defs/LogGroupName"
+                },
+                "filterName": {
+                    "$ref": "#/$defs/FilterName"
+                }
+            }
+        },
+        "FilterName": {
+            "type": "string"
+        },
+        "DeleteQueryDefinitionResponse": {
+            "type": "object",
+            "properties": {
+                "success": {
+                    "$ref": "#/$defs/Success"
+                }
+            }
+        },
+        "Success": {
+            "type": "boolean"
+        },
+        "DeleteQueryDefinitionRequest": {
+            "type": "object",
+            "properties": {
+                "queryDefinitionId": {
+                    "$ref": "#/$defs/QueryId"
+                }
+            }
+        },
+        "QueryId": {
+            "type": "string"
+        },
+        "DeleteResourcePolicyRequest": {
+            "type": "object",
+            "properties": {
+                "policyName": {
+                    "$ref": "#/$defs/PolicyName"
+                }
+            }
+        },
+        "DeleteRetentionPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "logGroupName": {
+                    "$ref": "#/$defs/LogGroupName"
+                }
+            }
+        },
+        "DeleteSubscriptionFilterRequest": {
+            "type": "object",
+            "properties": {
+                "logGroupName": {
+                    "$ref": "#/$defs/LogGroupName"
+                },
+                "filterName": {
+                    "$ref": "#/$defs/FilterName"
+                }
+            }
+        },
+        "DescribeAccountPoliciesResponse": {
+            "type": "object",
+            "properties": {
+                "accountPolicies": {
+                    "$ref": "#/$defs/AccountPolicies"
+                }
+            }
+        },
+        "AccountPolicies": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AccountPolicy"
+            }
+        },
+        "AccountPolicy": {
+            "type": "object",
+            "properties": {
+                "policyName": {
+                    "$ref": "#/$defs/PolicyName"
+                },
+                "policyDocument": {
+                    "$ref": "#/$defs/AccountPolicyDocument"
+                },
+                "lastUpdatedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "policyType": {
+                    "$ref": "#/$defs/PolicyType"
+                },
+                "scope": {
+                    "$ref": "#/$defs/Scope"
+                },
+                "selectionCriteria": {
+                    "$ref": "#/$defs/SelectionCriteria"
+                },
+                "accountId": {
+                    "$ref": "#/$defs/AccountId"
+                }
+            }
+        },
+        "AccountPolicyDocument": {
+            "type": "string"
+        },
+        "Scope": {
+            "enum": [
+                "ALL"
+            ]
+        },
+        "SelectionCriteria": {
+            "type": "string"
+        },
+        "AccountId": {
+            "type": "string"
+        },
+        "DescribeAccountPoliciesRequest": {
+            "type": "object",
+            "properties": {
+                "policyType": {
+                    "$ref": "#/$defs/PolicyType"
+                },
+                "policyName": {
+                    "$ref": "#/$defs/PolicyName"
+                },
+                "accountIdentifiers": {
+                    "$ref": "#/$defs/AccountIds"
+                }
+            }
+        },
+        "AccountIds": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AccountId"
+            }
+        },
+        "DescribeConfigurationTemplatesResponse": {
+            "type": "object",
+            "properties": {
+                "configurationTemplates": {
+                    "$ref": "#/$defs/ConfigurationTemplates"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ConfigurationTemplates": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ConfigurationTemplate"
+            }
+        },
+        "ConfigurationTemplate": {
+            "type": "object",
+            "properties": {
+                "service": {
+                    "$ref": "#/$defs/Service"
+                },
+                "logType": {
+                    "$ref": "#/$defs/LogType"
+                },
+                "resourceType": {
+                    "$ref": "#/$defs/ResourceType"
+                },
+                "deliveryDestinationType": {
+                    "$ref": "#/$defs/DeliveryDestinationType"
+                },
+                "defaultDeliveryConfigValues": {
+                    "$ref": "#/$defs/ConfigurationTemplateDeliveryConfigValues"
+                },
+                "allowedFields": {
+                    "$ref": "#/$defs/AllowedFields"
+                },
+                "allowedOutputFormats": {
+                    "$ref": "#/$defs/OutputFormats"
+                },
+                "allowedActionForAllowVendedLogsDeliveryForResource": {
+                    "$ref": "#/$defs/AllowedActionForAllowVendedLogsDeliveryForResource"
+                },
+                "allowedFieldDelimiters": {
+                    "$ref": "#/$defs/AllowedFieldDelimiters"
+                },
+                "allowedSuffixPathFields": {
+                    "$ref": "#/$defs/RecordFields"
+                }
+            }
+        },
+        "Service": {
+            "type": "string"
+        },
+        "LogType": {
+            "type": "string"
+        },
+        "ResourceType": {
+            "type": "string"
+        },
+        "ConfigurationTemplateDeliveryConfigValues": {
+            "type": "object",
+            "properties": {
+                "recordFields": {
+                    "$ref": "#/$defs/RecordFields"
+                },
+                "fieldDelimiter": {
+                    "$ref": "#/$defs/FieldDelimiter"
+                },
+                "s3DeliveryConfiguration": {
+                    "$ref": "#/$defs/S3DeliveryConfiguration"
+                }
+            }
+        },
+        "AllowedFields": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RecordField"
+            }
+        },
+        "RecordField": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/FieldHeader"
+                },
+                "mandatory": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "OutputFormats": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/OutputFormat"
+            }
+        },
+        "OutputFormat": {
+            "enum": [
+                "JSON",
+                "PLAIN",
+                "W3C",
+                "RAW",
+                "PARQUET"
+            ]
+        },
+        "AllowedActionForAllowVendedLogsDeliveryForResource": {
+            "type": "string"
+        },
+        "AllowedFieldDelimiters": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FieldDelimiter"
+            }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "DescribeConfigurationTemplatesRequest": {
+            "type": "object",
+            "properties": {
+                "service": {
+                    "$ref": "#/$defs/Service"
+                },
+                "logTypes": {
+                    "$ref": "#/$defs/LogTypes"
+                },
+                "resourceTypes": {
+                    "$ref": "#/$defs/ResourceTypes"
+                },
+                "deliveryDestinationTypes": {
+                    "$ref": "#/$defs/DeliveryDestinationTypes"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "limit": {
+                    "$ref": "#/$defs/DescribeLimit"
+                }
+            }
+        },
+        "LogTypes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LogType"
+            }
+        },
+        "ResourceTypes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourceType"
+            }
+        },
+        "DeliveryDestinationTypes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DeliveryDestinationType"
+            }
+        },
+        "DescribeLimit": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DescribeDeliveriesResponse": {
+            "type": "object",
+            "properties": {
+                "deliveries": {
+                    "$ref": "#/$defs/Deliveries"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "Deliveries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Delivery"
+            }
+        },
+        "DescribeDeliveriesRequest": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "limit": {
+                    "$ref": "#/$defs/DescribeLimit"
+                }
+            }
+        },
+        "DescribeDeliveryDestinationsResponse": {
+            "type": "object",
+            "properties": {
+                "deliveryDestinations": {
+                    "$ref": "#/$defs/DeliveryDestinations"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "DeliveryDestinations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DeliveryDestination"
+            }
+        },
+        "DeliveryDestination": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/DeliveryDestinationName"
+                },
+                "arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "deliveryDestinationType": {
+                    "$ref": "#/$defs/DeliveryDestinationType"
+                },
+                "outputFormat": {
+                    "$ref": "#/$defs/OutputFormat"
+                },
+                "deliveryDestinationConfiguration": {
+                    "$ref": "#/$defs/DeliveryDestinationConfiguration"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "DeliveryDestinationConfiguration": {
+            "type": "object",
+            "properties": {
+                "destinationResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "DescribeDeliveryDestinationsRequest": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "limit": {
+                    "$ref": "#/$defs/DescribeLimit"
+                }
+            }
+        },
+        "DescribeDeliverySourcesResponse": {
+            "type": "object",
+            "properties": {
+                "deliverySources": {
+                    "$ref": "#/$defs/DeliverySources"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "DeliverySources": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DeliverySource"
+            }
+        },
+        "DeliverySource": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/DeliverySourceName"
+                },
+                "arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "resourceArns": {
+                    "$ref": "#/$defs/ResourceArns"
+                },
+                "service": {
+                    "$ref": "#/$defs/Service"
+                },
+                "logType": {
+                    "$ref": "#/$defs/LogType"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "ResourceArns": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Arn"
+            }
+        },
+        "DescribeDeliverySourcesRequest": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "limit": {
+                    "$ref": "#/$defs/DescribeLimit"
+                }
+            }
+        },
+        "DescribeDestinationsResponse": {
+            "type": "object",
+            "properties": {
+                "destinations": {
+                    "$ref": "#/$defs/Destinations"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "Destinations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Destination"
+            }
+        },
+        "Destination": {
+            "type": "object",
+            "properties": {
+                "destinationName": {
+                    "$ref": "#/$defs/DestinationName"
+                },
+                "targetArn": {
+                    "$ref": "#/$defs/TargetArn"
+                },
+                "roleArn": {
+                    "$ref": "#/$defs/RoleArn"
+                },
+                "accessPolicy": {
+                    "$ref": "#/$defs/AccessPolicy"
+                },
+                "arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "creationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "TargetArn": {
+            "type": "string"
+        },
+        "RoleArn": {
+            "type": "string"
+        },
+        "AccessPolicy": {
+            "type": "string"
+        },
+        "DescribeDestinationsRequest": {
+            "type": "object",
+            "properties": {
+                "DestinationNamePrefix": {
+                    "$ref": "#/$defs/DestinationName"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "limit": {
+                    "$ref": "#/$defs/DescribeLimit"
+                }
+            }
+        },
+        "DescribeExportTasksResponse": {
+            "type": "object",
+            "properties": {
+                "exportTasks": {
+                    "$ref": "#/$defs/ExportTasks"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ExportTasks": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ExportTask"
+            }
+        },
+        "ExportTask": {
+            "type": "object",
+            "properties": {
+                "taskId": {
+                    "$ref": "#/$defs/ExportTaskId"
+                },
+                "taskName": {
+                    "$ref": "#/$defs/ExportTaskName"
+                },
+                "logGroupName": {
+                    "$ref": "#/$defs/LogGroupName"
+                },
+                "from": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "to": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "destination": {
+                    "$ref": "#/$defs/ExportDestinationBucket"
+                },
+                "destinationPrefix": {
+                    "$ref": "#/$defs/ExportDestinationPrefix"
+                },
+                "status": {
+                    "$ref": "#/$defs/ExportTaskStatus"
+                },
+                "executionInfo": {
+                    "$ref": "#/$defs/ExportTaskExecutionInfo"
+                }
+            }
+        },
+        "ExportTaskStatus": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "$ref": "#/$defs/ExportTaskStatusCode"
+                },
+                "message": {
+                    "$ref": "#/$defs/ExportTaskStatusMessage"
+                }
+            }
+        },
+        "ExportTaskStatusCode": {
+            "enum": [
+                "CANCELLED",
+                "COMPLETED",
+                "FAILED",
+                "PENDING",
+                "PENDING_CANCEL",
+                "RUNNING"
+            ]
+        },
+        "ExportTaskStatusMessage": {
+            "type": "string"
+        },
+        "ExportTaskExecutionInfo": {
+            "type": "object",
+            "properties": {
+                "creationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "completionTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "DescribeExportTasksRequest": {
+            "type": "object",
+            "properties": {
+                "taskId": {
+                    "$ref": "#/$defs/ExportTaskId"
+                },
+                "statusCode": {
+                    "$ref": "#/$defs/ExportTaskStatusCode"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "limit": {
+                    "$ref": "#/$defs/DescribeLimit"
+                }
+            }
+        },
+        "DescribeLogGroupsResponse": {
+            "type": "object",
+            "properties": {
+                "logGroups": {
+                    "$ref": "#/$defs/LogGroups"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "LogGroups": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LogGroup"
+            }
+        },
+        "LogGroup": {
+            "type": "object",
+            "properties": {
+                "logGroupName": {
+                    "$ref": "#/$defs/LogGroupName"
+                },
+                "creationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "retentionInDays": {
+                    "$ref": "#/$defs/Days"
+                },
+                "metricFilterCount": {
+                    "$ref": "#/$defs/FilterCount"
+                },
+                "arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "storedBytes": {
+                    "$ref": "#/$defs/StoredBytes"
+                },
+                "kmsKeyId": {
+                    "$ref": "#/$defs/KmsKeyId"
+                },
+                "dataProtectionStatus": {
+                    "$ref": "#/$defs/DataProtectionStatus"
+                },
+                "inheritedProperties": {
+                    "$ref": "#/$defs/InheritedProperties"
+                },
+                "logGroupClass": {
+                    "$ref": "#/$defs/LogGroupClass"
+                },
+                "logGroupArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "Days": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "FilterCount": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "StoredBytes": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "DataProtectionStatus": {
+            "enum": [
+                "ACTIVATED",
+                "DELETED",
+                "ARCHIVED",
+                "DISABLED"
+            ]
+        },
+        "InheritedProperties": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/InheritedProperty"
+            }
+        },
+        "InheritedProperty": {
+            "enum": [
+                "ACCOUNT_DATA_PROTECTION"
+            ]
+        },
+        "DescribeLogGroupsRequest": {
+            "type": "object",
+            "properties": {
+                "accountIdentifiers": {
+                    "$ref": "#/$defs/AccountIds"
+                },
+                "logGroupNamePrefix": {
+                    "$ref": "#/$defs/LogGroupName"
+                },
+                "logGroupNamePattern": {
+                    "$ref": "#/$defs/LogGroupNamePattern"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "limit": {
+                    "$ref": "#/$defs/DescribeLimit"
+                },
+                "includeLinkedAccounts": {
+                    "$ref": "#/$defs/IncludeLinkedAccounts"
+                },
+                "logGroupClass": {
+                    "$ref": "#/$defs/LogGroupClass"
+                }
+            }
+        },
+        "LogGroupNamePattern": {
+            "type": "string"
+        },
+        "IncludeLinkedAccounts": {
+            "type": "boolean"
+        },
+        "DescribeLogStreamsResponse": {
+            "type": "object",
+            "properties": {
+                "logStreams": {
+                    "$ref": "#/$defs/LogStreams"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "LogStreams": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LogStream"
+            }
+        },
+        "LogStream": {
+            "type": "object",
+            "properties": {
+                "logStreamName": {
+                    "$ref": "#/$defs/LogStreamName"
+                },
+                "creationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "firstEventTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "lastEventTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "lastIngestionTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "uploadSequenceToken": {
+                    "$ref": "#/$defs/SequenceToken"
+                },
+                "arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "storedBytes": {
+                    "$ref": "#/$defs/StoredBytes"
+                }
+            }
+        },
+        "SequenceToken": {
+            "type": "string"
+        },
+        "DescribeLogStreamsRequest": {
+            "type": "object",
+            "properties": {
+                "logGroupName": {
+                    "$ref": "#/$defs/LogGroupName"
+                },
+                "logGroupIdentifier": {
+                    "$ref": "#/$defs/LogGroupIdentifier"
+                },
+                "logStreamNamePrefix": {
+                    "$ref": "#/$defs/LogStreamName"
+                },
+                "orderBy": {
+                    "$ref": "#/$defs/OrderBy"
+                },
+                "descending": {
+                    "$ref": "#/$defs/Descending"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "limit": {
+                    "$ref": "#/$defs/DescribeLimit"
+                }
+            }
+        },
+        "OrderBy": {
+            "enum": [
+                "LogStreamName",
+                "LastEventTime"
+            ]
+        },
+        "Descending": {
+            "type": "boolean"
+        },
+        "DescribeMetricFiltersResponse": {
+            "type": "object",
+            "properties": {
+                "metricFilters": {
+                    "$ref": "#/$defs/MetricFilters"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "MetricFilters": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MetricFilter"
+            }
+        },
+        "MetricFilter": {
+            "type": "object",
+            "properties": {
+                "filterName": {
+                    "$ref": "#/$defs/FilterName"
+                },
+                "filterPattern": {
+                    "$ref": "#/$defs/FilterPattern"
+                },
+                "metricTransformations": {
+                    "$ref": "#/$defs/MetricTransformations"
+                },
+                "creationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "logGroupName": {
+                    "$ref": "#/$defs/LogGroupName"
+                }
+            }
+        },
+        "MetricTransformations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MetricTransformation"
+            }
+        },
+        "MetricTransformation": {
+            "type": "object",
+            "properties": {
+                "metricName": {
+                    "$ref": "#/$defs/MetricName"
+                },
+                "metricNamespace": {
+                    "$ref": "#/$defs/MetricNamespace"
+                },
+                "metricValue": {
+                    "$ref": "#/$defs/MetricValue"
+                },
+                "defaultValue": {
+                    "$ref": "#/$defs/DefaultValue"
+                },
+                "dimensions": {
+                    "$ref": "#/$defs/Dimensions"
+                },
+                "unit": {
+                    "$ref": "#/$defs/StandardUnit"
+                }
+            }
+        },
+        "MetricName": {
+            "type": "string"
+        },
+        "MetricNamespace": {
+            "type": "string"
+        },
+        "MetricValue": {
+            "type": "string"
+        },
+        "DefaultValue": {
+            "type": "number",
+            "format": "double"
+        },
+        "Dimensions": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/DimensionsValue"
+            }
+        },
+        "DimensionsValue": {
+            "type": "string"
+        },
+        "StandardUnit": {
+            "enum": [
+                "Seconds",
+                "Microseconds",
+                "Milliseconds",
+                "Bytes",
+                "Kilobytes",
+                "Megabytes",
+                "Gigabytes",
+                "Terabytes",
+                "Bits",
+                "Kilobits",
+                "Megabits",
+                "Gigabits",
+                "Terabits",
+                "Percent",
+                "Count",
+                "BytesSecond",
+                "KilobytesSecond",
+                "MegabytesSecond",
+                "GigabytesSecond",
+                "TerabytesSecond",
+                "BitsSecond",
+                "KilobitsSecond",
+                "MegabitsSecond",
+                "GigabitsSecond",
+                "TerabitsSecond",
+                "CountSecond",
+                "None"
+            ]
+        },
+        "DescribeMetricFiltersRequest": {
+            "type": "object",
+            "properties": {
+                "logGroupName": {
+                    "$ref": "#/$defs/LogGroupName"
+                },
+                "filterNamePrefix": {
+                    "$ref": "#/$defs/FilterName"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "limit": {
+                    "$ref": "#/$defs/DescribeLimit"
+                },
+                "metricName": {
+                    "$ref": "#/$defs/MetricName"
+                },
+                "metricNamespace": {
+                    "$ref": "#/$defs/MetricNamespace"
+                }
+            }
+        },
+        "DescribeQueriesResponse": {
+            "type": "object",
+            "properties": {
+                "queries": {
+                    "$ref": "#/$defs/QueryInfoList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "QueryInfoList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/QueryInfo"
+            }
+        },
+        "QueryInfo": {
+            "type": "object",
+            "properties": {
+                "queryId": {
+                    "$ref": "#/$defs/QueryId"
+                },
+                "queryString": {
+                    "$ref": "#/$defs/QueryString"
+                },
+                "status": {
+                    "$ref": "#/$defs/QueryStatus"
+                },
+                "createTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "logGroupName": {
+                    "$ref": "#/$defs/LogGroupName"
+                }
+            }
+        },
+        "QueryString": {
+            "type": "string"
+        },
+        "QueryStatus": {
+            "enum": [
+                "Scheduled",
+                "Running",
+                "Complete",
+                "Failed",
+                "Cancelled",
+                "Timeout",
+                "Unknown"
+            ]
+        },
+        "DescribeQueriesRequest": {
+            "type": "object",
+            "properties": {
+                "logGroupName": {
+                    "$ref": "#/$defs/LogGroupName"
+                },
+                "status": {
+                    "$ref": "#/$defs/QueryStatus"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/DescribeQueriesMaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "DescribeQueriesMaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DescribeQueryDefinitionsResponse": {
+            "type": "object",
+            "properties": {
+                "queryDefinitions": {
+                    "$ref": "#/$defs/QueryDefinitionList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "QueryDefinitionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/QueryDefinition"
+            }
+        },
+        "QueryDefinition": {
+            "type": "object",
+            "properties": {
+                "queryDefinitionId": {
+                    "$ref": "#/$defs/QueryId"
+                },
+                "name": {
+                    "$ref": "#/$defs/QueryDefinitionName"
+                },
+                "queryString": {
+                    "$ref": "#/$defs/QueryDefinitionString"
+                },
+                "lastModified": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "logGroupNames": {
+                    "$ref": "#/$defs/LogGroupNames"
+                }
+            }
+        },
+        "QueryDefinitionName": {
+            "type": "string"
+        },
+        "QueryDefinitionString": {
+            "type": "string"
+        },
+        "LogGroupNames": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LogGroupName"
+            }
+        },
+        "DescribeQueryDefinitionsRequest": {
+            "type": "object",
+            "properties": {
+                "queryDefinitionNamePrefix": {
+                    "$ref": "#/$defs/QueryDefinitionName"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/QueryListMaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "QueryListMaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DescribeResourcePoliciesResponse": {
+            "type": "object",
+            "properties": {
+                "resourcePolicies": {
+                    "$ref": "#/$defs/ResourcePolicies"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ResourcePolicies": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourcePolicy"
+            }
+        },
+        "ResourcePolicy": {
+            "type": "object",
+            "properties": {
+                "policyName": {
+                    "$ref": "#/$defs/PolicyName"
+                },
+                "policyDocument": {
+                    "$ref": "#/$defs/PolicyDocument"
+                },
+                "lastUpdatedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "PolicyDocument": {
+            "type": "string"
+        },
+        "DescribeResourcePoliciesRequest": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "limit": {
+                    "$ref": "#/$defs/DescribeLimit"
+                }
+            }
+        },
+        "DescribeSubscriptionFiltersResponse": {
+            "type": "object",
+            "properties": {
+                "subscriptionFilters": {
+                    "$ref": "#/$defs/SubscriptionFilters"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "SubscriptionFilters": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SubscriptionFilter"
+            }
+        },
+        "SubscriptionFilter": {
+            "type": "object",
+            "properties": {
+                "filterName": {
+                    "$ref": "#/$defs/FilterName"
+                },
+                "logGroupName": {
+                    "$ref": "#/$defs/LogGroupName"
+                },
+                "filterPattern": {
+                    "$ref": "#/$defs/FilterPattern"
+                },
+                "destinationArn": {
+                    "$ref": "#/$defs/DestinationArn"
+                },
+                "roleArn": {
+                    "$ref": "#/$defs/RoleArn"
+                },
+                "distribution": {
+                    "$ref": "#/$defs/Distribution"
+                },
+                "creationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "DestinationArn": {
+            "type": "string"
+        },
+        "Distribution": {
+            "enum": [
+                "Random",
+                "ByLogStream"
+            ]
+        },
+        "DescribeSubscriptionFiltersRequest": {
+            "type": "object",
+            "properties": {
+                "logGroupName": {
+                    "$ref": "#/$defs/LogGroupName"
+                },
+                "filterNamePrefix": {
+                    "$ref": "#/$defs/FilterName"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "limit": {
+                    "$ref": "#/$defs/DescribeLimit"
+                }
+            }
+        },
+        "DisassociateKmsKeyRequest": {
+            "type": "object",
+            "properties": {
+                "logGroupName": {
+                    "$ref": "#/$defs/LogGroupName"
+                },
+                "resourceIdentifier": {
+                    "$ref": "#/$defs/ResourceIdentifier"
+                }
+            }
+        },
+        "FilterLogEventsResponse": {
+            "type": "object",
+            "properties": {
+                "events": {
+                    "$ref": "#/$defs/FilteredLogEvents"
+                },
+                "searchedLogStreams": {
+                    "$ref": "#/$defs/SearchedLogStreams"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "FilteredLogEvents": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FilteredLogEvent"
+            }
+        },
+        "FilteredLogEvent": {
+            "type": "object",
+            "properties": {
+                "logStreamName": {
+                    "$ref": "#/$defs/LogStreamName"
+                },
+                "timestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "message": {
+                    "$ref": "#/$defs/EventMessage"
+                },
+                "ingestionTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "eventId": {
+                    "$ref": "#/$defs/EventId"
+                }
+            }
+        },
+        "EventMessage": {
+            "type": "string"
+        },
+        "EventId": {
+            "type": "string"
+        },
+        "SearchedLogStreams": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SearchedLogStream"
+            }
+        },
+        "SearchedLogStream": {
+            "type": "object",
+            "properties": {
+                "logStreamName": {
+                    "$ref": "#/$defs/LogStreamName"
+                },
+                "searchedCompletely": {
+                    "$ref": "#/$defs/LogStreamSearchedCompletely"
+                }
+            }
+        },
+        "LogStreamSearchedCompletely": {
+            "type": "boolean"
+        },
+        "FilterLogEventsRequest": {
+            "type": "object",
+            "properties": {
+                "logGroupName": {
+                    "$ref": "#/$defs/LogGroupName"
+                },
+                "logGroupIdentifier": {
+                    "$ref": "#/$defs/LogGroupIdentifier"
+                },
+                "logStreamNames": {
+                    "$ref": "#/$defs/InputLogStreamNames"
+                },
+                "logStreamNamePrefix": {
+                    "$ref": "#/$defs/LogStreamName"
+                },
+                "startTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "endTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "filterPattern": {
+                    "$ref": "#/$defs/FilterPattern"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "limit": {
+                    "$ref": "#/$defs/EventsLimit"
+                },
+                "interleaved": {
+                    "$ref": "#/$defs/Interleaved"
+                },
+                "unmask": {
+                    "$ref": "#/$defs/Unmask"
+                }
+            }
+        },
+        "InputLogStreamNames": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LogStreamName"
+            }
+        },
+        "EventsLimit": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "Interleaved": {
+            "type": "boolean"
+        },
+        "Unmask": {
+            "type": "boolean"
+        },
+        "GetDataProtectionPolicyResponse": {
+            "type": "object",
+            "properties": {
+                "logGroupIdentifier": {
+                    "$ref": "#/$defs/LogGroupIdentifier"
+                },
+                "policyDocument": {
+                    "$ref": "#/$defs/DataProtectionPolicyDocument"
+                },
+                "lastUpdatedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "DataProtectionPolicyDocument": {
+            "type": "string"
+        },
+        "GetDataProtectionPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "logGroupIdentifier": {
+                    "$ref": "#/$defs/LogGroupIdentifier"
+                }
+            }
+        },
+        "GetDeliveryResponse": {
+            "type": "object",
+            "properties": {
+                "delivery": {
+                    "$ref": "#/$defs/Delivery"
+                }
+            }
+        },
+        "GetDeliveryRequest": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/DeliveryId"
+                }
+            }
+        },
+        "GetDeliveryDestinationResponse": {
+            "type": "object",
+            "properties": {
+                "deliveryDestination": {
+                    "$ref": "#/$defs/DeliveryDestination"
+                }
+            }
+        },
+        "GetDeliveryDestinationRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/DeliveryDestinationName"
+                }
+            }
+        },
+        "GetDeliveryDestinationPolicyResponse": {
+            "type": "object",
+            "properties": {
+                "policy": {
+                    "$ref": "#/$defs/Policy"
+                }
+            }
+        },
+        "Policy": {
+            "type": "object",
+            "properties": {
+                "deliveryDestinationPolicy": {
+                    "$ref": "#/$defs/DeliveryDestinationPolicy"
+                }
+            }
+        },
+        "DeliveryDestinationPolicy": {
+            "type": "string"
+        },
+        "GetDeliveryDestinationPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "deliveryDestinationName": {
+                    "$ref": "#/$defs/DeliveryDestinationName"
+                }
+            }
+        },
+        "GetDeliverySourceResponse": {
+            "type": "object",
+            "properties": {
+                "deliverySource": {
+                    "$ref": "#/$defs/DeliverySource"
+                }
+            }
+        },
+        "GetDeliverySourceRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/DeliverySourceName"
+                }
+            }
+        },
+        "GetLogAnomalyDetectorResponse": {
+            "type": "object",
+            "properties": {
+                "detectorName": {
+                    "$ref": "#/$defs/DetectorName"
+                },
+                "logGroupArnList": {
+                    "$ref": "#/$defs/LogGroupArnList"
+                },
+                "evaluationFrequency": {
+                    "$ref": "#/$defs/EvaluationFrequency"
+                },
+                "filterPattern": {
+                    "$ref": "#/$defs/FilterPattern"
+                },
+                "anomalyDetectorStatus": {
+                    "$ref": "#/$defs/AnomalyDetectorStatus"
+                },
+                "kmsKeyId": {
+                    "$ref": "#/$defs/KmsKeyId"
+                },
+                "creationTimeStamp": {
+                    "$ref": "#/$defs/EpochMillis"
+                },
+                "lastModifiedTimeStamp": {
+                    "$ref": "#/$defs/EpochMillis"
+                },
+                "anomalyVisibilityTime": {
+                    "$ref": "#/$defs/AnomalyVisibilityTime"
+                }
+            }
+        },
+        "AnomalyDetectorStatus": {
+            "enum": [
+                "INITIALIZING",
+                "TRAINING",
+                "ANALYZING",
+                "FAILED",
+                "DELETED",
+                "PAUSED"
+            ]
+        },
+        "EpochMillis": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "GetLogAnomalyDetectorRequest": {
+            "type": "object",
+            "properties": {
+                "anomalyDetectorArn": {
+                    "$ref": "#/$defs/AnomalyDetectorArn"
+                }
+            }
+        },
+        "GetLogEventsResponse": {
+            "type": "object",
+            "properties": {
+                "events": {
+                    "$ref": "#/$defs/OutputLogEvents"
+                },
+                "nextForwardToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "nextBackwardToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "OutputLogEvents": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/OutputLogEvent"
+            }
+        },
+        "OutputLogEvent": {
+            "type": "object",
+            "properties": {
+                "timestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "message": {
+                    "$ref": "#/$defs/EventMessage"
+                },
+                "ingestionTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "GetLogEventsRequest": {
+            "type": "object",
+            "properties": {
+                "logGroupName": {
+                    "$ref": "#/$defs/LogGroupName"
+                },
+                "logGroupIdentifier": {
+                    "$ref": "#/$defs/LogGroupIdentifier"
+                },
+                "logStreamName": {
+                    "$ref": "#/$defs/LogStreamName"
+                },
+                "startTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "endTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "limit": {
+                    "$ref": "#/$defs/EventsLimit"
+                },
+                "startFromHead": {
+                    "$ref": "#/$defs/StartFromHead"
+                },
+                "unmask": {
+                    "$ref": "#/$defs/Unmask"
+                }
+            }
+        },
+        "StartFromHead": {
+            "type": "boolean"
+        },
+        "GetLogGroupFieldsResponse": {
+            "type": "object",
+            "properties": {
+                "logGroupFields": {
+                    "$ref": "#/$defs/LogGroupFieldList"
+                }
+            }
+        },
+        "LogGroupFieldList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LogGroupField"
+            }
+        },
+        "LogGroupField": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/Field"
+                },
+                "percent": {
+                    "$ref": "#/$defs/Percentage"
+                }
+            }
+        },
+        "Field": {
+            "type": "string"
+        },
+        "Percentage": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "GetLogGroupFieldsRequest": {
+            "type": "object",
+            "properties": {
+                "logGroupName": {
+                    "$ref": "#/$defs/LogGroupName"
+                },
+                "time": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "logGroupIdentifier": {
+                    "$ref": "#/$defs/LogGroupIdentifier"
+                }
+            }
+        },
+        "GetLogRecordResponse": {
+            "type": "object",
+            "properties": {
+                "logRecord": {
+                    "$ref": "#/$defs/LogRecord"
+                }
+            }
+        },
+        "LogRecord": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/Value"
+            }
+        },
+        "Value": {
+            "type": "string"
+        },
+        "GetLogRecordRequest": {
+            "type": "object",
+            "properties": {
+                "logRecordPointer": {
+                    "$ref": "#/$defs/LogRecordPointer"
+                },
+                "unmask": {
+                    "$ref": "#/$defs/Unmask"
+                }
+            }
+        },
+        "LogRecordPointer": {
+            "type": "string"
+        },
+        "GetQueryResultsResponse": {
+            "type": "object",
+            "properties": {
+                "results": {
+                    "$ref": "#/$defs/QueryResults"
+                },
+                "statistics": {
+                    "$ref": "#/$defs/QueryStatistics"
+                },
+                "status": {
+                    "$ref": "#/$defs/QueryStatus"
+                },
+                "encryptionKey": {
+                    "$ref": "#/$defs/EncryptionKey"
+                }
+            }
+        },
+        "QueryResults": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResultRows"
+            }
+        },
+        "ResultRows": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResultField"
+            }
+        },
+        "ResultField": {
+            "type": "object",
+            "properties": {
+                "field": {
+                    "$ref": "#/$defs/Field"
+                },
+                "value": {
+                    "$ref": "#/$defs/Value"
+                }
+            }
+        },
+        "QueryStatistics": {
+            "type": "object",
+            "properties": {
+                "recordsMatched": {
+                    "$ref": "#/$defs/StatsValue"
+                },
+                "recordsScanned": {
+                    "$ref": "#/$defs/StatsValue"
+                },
+                "bytesScanned": {
+                    "$ref": "#/$defs/StatsValue"
+                }
+            }
+        },
+        "StatsValue": {
+            "type": "number",
+            "format": "double"
+        },
+        "EncryptionKey": {
+            "type": "string"
+        },
+        "GetQueryResultsRequest": {
+            "type": "object",
+            "properties": {
+                "queryId": {
+                    "$ref": "#/$defs/QueryId"
+                }
+            }
+        },
+        "ListAnomaliesResponse": {
+            "type": "object",
+            "properties": {
+                "anomalies": {
+                    "$ref": "#/$defs/Anomalies"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "Anomalies": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Anomaly"
+            }
+        },
+        "Anomaly": {
+            "type": "object",
+            "properties": {
+                "anomalyId": {
+                    "$ref": "#/$defs/AnomalyId"
+                },
+                "patternId": {
+                    "$ref": "#/$defs/PatternId"
+                },
+                "anomalyDetectorArn": {
+                    "$ref": "#/$defs/AnomalyDetectorArn"
+                },
+                "patternString": {
+                    "$ref": "#/$defs/PatternString"
+                },
+                "patternRegex": {
+                    "$ref": "#/$defs/PatternRegex"
+                },
+                "priority": {
+                    "$ref": "#/$defs/Priority"
+                },
+                "firstSeen": {
+                    "$ref": "#/$defs/EpochMillis"
+                },
+                "lastSeen": {
+                    "$ref": "#/$defs/EpochMillis"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "active": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "state": {
+                    "$ref": "#/$defs/State"
+                },
+                "histogram": {
+                    "$ref": "#/$defs/Histogram"
+                },
+                "logSamples": {
+                    "$ref": "#/$defs/LogSamples"
+                },
+                "patternTokens": {
+                    "$ref": "#/$defs/PatternTokens"
+                },
+                "logGroupArnList": {
+                    "$ref": "#/$defs/LogGroupArnList"
+                },
+                "suppressed": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "suppressedDate": {
+                    "$ref": "#/$defs/EpochMillis"
+                },
+                "suppressedUntil": {
+                    "$ref": "#/$defs/EpochMillis"
+                },
+                "isPatternLevelSuppression": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "AnomalyId": {
+            "type": "string"
+        },
+        "PatternId": {
+            "type": "string"
+        },
+        "PatternString": {
+            "type": "string"
+        },
+        "PatternRegex": {
+            "type": "string"
+        },
+        "Priority": {
+            "type": "string"
+        },
+        "Description": {
+            "type": "string"
+        },
+        "State": {
+            "enum": [
+                "Active",
+                "Suppressed",
+                "Baseline"
+            ]
+        },
+        "Histogram": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/Count"
+            }
+        },
+        "Count": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "LogSamples": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LogEvent"
+            }
+        },
+        "LogEvent": {
+            "type": "object",
+            "properties": {
+                "timestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "message": {
+                    "$ref": "#/$defs/EventMessage"
+                }
+            }
+        },
+        "PatternTokens": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PatternToken"
+            }
+        },
+        "PatternToken": {
+            "type": "object",
+            "properties": {
+                "dynamicTokenPosition": {
+                    "$ref": "#/$defs/DynamicTokenPosition"
+                },
+                "isDynamic": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "tokenString": {
+                    "$ref": "#/$defs/TokenString"
+                },
+                "enumerations": {
+                    "$ref": "#/$defs/Enumerations"
+                }
+            }
+        },
+        "DynamicTokenPosition": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "TokenString": {
+            "type": "string"
+        },
+        "Enumerations": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TokenValue"
+            }
+        },
+        "TokenValue": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "ListAnomaliesRequest": {
+            "type": "object",
+            "properties": {
+                "anomalyDetectorArn": {
+                    "$ref": "#/$defs/AnomalyDetectorArn"
+                },
+                "suppressionState": {
+                    "$ref": "#/$defs/SuppressionState"
+                },
+                "limit": {
+                    "$ref": "#/$defs/ListAnomaliesLimit"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "SuppressionState": {
+            "enum": [
+                "SUPPRESSED",
+                "UNSUPPRESSED"
+            ]
+        },
+        "ListAnomaliesLimit": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListLogAnomalyDetectorsResponse": {
+            "type": "object",
+            "properties": {
+                "anomalyDetectors": {
+                    "$ref": "#/$defs/AnomalyDetectors"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "AnomalyDetectors": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AnomalyDetector"
+            }
+        },
+        "AnomalyDetector": {
+            "type": "object",
+            "properties": {
+                "anomalyDetectorArn": {
+                    "$ref": "#/$defs/AnomalyDetectorArn"
+                },
+                "detectorName": {
+                    "$ref": "#/$defs/DetectorName"
+                },
+                "logGroupArnList": {
+                    "$ref": "#/$defs/LogGroupArnList"
+                },
+                "evaluationFrequency": {
+                    "$ref": "#/$defs/EvaluationFrequency"
+                },
+                "filterPattern": {
+                    "$ref": "#/$defs/FilterPattern"
+                },
+                "anomalyDetectorStatus": {
+                    "$ref": "#/$defs/AnomalyDetectorStatus"
+                },
+                "kmsKeyId": {
+                    "$ref": "#/$defs/KmsKeyId"
+                },
+                "creationTimeStamp": {
+                    "$ref": "#/$defs/EpochMillis"
+                },
+                "lastModifiedTimeStamp": {
+                    "$ref": "#/$defs/EpochMillis"
+                },
+                "anomalyVisibilityTime": {
+                    "$ref": "#/$defs/AnomalyVisibilityTime"
+                }
+            }
+        },
+        "ListLogAnomalyDetectorsRequest": {
+            "type": "object",
+            "properties": {
+                "filterLogGroupArn": {
+                    "$ref": "#/$defs/LogGroupArn"
+                },
+                "limit": {
+                    "$ref": "#/$defs/ListLogAnomalyDetectorsLimit"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListLogAnomalyDetectorsLimit": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                }
+            }
+        },
+        "AmazonResourceName": {
+            "type": "string"
+        },
+        "ListTagsLogGroupResponse": {
+            "type": "object",
+            "properties": {
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "ListTagsLogGroupRequest": {
+            "type": "object",
+            "properties": {
+                "logGroupName": {
+                    "$ref": "#/$defs/LogGroupName"
+                }
+            }
+        },
+        "PutAccountPolicyResponse": {
+            "type": "object",
+            "properties": {
+                "accountPolicy": {
+                    "$ref": "#/$defs/AccountPolicy"
+                }
+            }
+        },
+        "PutAccountPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "policyName": {
+                    "$ref": "#/$defs/PolicyName"
+                },
+                "policyDocument": {
+                    "$ref": "#/$defs/AccountPolicyDocument"
+                },
+                "policyType": {
+                    "$ref": "#/$defs/PolicyType"
+                },
+                "scope": {
+                    "$ref": "#/$defs/Scope"
+                },
+                "selectionCriteria": {
+                    "$ref": "#/$defs/SelectionCriteria"
+                }
+            }
+        },
+        "PutDataProtectionPolicyResponse": {
+            "type": "object",
+            "properties": {
+                "logGroupIdentifier": {
+                    "$ref": "#/$defs/LogGroupIdentifier"
+                },
+                "policyDocument": {
+                    "$ref": "#/$defs/DataProtectionPolicyDocument"
+                },
+                "lastUpdatedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "PutDataProtectionPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "logGroupIdentifier": {
+                    "$ref": "#/$defs/LogGroupIdentifier"
+                },
+                "policyDocument": {
+                    "$ref": "#/$defs/DataProtectionPolicyDocument"
+                }
+            }
+        },
+        "PutDeliveryDestinationResponse": {
+            "type": "object",
+            "properties": {
+                "deliveryDestination": {
+                    "$ref": "#/$defs/DeliveryDestination"
+                }
+            }
+        },
+        "PutDeliveryDestinationRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/DeliveryDestinationName"
+                },
+                "outputFormat": {
+                    "$ref": "#/$defs/OutputFormat"
+                },
+                "deliveryDestinationConfiguration": {
+                    "$ref": "#/$defs/DeliveryDestinationConfiguration"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "PutDeliveryDestinationPolicyResponse": {
+            "type": "object",
+            "properties": {
+                "policy": {
+                    "$ref": "#/$defs/Policy"
+                }
+            }
+        },
+        "PutDeliveryDestinationPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "deliveryDestinationName": {
+                    "$ref": "#/$defs/DeliveryDestinationName"
+                },
+                "deliveryDestinationPolicy": {
+                    "$ref": "#/$defs/DeliveryDestinationPolicy"
+                }
+            }
+        },
+        "PutDeliverySourceResponse": {
+            "type": "object",
+            "properties": {
+                "deliverySource": {
+                    "$ref": "#/$defs/DeliverySource"
+                }
+            }
+        },
+        "PutDeliverySourceRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/DeliverySourceName"
+                },
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "logType": {
+                    "$ref": "#/$defs/LogType"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "PutDestinationResponse": {
+            "type": "object",
+            "properties": {
+                "destination": {
+                    "$ref": "#/$defs/Destination"
+                }
+            }
+        },
+        "PutDestinationRequest": {
+            "type": "object",
+            "properties": {
+                "destinationName": {
+                    "$ref": "#/$defs/DestinationName"
+                },
+                "targetArn": {
+                    "$ref": "#/$defs/TargetArn"
+                },
+                "roleArn": {
+                    "$ref": "#/$defs/RoleArn"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "PutDestinationPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "destinationName": {
+                    "$ref": "#/$defs/DestinationName"
+                },
+                "accessPolicy": {
+                    "$ref": "#/$defs/AccessPolicy"
+                },
+                "forceUpdate": {
+                    "$ref": "#/$defs/ForceUpdate"
+                }
+            }
+        },
+        "ForceUpdate": {
+            "type": "boolean"
+        },
+        "PutLogEventsResponse": {
+            "type": "object",
+            "properties": {
+                "nextSequenceToken": {
+                    "$ref": "#/$defs/SequenceToken"
+                },
+                "rejectedLogEventsInfo": {
+                    "$ref": "#/$defs/RejectedLogEventsInfo"
+                },
+                "rejectedEntityInfo": {
+                    "$ref": "#/$defs/RejectedEntityInfo"
+                }
+            }
+        },
+        "RejectedLogEventsInfo": {
+            "type": "object",
+            "properties": {
+                "tooNewLogEventStartIndex": {
+                    "$ref": "#/$defs/LogEventIndex"
+                },
+                "tooOldLogEventEndIndex": {
+                    "$ref": "#/$defs/LogEventIndex"
+                },
+                "expiredLogEventEndIndex": {
+                    "$ref": "#/$defs/LogEventIndex"
+                }
+            }
+        },
+        "LogEventIndex": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "RejectedEntityInfo": {
+            "type": "object",
+            "properties": {
+                "errorType": {
+                    "$ref": "#/$defs/EntityRejectionErrorType"
+                }
+            }
+        },
+        "EntityRejectionErrorType": {
+            "enum": [
+                "INVALID_ENTITY",
+                "INVALID_TYPE_VALUE",
+                "INVALID_KEY_ATTRIBUTE",
+                "INVALID_ATTRIBUTES",
+                "ENTITY_SIZE_TOO_LARGE",
+                "UNSUPPORTED_LOG_GROUP_TYPE",
+                "MISSING_REQUIRED_FIELDS"
+            ]
+        },
+        "PutLogEventsRequest": {
+            "type": "object",
+            "properties": {
+                "logGroupName": {
+                    "$ref": "#/$defs/LogGroupName"
+                },
+                "logStreamName": {
+                    "$ref": "#/$defs/LogStreamName"
+                },
+                "logEvents": {
+                    "$ref": "#/$defs/InputLogEvents"
+                },
+                "sequenceToken": {
+                    "$ref": "#/$defs/SequenceToken"
+                },
+                "entity": {
+                    "$ref": "#/$defs/Entity"
+                }
+            }
+        },
+        "InputLogEvents": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/InputLogEvent"
+            }
+        },
+        "InputLogEvent": {
+            "type": "object",
+            "properties": {
+                "timestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "message": {
+                    "$ref": "#/$defs/EventMessage"
+                }
+            }
+        },
+        "Entity": {
+            "type": "object",
+            "properties": {
+                "keyAttributes": {
+                    "$ref": "#/$defs/EntityKeyAttributes"
+                },
+                "attributes": {
+                    "$ref": "#/$defs/EntityAttributes"
+                }
+            }
+        },
+        "EntityKeyAttributes": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/EntityKeyAttributesValue"
+            }
+        },
+        "EntityKeyAttributesValue": {
+            "type": "string"
+        },
+        "EntityAttributes": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/EntityAttributesValue"
+            }
+        },
+        "EntityAttributesValue": {
+            "type": "string"
+        },
+        "PutMetricFilterRequest": {
+            "type": "object",
+            "properties": {
+                "logGroupName": {
+                    "$ref": "#/$defs/LogGroupName"
+                },
+                "filterName": {
+                    "$ref": "#/$defs/FilterName"
+                },
+                "filterPattern": {
+                    "$ref": "#/$defs/FilterPattern"
+                },
+                "metricTransformations": {
+                    "$ref": "#/$defs/MetricTransformations"
+                }
+            }
+        },
+        "PutQueryDefinitionResponse": {
+            "type": "object",
+            "properties": {
+                "queryDefinitionId": {
+                    "$ref": "#/$defs/QueryId"
+                }
+            }
+        },
+        "PutQueryDefinitionRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/QueryDefinitionName"
+                },
+                "queryDefinitionId": {
+                    "$ref": "#/$defs/QueryId"
+                },
+                "logGroupNames": {
+                    "$ref": "#/$defs/LogGroupNames"
+                },
+                "queryString": {
+                    "$ref": "#/$defs/QueryDefinitionString"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                }
+            }
+        },
+        "ClientToken": {
+            "type": "string"
+        },
+        "PutResourcePolicyResponse": {
+            "type": "object",
+            "properties": {
+                "resourcePolicy": {
+                    "$ref": "#/$defs/ResourcePolicy"
+                }
+            }
+        },
+        "PutResourcePolicyRequest": {
+            "type": "object",
+            "properties": {
+                "policyName": {
+                    "$ref": "#/$defs/PolicyName"
+                },
+                "policyDocument": {
+                    "$ref": "#/$defs/PolicyDocument"
+                }
+            }
+        },
+        "PutRetentionPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "logGroupName": {
+                    "$ref": "#/$defs/LogGroupName"
+                },
+                "retentionInDays": {
+                    "$ref": "#/$defs/Days"
+                }
+            }
+        },
+        "PutSubscriptionFilterRequest": {
+            "type": "object",
+            "properties": {
+                "logGroupName": {
+                    "$ref": "#/$defs/LogGroupName"
+                },
+                "filterName": {
+                    "$ref": "#/$defs/FilterName"
+                },
+                "filterPattern": {
+                    "$ref": "#/$defs/FilterPattern"
+                },
+                "destinationArn": {
+                    "$ref": "#/$defs/DestinationArn"
+                },
+                "roleArn": {
+                    "$ref": "#/$defs/RoleArn"
+                },
+                "distribution": {
+                    "$ref": "#/$defs/Distribution"
+                }
+            }
+        },
+        "StartLiveTailResponse": {
+            "type": "object",
+            "properties": {
+                "responseStream": {
+                    "$ref": "#/$defs/StartLiveTailResponseStream"
+                }
+            }
+        },
+        "StartLiveTailResponseStream": {
+            "type": "object",
+            "properties": {
+                "sessionStart": {
+                    "$ref": "#/$defs/LiveTailSessionStart"
+                },
+                "sessionUpdate": {
+                    "$ref": "#/$defs/LiveTailSessionUpdate"
+                },
+                "SessionTimeoutException": {
+                    "$ref": "#/$defs/SessionTimeoutException"
+                },
+                "SessionStreamingException": {
+                    "$ref": "#/$defs/SessionStreamingException"
+                }
+            }
+        },
+        "LiveTailSessionStart": {
+            "type": "object",
+            "properties": {
+                "requestId": {
+                    "$ref": "#/$defs/RequestId"
+                },
+                "sessionId": {
+                    "$ref": "#/$defs/SessionId"
+                },
+                "logGroupIdentifiers": {
+                    "$ref": "#/$defs/StartLiveTailLogGroupIdentifiers"
+                },
+                "logStreamNames": {
+                    "$ref": "#/$defs/InputLogStreamNames"
+                },
+                "logStreamNamePrefixes": {
+                    "$ref": "#/$defs/InputLogStreamNames"
+                },
+                "logEventFilterPattern": {
+                    "$ref": "#/$defs/FilterPattern"
+                }
+            }
+        },
+        "RequestId": {
+            "type": "string"
+        },
+        "SessionId": {
+            "type": "string"
+        },
+        "StartLiveTailLogGroupIdentifiers": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LogGroupIdentifier"
+            }
+        },
+        "LiveTailSessionUpdate": {
+            "type": "object",
+            "properties": {
+                "sessionMetadata": {
+                    "$ref": "#/$defs/LiveTailSessionMetadata"
+                },
+                "sessionResults": {
+                    "$ref": "#/$defs/LiveTailSessionResults"
+                }
+            }
+        },
+        "LiveTailSessionMetadata": {
+            "type": "object",
+            "properties": {
+                "sampled": {
+                    "$ref": "#/$defs/IsSampled"
+                }
+            }
+        },
+        "IsSampled": {
+            "type": "boolean"
+        },
+        "LiveTailSessionResults": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LiveTailSessionLogEvent"
+            }
+        },
+        "LiveTailSessionLogEvent": {
+            "type": "object",
+            "properties": {
+                "logStreamName": {
+                    "$ref": "#/$defs/LogStreamName"
+                },
+                "logGroupIdentifier": {
+                    "$ref": "#/$defs/LogGroupIdentifier"
+                },
+                "message": {
+                    "$ref": "#/$defs/EventMessage"
+                },
+                "timestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "ingestionTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "SessionTimeoutException": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "$ref": "#/$defs/Message"
+                }
+            }
+        },
+        "Message": {
+            "type": "string"
+        },
+        "SessionStreamingException": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "$ref": "#/$defs/Message"
+                }
+            }
+        },
+        "StartLiveTailRequest": {
+            "type": "object",
+            "properties": {
+                "logGroupIdentifiers": {
+                    "$ref": "#/$defs/StartLiveTailLogGroupIdentifiers"
+                },
+                "logStreamNames": {
+                    "$ref": "#/$defs/InputLogStreamNames"
+                },
+                "logStreamNamePrefixes": {
+                    "$ref": "#/$defs/InputLogStreamNames"
+                },
+                "logEventFilterPattern": {
+                    "$ref": "#/$defs/FilterPattern"
+                }
+            }
+        },
+        "StartQueryResponse": {
+            "type": "object",
+            "properties": {
+                "queryId": {
+                    "$ref": "#/$defs/QueryId"
+                }
+            }
+        },
+        "StartQueryRequest": {
+            "type": "object",
+            "properties": {
+                "logGroupName": {
+                    "$ref": "#/$defs/LogGroupName"
+                },
+                "logGroupNames": {
+                    "$ref": "#/$defs/LogGroupNames"
+                },
+                "logGroupIdentifiers": {
+                    "$ref": "#/$defs/LogGroupIdentifiers"
+                },
+                "startTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "endTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "queryString": {
+                    "$ref": "#/$defs/QueryString"
+                },
+                "limit": {
+                    "$ref": "#/$defs/EventsLimit"
+                }
+            }
+        },
+        "LogGroupIdentifiers": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LogGroupIdentifier"
+            }
+        },
+        "StopQueryResponse": {
+            "type": "object",
+            "properties": {
+                "success": {
+                    "$ref": "#/$defs/Success"
+                }
+            }
+        },
+        "StopQueryRequest": {
+            "type": "object",
+            "properties": {
+                "queryId": {
+                    "$ref": "#/$defs/QueryId"
+                }
+            }
+        },
+        "TagLogGroupRequest": {
+            "type": "object",
+            "properties": {
+                "logGroupName": {
+                    "$ref": "#/$defs/LogGroupName"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "TestMetricFilterResponse": {
+            "type": "object",
+            "properties": {
+                "matches": {
+                    "$ref": "#/$defs/MetricFilterMatches"
+                }
+            }
+        },
+        "MetricFilterMatches": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MetricFilterMatchRecord"
+            }
+        },
+        "MetricFilterMatchRecord": {
+            "type": "object",
+            "properties": {
+                "eventNumber": {
+                    "$ref": "#/$defs/EventNumber"
+                },
+                "eventMessage": {
+                    "$ref": "#/$defs/EventMessage"
+                },
+                "extractedValues": {
+                    "$ref": "#/$defs/ExtractedValues"
+                }
+            }
+        },
+        "EventNumber": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "ExtractedValues": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/Value"
+            }
+        },
+        "TestMetricFilterRequest": {
+            "type": "object",
+            "properties": {
+                "filterPattern": {
+                    "$ref": "#/$defs/FilterPattern"
+                },
+                "logEventMessages": {
+                    "$ref": "#/$defs/TestEventMessages"
+                }
+            }
+        },
+        "TestEventMessages": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EventMessage"
+            }
+        },
+        "UntagLogGroupRequest": {
+            "type": "object",
+            "properties": {
+                "logGroupName": {
+                    "$ref": "#/$defs/LogGroupName"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "tagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "UpdateAnomalyRequest": {
+            "type": "object",
+            "properties": {
+                "anomalyId": {
+                    "$ref": "#/$defs/AnomalyId"
+                },
+                "patternId": {
+                    "$ref": "#/$defs/PatternId"
+                },
+                "anomalyDetectorArn": {
+                    "$ref": "#/$defs/AnomalyDetectorArn"
+                },
+                "suppressionType": {
+                    "$ref": "#/$defs/SuppressionType"
+                },
+                "suppressionPeriod": {
+                    "$ref": "#/$defs/SuppressionPeriod"
+                }
+            }
+        },
+        "SuppressionType": {
+            "enum": [
+                "LIMITED",
+                "INFINITE"
+            ]
+        },
+        "SuppressionPeriod": {
+            "type": "object",
+            "properties": {
+                "value": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "suppressionUnit": {
+                    "$ref": "#/$defs/SuppressionUnit"
+                }
+            }
+        },
+        "Integer": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "SuppressionUnit": {
+            "enum": [
+                "SECONDS",
+                "MINUTES",
+                "HOURS"
+            ]
+        },
+        "UpdateDeliveryConfigurationResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateDeliveryConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/DeliveryId"
+                },
+                "recordFields": {
+                    "$ref": "#/$defs/RecordFields"
+                },
+                "fieldDelimiter": {
+                    "$ref": "#/$defs/FieldDelimiter"
+                },
+                "s3DeliveryConfiguration": {
+                    "$ref": "#/$defs/S3DeliveryConfiguration"
+                }
+            }
+        },
+        "UpdateLogAnomalyDetectorRequest": {
+            "type": "object",
+            "properties": {
+                "anomalyDetectorArn": {
+                    "$ref": "#/$defs/AnomalyDetectorArn"
+                },
+                "evaluationFrequency": {
+                    "$ref": "#/$defs/EvaluationFrequency"
+                },
+                "filterPattern": {
+                    "$ref": "#/$defs/FilterPattern"
+                },
+                "anomalyVisibilityTime": {
+                    "$ref": "#/$defs/AnomalyVisibilityTime"
+                },
+                "enabled": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://logs-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "stringEquals",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "Region"
+                                                            },
+                                                            "us-gov-east-1"
+                                                        ]
+                                                    }
+                                                ],
+                                                "endpoint": {
+                                                    "url": "https://logs.us-gov-east-1.amazonaws.com",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            },
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "stringEquals",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "Region"
+                                                            },
+                                                            "us-gov-west-1"
+                                                        ]
+                                                    }
+                                                ],
+                                                "endpoint": {
+                                                    "url": "https://logs.us-gov-west-1.amazonaws.com",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://logs-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://logs.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://logs.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

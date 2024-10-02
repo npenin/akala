@@ -1,0 +1,1778 @@
+{
+    "name": "timestream",
+    "commands": [
+        {
+            "name": "CancelQuery",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CancelQuery"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CancelQueryResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CancelQueryRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateScheduledQuery",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateScheduledQuery"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateScheduledQueryResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateScheduledQueryRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteScheduledQuery",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteScheduledQuery"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteScheduledQueryRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeAccountSettings",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeAccountSettings"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeAccountSettingsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeAccountSettingsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeEndpoints",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeEndpoints"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeEndpointsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeEndpointsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeScheduledQuery",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeScheduledQuery"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeScheduledQueryResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeScheduledQueryRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ExecuteScheduledQuery",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ExecuteScheduledQuery"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ExecuteScheduledQueryRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListScheduledQueries",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListScheduledQueries"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListScheduledQueriesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListScheduledQueriesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PrepareQuery",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PrepareQuery"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PrepareQueryResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PrepareQueryRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "Query",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "Query"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/QueryResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/QueryRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateAccountSettings",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateAccountSettings"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateAccountSettingsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateAccountSettingsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateScheduledQuery",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateScheduledQuery"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateScheduledQueryRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CancelQueryResponse": {
+            "type": "object",
+            "properties": {
+                "CancellationMessage": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "String": {
+            "type": "string"
+        },
+        "CancelQueryRequest": {
+            "type": "object",
+            "properties": {
+                "QueryId": {
+                    "$ref": "#/$defs/QueryId"
+                }
+            }
+        },
+        "QueryId": {
+            "type": "string"
+        },
+        "CreateScheduledQueryResponse": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                }
+            }
+        },
+        "AmazonResourceName": {
+            "type": "string"
+        },
+        "CreateScheduledQueryRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/ScheduledQueryName"
+                },
+                "QueryString": {
+                    "$ref": "#/$defs/QueryString"
+                },
+                "ScheduleConfiguration": {
+                    "$ref": "#/$defs/ScheduleConfiguration"
+                },
+                "NotificationConfiguration": {
+                    "$ref": "#/$defs/NotificationConfiguration"
+                },
+                "TargetConfiguration": {
+                    "$ref": "#/$defs/TargetConfiguration"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                },
+                "ScheduledQueryExecutionRoleArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "KmsKeyId": {
+                    "$ref": "#/$defs/StringValue2048"
+                },
+                "ErrorReportConfiguration": {
+                    "$ref": "#/$defs/ErrorReportConfiguration"
+                }
+            }
+        },
+        "ScheduledQueryName": {
+            "type": "string"
+        },
+        "QueryString": {
+            "type": "string"
+        },
+        "ScheduleConfiguration": {
+            "type": "object",
+            "properties": {
+                "ScheduleExpression": {
+                    "$ref": "#/$defs/ScheduleExpression"
+                }
+            }
+        },
+        "ScheduleExpression": {
+            "type": "string"
+        },
+        "NotificationConfiguration": {
+            "type": "object",
+            "properties": {
+                "SnsConfiguration": {
+                    "$ref": "#/$defs/SnsConfiguration"
+                }
+            }
+        },
+        "SnsConfiguration": {
+            "type": "object",
+            "properties": {
+                "TopicArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                }
+            }
+        },
+        "TargetConfiguration": {
+            "type": "object",
+            "properties": {
+                "TimestreamConfiguration": {
+                    "$ref": "#/$defs/TimestreamConfiguration"
+                }
+            }
+        },
+        "TimestreamConfiguration": {
+            "type": "object",
+            "properties": {
+                "DatabaseName": {
+                    "$ref": "#/$defs/ResourceName"
+                },
+                "TableName": {
+                    "$ref": "#/$defs/ResourceName"
+                },
+                "TimeColumn": {
+                    "$ref": "#/$defs/SchemaName"
+                },
+                "DimensionMappings": {
+                    "$ref": "#/$defs/DimensionMappingList"
+                },
+                "MultiMeasureMappings": {
+                    "$ref": "#/$defs/MultiMeasureMappings"
+                },
+                "MixedMeasureMappings": {
+                    "$ref": "#/$defs/MixedMeasureMappingList"
+                },
+                "MeasureNameColumn": {
+                    "$ref": "#/$defs/SchemaName"
+                }
+            }
+        },
+        "ResourceName": {
+            "type": "string"
+        },
+        "SchemaName": {
+            "type": "string"
+        },
+        "DimensionMappingList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DimensionMapping"
+            }
+        },
+        "DimensionMapping": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/SchemaName"
+                },
+                "DimensionValueType": {
+                    "$ref": "#/$defs/DimensionValueType"
+                }
+            }
+        },
+        "DimensionValueType": {
+            "enum": [
+                "VARCHAR"
+            ]
+        },
+        "MultiMeasureMappings": {
+            "type": "object",
+            "properties": {
+                "TargetMultiMeasureName": {
+                    "$ref": "#/$defs/SchemaName"
+                },
+                "MultiMeasureAttributeMappings": {
+                    "$ref": "#/$defs/MultiMeasureAttributeMappingList"
+                }
+            }
+        },
+        "MultiMeasureAttributeMappingList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MultiMeasureAttributeMapping"
+            }
+        },
+        "MultiMeasureAttributeMapping": {
+            "type": "object",
+            "properties": {
+                "SourceColumn": {
+                    "$ref": "#/$defs/SchemaName"
+                },
+                "TargetMultiMeasureAttributeName": {
+                    "$ref": "#/$defs/SchemaName"
+                },
+                "MeasureValueType": {
+                    "$ref": "#/$defs/ScalarMeasureValueType"
+                }
+            }
+        },
+        "ScalarMeasureValueType": {
+            "enum": [
+                "BIGINT",
+                "BOOLEAN",
+                "DOUBLE",
+                "VARCHAR",
+                "TIMESTAMP"
+            ]
+        },
+        "MixedMeasureMappingList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MixedMeasureMapping"
+            }
+        },
+        "MixedMeasureMapping": {
+            "type": "object",
+            "properties": {
+                "MeasureName": {
+                    "$ref": "#/$defs/SchemaName"
+                },
+                "SourceColumn": {
+                    "$ref": "#/$defs/SchemaName"
+                },
+                "TargetMeasureName": {
+                    "$ref": "#/$defs/SchemaName"
+                },
+                "MeasureValueType": {
+                    "$ref": "#/$defs/MeasureValueType"
+                },
+                "MultiMeasureAttributeMappings": {
+                    "$ref": "#/$defs/MultiMeasureAttributeMappingList"
+                }
+            }
+        },
+        "MeasureValueType": {
+            "enum": [
+                "BIGINT",
+                "BOOLEAN",
+                "DOUBLE",
+                "VARCHAR",
+                "MULTI"
+            ]
+        },
+        "ClientToken": {
+            "type": "string"
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "StringValue2048": {
+            "type": "string"
+        },
+        "ErrorReportConfiguration": {
+            "type": "object",
+            "properties": {
+                "S3Configuration": {
+                    "$ref": "#/$defs/S3Configuration"
+                }
+            }
+        },
+        "S3Configuration": {
+            "type": "object",
+            "properties": {
+                "BucketName": {
+                    "$ref": "#/$defs/S3BucketName"
+                },
+                "ObjectKeyPrefix": {
+                    "$ref": "#/$defs/S3ObjectKeyPrefix"
+                },
+                "EncryptionOption": {
+                    "$ref": "#/$defs/S3EncryptionOption"
+                }
+            }
+        },
+        "S3BucketName": {
+            "type": "string"
+        },
+        "S3ObjectKeyPrefix": {
+            "type": "string"
+        },
+        "S3EncryptionOption": {
+            "enum": [
+                "SSE_S3",
+                "SSE_KMS"
+            ]
+        },
+        "DeleteScheduledQueryRequest": {
+            "type": "object",
+            "properties": {
+                "ScheduledQueryArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                }
+            }
+        },
+        "DescribeAccountSettingsResponse": {
+            "type": "object",
+            "properties": {
+                "MaxQueryTCU": {
+                    "$ref": "#/$defs/MaxQueryCapacity"
+                },
+                "QueryPricingModel": {
+                    "$ref": "#/$defs/QueryPricingModel"
+                }
+            }
+        },
+        "MaxQueryCapacity": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "QueryPricingModel": {
+            "enum": [
+                "BYTES_SCANNED",
+                "COMPUTE_UNITS"
+            ]
+        },
+        "DescribeAccountSettingsRequest": {
+            "type": "object",
+            "properties": {}
+        },
+        "DescribeEndpointsResponse": {
+            "type": "object",
+            "properties": {
+                "Endpoints": {
+                    "$ref": "#/$defs/Endpoints"
+                }
+            }
+        },
+        "Endpoints": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Endpoint"
+            }
+        },
+        "Endpoint": {
+            "type": "object",
+            "properties": {
+                "Address": {
+                    "$ref": "#/$defs/String"
+                },
+                "CachePeriodInMinutes": {
+                    "$ref": "#/$defs/Long"
+                }
+            }
+        },
+        "Long": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "DescribeEndpointsRequest": {
+            "type": "object",
+            "properties": {}
+        },
+        "DescribeScheduledQueryResponse": {
+            "type": "object",
+            "properties": {
+                "ScheduledQuery": {
+                    "$ref": "#/$defs/ScheduledQueryDescription"
+                }
+            }
+        },
+        "ScheduledQueryDescription": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "Name": {
+                    "$ref": "#/$defs/ScheduledQueryName"
+                },
+                "QueryString": {
+                    "$ref": "#/$defs/QueryString"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Time"
+                },
+                "State": {
+                    "$ref": "#/$defs/ScheduledQueryState"
+                },
+                "PreviousInvocationTime": {
+                    "$ref": "#/$defs/Time"
+                },
+                "NextInvocationTime": {
+                    "$ref": "#/$defs/Time"
+                },
+                "ScheduleConfiguration": {
+                    "$ref": "#/$defs/ScheduleConfiguration"
+                },
+                "NotificationConfiguration": {
+                    "$ref": "#/$defs/NotificationConfiguration"
+                },
+                "TargetConfiguration": {
+                    "$ref": "#/$defs/TargetConfiguration"
+                },
+                "ScheduledQueryExecutionRoleArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "KmsKeyId": {
+                    "$ref": "#/$defs/StringValue2048"
+                },
+                "ErrorReportConfiguration": {
+                    "$ref": "#/$defs/ErrorReportConfiguration"
+                },
+                "LastRunSummary": {
+                    "$ref": "#/$defs/ScheduledQueryRunSummary"
+                },
+                "RecentlyFailedRuns": {
+                    "$ref": "#/$defs/ScheduledQueryRunSummaryList"
+                }
+            }
+        },
+        "Time": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "ScheduledQueryState": {
+            "enum": [
+                "ENABLED",
+                "DISABLED"
+            ]
+        },
+        "ScheduledQueryRunSummary": {
+            "type": "object",
+            "properties": {
+                "InvocationTime": {
+                    "$ref": "#/$defs/Time"
+                },
+                "TriggerTime": {
+                    "$ref": "#/$defs/Time"
+                },
+                "RunStatus": {
+                    "$ref": "#/$defs/ScheduledQueryRunStatus"
+                },
+                "ExecutionStats": {
+                    "$ref": "#/$defs/ExecutionStats"
+                },
+                "ErrorReportLocation": {
+                    "$ref": "#/$defs/ErrorReportLocation"
+                },
+                "FailureReason": {
+                    "$ref": "#/$defs/ErrorMessage"
+                }
+            }
+        },
+        "ScheduledQueryRunStatus": {
+            "enum": [
+                "AUTO_TRIGGER_SUCCESS",
+                "AUTO_TRIGGER_FAILURE",
+                "MANUAL_TRIGGER_SUCCESS",
+                "MANUAL_TRIGGER_FAILURE"
+            ]
+        },
+        "ExecutionStats": {
+            "type": "object",
+            "properties": {
+                "ExecutionTimeInMillis": {
+                    "$ref": "#/$defs/Long"
+                },
+                "DataWrites": {
+                    "$ref": "#/$defs/Long"
+                },
+                "BytesMetered": {
+                    "$ref": "#/$defs/Long"
+                },
+                "CumulativeBytesScanned": {
+                    "$ref": "#/$defs/Long"
+                },
+                "RecordsIngested": {
+                    "$ref": "#/$defs/Long"
+                },
+                "QueryResultRows": {
+                    "$ref": "#/$defs/Long"
+                }
+            }
+        },
+        "ErrorReportLocation": {
+            "type": "object",
+            "properties": {
+                "S3ReportLocation": {
+                    "$ref": "#/$defs/S3ReportLocation"
+                }
+            }
+        },
+        "S3ReportLocation": {
+            "type": "object",
+            "properties": {
+                "BucketName": {
+                    "$ref": "#/$defs/S3BucketName"
+                },
+                "ObjectKey": {
+                    "$ref": "#/$defs/S3ObjectKey"
+                }
+            }
+        },
+        "S3ObjectKey": {
+            "type": "string"
+        },
+        "ErrorMessage": {
+            "type": "string"
+        },
+        "ScheduledQueryRunSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ScheduledQueryRunSummary"
+            }
+        },
+        "DescribeScheduledQueryRequest": {
+            "type": "object",
+            "properties": {
+                "ScheduledQueryArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                }
+            }
+        },
+        "ExecuteScheduledQueryRequest": {
+            "type": "object",
+            "properties": {
+                "ScheduledQueryArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "InvocationTime": {
+                    "$ref": "#/$defs/Time"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                }
+            }
+        },
+        "ListScheduledQueriesResponse": {
+            "type": "object",
+            "properties": {
+                "ScheduledQueries": {
+                    "$ref": "#/$defs/ScheduledQueryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextScheduledQueriesResultsToken"
+                }
+            }
+        },
+        "ScheduledQueryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ScheduledQuery"
+            }
+        },
+        "ScheduledQuery": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "Name": {
+                    "$ref": "#/$defs/ScheduledQueryName"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Time"
+                },
+                "State": {
+                    "$ref": "#/$defs/ScheduledQueryState"
+                },
+                "PreviousInvocationTime": {
+                    "$ref": "#/$defs/Time"
+                },
+                "NextInvocationTime": {
+                    "$ref": "#/$defs/Time"
+                },
+                "ErrorReportConfiguration": {
+                    "$ref": "#/$defs/ErrorReportConfiguration"
+                },
+                "TargetDestination": {
+                    "$ref": "#/$defs/TargetDestination"
+                },
+                "LastRunStatus": {
+                    "$ref": "#/$defs/ScheduledQueryRunStatus"
+                }
+            }
+        },
+        "TargetDestination": {
+            "type": "object",
+            "properties": {
+                "TimestreamDestination": {
+                    "$ref": "#/$defs/TimestreamDestination"
+                }
+            }
+        },
+        "TimestreamDestination": {
+            "type": "object",
+            "properties": {
+                "DatabaseName": {
+                    "$ref": "#/$defs/ResourceName"
+                },
+                "TableName": {
+                    "$ref": "#/$defs/ResourceName"
+                }
+            }
+        },
+        "NextScheduledQueriesResultsToken": {
+            "type": "string"
+        },
+        "ListScheduledQueriesRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxScheduledQueriesResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextScheduledQueriesResultsToken"
+                }
+            }
+        },
+        "MaxScheduledQueriesResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextTagsForResourceResultsToken"
+                }
+            }
+        },
+        "NextTagsForResourceResultsToken": {
+            "type": "string"
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceARN": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxTagsForResourceResult"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextTagsForResourceResultsToken"
+                }
+            }
+        },
+        "MaxTagsForResourceResult": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "PrepareQueryResponse": {
+            "type": "object",
+            "properties": {
+                "QueryString": {
+                    "$ref": "#/$defs/QueryString"
+                },
+                "Columns": {
+                    "$ref": "#/$defs/SelectColumnList"
+                },
+                "Parameters": {
+                    "$ref": "#/$defs/ParameterMappingList"
+                }
+            }
+        },
+        "SelectColumnList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SelectColumn"
+            }
+        },
+        "SelectColumn": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Type": {
+                    "$ref": "#/$defs/Type"
+                },
+                "DatabaseName": {
+                    "$ref": "#/$defs/ResourceName"
+                },
+                "TableName": {
+                    "$ref": "#/$defs/ResourceName"
+                },
+                "Aliased": {
+                    "$ref": "#/$defs/NullableBoolean"
+                }
+            }
+        },
+        "Type": {
+            "type": "object",
+            "properties": {
+                "ScalarType": {
+                    "$ref": "#/$defs/ScalarType"
+                },
+                "ArrayColumnInfo": {
+                    "$ref": "#/$defs/ColumnInfo"
+                },
+                "TimeSeriesMeasureValueColumnInfo": {
+                    "$ref": "#/$defs/ColumnInfo"
+                },
+                "RowColumnInfo": {
+                    "$ref": "#/$defs/ColumnInfoList"
+                }
+            }
+        },
+        "ScalarType": {
+            "enum": [
+                "VARCHAR",
+                "BOOLEAN",
+                "BIGINT",
+                "DOUBLE",
+                "TIMESTAMP",
+                "DATE",
+                "TIME",
+                "INTERVAL_DAY_TO_SECOND",
+                "INTERVAL_YEAR_TO_MONTH",
+                "UNKNOWN",
+                "INTEGER"
+            ]
+        },
+        "ColumnInfo": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Type": {
+                    "$ref": "#/$defs/Type"
+                }
+            }
+        },
+        "ColumnInfoList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ColumnInfo"
+            }
+        },
+        "NullableBoolean": {
+            "type": "boolean"
+        },
+        "ParameterMappingList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ParameterMapping"
+            }
+        },
+        "ParameterMapping": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Type": {
+                    "$ref": "#/$defs/Type"
+                }
+            }
+        },
+        "PrepareQueryRequest": {
+            "type": "object",
+            "properties": {
+                "QueryString": {
+                    "$ref": "#/$defs/QueryString"
+                },
+                "ValidateOnly": {
+                    "$ref": "#/$defs/NullableBoolean"
+                }
+            }
+        },
+        "QueryResponse": {
+            "type": "object",
+            "properties": {
+                "QueryId": {
+                    "$ref": "#/$defs/QueryId"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "Rows": {
+                    "$ref": "#/$defs/RowList"
+                },
+                "ColumnInfo": {
+                    "$ref": "#/$defs/ColumnInfoList"
+                },
+                "QueryStatus": {
+                    "$ref": "#/$defs/QueryStatus"
+                }
+            }
+        },
+        "PaginationToken": {
+            "type": "string"
+        },
+        "RowList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Row"
+            }
+        },
+        "Row": {
+            "type": "object",
+            "properties": {
+                "Data": {
+                    "$ref": "#/$defs/DatumList"
+                }
+            }
+        },
+        "DatumList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Datum"
+            }
+        },
+        "Datum": {
+            "type": "object",
+            "properties": {
+                "ScalarValue": {
+                    "$ref": "#/$defs/ScalarValue"
+                },
+                "TimeSeriesValue": {
+                    "$ref": "#/$defs/TimeSeriesDataPointList"
+                },
+                "ArrayValue": {
+                    "$ref": "#/$defs/DatumList"
+                },
+                "RowValue": {
+                    "$ref": "#/$defs/Row"
+                },
+                "NullValue": {
+                    "$ref": "#/$defs/NullableBoolean"
+                }
+            }
+        },
+        "ScalarValue": {
+            "type": "string"
+        },
+        "TimeSeriesDataPointList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TimeSeriesDataPoint"
+            }
+        },
+        "TimeSeriesDataPoint": {
+            "type": "object",
+            "properties": {
+                "Time": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Value": {
+                    "$ref": "#/$defs/Datum"
+                }
+            }
+        },
+        "Timestamp": {
+            "type": "string"
+        },
+        "QueryStatus": {
+            "type": "object",
+            "properties": {
+                "ProgressPercentage": {
+                    "$ref": "#/$defs/Double"
+                },
+                "CumulativeBytesScanned": {
+                    "$ref": "#/$defs/Long"
+                },
+                "CumulativeBytesMetered": {
+                    "$ref": "#/$defs/Long"
+                }
+            }
+        },
+        "Double": {
+            "type": "number",
+            "format": "double"
+        },
+        "QueryRequest": {
+            "type": "object",
+            "properties": {
+                "QueryString": {
+                    "$ref": "#/$defs/QueryString"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientRequestToken"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "MaxRows": {
+                    "$ref": "#/$defs/MaxQueryResults"
+                }
+            }
+        },
+        "ClientRequestToken": {
+            "type": "string"
+        },
+        "MaxQueryResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceARN": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceARN": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "UpdateAccountSettingsResponse": {
+            "type": "object",
+            "properties": {
+                "MaxQueryTCU": {
+                    "$ref": "#/$defs/MaxQueryCapacity"
+                },
+                "QueryPricingModel": {
+                    "$ref": "#/$defs/QueryPricingModel"
+                }
+            }
+        },
+        "UpdateAccountSettingsRequest": {
+            "type": "object",
+            "properties": {
+                "MaxQueryTCU": {
+                    "$ref": "#/$defs/MaxQueryCapacity"
+                },
+                "QueryPricingModel": {
+                    "$ref": "#/$defs/QueryPricingModel"
+                }
+            }
+        },
+        "UpdateScheduledQueryRequest": {
+            "type": "object",
+            "properties": {
+                "ScheduledQueryArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "State": {
+                    "$ref": "#/$defs/ScheduledQueryState"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://query.timestream-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://query.timestream-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://query.timestream.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://query.timestream.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

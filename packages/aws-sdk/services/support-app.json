@@ -1,0 +1,951 @@
+{
+    "name": "supportapp",
+    "commands": [
+        {
+            "name": "CreateSlackChannelConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateSlackChannelConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateSlackChannelConfigurationResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateSlackChannelConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteAccountAlias",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteAccountAlias"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteAccountAliasResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteAccountAliasRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteSlackChannelConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteSlackChannelConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteSlackChannelConfigurationResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteSlackChannelConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteSlackWorkspaceConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteSlackWorkspaceConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteSlackWorkspaceConfigurationResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteSlackWorkspaceConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetAccountAlias",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetAccountAlias"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetAccountAliasResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetAccountAliasRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListSlackChannelConfigurations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListSlackChannelConfigurations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListSlackChannelConfigurationsResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListSlackChannelConfigurationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListSlackWorkspaceConfigurations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListSlackWorkspaceConfigurations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListSlackWorkspaceConfigurationsResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListSlackWorkspaceConfigurationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutAccountAlias",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutAccountAlias"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutAccountAliasResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutAccountAliasRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RegisterSlackWorkspaceForOrganization",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RegisterSlackWorkspaceForOrganization"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RegisterSlackWorkspaceForOrganizationResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RegisterSlackWorkspaceForOrganizationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateSlackChannelConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateSlackChannelConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateSlackChannelConfigurationResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateSlackChannelConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CreateSlackChannelConfigurationResult": {
+            "type": "object",
+            "properties": {}
+        },
+        "CreateSlackChannelConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "teamId": {
+                    "$ref": "#/$defs/teamId"
+                },
+                "channelId": {
+                    "$ref": "#/$defs/channelId"
+                },
+                "channelName": {
+                    "$ref": "#/$defs/channelName"
+                },
+                "notifyOnCreateOrReopenCase": {
+                    "$ref": "#/$defs/booleanValue"
+                },
+                "notifyOnAddCorrespondenceToCase": {
+                    "$ref": "#/$defs/booleanValue"
+                },
+                "notifyOnResolveCase": {
+                    "$ref": "#/$defs/booleanValue"
+                },
+                "notifyOnCaseSeverity": {
+                    "$ref": "#/$defs/NotificationSeverityLevel"
+                },
+                "channelRoleArn": {
+                    "$ref": "#/$defs/roleArn"
+                }
+            }
+        },
+        "teamId": {
+            "type": "string"
+        },
+        "channelId": {
+            "type": "string"
+        },
+        "channelName": {
+            "type": "string"
+        },
+        "booleanValue": {
+            "type": "boolean"
+        },
+        "NotificationSeverityLevel": {
+            "type": "string"
+        },
+        "roleArn": {
+            "type": "string"
+        },
+        "DeleteAccountAliasResult": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteAccountAliasRequest": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteSlackChannelConfigurationResult": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteSlackChannelConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "teamId": {
+                    "$ref": "#/$defs/teamId"
+                },
+                "channelId": {
+                    "$ref": "#/$defs/channelId"
+                }
+            }
+        },
+        "DeleteSlackWorkspaceConfigurationResult": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteSlackWorkspaceConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "teamId": {
+                    "$ref": "#/$defs/teamId"
+                }
+            }
+        },
+        "GetAccountAliasResult": {
+            "type": "object",
+            "properties": {
+                "accountAlias": {
+                    "$ref": "#/$defs/awsAccountAlias"
+                }
+            }
+        },
+        "awsAccountAlias": {
+            "type": "string"
+        },
+        "GetAccountAliasRequest": {
+            "type": "object",
+            "properties": {}
+        },
+        "ListSlackChannelConfigurationsResult": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/paginationToken"
+                },
+                "slackChannelConfigurations": {
+                    "$ref": "#/$defs/slackChannelConfigurationList"
+                }
+            }
+        },
+        "paginationToken": {
+            "type": "string"
+        },
+        "slackChannelConfigurationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SlackChannelConfiguration"
+            }
+        },
+        "SlackChannelConfiguration": {
+            "type": "object",
+            "properties": {
+                "teamId": {
+                    "$ref": "#/$defs/teamId"
+                },
+                "channelId": {
+                    "$ref": "#/$defs/channelId"
+                },
+                "channelName": {
+                    "$ref": "#/$defs/channelName"
+                },
+                "notifyOnCreateOrReopenCase": {
+                    "$ref": "#/$defs/booleanValue"
+                },
+                "notifyOnAddCorrespondenceToCase": {
+                    "$ref": "#/$defs/booleanValue"
+                },
+                "notifyOnResolveCase": {
+                    "$ref": "#/$defs/booleanValue"
+                },
+                "notifyOnCaseSeverity": {
+                    "$ref": "#/$defs/NotificationSeverityLevel"
+                },
+                "channelRoleArn": {
+                    "$ref": "#/$defs/roleArn"
+                }
+            }
+        },
+        "ListSlackChannelConfigurationsRequest": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/paginationToken"
+                }
+            }
+        },
+        "ListSlackWorkspaceConfigurationsResult": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/paginationToken"
+                },
+                "slackWorkspaceConfigurations": {
+                    "$ref": "#/$defs/SlackWorkspaceConfigurationList"
+                }
+            }
+        },
+        "SlackWorkspaceConfigurationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SlackWorkspaceConfiguration"
+            }
+        },
+        "SlackWorkspaceConfiguration": {
+            "type": "object",
+            "properties": {
+                "teamId": {
+                    "$ref": "#/$defs/teamId"
+                },
+                "teamName": {
+                    "$ref": "#/$defs/teamName"
+                },
+                "allowOrganizationMemberAccount": {
+                    "$ref": "#/$defs/booleanValue"
+                }
+            }
+        },
+        "teamName": {
+            "type": "string"
+        },
+        "ListSlackWorkspaceConfigurationsRequest": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/paginationToken"
+                }
+            }
+        },
+        "PutAccountAliasResult": {
+            "type": "object",
+            "properties": {}
+        },
+        "PutAccountAliasRequest": {
+            "type": "object",
+            "properties": {
+                "accountAlias": {
+                    "$ref": "#/$defs/awsAccountAlias"
+                }
+            }
+        },
+        "RegisterSlackWorkspaceForOrganizationResult": {
+            "type": "object",
+            "properties": {
+                "teamId": {
+                    "$ref": "#/$defs/teamId"
+                },
+                "teamName": {
+                    "$ref": "#/$defs/teamName"
+                },
+                "accountType": {
+                    "$ref": "#/$defs/AccountType"
+                }
+            }
+        },
+        "AccountType": {
+            "type": "string"
+        },
+        "RegisterSlackWorkspaceForOrganizationRequest": {
+            "type": "object",
+            "properties": {
+                "teamId": {
+                    "$ref": "#/$defs/teamId"
+                }
+            }
+        },
+        "UpdateSlackChannelConfigurationResult": {
+            "type": "object",
+            "properties": {
+                "teamId": {
+                    "$ref": "#/$defs/teamId"
+                },
+                "channelId": {
+                    "$ref": "#/$defs/channelId"
+                },
+                "channelName": {
+                    "$ref": "#/$defs/channelName"
+                },
+                "notifyOnCreateOrReopenCase": {
+                    "$ref": "#/$defs/booleanValue"
+                },
+                "notifyOnAddCorrespondenceToCase": {
+                    "$ref": "#/$defs/booleanValue"
+                },
+                "notifyOnResolveCase": {
+                    "$ref": "#/$defs/booleanValue"
+                },
+                "notifyOnCaseSeverity": {
+                    "$ref": "#/$defs/NotificationSeverityLevel"
+                },
+                "channelRoleArn": {
+                    "$ref": "#/$defs/roleArn"
+                }
+            }
+        },
+        "UpdateSlackChannelConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "teamId": {
+                    "$ref": "#/$defs/teamId"
+                },
+                "channelId": {
+                    "$ref": "#/$defs/channelId"
+                },
+                "channelName": {
+                    "$ref": "#/$defs/channelName"
+                },
+                "notifyOnCreateOrReopenCase": {
+                    "$ref": "#/$defs/booleanValue"
+                },
+                "notifyOnAddCorrespondenceToCase": {
+                    "$ref": "#/$defs/booleanValue"
+                },
+                "notifyOnResolveCase": {
+                    "$ref": "#/$defs/booleanValue"
+                },
+                "notifyOnCaseSeverity": {
+                    "$ref": "#/$defs/NotificationSeverityLevel"
+                },
+                "channelRoleArn": {
+                    "$ref": "#/$defs/roleArn"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://supportapp-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://supportapp-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://supportapp.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://supportapp.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

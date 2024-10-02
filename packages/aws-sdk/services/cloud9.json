@@ -1,0 +1,1251 @@
+{
+    "name": "cloud9",
+    "commands": [
+        {
+            "name": "CreateEnvironmentEC2",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateEnvironmentEC2"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateEnvironmentEC2Result"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateEnvironmentEC2Request"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateEnvironmentMembership",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateEnvironmentMembership"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateEnvironmentMembershipResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateEnvironmentMembershipRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteEnvironment",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteEnvironment"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteEnvironmentResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteEnvironmentRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteEnvironmentMembership",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteEnvironmentMembership"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteEnvironmentMembershipResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteEnvironmentMembershipRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeEnvironmentMemberships",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeEnvironmentMemberships"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeEnvironmentMembershipsResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeEnvironmentMembershipsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeEnvironments",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeEnvironments"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeEnvironmentsResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeEnvironmentsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeEnvironmentStatus",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeEnvironmentStatus"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeEnvironmentStatusResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeEnvironmentStatusRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListEnvironments",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListEnvironments"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListEnvironmentsResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListEnvironmentsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateEnvironment",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateEnvironment"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateEnvironmentResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateEnvironmentRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateEnvironmentMembership",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateEnvironmentMembership"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateEnvironmentMembershipResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateEnvironmentMembershipRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CreateEnvironmentEC2Result": {
+            "type": "object",
+            "properties": {
+                "environmentId": {
+                    "$ref": "#/$defs/EnvironmentId"
+                }
+            }
+        },
+        "EnvironmentId": {
+            "type": "string"
+        },
+        "CreateEnvironmentEC2Request": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/EnvironmentName"
+                },
+                "description": {
+                    "$ref": "#/$defs/EnvironmentDescription"
+                },
+                "clientRequestToken": {
+                    "$ref": "#/$defs/ClientRequestToken"
+                },
+                "instanceType": {
+                    "$ref": "#/$defs/InstanceType"
+                },
+                "subnetId": {
+                    "$ref": "#/$defs/SubnetId"
+                },
+                "imageId": {
+                    "$ref": "#/$defs/ImageId"
+                },
+                "automaticStopTimeMinutes": {
+                    "$ref": "#/$defs/AutomaticStopTimeMinutes"
+                },
+                "ownerArn": {
+                    "$ref": "#/$defs/UserArn"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "connectionType": {
+                    "$ref": "#/$defs/ConnectionType"
+                },
+                "dryRun": {
+                    "$ref": "#/$defs/NullableBoolean"
+                }
+            }
+        },
+        "EnvironmentName": {
+            "type": "string"
+        },
+        "EnvironmentDescription": {
+            "type": "string"
+        },
+        "ClientRequestToken": {
+            "type": "string"
+        },
+        "InstanceType": {
+            "type": "string"
+        },
+        "SubnetId": {
+            "type": "string"
+        },
+        "ImageId": {
+            "type": "string"
+        },
+        "AutomaticStopTimeMinutes": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "UserArn": {
+            "type": "string"
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "ConnectionType": {
+            "enum": [
+                "CONNECT_SSH",
+                "CONNECT_SSM"
+            ]
+        },
+        "NullableBoolean": {
+            "type": "boolean"
+        },
+        "CreateEnvironmentMembershipResult": {
+            "type": "object",
+            "properties": {
+                "membership": {
+                    "$ref": "#/$defs/EnvironmentMember"
+                }
+            }
+        },
+        "EnvironmentMember": {
+            "type": "object",
+            "properties": {
+                "permissions": {
+                    "$ref": "#/$defs/Permissions"
+                },
+                "userId": {
+                    "$ref": "#/$defs/String"
+                },
+                "userArn": {
+                    "$ref": "#/$defs/UserArn"
+                },
+                "environmentId": {
+                    "$ref": "#/$defs/EnvironmentId"
+                },
+                "lastAccess": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "Permissions": {
+            "enum": [
+                "OWNER",
+                "READ_WRITE",
+                "READ_ONLY"
+            ]
+        },
+        "String": {
+            "type": "string"
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "CreateEnvironmentMembershipRequest": {
+            "type": "object",
+            "properties": {
+                "environmentId": {
+                    "$ref": "#/$defs/EnvironmentId"
+                },
+                "userArn": {
+                    "$ref": "#/$defs/UserArn"
+                },
+                "permissions": {
+                    "$ref": "#/$defs/MemberPermissions"
+                }
+            }
+        },
+        "MemberPermissions": {
+            "enum": [
+                "READ_WRITE",
+                "READ_ONLY"
+            ]
+        },
+        "DeleteEnvironmentResult": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteEnvironmentRequest": {
+            "type": "object",
+            "properties": {
+                "environmentId": {
+                    "$ref": "#/$defs/EnvironmentId"
+                }
+            }
+        },
+        "DeleteEnvironmentMembershipResult": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteEnvironmentMembershipRequest": {
+            "type": "object",
+            "properties": {
+                "environmentId": {
+                    "$ref": "#/$defs/EnvironmentId"
+                },
+                "userArn": {
+                    "$ref": "#/$defs/UserArn"
+                }
+            }
+        },
+        "DescribeEnvironmentMembershipsResult": {
+            "type": "object",
+            "properties": {
+                "memberships": {
+                    "$ref": "#/$defs/EnvironmentMembersList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "EnvironmentMembersList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EnvironmentMember"
+            }
+        },
+        "DescribeEnvironmentMembershipsRequest": {
+            "type": "object",
+            "properties": {
+                "userArn": {
+                    "$ref": "#/$defs/UserArn"
+                },
+                "environmentId": {
+                    "$ref": "#/$defs/EnvironmentId"
+                },
+                "permissions": {
+                    "$ref": "#/$defs/PermissionsList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "PermissionsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Permissions"
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DescribeEnvironmentsResult": {
+            "type": "object",
+            "properties": {
+                "environments": {
+                    "$ref": "#/$defs/EnvironmentList"
+                }
+            }
+        },
+        "EnvironmentList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Environment"
+            }
+        },
+        "Environment": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/EnvironmentId"
+                },
+                "name": {
+                    "$ref": "#/$defs/EnvironmentName"
+                },
+                "description": {
+                    "$ref": "#/$defs/EnvironmentDescription"
+                },
+                "type": {
+                    "$ref": "#/$defs/EnvironmentType"
+                },
+                "connectionType": {
+                    "$ref": "#/$defs/ConnectionType"
+                },
+                "arn": {
+                    "$ref": "#/$defs/String"
+                },
+                "ownerArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "lifecycle": {
+                    "$ref": "#/$defs/EnvironmentLifecycle"
+                },
+                "managedCredentialsStatus": {
+                    "$ref": "#/$defs/ManagedCredentialsStatus"
+                }
+            }
+        },
+        "EnvironmentType": {
+            "enum": [
+                "SSH",
+                "EC2"
+            ]
+        },
+        "EnvironmentLifecycle": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "$ref": "#/$defs/EnvironmentLifecycleStatus"
+                },
+                "reason": {
+                    "$ref": "#/$defs/String"
+                },
+                "failureResource": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "EnvironmentLifecycleStatus": {
+            "enum": [
+                "CREATING",
+                "CREATED",
+                "CREATE_FAILED",
+                "DELETING",
+                "DELETE_FAILED"
+            ]
+        },
+        "ManagedCredentialsStatus": {
+            "enum": [
+                "ENABLED_ON_CREATE",
+                "ENABLED_BY_OWNER",
+                "DISABLED_BY_DEFAULT",
+                "DISABLED_BY_OWNER",
+                "DISABLED_BY_COLLABORATOR",
+                "PENDING_REMOVAL_BY_COLLABORATOR",
+                "PENDING_START_REMOVAL_BY_COLLABORATOR",
+                "PENDING_REMOVAL_BY_OWNER",
+                "PENDING_START_REMOVAL_BY_OWNER",
+                "FAILED_REMOVAL_BY_COLLABORATOR",
+                "FAILED_REMOVAL_BY_OWNER"
+            ]
+        },
+        "DescribeEnvironmentsRequest": {
+            "type": "object",
+            "properties": {
+                "environmentIds": {
+                    "$ref": "#/$defs/BoundedEnvironmentIdList"
+                }
+            }
+        },
+        "BoundedEnvironmentIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EnvironmentId"
+            }
+        },
+        "DescribeEnvironmentStatusResult": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "$ref": "#/$defs/EnvironmentStatus"
+                },
+                "message": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "EnvironmentStatus": {
+            "enum": [
+                "ERROR",
+                "CREATING",
+                "CONNECTING",
+                "READY",
+                "STOPPING",
+                "STOPPED",
+                "DELETING"
+            ]
+        },
+        "DescribeEnvironmentStatusRequest": {
+            "type": "object",
+            "properties": {
+                "environmentId": {
+                    "$ref": "#/$defs/EnvironmentId"
+                }
+            }
+        },
+        "ListEnvironmentsResult": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "environmentIds": {
+                    "$ref": "#/$defs/EnvironmentIdList"
+                }
+            }
+        },
+        "EnvironmentIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EnvironmentId"
+            }
+        },
+        "ListEnvironmentsRequest": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceARN": {
+                    "$ref": "#/$defs/EnvironmentArn"
+                }
+            }
+        },
+        "EnvironmentArn": {
+            "type": "string"
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceARN": {
+                    "$ref": "#/$defs/EnvironmentArn"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceARN": {
+                    "$ref": "#/$defs/EnvironmentArn"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "UpdateEnvironmentResult": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateEnvironmentRequest": {
+            "type": "object",
+            "properties": {
+                "environmentId": {
+                    "$ref": "#/$defs/EnvironmentId"
+                },
+                "name": {
+                    "$ref": "#/$defs/EnvironmentName"
+                },
+                "description": {
+                    "$ref": "#/$defs/EnvironmentDescription"
+                },
+                "managedCredentialsAction": {
+                    "$ref": "#/$defs/ManagedCredentialsAction"
+                }
+            }
+        },
+        "ManagedCredentialsAction": {
+            "enum": [
+                "ENABLE",
+                "DISABLE"
+            ]
+        },
+        "UpdateEnvironmentMembershipResult": {
+            "type": "object",
+            "properties": {
+                "membership": {
+                    "$ref": "#/$defs/EnvironmentMember"
+                }
+            }
+        },
+        "UpdateEnvironmentMembershipRequest": {
+            "type": "object",
+            "properties": {
+                "environmentId": {
+                    "$ref": "#/$defs/EnvironmentId"
+                },
+                "userArn": {
+                    "$ref": "#/$defs/UserArn"
+                },
+                "permissions": {
+                    "$ref": "#/$defs/MemberPermissions"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://cloud9-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://cloud9-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://cloud9.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://cloud9.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

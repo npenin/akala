@@ -1,0 +1,861 @@
+{
+    "name": "rekognition",
+    "commands": [
+        {
+            "name": "StartFaceLivenessSession",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartFaceLivenessSession"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartFaceLivenessSessionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartFaceLivenessSessionRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "StartFaceLivenessSessionResponse": {
+            "type": "object",
+            "properties": {
+                "SessionId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "LivenessResponseStream": {
+                    "$ref": "#/$defs/LivenessResponseStream"
+                }
+            }
+        },
+        "UUID": {
+            "type": "string"
+        },
+        "LivenessResponseStream": {
+            "type": "object",
+            "properties": {
+                "ServerSessionInformationEvent": {
+                    "$ref": "#/$defs/ServerSessionInformationEvent"
+                },
+                "DisconnectionEvent": {
+                    "$ref": "#/$defs/DisconnectionEvent"
+                },
+                "ValidationException": {
+                    "$ref": "#/$defs/ValidationException"
+                },
+                "InternalServerException": {
+                    "$ref": "#/$defs/InternalServerException"
+                },
+                "ThrottlingException": {
+                    "$ref": "#/$defs/ThrottlingException"
+                },
+                "ServiceQuotaExceededException": {
+                    "$ref": "#/$defs/ServiceQuotaExceededException"
+                },
+                "ServiceUnavailableException": {
+                    "$ref": "#/$defs/ServiceUnavailableException"
+                }
+            }
+        },
+        "ServerSessionInformationEvent": {
+            "type": "object",
+            "properties": {
+                "SessionInformation": {
+                    "$ref": "#/$defs/SessionInformation"
+                }
+            }
+        },
+        "SessionInformation": {
+            "type": "object",
+            "properties": {
+                "Challenge": {
+                    "$ref": "#/$defs/ServerChallenge"
+                }
+            }
+        },
+        "ServerChallenge": {
+            "type": "object",
+            "properties": {
+                "FaceMovementAndLightChallenge": {
+                    "$ref": "#/$defs/FaceMovementAndLightServerChallenge"
+                }
+            }
+        },
+        "FaceMovementAndLightServerChallenge": {
+            "type": "object",
+            "properties": {
+                "OvalParameters": {
+                    "$ref": "#/$defs/OvalParameters"
+                },
+                "LightChallengeType": {
+                    "$ref": "#/$defs/LightChallengeType"
+                },
+                "ChallengeConfig": {
+                    "$ref": "#/$defs/ChallengeConfig"
+                },
+                "ColorSequences": {
+                    "$ref": "#/$defs/ColorSequences"
+                }
+            }
+        },
+        "OvalParameters": {
+            "type": "object",
+            "properties": {
+                "Width": {
+                    "$ref": "#/$defs/OvalSizeFloat"
+                },
+                "Height": {
+                    "$ref": "#/$defs/OvalSizeFloat"
+                },
+                "CenterX": {
+                    "$ref": "#/$defs/OvalSizeFloat"
+                },
+                "CenterY": {
+                    "$ref": "#/$defs/OvalSizeFloat"
+                }
+            }
+        },
+        "OvalSizeFloat": {
+            "type": "number",
+            "format": "float"
+        },
+        "LightChallengeType": {
+            "enum": [
+                "SEQUENTIAL"
+            ]
+        },
+        "ChallengeConfig": {
+            "type": "object",
+            "properties": {
+                "BlazeFaceDetectionThreshold": {
+                    "$ref": "#/$defs/Threshold"
+                },
+                "FaceDistanceThresholdMin": {
+                    "$ref": "#/$defs/Threshold"
+                },
+                "FaceDistanceThreshold": {
+                    "$ref": "#/$defs/Threshold"
+                },
+                "FaceDistanceThresholdMax": {
+                    "$ref": "#/$defs/Threshold"
+                },
+                "OvalIouThreshold": {
+                    "$ref": "#/$defs/Threshold"
+                },
+                "OvalHeightWidthRatio": {
+                    "$ref": "#/$defs/Float"
+                },
+                "OvalIouWidthThreshold": {
+                    "$ref": "#/$defs/Threshold"
+                },
+                "OvalIouHeightThreshold": {
+                    "$ref": "#/$defs/Threshold"
+                },
+                "FaceIouWidthThreshold": {
+                    "$ref": "#/$defs/Threshold"
+                },
+                "FaceIouHeightThreshold": {
+                    "$ref": "#/$defs/Threshold"
+                },
+                "OvalFitTimeout": {
+                    "$ref": "#/$defs/TimeoutInMs"
+                }
+            }
+        },
+        "Threshold": {
+            "type": "number",
+            "format": "float"
+        },
+        "Float": {
+            "type": "number",
+            "format": "float"
+        },
+        "TimeoutInMs": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ColorSequences": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ColorSequence"
+            }
+        },
+        "ColorSequence": {
+            "type": "object",
+            "properties": {
+                "FreshnessColor": {
+                    "$ref": "#/$defs/FreshnessColor"
+                },
+                "DownscrollDuration": {
+                    "$ref": "#/$defs/ColorDurationInMs"
+                },
+                "FlatDisplayDuration": {
+                    "$ref": "#/$defs/ColorDurationInMs"
+                }
+            }
+        },
+        "FreshnessColor": {
+            "type": "object",
+            "properties": {
+                "RGB": {
+                    "$ref": "#/$defs/ColorComponentList"
+                }
+            }
+        },
+        "ColorComponentList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ColorComponentInt"
+            }
+        },
+        "ColorComponentInt": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ColorDurationInMs": {
+            "type": "number",
+            "format": "float"
+        },
+        "DisconnectionEvent": {
+            "type": "object",
+            "properties": {
+                "TimestampMillis": {
+                    "$ref": "#/$defs/EpochMillis"
+                }
+            }
+        },
+        "EpochMillis": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "ValidationException": {
+            "type": "object",
+            "properties": {
+                "Message": {
+                    "$ref": "#/$defs/String"
+                },
+                "Code": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "String": {
+            "type": "string"
+        },
+        "InternalServerException": {
+            "type": "object",
+            "properties": {
+                "Message": {
+                    "$ref": "#/$defs/String"
+                },
+                "Code": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ThrottlingException": {
+            "type": "object",
+            "properties": {
+                "Message": {
+                    "$ref": "#/$defs/String"
+                },
+                "Code": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ServiceQuotaExceededException": {
+            "type": "object",
+            "properties": {
+                "Message": {
+                    "$ref": "#/$defs/String"
+                },
+                "Code": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ServiceUnavailableException": {
+            "type": "object",
+            "properties": {
+                "Message": {
+                    "$ref": "#/$defs/String"
+                },
+                "Code": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "StartFaceLivenessSessionRequest": {
+            "type": "object",
+            "properties": {
+                "SessionId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "VideoWidth": {
+                    "$ref": "#/$defs/VideoWidth"
+                },
+                "VideoHeight": {
+                    "$ref": "#/$defs/VideoHeight"
+                },
+                "ChallengeVersions": {
+                    "$ref": "#/$defs/ChallengeVersions"
+                },
+                "LivenessRequestStream": {
+                    "$ref": "#/$defs/LivenessRequestStream"
+                }
+            }
+        },
+        "VideoWidth": {
+            "type": "string"
+        },
+        "VideoHeight": {
+            "type": "string"
+        },
+        "ChallengeVersions": {
+            "type": "string"
+        },
+        "LivenessRequestStream": {
+            "type": "object",
+            "properties": {
+                "VideoEvent": {
+                    "$ref": "#/$defs/VideoEvent"
+                },
+                "ClientSessionInformationEvent": {
+                    "$ref": "#/$defs/ClientSessionInformationEvent"
+                }
+            }
+        },
+        "VideoEvent": {
+            "type": "object",
+            "properties": {
+                "VideoChunk": {
+                    "$ref": "#/$defs/VideoChunk"
+                },
+                "TimestampMillis": {
+                    "$ref": "#/$defs/EpochMillis"
+                }
+            }
+        },
+        "VideoChunk": {
+            "type": "string",
+            "format": "binary"
+        },
+        "ClientSessionInformationEvent": {
+            "type": "object",
+            "properties": {
+                "Challenge": {
+                    "$ref": "#/$defs/ClientChallenge"
+                }
+            }
+        },
+        "ClientChallenge": {
+            "type": "object",
+            "properties": {
+                "FaceMovementAndLightChallenge": {
+                    "$ref": "#/$defs/FaceMovementAndLightClientChallenge"
+                }
+            }
+        },
+        "FaceMovementAndLightClientChallenge": {
+            "type": "object",
+            "properties": {
+                "ChallengeId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "VideoStartTimestamp": {
+                    "$ref": "#/$defs/EpochMillis"
+                },
+                "VideoEndTimestamp": {
+                    "$ref": "#/$defs/EpochMillis"
+                },
+                "InitialFace": {
+                    "$ref": "#/$defs/InitialFace"
+                },
+                "TargetFace": {
+                    "$ref": "#/$defs/TargetFace"
+                },
+                "ColorDisplayed": {
+                    "$ref": "#/$defs/ColorDisplayed"
+                }
+            }
+        },
+        "InitialFace": {
+            "type": "object",
+            "properties": {
+                "BoundingBox": {
+                    "$ref": "#/$defs/BoundingBox"
+                },
+                "InitialFaceDetectedTimestamp": {
+                    "$ref": "#/$defs/EpochMillis"
+                }
+            }
+        },
+        "BoundingBox": {
+            "type": "object",
+            "properties": {
+                "Width": {
+                    "$ref": "#/$defs/Threshold"
+                },
+                "Height": {
+                    "$ref": "#/$defs/Threshold"
+                },
+                "Left": {
+                    "$ref": "#/$defs/BoundingBoxFloat"
+                },
+                "Top": {
+                    "$ref": "#/$defs/BoundingBoxFloat"
+                }
+            }
+        },
+        "BoundingBoxFloat": {
+            "type": "number",
+            "format": "float"
+        },
+        "TargetFace": {
+            "type": "object",
+            "properties": {
+                "BoundingBox": {
+                    "$ref": "#/$defs/BoundingBox"
+                },
+                "FaceDetectedInTargetPositionStartTimestamp": {
+                    "$ref": "#/$defs/EpochMillis"
+                },
+                "FaceDetectedInTargetPositionEndTimestamp": {
+                    "$ref": "#/$defs/EpochMillis"
+                }
+            }
+        },
+        "ColorDisplayed": {
+            "type": "object",
+            "properties": {
+                "CurrentColor": {
+                    "$ref": "#/$defs/FreshnessColor"
+                },
+                "PreviousColor": {
+                    "$ref": "#/$defs/FreshnessColor"
+                },
+                "SequenceNumber": {
+                    "$ref": "#/$defs/ColorSequenceInt"
+                },
+                "CurrentColorStartTimestamp": {
+                    "$ref": "#/$defs/EpochMillis"
+                }
+            }
+        },
+        "ColorSequenceInt": {
+            "type": "integer",
+            "format": "int32"
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "type": "tree",
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "type": "tree",
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                                "type": "error"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": {
+                                        "ref": "Endpoint"
+                                    },
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "conditions": [],
+                "type": "tree",
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "isSet",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ]
+                            }
+                        ],
+                        "type": "tree",
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "aws.partition",
+                                        "argv": [
+                                            {
+                                                "ref": "Region"
+                                            }
+                                        ],
+                                        "assign": "PartitionResult"
+                                    }
+                                ],
+                                "type": "tree",
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseFIPS"
+                                                    },
+                                                    true
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseDualStack"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "type": "tree",
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsFIPS"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsDualStack"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "type": "tree",
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "type": "tree",
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://streaming-rekognition-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                                "type": "error"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseFIPS"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "type": "tree",
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsFIPS"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "type": "tree",
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "type": "tree",
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://streaming-rekognition-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "FIPS is enabled but this partition does not support FIPS",
+                                                "type": "error"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseDualStack"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "type": "tree",
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsDualStack"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "type": "tree",
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "type": "tree",
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://streaming-rekognition.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "DualStack is enabled but this partition does not support DualStack",
+                                                "type": "error"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "type": "tree",
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://streaming-rekognition.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "conditions": [],
+                        "error": "Invalid Configuration: Missing Region",
+                        "type": "error"
+                    }
+                ]
+            }
+        ]
+    }
+}

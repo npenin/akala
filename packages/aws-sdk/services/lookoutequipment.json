@@ -1,0 +1,4445 @@
+{
+    "name": "lookoutequipment",
+    "commands": [
+        {
+            "name": "CreateDataset",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateDataset"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateDatasetResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateDatasetRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateInferenceScheduler",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateInferenceScheduler"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateInferenceSchedulerResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateInferenceSchedulerRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateLabel",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateLabel"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateLabelResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateLabelRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateLabelGroup",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateLabelGroup"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateLabelGroupResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateLabelGroupRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateModel",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateModel"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateModelResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateModelRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateRetrainingScheduler",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateRetrainingScheduler"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateRetrainingSchedulerResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateRetrainingSchedulerRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteDataset",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteDataset"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteDatasetRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteInferenceScheduler",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteInferenceScheduler"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteInferenceSchedulerRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteLabel",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteLabel"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteLabelRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteLabelGroup",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteLabelGroup"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteLabelGroupRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteModel",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteModel"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteModelRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteResourcePolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteResourcePolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteResourcePolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteRetrainingScheduler",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteRetrainingScheduler"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteRetrainingSchedulerRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeDataIngestionJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeDataIngestionJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeDataIngestionJobResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeDataIngestionJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeDataset",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeDataset"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeDatasetResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeDatasetRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeInferenceScheduler",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeInferenceScheduler"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeInferenceSchedulerResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeInferenceSchedulerRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeLabel",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeLabel"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeLabelResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeLabelRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeLabelGroup",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeLabelGroup"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeLabelGroupResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeLabelGroupRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeModel",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeModel"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeModelResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeModelRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeModelVersion",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeModelVersion"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeModelVersionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeModelVersionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeResourcePolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeResourcePolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeResourcePolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeResourcePolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeRetrainingScheduler",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeRetrainingScheduler"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeRetrainingSchedulerResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeRetrainingSchedulerRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ImportDataset",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ImportDataset"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ImportDatasetResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ImportDatasetRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ImportModelVersion",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ImportModelVersion"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ImportModelVersionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ImportModelVersionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListDataIngestionJobs",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListDataIngestionJobs"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListDataIngestionJobsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListDataIngestionJobsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListDatasets",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListDatasets"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListDatasetsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListDatasetsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListInferenceEvents",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListInferenceEvents"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListInferenceEventsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListInferenceEventsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListInferenceExecutions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListInferenceExecutions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListInferenceExecutionsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListInferenceExecutionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListInferenceSchedulers",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListInferenceSchedulers"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListInferenceSchedulersResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListInferenceSchedulersRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListLabelGroups",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListLabelGroups"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListLabelGroupsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListLabelGroupsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListLabels",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListLabels"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListLabelsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListLabelsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListModels",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListModels"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListModelsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListModelsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListModelVersions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListModelVersions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListModelVersionsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListModelVersionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListRetrainingSchedulers",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListRetrainingSchedulers"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListRetrainingSchedulersResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListRetrainingSchedulersRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListSensorStatistics",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListSensorStatistics"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListSensorStatisticsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListSensorStatisticsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutResourcePolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutResourcePolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutResourcePolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutResourcePolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartDataIngestionJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartDataIngestionJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartDataIngestionJobResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartDataIngestionJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartInferenceScheduler",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartInferenceScheduler"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartInferenceSchedulerResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartInferenceSchedulerRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartRetrainingScheduler",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartRetrainingScheduler"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartRetrainingSchedulerResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartRetrainingSchedulerRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StopInferenceScheduler",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StopInferenceScheduler"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StopInferenceSchedulerResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StopInferenceSchedulerRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StopRetrainingScheduler",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StopRetrainingScheduler"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StopRetrainingSchedulerResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StopRetrainingSchedulerRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateActiveModelVersion",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateActiveModelVersion"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateActiveModelVersionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateActiveModelVersionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateInferenceScheduler",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateInferenceScheduler"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateInferenceSchedulerRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateLabelGroup",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateLabelGroup"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateLabelGroupRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateModel",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateModel"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateModelRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateRetrainingScheduler",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateRetrainingScheduler"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateRetrainingSchedulerRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CreateDatasetResponse": {
+            "type": "object",
+            "properties": {
+                "DatasetName": {
+                    "$ref": "#/$defs/DatasetName"
+                },
+                "DatasetArn": {
+                    "$ref": "#/$defs/DatasetArn"
+                },
+                "Status": {
+                    "$ref": "#/$defs/DatasetStatus"
+                }
+            }
+        },
+        "DatasetName": {
+            "type": "string"
+        },
+        "DatasetArn": {
+            "type": "string"
+        },
+        "DatasetStatus": {
+            "enum": [
+                "CREATED",
+                "INGESTION_IN_PROGRESS",
+                "ACTIVE",
+                "IMPORT_IN_PROGRESS"
+            ]
+        },
+        "CreateDatasetRequest": {
+            "type": "object",
+            "properties": {
+                "DatasetName": {
+                    "$ref": "#/$defs/DatasetName"
+                },
+                "DatasetSchema": {
+                    "$ref": "#/$defs/DatasetSchema"
+                },
+                "ServerSideKmsKeyId": {
+                    "$ref": "#/$defs/NameOrArn"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/IdempotenceToken"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "DatasetSchema": {
+            "type": "object",
+            "properties": {
+                "InlineDataSchema": {
+                    "$ref": "#/$defs/SynthesizedJsonInlineDataSchema"
+                }
+            }
+        },
+        "SynthesizedJsonInlineDataSchema": {
+            "type": "string"
+        },
+        "NameOrArn": {
+            "type": "string"
+        },
+        "IdempotenceToken": {
+            "type": "string"
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "CreateInferenceSchedulerResponse": {
+            "type": "object",
+            "properties": {
+                "InferenceSchedulerArn": {
+                    "$ref": "#/$defs/InferenceSchedulerArn"
+                },
+                "InferenceSchedulerName": {
+                    "$ref": "#/$defs/InferenceSchedulerName"
+                },
+                "Status": {
+                    "$ref": "#/$defs/InferenceSchedulerStatus"
+                },
+                "ModelQuality": {
+                    "$ref": "#/$defs/ModelQuality"
+                }
+            }
+        },
+        "InferenceSchedulerArn": {
+            "type": "string"
+        },
+        "InferenceSchedulerName": {
+            "type": "string"
+        },
+        "InferenceSchedulerStatus": {
+            "enum": [
+                "PENDING",
+                "RUNNING",
+                "STOPPING",
+                "STOPPED"
+            ]
+        },
+        "ModelQuality": {
+            "enum": [
+                "QUALITY_THRESHOLD_MET",
+                "CANNOT_DETERMINE_QUALITY",
+                "POOR_QUALITY_DETECTED"
+            ]
+        },
+        "CreateInferenceSchedulerRequest": {
+            "type": "object",
+            "properties": {
+                "ModelName": {
+                    "$ref": "#/$defs/ModelName"
+                },
+                "InferenceSchedulerName": {
+                    "$ref": "#/$defs/InferenceSchedulerName"
+                },
+                "DataDelayOffsetInMinutes": {
+                    "$ref": "#/$defs/DataDelayOffsetInMinutes"
+                },
+                "DataUploadFrequency": {
+                    "$ref": "#/$defs/DataUploadFrequency"
+                },
+                "DataInputConfiguration": {
+                    "$ref": "#/$defs/InferenceInputConfiguration"
+                },
+                "DataOutputConfiguration": {
+                    "$ref": "#/$defs/InferenceOutputConfiguration"
+                },
+                "RoleArn": {
+                    "$ref": "#/$defs/IamRoleArn"
+                },
+                "ServerSideKmsKeyId": {
+                    "$ref": "#/$defs/NameOrArn"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/IdempotenceToken"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "ModelName": {
+            "type": "string"
+        },
+        "DataDelayOffsetInMinutes": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "DataUploadFrequency": {
+            "enum": [
+                "PT5M",
+                "PT10M",
+                "PT15M",
+                "PT30M",
+                "PT1H"
+            ]
+        },
+        "InferenceInputConfiguration": {
+            "type": "object",
+            "properties": {
+                "S3InputConfiguration": {
+                    "$ref": "#/$defs/InferenceS3InputConfiguration"
+                },
+                "InputTimeZoneOffset": {
+                    "$ref": "#/$defs/TimeZoneOffset"
+                },
+                "InferenceInputNameConfiguration": {
+                    "$ref": "#/$defs/InferenceInputNameConfiguration"
+                }
+            }
+        },
+        "InferenceS3InputConfiguration": {
+            "type": "object",
+            "properties": {
+                "Bucket": {
+                    "$ref": "#/$defs/S3Bucket"
+                },
+                "Prefix": {
+                    "$ref": "#/$defs/S3Prefix"
+                }
+            }
+        },
+        "S3Bucket": {
+            "type": "string"
+        },
+        "S3Prefix": {
+            "type": "string"
+        },
+        "TimeZoneOffset": {
+            "type": "string"
+        },
+        "InferenceInputNameConfiguration": {
+            "type": "object",
+            "properties": {
+                "TimestampFormat": {
+                    "$ref": "#/$defs/FileNameTimestampFormat"
+                },
+                "ComponentTimestampDelimiter": {
+                    "$ref": "#/$defs/ComponentTimestampDelimiter"
+                }
+            }
+        },
+        "FileNameTimestampFormat": {
+            "type": "string"
+        },
+        "ComponentTimestampDelimiter": {
+            "type": "string"
+        },
+        "InferenceOutputConfiguration": {
+            "type": "object",
+            "properties": {
+                "S3OutputConfiguration": {
+                    "$ref": "#/$defs/InferenceS3OutputConfiguration"
+                },
+                "KmsKeyId": {
+                    "$ref": "#/$defs/NameOrArn"
+                }
+            }
+        },
+        "InferenceS3OutputConfiguration": {
+            "type": "object",
+            "properties": {
+                "Bucket": {
+                    "$ref": "#/$defs/S3Bucket"
+                },
+                "Prefix": {
+                    "$ref": "#/$defs/S3Prefix"
+                }
+            }
+        },
+        "IamRoleArn": {
+            "type": "string"
+        },
+        "CreateLabelResponse": {
+            "type": "object",
+            "properties": {
+                "LabelId": {
+                    "$ref": "#/$defs/LabelId"
+                }
+            }
+        },
+        "LabelId": {
+            "type": "string"
+        },
+        "CreateLabelRequest": {
+            "type": "object",
+            "properties": {
+                "LabelGroupName": {
+                    "$ref": "#/$defs/LabelGroupName"
+                },
+                "StartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Rating": {
+                    "$ref": "#/$defs/LabelRating"
+                },
+                "FaultCode": {
+                    "$ref": "#/$defs/FaultCode"
+                },
+                "Notes": {
+                    "$ref": "#/$defs/Comments"
+                },
+                "Equipment": {
+                    "$ref": "#/$defs/Equipment"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/IdempotenceToken"
+                }
+            }
+        },
+        "LabelGroupName": {
+            "type": "string"
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "LabelRating": {
+            "enum": [
+                "ANOMALY",
+                "NO_ANOMALY",
+                "NEUTRAL"
+            ]
+        },
+        "FaultCode": {
+            "type": "string"
+        },
+        "Comments": {
+            "type": "string"
+        },
+        "Equipment": {
+            "type": "string"
+        },
+        "CreateLabelGroupResponse": {
+            "type": "object",
+            "properties": {
+                "LabelGroupName": {
+                    "$ref": "#/$defs/LabelGroupName"
+                },
+                "LabelGroupArn": {
+                    "$ref": "#/$defs/LabelGroupArn"
+                }
+            }
+        },
+        "LabelGroupArn": {
+            "type": "string"
+        },
+        "CreateLabelGroupRequest": {
+            "type": "object",
+            "properties": {
+                "LabelGroupName": {
+                    "$ref": "#/$defs/LabelGroupName"
+                },
+                "FaultCodes": {
+                    "$ref": "#/$defs/FaultCodes"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/IdempotenceToken"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "FaultCodes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FaultCode"
+            }
+        },
+        "CreateModelResponse": {
+            "type": "object",
+            "properties": {
+                "ModelArn": {
+                    "$ref": "#/$defs/ModelArn"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ModelStatus"
+                }
+            }
+        },
+        "ModelArn": {
+            "type": "string"
+        },
+        "ModelStatus": {
+            "enum": [
+                "IN_PROGRESS",
+                "SUCCESS",
+                "FAILED",
+                "IMPORT_IN_PROGRESS"
+            ]
+        },
+        "CreateModelRequest": {
+            "type": "object",
+            "properties": {
+                "ModelName": {
+                    "$ref": "#/$defs/ModelName"
+                },
+                "DatasetName": {
+                    "$ref": "#/$defs/DatasetIdentifier"
+                },
+                "DatasetSchema": {
+                    "$ref": "#/$defs/DatasetSchema"
+                },
+                "LabelsInputConfiguration": {
+                    "$ref": "#/$defs/LabelsInputConfiguration"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/IdempotenceToken"
+                },
+                "TrainingDataStartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "TrainingDataEndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EvaluationDataStartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EvaluationDataEndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "RoleArn": {
+                    "$ref": "#/$defs/IamRoleArn"
+                },
+                "DataPreProcessingConfiguration": {
+                    "$ref": "#/$defs/DataPreProcessingConfiguration"
+                },
+                "ServerSideKmsKeyId": {
+                    "$ref": "#/$defs/NameOrArn"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "OffCondition": {
+                    "$ref": "#/$defs/OffCondition"
+                },
+                "ModelDiagnosticsOutputConfiguration": {
+                    "$ref": "#/$defs/ModelDiagnosticsOutputConfiguration"
+                }
+            }
+        },
+        "DatasetIdentifier": {
+            "type": "string"
+        },
+        "LabelsInputConfiguration": {
+            "type": "object",
+            "properties": {
+                "S3InputConfiguration": {
+                    "$ref": "#/$defs/LabelsS3InputConfiguration"
+                },
+                "LabelGroupName": {
+                    "$ref": "#/$defs/LabelGroupName"
+                }
+            }
+        },
+        "LabelsS3InputConfiguration": {
+            "type": "object",
+            "properties": {
+                "Bucket": {
+                    "$ref": "#/$defs/S3Bucket"
+                },
+                "Prefix": {
+                    "$ref": "#/$defs/S3Prefix"
+                }
+            }
+        },
+        "DataPreProcessingConfiguration": {
+            "type": "object",
+            "properties": {
+                "TargetSamplingRate": {
+                    "$ref": "#/$defs/TargetSamplingRate"
+                }
+            }
+        },
+        "TargetSamplingRate": {
+            "enum": [
+                "PT1S",
+                "PT5S",
+                "PT10S",
+                "PT15S",
+                "PT30S",
+                "PT1M",
+                "PT5M",
+                "PT10M",
+                "PT15M",
+                "PT30M",
+                "PT1H"
+            ]
+        },
+        "OffCondition": {
+            "type": "string"
+        },
+        "ModelDiagnosticsOutputConfiguration": {
+            "type": "object",
+            "properties": {
+                "S3OutputConfiguration": {
+                    "$ref": "#/$defs/ModelDiagnosticsS3OutputConfiguration"
+                },
+                "KmsKeyId": {
+                    "$ref": "#/$defs/NameOrArn"
+                }
+            }
+        },
+        "ModelDiagnosticsS3OutputConfiguration": {
+            "type": "object",
+            "properties": {
+                "Bucket": {
+                    "$ref": "#/$defs/S3Bucket"
+                },
+                "Prefix": {
+                    "$ref": "#/$defs/S3Prefix"
+                }
+            }
+        },
+        "CreateRetrainingSchedulerResponse": {
+            "type": "object",
+            "properties": {
+                "ModelName": {
+                    "$ref": "#/$defs/ModelName"
+                },
+                "ModelArn": {
+                    "$ref": "#/$defs/ModelArn"
+                },
+                "Status": {
+                    "$ref": "#/$defs/RetrainingSchedulerStatus"
+                }
+            }
+        },
+        "RetrainingSchedulerStatus": {
+            "enum": [
+                "PENDING",
+                "RUNNING",
+                "STOPPING",
+                "STOPPED"
+            ]
+        },
+        "CreateRetrainingSchedulerRequest": {
+            "type": "object",
+            "properties": {
+                "ModelName": {
+                    "$ref": "#/$defs/ModelName"
+                },
+                "RetrainingStartDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "RetrainingFrequency": {
+                    "$ref": "#/$defs/RetrainingFrequency"
+                },
+                "LookbackWindow": {
+                    "$ref": "#/$defs/LookbackWindow"
+                },
+                "PromoteMode": {
+                    "$ref": "#/$defs/ModelPromoteMode"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/IdempotenceToken"
+                }
+            }
+        },
+        "RetrainingFrequency": {
+            "type": "string"
+        },
+        "LookbackWindow": {
+            "type": "string"
+        },
+        "ModelPromoteMode": {
+            "enum": [
+                "MANAGED",
+                "MANUAL"
+            ]
+        },
+        "DeleteDatasetRequest": {
+            "type": "object",
+            "properties": {
+                "DatasetName": {
+                    "$ref": "#/$defs/DatasetIdentifier"
+                }
+            }
+        },
+        "DeleteInferenceSchedulerRequest": {
+            "type": "object",
+            "properties": {
+                "InferenceSchedulerName": {
+                    "$ref": "#/$defs/InferenceSchedulerIdentifier"
+                }
+            }
+        },
+        "InferenceSchedulerIdentifier": {
+            "type": "string"
+        },
+        "DeleteLabelRequest": {
+            "type": "object",
+            "properties": {
+                "LabelGroupName": {
+                    "$ref": "#/$defs/LabelGroupName"
+                },
+                "LabelId": {
+                    "$ref": "#/$defs/LabelId"
+                }
+            }
+        },
+        "DeleteLabelGroupRequest": {
+            "type": "object",
+            "properties": {
+                "LabelGroupName": {
+                    "$ref": "#/$defs/LabelGroupName"
+                }
+            }
+        },
+        "DeleteModelRequest": {
+            "type": "object",
+            "properties": {
+                "ModelName": {
+                    "$ref": "#/$defs/ModelName"
+                }
+            }
+        },
+        "DeleteResourcePolicyRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                }
+            }
+        },
+        "ResourceArn": {
+            "type": "string"
+        },
+        "DeleteRetrainingSchedulerRequest": {
+            "type": "object",
+            "properties": {
+                "ModelName": {
+                    "$ref": "#/$defs/ModelName"
+                }
+            }
+        },
+        "DescribeDataIngestionJobResponse": {
+            "type": "object",
+            "properties": {
+                "JobId": {
+                    "$ref": "#/$defs/IngestionJobId"
+                },
+                "DatasetArn": {
+                    "$ref": "#/$defs/DatasetArn"
+                },
+                "IngestionInputConfiguration": {
+                    "$ref": "#/$defs/IngestionInputConfiguration"
+                },
+                "RoleArn": {
+                    "$ref": "#/$defs/IamRoleArn"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Status": {
+                    "$ref": "#/$defs/IngestionJobStatus"
+                },
+                "FailedReason": {
+                    "$ref": "#/$defs/BoundedLengthString"
+                },
+                "DataQualitySummary": {
+                    "$ref": "#/$defs/DataQualitySummary"
+                },
+                "IngestedFilesSummary": {
+                    "$ref": "#/$defs/IngestedFilesSummary"
+                },
+                "StatusDetail": {
+                    "$ref": "#/$defs/BoundedLengthString"
+                },
+                "IngestedDataSize": {
+                    "$ref": "#/$defs/DataSizeInBytes"
+                },
+                "DataStartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "DataEndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "SourceDatasetArn": {
+                    "$ref": "#/$defs/DatasetArn"
+                }
+            }
+        },
+        "IngestionJobId": {
+            "type": "string"
+        },
+        "IngestionInputConfiguration": {
+            "type": "object",
+            "properties": {
+                "S3InputConfiguration": {
+                    "$ref": "#/$defs/IngestionS3InputConfiguration"
+                }
+            }
+        },
+        "IngestionS3InputConfiguration": {
+            "type": "object",
+            "properties": {
+                "Bucket": {
+                    "$ref": "#/$defs/S3Bucket"
+                },
+                "Prefix": {
+                    "$ref": "#/$defs/S3Prefix"
+                },
+                "KeyPattern": {
+                    "$ref": "#/$defs/KeyPattern"
+                }
+            }
+        },
+        "KeyPattern": {
+            "type": "string"
+        },
+        "IngestionJobStatus": {
+            "enum": [
+                "IN_PROGRESS",
+                "SUCCESS",
+                "FAILED",
+                "IMPORT_IN_PROGRESS"
+            ]
+        },
+        "BoundedLengthString": {
+            "type": "string"
+        },
+        "DataQualitySummary": {
+            "type": "object",
+            "properties": {
+                "InsufficientSensorData": {
+                    "$ref": "#/$defs/InsufficientSensorData"
+                },
+                "MissingSensorData": {
+                    "$ref": "#/$defs/MissingSensorData"
+                },
+                "InvalidSensorData": {
+                    "$ref": "#/$defs/InvalidSensorData"
+                },
+                "UnsupportedTimestamps": {
+                    "$ref": "#/$defs/UnsupportedTimestamps"
+                },
+                "DuplicateTimestamps": {
+                    "$ref": "#/$defs/DuplicateTimestamps"
+                }
+            }
+        },
+        "InsufficientSensorData": {
+            "type": "object",
+            "properties": {
+                "MissingCompleteSensorData": {
+                    "$ref": "#/$defs/MissingCompleteSensorData"
+                },
+                "SensorsWithShortDateRange": {
+                    "$ref": "#/$defs/SensorsWithShortDateRange"
+                }
+            }
+        },
+        "MissingCompleteSensorData": {
+            "type": "object",
+            "properties": {
+                "AffectedSensorCount": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "Integer": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "SensorsWithShortDateRange": {
+            "type": "object",
+            "properties": {
+                "AffectedSensorCount": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "MissingSensorData": {
+            "type": "object",
+            "properties": {
+                "AffectedSensorCount": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "TotalNumberOfMissingValues": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "InvalidSensorData": {
+            "type": "object",
+            "properties": {
+                "AffectedSensorCount": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "TotalNumberOfInvalidValues": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "UnsupportedTimestamps": {
+            "type": "object",
+            "properties": {
+                "TotalNumberOfUnsupportedTimestamps": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "DuplicateTimestamps": {
+            "type": "object",
+            "properties": {
+                "TotalNumberOfDuplicateTimestamps": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "IngestedFilesSummary": {
+            "type": "object",
+            "properties": {
+                "TotalNumberOfFiles": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "IngestedNumberOfFiles": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "DiscardedFiles": {
+                    "$ref": "#/$defs/ListOfDiscardedFiles"
+                }
+            }
+        },
+        "ListOfDiscardedFiles": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/S3Object"
+            }
+        },
+        "S3Object": {
+            "type": "object",
+            "properties": {
+                "Bucket": {
+                    "$ref": "#/$defs/S3Bucket"
+                },
+                "Key": {
+                    "$ref": "#/$defs/S3Key"
+                }
+            }
+        },
+        "S3Key": {
+            "type": "string"
+        },
+        "DataSizeInBytes": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "DescribeDataIngestionJobRequest": {
+            "type": "object",
+            "properties": {
+                "JobId": {
+                    "$ref": "#/$defs/IngestionJobId"
+                }
+            }
+        },
+        "DescribeDatasetResponse": {
+            "type": "object",
+            "properties": {
+                "DatasetName": {
+                    "$ref": "#/$defs/DatasetName"
+                },
+                "DatasetArn": {
+                    "$ref": "#/$defs/DatasetArn"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastUpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Status": {
+                    "$ref": "#/$defs/DatasetStatus"
+                },
+                "Schema": {
+                    "$ref": "#/$defs/SynthesizedJsonInlineDataSchema"
+                },
+                "ServerSideKmsKeyId": {
+                    "$ref": "#/$defs/KmsKeyArn"
+                },
+                "IngestionInputConfiguration": {
+                    "$ref": "#/$defs/IngestionInputConfiguration"
+                },
+                "DataQualitySummary": {
+                    "$ref": "#/$defs/DataQualitySummary"
+                },
+                "IngestedFilesSummary": {
+                    "$ref": "#/$defs/IngestedFilesSummary"
+                },
+                "RoleArn": {
+                    "$ref": "#/$defs/IamRoleArn"
+                },
+                "DataStartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "DataEndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "SourceDatasetArn": {
+                    "$ref": "#/$defs/DatasetArn"
+                }
+            }
+        },
+        "KmsKeyArn": {
+            "type": "string"
+        },
+        "DescribeDatasetRequest": {
+            "type": "object",
+            "properties": {
+                "DatasetName": {
+                    "$ref": "#/$defs/DatasetIdentifier"
+                }
+            }
+        },
+        "DescribeInferenceSchedulerResponse": {
+            "type": "object",
+            "properties": {
+                "ModelArn": {
+                    "$ref": "#/$defs/ModelArn"
+                },
+                "ModelName": {
+                    "$ref": "#/$defs/ModelName"
+                },
+                "InferenceSchedulerName": {
+                    "$ref": "#/$defs/InferenceSchedulerName"
+                },
+                "InferenceSchedulerArn": {
+                    "$ref": "#/$defs/InferenceSchedulerArn"
+                },
+                "Status": {
+                    "$ref": "#/$defs/InferenceSchedulerStatus"
+                },
+                "DataDelayOffsetInMinutes": {
+                    "$ref": "#/$defs/DataDelayOffsetInMinutes"
+                },
+                "DataUploadFrequency": {
+                    "$ref": "#/$defs/DataUploadFrequency"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "UpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "DataInputConfiguration": {
+                    "$ref": "#/$defs/InferenceInputConfiguration"
+                },
+                "DataOutputConfiguration": {
+                    "$ref": "#/$defs/InferenceOutputConfiguration"
+                },
+                "RoleArn": {
+                    "$ref": "#/$defs/IamRoleArn"
+                },
+                "ServerSideKmsKeyId": {
+                    "$ref": "#/$defs/KmsKeyArn"
+                },
+                "LatestInferenceResult": {
+                    "$ref": "#/$defs/LatestInferenceResult"
+                }
+            }
+        },
+        "LatestInferenceResult": {
+            "enum": [
+                "ANOMALOUS",
+                "NORMAL"
+            ]
+        },
+        "DescribeInferenceSchedulerRequest": {
+            "type": "object",
+            "properties": {
+                "InferenceSchedulerName": {
+                    "$ref": "#/$defs/InferenceSchedulerIdentifier"
+                }
+            }
+        },
+        "DescribeLabelResponse": {
+            "type": "object",
+            "properties": {
+                "LabelGroupName": {
+                    "$ref": "#/$defs/LabelGroupName"
+                },
+                "LabelGroupArn": {
+                    "$ref": "#/$defs/LabelGroupArn"
+                },
+                "LabelId": {
+                    "$ref": "#/$defs/LabelId"
+                },
+                "StartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Rating": {
+                    "$ref": "#/$defs/LabelRating"
+                },
+                "FaultCode": {
+                    "$ref": "#/$defs/FaultCode"
+                },
+                "Notes": {
+                    "$ref": "#/$defs/Comments"
+                },
+                "Equipment": {
+                    "$ref": "#/$defs/Equipment"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "DescribeLabelRequest": {
+            "type": "object",
+            "properties": {
+                "LabelGroupName": {
+                    "$ref": "#/$defs/LabelGroupName"
+                },
+                "LabelId": {
+                    "$ref": "#/$defs/LabelId"
+                }
+            }
+        },
+        "DescribeLabelGroupResponse": {
+            "type": "object",
+            "properties": {
+                "LabelGroupName": {
+                    "$ref": "#/$defs/LabelGroupName"
+                },
+                "LabelGroupArn": {
+                    "$ref": "#/$defs/LabelGroupArn"
+                },
+                "FaultCodes": {
+                    "$ref": "#/$defs/FaultCodes"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "UpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "DescribeLabelGroupRequest": {
+            "type": "object",
+            "properties": {
+                "LabelGroupName": {
+                    "$ref": "#/$defs/LabelGroupName"
+                }
+            }
+        },
+        "DescribeModelResponse": {
+            "type": "object",
+            "properties": {
+                "ModelName": {
+                    "$ref": "#/$defs/ModelName"
+                },
+                "ModelArn": {
+                    "$ref": "#/$defs/ModelArn"
+                },
+                "DatasetName": {
+                    "$ref": "#/$defs/DatasetName"
+                },
+                "DatasetArn": {
+                    "$ref": "#/$defs/DatasetArn"
+                },
+                "Schema": {
+                    "$ref": "#/$defs/SynthesizedJsonInlineDataSchema"
+                },
+                "LabelsInputConfiguration": {
+                    "$ref": "#/$defs/LabelsInputConfiguration"
+                },
+                "TrainingDataStartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "TrainingDataEndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EvaluationDataStartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EvaluationDataEndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "RoleArn": {
+                    "$ref": "#/$defs/IamRoleArn"
+                },
+                "DataPreProcessingConfiguration": {
+                    "$ref": "#/$defs/DataPreProcessingConfiguration"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ModelStatus"
+                },
+                "TrainingExecutionStartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "TrainingExecutionEndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "FailedReason": {
+                    "$ref": "#/$defs/BoundedLengthString"
+                },
+                "ModelMetrics": {
+                    "$ref": "#/$defs/SynthesizedJsonModelMetrics"
+                },
+                "LastUpdatedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "ServerSideKmsKeyId": {
+                    "$ref": "#/$defs/KmsKeyArn"
+                },
+                "OffCondition": {
+                    "$ref": "#/$defs/OffCondition"
+                },
+                "SourceModelVersionArn": {
+                    "$ref": "#/$defs/ModelVersionArn"
+                },
+                "ImportJobStartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "ImportJobEndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "ActiveModelVersion": {
+                    "$ref": "#/$defs/ModelVersion"
+                },
+                "ActiveModelVersionArn": {
+                    "$ref": "#/$defs/ModelVersionArn"
+                },
+                "ModelVersionActivatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "PreviousActiveModelVersion": {
+                    "$ref": "#/$defs/ModelVersion"
+                },
+                "PreviousActiveModelVersionArn": {
+                    "$ref": "#/$defs/ModelVersionArn"
+                },
+                "PreviousModelVersionActivatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "PriorModelMetrics": {
+                    "$ref": "#/$defs/SynthesizedJsonModelMetrics"
+                },
+                "LatestScheduledRetrainingFailedReason": {
+                    "$ref": "#/$defs/BoundedLengthString"
+                },
+                "LatestScheduledRetrainingStatus": {
+                    "$ref": "#/$defs/ModelVersionStatus"
+                },
+                "LatestScheduledRetrainingModelVersion": {
+                    "$ref": "#/$defs/ModelVersion"
+                },
+                "LatestScheduledRetrainingStartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LatestScheduledRetrainingAvailableDataInDays": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "NextScheduledRetrainingStartDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "AccumulatedInferenceDataStartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "AccumulatedInferenceDataEndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "RetrainingSchedulerStatus": {
+                    "$ref": "#/$defs/RetrainingSchedulerStatus"
+                },
+                "ModelDiagnosticsOutputConfiguration": {
+                    "$ref": "#/$defs/ModelDiagnosticsOutputConfiguration"
+                },
+                "ModelQuality": {
+                    "$ref": "#/$defs/ModelQuality"
+                }
+            }
+        },
+        "SynthesizedJsonModelMetrics": {
+            "type": "string"
+        },
+        "ModelVersionArn": {
+            "type": "string"
+        },
+        "ModelVersion": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "ModelVersionStatus": {
+            "enum": [
+                "IN_PROGRESS",
+                "SUCCESS",
+                "FAILED",
+                "IMPORT_IN_PROGRESS",
+                "CANCELED"
+            ]
+        },
+        "DescribeModelRequest": {
+            "type": "object",
+            "properties": {
+                "ModelName": {
+                    "$ref": "#/$defs/ModelName"
+                }
+            }
+        },
+        "DescribeModelVersionResponse": {
+            "type": "object",
+            "properties": {
+                "ModelName": {
+                    "$ref": "#/$defs/ModelName"
+                },
+                "ModelArn": {
+                    "$ref": "#/$defs/ModelArn"
+                },
+                "ModelVersion": {
+                    "$ref": "#/$defs/ModelVersion"
+                },
+                "ModelVersionArn": {
+                    "$ref": "#/$defs/ModelVersionArn"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ModelVersionStatus"
+                },
+                "SourceType": {
+                    "$ref": "#/$defs/ModelVersionSourceType"
+                },
+                "DatasetName": {
+                    "$ref": "#/$defs/DatasetName"
+                },
+                "DatasetArn": {
+                    "$ref": "#/$defs/DatasetArn"
+                },
+                "Schema": {
+                    "$ref": "#/$defs/InlineDataSchema"
+                },
+                "LabelsInputConfiguration": {
+                    "$ref": "#/$defs/LabelsInputConfiguration"
+                },
+                "TrainingDataStartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "TrainingDataEndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EvaluationDataStartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EvaluationDataEndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "RoleArn": {
+                    "$ref": "#/$defs/IamRoleArn"
+                },
+                "DataPreProcessingConfiguration": {
+                    "$ref": "#/$defs/DataPreProcessingConfiguration"
+                },
+                "TrainingExecutionStartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "TrainingExecutionEndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "FailedReason": {
+                    "$ref": "#/$defs/BoundedLengthString"
+                },
+                "ModelMetrics": {
+                    "$ref": "#/$defs/ModelMetrics"
+                },
+                "LastUpdatedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "ServerSideKmsKeyId": {
+                    "$ref": "#/$defs/KmsKeyArn"
+                },
+                "OffCondition": {
+                    "$ref": "#/$defs/OffCondition"
+                },
+                "SourceModelVersionArn": {
+                    "$ref": "#/$defs/ModelVersionArn"
+                },
+                "ImportJobStartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "ImportJobEndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "ImportedDataSizeInBytes": {
+                    "$ref": "#/$defs/DataSizeInBytes"
+                },
+                "PriorModelMetrics": {
+                    "$ref": "#/$defs/ModelMetrics"
+                },
+                "RetrainingAvailableDataInDays": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "AutoPromotionResult": {
+                    "$ref": "#/$defs/AutoPromotionResult"
+                },
+                "AutoPromotionResultReason": {
+                    "$ref": "#/$defs/AutoPromotionResultReason"
+                },
+                "ModelDiagnosticsOutputConfiguration": {
+                    "$ref": "#/$defs/ModelDiagnosticsOutputConfiguration"
+                },
+                "ModelDiagnosticsResultsObject": {
+                    "$ref": "#/$defs/S3Object"
+                },
+                "ModelQuality": {
+                    "$ref": "#/$defs/ModelQuality"
+                }
+            }
+        },
+        "ModelVersionSourceType": {
+            "enum": [
+                "TRAINING",
+                "RETRAINING",
+                "IMPORT"
+            ]
+        },
+        "InlineDataSchema": {
+            "type": "string"
+        },
+        "ModelMetrics": {
+            "type": "string"
+        },
+        "AutoPromotionResult": {
+            "enum": [
+                "MODEL_PROMOTED",
+                "MODEL_NOT_PROMOTED",
+                "RETRAINING_INTERNAL_ERROR",
+                "RETRAINING_CUSTOMER_ERROR",
+                "RETRAINING_CANCELLED"
+            ]
+        },
+        "AutoPromotionResultReason": {
+            "type": "string"
+        },
+        "DescribeModelVersionRequest": {
+            "type": "object",
+            "properties": {
+                "ModelName": {
+                    "$ref": "#/$defs/ModelName"
+                },
+                "ModelVersion": {
+                    "$ref": "#/$defs/ModelVersion"
+                }
+            }
+        },
+        "DescribeResourcePolicyResponse": {
+            "type": "object",
+            "properties": {
+                "PolicyRevisionId": {
+                    "$ref": "#/$defs/PolicyRevisionId"
+                },
+                "ResourcePolicy": {
+                    "$ref": "#/$defs/Policy"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastModifiedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "PolicyRevisionId": {
+            "type": "string"
+        },
+        "Policy": {
+            "type": "string"
+        },
+        "DescribeResourcePolicyRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                }
+            }
+        },
+        "DescribeRetrainingSchedulerResponse": {
+            "type": "object",
+            "properties": {
+                "ModelName": {
+                    "$ref": "#/$defs/ModelName"
+                },
+                "ModelArn": {
+                    "$ref": "#/$defs/ModelArn"
+                },
+                "RetrainingStartDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "RetrainingFrequency": {
+                    "$ref": "#/$defs/RetrainingFrequency"
+                },
+                "LookbackWindow": {
+                    "$ref": "#/$defs/LookbackWindow"
+                },
+                "Status": {
+                    "$ref": "#/$defs/RetrainingSchedulerStatus"
+                },
+                "PromoteMode": {
+                    "$ref": "#/$defs/ModelPromoteMode"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "UpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "DescribeRetrainingSchedulerRequest": {
+            "type": "object",
+            "properties": {
+                "ModelName": {
+                    "$ref": "#/$defs/ModelName"
+                }
+            }
+        },
+        "ImportDatasetResponse": {
+            "type": "object",
+            "properties": {
+                "DatasetName": {
+                    "$ref": "#/$defs/DatasetName"
+                },
+                "DatasetArn": {
+                    "$ref": "#/$defs/DatasetArn"
+                },
+                "Status": {
+                    "$ref": "#/$defs/DatasetStatus"
+                },
+                "JobId": {
+                    "$ref": "#/$defs/IngestionJobId"
+                }
+            }
+        },
+        "ImportDatasetRequest": {
+            "type": "object",
+            "properties": {
+                "SourceDatasetArn": {
+                    "$ref": "#/$defs/DatasetArn"
+                },
+                "DatasetName": {
+                    "$ref": "#/$defs/DatasetName"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/IdempotenceToken"
+                },
+                "ServerSideKmsKeyId": {
+                    "$ref": "#/$defs/NameOrArn"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "ImportModelVersionResponse": {
+            "type": "object",
+            "properties": {
+                "ModelName": {
+                    "$ref": "#/$defs/ModelName"
+                },
+                "ModelArn": {
+                    "$ref": "#/$defs/ModelArn"
+                },
+                "ModelVersionArn": {
+                    "$ref": "#/$defs/ModelVersionArn"
+                },
+                "ModelVersion": {
+                    "$ref": "#/$defs/ModelVersion"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ModelVersionStatus"
+                }
+            }
+        },
+        "ImportModelVersionRequest": {
+            "type": "object",
+            "properties": {
+                "SourceModelVersionArn": {
+                    "$ref": "#/$defs/ModelVersionArn"
+                },
+                "ModelName": {
+                    "$ref": "#/$defs/ModelName"
+                },
+                "DatasetName": {
+                    "$ref": "#/$defs/DatasetIdentifier"
+                },
+                "LabelsInputConfiguration": {
+                    "$ref": "#/$defs/LabelsInputConfiguration"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/IdempotenceToken"
+                },
+                "RoleArn": {
+                    "$ref": "#/$defs/IamRoleArn"
+                },
+                "ServerSideKmsKeyId": {
+                    "$ref": "#/$defs/NameOrArn"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "InferenceDataImportStrategy": {
+                    "$ref": "#/$defs/InferenceDataImportStrategy"
+                }
+            }
+        },
+        "InferenceDataImportStrategy": {
+            "enum": [
+                "NO_IMPORT",
+                "ADD_WHEN_EMPTY",
+                "OVERWRITE"
+            ]
+        },
+        "ListDataIngestionJobsResponse": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "DataIngestionJobSummaries": {
+                    "$ref": "#/$defs/DataIngestionJobSummaries"
+                }
+            }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "DataIngestionJobSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DataIngestionJobSummary"
+            }
+        },
+        "DataIngestionJobSummary": {
+            "type": "object",
+            "properties": {
+                "JobId": {
+                    "$ref": "#/$defs/IngestionJobId"
+                },
+                "DatasetName": {
+                    "$ref": "#/$defs/DatasetName"
+                },
+                "DatasetArn": {
+                    "$ref": "#/$defs/DatasetArn"
+                },
+                "IngestionInputConfiguration": {
+                    "$ref": "#/$defs/IngestionInputConfiguration"
+                },
+                "Status": {
+                    "$ref": "#/$defs/IngestionJobStatus"
+                }
+            }
+        },
+        "ListDataIngestionJobsRequest": {
+            "type": "object",
+            "properties": {
+                "DatasetName": {
+                    "$ref": "#/$defs/DatasetName"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "Status": {
+                    "$ref": "#/$defs/IngestionJobStatus"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListDatasetsResponse": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "DatasetSummaries": {
+                    "$ref": "#/$defs/DatasetSummaries"
+                }
+            }
+        },
+        "DatasetSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DatasetSummary"
+            }
+        },
+        "DatasetSummary": {
+            "type": "object",
+            "properties": {
+                "DatasetName": {
+                    "$ref": "#/$defs/DatasetName"
+                },
+                "DatasetArn": {
+                    "$ref": "#/$defs/DatasetArn"
+                },
+                "Status": {
+                    "$ref": "#/$defs/DatasetStatus"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListDatasetsRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "DatasetNameBeginsWith": {
+                    "$ref": "#/$defs/DatasetName"
+                }
+            }
+        },
+        "ListInferenceEventsResponse": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "InferenceEventSummaries": {
+                    "$ref": "#/$defs/InferenceEventSummaries"
+                }
+            }
+        },
+        "InferenceEventSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/InferenceEventSummary"
+            }
+        },
+        "InferenceEventSummary": {
+            "type": "object",
+            "properties": {
+                "InferenceSchedulerArn": {
+                    "$ref": "#/$defs/InferenceSchedulerArn"
+                },
+                "InferenceSchedulerName": {
+                    "$ref": "#/$defs/InferenceSchedulerName"
+                },
+                "EventStartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EventEndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Diagnostics": {
+                    "$ref": "#/$defs/ModelMetrics"
+                },
+                "EventDurationInSeconds": {
+                    "$ref": "#/$defs/EventDurationInSeconds"
+                }
+            }
+        },
+        "EventDurationInSeconds": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "ListInferenceEventsRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "InferenceSchedulerName": {
+                    "$ref": "#/$defs/InferenceSchedulerIdentifier"
+                },
+                "IntervalStartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "IntervalEndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListInferenceExecutionsResponse": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "InferenceExecutionSummaries": {
+                    "$ref": "#/$defs/InferenceExecutionSummaries"
+                }
+            }
+        },
+        "InferenceExecutionSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/InferenceExecutionSummary"
+            }
+        },
+        "InferenceExecutionSummary": {
+            "type": "object",
+            "properties": {
+                "ModelName": {
+                    "$ref": "#/$defs/ModelName"
+                },
+                "ModelArn": {
+                    "$ref": "#/$defs/ModelArn"
+                },
+                "InferenceSchedulerName": {
+                    "$ref": "#/$defs/InferenceSchedulerName"
+                },
+                "InferenceSchedulerArn": {
+                    "$ref": "#/$defs/InferenceSchedulerArn"
+                },
+                "ScheduledStartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "DataStartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "DataEndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "DataInputConfiguration": {
+                    "$ref": "#/$defs/InferenceInputConfiguration"
+                },
+                "DataOutputConfiguration": {
+                    "$ref": "#/$defs/InferenceOutputConfiguration"
+                },
+                "CustomerResultObject": {
+                    "$ref": "#/$defs/S3Object"
+                },
+                "Status": {
+                    "$ref": "#/$defs/InferenceExecutionStatus"
+                },
+                "FailedReason": {
+                    "$ref": "#/$defs/BoundedLengthString"
+                },
+                "ModelVersion": {
+                    "$ref": "#/$defs/ModelVersion"
+                },
+                "ModelVersionArn": {
+                    "$ref": "#/$defs/ModelVersionArn"
+                }
+            }
+        },
+        "InferenceExecutionStatus": {
+            "enum": [
+                "IN_PROGRESS",
+                "SUCCESS",
+                "FAILED"
+            ]
+        },
+        "ListInferenceExecutionsRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "InferenceSchedulerName": {
+                    "$ref": "#/$defs/InferenceSchedulerIdentifier"
+                },
+                "DataStartTimeAfter": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "DataEndTimeBefore": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Status": {
+                    "$ref": "#/$defs/InferenceExecutionStatus"
+                }
+            }
+        },
+        "ListInferenceSchedulersResponse": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "InferenceSchedulerSummaries": {
+                    "$ref": "#/$defs/InferenceSchedulerSummaries"
+                }
+            }
+        },
+        "InferenceSchedulerSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/InferenceSchedulerSummary"
+            }
+        },
+        "InferenceSchedulerSummary": {
+            "type": "object",
+            "properties": {
+                "ModelName": {
+                    "$ref": "#/$defs/ModelName"
+                },
+                "ModelArn": {
+                    "$ref": "#/$defs/ModelArn"
+                },
+                "InferenceSchedulerName": {
+                    "$ref": "#/$defs/InferenceSchedulerName"
+                },
+                "InferenceSchedulerArn": {
+                    "$ref": "#/$defs/InferenceSchedulerArn"
+                },
+                "Status": {
+                    "$ref": "#/$defs/InferenceSchedulerStatus"
+                },
+                "DataDelayOffsetInMinutes": {
+                    "$ref": "#/$defs/DataDelayOffsetInMinutes"
+                },
+                "DataUploadFrequency": {
+                    "$ref": "#/$defs/DataUploadFrequency"
+                },
+                "LatestInferenceResult": {
+                    "$ref": "#/$defs/LatestInferenceResult"
+                }
+            }
+        },
+        "ListInferenceSchedulersRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "InferenceSchedulerNameBeginsWith": {
+                    "$ref": "#/$defs/InferenceSchedulerIdentifier"
+                },
+                "ModelName": {
+                    "$ref": "#/$defs/ModelName"
+                },
+                "Status": {
+                    "$ref": "#/$defs/InferenceSchedulerStatus"
+                }
+            }
+        },
+        "ListLabelGroupsResponse": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "LabelGroupSummaries": {
+                    "$ref": "#/$defs/LabelGroupSummaries"
+                }
+            }
+        },
+        "LabelGroupSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LabelGroupSummary"
+            }
+        },
+        "LabelGroupSummary": {
+            "type": "object",
+            "properties": {
+                "LabelGroupName": {
+                    "$ref": "#/$defs/LabelGroupName"
+                },
+                "LabelGroupArn": {
+                    "$ref": "#/$defs/LabelGroupArn"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "UpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListLabelGroupsRequest": {
+            "type": "object",
+            "properties": {
+                "LabelGroupNameBeginsWith": {
+                    "$ref": "#/$defs/LabelGroupName"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "ListLabelsResponse": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "LabelSummaries": {
+                    "$ref": "#/$defs/LabelSummaries"
+                }
+            }
+        },
+        "LabelSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LabelSummary"
+            }
+        },
+        "LabelSummary": {
+            "type": "object",
+            "properties": {
+                "LabelGroupName": {
+                    "$ref": "#/$defs/LabelGroupName"
+                },
+                "LabelId": {
+                    "$ref": "#/$defs/LabelId"
+                },
+                "LabelGroupArn": {
+                    "$ref": "#/$defs/LabelGroupArn"
+                },
+                "StartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Rating": {
+                    "$ref": "#/$defs/LabelRating"
+                },
+                "FaultCode": {
+                    "$ref": "#/$defs/FaultCode"
+                },
+                "Equipment": {
+                    "$ref": "#/$defs/Equipment"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListLabelsRequest": {
+            "type": "object",
+            "properties": {
+                "LabelGroupName": {
+                    "$ref": "#/$defs/LabelGroupName"
+                },
+                "IntervalStartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "IntervalEndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "FaultCode": {
+                    "$ref": "#/$defs/FaultCode"
+                },
+                "Equipment": {
+                    "$ref": "#/$defs/Equipment"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "ListModelsResponse": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "ModelSummaries": {
+                    "$ref": "#/$defs/ModelSummaries"
+                }
+            }
+        },
+        "ModelSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ModelSummary"
+            }
+        },
+        "ModelSummary": {
+            "type": "object",
+            "properties": {
+                "ModelName": {
+                    "$ref": "#/$defs/ModelName"
+                },
+                "ModelArn": {
+                    "$ref": "#/$defs/ModelArn"
+                },
+                "DatasetName": {
+                    "$ref": "#/$defs/DatasetName"
+                },
+                "DatasetArn": {
+                    "$ref": "#/$defs/DatasetArn"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ModelStatus"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "ActiveModelVersion": {
+                    "$ref": "#/$defs/ModelVersion"
+                },
+                "ActiveModelVersionArn": {
+                    "$ref": "#/$defs/ModelVersionArn"
+                },
+                "LatestScheduledRetrainingStatus": {
+                    "$ref": "#/$defs/ModelVersionStatus"
+                },
+                "LatestScheduledRetrainingModelVersion": {
+                    "$ref": "#/$defs/ModelVersion"
+                },
+                "LatestScheduledRetrainingStartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "NextScheduledRetrainingStartDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "RetrainingSchedulerStatus": {
+                    "$ref": "#/$defs/RetrainingSchedulerStatus"
+                },
+                "ModelDiagnosticsOutputConfiguration": {
+                    "$ref": "#/$defs/ModelDiagnosticsOutputConfiguration"
+                },
+                "ModelQuality": {
+                    "$ref": "#/$defs/ModelQuality"
+                }
+            }
+        },
+        "ListModelsRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ModelStatus"
+                },
+                "ModelNameBeginsWith": {
+                    "$ref": "#/$defs/ModelName"
+                },
+                "DatasetNameBeginsWith": {
+                    "$ref": "#/$defs/DatasetName"
+                }
+            }
+        },
+        "ListModelVersionsResponse": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "ModelVersionSummaries": {
+                    "$ref": "#/$defs/ModelVersionSummaries"
+                }
+            }
+        },
+        "ModelVersionSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ModelVersionSummary"
+            }
+        },
+        "ModelVersionSummary": {
+            "type": "object",
+            "properties": {
+                "ModelName": {
+                    "$ref": "#/$defs/ModelName"
+                },
+                "ModelArn": {
+                    "$ref": "#/$defs/ModelArn"
+                },
+                "ModelVersion": {
+                    "$ref": "#/$defs/ModelVersion"
+                },
+                "ModelVersionArn": {
+                    "$ref": "#/$defs/ModelVersionArn"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ModelVersionStatus"
+                },
+                "SourceType": {
+                    "$ref": "#/$defs/ModelVersionSourceType"
+                },
+                "ModelQuality": {
+                    "$ref": "#/$defs/ModelQuality"
+                }
+            }
+        },
+        "ListModelVersionsRequest": {
+            "type": "object",
+            "properties": {
+                "ModelName": {
+                    "$ref": "#/$defs/ModelName"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ModelVersionStatus"
+                },
+                "SourceType": {
+                    "$ref": "#/$defs/ModelVersionSourceType"
+                },
+                "CreatedAtEndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "CreatedAtStartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "MaxModelVersion": {
+                    "$ref": "#/$defs/ModelVersion"
+                },
+                "MinModelVersion": {
+                    "$ref": "#/$defs/ModelVersion"
+                }
+            }
+        },
+        "ListRetrainingSchedulersResponse": {
+            "type": "object",
+            "properties": {
+                "RetrainingSchedulerSummaries": {
+                    "$ref": "#/$defs/RetrainingSchedulerSummaries"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "RetrainingSchedulerSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RetrainingSchedulerSummary"
+            }
+        },
+        "RetrainingSchedulerSummary": {
+            "type": "object",
+            "properties": {
+                "ModelName": {
+                    "$ref": "#/$defs/ModelName"
+                },
+                "ModelArn": {
+                    "$ref": "#/$defs/ModelArn"
+                },
+                "Status": {
+                    "$ref": "#/$defs/RetrainingSchedulerStatus"
+                },
+                "RetrainingStartDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "RetrainingFrequency": {
+                    "$ref": "#/$defs/RetrainingFrequency"
+                },
+                "LookbackWindow": {
+                    "$ref": "#/$defs/LookbackWindow"
+                }
+            }
+        },
+        "ListRetrainingSchedulersRequest": {
+            "type": "object",
+            "properties": {
+                "ModelNameBeginsWith": {
+                    "$ref": "#/$defs/ModelName"
+                },
+                "Status": {
+                    "$ref": "#/$defs/RetrainingSchedulerStatus"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "ListSensorStatisticsResponse": {
+            "type": "object",
+            "properties": {
+                "SensorStatisticsSummaries": {
+                    "$ref": "#/$defs/SensorStatisticsSummaries"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "SensorStatisticsSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SensorStatisticsSummary"
+            }
+        },
+        "SensorStatisticsSummary": {
+            "type": "object",
+            "properties": {
+                "ComponentName": {
+                    "$ref": "#/$defs/ComponentName"
+                },
+                "SensorName": {
+                    "$ref": "#/$defs/SensorName"
+                },
+                "DataExists": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "MissingValues": {
+                    "$ref": "#/$defs/CountPercent"
+                },
+                "InvalidValues": {
+                    "$ref": "#/$defs/CountPercent"
+                },
+                "InvalidDateEntries": {
+                    "$ref": "#/$defs/CountPercent"
+                },
+                "DuplicateTimestamps": {
+                    "$ref": "#/$defs/CountPercent"
+                },
+                "CategoricalValues": {
+                    "$ref": "#/$defs/CategoricalValues"
+                },
+                "MultipleOperatingModes": {
+                    "$ref": "#/$defs/MultipleOperatingModes"
+                },
+                "LargeTimestampGaps": {
+                    "$ref": "#/$defs/LargeTimestampGaps"
+                },
+                "MonotonicValues": {
+                    "$ref": "#/$defs/MonotonicValues"
+                },
+                "DataStartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "DataEndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ComponentName": {
+            "type": "string"
+        },
+        "SensorName": {
+            "type": "string"
+        },
+        "Boolean": {
+            "type": "boolean"
+        },
+        "CountPercent": {
+            "type": "object",
+            "properties": {
+                "Count": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Percentage": {
+                    "$ref": "#/$defs/Float"
+                }
+            }
+        },
+        "Float": {
+            "type": "number",
+            "format": "float"
+        },
+        "CategoricalValues": {
+            "type": "object",
+            "properties": {
+                "Status": {
+                    "$ref": "#/$defs/StatisticalIssueStatus"
+                },
+                "NumberOfCategory": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "StatisticalIssueStatus": {
+            "enum": [
+                "POTENTIAL_ISSUE_DETECTED",
+                "NO_ISSUE_DETECTED"
+            ]
+        },
+        "MultipleOperatingModes": {
+            "type": "object",
+            "properties": {
+                "Status": {
+                    "$ref": "#/$defs/StatisticalIssueStatus"
+                }
+            }
+        },
+        "LargeTimestampGaps": {
+            "type": "object",
+            "properties": {
+                "Status": {
+                    "$ref": "#/$defs/StatisticalIssueStatus"
+                },
+                "NumberOfLargeTimestampGaps": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "MaxTimestampGapInDays": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "MonotonicValues": {
+            "type": "object",
+            "properties": {
+                "Status": {
+                    "$ref": "#/$defs/StatisticalIssueStatus"
+                },
+                "Monotonicity": {
+                    "$ref": "#/$defs/Monotonicity"
+                }
+            }
+        },
+        "Monotonicity": {
+            "enum": [
+                "DECREASING",
+                "INCREASING",
+                "STATIC"
+            ]
+        },
+        "ListSensorStatisticsRequest": {
+            "type": "object",
+            "properties": {
+                "DatasetName": {
+                    "$ref": "#/$defs/DatasetName"
+                },
+                "IngestionJobId": {
+                    "$ref": "#/$defs/IngestionJobId"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/AmazonResourceArn"
+                }
+            }
+        },
+        "AmazonResourceArn": {
+            "type": "string"
+        },
+        "PutResourcePolicyResponse": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "PolicyRevisionId": {
+                    "$ref": "#/$defs/PolicyRevisionId"
+                }
+            }
+        },
+        "PutResourcePolicyRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "ResourcePolicy": {
+                    "$ref": "#/$defs/Policy"
+                },
+                "PolicyRevisionId": {
+                    "$ref": "#/$defs/PolicyRevisionId"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/IdempotenceToken"
+                }
+            }
+        },
+        "StartDataIngestionJobResponse": {
+            "type": "object",
+            "properties": {
+                "JobId": {
+                    "$ref": "#/$defs/IngestionJobId"
+                },
+                "Status": {
+                    "$ref": "#/$defs/IngestionJobStatus"
+                }
+            }
+        },
+        "StartDataIngestionJobRequest": {
+            "type": "object",
+            "properties": {
+                "DatasetName": {
+                    "$ref": "#/$defs/DatasetIdentifier"
+                },
+                "IngestionInputConfiguration": {
+                    "$ref": "#/$defs/IngestionInputConfiguration"
+                },
+                "RoleArn": {
+                    "$ref": "#/$defs/IamRoleArn"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/IdempotenceToken"
+                }
+            }
+        },
+        "StartInferenceSchedulerResponse": {
+            "type": "object",
+            "properties": {
+                "ModelArn": {
+                    "$ref": "#/$defs/ModelArn"
+                },
+                "ModelName": {
+                    "$ref": "#/$defs/ModelName"
+                },
+                "InferenceSchedulerName": {
+                    "$ref": "#/$defs/InferenceSchedulerName"
+                },
+                "InferenceSchedulerArn": {
+                    "$ref": "#/$defs/InferenceSchedulerArn"
+                },
+                "Status": {
+                    "$ref": "#/$defs/InferenceSchedulerStatus"
+                }
+            }
+        },
+        "StartInferenceSchedulerRequest": {
+            "type": "object",
+            "properties": {
+                "InferenceSchedulerName": {
+                    "$ref": "#/$defs/InferenceSchedulerIdentifier"
+                }
+            }
+        },
+        "StartRetrainingSchedulerResponse": {
+            "type": "object",
+            "properties": {
+                "ModelName": {
+                    "$ref": "#/$defs/ModelName"
+                },
+                "ModelArn": {
+                    "$ref": "#/$defs/ModelArn"
+                },
+                "Status": {
+                    "$ref": "#/$defs/RetrainingSchedulerStatus"
+                }
+            }
+        },
+        "StartRetrainingSchedulerRequest": {
+            "type": "object",
+            "properties": {
+                "ModelName": {
+                    "$ref": "#/$defs/ModelName"
+                }
+            }
+        },
+        "StopInferenceSchedulerResponse": {
+            "type": "object",
+            "properties": {
+                "ModelArn": {
+                    "$ref": "#/$defs/ModelArn"
+                },
+                "ModelName": {
+                    "$ref": "#/$defs/ModelName"
+                },
+                "InferenceSchedulerName": {
+                    "$ref": "#/$defs/InferenceSchedulerName"
+                },
+                "InferenceSchedulerArn": {
+                    "$ref": "#/$defs/InferenceSchedulerArn"
+                },
+                "Status": {
+                    "$ref": "#/$defs/InferenceSchedulerStatus"
+                }
+            }
+        },
+        "StopInferenceSchedulerRequest": {
+            "type": "object",
+            "properties": {
+                "InferenceSchedulerName": {
+                    "$ref": "#/$defs/InferenceSchedulerIdentifier"
+                }
+            }
+        },
+        "StopRetrainingSchedulerResponse": {
+            "type": "object",
+            "properties": {
+                "ModelName": {
+                    "$ref": "#/$defs/ModelName"
+                },
+                "ModelArn": {
+                    "$ref": "#/$defs/ModelArn"
+                },
+                "Status": {
+                    "$ref": "#/$defs/RetrainingSchedulerStatus"
+                }
+            }
+        },
+        "StopRetrainingSchedulerRequest": {
+            "type": "object",
+            "properties": {
+                "ModelName": {
+                    "$ref": "#/$defs/ModelName"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/AmazonResourceArn"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/AmazonResourceArn"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "UpdateActiveModelVersionResponse": {
+            "type": "object",
+            "properties": {
+                "ModelName": {
+                    "$ref": "#/$defs/ModelName"
+                },
+                "ModelArn": {
+                    "$ref": "#/$defs/ModelArn"
+                },
+                "CurrentActiveVersion": {
+                    "$ref": "#/$defs/ModelVersion"
+                },
+                "PreviousActiveVersion": {
+                    "$ref": "#/$defs/ModelVersion"
+                },
+                "CurrentActiveVersionArn": {
+                    "$ref": "#/$defs/ModelVersionArn"
+                },
+                "PreviousActiveVersionArn": {
+                    "$ref": "#/$defs/ModelVersionArn"
+                }
+            }
+        },
+        "UpdateActiveModelVersionRequest": {
+            "type": "object",
+            "properties": {
+                "ModelName": {
+                    "$ref": "#/$defs/ModelName"
+                },
+                "ModelVersion": {
+                    "$ref": "#/$defs/ModelVersion"
+                }
+            }
+        },
+        "UpdateInferenceSchedulerRequest": {
+            "type": "object",
+            "properties": {
+                "InferenceSchedulerName": {
+                    "$ref": "#/$defs/InferenceSchedulerIdentifier"
+                },
+                "DataDelayOffsetInMinutes": {
+                    "$ref": "#/$defs/DataDelayOffsetInMinutes"
+                },
+                "DataUploadFrequency": {
+                    "$ref": "#/$defs/DataUploadFrequency"
+                },
+                "DataInputConfiguration": {
+                    "$ref": "#/$defs/InferenceInputConfiguration"
+                },
+                "DataOutputConfiguration": {
+                    "$ref": "#/$defs/InferenceOutputConfiguration"
+                },
+                "RoleArn": {
+                    "$ref": "#/$defs/IamRoleArn"
+                }
+            }
+        },
+        "UpdateLabelGroupRequest": {
+            "type": "object",
+            "properties": {
+                "LabelGroupName": {
+                    "$ref": "#/$defs/LabelGroupName"
+                },
+                "FaultCodes": {
+                    "$ref": "#/$defs/FaultCodes"
+                }
+            }
+        },
+        "UpdateModelRequest": {
+            "type": "object",
+            "properties": {
+                "ModelName": {
+                    "$ref": "#/$defs/ModelName"
+                },
+                "LabelsInputConfiguration": {
+                    "$ref": "#/$defs/LabelsInputConfiguration"
+                },
+                "RoleArn": {
+                    "$ref": "#/$defs/IamRoleArn"
+                },
+                "ModelDiagnosticsOutputConfiguration": {
+                    "$ref": "#/$defs/ModelDiagnosticsOutputConfiguration"
+                }
+            }
+        },
+        "UpdateRetrainingSchedulerRequest": {
+            "type": "object",
+            "properties": {
+                "ModelName": {
+                    "$ref": "#/$defs/ModelName"
+                },
+                "RetrainingStartDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "RetrainingFrequency": {
+                    "$ref": "#/$defs/RetrainingFrequency"
+                },
+                "LookbackWindow": {
+                    "$ref": "#/$defs/LookbackWindow"
+                },
+                "PromoteMode": {
+                    "$ref": "#/$defs/ModelPromoteMode"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://lookoutequipment-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://lookoutequipment-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://lookoutequipment.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://lookoutequipment.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

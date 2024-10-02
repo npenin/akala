@@ -1,0 +1,4159 @@
+{
+    "name": "batch",
+    "commands": [
+        {
+            "name": "CancelJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CancelJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CancelJobResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CancelJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateComputeEnvironment",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateComputeEnvironment"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateComputeEnvironmentResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateComputeEnvironmentRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateJobQueue",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateJobQueue"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateJobQueueResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateJobQueueRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateSchedulingPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateSchedulingPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateSchedulingPolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateSchedulingPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteComputeEnvironment",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteComputeEnvironment"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteComputeEnvironmentResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteComputeEnvironmentRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteJobQueue",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteJobQueue"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteJobQueueResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteJobQueueRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteSchedulingPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteSchedulingPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteSchedulingPolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteSchedulingPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeregisterJobDefinition",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeregisterJobDefinition"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeregisterJobDefinitionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeregisterJobDefinitionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeComputeEnvironments",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeComputeEnvironments"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeComputeEnvironmentsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeComputeEnvironmentsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeJobDefinitions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeJobDefinitions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeJobDefinitionsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeJobDefinitionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeJobQueues",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeJobQueues"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeJobQueuesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeJobQueuesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeJobs",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeJobs"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeJobsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeJobsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeSchedulingPolicies",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeSchedulingPolicies"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeSchedulingPoliciesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeSchedulingPoliciesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetJobQueueSnapshot",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetJobQueueSnapshot"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetJobQueueSnapshotResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetJobQueueSnapshotRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListJobs",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListJobs"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListJobsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListJobsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListSchedulingPolicies",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListSchedulingPolicies"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListSchedulingPoliciesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListSchedulingPoliciesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RegisterJobDefinition",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RegisterJobDefinition"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RegisterJobDefinitionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RegisterJobDefinitionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SubmitJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SubmitJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/SubmitJobResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SubmitJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TerminateJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TerminateJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TerminateJobResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TerminateJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateComputeEnvironment",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateComputeEnvironment"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateComputeEnvironmentResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateComputeEnvironmentRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateJobQueue",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateJobQueue"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateJobQueueResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateJobQueueRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateSchedulingPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateSchedulingPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateSchedulingPolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateSchedulingPolicyRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CancelJobResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "CancelJobRequest": {
+            "type": "object",
+            "properties": {
+                "jobId": {
+                    "$ref": "#/$defs/String"
+                },
+                "reason": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "String": {
+            "type": "string"
+        },
+        "CreateComputeEnvironmentResponse": {
+            "type": "object",
+            "properties": {
+                "computeEnvironmentName": {
+                    "$ref": "#/$defs/String"
+                },
+                "computeEnvironmentArn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "CreateComputeEnvironmentRequest": {
+            "type": "object",
+            "properties": {
+                "computeEnvironmentName": {
+                    "$ref": "#/$defs/String"
+                },
+                "type": {
+                    "$ref": "#/$defs/CEType"
+                },
+                "state": {
+                    "$ref": "#/$defs/CEState"
+                },
+                "unmanagedvCpus": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "computeResources": {
+                    "$ref": "#/$defs/ComputeResource"
+                },
+                "serviceRole": {
+                    "$ref": "#/$defs/String"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagrisTagsMap"
+                },
+                "eksConfiguration": {
+                    "$ref": "#/$defs/EksConfiguration"
+                },
+                "context": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "CEType": {
+            "enum": [
+                "MANAGED",
+                "UNMANAGED"
+            ]
+        },
+        "CEState": {
+            "enum": [
+                "ENABLED",
+                "DISABLED"
+            ]
+        },
+        "Integer": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ComputeResource": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/$defs/CRType"
+                },
+                "allocationStrategy": {
+                    "$ref": "#/$defs/CRAllocationStrategy"
+                },
+                "minvCpus": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "maxvCpus": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "desiredvCpus": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "instanceTypes": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "imageId": {
+                    "$ref": "#/$defs/String"
+                },
+                "subnets": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "securityGroupIds": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "ec2KeyPair": {
+                    "$ref": "#/$defs/String"
+                },
+                "instanceRole": {
+                    "$ref": "#/$defs/String"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagsMap"
+                },
+                "placementGroup": {
+                    "$ref": "#/$defs/String"
+                },
+                "bidPercentage": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "spotIamFleetRole": {
+                    "$ref": "#/$defs/String"
+                },
+                "launchTemplate": {
+                    "$ref": "#/$defs/LaunchTemplateSpecification"
+                },
+                "ec2Configuration": {
+                    "$ref": "#/$defs/Ec2ConfigurationList"
+                }
+            }
+        },
+        "CRType": {
+            "enum": [
+                "EC2",
+                "SPOT",
+                "FARGATE",
+                "FARGATE_SPOT"
+            ]
+        },
+        "CRAllocationStrategy": {
+            "enum": [
+                "BEST_FIT",
+                "BEST_FIT_PROGRESSIVE",
+                "SPOT_CAPACITY_OPTIMIZED",
+                "SPOT_PRICE_CAPACITY_OPTIMIZED"
+            ]
+        },
+        "StringList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "TagsMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "LaunchTemplateSpecification": {
+            "type": "object",
+            "properties": {
+                "launchTemplateId": {
+                    "$ref": "#/$defs/String"
+                },
+                "launchTemplateName": {
+                    "$ref": "#/$defs/String"
+                },
+                "version": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "Ec2ConfigurationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Ec2Configuration"
+            }
+        },
+        "Ec2Configuration": {
+            "type": "object",
+            "properties": {
+                "imageType": {
+                    "$ref": "#/$defs/ImageType"
+                },
+                "imageIdOverride": {
+                    "$ref": "#/$defs/ImageIdOverride"
+                },
+                "imageKubernetesVersion": {
+                    "$ref": "#/$defs/KubernetesVersion"
+                }
+            }
+        },
+        "ImageType": {
+            "type": "string"
+        },
+        "ImageIdOverride": {
+            "type": "string"
+        },
+        "KubernetesVersion": {
+            "type": "string"
+        },
+        "TagrisTagsMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TagValue"
+            }
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "EksConfiguration": {
+            "type": "object",
+            "properties": {
+                "eksClusterArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "kubernetesNamespace": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "CreateJobQueueResponse": {
+            "type": "object",
+            "properties": {
+                "jobQueueName": {
+                    "$ref": "#/$defs/String"
+                },
+                "jobQueueArn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "CreateJobQueueRequest": {
+            "type": "object",
+            "properties": {
+                "jobQueueName": {
+                    "$ref": "#/$defs/String"
+                },
+                "state": {
+                    "$ref": "#/$defs/JQState"
+                },
+                "schedulingPolicyArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "priority": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "computeEnvironmentOrder": {
+                    "$ref": "#/$defs/ComputeEnvironmentOrders"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagrisTagsMap"
+                },
+                "jobStateTimeLimitActions": {
+                    "$ref": "#/$defs/JobStateTimeLimitActions"
+                }
+            }
+        },
+        "JQState": {
+            "enum": [
+                "ENABLED",
+                "DISABLED"
+            ]
+        },
+        "ComputeEnvironmentOrders": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ComputeEnvironmentOrder"
+            }
+        },
+        "ComputeEnvironmentOrder": {
+            "type": "object",
+            "properties": {
+                "order": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "computeEnvironment": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "JobStateTimeLimitActions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/JobStateTimeLimitAction"
+            }
+        },
+        "JobStateTimeLimitAction": {
+            "type": "object",
+            "properties": {
+                "reason": {
+                    "$ref": "#/$defs/String"
+                },
+                "state": {
+                    "$ref": "#/$defs/JobStateTimeLimitActionsState"
+                },
+                "maxTimeSeconds": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "action": {
+                    "$ref": "#/$defs/JobStateTimeLimitActionsAction"
+                }
+            }
+        },
+        "JobStateTimeLimitActionsState": {
+            "enum": [
+                "RUNNABLE"
+            ]
+        },
+        "JobStateTimeLimitActionsAction": {
+            "enum": [
+                "CANCEL"
+            ]
+        },
+        "CreateSchedulingPolicyResponse": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/String"
+                },
+                "arn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "CreateSchedulingPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/String"
+                },
+                "fairsharePolicy": {
+                    "$ref": "#/$defs/FairsharePolicy"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagrisTagsMap"
+                }
+            }
+        },
+        "FairsharePolicy": {
+            "type": "object",
+            "properties": {
+                "shareDecaySeconds": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "computeReservation": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "shareDistribution": {
+                    "$ref": "#/$defs/ShareAttributesList"
+                }
+            }
+        },
+        "ShareAttributesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ShareAttributes"
+            }
+        },
+        "ShareAttributes": {
+            "type": "object",
+            "properties": {
+                "shareIdentifier": {
+                    "$ref": "#/$defs/String"
+                },
+                "weightFactor": {
+                    "$ref": "#/$defs/Float"
+                }
+            }
+        },
+        "Float": {
+            "type": "number",
+            "format": "float"
+        },
+        "DeleteComputeEnvironmentResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteComputeEnvironmentRequest": {
+            "type": "object",
+            "properties": {
+                "computeEnvironment": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DeleteJobQueueResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteJobQueueRequest": {
+            "type": "object",
+            "properties": {
+                "jobQueue": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DeleteSchedulingPolicyResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteSchedulingPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DeregisterJobDefinitionResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeregisterJobDefinitionRequest": {
+            "type": "object",
+            "properties": {
+                "jobDefinition": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DescribeComputeEnvironmentsResponse": {
+            "type": "object",
+            "properties": {
+                "computeEnvironments": {
+                    "$ref": "#/$defs/ComputeEnvironmentDetailList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ComputeEnvironmentDetailList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ComputeEnvironmentDetail"
+            }
+        },
+        "ComputeEnvironmentDetail": {
+            "type": "object",
+            "properties": {
+                "computeEnvironmentName": {
+                    "$ref": "#/$defs/String"
+                },
+                "computeEnvironmentArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "unmanagedvCpus": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "ecsClusterArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagrisTagsMap"
+                },
+                "type": {
+                    "$ref": "#/$defs/CEType"
+                },
+                "state": {
+                    "$ref": "#/$defs/CEState"
+                },
+                "status": {
+                    "$ref": "#/$defs/CEStatus"
+                },
+                "statusReason": {
+                    "$ref": "#/$defs/String"
+                },
+                "computeResources": {
+                    "$ref": "#/$defs/ComputeResource"
+                },
+                "serviceRole": {
+                    "$ref": "#/$defs/String"
+                },
+                "updatePolicy": {
+                    "$ref": "#/$defs/UpdatePolicy"
+                },
+                "eksConfiguration": {
+                    "$ref": "#/$defs/EksConfiguration"
+                },
+                "containerOrchestrationType": {
+                    "$ref": "#/$defs/OrchestrationType"
+                },
+                "uuid": {
+                    "$ref": "#/$defs/String"
+                },
+                "context": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "CEStatus": {
+            "enum": [
+                "CREATING",
+                "UPDATING",
+                "DELETING",
+                "DELETED",
+                "VALID",
+                "INVALID"
+            ]
+        },
+        "UpdatePolicy": {
+            "type": "object",
+            "properties": {
+                "terminateJobsOnUpdate": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "jobExecutionTimeoutMinutes": {
+                    "$ref": "#/$defs/JobExecutionTimeoutMinutes"
+                }
+            }
+        },
+        "Boolean": {
+            "type": "boolean"
+        },
+        "JobExecutionTimeoutMinutes": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "OrchestrationType": {
+            "enum": [
+                "ECS",
+                "EKS"
+            ]
+        },
+        "DescribeComputeEnvironmentsRequest": {
+            "type": "object",
+            "properties": {
+                "computeEnvironments": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DescribeJobDefinitionsResponse": {
+            "type": "object",
+            "properties": {
+                "jobDefinitions": {
+                    "$ref": "#/$defs/JobDefinitionList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "JobDefinitionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/JobDefinition"
+            }
+        },
+        "JobDefinition": {
+            "type": "object",
+            "properties": {
+                "jobDefinitionName": {
+                    "$ref": "#/$defs/String"
+                },
+                "jobDefinitionArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "revision": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "status": {
+                    "$ref": "#/$defs/String"
+                },
+                "type": {
+                    "$ref": "#/$defs/String"
+                },
+                "schedulingPriority": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "parameters": {
+                    "$ref": "#/$defs/ParametersMap"
+                },
+                "retryStrategy": {
+                    "$ref": "#/$defs/RetryStrategy"
+                },
+                "containerProperties": {
+                    "$ref": "#/$defs/ContainerProperties"
+                },
+                "timeout": {
+                    "$ref": "#/$defs/JobTimeout"
+                },
+                "nodeProperties": {
+                    "$ref": "#/$defs/NodeProperties"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagrisTagsMap"
+                },
+                "propagateTags": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "platformCapabilities": {
+                    "$ref": "#/$defs/PlatformCapabilityList"
+                },
+                "ecsProperties": {
+                    "$ref": "#/$defs/EcsProperties"
+                },
+                "eksProperties": {
+                    "$ref": "#/$defs/EksProperties"
+                },
+                "containerOrchestrationType": {
+                    "$ref": "#/$defs/OrchestrationType"
+                }
+            }
+        },
+        "ParametersMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "RetryStrategy": {
+            "type": "object",
+            "properties": {
+                "attempts": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "evaluateOnExit": {
+                    "$ref": "#/$defs/EvaluateOnExitList"
+                }
+            }
+        },
+        "EvaluateOnExitList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EvaluateOnExit"
+            }
+        },
+        "EvaluateOnExit": {
+            "type": "object",
+            "properties": {
+                "onStatusReason": {
+                    "$ref": "#/$defs/String"
+                },
+                "onReason": {
+                    "$ref": "#/$defs/String"
+                },
+                "onExitCode": {
+                    "$ref": "#/$defs/String"
+                },
+                "action": {
+                    "$ref": "#/$defs/RetryAction"
+                }
+            }
+        },
+        "RetryAction": {
+            "enum": [
+                "RETRY",
+                "EXIT"
+            ]
+        },
+        "ContainerProperties": {
+            "type": "object",
+            "properties": {
+                "image": {
+                    "$ref": "#/$defs/String"
+                },
+                "vcpus": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "memory": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "command": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "jobRoleArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "executionRoleArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "volumes": {
+                    "$ref": "#/$defs/Volumes"
+                },
+                "environment": {
+                    "$ref": "#/$defs/EnvironmentVariables"
+                },
+                "mountPoints": {
+                    "$ref": "#/$defs/MountPoints"
+                },
+                "readonlyRootFilesystem": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "privileged": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "ulimits": {
+                    "$ref": "#/$defs/Ulimits"
+                },
+                "user": {
+                    "$ref": "#/$defs/String"
+                },
+                "instanceType": {
+                    "$ref": "#/$defs/String"
+                },
+                "resourceRequirements": {
+                    "$ref": "#/$defs/ResourceRequirements"
+                },
+                "linuxParameters": {
+                    "$ref": "#/$defs/LinuxParameters"
+                },
+                "logConfiguration": {
+                    "$ref": "#/$defs/LogConfiguration"
+                },
+                "secrets": {
+                    "$ref": "#/$defs/SecretList"
+                },
+                "networkConfiguration": {
+                    "$ref": "#/$defs/NetworkConfiguration"
+                },
+                "fargatePlatformConfiguration": {
+                    "$ref": "#/$defs/FargatePlatformConfiguration"
+                },
+                "ephemeralStorage": {
+                    "$ref": "#/$defs/EphemeralStorage"
+                },
+                "runtimePlatform": {
+                    "$ref": "#/$defs/RuntimePlatform"
+                },
+                "repositoryCredentials": {
+                    "$ref": "#/$defs/RepositoryCredentials"
+                }
+            }
+        },
+        "Volumes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Volume"
+            }
+        },
+        "Volume": {
+            "type": "object",
+            "properties": {
+                "host": {
+                    "$ref": "#/$defs/Host"
+                },
+                "name": {
+                    "$ref": "#/$defs/String"
+                },
+                "efsVolumeConfiguration": {
+                    "$ref": "#/$defs/EFSVolumeConfiguration"
+                }
+            }
+        },
+        "Host": {
+            "type": "object",
+            "properties": {
+                "sourcePath": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "EFSVolumeConfiguration": {
+            "type": "object",
+            "properties": {
+                "fileSystemId": {
+                    "$ref": "#/$defs/String"
+                },
+                "rootDirectory": {
+                    "$ref": "#/$defs/String"
+                },
+                "transitEncryption": {
+                    "$ref": "#/$defs/EFSTransitEncryption"
+                },
+                "transitEncryptionPort": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "authorizationConfig": {
+                    "$ref": "#/$defs/EFSAuthorizationConfig"
+                }
+            }
+        },
+        "EFSTransitEncryption": {
+            "enum": [
+                "ENABLED",
+                "DISABLED"
+            ]
+        },
+        "EFSAuthorizationConfig": {
+            "type": "object",
+            "properties": {
+                "accessPointId": {
+                    "$ref": "#/$defs/String"
+                },
+                "iam": {
+                    "$ref": "#/$defs/EFSAuthorizationConfigIAM"
+                }
+            }
+        },
+        "EFSAuthorizationConfigIAM": {
+            "enum": [
+                "ENABLED",
+                "DISABLED"
+            ]
+        },
+        "EnvironmentVariables": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/KeyValuePair"
+            }
+        },
+        "KeyValuePair": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/String"
+                },
+                "value": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "MountPoints": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MountPoint"
+            }
+        },
+        "MountPoint": {
+            "type": "object",
+            "properties": {
+                "containerPath": {
+                    "$ref": "#/$defs/String"
+                },
+                "readOnly": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "sourceVolume": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "Ulimits": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Ulimit"
+            }
+        },
+        "Ulimit": {
+            "type": "object",
+            "properties": {
+                "hardLimit": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "name": {
+                    "$ref": "#/$defs/String"
+                },
+                "softLimit": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "ResourceRequirements": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourceRequirement"
+            }
+        },
+        "ResourceRequirement": {
+            "type": "object",
+            "properties": {
+                "value": {
+                    "$ref": "#/$defs/String"
+                },
+                "type": {
+                    "$ref": "#/$defs/ResourceType"
+                }
+            }
+        },
+        "ResourceType": {
+            "enum": [
+                "GPU",
+                "VCPU",
+                "MEMORY"
+            ]
+        },
+        "LinuxParameters": {
+            "type": "object",
+            "properties": {
+                "devices": {
+                    "$ref": "#/$defs/DevicesList"
+                },
+                "initProcessEnabled": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "sharedMemorySize": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "tmpfs": {
+                    "$ref": "#/$defs/TmpfsList"
+                },
+                "maxSwap": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "swappiness": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "DevicesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Device"
+            }
+        },
+        "Device": {
+            "type": "object",
+            "properties": {
+                "hostPath": {
+                    "$ref": "#/$defs/String"
+                },
+                "containerPath": {
+                    "$ref": "#/$defs/String"
+                },
+                "permissions": {
+                    "$ref": "#/$defs/DeviceCgroupPermissions"
+                }
+            }
+        },
+        "DeviceCgroupPermissions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DeviceCgroupPermission"
+            }
+        },
+        "DeviceCgroupPermission": {
+            "enum": [
+                "READ",
+                "WRITE",
+                "MKNOD"
+            ]
+        },
+        "TmpfsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tmpfs"
+            }
+        },
+        "Tmpfs": {
+            "type": "object",
+            "properties": {
+                "containerPath": {
+                    "$ref": "#/$defs/String"
+                },
+                "size": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "mountOptions": {
+                    "$ref": "#/$defs/StringList"
+                }
+            }
+        },
+        "LogConfiguration": {
+            "type": "object",
+            "properties": {
+                "logDriver": {
+                    "$ref": "#/$defs/LogDriver"
+                },
+                "options": {
+                    "$ref": "#/$defs/LogConfigurationOptionsMap"
+                },
+                "secretOptions": {
+                    "$ref": "#/$defs/SecretList"
+                }
+            }
+        },
+        "LogDriver": {
+            "enum": [
+                "JSON_FILE",
+                "SYSLOG",
+                "JOURNALD",
+                "GELF",
+                "FLUENTD",
+                "AWSLOGS",
+                "SPLUNK"
+            ]
+        },
+        "LogConfigurationOptionsMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "SecretList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Secret"
+            }
+        },
+        "Secret": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/String"
+                },
+                "valueFrom": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "NetworkConfiguration": {
+            "type": "object",
+            "properties": {
+                "assignPublicIp": {
+                    "$ref": "#/$defs/AssignPublicIp"
+                }
+            }
+        },
+        "AssignPublicIp": {
+            "enum": [
+                "ENABLED",
+                "DISABLED"
+            ]
+        },
+        "FargatePlatformConfiguration": {
+            "type": "object",
+            "properties": {
+                "platformVersion": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "EphemeralStorage": {
+            "type": "object",
+            "properties": {
+                "sizeInGiB": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "RuntimePlatform": {
+            "type": "object",
+            "properties": {
+                "operatingSystemFamily": {
+                    "$ref": "#/$defs/String"
+                },
+                "cpuArchitecture": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "RepositoryCredentials": {
+            "type": "object",
+            "properties": {
+                "credentialsParameter": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "JobTimeout": {
+            "type": "object",
+            "properties": {
+                "attemptDurationSeconds": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "NodeProperties": {
+            "type": "object",
+            "properties": {
+                "numNodes": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "mainNode": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "nodeRangeProperties": {
+                    "$ref": "#/$defs/NodeRangeProperties"
+                }
+            }
+        },
+        "NodeRangeProperties": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NodeRangeProperty"
+            }
+        },
+        "NodeRangeProperty": {
+            "type": "object",
+            "properties": {
+                "targetNodes": {
+                    "$ref": "#/$defs/String"
+                },
+                "container": {
+                    "$ref": "#/$defs/ContainerProperties"
+                },
+                "instanceTypes": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "ecsProperties": {
+                    "$ref": "#/$defs/EcsProperties"
+                },
+                "eksProperties": {
+                    "$ref": "#/$defs/EksProperties"
+                }
+            }
+        },
+        "EcsProperties": {
+            "type": "object",
+            "properties": {
+                "taskProperties": {
+                    "$ref": "#/$defs/ListEcsTaskProperties"
+                }
+            }
+        },
+        "ListEcsTaskProperties": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EcsTaskProperties"
+            }
+        },
+        "EcsTaskProperties": {
+            "type": "object",
+            "properties": {
+                "containers": {
+                    "$ref": "#/$defs/ListTaskContainerProperties"
+                },
+                "ephemeralStorage": {
+                    "$ref": "#/$defs/EphemeralStorage"
+                },
+                "executionRoleArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "platformVersion": {
+                    "$ref": "#/$defs/String"
+                },
+                "ipcMode": {
+                    "$ref": "#/$defs/String"
+                },
+                "taskRoleArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "pidMode": {
+                    "$ref": "#/$defs/String"
+                },
+                "networkConfiguration": {
+                    "$ref": "#/$defs/NetworkConfiguration"
+                },
+                "runtimePlatform": {
+                    "$ref": "#/$defs/RuntimePlatform"
+                },
+                "volumes": {
+                    "$ref": "#/$defs/Volumes"
+                }
+            }
+        },
+        "ListTaskContainerProperties": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TaskContainerProperties"
+            }
+        },
+        "TaskContainerProperties": {
+            "type": "object",
+            "properties": {
+                "command": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "dependsOn": {
+                    "$ref": "#/$defs/TaskContainerDependencyList"
+                },
+                "environment": {
+                    "$ref": "#/$defs/EnvironmentVariables"
+                },
+                "essential": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "image": {
+                    "$ref": "#/$defs/String"
+                },
+                "linuxParameters": {
+                    "$ref": "#/$defs/LinuxParameters"
+                },
+                "logConfiguration": {
+                    "$ref": "#/$defs/LogConfiguration"
+                },
+                "mountPoints": {
+                    "$ref": "#/$defs/MountPoints"
+                },
+                "name": {
+                    "$ref": "#/$defs/String"
+                },
+                "privileged": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "readonlyRootFilesystem": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "repositoryCredentials": {
+                    "$ref": "#/$defs/RepositoryCredentials"
+                },
+                "resourceRequirements": {
+                    "$ref": "#/$defs/ResourceRequirements"
+                },
+                "secrets": {
+                    "$ref": "#/$defs/SecretList"
+                },
+                "ulimits": {
+                    "$ref": "#/$defs/Ulimits"
+                },
+                "user": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "TaskContainerDependencyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TaskContainerDependency"
+            }
+        },
+        "TaskContainerDependency": {
+            "type": "object",
+            "properties": {
+                "containerName": {
+                    "$ref": "#/$defs/String"
+                },
+                "condition": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "EksProperties": {
+            "type": "object",
+            "properties": {
+                "podProperties": {
+                    "$ref": "#/$defs/EksPodProperties"
+                }
+            }
+        },
+        "EksPodProperties": {
+            "type": "object",
+            "properties": {
+                "serviceAccountName": {
+                    "$ref": "#/$defs/String"
+                },
+                "hostNetwork": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "dnsPolicy": {
+                    "$ref": "#/$defs/String"
+                },
+                "imagePullSecrets": {
+                    "$ref": "#/$defs/ImagePullSecrets"
+                },
+                "containers": {
+                    "$ref": "#/$defs/EksContainers"
+                },
+                "initContainers": {
+                    "$ref": "#/$defs/EksContainers"
+                },
+                "volumes": {
+                    "$ref": "#/$defs/EksVolumes"
+                },
+                "metadata": {
+                    "$ref": "#/$defs/EksMetadata"
+                },
+                "shareProcessNamespace": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "ImagePullSecrets": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ImagePullSecret"
+            }
+        },
+        "ImagePullSecret": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "EksContainers": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EksContainer"
+            }
+        },
+        "EksContainer": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/String"
+                },
+                "image": {
+                    "$ref": "#/$defs/String"
+                },
+                "imagePullPolicy": {
+                    "$ref": "#/$defs/String"
+                },
+                "command": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "args": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "env": {
+                    "$ref": "#/$defs/EksContainerEnvironmentVariables"
+                },
+                "resources": {
+                    "$ref": "#/$defs/EksContainerResourceRequirements"
+                },
+                "volumeMounts": {
+                    "$ref": "#/$defs/EksContainerVolumeMounts"
+                },
+                "securityContext": {
+                    "$ref": "#/$defs/EksContainerSecurityContext"
+                }
+            }
+        },
+        "EksContainerEnvironmentVariables": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EksContainerEnvironmentVariable"
+            }
+        },
+        "EksContainerEnvironmentVariable": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/String"
+                },
+                "value": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "EksContainerResourceRequirements": {
+            "type": "object",
+            "properties": {
+                "limits": {
+                    "$ref": "#/$defs/EksLimits"
+                },
+                "requests": {
+                    "$ref": "#/$defs/EksRequests"
+                }
+            }
+        },
+        "EksLimits": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/Quantity"
+            }
+        },
+        "Quantity": {
+            "type": "string"
+        },
+        "EksRequests": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/Quantity"
+            }
+        },
+        "EksContainerVolumeMounts": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EksContainerVolumeMount"
+            }
+        },
+        "EksContainerVolumeMount": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/String"
+                },
+                "mountPath": {
+                    "$ref": "#/$defs/String"
+                },
+                "readOnly": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "EksContainerSecurityContext": {
+            "type": "object",
+            "properties": {
+                "runAsUser": {
+                    "$ref": "#/$defs/Long"
+                },
+                "runAsGroup": {
+                    "$ref": "#/$defs/Long"
+                },
+                "privileged": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "allowPrivilegeEscalation": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "readOnlyRootFilesystem": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "runAsNonRoot": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "Long": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "EksVolumes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EksVolume"
+            }
+        },
+        "EksVolume": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/String"
+                },
+                "hostPath": {
+                    "$ref": "#/$defs/EksHostPath"
+                },
+                "emptyDir": {
+                    "$ref": "#/$defs/EksEmptyDir"
+                },
+                "secret": {
+                    "$ref": "#/$defs/EksSecret"
+                }
+            }
+        },
+        "EksHostPath": {
+            "type": "object",
+            "properties": {
+                "path": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "EksEmptyDir": {
+            "type": "object",
+            "properties": {
+                "medium": {
+                    "$ref": "#/$defs/String"
+                },
+                "sizeLimit": {
+                    "$ref": "#/$defs/Quantity"
+                }
+            }
+        },
+        "EksSecret": {
+            "type": "object",
+            "properties": {
+                "secretName": {
+                    "$ref": "#/$defs/String"
+                },
+                "optional": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "EksMetadata": {
+            "type": "object",
+            "properties": {
+                "labels": {
+                    "$ref": "#/$defs/EksLabelsMap"
+                }
+            }
+        },
+        "EksLabelsMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "PlatformCapabilityList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PlatformCapability"
+            }
+        },
+        "PlatformCapability": {
+            "enum": [
+                "EC2",
+                "FARGATE"
+            ]
+        },
+        "DescribeJobDefinitionsRequest": {
+            "type": "object",
+            "properties": {
+                "jobDefinitions": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "jobDefinitionName": {
+                    "$ref": "#/$defs/String"
+                },
+                "status": {
+                    "$ref": "#/$defs/String"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DescribeJobQueuesResponse": {
+            "type": "object",
+            "properties": {
+                "jobQueues": {
+                    "$ref": "#/$defs/JobQueueDetailList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "JobQueueDetailList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/JobQueueDetail"
+            }
+        },
+        "JobQueueDetail": {
+            "type": "object",
+            "properties": {
+                "jobQueueName": {
+                    "$ref": "#/$defs/String"
+                },
+                "jobQueueArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "state": {
+                    "$ref": "#/$defs/JQState"
+                },
+                "schedulingPolicyArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "status": {
+                    "$ref": "#/$defs/JQStatus"
+                },
+                "statusReason": {
+                    "$ref": "#/$defs/String"
+                },
+                "priority": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "computeEnvironmentOrder": {
+                    "$ref": "#/$defs/ComputeEnvironmentOrders"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagrisTagsMap"
+                },
+                "jobStateTimeLimitActions": {
+                    "$ref": "#/$defs/JobStateTimeLimitActions"
+                }
+            }
+        },
+        "JQStatus": {
+            "enum": [
+                "CREATING",
+                "UPDATING",
+                "DELETING",
+                "DELETED",
+                "VALID",
+                "INVALID"
+            ]
+        },
+        "DescribeJobQueuesRequest": {
+            "type": "object",
+            "properties": {
+                "jobQueues": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DescribeJobsResponse": {
+            "type": "object",
+            "properties": {
+                "jobs": {
+                    "$ref": "#/$defs/JobDetailList"
+                }
+            }
+        },
+        "JobDetailList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/JobDetail"
+            }
+        },
+        "JobDetail": {
+            "type": "object",
+            "properties": {
+                "jobArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "jobName": {
+                    "$ref": "#/$defs/String"
+                },
+                "jobId": {
+                    "$ref": "#/$defs/String"
+                },
+                "jobQueue": {
+                    "$ref": "#/$defs/String"
+                },
+                "status": {
+                    "$ref": "#/$defs/JobStatus"
+                },
+                "shareIdentifier": {
+                    "$ref": "#/$defs/String"
+                },
+                "schedulingPriority": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "attempts": {
+                    "$ref": "#/$defs/AttemptDetails"
+                },
+                "statusReason": {
+                    "$ref": "#/$defs/String"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Long"
+                },
+                "retryStrategy": {
+                    "$ref": "#/$defs/RetryStrategy"
+                },
+                "startedAt": {
+                    "$ref": "#/$defs/Long"
+                },
+                "stoppedAt": {
+                    "$ref": "#/$defs/Long"
+                },
+                "dependsOn": {
+                    "$ref": "#/$defs/JobDependencyList"
+                },
+                "jobDefinition": {
+                    "$ref": "#/$defs/String"
+                },
+                "parameters": {
+                    "$ref": "#/$defs/ParametersMap"
+                },
+                "container": {
+                    "$ref": "#/$defs/ContainerDetail"
+                },
+                "nodeDetails": {
+                    "$ref": "#/$defs/NodeDetails"
+                },
+                "nodeProperties": {
+                    "$ref": "#/$defs/NodeProperties"
+                },
+                "arrayProperties": {
+                    "$ref": "#/$defs/ArrayPropertiesDetail"
+                },
+                "timeout": {
+                    "$ref": "#/$defs/JobTimeout"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagrisTagsMap"
+                },
+                "propagateTags": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "platformCapabilities": {
+                    "$ref": "#/$defs/PlatformCapabilityList"
+                },
+                "eksProperties": {
+                    "$ref": "#/$defs/EksPropertiesDetail"
+                },
+                "eksAttempts": {
+                    "$ref": "#/$defs/EksAttemptDetails"
+                },
+                "ecsProperties": {
+                    "$ref": "#/$defs/EcsPropertiesDetail"
+                },
+                "isCancelled": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "isTerminated": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "JobStatus": {
+            "enum": [
+                "SUBMITTED",
+                "PENDING",
+                "RUNNABLE",
+                "STARTING",
+                "RUNNING",
+                "SUCCEEDED",
+                "FAILED"
+            ]
+        },
+        "AttemptDetails": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AttemptDetail"
+            }
+        },
+        "AttemptDetail": {
+            "type": "object",
+            "properties": {
+                "container": {
+                    "$ref": "#/$defs/AttemptContainerDetail"
+                },
+                "startedAt": {
+                    "$ref": "#/$defs/Long"
+                },
+                "stoppedAt": {
+                    "$ref": "#/$defs/Long"
+                },
+                "statusReason": {
+                    "$ref": "#/$defs/String"
+                },
+                "taskProperties": {
+                    "$ref": "#/$defs/ListAttemptEcsTaskDetails"
+                }
+            }
+        },
+        "AttemptContainerDetail": {
+            "type": "object",
+            "properties": {
+                "containerInstanceArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "taskArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "exitCode": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "reason": {
+                    "$ref": "#/$defs/String"
+                },
+                "logStreamName": {
+                    "$ref": "#/$defs/String"
+                },
+                "networkInterfaces": {
+                    "$ref": "#/$defs/NetworkInterfaceList"
+                }
+            }
+        },
+        "NetworkInterfaceList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NetworkInterface"
+            }
+        },
+        "NetworkInterface": {
+            "type": "object",
+            "properties": {
+                "attachmentId": {
+                    "$ref": "#/$defs/String"
+                },
+                "ipv6Address": {
+                    "$ref": "#/$defs/String"
+                },
+                "privateIpv4Address": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListAttemptEcsTaskDetails": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AttemptEcsTaskDetails"
+            }
+        },
+        "AttemptEcsTaskDetails": {
+            "type": "object",
+            "properties": {
+                "containerInstanceArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "taskArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "containers": {
+                    "$ref": "#/$defs/ListAttemptTaskContainerDetails"
+                }
+            }
+        },
+        "ListAttemptTaskContainerDetails": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AttemptTaskContainerDetails"
+            }
+        },
+        "AttemptTaskContainerDetails": {
+            "type": "object",
+            "properties": {
+                "exitCode": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "name": {
+                    "$ref": "#/$defs/String"
+                },
+                "reason": {
+                    "$ref": "#/$defs/String"
+                },
+                "logStreamName": {
+                    "$ref": "#/$defs/String"
+                },
+                "networkInterfaces": {
+                    "$ref": "#/$defs/NetworkInterfaceList"
+                }
+            }
+        },
+        "JobDependencyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/JobDependency"
+            }
+        },
+        "JobDependency": {
+            "type": "object",
+            "properties": {
+                "jobId": {
+                    "$ref": "#/$defs/String"
+                },
+                "type": {
+                    "$ref": "#/$defs/ArrayJobDependency"
+                }
+            }
+        },
+        "ArrayJobDependency": {
+            "enum": [
+                "N_TO_N",
+                "SEQUENTIAL"
+            ]
+        },
+        "ContainerDetail": {
+            "type": "object",
+            "properties": {
+                "image": {
+                    "$ref": "#/$defs/String"
+                },
+                "vcpus": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "memory": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "command": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "jobRoleArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "executionRoleArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "volumes": {
+                    "$ref": "#/$defs/Volumes"
+                },
+                "environment": {
+                    "$ref": "#/$defs/EnvironmentVariables"
+                },
+                "mountPoints": {
+                    "$ref": "#/$defs/MountPoints"
+                },
+                "readonlyRootFilesystem": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "ulimits": {
+                    "$ref": "#/$defs/Ulimits"
+                },
+                "privileged": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "user": {
+                    "$ref": "#/$defs/String"
+                },
+                "exitCode": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "reason": {
+                    "$ref": "#/$defs/String"
+                },
+                "containerInstanceArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "taskArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "logStreamName": {
+                    "$ref": "#/$defs/String"
+                },
+                "instanceType": {
+                    "$ref": "#/$defs/String"
+                },
+                "networkInterfaces": {
+                    "$ref": "#/$defs/NetworkInterfaceList"
+                },
+                "resourceRequirements": {
+                    "$ref": "#/$defs/ResourceRequirements"
+                },
+                "linuxParameters": {
+                    "$ref": "#/$defs/LinuxParameters"
+                },
+                "logConfiguration": {
+                    "$ref": "#/$defs/LogConfiguration"
+                },
+                "secrets": {
+                    "$ref": "#/$defs/SecretList"
+                },
+                "networkConfiguration": {
+                    "$ref": "#/$defs/NetworkConfiguration"
+                },
+                "fargatePlatformConfiguration": {
+                    "$ref": "#/$defs/FargatePlatformConfiguration"
+                },
+                "ephemeralStorage": {
+                    "$ref": "#/$defs/EphemeralStorage"
+                },
+                "runtimePlatform": {
+                    "$ref": "#/$defs/RuntimePlatform"
+                },
+                "repositoryCredentials": {
+                    "$ref": "#/$defs/RepositoryCredentials"
+                }
+            }
+        },
+        "NodeDetails": {
+            "type": "object",
+            "properties": {
+                "nodeIndex": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "isMainNode": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "ArrayPropertiesDetail": {
+            "type": "object",
+            "properties": {
+                "statusSummary": {
+                    "$ref": "#/$defs/ArrayJobStatusSummary"
+                },
+                "size": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "index": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "ArrayJobStatusSummary": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/Integer"
+            }
+        },
+        "EksPropertiesDetail": {
+            "type": "object",
+            "properties": {
+                "podProperties": {
+                    "$ref": "#/$defs/EksPodPropertiesDetail"
+                }
+            }
+        },
+        "EksPodPropertiesDetail": {
+            "type": "object",
+            "properties": {
+                "serviceAccountName": {
+                    "$ref": "#/$defs/String"
+                },
+                "hostNetwork": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "dnsPolicy": {
+                    "$ref": "#/$defs/String"
+                },
+                "imagePullSecrets": {
+                    "$ref": "#/$defs/ImagePullSecrets"
+                },
+                "containers": {
+                    "$ref": "#/$defs/EksContainerDetails"
+                },
+                "initContainers": {
+                    "$ref": "#/$defs/EksContainerDetails"
+                },
+                "volumes": {
+                    "$ref": "#/$defs/EksVolumes"
+                },
+                "podName": {
+                    "$ref": "#/$defs/String"
+                },
+                "nodeName": {
+                    "$ref": "#/$defs/String"
+                },
+                "metadata": {
+                    "$ref": "#/$defs/EksMetadata"
+                },
+                "shareProcessNamespace": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "EksContainerDetails": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EksContainerDetail"
+            }
+        },
+        "EksContainerDetail": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/String"
+                },
+                "image": {
+                    "$ref": "#/$defs/String"
+                },
+                "imagePullPolicy": {
+                    "$ref": "#/$defs/String"
+                },
+                "command": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "args": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "env": {
+                    "$ref": "#/$defs/EksContainerEnvironmentVariables"
+                },
+                "resources": {
+                    "$ref": "#/$defs/EksContainerResourceRequirements"
+                },
+                "exitCode": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "reason": {
+                    "$ref": "#/$defs/String"
+                },
+                "volumeMounts": {
+                    "$ref": "#/$defs/EksContainerVolumeMounts"
+                },
+                "securityContext": {
+                    "$ref": "#/$defs/EksContainerSecurityContext"
+                }
+            }
+        },
+        "EksAttemptDetails": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EksAttemptDetail"
+            }
+        },
+        "EksAttemptDetail": {
+            "type": "object",
+            "properties": {
+                "containers": {
+                    "$ref": "#/$defs/EksAttemptContainerDetails"
+                },
+                "initContainers": {
+                    "$ref": "#/$defs/EksAttemptContainerDetails"
+                },
+                "eksClusterArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "podName": {
+                    "$ref": "#/$defs/String"
+                },
+                "nodeName": {
+                    "$ref": "#/$defs/String"
+                },
+                "startedAt": {
+                    "$ref": "#/$defs/Long"
+                },
+                "stoppedAt": {
+                    "$ref": "#/$defs/Long"
+                },
+                "statusReason": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "EksAttemptContainerDetails": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EksAttemptContainerDetail"
+            }
+        },
+        "EksAttemptContainerDetail": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/String"
+                },
+                "exitCode": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "reason": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "EcsPropertiesDetail": {
+            "type": "object",
+            "properties": {
+                "taskProperties": {
+                    "$ref": "#/$defs/ListEcsTaskDetails"
+                }
+            }
+        },
+        "ListEcsTaskDetails": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EcsTaskDetails"
+            }
+        },
+        "EcsTaskDetails": {
+            "type": "object",
+            "properties": {
+                "containers": {
+                    "$ref": "#/$defs/ListTaskContainerDetails"
+                },
+                "containerInstanceArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "taskArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "ephemeralStorage": {
+                    "$ref": "#/$defs/EphemeralStorage"
+                },
+                "executionRoleArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "platformVersion": {
+                    "$ref": "#/$defs/String"
+                },
+                "ipcMode": {
+                    "$ref": "#/$defs/String"
+                },
+                "taskRoleArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "pidMode": {
+                    "$ref": "#/$defs/String"
+                },
+                "networkConfiguration": {
+                    "$ref": "#/$defs/NetworkConfiguration"
+                },
+                "runtimePlatform": {
+                    "$ref": "#/$defs/RuntimePlatform"
+                },
+                "volumes": {
+                    "$ref": "#/$defs/Volumes"
+                }
+            }
+        },
+        "ListTaskContainerDetails": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TaskContainerDetails"
+            }
+        },
+        "TaskContainerDetails": {
+            "type": "object",
+            "properties": {
+                "command": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "dependsOn": {
+                    "$ref": "#/$defs/TaskContainerDependencyList"
+                },
+                "environment": {
+                    "$ref": "#/$defs/EnvironmentVariables"
+                },
+                "essential": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "image": {
+                    "$ref": "#/$defs/String"
+                },
+                "linuxParameters": {
+                    "$ref": "#/$defs/LinuxParameters"
+                },
+                "logConfiguration": {
+                    "$ref": "#/$defs/LogConfiguration"
+                },
+                "mountPoints": {
+                    "$ref": "#/$defs/MountPoints"
+                },
+                "name": {
+                    "$ref": "#/$defs/String"
+                },
+                "privileged": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "readonlyRootFilesystem": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "repositoryCredentials": {
+                    "$ref": "#/$defs/RepositoryCredentials"
+                },
+                "resourceRequirements": {
+                    "$ref": "#/$defs/ResourceRequirements"
+                },
+                "secrets": {
+                    "$ref": "#/$defs/SecretList"
+                },
+                "ulimits": {
+                    "$ref": "#/$defs/Ulimits"
+                },
+                "user": {
+                    "$ref": "#/$defs/String"
+                },
+                "exitCode": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "reason": {
+                    "$ref": "#/$defs/String"
+                },
+                "logStreamName": {
+                    "$ref": "#/$defs/String"
+                },
+                "networkInterfaces": {
+                    "$ref": "#/$defs/NetworkInterfaceList"
+                }
+            }
+        },
+        "DescribeJobsRequest": {
+            "type": "object",
+            "properties": {
+                "jobs": {
+                    "$ref": "#/$defs/StringList"
+                }
+            }
+        },
+        "DescribeSchedulingPoliciesResponse": {
+            "type": "object",
+            "properties": {
+                "schedulingPolicies": {
+                    "$ref": "#/$defs/SchedulingPolicyDetailList"
+                }
+            }
+        },
+        "SchedulingPolicyDetailList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SchedulingPolicyDetail"
+            }
+        },
+        "SchedulingPolicyDetail": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/String"
+                },
+                "arn": {
+                    "$ref": "#/$defs/String"
+                },
+                "fairsharePolicy": {
+                    "$ref": "#/$defs/FairsharePolicy"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagrisTagsMap"
+                }
+            }
+        },
+        "DescribeSchedulingPoliciesRequest": {
+            "type": "object",
+            "properties": {
+                "arns": {
+                    "$ref": "#/$defs/StringList"
+                }
+            }
+        },
+        "GetJobQueueSnapshotResponse": {
+            "type": "object",
+            "properties": {
+                "frontOfQueue": {
+                    "$ref": "#/$defs/FrontOfQueueDetail"
+                }
+            }
+        },
+        "FrontOfQueueDetail": {
+            "type": "object",
+            "properties": {
+                "jobs": {
+                    "$ref": "#/$defs/FrontOfQueueJobSummaryList"
+                },
+                "lastUpdatedAt": {
+                    "$ref": "#/$defs/Long"
+                }
+            }
+        },
+        "FrontOfQueueJobSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FrontOfQueueJobSummary"
+            }
+        },
+        "FrontOfQueueJobSummary": {
+            "type": "object",
+            "properties": {
+                "jobArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "earliestTimeAtPosition": {
+                    "$ref": "#/$defs/Long"
+                }
+            }
+        },
+        "GetJobQueueSnapshotRequest": {
+            "type": "object",
+            "properties": {
+                "jobQueue": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListJobsResponse": {
+            "type": "object",
+            "properties": {
+                "jobSummaryList": {
+                    "$ref": "#/$defs/JobSummaryList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "JobSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/JobSummary"
+            }
+        },
+        "JobSummary": {
+            "type": "object",
+            "properties": {
+                "jobArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "jobId": {
+                    "$ref": "#/$defs/String"
+                },
+                "jobName": {
+                    "$ref": "#/$defs/String"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Long"
+                },
+                "status": {
+                    "$ref": "#/$defs/JobStatus"
+                },
+                "statusReason": {
+                    "$ref": "#/$defs/String"
+                },
+                "startedAt": {
+                    "$ref": "#/$defs/Long"
+                },
+                "stoppedAt": {
+                    "$ref": "#/$defs/Long"
+                },
+                "container": {
+                    "$ref": "#/$defs/ContainerSummary"
+                },
+                "arrayProperties": {
+                    "$ref": "#/$defs/ArrayPropertiesSummary"
+                },
+                "nodeProperties": {
+                    "$ref": "#/$defs/NodePropertiesSummary"
+                },
+                "jobDefinition": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ContainerSummary": {
+            "type": "object",
+            "properties": {
+                "exitCode": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "reason": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ArrayPropertiesSummary": {
+            "type": "object",
+            "properties": {
+                "size": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "index": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "NodePropertiesSummary": {
+            "type": "object",
+            "properties": {
+                "isMainNode": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "numNodes": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "nodeIndex": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "ListJobsRequest": {
+            "type": "object",
+            "properties": {
+                "jobQueue": {
+                    "$ref": "#/$defs/String"
+                },
+                "arrayJobId": {
+                    "$ref": "#/$defs/String"
+                },
+                "multiNodeJobId": {
+                    "$ref": "#/$defs/String"
+                },
+                "jobStatus": {
+                    "$ref": "#/$defs/JobStatus"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "filters": {
+                    "$ref": "#/$defs/ListJobsFilterList"
+                }
+            }
+        },
+        "ListJobsFilterList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/KeyValuesPair"
+            }
+        },
+        "KeyValuesPair": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/String"
+                },
+                "values": {
+                    "$ref": "#/$defs/StringList"
+                }
+            }
+        },
+        "ListSchedulingPoliciesResponse": {
+            "type": "object",
+            "properties": {
+                "schedulingPolicies": {
+                    "$ref": "#/$defs/SchedulingPolicyListingDetailList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "SchedulingPolicyListingDetailList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SchedulingPolicyListingDetail"
+            }
+        },
+        "SchedulingPolicyListingDetail": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListSchedulingPoliciesRequest": {
+            "type": "object",
+            "properties": {
+                "maxResults": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "tags": {
+                    "$ref": "#/$defs/TagrisTagsMap"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "RegisterJobDefinitionResponse": {
+            "type": "object",
+            "properties": {
+                "jobDefinitionName": {
+                    "$ref": "#/$defs/String"
+                },
+                "jobDefinitionArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "revision": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "RegisterJobDefinitionRequest": {
+            "type": "object",
+            "properties": {
+                "jobDefinitionName": {
+                    "$ref": "#/$defs/String"
+                },
+                "type": {
+                    "$ref": "#/$defs/JobDefinitionType"
+                },
+                "parameters": {
+                    "$ref": "#/$defs/ParametersMap"
+                },
+                "schedulingPriority": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "containerProperties": {
+                    "$ref": "#/$defs/ContainerProperties"
+                },
+                "nodeProperties": {
+                    "$ref": "#/$defs/NodeProperties"
+                },
+                "retryStrategy": {
+                    "$ref": "#/$defs/RetryStrategy"
+                },
+                "propagateTags": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "timeout": {
+                    "$ref": "#/$defs/JobTimeout"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagrisTagsMap"
+                },
+                "platformCapabilities": {
+                    "$ref": "#/$defs/PlatformCapabilityList"
+                },
+                "eksProperties": {
+                    "$ref": "#/$defs/EksProperties"
+                },
+                "ecsProperties": {
+                    "$ref": "#/$defs/EcsProperties"
+                }
+            }
+        },
+        "JobDefinitionType": {
+            "enum": [
+                "Container",
+                "Multinode"
+            ]
+        },
+        "SubmitJobResponse": {
+            "type": "object",
+            "properties": {
+                "jobArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "jobName": {
+                    "$ref": "#/$defs/String"
+                },
+                "jobId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "SubmitJobRequest": {
+            "type": "object",
+            "properties": {
+                "jobName": {
+                    "$ref": "#/$defs/String"
+                },
+                "jobQueue": {
+                    "$ref": "#/$defs/String"
+                },
+                "shareIdentifier": {
+                    "$ref": "#/$defs/String"
+                },
+                "schedulingPriorityOverride": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "arrayProperties": {
+                    "$ref": "#/$defs/ArrayProperties"
+                },
+                "dependsOn": {
+                    "$ref": "#/$defs/JobDependencyList"
+                },
+                "jobDefinition": {
+                    "$ref": "#/$defs/String"
+                },
+                "parameters": {
+                    "$ref": "#/$defs/ParametersMap"
+                },
+                "containerOverrides": {
+                    "$ref": "#/$defs/ContainerOverrides"
+                },
+                "nodeOverrides": {
+                    "$ref": "#/$defs/NodeOverrides"
+                },
+                "retryStrategy": {
+                    "$ref": "#/$defs/RetryStrategy"
+                },
+                "propagateTags": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "timeout": {
+                    "$ref": "#/$defs/JobTimeout"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagrisTagsMap"
+                },
+                "eksPropertiesOverride": {
+                    "$ref": "#/$defs/EksPropertiesOverride"
+                },
+                "ecsPropertiesOverride": {
+                    "$ref": "#/$defs/EcsPropertiesOverride"
+                }
+            }
+        },
+        "ArrayProperties": {
+            "type": "object",
+            "properties": {
+                "size": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "ContainerOverrides": {
+            "type": "object",
+            "properties": {
+                "vcpus": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "memory": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "command": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "instanceType": {
+                    "$ref": "#/$defs/String"
+                },
+                "environment": {
+                    "$ref": "#/$defs/EnvironmentVariables"
+                },
+                "resourceRequirements": {
+                    "$ref": "#/$defs/ResourceRequirements"
+                }
+            }
+        },
+        "NodeOverrides": {
+            "type": "object",
+            "properties": {
+                "numNodes": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "nodePropertyOverrides": {
+                    "$ref": "#/$defs/NodePropertyOverrides"
+                }
+            }
+        },
+        "NodePropertyOverrides": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NodePropertyOverride"
+            }
+        },
+        "NodePropertyOverride": {
+            "type": "object",
+            "properties": {
+                "targetNodes": {
+                    "$ref": "#/$defs/String"
+                },
+                "containerOverrides": {
+                    "$ref": "#/$defs/ContainerOverrides"
+                },
+                "ecsPropertiesOverride": {
+                    "$ref": "#/$defs/EcsPropertiesOverride"
+                },
+                "instanceTypes": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "eksPropertiesOverride": {
+                    "$ref": "#/$defs/EksPropertiesOverride"
+                }
+            }
+        },
+        "EcsPropertiesOverride": {
+            "type": "object",
+            "properties": {
+                "taskProperties": {
+                    "$ref": "#/$defs/ListTaskPropertiesOverride"
+                }
+            }
+        },
+        "ListTaskPropertiesOverride": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TaskPropertiesOverride"
+            }
+        },
+        "TaskPropertiesOverride": {
+            "type": "object",
+            "properties": {
+                "containers": {
+                    "$ref": "#/$defs/ListTaskContainerOverrides"
+                }
+            }
+        },
+        "ListTaskContainerOverrides": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TaskContainerOverrides"
+            }
+        },
+        "TaskContainerOverrides": {
+            "type": "object",
+            "properties": {
+                "command": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "environment": {
+                    "$ref": "#/$defs/EnvironmentVariables"
+                },
+                "name": {
+                    "$ref": "#/$defs/String"
+                },
+                "resourceRequirements": {
+                    "$ref": "#/$defs/ResourceRequirements"
+                }
+            }
+        },
+        "EksPropertiesOverride": {
+            "type": "object",
+            "properties": {
+                "podProperties": {
+                    "$ref": "#/$defs/EksPodPropertiesOverride"
+                }
+            }
+        },
+        "EksPodPropertiesOverride": {
+            "type": "object",
+            "properties": {
+                "containers": {
+                    "$ref": "#/$defs/EksContainerOverrideList"
+                },
+                "initContainers": {
+                    "$ref": "#/$defs/EksContainerOverrideList"
+                },
+                "metadata": {
+                    "$ref": "#/$defs/EksMetadata"
+                }
+            }
+        },
+        "EksContainerOverrideList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EksContainerOverride"
+            }
+        },
+        "EksContainerOverride": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/String"
+                },
+                "image": {
+                    "$ref": "#/$defs/String"
+                },
+                "command": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "args": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "env": {
+                    "$ref": "#/$defs/EksContainerEnvironmentVariables"
+                },
+                "resources": {
+                    "$ref": "#/$defs/EksContainerResourceRequirements"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagrisTagsMap"
+                }
+            }
+        },
+        "TerminateJobResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TerminateJobRequest": {
+            "type": "object",
+            "properties": {
+                "jobId": {
+                    "$ref": "#/$defs/String"
+                },
+                "reason": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "tagKeys": {
+                    "$ref": "#/$defs/TagKeysList"
+                }
+            }
+        },
+        "TagKeysList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "UpdateComputeEnvironmentResponse": {
+            "type": "object",
+            "properties": {
+                "computeEnvironmentName": {
+                    "$ref": "#/$defs/String"
+                },
+                "computeEnvironmentArn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "UpdateComputeEnvironmentRequest": {
+            "type": "object",
+            "properties": {
+                "computeEnvironment": {
+                    "$ref": "#/$defs/String"
+                },
+                "state": {
+                    "$ref": "#/$defs/CEState"
+                },
+                "unmanagedvCpus": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "computeResources": {
+                    "$ref": "#/$defs/ComputeResourceUpdate"
+                },
+                "serviceRole": {
+                    "$ref": "#/$defs/String"
+                },
+                "updatePolicy": {
+                    "$ref": "#/$defs/UpdatePolicy"
+                },
+                "context": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ComputeResourceUpdate": {
+            "type": "object",
+            "properties": {
+                "minvCpus": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "maxvCpus": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "desiredvCpus": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "subnets": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "securityGroupIds": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "allocationStrategy": {
+                    "$ref": "#/$defs/CRUpdateAllocationStrategy"
+                },
+                "instanceTypes": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "ec2KeyPair": {
+                    "$ref": "#/$defs/String"
+                },
+                "instanceRole": {
+                    "$ref": "#/$defs/String"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagsMap"
+                },
+                "placementGroup": {
+                    "$ref": "#/$defs/String"
+                },
+                "bidPercentage": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "launchTemplate": {
+                    "$ref": "#/$defs/LaunchTemplateSpecification"
+                },
+                "ec2Configuration": {
+                    "$ref": "#/$defs/Ec2ConfigurationList"
+                },
+                "updateToLatestImageVersion": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "type": {
+                    "$ref": "#/$defs/CRType"
+                },
+                "imageId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "CRUpdateAllocationStrategy": {
+            "enum": [
+                "BEST_FIT_PROGRESSIVE",
+                "SPOT_CAPACITY_OPTIMIZED",
+                "SPOT_PRICE_CAPACITY_OPTIMIZED"
+            ]
+        },
+        "UpdateJobQueueResponse": {
+            "type": "object",
+            "properties": {
+                "jobQueueName": {
+                    "$ref": "#/$defs/String"
+                },
+                "jobQueueArn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "UpdateJobQueueRequest": {
+            "type": "object",
+            "properties": {
+                "jobQueue": {
+                    "$ref": "#/$defs/String"
+                },
+                "state": {
+                    "$ref": "#/$defs/JQState"
+                },
+                "schedulingPolicyArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "priority": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "computeEnvironmentOrder": {
+                    "$ref": "#/$defs/ComputeEnvironmentOrders"
+                },
+                "jobStateTimeLimitActions": {
+                    "$ref": "#/$defs/JobStateTimeLimitActions"
+                }
+            }
+        },
+        "UpdateSchedulingPolicyResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateSchedulingPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/String"
+                },
+                "fairsharePolicy": {
+                    "$ref": "#/$defs/FairsharePolicy"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://batch-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "stringEquals",
+                                                        "argv": [
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "name"
+                                                                ]
+                                                            },
+                                                            "aws"
+                                                        ]
+                                                    }
+                                                ],
+                                                "endpoint": {
+                                                    "url": "https://fips.batch.{Region}.amazonaws.com",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            },
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "stringEquals",
+                                                        "argv": [
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "name"
+                                                                ]
+                                                            },
+                                                            "aws-us-gov"
+                                                        ]
+                                                    }
+                                                ],
+                                                "endpoint": {
+                                                    "url": "https://batch.{Region}.amazonaws.com",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://batch-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://batch.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://batch.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

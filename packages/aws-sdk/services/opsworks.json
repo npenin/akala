@@ -1,0 +1,5637 @@
+{
+    "name": "opsworks",
+    "commands": [
+        {
+            "name": "AssignInstance",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AssignInstance"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AssignInstanceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "AssignVolume",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AssignVolume"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AssignVolumeRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "AssociateElasticIp",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AssociateElasticIp"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AssociateElasticIpRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "AttachElasticLoadBalancer",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AttachElasticLoadBalancer"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AttachElasticLoadBalancerRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CloneStack",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CloneStack"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CloneStackResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CloneStackRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateApp",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateApp"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateAppResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateAppRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateDeployment",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateDeployment"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateDeploymentResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateDeploymentRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateInstance",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateInstance"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateInstanceResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateInstanceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateLayer",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateLayer"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateLayerResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateLayerRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateStack",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateStack"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateStackResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateStackRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateUserProfile",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateUserProfile"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateUserProfileResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateUserProfileRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteApp",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteApp"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteAppRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteInstance",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteInstance"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteInstanceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteLayer",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteLayer"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteLayerRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteStack",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteStack"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteStackRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteUserProfile",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteUserProfile"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteUserProfileRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeregisterEcsCluster",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeregisterEcsCluster"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeregisterEcsClusterRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeregisterElasticIp",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeregisterElasticIp"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeregisterElasticIpRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeregisterInstance",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeregisterInstance"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeregisterInstanceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeregisterRdsDbInstance",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeregisterRdsDbInstance"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeregisterRdsDbInstanceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeregisterVolume",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeregisterVolume"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeregisterVolumeRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeAgentVersions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeAgentVersions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeAgentVersionsResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeAgentVersionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeApps",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeApps"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeAppsResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeAppsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeCommands",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeCommands"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeCommandsResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeCommandsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeDeployments",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeDeployments"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeDeploymentsResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeDeploymentsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeEcsClusters",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeEcsClusters"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeEcsClustersResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeEcsClustersRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeElasticIps",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeElasticIps"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeElasticIpsResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeElasticIpsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeElasticLoadBalancers",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeElasticLoadBalancers"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeElasticLoadBalancersResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeElasticLoadBalancersRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeInstances",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeInstances"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeInstancesResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeInstancesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeLayers",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeLayers"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeLayersResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeLayersRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeLoadBasedAutoScaling",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeLoadBasedAutoScaling"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeLoadBasedAutoScalingResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeLoadBasedAutoScalingRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeMyUserProfile",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeMyUserProfile"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeMyUserProfileResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeOperatingSystems",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeOperatingSystems"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeOperatingSystemsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribePermissions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribePermissions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribePermissionsResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribePermissionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeRaidArrays",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeRaidArrays"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeRaidArraysResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeRaidArraysRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeRdsDbInstances",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeRdsDbInstances"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeRdsDbInstancesResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeRdsDbInstancesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeServiceErrors",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeServiceErrors"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeServiceErrorsResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeServiceErrorsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeStackProvisioningParameters",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeStackProvisioningParameters"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeStackProvisioningParametersResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeStackProvisioningParametersRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeStacks",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeStacks"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeStacksResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeStacksRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeStackSummary",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeStackSummary"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeStackSummaryResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeStackSummaryRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeTimeBasedAutoScaling",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeTimeBasedAutoScaling"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeTimeBasedAutoScalingResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeTimeBasedAutoScalingRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeUserProfiles",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeUserProfiles"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeUserProfilesResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeUserProfilesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeVolumes",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeVolumes"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeVolumesResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeVolumesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DetachElasticLoadBalancer",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DetachElasticLoadBalancer"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DetachElasticLoadBalancerRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DisassociateElasticIp",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DisassociateElasticIp"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DisassociateElasticIpRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetHostnameSuggestion",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetHostnameSuggestion"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetHostnameSuggestionResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetHostnameSuggestionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GrantAccess",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GrantAccess"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GrantAccessResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GrantAccessRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTags",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTags"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RebootInstance",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RebootInstance"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RebootInstanceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RegisterEcsCluster",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RegisterEcsCluster"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RegisterEcsClusterResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RegisterEcsClusterRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RegisterElasticIp",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RegisterElasticIp"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RegisterElasticIpResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RegisterElasticIpRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RegisterInstance",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RegisterInstance"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RegisterInstanceResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RegisterInstanceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RegisterRdsDbInstance",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RegisterRdsDbInstance"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RegisterRdsDbInstanceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RegisterVolume",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RegisterVolume"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RegisterVolumeResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RegisterVolumeRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SetLoadBasedAutoScaling",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SetLoadBasedAutoScaling"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SetLoadBasedAutoScalingRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SetPermission",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SetPermission"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SetPermissionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SetTimeBasedAutoScaling",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SetTimeBasedAutoScaling"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SetTimeBasedAutoScalingRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartInstance",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartInstance"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartInstanceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartStack",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartStack"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartStackRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StopInstance",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StopInstance"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StopInstanceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StopStack",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StopStack"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StopStackRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UnassignInstance",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UnassignInstance"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UnassignInstanceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UnassignVolume",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UnassignVolume"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UnassignVolumeRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateApp",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateApp"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateAppRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateElasticIp",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateElasticIp"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateElasticIpRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateInstance",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateInstance"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateInstanceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateLayer",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateLayer"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateLayerRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateMyUserProfile",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateMyUserProfile"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateMyUserProfileRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateRdsDbInstance",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateRdsDbInstance"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateRdsDbInstanceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateStack",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateStack"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateStackRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateUserProfile",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateUserProfile"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateUserProfileRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateVolume",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateVolume"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateVolumeRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "AssignInstanceRequest": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/String"
+                },
+                "LayerIds": {
+                    "$ref": "#/$defs/Strings"
+                }
+            }
+        },
+        "String": {
+            "type": "string"
+        },
+        "Strings": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "AssignVolumeRequest": {
+            "type": "object",
+            "properties": {
+                "VolumeId": {
+                    "$ref": "#/$defs/String"
+                },
+                "InstanceId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "AssociateElasticIpRequest": {
+            "type": "object",
+            "properties": {
+                "ElasticIp": {
+                    "$ref": "#/$defs/String"
+                },
+                "InstanceId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "AttachElasticLoadBalancerRequest": {
+            "type": "object",
+            "properties": {
+                "ElasticLoadBalancerName": {
+                    "$ref": "#/$defs/String"
+                },
+                "LayerId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "CloneStackResult": {
+            "type": "object",
+            "properties": {
+                "StackId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "CloneStackRequest": {
+            "type": "object",
+            "properties": {
+                "SourceStackId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Region": {
+                    "$ref": "#/$defs/String"
+                },
+                "VpcId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Attributes": {
+                    "$ref": "#/$defs/StackAttributes"
+                },
+                "ServiceRoleArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "DefaultInstanceProfileArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "DefaultOs": {
+                    "$ref": "#/$defs/String"
+                },
+                "HostnameTheme": {
+                    "$ref": "#/$defs/String"
+                },
+                "DefaultAvailabilityZone": {
+                    "$ref": "#/$defs/String"
+                },
+                "DefaultSubnetId": {
+                    "$ref": "#/$defs/String"
+                },
+                "CustomJson": {
+                    "$ref": "#/$defs/String"
+                },
+                "ConfigurationManager": {
+                    "$ref": "#/$defs/StackConfigurationManager"
+                },
+                "ChefConfiguration": {
+                    "$ref": "#/$defs/ChefConfiguration"
+                },
+                "UseCustomCookbooks": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "UseOpsworksSecurityGroups": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "CustomCookbooksSource": {
+                    "$ref": "#/$defs/Source"
+                },
+                "DefaultSshKeyName": {
+                    "$ref": "#/$defs/String"
+                },
+                "ClonePermissions": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "CloneAppIds": {
+                    "$ref": "#/$defs/Strings"
+                },
+                "DefaultRootDeviceType": {
+                    "$ref": "#/$defs/RootDeviceType"
+                },
+                "AgentVersion": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "StackAttributes": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "StackConfigurationManager": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Version": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ChefConfiguration": {
+            "type": "object",
+            "properties": {
+                "ManageBerkshelf": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "BerkshelfVersion": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "Boolean": {
+            "type": "boolean"
+        },
+        "Source": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "$ref": "#/$defs/SourceType"
+                },
+                "Url": {
+                    "$ref": "#/$defs/String"
+                },
+                "Username": {
+                    "$ref": "#/$defs/String"
+                },
+                "Password": {
+                    "$ref": "#/$defs/String"
+                },
+                "SshKey": {
+                    "$ref": "#/$defs/String"
+                },
+                "Revision": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "SourceType": {
+            "enum": [
+                "git",
+                "svn",
+                "archive",
+                "s3"
+            ]
+        },
+        "RootDeviceType": {
+            "enum": [
+                "ebs",
+                "instance_store"
+            ]
+        },
+        "CreateAppResult": {
+            "type": "object",
+            "properties": {
+                "AppId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "CreateAppRequest": {
+            "type": "object",
+            "properties": {
+                "StackId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Shortname": {
+                    "$ref": "#/$defs/String"
+                },
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Description": {
+                    "$ref": "#/$defs/String"
+                },
+                "DataSources": {
+                    "$ref": "#/$defs/DataSources"
+                },
+                "Type": {
+                    "$ref": "#/$defs/AppType"
+                },
+                "AppSource": {
+                    "$ref": "#/$defs/Source"
+                },
+                "Domains": {
+                    "$ref": "#/$defs/Strings"
+                },
+                "EnableSsl": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "SslConfiguration": {
+                    "$ref": "#/$defs/SslConfiguration"
+                },
+                "Attributes": {
+                    "$ref": "#/$defs/AppAttributes"
+                },
+                "Environment": {
+                    "$ref": "#/$defs/EnvironmentVariables"
+                }
+            }
+        },
+        "DataSources": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DataSource"
+            }
+        },
+        "DataSource": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "$ref": "#/$defs/String"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/String"
+                },
+                "DatabaseName": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "AppType": {
+            "enum": [
+                "aws_flow_ruby",
+                "java",
+                "rails",
+                "php",
+                "nodejs",
+                "static",
+                "other"
+            ]
+        },
+        "SslConfiguration": {
+            "type": "object",
+            "properties": {
+                "Certificate": {
+                    "$ref": "#/$defs/String"
+                },
+                "PrivateKey": {
+                    "$ref": "#/$defs/String"
+                },
+                "Chain": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "AppAttributes": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "EnvironmentVariables": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EnvironmentVariable"
+            }
+        },
+        "EnvironmentVariable": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/String"
+                },
+                "Value": {
+                    "$ref": "#/$defs/String"
+                },
+                "Secure": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "CreateDeploymentResult": {
+            "type": "object",
+            "properties": {
+                "DeploymentId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "CreateDeploymentRequest": {
+            "type": "object",
+            "properties": {
+                "StackId": {
+                    "$ref": "#/$defs/String"
+                },
+                "AppId": {
+                    "$ref": "#/$defs/String"
+                },
+                "InstanceIds": {
+                    "$ref": "#/$defs/Strings"
+                },
+                "LayerIds": {
+                    "$ref": "#/$defs/Strings"
+                },
+                "Command": {
+                    "$ref": "#/$defs/DeploymentCommand"
+                },
+                "Comment": {
+                    "$ref": "#/$defs/String"
+                },
+                "CustomJson": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DeploymentCommand": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/DeploymentCommandName"
+                },
+                "Args": {
+                    "$ref": "#/$defs/DeploymentCommandArgs"
+                }
+            }
+        },
+        "DeploymentCommandName": {
+            "enum": [
+                "install_dependencies",
+                "update_dependencies",
+                "update_custom_cookbooks",
+                "execute_recipes",
+                "configure",
+                "setup",
+                "deploy",
+                "rollback",
+                "start",
+                "stop",
+                "restart",
+                "undeploy"
+            ]
+        },
+        "DeploymentCommandArgs": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/Strings"
+            }
+        },
+        "CreateInstanceResult": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "CreateInstanceRequest": {
+            "type": "object",
+            "properties": {
+                "StackId": {
+                    "$ref": "#/$defs/String"
+                },
+                "LayerIds": {
+                    "$ref": "#/$defs/Strings"
+                },
+                "InstanceType": {
+                    "$ref": "#/$defs/String"
+                },
+                "AutoScalingType": {
+                    "$ref": "#/$defs/AutoScalingType"
+                },
+                "Hostname": {
+                    "$ref": "#/$defs/String"
+                },
+                "Os": {
+                    "$ref": "#/$defs/String"
+                },
+                "AmiId": {
+                    "$ref": "#/$defs/String"
+                },
+                "SshKeyName": {
+                    "$ref": "#/$defs/String"
+                },
+                "AvailabilityZone": {
+                    "$ref": "#/$defs/String"
+                },
+                "VirtualizationType": {
+                    "$ref": "#/$defs/String"
+                },
+                "SubnetId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Architecture": {
+                    "$ref": "#/$defs/Architecture"
+                },
+                "RootDeviceType": {
+                    "$ref": "#/$defs/RootDeviceType"
+                },
+                "BlockDeviceMappings": {
+                    "$ref": "#/$defs/BlockDeviceMappings"
+                },
+                "InstallUpdatesOnBoot": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "EbsOptimized": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "AgentVersion": {
+                    "$ref": "#/$defs/String"
+                },
+                "Tenancy": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "AutoScalingType": {
+            "enum": [
+                "load",
+                "timer"
+            ]
+        },
+        "Architecture": {
+            "enum": [
+                "x86_64",
+                "i386"
+            ]
+        },
+        "BlockDeviceMappings": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BlockDeviceMapping"
+            }
+        },
+        "BlockDeviceMapping": {
+            "type": "object",
+            "properties": {
+                "DeviceName": {
+                    "$ref": "#/$defs/String"
+                },
+                "NoDevice": {
+                    "$ref": "#/$defs/String"
+                },
+                "VirtualName": {
+                    "$ref": "#/$defs/String"
+                },
+                "Ebs": {
+                    "$ref": "#/$defs/EbsBlockDevice"
+                }
+            }
+        },
+        "EbsBlockDevice": {
+            "type": "object",
+            "properties": {
+                "SnapshotId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Iops": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "VolumeSize": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "VolumeType": {
+                    "$ref": "#/$defs/VolumeType"
+                },
+                "DeleteOnTermination": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "Integer": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "VolumeType": {
+            "enum": [
+                "gp2",
+                "io1",
+                "standard"
+            ]
+        },
+        "CreateLayerResult": {
+            "type": "object",
+            "properties": {
+                "LayerId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "CreateLayerRequest": {
+            "type": "object",
+            "properties": {
+                "StackId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Type": {
+                    "$ref": "#/$defs/LayerType"
+                },
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Shortname": {
+                    "$ref": "#/$defs/String"
+                },
+                "Attributes": {
+                    "$ref": "#/$defs/LayerAttributes"
+                },
+                "CloudWatchLogsConfiguration": {
+                    "$ref": "#/$defs/CloudWatchLogsConfiguration"
+                },
+                "CustomInstanceProfileArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "CustomJson": {
+                    "$ref": "#/$defs/String"
+                },
+                "CustomSecurityGroupIds": {
+                    "$ref": "#/$defs/Strings"
+                },
+                "Packages": {
+                    "$ref": "#/$defs/Strings"
+                },
+                "VolumeConfigurations": {
+                    "$ref": "#/$defs/VolumeConfigurations"
+                },
+                "EnableAutoHealing": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "AutoAssignElasticIps": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "AutoAssignPublicIps": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "CustomRecipes": {
+                    "$ref": "#/$defs/Recipes"
+                },
+                "InstallUpdatesOnBoot": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "UseEbsOptimizedInstances": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "LifecycleEventConfiguration": {
+                    "$ref": "#/$defs/LifecycleEventConfiguration"
+                }
+            }
+        },
+        "LayerType": {
+            "enum": [
+                "aws_flow_ruby",
+                "ecs_cluster",
+                "java_app",
+                "lb",
+                "web",
+                "php_app",
+                "rails_app",
+                "nodejs_app",
+                "memcached",
+                "db_master",
+                "monitoring_master",
+                "custom"
+            ]
+        },
+        "LayerAttributes": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "CloudWatchLogsConfiguration": {
+            "type": "object",
+            "properties": {
+                "Enabled": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "LogStreams": {
+                    "$ref": "#/$defs/CloudWatchLogsLogStreams"
+                }
+            }
+        },
+        "CloudWatchLogsLogStreams": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CloudWatchLogsLogStream"
+            }
+        },
+        "CloudWatchLogsLogStream": {
+            "type": "object",
+            "properties": {
+                "LogGroupName": {
+                    "$ref": "#/$defs/String"
+                },
+                "DatetimeFormat": {
+                    "$ref": "#/$defs/String"
+                },
+                "TimeZone": {
+                    "$ref": "#/$defs/CloudWatchLogsTimeZone"
+                },
+                "File": {
+                    "$ref": "#/$defs/String"
+                },
+                "FileFingerprintLines": {
+                    "$ref": "#/$defs/String"
+                },
+                "MultiLineStartPattern": {
+                    "$ref": "#/$defs/String"
+                },
+                "InitialPosition": {
+                    "$ref": "#/$defs/CloudWatchLogsInitialPosition"
+                },
+                "Encoding": {
+                    "$ref": "#/$defs/CloudWatchLogsEncoding"
+                },
+                "BufferDuration": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "BatchCount": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "BatchSize": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "CloudWatchLogsTimeZone": {
+            "enum": [
+                "LOCAL",
+                "UTC"
+            ]
+        },
+        "CloudWatchLogsInitialPosition": {
+            "enum": [
+                "start_of_file",
+                "end_of_file"
+            ]
+        },
+        "CloudWatchLogsEncoding": {
+            "enum": [
+                "ascii",
+                "big5",
+                "big5hkscs",
+                "cp037",
+                "cp424",
+                "cp437",
+                "cp500",
+                "cp720",
+                "cp737",
+                "cp775",
+                "cp850",
+                "cp852",
+                "cp855",
+                "cp856",
+                "cp857",
+                "cp858",
+                "cp860",
+                "cp861",
+                "cp862",
+                "cp863",
+                "cp864",
+                "cp865",
+                "cp866",
+                "cp869",
+                "cp874",
+                "cp875",
+                "cp932",
+                "cp949",
+                "cp950",
+                "cp1006",
+                "cp1026",
+                "cp1140",
+                "cp1250",
+                "cp1251",
+                "cp1252",
+                "cp1253",
+                "cp1254",
+                "cp1255",
+                "cp1256",
+                "cp1257",
+                "cp1258",
+                "euc_jp",
+                "euc_jis_2004",
+                "euc_jisx0213",
+                "euc_kr",
+                "gb2312",
+                "gbk",
+                "gb18030",
+                "hz",
+                "iso2022_jp",
+                "iso2022_jp_1",
+                "iso2022_jp_2",
+                "iso2022_jp_2004",
+                "iso2022_jp_3",
+                "iso2022_jp_ext",
+                "iso2022_kr",
+                "latin_1",
+                "iso8859_2",
+                "iso8859_3",
+                "iso8859_4",
+                "iso8859_5",
+                "iso8859_6",
+                "iso8859_7",
+                "iso8859_8",
+                "iso8859_9",
+                "iso8859_10",
+                "iso8859_13",
+                "iso8859_14",
+                "iso8859_15",
+                "iso8859_16",
+                "johab",
+                "koi8_r",
+                "koi8_u",
+                "mac_cyrillic",
+                "mac_greek",
+                "mac_iceland",
+                "mac_latin2",
+                "mac_roman",
+                "mac_turkish",
+                "ptcp154",
+                "shift_jis",
+                "shift_jis_2004",
+                "shift_jisx0213",
+                "utf_32",
+                "utf_32_be",
+                "utf_32_le",
+                "utf_16",
+                "utf_16_be",
+                "utf_16_le",
+                "utf_7",
+                "utf_8",
+                "utf_8_sig"
+            ]
+        },
+        "VolumeConfigurations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/VolumeConfiguration"
+            }
+        },
+        "VolumeConfiguration": {
+            "type": "object",
+            "properties": {
+                "MountPoint": {
+                    "$ref": "#/$defs/String"
+                },
+                "RaidLevel": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "NumberOfDisks": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Size": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "VolumeType": {
+                    "$ref": "#/$defs/String"
+                },
+                "Iops": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Encrypted": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "Recipes": {
+            "type": "object",
+            "properties": {
+                "Setup": {
+                    "$ref": "#/$defs/Strings"
+                },
+                "Configure": {
+                    "$ref": "#/$defs/Strings"
+                },
+                "Deploy": {
+                    "$ref": "#/$defs/Strings"
+                },
+                "Undeploy": {
+                    "$ref": "#/$defs/Strings"
+                },
+                "Shutdown": {
+                    "$ref": "#/$defs/Strings"
+                }
+            }
+        },
+        "LifecycleEventConfiguration": {
+            "type": "object",
+            "properties": {
+                "Shutdown": {
+                    "$ref": "#/$defs/ShutdownEventConfiguration"
+                }
+            }
+        },
+        "ShutdownEventConfiguration": {
+            "type": "object",
+            "properties": {
+                "ExecutionTimeout": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "DelayUntilElbConnectionsDrained": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "CreateStackResult": {
+            "type": "object",
+            "properties": {
+                "StackId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "CreateStackRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Region": {
+                    "$ref": "#/$defs/String"
+                },
+                "VpcId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Attributes": {
+                    "$ref": "#/$defs/StackAttributes"
+                },
+                "ServiceRoleArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "DefaultInstanceProfileArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "DefaultOs": {
+                    "$ref": "#/$defs/String"
+                },
+                "HostnameTheme": {
+                    "$ref": "#/$defs/String"
+                },
+                "DefaultAvailabilityZone": {
+                    "$ref": "#/$defs/String"
+                },
+                "DefaultSubnetId": {
+                    "$ref": "#/$defs/String"
+                },
+                "CustomJson": {
+                    "$ref": "#/$defs/String"
+                },
+                "ConfigurationManager": {
+                    "$ref": "#/$defs/StackConfigurationManager"
+                },
+                "ChefConfiguration": {
+                    "$ref": "#/$defs/ChefConfiguration"
+                },
+                "UseCustomCookbooks": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "UseOpsworksSecurityGroups": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "CustomCookbooksSource": {
+                    "$ref": "#/$defs/Source"
+                },
+                "DefaultSshKeyName": {
+                    "$ref": "#/$defs/String"
+                },
+                "DefaultRootDeviceType": {
+                    "$ref": "#/$defs/RootDeviceType"
+                },
+                "AgentVersion": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "CreateUserProfileResult": {
+            "type": "object",
+            "properties": {
+                "IamUserArn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "CreateUserProfileRequest": {
+            "type": "object",
+            "properties": {
+                "IamUserArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "SshUsername": {
+                    "$ref": "#/$defs/String"
+                },
+                "SshPublicKey": {
+                    "$ref": "#/$defs/String"
+                },
+                "AllowSelfManagement": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "DeleteAppRequest": {
+            "type": "object",
+            "properties": {
+                "AppId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DeleteInstanceRequest": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/String"
+                },
+                "DeleteElasticIp": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "DeleteVolumes": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "DeleteLayerRequest": {
+            "type": "object",
+            "properties": {
+                "LayerId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DeleteStackRequest": {
+            "type": "object",
+            "properties": {
+                "StackId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DeleteUserProfileRequest": {
+            "type": "object",
+            "properties": {
+                "IamUserArn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DeregisterEcsClusterRequest": {
+            "type": "object",
+            "properties": {
+                "EcsClusterArn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DeregisterElasticIpRequest": {
+            "type": "object",
+            "properties": {
+                "ElasticIp": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DeregisterInstanceRequest": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DeregisterRdsDbInstanceRequest": {
+            "type": "object",
+            "properties": {
+                "RdsDbInstanceArn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DeregisterVolumeRequest": {
+            "type": "object",
+            "properties": {
+                "VolumeId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DescribeAgentVersionsResult": {
+            "type": "object",
+            "properties": {
+                "AgentVersions": {
+                    "$ref": "#/$defs/AgentVersions"
+                }
+            }
+        },
+        "AgentVersions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AgentVersion"
+            }
+        },
+        "AgentVersion": {
+            "type": "object",
+            "properties": {
+                "Version": {
+                    "$ref": "#/$defs/String"
+                },
+                "ConfigurationManager": {
+                    "$ref": "#/$defs/StackConfigurationManager"
+                }
+            }
+        },
+        "DescribeAgentVersionsRequest": {
+            "type": "object",
+            "properties": {
+                "StackId": {
+                    "$ref": "#/$defs/String"
+                },
+                "ConfigurationManager": {
+                    "$ref": "#/$defs/StackConfigurationManager"
+                }
+            }
+        },
+        "DescribeAppsResult": {
+            "type": "object",
+            "properties": {
+                "Apps": {
+                    "$ref": "#/$defs/Apps"
+                }
+            }
+        },
+        "Apps": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/App"
+            }
+        },
+        "App": {
+            "type": "object",
+            "properties": {
+                "AppId": {
+                    "$ref": "#/$defs/String"
+                },
+                "StackId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Shortname": {
+                    "$ref": "#/$defs/String"
+                },
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Description": {
+                    "$ref": "#/$defs/String"
+                },
+                "DataSources": {
+                    "$ref": "#/$defs/DataSources"
+                },
+                "Type": {
+                    "$ref": "#/$defs/AppType"
+                },
+                "AppSource": {
+                    "$ref": "#/$defs/Source"
+                },
+                "Domains": {
+                    "$ref": "#/$defs/Strings"
+                },
+                "EnableSsl": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "SslConfiguration": {
+                    "$ref": "#/$defs/SslConfiguration"
+                },
+                "Attributes": {
+                    "$ref": "#/$defs/AppAttributes"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/String"
+                },
+                "Environment": {
+                    "$ref": "#/$defs/EnvironmentVariables"
+                }
+            }
+        },
+        "DescribeAppsRequest": {
+            "type": "object",
+            "properties": {
+                "StackId": {
+                    "$ref": "#/$defs/String"
+                },
+                "AppIds": {
+                    "$ref": "#/$defs/Strings"
+                }
+            }
+        },
+        "DescribeCommandsResult": {
+            "type": "object",
+            "properties": {
+                "Commands": {
+                    "$ref": "#/$defs/Commands"
+                }
+            }
+        },
+        "Commands": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Command"
+            }
+        },
+        "Command": {
+            "type": "object",
+            "properties": {
+                "CommandId": {
+                    "$ref": "#/$defs/String"
+                },
+                "InstanceId": {
+                    "$ref": "#/$defs/String"
+                },
+                "DeploymentId": {
+                    "$ref": "#/$defs/String"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/DateTime"
+                },
+                "AcknowledgedAt": {
+                    "$ref": "#/$defs/DateTime"
+                },
+                "CompletedAt": {
+                    "$ref": "#/$defs/DateTime"
+                },
+                "Status": {
+                    "$ref": "#/$defs/String"
+                },
+                "ExitCode": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "LogUrl": {
+                    "$ref": "#/$defs/String"
+                },
+                "Type": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DateTime": {
+            "type": "string"
+        },
+        "DescribeCommandsRequest": {
+            "type": "object",
+            "properties": {
+                "DeploymentId": {
+                    "$ref": "#/$defs/String"
+                },
+                "InstanceId": {
+                    "$ref": "#/$defs/String"
+                },
+                "CommandIds": {
+                    "$ref": "#/$defs/Strings"
+                }
+            }
+        },
+        "DescribeDeploymentsResult": {
+            "type": "object",
+            "properties": {
+                "Deployments": {
+                    "$ref": "#/$defs/Deployments"
+                }
+            }
+        },
+        "Deployments": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Deployment"
+            }
+        },
+        "Deployment": {
+            "type": "object",
+            "properties": {
+                "DeploymentId": {
+                    "$ref": "#/$defs/String"
+                },
+                "StackId": {
+                    "$ref": "#/$defs/String"
+                },
+                "AppId": {
+                    "$ref": "#/$defs/String"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/DateTime"
+                },
+                "CompletedAt": {
+                    "$ref": "#/$defs/DateTime"
+                },
+                "Duration": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "IamUserArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "Comment": {
+                    "$ref": "#/$defs/String"
+                },
+                "Command": {
+                    "$ref": "#/$defs/DeploymentCommand"
+                },
+                "Status": {
+                    "$ref": "#/$defs/String"
+                },
+                "CustomJson": {
+                    "$ref": "#/$defs/String"
+                },
+                "InstanceIds": {
+                    "$ref": "#/$defs/Strings"
+                }
+            }
+        },
+        "DescribeDeploymentsRequest": {
+            "type": "object",
+            "properties": {
+                "StackId": {
+                    "$ref": "#/$defs/String"
+                },
+                "AppId": {
+                    "$ref": "#/$defs/String"
+                },
+                "DeploymentIds": {
+                    "$ref": "#/$defs/Strings"
+                }
+            }
+        },
+        "DescribeEcsClustersResult": {
+            "type": "object",
+            "properties": {
+                "EcsClusters": {
+                    "$ref": "#/$defs/EcsClusters"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "EcsClusters": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EcsCluster"
+            }
+        },
+        "EcsCluster": {
+            "type": "object",
+            "properties": {
+                "EcsClusterArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "EcsClusterName": {
+                    "$ref": "#/$defs/String"
+                },
+                "StackId": {
+                    "$ref": "#/$defs/String"
+                },
+                "RegisteredAt": {
+                    "$ref": "#/$defs/DateTime"
+                }
+            }
+        },
+        "DescribeEcsClustersRequest": {
+            "type": "object",
+            "properties": {
+                "EcsClusterArns": {
+                    "$ref": "#/$defs/Strings"
+                },
+                "StackId": {
+                    "$ref": "#/$defs/String"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "DescribeElasticIpsResult": {
+            "type": "object",
+            "properties": {
+                "ElasticIps": {
+                    "$ref": "#/$defs/ElasticIps"
+                }
+            }
+        },
+        "ElasticIps": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ElasticIp"
+            }
+        },
+        "ElasticIp": {
+            "type": "object",
+            "properties": {
+                "Ip": {
+                    "$ref": "#/$defs/String"
+                },
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Domain": {
+                    "$ref": "#/$defs/String"
+                },
+                "Region": {
+                    "$ref": "#/$defs/String"
+                },
+                "InstanceId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DescribeElasticIpsRequest": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/String"
+                },
+                "StackId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Ips": {
+                    "$ref": "#/$defs/Strings"
+                }
+            }
+        },
+        "DescribeElasticLoadBalancersResult": {
+            "type": "object",
+            "properties": {
+                "ElasticLoadBalancers": {
+                    "$ref": "#/$defs/ElasticLoadBalancers"
+                }
+            }
+        },
+        "ElasticLoadBalancers": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ElasticLoadBalancer"
+            }
+        },
+        "ElasticLoadBalancer": {
+            "type": "object",
+            "properties": {
+                "ElasticLoadBalancerName": {
+                    "$ref": "#/$defs/String"
+                },
+                "Region": {
+                    "$ref": "#/$defs/String"
+                },
+                "DnsName": {
+                    "$ref": "#/$defs/String"
+                },
+                "StackId": {
+                    "$ref": "#/$defs/String"
+                },
+                "LayerId": {
+                    "$ref": "#/$defs/String"
+                },
+                "VpcId": {
+                    "$ref": "#/$defs/String"
+                },
+                "AvailabilityZones": {
+                    "$ref": "#/$defs/Strings"
+                },
+                "SubnetIds": {
+                    "$ref": "#/$defs/Strings"
+                },
+                "Ec2InstanceIds": {
+                    "$ref": "#/$defs/Strings"
+                }
+            }
+        },
+        "DescribeElasticLoadBalancersRequest": {
+            "type": "object",
+            "properties": {
+                "StackId": {
+                    "$ref": "#/$defs/String"
+                },
+                "LayerIds": {
+                    "$ref": "#/$defs/Strings"
+                }
+            }
+        },
+        "DescribeInstancesResult": {
+            "type": "object",
+            "properties": {
+                "Instances": {
+                    "$ref": "#/$defs/Instances"
+                }
+            }
+        },
+        "Instances": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Instance"
+            }
+        },
+        "Instance": {
+            "type": "object",
+            "properties": {
+                "AgentVersion": {
+                    "$ref": "#/$defs/String"
+                },
+                "AmiId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Architecture": {
+                    "$ref": "#/$defs/Architecture"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/String"
+                },
+                "AutoScalingType": {
+                    "$ref": "#/$defs/AutoScalingType"
+                },
+                "AvailabilityZone": {
+                    "$ref": "#/$defs/String"
+                },
+                "BlockDeviceMappings": {
+                    "$ref": "#/$defs/BlockDeviceMappings"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/DateTime"
+                },
+                "EbsOptimized": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "Ec2InstanceId": {
+                    "$ref": "#/$defs/String"
+                },
+                "EcsClusterArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "EcsContainerInstanceArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "ElasticIp": {
+                    "$ref": "#/$defs/String"
+                },
+                "Hostname": {
+                    "$ref": "#/$defs/String"
+                },
+                "InfrastructureClass": {
+                    "$ref": "#/$defs/String"
+                },
+                "InstallUpdatesOnBoot": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "InstanceId": {
+                    "$ref": "#/$defs/String"
+                },
+                "InstanceProfileArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "InstanceType": {
+                    "$ref": "#/$defs/String"
+                },
+                "LastServiceErrorId": {
+                    "$ref": "#/$defs/String"
+                },
+                "LayerIds": {
+                    "$ref": "#/$defs/Strings"
+                },
+                "Os": {
+                    "$ref": "#/$defs/String"
+                },
+                "Platform": {
+                    "$ref": "#/$defs/String"
+                },
+                "PrivateDns": {
+                    "$ref": "#/$defs/String"
+                },
+                "PrivateIp": {
+                    "$ref": "#/$defs/String"
+                },
+                "PublicDns": {
+                    "$ref": "#/$defs/String"
+                },
+                "PublicIp": {
+                    "$ref": "#/$defs/String"
+                },
+                "RegisteredBy": {
+                    "$ref": "#/$defs/String"
+                },
+                "ReportedAgentVersion": {
+                    "$ref": "#/$defs/String"
+                },
+                "ReportedOs": {
+                    "$ref": "#/$defs/ReportedOs"
+                },
+                "RootDeviceType": {
+                    "$ref": "#/$defs/RootDeviceType"
+                },
+                "RootDeviceVolumeId": {
+                    "$ref": "#/$defs/String"
+                },
+                "SecurityGroupIds": {
+                    "$ref": "#/$defs/Strings"
+                },
+                "SshHostDsaKeyFingerprint": {
+                    "$ref": "#/$defs/String"
+                },
+                "SshHostRsaKeyFingerprint": {
+                    "$ref": "#/$defs/String"
+                },
+                "SshKeyName": {
+                    "$ref": "#/$defs/String"
+                },
+                "StackId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Status": {
+                    "$ref": "#/$defs/String"
+                },
+                "SubnetId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Tenancy": {
+                    "$ref": "#/$defs/String"
+                },
+                "VirtualizationType": {
+                    "$ref": "#/$defs/VirtualizationType"
+                }
+            }
+        },
+        "ReportedOs": {
+            "type": "object",
+            "properties": {
+                "Family": {
+                    "$ref": "#/$defs/String"
+                },
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Version": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "VirtualizationType": {
+            "enum": [
+                "paravirtual",
+                "hvm"
+            ]
+        },
+        "DescribeInstancesRequest": {
+            "type": "object",
+            "properties": {
+                "StackId": {
+                    "$ref": "#/$defs/String"
+                },
+                "LayerId": {
+                    "$ref": "#/$defs/String"
+                },
+                "InstanceIds": {
+                    "$ref": "#/$defs/Strings"
+                }
+            }
+        },
+        "DescribeLayersResult": {
+            "type": "object",
+            "properties": {
+                "Layers": {
+                    "$ref": "#/$defs/Layers"
+                }
+            }
+        },
+        "Layers": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Layer"
+            }
+        },
+        "Layer": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/String"
+                },
+                "StackId": {
+                    "$ref": "#/$defs/String"
+                },
+                "LayerId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Type": {
+                    "$ref": "#/$defs/LayerType"
+                },
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Shortname": {
+                    "$ref": "#/$defs/String"
+                },
+                "Attributes": {
+                    "$ref": "#/$defs/LayerAttributes"
+                },
+                "CloudWatchLogsConfiguration": {
+                    "$ref": "#/$defs/CloudWatchLogsConfiguration"
+                },
+                "CustomInstanceProfileArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "CustomJson": {
+                    "$ref": "#/$defs/String"
+                },
+                "CustomSecurityGroupIds": {
+                    "$ref": "#/$defs/Strings"
+                },
+                "DefaultSecurityGroupNames": {
+                    "$ref": "#/$defs/Strings"
+                },
+                "Packages": {
+                    "$ref": "#/$defs/Strings"
+                },
+                "VolumeConfigurations": {
+                    "$ref": "#/$defs/VolumeConfigurations"
+                },
+                "EnableAutoHealing": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "AutoAssignElasticIps": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "AutoAssignPublicIps": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "DefaultRecipes": {
+                    "$ref": "#/$defs/Recipes"
+                },
+                "CustomRecipes": {
+                    "$ref": "#/$defs/Recipes"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/DateTime"
+                },
+                "InstallUpdatesOnBoot": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "UseEbsOptimizedInstances": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "LifecycleEventConfiguration": {
+                    "$ref": "#/$defs/LifecycleEventConfiguration"
+                }
+            }
+        },
+        "DescribeLayersRequest": {
+            "type": "object",
+            "properties": {
+                "StackId": {
+                    "$ref": "#/$defs/String"
+                },
+                "LayerIds": {
+                    "$ref": "#/$defs/Strings"
+                }
+            }
+        },
+        "DescribeLoadBasedAutoScalingResult": {
+            "type": "object",
+            "properties": {
+                "LoadBasedAutoScalingConfigurations": {
+                    "$ref": "#/$defs/LoadBasedAutoScalingConfigurations"
+                }
+            }
+        },
+        "LoadBasedAutoScalingConfigurations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LoadBasedAutoScalingConfiguration"
+            }
+        },
+        "LoadBasedAutoScalingConfiguration": {
+            "type": "object",
+            "properties": {
+                "LayerId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Enable": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "UpScaling": {
+                    "$ref": "#/$defs/AutoScalingThresholds"
+                },
+                "DownScaling": {
+                    "$ref": "#/$defs/AutoScalingThresholds"
+                }
+            }
+        },
+        "AutoScalingThresholds": {
+            "type": "object",
+            "properties": {
+                "InstanceCount": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "ThresholdsWaitTime": {
+                    "$ref": "#/$defs/Minute"
+                },
+                "IgnoreMetricsTime": {
+                    "$ref": "#/$defs/Minute"
+                },
+                "CpuThreshold": {
+                    "$ref": "#/$defs/Double"
+                },
+                "MemoryThreshold": {
+                    "$ref": "#/$defs/Double"
+                },
+                "LoadThreshold": {
+                    "$ref": "#/$defs/Double"
+                },
+                "Alarms": {
+                    "$ref": "#/$defs/Strings"
+                }
+            }
+        },
+        "Minute": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "Double": {
+            "type": "number",
+            "format": "double"
+        },
+        "DescribeLoadBasedAutoScalingRequest": {
+            "type": "object",
+            "properties": {
+                "LayerIds": {
+                    "$ref": "#/$defs/Strings"
+                }
+            }
+        },
+        "DescribeMyUserProfileResult": {
+            "type": "object",
+            "properties": {
+                "UserProfile": {
+                    "$ref": "#/$defs/SelfUserProfile"
+                }
+            }
+        },
+        "SelfUserProfile": {
+            "type": "object",
+            "properties": {
+                "IamUserArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "SshUsername": {
+                    "$ref": "#/$defs/String"
+                },
+                "SshPublicKey": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DescribeOperatingSystemsResponse": {
+            "type": "object",
+            "properties": {
+                "OperatingSystems": {
+                    "$ref": "#/$defs/OperatingSystems"
+                }
+            }
+        },
+        "OperatingSystems": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/OperatingSystem"
+            }
+        },
+        "OperatingSystem": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Id": {
+                    "$ref": "#/$defs/String"
+                },
+                "Type": {
+                    "$ref": "#/$defs/String"
+                },
+                "ConfigurationManagers": {
+                    "$ref": "#/$defs/OperatingSystemConfigurationManagers"
+                },
+                "ReportedName": {
+                    "$ref": "#/$defs/String"
+                },
+                "ReportedVersion": {
+                    "$ref": "#/$defs/String"
+                },
+                "Supported": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "OperatingSystemConfigurationManagers": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/OperatingSystemConfigurationManager"
+            }
+        },
+        "OperatingSystemConfigurationManager": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Version": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DescribePermissionsResult": {
+            "type": "object",
+            "properties": {
+                "Permissions": {
+                    "$ref": "#/$defs/Permissions"
+                }
+            }
+        },
+        "Permissions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Permission"
+            }
+        },
+        "Permission": {
+            "type": "object",
+            "properties": {
+                "StackId": {
+                    "$ref": "#/$defs/String"
+                },
+                "IamUserArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "AllowSsh": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "AllowSudo": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "Level": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DescribePermissionsRequest": {
+            "type": "object",
+            "properties": {
+                "IamUserArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "StackId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DescribeRaidArraysResult": {
+            "type": "object",
+            "properties": {
+                "RaidArrays": {
+                    "$ref": "#/$defs/RaidArrays"
+                }
+            }
+        },
+        "RaidArrays": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RaidArray"
+            }
+        },
+        "RaidArray": {
+            "type": "object",
+            "properties": {
+                "RaidArrayId": {
+                    "$ref": "#/$defs/String"
+                },
+                "InstanceId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "RaidLevel": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "NumberOfDisks": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Size": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Device": {
+                    "$ref": "#/$defs/String"
+                },
+                "MountPoint": {
+                    "$ref": "#/$defs/String"
+                },
+                "AvailabilityZone": {
+                    "$ref": "#/$defs/String"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/DateTime"
+                },
+                "StackId": {
+                    "$ref": "#/$defs/String"
+                },
+                "VolumeType": {
+                    "$ref": "#/$defs/String"
+                },
+                "Iops": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "DescribeRaidArraysRequest": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/String"
+                },
+                "StackId": {
+                    "$ref": "#/$defs/String"
+                },
+                "RaidArrayIds": {
+                    "$ref": "#/$defs/Strings"
+                }
+            }
+        },
+        "DescribeRdsDbInstancesResult": {
+            "type": "object",
+            "properties": {
+                "RdsDbInstances": {
+                    "$ref": "#/$defs/RdsDbInstances"
+                }
+            }
+        },
+        "RdsDbInstances": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RdsDbInstance"
+            }
+        },
+        "RdsDbInstance": {
+            "type": "object",
+            "properties": {
+                "RdsDbInstanceArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "DbInstanceIdentifier": {
+                    "$ref": "#/$defs/String"
+                },
+                "DbUser": {
+                    "$ref": "#/$defs/String"
+                },
+                "DbPassword": {
+                    "$ref": "#/$defs/String"
+                },
+                "Region": {
+                    "$ref": "#/$defs/String"
+                },
+                "Address": {
+                    "$ref": "#/$defs/String"
+                },
+                "Engine": {
+                    "$ref": "#/$defs/String"
+                },
+                "StackId": {
+                    "$ref": "#/$defs/String"
+                },
+                "MissingOnRds": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "DescribeRdsDbInstancesRequest": {
+            "type": "object",
+            "properties": {
+                "StackId": {
+                    "$ref": "#/$defs/String"
+                },
+                "RdsDbInstanceArns": {
+                    "$ref": "#/$defs/Strings"
+                }
+            }
+        },
+        "DescribeServiceErrorsResult": {
+            "type": "object",
+            "properties": {
+                "ServiceErrors": {
+                    "$ref": "#/$defs/ServiceErrors"
+                }
+            }
+        },
+        "ServiceErrors": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ServiceError"
+            }
+        },
+        "ServiceError": {
+            "type": "object",
+            "properties": {
+                "ServiceErrorId": {
+                    "$ref": "#/$defs/String"
+                },
+                "StackId": {
+                    "$ref": "#/$defs/String"
+                },
+                "InstanceId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Type": {
+                    "$ref": "#/$defs/String"
+                },
+                "Message": {
+                    "$ref": "#/$defs/String"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/DateTime"
+                }
+            }
+        },
+        "DescribeServiceErrorsRequest": {
+            "type": "object",
+            "properties": {
+                "StackId": {
+                    "$ref": "#/$defs/String"
+                },
+                "InstanceId": {
+                    "$ref": "#/$defs/String"
+                },
+                "ServiceErrorIds": {
+                    "$ref": "#/$defs/Strings"
+                }
+            }
+        },
+        "DescribeStackProvisioningParametersResult": {
+            "type": "object",
+            "properties": {
+                "AgentInstallerUrl": {
+                    "$ref": "#/$defs/String"
+                },
+                "Parameters": {
+                    "$ref": "#/$defs/Parameters"
+                }
+            }
+        },
+        "Parameters": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "DescribeStackProvisioningParametersRequest": {
+            "type": "object",
+            "properties": {
+                "StackId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DescribeStacksResult": {
+            "type": "object",
+            "properties": {
+                "Stacks": {
+                    "$ref": "#/$defs/Stacks"
+                }
+            }
+        },
+        "Stacks": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Stack"
+            }
+        },
+        "Stack": {
+            "type": "object",
+            "properties": {
+                "StackId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/String"
+                },
+                "Region": {
+                    "$ref": "#/$defs/String"
+                },
+                "VpcId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Attributes": {
+                    "$ref": "#/$defs/StackAttributes"
+                },
+                "ServiceRoleArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "DefaultInstanceProfileArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "DefaultOs": {
+                    "$ref": "#/$defs/String"
+                },
+                "HostnameTheme": {
+                    "$ref": "#/$defs/String"
+                },
+                "DefaultAvailabilityZone": {
+                    "$ref": "#/$defs/String"
+                },
+                "DefaultSubnetId": {
+                    "$ref": "#/$defs/String"
+                },
+                "CustomJson": {
+                    "$ref": "#/$defs/String"
+                },
+                "ConfigurationManager": {
+                    "$ref": "#/$defs/StackConfigurationManager"
+                },
+                "ChefConfiguration": {
+                    "$ref": "#/$defs/ChefConfiguration"
+                },
+                "UseCustomCookbooks": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "UseOpsworksSecurityGroups": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "CustomCookbooksSource": {
+                    "$ref": "#/$defs/Source"
+                },
+                "DefaultSshKeyName": {
+                    "$ref": "#/$defs/String"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/DateTime"
+                },
+                "DefaultRootDeviceType": {
+                    "$ref": "#/$defs/RootDeviceType"
+                },
+                "AgentVersion": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DescribeStacksRequest": {
+            "type": "object",
+            "properties": {
+                "StackIds": {
+                    "$ref": "#/$defs/Strings"
+                }
+            }
+        },
+        "DescribeStackSummaryResult": {
+            "type": "object",
+            "properties": {
+                "StackSummary": {
+                    "$ref": "#/$defs/StackSummary"
+                }
+            }
+        },
+        "StackSummary": {
+            "type": "object",
+            "properties": {
+                "StackId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/String"
+                },
+                "LayersCount": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "AppsCount": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "InstancesCount": {
+                    "$ref": "#/$defs/InstancesCount"
+                }
+            }
+        },
+        "InstancesCount": {
+            "type": "object",
+            "properties": {
+                "Assigning": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Booting": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "ConnectionLost": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Deregistering": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Online": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Pending": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Rebooting": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Registered": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Registering": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Requested": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "RunningSetup": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "SetupFailed": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "ShuttingDown": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "StartFailed": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "StopFailed": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Stopped": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Stopping": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Terminated": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Terminating": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Unassigning": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "DescribeStackSummaryRequest": {
+            "type": "object",
+            "properties": {
+                "StackId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DescribeTimeBasedAutoScalingResult": {
+            "type": "object",
+            "properties": {
+                "TimeBasedAutoScalingConfigurations": {
+                    "$ref": "#/$defs/TimeBasedAutoScalingConfigurations"
+                }
+            }
+        },
+        "TimeBasedAutoScalingConfigurations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TimeBasedAutoScalingConfiguration"
+            }
+        },
+        "TimeBasedAutoScalingConfiguration": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/String"
+                },
+                "AutoScalingSchedule": {
+                    "$ref": "#/$defs/WeeklyAutoScalingSchedule"
+                }
+            }
+        },
+        "WeeklyAutoScalingSchedule": {
+            "type": "object",
+            "properties": {
+                "Monday": {
+                    "$ref": "#/$defs/DailyAutoScalingSchedule"
+                },
+                "Tuesday": {
+                    "$ref": "#/$defs/DailyAutoScalingSchedule"
+                },
+                "Wednesday": {
+                    "$ref": "#/$defs/DailyAutoScalingSchedule"
+                },
+                "Thursday": {
+                    "$ref": "#/$defs/DailyAutoScalingSchedule"
+                },
+                "Friday": {
+                    "$ref": "#/$defs/DailyAutoScalingSchedule"
+                },
+                "Saturday": {
+                    "$ref": "#/$defs/DailyAutoScalingSchedule"
+                },
+                "Sunday": {
+                    "$ref": "#/$defs/DailyAutoScalingSchedule"
+                }
+            }
+        },
+        "DailyAutoScalingSchedule": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/Switch"
+            }
+        },
+        "Switch": {
+            "type": "string"
+        },
+        "DescribeTimeBasedAutoScalingRequest": {
+            "type": "object",
+            "properties": {
+                "InstanceIds": {
+                    "$ref": "#/$defs/Strings"
+                }
+            }
+        },
+        "DescribeUserProfilesResult": {
+            "type": "object",
+            "properties": {
+                "UserProfiles": {
+                    "$ref": "#/$defs/UserProfiles"
+                }
+            }
+        },
+        "UserProfiles": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/UserProfile"
+            }
+        },
+        "UserProfile": {
+            "type": "object",
+            "properties": {
+                "IamUserArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "SshUsername": {
+                    "$ref": "#/$defs/String"
+                },
+                "SshPublicKey": {
+                    "$ref": "#/$defs/String"
+                },
+                "AllowSelfManagement": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "DescribeUserProfilesRequest": {
+            "type": "object",
+            "properties": {
+                "IamUserArns": {
+                    "$ref": "#/$defs/Strings"
+                }
+            }
+        },
+        "DescribeVolumesResult": {
+            "type": "object",
+            "properties": {
+                "Volumes": {
+                    "$ref": "#/$defs/Volumes"
+                }
+            }
+        },
+        "Volumes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Volume"
+            }
+        },
+        "Volume": {
+            "type": "object",
+            "properties": {
+                "VolumeId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Ec2VolumeId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "RaidArrayId": {
+                    "$ref": "#/$defs/String"
+                },
+                "InstanceId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Status": {
+                    "$ref": "#/$defs/String"
+                },
+                "Size": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Device": {
+                    "$ref": "#/$defs/String"
+                },
+                "MountPoint": {
+                    "$ref": "#/$defs/String"
+                },
+                "Region": {
+                    "$ref": "#/$defs/String"
+                },
+                "AvailabilityZone": {
+                    "$ref": "#/$defs/String"
+                },
+                "VolumeType": {
+                    "$ref": "#/$defs/String"
+                },
+                "Iops": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Encrypted": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "DescribeVolumesRequest": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/String"
+                },
+                "StackId": {
+                    "$ref": "#/$defs/String"
+                },
+                "RaidArrayId": {
+                    "$ref": "#/$defs/String"
+                },
+                "VolumeIds": {
+                    "$ref": "#/$defs/Strings"
+                }
+            }
+        },
+        "DetachElasticLoadBalancerRequest": {
+            "type": "object",
+            "properties": {
+                "ElasticLoadBalancerName": {
+                    "$ref": "#/$defs/String"
+                },
+                "LayerId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DisassociateElasticIpRequest": {
+            "type": "object",
+            "properties": {
+                "ElasticIp": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetHostnameSuggestionResult": {
+            "type": "object",
+            "properties": {
+                "LayerId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Hostname": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetHostnameSuggestionRequest": {
+            "type": "object",
+            "properties": {
+                "LayerId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GrantAccessResult": {
+            "type": "object",
+            "properties": {
+                "TemporaryCredential": {
+                    "$ref": "#/$defs/TemporaryCredential"
+                }
+            }
+        },
+        "TemporaryCredential": {
+            "type": "object",
+            "properties": {
+                "Username": {
+                    "$ref": "#/$defs/String"
+                },
+                "Password": {
+                    "$ref": "#/$defs/String"
+                },
+                "ValidForInMinutes": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "InstanceId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GrantAccessRequest": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/String"
+                },
+                "ValidForInMinutes": {
+                    "$ref": "#/$defs/ValidForInMinutes"
+                }
+            }
+        },
+        "ValidForInMinutes": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListTagsResult": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "Tags": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TagValue"
+            }
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "ListTagsRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ResourceArn": {
+            "type": "string"
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "RebootInstanceRequest": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "RegisterEcsClusterResult": {
+            "type": "object",
+            "properties": {
+                "EcsClusterArn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "RegisterEcsClusterRequest": {
+            "type": "object",
+            "properties": {
+                "EcsClusterArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "StackId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "RegisterElasticIpResult": {
+            "type": "object",
+            "properties": {
+                "ElasticIp": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "RegisterElasticIpRequest": {
+            "type": "object",
+            "properties": {
+                "ElasticIp": {
+                    "$ref": "#/$defs/String"
+                },
+                "StackId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "RegisterInstanceResult": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "RegisterInstanceRequest": {
+            "type": "object",
+            "properties": {
+                "StackId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Hostname": {
+                    "$ref": "#/$defs/String"
+                },
+                "PublicIp": {
+                    "$ref": "#/$defs/String"
+                },
+                "PrivateIp": {
+                    "$ref": "#/$defs/String"
+                },
+                "RsaPublicKey": {
+                    "$ref": "#/$defs/String"
+                },
+                "RsaPublicKeyFingerprint": {
+                    "$ref": "#/$defs/String"
+                },
+                "InstanceIdentity": {
+                    "$ref": "#/$defs/InstanceIdentity"
+                }
+            }
+        },
+        "InstanceIdentity": {
+            "type": "object",
+            "properties": {
+                "Document": {
+                    "$ref": "#/$defs/String"
+                },
+                "Signature": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "RegisterRdsDbInstanceRequest": {
+            "type": "object",
+            "properties": {
+                "StackId": {
+                    "$ref": "#/$defs/String"
+                },
+                "RdsDbInstanceArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "DbUser": {
+                    "$ref": "#/$defs/String"
+                },
+                "DbPassword": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "RegisterVolumeResult": {
+            "type": "object",
+            "properties": {
+                "VolumeId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "RegisterVolumeRequest": {
+            "type": "object",
+            "properties": {
+                "Ec2VolumeId": {
+                    "$ref": "#/$defs/String"
+                },
+                "StackId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "SetLoadBasedAutoScalingRequest": {
+            "type": "object",
+            "properties": {
+                "LayerId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Enable": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "UpScaling": {
+                    "$ref": "#/$defs/AutoScalingThresholds"
+                },
+                "DownScaling": {
+                    "$ref": "#/$defs/AutoScalingThresholds"
+                }
+            }
+        },
+        "SetPermissionRequest": {
+            "type": "object",
+            "properties": {
+                "StackId": {
+                    "$ref": "#/$defs/String"
+                },
+                "IamUserArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "AllowSsh": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "AllowSudo": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "Level": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "SetTimeBasedAutoScalingRequest": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/String"
+                },
+                "AutoScalingSchedule": {
+                    "$ref": "#/$defs/WeeklyAutoScalingSchedule"
+                }
+            }
+        },
+        "StartInstanceRequest": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "StartStackRequest": {
+            "type": "object",
+            "properties": {
+                "StackId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "StopInstanceRequest": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Force": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "StopStackRequest": {
+            "type": "object",
+            "properties": {
+                "StackId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "UnassignInstanceRequest": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "UnassignVolumeRequest": {
+            "type": "object",
+            "properties": {
+                "VolumeId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeys"
+                }
+            }
+        },
+        "TagKeys": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "UpdateAppRequest": {
+            "type": "object",
+            "properties": {
+                "AppId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Description": {
+                    "$ref": "#/$defs/String"
+                },
+                "DataSources": {
+                    "$ref": "#/$defs/DataSources"
+                },
+                "Type": {
+                    "$ref": "#/$defs/AppType"
+                },
+                "AppSource": {
+                    "$ref": "#/$defs/Source"
+                },
+                "Domains": {
+                    "$ref": "#/$defs/Strings"
+                },
+                "EnableSsl": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "SslConfiguration": {
+                    "$ref": "#/$defs/SslConfiguration"
+                },
+                "Attributes": {
+                    "$ref": "#/$defs/AppAttributes"
+                },
+                "Environment": {
+                    "$ref": "#/$defs/EnvironmentVariables"
+                }
+            }
+        },
+        "UpdateElasticIpRequest": {
+            "type": "object",
+            "properties": {
+                "ElasticIp": {
+                    "$ref": "#/$defs/String"
+                },
+                "Name": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "UpdateInstanceRequest": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/String"
+                },
+                "LayerIds": {
+                    "$ref": "#/$defs/Strings"
+                },
+                "InstanceType": {
+                    "$ref": "#/$defs/String"
+                },
+                "AutoScalingType": {
+                    "$ref": "#/$defs/AutoScalingType"
+                },
+                "Hostname": {
+                    "$ref": "#/$defs/String"
+                },
+                "Os": {
+                    "$ref": "#/$defs/String"
+                },
+                "AmiId": {
+                    "$ref": "#/$defs/String"
+                },
+                "SshKeyName": {
+                    "$ref": "#/$defs/String"
+                },
+                "Architecture": {
+                    "$ref": "#/$defs/Architecture"
+                },
+                "InstallUpdatesOnBoot": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "EbsOptimized": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "AgentVersion": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "UpdateLayerRequest": {
+            "type": "object",
+            "properties": {
+                "LayerId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Shortname": {
+                    "$ref": "#/$defs/String"
+                },
+                "Attributes": {
+                    "$ref": "#/$defs/LayerAttributes"
+                },
+                "CloudWatchLogsConfiguration": {
+                    "$ref": "#/$defs/CloudWatchLogsConfiguration"
+                },
+                "CustomInstanceProfileArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "CustomJson": {
+                    "$ref": "#/$defs/String"
+                },
+                "CustomSecurityGroupIds": {
+                    "$ref": "#/$defs/Strings"
+                },
+                "Packages": {
+                    "$ref": "#/$defs/Strings"
+                },
+                "VolumeConfigurations": {
+                    "$ref": "#/$defs/VolumeConfigurations"
+                },
+                "EnableAutoHealing": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "AutoAssignElasticIps": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "AutoAssignPublicIps": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "CustomRecipes": {
+                    "$ref": "#/$defs/Recipes"
+                },
+                "InstallUpdatesOnBoot": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "UseEbsOptimizedInstances": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "LifecycleEventConfiguration": {
+                    "$ref": "#/$defs/LifecycleEventConfiguration"
+                }
+            }
+        },
+        "UpdateMyUserProfileRequest": {
+            "type": "object",
+            "properties": {
+                "SshPublicKey": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "UpdateRdsDbInstanceRequest": {
+            "type": "object",
+            "properties": {
+                "RdsDbInstanceArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "DbUser": {
+                    "$ref": "#/$defs/String"
+                },
+                "DbPassword": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "UpdateStackRequest": {
+            "type": "object",
+            "properties": {
+                "StackId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Attributes": {
+                    "$ref": "#/$defs/StackAttributes"
+                },
+                "ServiceRoleArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "DefaultInstanceProfileArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "DefaultOs": {
+                    "$ref": "#/$defs/String"
+                },
+                "HostnameTheme": {
+                    "$ref": "#/$defs/String"
+                },
+                "DefaultAvailabilityZone": {
+                    "$ref": "#/$defs/String"
+                },
+                "DefaultSubnetId": {
+                    "$ref": "#/$defs/String"
+                },
+                "CustomJson": {
+                    "$ref": "#/$defs/String"
+                },
+                "ConfigurationManager": {
+                    "$ref": "#/$defs/StackConfigurationManager"
+                },
+                "ChefConfiguration": {
+                    "$ref": "#/$defs/ChefConfiguration"
+                },
+                "UseCustomCookbooks": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "CustomCookbooksSource": {
+                    "$ref": "#/$defs/Source"
+                },
+                "DefaultSshKeyName": {
+                    "$ref": "#/$defs/String"
+                },
+                "DefaultRootDeviceType": {
+                    "$ref": "#/$defs/RootDeviceType"
+                },
+                "UseOpsworksSecurityGroups": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "AgentVersion": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "UpdateUserProfileRequest": {
+            "type": "object",
+            "properties": {
+                "IamUserArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "SshUsername": {
+                    "$ref": "#/$defs/String"
+                },
+                "SshPublicKey": {
+                    "$ref": "#/$defs/String"
+                },
+                "AllowSelfManagement": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "UpdateVolumeRequest": {
+            "type": "object",
+            "properties": {
+                "VolumeId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "MountPoint": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://opsworks-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://opsworks-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://opsworks.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://opsworks.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

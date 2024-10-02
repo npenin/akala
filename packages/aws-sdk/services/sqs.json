@@ -1,0 +1,1913 @@
+{
+    "name": "sqs",
+    "commands": [
+        {
+            "name": "AddPermission",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AddPermission"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AddPermissionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CancelMessageMoveTask",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CancelMessageMoveTask"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CancelMessageMoveTaskResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CancelMessageMoveTaskRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ChangeMessageVisibility",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ChangeMessageVisibility"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ChangeMessageVisibilityRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ChangeMessageVisibilityBatch",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ChangeMessageVisibilityBatch"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ChangeMessageVisibilityBatchResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ChangeMessageVisibilityBatchRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateQueue",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateQueue"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateQueueResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateQueueRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteMessage",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteMessage"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteMessageRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteMessageBatch",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteMessageBatch"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteMessageBatchResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteMessageBatchRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteQueue",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteQueue"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteQueueRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetQueueAttributes",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetQueueAttributes"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetQueueAttributesResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetQueueAttributesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetQueueUrl",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetQueueUrl"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetQueueUrlResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetQueueUrlRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListDeadLetterSourceQueues",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListDeadLetterSourceQueues"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListDeadLetterSourceQueuesResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListDeadLetterSourceQueuesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListMessageMoveTasks",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListMessageMoveTasks"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListMessageMoveTasksResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListMessageMoveTasksRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListQueues",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListQueues"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListQueuesResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListQueuesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListQueueTags",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListQueueTags"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListQueueTagsResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListQueueTagsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PurgeQueue",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PurgeQueue"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PurgeQueueRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ReceiveMessage",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ReceiveMessage"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ReceiveMessageResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ReceiveMessageRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RemovePermission",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RemovePermission"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RemovePermissionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SendMessage",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SendMessage"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/SendMessageResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SendMessageRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SendMessageBatch",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SendMessageBatch"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/SendMessageBatchResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SendMessageBatchRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SetQueueAttributes",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SetQueueAttributes"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SetQueueAttributesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartMessageMoveTask",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartMessageMoveTask"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartMessageMoveTaskResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartMessageMoveTaskRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagQueue",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagQueue"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagQueueRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagQueue",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagQueue"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagQueueRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "AddPermissionRequest": {
+            "type": "object",
+            "properties": {
+                "QueueUrl": {
+                    "$ref": "#/$defs/String"
+                },
+                "Label": {
+                    "$ref": "#/$defs/String"
+                },
+                "AWSAccountIds": {
+                    "$ref": "#/$defs/AWSAccountIdList"
+                },
+                "Actions": {
+                    "$ref": "#/$defs/ActionNameList"
+                }
+            }
+        },
+        "String": {
+            "type": "string"
+        },
+        "AWSAccountIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "ActionNameList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "CancelMessageMoveTaskResult": {
+            "type": "object",
+            "properties": {
+                "ApproximateNumberOfMessagesMoved": {
+                    "$ref": "#/$defs/Long"
+                }
+            }
+        },
+        "Long": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "CancelMessageMoveTaskRequest": {
+            "type": "object",
+            "properties": {
+                "TaskHandle": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ChangeMessageVisibilityRequest": {
+            "type": "object",
+            "properties": {
+                "QueueUrl": {
+                    "$ref": "#/$defs/String"
+                },
+                "ReceiptHandle": {
+                    "$ref": "#/$defs/String"
+                },
+                "VisibilityTimeout": {
+                    "$ref": "#/$defs/NullableInteger"
+                }
+            }
+        },
+        "NullableInteger": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ChangeMessageVisibilityBatchResult": {
+            "type": "object",
+            "properties": {
+                "Successful": {
+                    "$ref": "#/$defs/ChangeMessageVisibilityBatchResultEntryList"
+                },
+                "Failed": {
+                    "$ref": "#/$defs/BatchResultErrorEntryList"
+                }
+            }
+        },
+        "ChangeMessageVisibilityBatchResultEntryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ChangeMessageVisibilityBatchResultEntry"
+            }
+        },
+        "ChangeMessageVisibilityBatchResultEntry": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "BatchResultErrorEntryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BatchResultErrorEntry"
+            }
+        },
+        "BatchResultErrorEntry": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/String"
+                },
+                "SenderFault": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "Code": {
+                    "$ref": "#/$defs/String"
+                },
+                "Message": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "Boolean": {
+            "type": "boolean"
+        },
+        "ChangeMessageVisibilityBatchRequest": {
+            "type": "object",
+            "properties": {
+                "QueueUrl": {
+                    "$ref": "#/$defs/String"
+                },
+                "Entries": {
+                    "$ref": "#/$defs/ChangeMessageVisibilityBatchRequestEntryList"
+                }
+            }
+        },
+        "ChangeMessageVisibilityBatchRequestEntryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ChangeMessageVisibilityBatchRequestEntry"
+            }
+        },
+        "ChangeMessageVisibilityBatchRequestEntry": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/String"
+                },
+                "ReceiptHandle": {
+                    "$ref": "#/$defs/String"
+                },
+                "VisibilityTimeout": {
+                    "$ref": "#/$defs/NullableInteger"
+                }
+            }
+        },
+        "CreateQueueResult": {
+            "type": "object",
+            "properties": {
+                "QueueUrl": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "CreateQueueRequest": {
+            "type": "object",
+            "properties": {
+                "QueueName": {
+                    "$ref": "#/$defs/String"
+                },
+                "Attributes": {
+                    "$ref": "#/$defs/QueueAttributeMap"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "QueueAttributeMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "TagMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TagValue"
+            }
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "DeleteMessageRequest": {
+            "type": "object",
+            "properties": {
+                "QueueUrl": {
+                    "$ref": "#/$defs/String"
+                },
+                "ReceiptHandle": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DeleteMessageBatchResult": {
+            "type": "object",
+            "properties": {
+                "Successful": {
+                    "$ref": "#/$defs/DeleteMessageBatchResultEntryList"
+                },
+                "Failed": {
+                    "$ref": "#/$defs/BatchResultErrorEntryList"
+                }
+            }
+        },
+        "DeleteMessageBatchResultEntryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DeleteMessageBatchResultEntry"
+            }
+        },
+        "DeleteMessageBatchResultEntry": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DeleteMessageBatchRequest": {
+            "type": "object",
+            "properties": {
+                "QueueUrl": {
+                    "$ref": "#/$defs/String"
+                },
+                "Entries": {
+                    "$ref": "#/$defs/DeleteMessageBatchRequestEntryList"
+                }
+            }
+        },
+        "DeleteMessageBatchRequestEntryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DeleteMessageBatchRequestEntry"
+            }
+        },
+        "DeleteMessageBatchRequestEntry": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/String"
+                },
+                "ReceiptHandle": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DeleteQueueRequest": {
+            "type": "object",
+            "properties": {
+                "QueueUrl": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetQueueAttributesResult": {
+            "type": "object",
+            "properties": {
+                "Attributes": {
+                    "$ref": "#/$defs/QueueAttributeMap"
+                }
+            }
+        },
+        "GetQueueAttributesRequest": {
+            "type": "object",
+            "properties": {
+                "QueueUrl": {
+                    "$ref": "#/$defs/String"
+                },
+                "AttributeNames": {
+                    "$ref": "#/$defs/AttributeNameList"
+                }
+            }
+        },
+        "AttributeNameList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/QueueAttributeName"
+            }
+        },
+        "QueueAttributeName": {
+            "enum": [
+                "All",
+                "Policy",
+                "VisibilityTimeout",
+                "MaximumMessageSize",
+                "MessageRetentionPeriod",
+                "ApproximateNumberOfMessages",
+                "ApproximateNumberOfMessagesNotVisible",
+                "CreatedTimestamp",
+                "LastModifiedTimestamp",
+                "QueueArn",
+                "ApproximateNumberOfMessagesDelayed",
+                "DelaySeconds",
+                "ReceiveMessageWaitTimeSeconds",
+                "RedrivePolicy",
+                "FifoQueue",
+                "ContentBasedDeduplication",
+                "KmsMasterKeyId",
+                "KmsDataKeyReusePeriodSeconds",
+                "DeduplicationScope",
+                "FifoThroughputLimit",
+                "RedriveAllowPolicy",
+                "SqsManagedSseEnabled"
+            ]
+        },
+        "GetQueueUrlResult": {
+            "type": "object",
+            "properties": {
+                "QueueUrl": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetQueueUrlRequest": {
+            "type": "object",
+            "properties": {
+                "QueueName": {
+                    "$ref": "#/$defs/String"
+                },
+                "QueueOwnerAWSAccountId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListDeadLetterSourceQueuesResult": {
+            "type": "object",
+            "properties": {
+                "queueUrls": {
+                    "$ref": "#/$defs/QueueUrlList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "QueueUrlList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "Token": {
+            "type": "string"
+        },
+        "ListDeadLetterSourceQueuesRequest": {
+            "type": "object",
+            "properties": {
+                "QueueUrl": {
+                    "$ref": "#/$defs/String"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/BoxedInteger"
+                }
+            }
+        },
+        "BoxedInteger": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListMessageMoveTasksResult": {
+            "type": "object",
+            "properties": {
+                "Results": {
+                    "$ref": "#/$defs/ListMessageMoveTasksResultEntryList"
+                }
+            }
+        },
+        "ListMessageMoveTasksResultEntryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ListMessageMoveTasksResultEntry"
+            }
+        },
+        "ListMessageMoveTasksResultEntry": {
+            "type": "object",
+            "properties": {
+                "TaskHandle": {
+                    "$ref": "#/$defs/String"
+                },
+                "Status": {
+                    "$ref": "#/$defs/String"
+                },
+                "SourceArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "DestinationArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxNumberOfMessagesPerSecond": {
+                    "$ref": "#/$defs/NullableInteger"
+                },
+                "ApproximateNumberOfMessagesMoved": {
+                    "$ref": "#/$defs/Long"
+                },
+                "ApproximateNumberOfMessagesToMove": {
+                    "$ref": "#/$defs/NullableLong"
+                },
+                "FailureReason": {
+                    "$ref": "#/$defs/String"
+                },
+                "StartedTimestamp": {
+                    "$ref": "#/$defs/Long"
+                }
+            }
+        },
+        "NullableLong": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "ListMessageMoveTasksRequest": {
+            "type": "object",
+            "properties": {
+                "SourceArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/NullableInteger"
+                }
+            }
+        },
+        "ListQueuesResult": {
+            "type": "object",
+            "properties": {
+                "QueueUrls": {
+                    "$ref": "#/$defs/QueueUrlList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "ListQueuesRequest": {
+            "type": "object",
+            "properties": {
+                "QueueNamePrefix": {
+                    "$ref": "#/$defs/String"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/BoxedInteger"
+                }
+            }
+        },
+        "ListQueueTagsResult": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "ListQueueTagsRequest": {
+            "type": "object",
+            "properties": {
+                "QueueUrl": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "PurgeQueueRequest": {
+            "type": "object",
+            "properties": {
+                "QueueUrl": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ReceiveMessageResult": {
+            "type": "object",
+            "properties": {
+                "Messages": {
+                    "$ref": "#/$defs/MessageList"
+                }
+            }
+        },
+        "MessageList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Message"
+            }
+        },
+        "Message": {
+            "type": "object",
+            "properties": {
+                "MessageId": {
+                    "$ref": "#/$defs/String"
+                },
+                "ReceiptHandle": {
+                    "$ref": "#/$defs/String"
+                },
+                "MD5OfBody": {
+                    "$ref": "#/$defs/String"
+                },
+                "Body": {
+                    "$ref": "#/$defs/String"
+                },
+                "Attributes": {
+                    "$ref": "#/$defs/MessageSystemAttributeMap"
+                },
+                "MD5OfMessageAttributes": {
+                    "$ref": "#/$defs/String"
+                },
+                "MessageAttributes": {
+                    "$ref": "#/$defs/MessageBodyAttributeMap"
+                }
+            }
+        },
+        "MessageSystemAttributeMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "MessageBodyAttributeMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/MessageAttributeValue"
+            }
+        },
+        "MessageAttributeValue": {
+            "type": "object",
+            "properties": {
+                "StringValue": {
+                    "$ref": "#/$defs/String"
+                },
+                "BinaryValue": {
+                    "$ref": "#/$defs/Binary"
+                },
+                "StringListValues": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "BinaryListValues": {
+                    "$ref": "#/$defs/BinaryList"
+                },
+                "DataType": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "Binary": {
+            "type": "string",
+            "format": "binary"
+        },
+        "StringList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "BinaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Binary"
+            }
+        },
+        "ReceiveMessageRequest": {
+            "type": "object",
+            "properties": {
+                "QueueUrl": {
+                    "$ref": "#/$defs/String"
+                },
+                "AttributeNames": {
+                    "$ref": "#/$defs/AttributeNameList"
+                },
+                "MessageSystemAttributeNames": {
+                    "$ref": "#/$defs/MessageSystemAttributeList"
+                },
+                "MessageAttributeNames": {
+                    "$ref": "#/$defs/MessageAttributeNameList"
+                },
+                "MaxNumberOfMessages": {
+                    "$ref": "#/$defs/NullableInteger"
+                },
+                "VisibilityTimeout": {
+                    "$ref": "#/$defs/NullableInteger"
+                },
+                "WaitTimeSeconds": {
+                    "$ref": "#/$defs/NullableInteger"
+                },
+                "ReceiveRequestAttemptId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "MessageSystemAttributeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MessageSystemAttributeName"
+            }
+        },
+        "MessageSystemAttributeName": {
+            "enum": [
+                "All",
+                "SenderId",
+                "SentTimestamp",
+                "ApproximateReceiveCount",
+                "ApproximateFirstReceiveTimestamp",
+                "SequenceNumber",
+                "MessageDeduplicationId",
+                "MessageGroupId",
+                "AWSTraceHeader",
+                "DeadLetterQueueSourceArn"
+            ]
+        },
+        "MessageAttributeNameList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MessageAttributeName"
+            }
+        },
+        "MessageAttributeName": {
+            "type": "string"
+        },
+        "RemovePermissionRequest": {
+            "type": "object",
+            "properties": {
+                "QueueUrl": {
+                    "$ref": "#/$defs/String"
+                },
+                "Label": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "SendMessageResult": {
+            "type": "object",
+            "properties": {
+                "MD5OfMessageBody": {
+                    "$ref": "#/$defs/String"
+                },
+                "MD5OfMessageAttributes": {
+                    "$ref": "#/$defs/String"
+                },
+                "MD5OfMessageSystemAttributes": {
+                    "$ref": "#/$defs/String"
+                },
+                "MessageId": {
+                    "$ref": "#/$defs/String"
+                },
+                "SequenceNumber": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "SendMessageRequest": {
+            "type": "object",
+            "properties": {
+                "QueueUrl": {
+                    "$ref": "#/$defs/String"
+                },
+                "MessageBody": {
+                    "$ref": "#/$defs/String"
+                },
+                "DelaySeconds": {
+                    "$ref": "#/$defs/NullableInteger"
+                },
+                "MessageAttributes": {
+                    "$ref": "#/$defs/MessageBodyAttributeMap"
+                },
+                "MessageSystemAttributes": {
+                    "$ref": "#/$defs/MessageBodySystemAttributeMap"
+                },
+                "MessageDeduplicationId": {
+                    "$ref": "#/$defs/String"
+                },
+                "MessageGroupId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "MessageBodySystemAttributeMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/MessageSystemAttributeValue"
+            }
+        },
+        "MessageSystemAttributeValue": {
+            "type": "object",
+            "properties": {
+                "StringValue": {
+                    "$ref": "#/$defs/String"
+                },
+                "BinaryValue": {
+                    "$ref": "#/$defs/Binary"
+                },
+                "StringListValues": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "BinaryListValues": {
+                    "$ref": "#/$defs/BinaryList"
+                },
+                "DataType": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "SendMessageBatchResult": {
+            "type": "object",
+            "properties": {
+                "Successful": {
+                    "$ref": "#/$defs/SendMessageBatchResultEntryList"
+                },
+                "Failed": {
+                    "$ref": "#/$defs/BatchResultErrorEntryList"
+                }
+            }
+        },
+        "SendMessageBatchResultEntryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SendMessageBatchResultEntry"
+            }
+        },
+        "SendMessageBatchResultEntry": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/String"
+                },
+                "MessageId": {
+                    "$ref": "#/$defs/String"
+                },
+                "MD5OfMessageBody": {
+                    "$ref": "#/$defs/String"
+                },
+                "MD5OfMessageAttributes": {
+                    "$ref": "#/$defs/String"
+                },
+                "MD5OfMessageSystemAttributes": {
+                    "$ref": "#/$defs/String"
+                },
+                "SequenceNumber": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "SendMessageBatchRequest": {
+            "type": "object",
+            "properties": {
+                "QueueUrl": {
+                    "$ref": "#/$defs/String"
+                },
+                "Entries": {
+                    "$ref": "#/$defs/SendMessageBatchRequestEntryList"
+                }
+            }
+        },
+        "SendMessageBatchRequestEntryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SendMessageBatchRequestEntry"
+            }
+        },
+        "SendMessageBatchRequestEntry": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/String"
+                },
+                "MessageBody": {
+                    "$ref": "#/$defs/String"
+                },
+                "DelaySeconds": {
+                    "$ref": "#/$defs/NullableInteger"
+                },
+                "MessageAttributes": {
+                    "$ref": "#/$defs/MessageBodyAttributeMap"
+                },
+                "MessageSystemAttributes": {
+                    "$ref": "#/$defs/MessageBodySystemAttributeMap"
+                },
+                "MessageDeduplicationId": {
+                    "$ref": "#/$defs/String"
+                },
+                "MessageGroupId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "SetQueueAttributesRequest": {
+            "type": "object",
+            "properties": {
+                "QueueUrl": {
+                    "$ref": "#/$defs/String"
+                },
+                "Attributes": {
+                    "$ref": "#/$defs/QueueAttributeMap"
+                }
+            }
+        },
+        "StartMessageMoveTaskResult": {
+            "type": "object",
+            "properties": {
+                "TaskHandle": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "StartMessageMoveTaskRequest": {
+            "type": "object",
+            "properties": {
+                "SourceArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "DestinationArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxNumberOfMessagesPerSecond": {
+                    "$ref": "#/$defs/NullableInteger"
+                }
+            }
+        },
+        "TagQueueRequest": {
+            "type": "object",
+            "properties": {
+                "QueueUrl": {
+                    "$ref": "#/$defs/String"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "UntagQueueRequest": {
+            "type": "object",
+            "properties": {
+                "QueueUrl": {
+                    "$ref": "#/$defs/String"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://sqs-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "stringEquals",
+                                                        "argv": [
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "name"
+                                                                ]
+                                                            },
+                                                            "aws-us-gov"
+                                                        ]
+                                                    }
+                                                ],
+                                                "endpoint": {
+                                                    "url": "https://sqs.{Region}.amazonaws.com",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://sqs-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://sqs.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://sqs.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

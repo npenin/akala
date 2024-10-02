@@ -1,0 +1,1693 @@
+{
+    "name": "cloudhsm",
+    "commands": [
+        {
+            "name": "CopyBackupToRegion",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CopyBackupToRegion"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CopyBackupToRegionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CopyBackupToRegionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateCluster",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateCluster"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateClusterResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateClusterRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateHsm",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateHsm"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateHsmResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateHsmRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteBackup",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteBackup"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteBackupResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteBackupRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteCluster",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteCluster"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteClusterResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteClusterRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteHsm",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteHsm"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteHsmResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteHsmRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteResourcePolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteResourcePolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteResourcePolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteResourcePolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeBackups",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeBackups"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeBackupsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeBackupsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeClusters",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeClusters"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeClustersResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeClustersRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetResourcePolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetResourcePolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetResourcePolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetResourcePolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "InitializeCluster",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "InitializeCluster"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/InitializeClusterResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/InitializeClusterRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTags",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTags"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ModifyBackupAttributes",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ModifyBackupAttributes"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ModifyBackupAttributesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ModifyBackupAttributesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ModifyCluster",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ModifyCluster"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ModifyClusterResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ModifyClusterRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutResourcePolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutResourcePolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutResourcePolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutResourcePolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RestoreBackup",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RestoreBackup"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RestoreBackupResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RestoreBackupRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CopyBackupToRegionResponse": {
+            "type": "object",
+            "properties": {
+                "DestinationBackup": {
+                    "$ref": "#/$defs/DestinationBackup"
+                }
+            }
+        },
+        "DestinationBackup": {
+            "type": "object",
+            "properties": {
+                "CreateTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "SourceRegion": {
+                    "$ref": "#/$defs/Region"
+                },
+                "SourceBackup": {
+                    "$ref": "#/$defs/BackupId"
+                },
+                "SourceCluster": {
+                    "$ref": "#/$defs/ClusterId"
+                }
+            }
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "Region": {
+            "type": "string"
+        },
+        "BackupId": {
+            "type": "string"
+        },
+        "ClusterId": {
+            "type": "string"
+        },
+        "CopyBackupToRegionRequest": {
+            "type": "object",
+            "properties": {
+                "DestinationRegion": {
+                    "$ref": "#/$defs/Region"
+                },
+                "BackupId": {
+                    "$ref": "#/$defs/BackupId"
+                },
+                "TagList": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "CreateClusterResponse": {
+            "type": "object",
+            "properties": {
+                "Cluster": {
+                    "$ref": "#/$defs/Cluster"
+                }
+            }
+        },
+        "Cluster": {
+            "type": "object",
+            "properties": {
+                "BackupPolicy": {
+                    "$ref": "#/$defs/BackupPolicy"
+                },
+                "BackupRetentionPolicy": {
+                    "$ref": "#/$defs/BackupRetentionPolicy"
+                },
+                "ClusterId": {
+                    "$ref": "#/$defs/ClusterId"
+                },
+                "CreateTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Hsms": {
+                    "$ref": "#/$defs/Hsms"
+                },
+                "HsmType": {
+                    "$ref": "#/$defs/HsmType"
+                },
+                "PreCoPassword": {
+                    "$ref": "#/$defs/PreCoPassword"
+                },
+                "SecurityGroup": {
+                    "$ref": "#/$defs/SecurityGroup"
+                },
+                "SourceBackupId": {
+                    "$ref": "#/$defs/BackupId"
+                },
+                "State": {
+                    "$ref": "#/$defs/ClusterState"
+                },
+                "StateMessage": {
+                    "$ref": "#/$defs/StateMessage"
+                },
+                "SubnetMapping": {
+                    "$ref": "#/$defs/ExternalSubnetMapping"
+                },
+                "VpcId": {
+                    "$ref": "#/$defs/VpcId"
+                },
+                "Certificates": {
+                    "$ref": "#/$defs/Certificates"
+                },
+                "TagList": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "Mode": {
+                    "$ref": "#/$defs/ClusterMode"
+                }
+            }
+        },
+        "BackupPolicy": {
+            "enum": [
+                "DEFAULT"
+            ]
+        },
+        "BackupRetentionPolicy": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "$ref": "#/$defs/BackupRetentionType"
+                },
+                "Value": {
+                    "$ref": "#/$defs/BackupRetentionValue"
+                }
+            }
+        },
+        "BackupRetentionType": {
+            "enum": [
+                "DAYS"
+            ]
+        },
+        "BackupRetentionValue": {
+            "type": "string"
+        },
+        "Hsms": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Hsm"
+            }
+        },
+        "Hsm": {
+            "type": "object",
+            "properties": {
+                "AvailabilityZone": {
+                    "$ref": "#/$defs/ExternalAz"
+                },
+                "ClusterId": {
+                    "$ref": "#/$defs/ClusterId"
+                },
+                "SubnetId": {
+                    "$ref": "#/$defs/SubnetId"
+                },
+                "EniId": {
+                    "$ref": "#/$defs/EniId"
+                },
+                "EniIp": {
+                    "$ref": "#/$defs/IpAddress"
+                },
+                "HsmId": {
+                    "$ref": "#/$defs/HsmId"
+                },
+                "State": {
+                    "$ref": "#/$defs/HsmState"
+                },
+                "StateMessage": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ExternalAz": {
+            "type": "string"
+        },
+        "SubnetId": {
+            "type": "string"
+        },
+        "EniId": {
+            "type": "string"
+        },
+        "IpAddress": {
+            "type": "string"
+        },
+        "HsmId": {
+            "type": "string"
+        },
+        "HsmState": {
+            "enum": [
+                "CREATE_IN_PROGRESS",
+                "ACTIVE",
+                "DEGRADED",
+                "DELETE_IN_PROGRESS",
+                "DELETED"
+            ]
+        },
+        "String": {
+            "type": "string"
+        },
+        "HsmType": {
+            "type": "string"
+        },
+        "PreCoPassword": {
+            "type": "string"
+        },
+        "SecurityGroup": {
+            "type": "string"
+        },
+        "ClusterState": {
+            "enum": [
+                "CREATE_IN_PROGRESS",
+                "UNINITIALIZED",
+                "INITIALIZE_IN_PROGRESS",
+                "INITIALIZED",
+                "ACTIVE",
+                "UPDATE_IN_PROGRESS",
+                "DELETE_IN_PROGRESS",
+                "DELETED",
+                "DEGRADED"
+            ]
+        },
+        "StateMessage": {
+            "type": "string"
+        },
+        "ExternalSubnetMapping": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/SubnetId"
+            }
+        },
+        "VpcId": {
+            "type": "string"
+        },
+        "Certificates": {
+            "type": "object",
+            "properties": {
+                "ClusterCsr": {
+                    "$ref": "#/$defs/Cert"
+                },
+                "HsmCertificate": {
+                    "$ref": "#/$defs/Cert"
+                },
+                "AwsHardwareCertificate": {
+                    "$ref": "#/$defs/Cert"
+                },
+                "ManufacturerHardwareCertificate": {
+                    "$ref": "#/$defs/Cert"
+                },
+                "ClusterCertificate": {
+                    "$ref": "#/$defs/Cert"
+                }
+            }
+        },
+        "Cert": {
+            "type": "string"
+        },
+        "ClusterMode": {
+            "enum": [
+                "FIPS",
+                "NON_FIPS"
+            ]
+        },
+        "CreateClusterRequest": {
+            "type": "object",
+            "properties": {
+                "BackupRetentionPolicy": {
+                    "$ref": "#/$defs/BackupRetentionPolicy"
+                },
+                "HsmType": {
+                    "$ref": "#/$defs/HsmType"
+                },
+                "SourceBackupId": {
+                    "$ref": "#/$defs/BackupArn"
+                },
+                "SubnetIds": {
+                    "$ref": "#/$defs/SubnetIds"
+                },
+                "TagList": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "Mode": {
+                    "$ref": "#/$defs/ClusterMode"
+                }
+            }
+        },
+        "BackupArn": {
+            "type": "string"
+        },
+        "SubnetIds": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SubnetId"
+            }
+        },
+        "CreateHsmResponse": {
+            "type": "object",
+            "properties": {
+                "Hsm": {
+                    "$ref": "#/$defs/Hsm"
+                }
+            }
+        },
+        "CreateHsmRequest": {
+            "type": "object",
+            "properties": {
+                "ClusterId": {
+                    "$ref": "#/$defs/ClusterId"
+                },
+                "AvailabilityZone": {
+                    "$ref": "#/$defs/ExternalAz"
+                },
+                "IpAddress": {
+                    "$ref": "#/$defs/IpAddress"
+                }
+            }
+        },
+        "DeleteBackupResponse": {
+            "type": "object",
+            "properties": {
+                "Backup": {
+                    "$ref": "#/$defs/Backup"
+                }
+            }
+        },
+        "Backup": {
+            "type": "object",
+            "properties": {
+                "BackupId": {
+                    "$ref": "#/$defs/BackupId"
+                },
+                "BackupArn": {
+                    "$ref": "#/$defs/BackupArn"
+                },
+                "BackupState": {
+                    "$ref": "#/$defs/BackupState"
+                },
+                "ClusterId": {
+                    "$ref": "#/$defs/ClusterId"
+                },
+                "CreateTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "CopyTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "NeverExpires": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "SourceRegion": {
+                    "$ref": "#/$defs/Region"
+                },
+                "SourceBackup": {
+                    "$ref": "#/$defs/BackupId"
+                },
+                "SourceCluster": {
+                    "$ref": "#/$defs/ClusterId"
+                },
+                "DeleteTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "TagList": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "HsmType": {
+                    "$ref": "#/$defs/HsmType"
+                },
+                "Mode": {
+                    "$ref": "#/$defs/ClusterMode"
+                }
+            }
+        },
+        "BackupState": {
+            "enum": [
+                "CREATE_IN_PROGRESS",
+                "READY",
+                "DELETED",
+                "PENDING_DELETION"
+            ]
+        },
+        "Boolean": {
+            "type": "boolean"
+        },
+        "DeleteBackupRequest": {
+            "type": "object",
+            "properties": {
+                "BackupId": {
+                    "$ref": "#/$defs/BackupId"
+                }
+            }
+        },
+        "DeleteClusterResponse": {
+            "type": "object",
+            "properties": {
+                "Cluster": {
+                    "$ref": "#/$defs/Cluster"
+                }
+            }
+        },
+        "DeleteClusterRequest": {
+            "type": "object",
+            "properties": {
+                "ClusterId": {
+                    "$ref": "#/$defs/ClusterId"
+                }
+            }
+        },
+        "DeleteHsmResponse": {
+            "type": "object",
+            "properties": {
+                "HsmId": {
+                    "$ref": "#/$defs/HsmId"
+                }
+            }
+        },
+        "DeleteHsmRequest": {
+            "type": "object",
+            "properties": {
+                "ClusterId": {
+                    "$ref": "#/$defs/ClusterId"
+                },
+                "HsmId": {
+                    "$ref": "#/$defs/HsmId"
+                },
+                "EniId": {
+                    "$ref": "#/$defs/EniId"
+                },
+                "EniIp": {
+                    "$ref": "#/$defs/IpAddress"
+                }
+            }
+        },
+        "DeleteResourcePolicyResponse": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/CloudHsmArn"
+                },
+                "Policy": {
+                    "$ref": "#/$defs/ResourcePolicy"
+                }
+            }
+        },
+        "CloudHsmArn": {
+            "type": "string"
+        },
+        "ResourcePolicy": {
+            "type": "string"
+        },
+        "DeleteResourcePolicyRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/CloudHsmArn"
+                }
+            }
+        },
+        "DescribeBackupsResponse": {
+            "type": "object",
+            "properties": {
+                "Backups": {
+                    "$ref": "#/$defs/Backups"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "Backups": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Backup"
+            }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "DescribeBackupsRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/BackupsMaxSize"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/Filters"
+                },
+                "Shared": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "SortAscending": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "BackupsMaxSize": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "Filters": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/Strings"
+            }
+        },
+        "Strings": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "DescribeClustersResponse": {
+            "type": "object",
+            "properties": {
+                "Clusters": {
+                    "$ref": "#/$defs/Clusters"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "Clusters": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Cluster"
+            }
+        },
+        "DescribeClustersRequest": {
+            "type": "object",
+            "properties": {
+                "Filters": {
+                    "$ref": "#/$defs/Filters"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/ClustersMaxSize"
+                }
+            }
+        },
+        "ClustersMaxSize": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "GetResourcePolicyResponse": {
+            "type": "object",
+            "properties": {
+                "Policy": {
+                    "$ref": "#/$defs/ResourcePolicy"
+                }
+            }
+        },
+        "GetResourcePolicyRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/CloudHsmArn"
+                }
+            }
+        },
+        "InitializeClusterResponse": {
+            "type": "object",
+            "properties": {
+                "State": {
+                    "$ref": "#/$defs/ClusterState"
+                },
+                "StateMessage": {
+                    "$ref": "#/$defs/StateMessage"
+                }
+            }
+        },
+        "InitializeClusterRequest": {
+            "type": "object",
+            "properties": {
+                "ClusterId": {
+                    "$ref": "#/$defs/ClusterId"
+                },
+                "SignedCert": {
+                    "$ref": "#/$defs/Cert"
+                },
+                "TrustAnchor": {
+                    "$ref": "#/$defs/Cert"
+                }
+            }
+        },
+        "ListTagsResponse": {
+            "type": "object",
+            "properties": {
+                "TagList": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListTagsRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxSize"
+                }
+            }
+        },
+        "ResourceId": {
+            "type": "string"
+        },
+        "MaxSize": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ModifyBackupAttributesResponse": {
+            "type": "object",
+            "properties": {
+                "Backup": {
+                    "$ref": "#/$defs/Backup"
+                }
+            }
+        },
+        "ModifyBackupAttributesRequest": {
+            "type": "object",
+            "properties": {
+                "BackupId": {
+                    "$ref": "#/$defs/BackupId"
+                },
+                "NeverExpires": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "ModifyClusterResponse": {
+            "type": "object",
+            "properties": {
+                "Cluster": {
+                    "$ref": "#/$defs/Cluster"
+                }
+            }
+        },
+        "ModifyClusterRequest": {
+            "type": "object",
+            "properties": {
+                "BackupRetentionPolicy": {
+                    "$ref": "#/$defs/BackupRetentionPolicy"
+                },
+                "ClusterId": {
+                    "$ref": "#/$defs/ClusterId"
+                }
+            }
+        },
+        "PutResourcePolicyResponse": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/CloudHsmArn"
+                },
+                "Policy": {
+                    "$ref": "#/$defs/ResourcePolicy"
+                }
+            }
+        },
+        "PutResourcePolicyRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/CloudHsmArn"
+                },
+                "Policy": {
+                    "$ref": "#/$defs/ResourcePolicy"
+                }
+            }
+        },
+        "RestoreBackupResponse": {
+            "type": "object",
+            "properties": {
+                "Backup": {
+                    "$ref": "#/$defs/Backup"
+                }
+            }
+        },
+        "RestoreBackupRequest": {
+            "type": "object",
+            "properties": {
+                "BackupId": {
+                    "$ref": "#/$defs/BackupId"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "TagList": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "TagKeyList": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://cloudhsmv2-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://cloudhsmv2-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://cloudhsmv2.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "stringEquals",
+                                        "argv": [
+                                            "aws",
+                                            {
+                                                "fn": "getAttr",
+                                                "argv": [
+                                                    {
+                                                        "ref": "PartitionResult"
+                                                    },
+                                                    "name"
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "endpoint": {
+                                    "url": "https://cloudhsmv2.{Region}.amazonaws.com",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "stringEquals",
+                                        "argv": [
+                                            "aws-us-gov",
+                                            {
+                                                "fn": "getAttr",
+                                                "argv": [
+                                                    {
+                                                        "ref": "PartitionResult"
+                                                    },
+                                                    "name"
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "endpoint": {
+                                    "url": "https://cloudhsmv2.{Region}.amazonaws.com",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://cloudhsmv2.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

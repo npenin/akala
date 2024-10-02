@@ -1,0 +1,1651 @@
+{
+    "name": "acm",
+    "commands": [
+        {
+            "name": "AddTagsToCertificate",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AddTagsToCertificate"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AddTagsToCertificateRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteCertificate",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteCertificate"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteCertificateRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeCertificate",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeCertificate"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeCertificateResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeCertificateRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ExportCertificate",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ExportCertificate"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ExportCertificateResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ExportCertificateRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetAccountConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetAccountConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetAccountConfigurationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetCertificate",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetCertificate"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetCertificateResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetCertificateRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ImportCertificate",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ImportCertificate"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ImportCertificateResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ImportCertificateRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListCertificates",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListCertificates"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListCertificatesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListCertificatesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForCertificate",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForCertificate"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForCertificateResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForCertificateRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutAccountConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutAccountConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutAccountConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RemoveTagsFromCertificate",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RemoveTagsFromCertificate"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RemoveTagsFromCertificateRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RenewCertificate",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RenewCertificate"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RenewCertificateRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RequestCertificate",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RequestCertificate"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RequestCertificateResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RequestCertificateRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ResendValidationEmail",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ResendValidationEmail"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ResendValidationEmailRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateCertificateOptions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateCertificateOptions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateCertificateOptionsRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "AddTagsToCertificateRequest": {
+            "type": "object",
+            "properties": {
+                "CertificateArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "Arn": {
+            "type": "string"
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "DeleteCertificateRequest": {
+            "type": "object",
+            "properties": {
+                "CertificateArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "DescribeCertificateResponse": {
+            "type": "object",
+            "properties": {
+                "Certificate": {
+                    "$ref": "#/$defs/CertificateDetail"
+                }
+            }
+        },
+        "CertificateDetail": {
+            "type": "object",
+            "properties": {
+                "CertificateArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "DomainName": {
+                    "$ref": "#/$defs/DomainNameString"
+                },
+                "SubjectAlternativeNames": {
+                    "$ref": "#/$defs/DomainList"
+                },
+                "DomainValidationOptions": {
+                    "$ref": "#/$defs/DomainValidationList"
+                },
+                "Serial": {
+                    "$ref": "#/$defs/String"
+                },
+                "Subject": {
+                    "$ref": "#/$defs/String"
+                },
+                "Issuer": {
+                    "$ref": "#/$defs/String"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/TStamp"
+                },
+                "IssuedAt": {
+                    "$ref": "#/$defs/TStamp"
+                },
+                "ImportedAt": {
+                    "$ref": "#/$defs/TStamp"
+                },
+                "Status": {
+                    "$ref": "#/$defs/CertificateStatus"
+                },
+                "RevokedAt": {
+                    "$ref": "#/$defs/TStamp"
+                },
+                "RevocationReason": {
+                    "$ref": "#/$defs/RevocationReason"
+                },
+                "NotBefore": {
+                    "$ref": "#/$defs/TStamp"
+                },
+                "NotAfter": {
+                    "$ref": "#/$defs/TStamp"
+                },
+                "KeyAlgorithm": {
+                    "$ref": "#/$defs/KeyAlgorithm"
+                },
+                "SignatureAlgorithm": {
+                    "$ref": "#/$defs/String"
+                },
+                "InUseBy": {
+                    "$ref": "#/$defs/InUseList"
+                },
+                "FailureReason": {
+                    "$ref": "#/$defs/FailureReason"
+                },
+                "Type": {
+                    "$ref": "#/$defs/CertificateType"
+                },
+                "RenewalSummary": {
+                    "$ref": "#/$defs/RenewalSummary"
+                },
+                "KeyUsages": {
+                    "$ref": "#/$defs/KeyUsageList"
+                },
+                "ExtendedKeyUsages": {
+                    "$ref": "#/$defs/ExtendedKeyUsageList"
+                },
+                "CertificateAuthorityArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "RenewalEligibility": {
+                    "$ref": "#/$defs/RenewalEligibility"
+                },
+                "Options": {
+                    "$ref": "#/$defs/CertificateOptions"
+                }
+            }
+        },
+        "DomainNameString": {
+            "type": "string"
+        },
+        "DomainList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DomainNameString"
+            }
+        },
+        "DomainValidationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DomainValidation"
+            }
+        },
+        "DomainValidation": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/DomainNameString"
+                },
+                "ValidationEmails": {
+                    "$ref": "#/$defs/ValidationEmailList"
+                },
+                "ValidationDomain": {
+                    "$ref": "#/$defs/DomainNameString"
+                },
+                "ValidationStatus": {
+                    "$ref": "#/$defs/DomainStatus"
+                },
+                "ResourceRecord": {
+                    "$ref": "#/$defs/ResourceRecord"
+                },
+                "ValidationMethod": {
+                    "$ref": "#/$defs/ValidationMethod"
+                }
+            }
+        },
+        "ValidationEmailList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "String": {
+            "type": "string"
+        },
+        "DomainStatus": {
+            "enum": [
+                "PENDING_VALIDATION",
+                "SUCCESS",
+                "FAILED"
+            ]
+        },
+        "ResourceRecord": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Type": {
+                    "$ref": "#/$defs/RecordType"
+                },
+                "Value": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "RecordType": {
+            "enum": [
+                "CNAME"
+            ]
+        },
+        "ValidationMethod": {
+            "enum": [
+                "EMAIL",
+                "DNS"
+            ]
+        },
+        "TStamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "CertificateStatus": {
+            "enum": [
+                "PENDING_VALIDATION",
+                "ISSUED",
+                "INACTIVE",
+                "EXPIRED",
+                "VALIDATION_TIMED_OUT",
+                "REVOKED",
+                "FAILED"
+            ]
+        },
+        "RevocationReason": {
+            "enum": [
+                "UNSPECIFIED",
+                "KEY_COMPROMISE",
+                "CA_COMPROMISE",
+                "AFFILIATION_CHANGED",
+                "SUPERCEDED",
+                "CESSATION_OF_OPERATION",
+                "CERTIFICATE_HOLD",
+                "REMOVE_FROM_CRL",
+                "PRIVILEGE_WITHDRAWN",
+                "A_A_COMPROMISE"
+            ]
+        },
+        "KeyAlgorithm": {
+            "enum": [
+                "RSA_1024",
+                "RSA_2048",
+                "RSA_3072",
+                "RSA_4096",
+                "EC_prime256v1",
+                "EC_secp384r1",
+                "EC_secp521r1"
+            ]
+        },
+        "InUseList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "FailureReason": {
+            "enum": [
+                "NO_AVAILABLE_CONTACTS",
+                "ADDITIONAL_VERIFICATION_REQUIRED",
+                "DOMAIN_NOT_ALLOWED",
+                "INVALID_PUBLIC_DOMAIN",
+                "DOMAIN_VALIDATION_DENIED",
+                "CAA_ERROR",
+                "PCA_LIMIT_EXCEEDED",
+                "PCA_INVALID_ARN",
+                "PCA_INVALID_STATE",
+                "PCA_REQUEST_FAILED",
+                "PCA_NAME_CONSTRAINTS_VALIDATION",
+                "PCA_RESOURCE_NOT_FOUND",
+                "PCA_INVALID_ARGS",
+                "PCA_INVALID_DURATION",
+                "PCA_ACCESS_DENIED",
+                "SLR_NOT_FOUND",
+                "OTHER"
+            ]
+        },
+        "CertificateType": {
+            "enum": [
+                "IMPORTED",
+                "AMAZON_ISSUED",
+                "PRIVATE"
+            ]
+        },
+        "RenewalSummary": {
+            "type": "object",
+            "properties": {
+                "RenewalStatus": {
+                    "$ref": "#/$defs/RenewalStatus"
+                },
+                "DomainValidationOptions": {
+                    "$ref": "#/$defs/DomainValidationList"
+                },
+                "RenewalStatusReason": {
+                    "$ref": "#/$defs/FailureReason"
+                },
+                "UpdatedAt": {
+                    "$ref": "#/$defs/TStamp"
+                }
+            }
+        },
+        "RenewalStatus": {
+            "enum": [
+                "PENDING_AUTO_RENEWAL",
+                "PENDING_VALIDATION",
+                "SUCCESS",
+                "FAILED"
+            ]
+        },
+        "KeyUsageList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/KeyUsage"
+            }
+        },
+        "KeyUsage": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/KeyUsageName"
+                }
+            }
+        },
+        "KeyUsageName": {
+            "enum": [
+                "DIGITAL_SIGNATURE",
+                "NON_REPUDATION",
+                "KEY_ENCIPHERMENT",
+                "DATA_ENCIPHERMENT",
+                "KEY_AGREEMENT",
+                "CERTIFICATE_SIGNING",
+                "CRL_SIGNING",
+                "ENCHIPER_ONLY",
+                "DECIPHER_ONLY",
+                "ANY",
+                "CUSTOM"
+            ]
+        },
+        "ExtendedKeyUsageList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ExtendedKeyUsage"
+            }
+        },
+        "ExtendedKeyUsage": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/ExtendedKeyUsageName"
+                },
+                "OID": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ExtendedKeyUsageName": {
+            "enum": [
+                "TLS_WEB_SERVER_AUTHENTICATION",
+                "TLS_WEB_CLIENT_AUTHENTICATION",
+                "CODE_SIGNING",
+                "EMAIL_PROTECTION",
+                "TIME_STAMPING",
+                "OCSP_SIGNING",
+                "IPSEC_END_SYSTEM",
+                "IPSEC_TUNNEL",
+                "IPSEC_USER",
+                "ANY",
+                "NONE",
+                "CUSTOM"
+            ]
+        },
+        "RenewalEligibility": {
+            "enum": [
+                "ELIGIBLE",
+                "INELIGIBLE"
+            ]
+        },
+        "CertificateOptions": {
+            "type": "object",
+            "properties": {
+                "CertificateTransparencyLoggingPreference": {
+                    "$ref": "#/$defs/CertificateTransparencyLoggingPreference"
+                }
+            }
+        },
+        "CertificateTransparencyLoggingPreference": {
+            "enum": [
+                "ENABLED",
+                "DISABLED"
+            ]
+        },
+        "DescribeCertificateRequest": {
+            "type": "object",
+            "properties": {
+                "CertificateArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "ExportCertificateResponse": {
+            "type": "object",
+            "properties": {
+                "Certificate": {
+                    "$ref": "#/$defs/CertificateBody"
+                },
+                "CertificateChain": {
+                    "$ref": "#/$defs/CertificateChain"
+                },
+                "PrivateKey": {
+                    "$ref": "#/$defs/PrivateKey"
+                }
+            }
+        },
+        "CertificateBody": {
+            "type": "string"
+        },
+        "CertificateChain": {
+            "type": "string"
+        },
+        "PrivateKey": {
+            "type": "string"
+        },
+        "ExportCertificateRequest": {
+            "type": "object",
+            "properties": {
+                "CertificateArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Passphrase": {
+                    "$ref": "#/$defs/PassphraseBlob"
+                }
+            }
+        },
+        "PassphraseBlob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "GetAccountConfigurationResponse": {
+            "type": "object",
+            "properties": {
+                "ExpiryEvents": {
+                    "$ref": "#/$defs/ExpiryEventsConfiguration"
+                }
+            }
+        },
+        "ExpiryEventsConfiguration": {
+            "type": "object",
+            "properties": {
+                "DaysBeforeExpiry": {
+                    "$ref": "#/$defs/PositiveInteger"
+                }
+            }
+        },
+        "PositiveInteger": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "GetCertificateResponse": {
+            "type": "object",
+            "properties": {
+                "Certificate": {
+                    "$ref": "#/$defs/CertificateBody"
+                },
+                "CertificateChain": {
+                    "$ref": "#/$defs/CertificateChain"
+                }
+            }
+        },
+        "GetCertificateRequest": {
+            "type": "object",
+            "properties": {
+                "CertificateArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "ImportCertificateResponse": {
+            "type": "object",
+            "properties": {
+                "CertificateArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "ImportCertificateRequest": {
+            "type": "object",
+            "properties": {
+                "CertificateArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Certificate": {
+                    "$ref": "#/$defs/CertificateBodyBlob"
+                },
+                "PrivateKey": {
+                    "$ref": "#/$defs/PrivateKeyBlob"
+                },
+                "CertificateChain": {
+                    "$ref": "#/$defs/CertificateChainBlob"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "CertificateBodyBlob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "PrivateKeyBlob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CertificateChainBlob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "ListCertificatesResponse": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "CertificateSummaryList": {
+                    "$ref": "#/$defs/CertificateSummaryList"
+                }
+            }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "CertificateSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CertificateSummary"
+            }
+        },
+        "CertificateSummary": {
+            "type": "object",
+            "properties": {
+                "CertificateArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "DomainName": {
+                    "$ref": "#/$defs/DomainNameString"
+                },
+                "SubjectAlternativeNameSummaries": {
+                    "$ref": "#/$defs/DomainList"
+                },
+                "HasAdditionalSubjectAlternativeNames": {
+                    "$ref": "#/$defs/NullableBoolean"
+                },
+                "Status": {
+                    "$ref": "#/$defs/CertificateStatus"
+                },
+                "Type": {
+                    "$ref": "#/$defs/CertificateType"
+                },
+                "KeyAlgorithm": {
+                    "$ref": "#/$defs/KeyAlgorithm"
+                },
+                "KeyUsages": {
+                    "$ref": "#/$defs/KeyUsageNames"
+                },
+                "ExtendedKeyUsages": {
+                    "$ref": "#/$defs/ExtendedKeyUsageNames"
+                },
+                "InUse": {
+                    "$ref": "#/$defs/NullableBoolean"
+                },
+                "Exported": {
+                    "$ref": "#/$defs/NullableBoolean"
+                },
+                "RenewalEligibility": {
+                    "$ref": "#/$defs/RenewalEligibility"
+                },
+                "NotBefore": {
+                    "$ref": "#/$defs/TStamp"
+                },
+                "NotAfter": {
+                    "$ref": "#/$defs/TStamp"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/TStamp"
+                },
+                "IssuedAt": {
+                    "$ref": "#/$defs/TStamp"
+                },
+                "ImportedAt": {
+                    "$ref": "#/$defs/TStamp"
+                },
+                "RevokedAt": {
+                    "$ref": "#/$defs/TStamp"
+                }
+            }
+        },
+        "NullableBoolean": {
+            "type": "boolean"
+        },
+        "KeyUsageNames": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/KeyUsageName"
+            }
+        },
+        "ExtendedKeyUsageNames": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ExtendedKeyUsageName"
+            }
+        },
+        "ListCertificatesRequest": {
+            "type": "object",
+            "properties": {
+                "CertificateStatuses": {
+                    "$ref": "#/$defs/CertificateStatuses"
+                },
+                "Includes": {
+                    "$ref": "#/$defs/Filters"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxItems": {
+                    "$ref": "#/$defs/MaxItems"
+                },
+                "SortBy": {
+                    "$ref": "#/$defs/SortBy"
+                },
+                "SortOrder": {
+                    "$ref": "#/$defs/SortOrder"
+                }
+            }
+        },
+        "CertificateStatuses": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CertificateStatus"
+            }
+        },
+        "Filters": {
+            "type": "object",
+            "properties": {
+                "extendedKeyUsage": {
+                    "$ref": "#/$defs/ExtendedKeyUsageFilterList"
+                },
+                "keyUsage": {
+                    "$ref": "#/$defs/KeyUsageFilterList"
+                },
+                "keyTypes": {
+                    "$ref": "#/$defs/KeyAlgorithmList"
+                }
+            }
+        },
+        "ExtendedKeyUsageFilterList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ExtendedKeyUsageName"
+            }
+        },
+        "KeyUsageFilterList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/KeyUsageName"
+            }
+        },
+        "KeyAlgorithmList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/KeyAlgorithm"
+            }
+        },
+        "MaxItems": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "SortBy": {
+            "enum": [
+                "CREATED_AT"
+            ]
+        },
+        "SortOrder": {
+            "enum": [
+                "ASCENDING",
+                "DESCENDING"
+            ]
+        },
+        "ListTagsForCertificateResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "ListTagsForCertificateRequest": {
+            "type": "object",
+            "properties": {
+                "CertificateArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "PutAccountConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "ExpiryEvents": {
+                    "$ref": "#/$defs/ExpiryEventsConfiguration"
+                },
+                "IdempotencyToken": {
+                    "$ref": "#/$defs/IdempotencyToken"
+                }
+            }
+        },
+        "IdempotencyToken": {
+            "type": "string"
+        },
+        "RemoveTagsFromCertificateRequest": {
+            "type": "object",
+            "properties": {
+                "CertificateArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "RenewCertificateRequest": {
+            "type": "object",
+            "properties": {
+                "CertificateArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "RequestCertificateResponse": {
+            "type": "object",
+            "properties": {
+                "CertificateArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "RequestCertificateRequest": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/DomainNameString"
+                },
+                "ValidationMethod": {
+                    "$ref": "#/$defs/ValidationMethod"
+                },
+                "SubjectAlternativeNames": {
+                    "$ref": "#/$defs/DomainList"
+                },
+                "IdempotencyToken": {
+                    "$ref": "#/$defs/IdempotencyToken"
+                },
+                "DomainValidationOptions": {
+                    "$ref": "#/$defs/DomainValidationOptionList"
+                },
+                "Options": {
+                    "$ref": "#/$defs/CertificateOptions"
+                },
+                "CertificateAuthorityArn": {
+                    "$ref": "#/$defs/PcaArn"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "KeyAlgorithm": {
+                    "$ref": "#/$defs/KeyAlgorithm"
+                }
+            }
+        },
+        "DomainValidationOptionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DomainValidationOption"
+            }
+        },
+        "DomainValidationOption": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/DomainNameString"
+                },
+                "ValidationDomain": {
+                    "$ref": "#/$defs/DomainNameString"
+                }
+            }
+        },
+        "PcaArn": {
+            "type": "string"
+        },
+        "ResendValidationEmailRequest": {
+            "type": "object",
+            "properties": {
+                "CertificateArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Domain": {
+                    "$ref": "#/$defs/DomainNameString"
+                },
+                "ValidationDomain": {
+                    "$ref": "#/$defs/DomainNameString"
+                }
+            }
+        },
+        "UpdateCertificateOptionsRequest": {
+            "type": "object",
+            "properties": {
+                "CertificateArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Options": {
+                    "$ref": "#/$defs/CertificateOptions"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://acm-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "stringEquals",
+                                                        "argv": [
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "name"
+                                                                ]
+                                                            },
+                                                            "aws-us-gov"
+                                                        ]
+                                                    }
+                                                ],
+                                                "endpoint": {
+                                                    "url": "https://acm.{Region}.amazonaws.com",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://acm-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://acm.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://acm.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

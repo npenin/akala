@@ -1,0 +1,1175 @@
+{
+    "name": "license-manager-linux-subscriptions",
+    "commands": [
+        {
+            "name": "DeregisterSubscriptionProvider",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeregisterSubscriptionProvider"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeregisterSubscriptionProviderResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeregisterSubscriptionProviderRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetRegisteredSubscriptionProvider",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetRegisteredSubscriptionProvider"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetRegisteredSubscriptionProviderResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetRegisteredSubscriptionProviderRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetServiceSettings",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetServiceSettings"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetServiceSettingsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetServiceSettingsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListLinuxSubscriptionInstances",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListLinuxSubscriptionInstances"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListLinuxSubscriptionInstancesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListLinuxSubscriptionInstancesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListLinuxSubscriptions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListLinuxSubscriptions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListLinuxSubscriptionsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListLinuxSubscriptionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListRegisteredSubscriptionProviders",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListRegisteredSubscriptionProviders"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListRegisteredSubscriptionProvidersResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListRegisteredSubscriptionProvidersRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RegisterSubscriptionProvider",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RegisterSubscriptionProvider"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RegisterSubscriptionProviderResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RegisterSubscriptionProviderRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateServiceSettings",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateServiceSettings"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateServiceSettingsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateServiceSettingsRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "DeregisterSubscriptionProviderResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeregisterSubscriptionProviderRequest": {
+            "type": "object",
+            "properties": {
+                "SubscriptionProviderArn": {
+                    "$ref": "#/$defs/SubscriptionProviderArn"
+                }
+            }
+        },
+        "SubscriptionProviderArn": {
+            "type": "string"
+        },
+        "GetRegisteredSubscriptionProviderResponse": {
+            "type": "object",
+            "properties": {
+                "SubscriptionProviderArn": {
+                    "$ref": "#/$defs/SubscriptionProviderArn"
+                },
+                "SubscriptionProviderSource": {
+                    "$ref": "#/$defs/SubscriptionProviderSource"
+                },
+                "SecretArn": {
+                    "$ref": "#/$defs/SecretArn"
+                },
+                "SubscriptionProviderStatus": {
+                    "$ref": "#/$defs/SubscriptionProviderStatus"
+                },
+                "SubscriptionProviderStatusMessage": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "LastSuccessfulDataRetrievalTime": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "SubscriptionProviderSource": {
+            "type": "string"
+        },
+        "SecretArn": {
+            "type": "string"
+        },
+        "SubscriptionProviderStatus": {
+            "type": "string"
+        },
+        "GetRegisteredSubscriptionProviderRequest": {
+            "type": "object",
+            "properties": {
+                "SubscriptionProviderArn": {
+                    "$ref": "#/$defs/SubscriptionProviderArn"
+                }
+            }
+        },
+        "GetServiceSettingsResponse": {
+            "type": "object",
+            "properties": {
+                "LinuxSubscriptionsDiscovery": {
+                    "$ref": "#/$defs/LinuxSubscriptionsDiscovery"
+                },
+                "LinuxSubscriptionsDiscoverySettings": {
+                    "$ref": "#/$defs/LinuxSubscriptionsDiscoverySettings"
+                },
+                "Status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "StatusMessage": {
+                    "$ref": "#/$defs/StringMap"
+                },
+                "HomeRegions": {
+                    "$ref": "#/$defs/StringList"
+                }
+            }
+        },
+        "LinuxSubscriptionsDiscovery": {
+            "type": "string"
+        },
+        "LinuxSubscriptionsDiscoverySettings": {
+            "type": "object",
+            "properties": {
+                "SourceRegions": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "OrganizationIntegration": {
+                    "$ref": "#/$defs/OrganizationIntegration"
+                }
+            }
+        },
+        "StringList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "OrganizationIntegration": {
+            "type": "string"
+        },
+        "Status": {
+            "type": "string"
+        },
+        "StringMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "GetServiceSettingsRequest": {
+            "type": "object",
+            "properties": {}
+        },
+        "ListLinuxSubscriptionInstancesResponse": {
+            "type": "object",
+            "properties": {
+                "Instances": {
+                    "$ref": "#/$defs/InstanceList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "InstanceList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Instance"
+            }
+        },
+        "Instance": {
+            "type": "object",
+            "properties": {
+                "AmiId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "InstanceID": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "InstanceType": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "AccountID": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Status": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Region": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "UsageOperation": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "ProductCode": {
+                    "$ref": "#/$defs/ProductCodeList"
+                },
+                "LastUpdatedTime": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "SubscriptionName": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "OsVersion": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "SubscriptionProviderCreateTime": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "SubscriptionProviderUpdateTime": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "DualSubscription": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "RegisteredWithSubscriptionProvider": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "ProductCodeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "ListLinuxSubscriptionInstancesRequest": {
+            "type": "object",
+            "properties": {
+                "Filters": {
+                    "$ref": "#/$defs/FilterList"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/BoxInteger"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "FilterList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Filter"
+            }
+        },
+        "Filter": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Values": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "Operator": {
+                    "$ref": "#/$defs/Operator"
+                }
+            }
+        },
+        "Operator": {
+            "type": "string"
+        },
+        "BoxInteger": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListLinuxSubscriptionsResponse": {
+            "type": "object",
+            "properties": {
+                "Subscriptions": {
+                    "$ref": "#/$defs/SubscriptionList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "SubscriptionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Subscription"
+            }
+        },
+        "Subscription": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Type": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "InstanceCount": {
+                    "$ref": "#/$defs/BoxLong"
+                }
+            }
+        },
+        "BoxLong": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "ListLinuxSubscriptionsRequest": {
+            "type": "object",
+            "properties": {
+                "Filters": {
+                    "$ref": "#/$defs/FilterList"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/BoxInteger"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "ListRegisteredSubscriptionProvidersResponse": {
+            "type": "object",
+            "properties": {
+                "RegisteredSubscriptionProviders": {
+                    "$ref": "#/$defs/RegisteredSubscriptionProviderList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "RegisteredSubscriptionProviderList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RegisteredSubscriptionProvider"
+            }
+        },
+        "RegisteredSubscriptionProvider": {
+            "type": "object",
+            "properties": {
+                "SubscriptionProviderArn": {
+                    "$ref": "#/$defs/SubscriptionProviderArn"
+                },
+                "SubscriptionProviderSource": {
+                    "$ref": "#/$defs/SubscriptionProviderSource"
+                },
+                "SecretArn": {
+                    "$ref": "#/$defs/SecretArn"
+                },
+                "SubscriptionProviderStatus": {
+                    "$ref": "#/$defs/SubscriptionProviderStatus"
+                },
+                "SubscriptionProviderStatusMessage": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "LastSuccessfulDataRetrievalTime": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "ListRegisteredSubscriptionProvidersRequest": {
+            "type": "object",
+            "properties": {
+                "SubscriptionProviderSources": {
+                    "$ref": "#/$defs/SubscriptionProviderSourceList"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/BoxInteger"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "SubscriptionProviderSourceList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SubscriptionProviderSource"
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "Tags": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/SubscriptionProviderArn"
+                }
+            }
+        },
+        "RegisterSubscriptionProviderResponse": {
+            "type": "object",
+            "properties": {
+                "SubscriptionProviderSource": {
+                    "$ref": "#/$defs/SubscriptionProviderSource"
+                },
+                "SubscriptionProviderArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "SubscriptionProviderStatus": {
+                    "$ref": "#/$defs/SubscriptionProviderStatus"
+                }
+            }
+        },
+        "RegisterSubscriptionProviderRequest": {
+            "type": "object",
+            "properties": {
+                "SubscriptionProviderSource": {
+                    "$ref": "#/$defs/SubscriptionProviderSource"
+                },
+                "SecretArn": {
+                    "$ref": "#/$defs/SecretArn"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/SubscriptionProviderArn"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/SubscriptionProviderArn"
+                },
+                "tagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "UpdateServiceSettingsResponse": {
+            "type": "object",
+            "properties": {
+                "LinuxSubscriptionsDiscovery": {
+                    "$ref": "#/$defs/LinuxSubscriptionsDiscovery"
+                },
+                "LinuxSubscriptionsDiscoverySettings": {
+                    "$ref": "#/$defs/LinuxSubscriptionsDiscoverySettings"
+                },
+                "Status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "StatusMessage": {
+                    "$ref": "#/$defs/StringMap"
+                },
+                "HomeRegions": {
+                    "$ref": "#/$defs/StringList"
+                }
+            }
+        },
+        "UpdateServiceSettingsRequest": {
+            "type": "object",
+            "properties": {
+                "LinuxSubscriptionsDiscovery": {
+                    "$ref": "#/$defs/LinuxSubscriptionsDiscovery"
+                },
+                "LinuxSubscriptionsDiscoverySettings": {
+                    "$ref": "#/$defs/LinuxSubscriptionsDiscoverySettings"
+                },
+                "AllowUpdate": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                                "type": "error"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": {
+                                        "ref": "Endpoint"
+                                    },
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "isSet",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ]
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "aws.partition",
+                                        "argv": [
+                                            {
+                                                "ref": "Region"
+                                            }
+                                        ],
+                                        "assign": "PartitionResult"
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseFIPS"
+                                                    },
+                                                    true
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseDualStack"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsFIPS"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsDualStack"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://license-manager-linux-subscriptions-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ],
+                                                        "type": "tree"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseFIPS"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsFIPS"
+                                                                ]
+                                                            },
+                                                            true
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://license-manager-linux-subscriptions-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ],
+                                                        "type": "tree"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "FIPS is enabled but this partition does not support FIPS",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseDualStack"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsDualStack"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://license-manager-linux-subscriptions.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ],
+                                                        "type": "tree"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "DualStack is enabled but this partition does not support DualStack",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://license-manager-linux-subscriptions.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    }
+                                ],
+                                "type": "tree"
+                            }
+                        ],
+                        "type": "tree"
+                    },
+                    {
+                        "conditions": [],
+                        "error": "Invalid Configuration: Missing Region",
+                        "type": "error"
+                    }
+                ],
+                "type": "tree"
+            }
+        ]
+    }
+}

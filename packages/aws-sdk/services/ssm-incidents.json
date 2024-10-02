@@ -1,0 +1,2852 @@
+{
+    "name": "ssm-incidents",
+    "commands": [
+        {
+            "name": "BatchGetIncidentFindings",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchGetIncidentFindings"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchGetIncidentFindingsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchGetIncidentFindingsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateReplicationSet",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateReplicationSet"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateReplicationSetOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateReplicationSetInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateResponsePlan",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateResponsePlan"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateResponsePlanOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateResponsePlanInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateTimelineEvent",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateTimelineEvent"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateTimelineEventOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateTimelineEventInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteIncidentRecord",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteIncidentRecord"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteIncidentRecordOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteIncidentRecordInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteReplicationSet",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteReplicationSet"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteReplicationSetOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteReplicationSetInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteResourcePolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteResourcePolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteResourcePolicyOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteResourcePolicyInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteResponsePlan",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteResponsePlan"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteResponsePlanOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteResponsePlanInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteTimelineEvent",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteTimelineEvent"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteTimelineEventOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteTimelineEventInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetIncidentRecord",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetIncidentRecord"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetIncidentRecordOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetIncidentRecordInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetReplicationSet",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetReplicationSet"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetReplicationSetOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetReplicationSetInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetResourcePolicies",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetResourcePolicies"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetResourcePoliciesOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetResourcePoliciesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetResponsePlan",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetResponsePlan"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetResponsePlanOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetResponsePlanInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetTimelineEvent",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetTimelineEvent"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetTimelineEventOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetTimelineEventInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListIncidentFindings",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListIncidentFindings"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListIncidentFindingsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListIncidentFindingsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListIncidentRecords",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListIncidentRecords"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListIncidentRecordsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListIncidentRecordsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListRelatedItems",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListRelatedItems"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListRelatedItemsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListRelatedItemsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListReplicationSets",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListReplicationSets"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListReplicationSetsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListReplicationSetsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListResponsePlans",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListResponsePlans"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListResponsePlansOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListResponsePlansInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTimelineEvents",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTimelineEvents"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTimelineEventsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTimelineEventsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutResourcePolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutResourcePolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutResourcePolicyOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutResourcePolicyInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartIncident",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartIncident"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartIncidentOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartIncidentInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateDeletionProtection",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateDeletionProtection"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateDeletionProtectionOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateDeletionProtectionInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateIncidentRecord",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateIncidentRecord"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateIncidentRecordOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateIncidentRecordInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateRelatedItems",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateRelatedItems"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateRelatedItemsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateRelatedItemsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateReplicationSet",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateReplicationSet"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateReplicationSetOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateReplicationSetInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateResponsePlan",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateResponsePlan"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateResponsePlanOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateResponsePlanInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateTimelineEvent",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateTimelineEvent"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateTimelineEventOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateTimelineEventInput"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "BatchGetIncidentFindingsOutput": {
+            "type": "object",
+            "properties": {
+                "findings": {
+                    "$ref": "#/$defs/FindingList"
+                },
+                "errors": {
+                    "$ref": "#/$defs/BatchGetIncidentFindingsErrorList"
+                }
+            }
+        },
+        "FindingList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Finding"
+            }
+        },
+        "Finding": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/FindingId"
+                },
+                "creationTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "lastModifiedTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "details": {
+                    "$ref": "#/$defs/FindingDetails"
+                }
+            }
+        },
+        "FindingId": {
+            "type": "string"
+        },
+        "FindingDetails": {
+            "type": "object",
+            "properties": {
+                "codeDeployDeployment": {
+                    "$ref": "#/$defs/CodeDeployDeployment"
+                },
+                "cloudFormationStackUpdate": {
+                    "$ref": "#/$defs/CloudFormationStackUpdate"
+                }
+            }
+        },
+        "CodeDeployDeployment": {
+            "type": "object",
+            "properties": {
+                "startTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "endTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "deploymentGroupArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "deploymentId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "Arn": {
+            "type": "string"
+        },
+        "CloudFormationStackUpdate": {
+            "type": "object",
+            "properties": {
+                "startTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "endTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "stackArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "BatchGetIncidentFindingsErrorList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BatchGetIncidentFindingsError"
+            }
+        },
+        "BatchGetIncidentFindingsError": {
+            "type": "object",
+            "properties": {
+                "findingId": {
+                    "$ref": "#/$defs/FindingId"
+                },
+                "code": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "message": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "BatchGetIncidentFindingsInput": {
+            "type": "object",
+            "properties": {
+                "incidentRecordArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "findingIds": {
+                    "$ref": "#/$defs/FindingIdList"
+                }
+            }
+        },
+        "FindingIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FindingId"
+            }
+        },
+        "CreateReplicationSetOutput": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "CreateReplicationSetInput": {
+            "type": "object",
+            "properties": {
+                "regions": {
+                    "$ref": "#/$defs/RegionMapInput"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "RegionMapInput": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/RegionMapInputValue"
+            }
+        },
+        "RegionMapInputValue": {
+            "type": "object",
+            "properties": {
+                "sseKmsKeyId": {
+                    "$ref": "#/$defs/SseKmsKey"
+                }
+            }
+        },
+        "SseKmsKey": {
+            "type": "string"
+        },
+        "ClientToken": {
+            "type": "string"
+        },
+        "TagMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TagValue"
+            }
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "CreateResponsePlanOutput": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "CreateResponsePlanInput": {
+            "type": "object",
+            "properties": {
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                },
+                "name": {
+                    "$ref": "#/$defs/ResponsePlanName"
+                },
+                "displayName": {
+                    "$ref": "#/$defs/ResponsePlanDisplayName"
+                },
+                "incidentTemplate": {
+                    "$ref": "#/$defs/IncidentTemplate"
+                },
+                "chatChannel": {
+                    "$ref": "#/$defs/ChatChannel"
+                },
+                "engagements": {
+                    "$ref": "#/$defs/EngagementSet"
+                },
+                "actions": {
+                    "$ref": "#/$defs/ActionsList"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                },
+                "integrations": {
+                    "$ref": "#/$defs/Integrations"
+                }
+            }
+        },
+        "ResponsePlanName": {
+            "type": "string"
+        },
+        "ResponsePlanDisplayName": {
+            "type": "string"
+        },
+        "IncidentTemplate": {
+            "type": "object",
+            "properties": {
+                "title": {
+                    "$ref": "#/$defs/IncidentTitle"
+                },
+                "impact": {
+                    "$ref": "#/$defs/Impact"
+                },
+                "summary": {
+                    "$ref": "#/$defs/IncidentSummary"
+                },
+                "dedupeString": {
+                    "$ref": "#/$defs/DedupeString"
+                },
+                "notificationTargets": {
+                    "$ref": "#/$defs/NotificationTargetSet"
+                },
+                "incidentTags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "IncidentTitle": {
+            "type": "string"
+        },
+        "Impact": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "IncidentSummary": {
+            "type": "string"
+        },
+        "DedupeString": {
+            "type": "string"
+        },
+        "NotificationTargetSet": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NotificationTargetItem"
+            }
+        },
+        "NotificationTargetItem": {
+            "type": "object",
+            "properties": {
+                "snsTopicArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "ChatChannel": {
+            "type": "object",
+            "properties": {
+                "empty": {
+                    "$ref": "#/$defs/EmptyChatChannel"
+                },
+                "chatbotSns": {
+                    "$ref": "#/$defs/ChatbotSnsConfigurationSet"
+                }
+            }
+        },
+        "EmptyChatChannel": {
+            "type": "object",
+            "properties": {}
+        },
+        "ChatbotSnsConfigurationSet": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SnsArn"
+            }
+        },
+        "SnsArn": {
+            "type": "string"
+        },
+        "EngagementSet": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SsmContactsArn"
+            }
+        },
+        "SsmContactsArn": {
+            "type": "string"
+        },
+        "ActionsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Action"
+            }
+        },
+        "Action": {
+            "type": "object",
+            "properties": {
+                "ssmAutomation": {
+                    "$ref": "#/$defs/SsmAutomation"
+                }
+            }
+        },
+        "SsmAutomation": {
+            "type": "object",
+            "properties": {
+                "roleArn": {
+                    "$ref": "#/$defs/RoleArn"
+                },
+                "documentName": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "documentVersion": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "targetAccount": {
+                    "$ref": "#/$defs/SsmTargetAccount"
+                },
+                "parameters": {
+                    "$ref": "#/$defs/SsmParameters"
+                },
+                "dynamicParameters": {
+                    "$ref": "#/$defs/DynamicSsmParameters"
+                }
+            }
+        },
+        "RoleArn": {
+            "type": "string"
+        },
+        "SsmTargetAccount": {
+            "type": "string"
+        },
+        "SsmParameters": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/SsmParameterValues"
+            }
+        },
+        "SsmParameterValues": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "DynamicSsmParameters": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/DynamicSsmParameterValue"
+            }
+        },
+        "DynamicSsmParameterValue": {
+            "type": "object",
+            "properties": {
+                "variable": {
+                    "$ref": "#/$defs/VariableType"
+                }
+            }
+        },
+        "VariableType": {
+            "type": "string"
+        },
+        "Integrations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Integration"
+            }
+        },
+        "Integration": {
+            "type": "object",
+            "properties": {
+                "pagerDutyConfiguration": {
+                    "$ref": "#/$defs/PagerDutyConfiguration"
+                }
+            }
+        },
+        "PagerDutyConfiguration": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "secretId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "pagerDutyIncidentConfiguration": {
+                    "$ref": "#/$defs/PagerDutyIncidentConfiguration"
+                }
+            }
+        },
+        "PagerDutyIncidentConfiguration": {
+            "type": "object",
+            "properties": {
+                "serviceId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "CreateTimelineEventOutput": {
+            "type": "object",
+            "properties": {
+                "incidentRecordArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "eventId": {
+                    "$ref": "#/$defs/UUID"
+                }
+            }
+        },
+        "UUID": {
+            "type": "string"
+        },
+        "CreateTimelineEventInput": {
+            "type": "object",
+            "properties": {
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                },
+                "incidentRecordArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "eventTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "eventType": {
+                    "$ref": "#/$defs/TimelineEventType"
+                },
+                "eventData": {
+                    "$ref": "#/$defs/EventData"
+                },
+                "eventReferences": {
+                    "$ref": "#/$defs/EventReferenceList"
+                }
+            }
+        },
+        "TimelineEventType": {
+            "type": "string"
+        },
+        "EventData": {
+            "type": "string"
+        },
+        "EventReferenceList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EventReference"
+            }
+        },
+        "EventReference": {
+            "type": "object",
+            "properties": {
+                "resource": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "relatedItemId": {
+                    "$ref": "#/$defs/GeneratedId"
+                }
+            }
+        },
+        "GeneratedId": {
+            "type": "string"
+        },
+        "DeleteIncidentRecordOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteIncidentRecordInput": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "DeleteReplicationSetOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteReplicationSetInput": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "DeleteResourcePolicyOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteResourcePolicyInput": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "policyId": {
+                    "$ref": "#/$defs/PolicyId"
+                }
+            }
+        },
+        "PolicyId": {
+            "type": "string"
+        },
+        "DeleteResponsePlanOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteResponsePlanInput": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "DeleteTimelineEventOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteTimelineEventInput": {
+            "type": "object",
+            "properties": {
+                "incidentRecordArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "eventId": {
+                    "$ref": "#/$defs/UUID"
+                }
+            }
+        },
+        "GetIncidentRecordOutput": {
+            "type": "object",
+            "properties": {
+                "incidentRecord": {
+                    "$ref": "#/$defs/IncidentRecord"
+                }
+            }
+        },
+        "IncidentRecord": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "title": {
+                    "$ref": "#/$defs/IncidentTitle"
+                },
+                "summary": {
+                    "$ref": "#/$defs/IncidentSummary"
+                },
+                "status": {
+                    "$ref": "#/$defs/IncidentRecordStatus"
+                },
+                "impact": {
+                    "$ref": "#/$defs/Impact"
+                },
+                "creationTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "resolvedTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "lastModifiedTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "lastModifiedBy": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "automationExecutions": {
+                    "$ref": "#/$defs/AutomationExecutionSet"
+                },
+                "incidentRecordSource": {
+                    "$ref": "#/$defs/IncidentRecordSource"
+                },
+                "dedupeString": {
+                    "$ref": "#/$defs/DedupeString"
+                },
+                "chatChannel": {
+                    "$ref": "#/$defs/ChatChannel"
+                },
+                "notificationTargets": {
+                    "$ref": "#/$defs/NotificationTargetSet"
+                }
+            }
+        },
+        "IncidentRecordStatus": {
+            "type": "string"
+        },
+        "AutomationExecutionSet": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AutomationExecution"
+            }
+        },
+        "AutomationExecution": {
+            "type": "object",
+            "properties": {
+                "ssmExecutionArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "IncidentRecordSource": {
+            "type": "object",
+            "properties": {
+                "createdBy": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "invokedBy": {
+                    "$ref": "#/$defs/ServicePrincipal"
+                },
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "source": {
+                    "$ref": "#/$defs/IncidentSource"
+                }
+            }
+        },
+        "ServicePrincipal": {
+            "type": "string"
+        },
+        "IncidentSource": {
+            "type": "string"
+        },
+        "GetIncidentRecordInput": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "GetReplicationSetOutput": {
+            "type": "object",
+            "properties": {
+                "replicationSet": {
+                    "$ref": "#/$defs/ReplicationSet"
+                }
+            }
+        },
+        "ReplicationSet": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "regionMap": {
+                    "$ref": "#/$defs/RegionInfoMap"
+                },
+                "status": {
+                    "$ref": "#/$defs/ReplicationSetStatus"
+                },
+                "deletionProtected": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                },
+                "createdTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "createdBy": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "lastModifiedTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "lastModifiedBy": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "RegionInfoMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/RegionInfo"
+            }
+        },
+        "RegionInfo": {
+            "type": "object",
+            "properties": {
+                "sseKmsKeyId": {
+                    "$ref": "#/$defs/SseKmsKey"
+                },
+                "status": {
+                    "$ref": "#/$defs/RegionStatus"
+                },
+                "statusMessage": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "statusUpdateDateTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                }
+            }
+        },
+        "RegionStatus": {
+            "type": "string"
+        },
+        "ReplicationSetStatus": {
+            "type": "string"
+        },
+        "GetReplicationSetInput": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "GetResourcePoliciesOutput": {
+            "type": "object",
+            "properties": {
+                "resourcePolicies": {
+                    "$ref": "#/$defs/ResourcePolicyList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ResourcePolicyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourcePolicy"
+            }
+        },
+        "ResourcePolicy": {
+            "type": "object",
+            "properties": {
+                "policyDocument": {
+                    "$ref": "#/$defs/Policy"
+                },
+                "policyId": {
+                    "$ref": "#/$defs/PolicyId"
+                },
+                "ramResourceShareRegion": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "Policy": {
+            "type": "string"
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "GetResourcePoliciesInput": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "GetResponsePlanOutput": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "name": {
+                    "$ref": "#/$defs/ResponsePlanName"
+                },
+                "displayName": {
+                    "$ref": "#/$defs/ResponsePlanDisplayName"
+                },
+                "incidentTemplate": {
+                    "$ref": "#/$defs/IncidentTemplate"
+                },
+                "chatChannel": {
+                    "$ref": "#/$defs/ChatChannel"
+                },
+                "engagements": {
+                    "$ref": "#/$defs/EngagementSet"
+                },
+                "actions": {
+                    "$ref": "#/$defs/ActionsList"
+                },
+                "integrations": {
+                    "$ref": "#/$defs/Integrations"
+                }
+            }
+        },
+        "GetResponsePlanInput": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "GetTimelineEventOutput": {
+            "type": "object",
+            "properties": {
+                "event": {
+                    "$ref": "#/$defs/TimelineEvent"
+                }
+            }
+        },
+        "TimelineEvent": {
+            "type": "object",
+            "properties": {
+                "incidentRecordArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "eventId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "eventTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "eventUpdatedTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "eventType": {
+                    "$ref": "#/$defs/TimelineEventType"
+                },
+                "eventData": {
+                    "$ref": "#/$defs/EventData"
+                },
+                "eventReferences": {
+                    "$ref": "#/$defs/EventReferenceList"
+                }
+            }
+        },
+        "GetTimelineEventInput": {
+            "type": "object",
+            "properties": {
+                "incidentRecordArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "eventId": {
+                    "$ref": "#/$defs/UUID"
+                }
+            }
+        },
+        "ListIncidentFindingsOutput": {
+            "type": "object",
+            "properties": {
+                "findings": {
+                    "$ref": "#/$defs/FindingSummaryList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "FindingSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FindingSummary"
+            }
+        },
+        "FindingSummary": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/FindingId"
+                },
+                "lastModifiedTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                }
+            }
+        },
+        "ListIncidentFindingsInput": {
+            "type": "object",
+            "properties": {
+                "incidentRecordArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListIncidentRecordsOutput": {
+            "type": "object",
+            "properties": {
+                "incidentRecordSummaries": {
+                    "$ref": "#/$defs/IncidentRecordSummaryList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "IncidentRecordSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/IncidentRecordSummary"
+            }
+        },
+        "IncidentRecordSummary": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "title": {
+                    "$ref": "#/$defs/IncidentTitle"
+                },
+                "status": {
+                    "$ref": "#/$defs/IncidentRecordStatus"
+                },
+                "impact": {
+                    "$ref": "#/$defs/Impact"
+                },
+                "creationTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "resolvedTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "incidentRecordSource": {
+                    "$ref": "#/$defs/IncidentRecordSource"
+                }
+            }
+        },
+        "ListIncidentRecordsInput": {
+            "type": "object",
+            "properties": {
+                "filters": {
+                    "$ref": "#/$defs/FilterList"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "FilterList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Filter"
+            }
+        },
+        "Filter": {
+            "type": "object",
+            "properties": {
+                "key": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "condition": {
+                    "$ref": "#/$defs/Condition"
+                }
+            }
+        },
+        "Condition": {
+            "type": "object",
+            "properties": {
+                "before": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "after": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "equals": {
+                    "$ref": "#/$defs/AttributeValueList"
+                }
+            }
+        },
+        "AttributeValueList": {
+            "type": "object",
+            "properties": {
+                "stringValues": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "integerValues": {
+                    "$ref": "#/$defs/IntegerList"
+                }
+            }
+        },
+        "StringList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "IntegerList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/smithy.api#Integer"
+            }
+        },
+        "ListRelatedItemsOutput": {
+            "type": "object",
+            "properties": {
+                "relatedItems": {
+                    "$ref": "#/$defs/RelatedItemList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "RelatedItemList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RelatedItem"
+            }
+        },
+        "RelatedItem": {
+            "type": "object",
+            "properties": {
+                "identifier": {
+                    "$ref": "#/$defs/ItemIdentifier"
+                },
+                "title": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "generatedId": {
+                    "$ref": "#/$defs/GeneratedId"
+                }
+            }
+        },
+        "ItemIdentifier": {
+            "type": "object",
+            "properties": {
+                "value": {
+                    "$ref": "#/$defs/ItemValue"
+                },
+                "type": {
+                    "$ref": "#/$defs/ItemType"
+                }
+            }
+        },
+        "ItemValue": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "url": {
+                    "$ref": "#/$defs/Url"
+                },
+                "metricDefinition": {
+                    "$ref": "#/$defs/MetricDefinition"
+                },
+                "pagerDutyIncidentDetail": {
+                    "$ref": "#/$defs/PagerDutyIncidentDetail"
+                }
+            }
+        },
+        "Url": {
+            "type": "string"
+        },
+        "MetricDefinition": {
+            "type": "string"
+        },
+        "PagerDutyIncidentDetail": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "autoResolve": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                },
+                "secretId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "ItemType": {
+            "type": "string"
+        },
+        "ListRelatedItemsInput": {
+            "type": "object",
+            "properties": {
+                "incidentRecordArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListReplicationSetsOutput": {
+            "type": "object",
+            "properties": {
+                "replicationSetArns": {
+                    "$ref": "#/$defs/ReplicationSetArnList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ReplicationSetArnList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Arn"
+            }
+        },
+        "ListReplicationSetsInput": {
+            "type": "object",
+            "properties": {
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListResponsePlansOutput": {
+            "type": "object",
+            "properties": {
+                "responsePlanSummaries": {
+                    "$ref": "#/$defs/ResponsePlanSummaryList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ResponsePlanSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResponsePlanSummary"
+            }
+        },
+        "ResponsePlanSummary": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "name": {
+                    "$ref": "#/$defs/ResponsePlanName"
+                },
+                "displayName": {
+                    "$ref": "#/$defs/ResponsePlanDisplayName"
+                }
+            }
+        },
+        "ListResponsePlansInput": {
+            "type": "object",
+            "properties": {
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "ListTimelineEventsOutput": {
+            "type": "object",
+            "properties": {
+                "eventSummaries": {
+                    "$ref": "#/$defs/EventSummaryList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "EventSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EventSummary"
+            }
+        },
+        "EventSummary": {
+            "type": "object",
+            "properties": {
+                "incidentRecordArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "eventId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "eventTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "eventUpdatedTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "eventType": {
+                    "$ref": "#/$defs/TimelineEventType"
+                },
+                "eventReferences": {
+                    "$ref": "#/$defs/EventReferenceList"
+                }
+            }
+        },
+        "ListTimelineEventsInput": {
+            "type": "object",
+            "properties": {
+                "incidentRecordArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "filters": {
+                    "$ref": "#/$defs/FilterList"
+                },
+                "sortBy": {
+                    "$ref": "#/$defs/TimelineEventSort"
+                },
+                "sortOrder": {
+                    "$ref": "#/$defs/SortOrder"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "TimelineEventSort": {
+            "type": "string"
+        },
+        "SortOrder": {
+            "type": "string"
+        },
+        "PutResourcePolicyOutput": {
+            "type": "object",
+            "properties": {
+                "policyId": {
+                    "$ref": "#/$defs/PolicyId"
+                }
+            }
+        },
+        "PutResourcePolicyInput": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "policy": {
+                    "$ref": "#/$defs/Policy"
+                }
+            }
+        },
+        "StartIncidentOutput": {
+            "type": "object",
+            "properties": {
+                "incidentRecordArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "StartIncidentInput": {
+            "type": "object",
+            "properties": {
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                },
+                "responsePlanArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "title": {
+                    "$ref": "#/$defs/IncidentTitle"
+                },
+                "impact": {
+                    "$ref": "#/$defs/Impact"
+                },
+                "triggerDetails": {
+                    "$ref": "#/$defs/TriggerDetails"
+                },
+                "relatedItems": {
+                    "$ref": "#/$defs/RelatedItemList"
+                }
+            }
+        },
+        "TriggerDetails": {
+            "type": "object",
+            "properties": {
+                "source": {
+                    "$ref": "#/$defs/IncidentSource"
+                },
+                "triggerArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "timestamp": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "rawData": {
+                    "$ref": "#/$defs/RawData"
+                }
+            }
+        },
+        "RawData": {
+            "type": "string"
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "tagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "UpdateDeletionProtectionOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateDeletionProtectionInput": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "deletionProtected": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                }
+            }
+        },
+        "UpdateIncidentRecordOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateIncidentRecordInput": {
+            "type": "object",
+            "properties": {
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                },
+                "arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "title": {
+                    "$ref": "#/$defs/IncidentTitle"
+                },
+                "summary": {
+                    "$ref": "#/$defs/IncidentSummary"
+                },
+                "impact": {
+                    "$ref": "#/$defs/Impact"
+                },
+                "status": {
+                    "$ref": "#/$defs/IncidentRecordStatus"
+                },
+                "chatChannel": {
+                    "$ref": "#/$defs/ChatChannel"
+                },
+                "notificationTargets": {
+                    "$ref": "#/$defs/NotificationTargetSet"
+                }
+            }
+        },
+        "UpdateRelatedItemsOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateRelatedItemsInput": {
+            "type": "object",
+            "properties": {
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                },
+                "incidentRecordArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "relatedItemsUpdate": {
+                    "$ref": "#/$defs/RelatedItemsUpdate"
+                }
+            }
+        },
+        "RelatedItemsUpdate": {
+            "type": "object",
+            "properties": {
+                "itemToAdd": {
+                    "$ref": "#/$defs/RelatedItem"
+                },
+                "itemToRemove": {
+                    "$ref": "#/$defs/ItemIdentifier"
+                }
+            }
+        },
+        "UpdateReplicationSetOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateReplicationSetInput": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "actions": {
+                    "$ref": "#/$defs/UpdateActionList"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                }
+            }
+        },
+        "UpdateActionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/UpdateReplicationSetAction"
+            }
+        },
+        "UpdateReplicationSetAction": {
+            "type": "object",
+            "properties": {
+                "addRegionAction": {
+                    "$ref": "#/$defs/AddRegionAction"
+                },
+                "deleteRegionAction": {
+                    "$ref": "#/$defs/DeleteRegionAction"
+                }
+            }
+        },
+        "AddRegionAction": {
+            "type": "object",
+            "properties": {
+                "regionName": {
+                    "$ref": "#/$defs/RegionName"
+                },
+                "sseKmsKeyId": {
+                    "$ref": "#/$defs/SseKmsKey"
+                }
+            }
+        },
+        "RegionName": {
+            "type": "string"
+        },
+        "DeleteRegionAction": {
+            "type": "object",
+            "properties": {
+                "regionName": {
+                    "$ref": "#/$defs/RegionName"
+                }
+            }
+        },
+        "UpdateResponsePlanOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateResponsePlanInput": {
+            "type": "object",
+            "properties": {
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                },
+                "arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "displayName": {
+                    "$ref": "#/$defs/ResponsePlanDisplayName"
+                },
+                "incidentTemplateTitle": {
+                    "$ref": "#/$defs/IncidentTitle"
+                },
+                "incidentTemplateImpact": {
+                    "$ref": "#/$defs/Impact"
+                },
+                "incidentTemplateSummary": {
+                    "$ref": "#/$defs/IncidentSummary"
+                },
+                "incidentTemplateDedupeString": {
+                    "$ref": "#/$defs/DedupeString"
+                },
+                "incidentTemplateNotificationTargets": {
+                    "$ref": "#/$defs/NotificationTargetSet"
+                },
+                "chatChannel": {
+                    "$ref": "#/$defs/ChatChannel"
+                },
+                "engagements": {
+                    "$ref": "#/$defs/EngagementSet"
+                },
+                "actions": {
+                    "$ref": "#/$defs/ActionsList"
+                },
+                "incidentTemplateTags": {
+                    "$ref": "#/$defs/TagMapUpdate"
+                },
+                "integrations": {
+                    "$ref": "#/$defs/Integrations"
+                }
+            }
+        },
+        "TagMapUpdate": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TagValue"
+            }
+        },
+        "UpdateTimelineEventOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateTimelineEventInput": {
+            "type": "object",
+            "properties": {
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                },
+                "incidentRecordArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "eventId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "eventTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "eventType": {
+                    "$ref": "#/$defs/TimelineEventType"
+                },
+                "eventData": {
+                    "$ref": "#/$defs/EventData"
+                },
+                "eventReferences": {
+                    "$ref": "#/$defs/EventReferenceList"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://ssm-incidents-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://ssm-incidents-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://ssm-incidents.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://ssm-incidents.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

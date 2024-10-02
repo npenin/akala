@@ -1,0 +1,5495 @@
+{
+    "name": "datasync",
+    "commands": [
+        {
+            "name": "AddStorageSystem",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AddStorageSystem"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AddStorageSystemResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AddStorageSystemRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CancelTaskExecution",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CancelTaskExecution"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CancelTaskExecutionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CancelTaskExecutionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateAgent",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateAgent"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateAgentResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateAgentRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateLocationAzureBlob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateLocationAzureBlob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateLocationAzureBlobResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateLocationAzureBlobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateLocationEfs",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateLocationEfs"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateLocationEfsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateLocationEfsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateLocationFsxLustre",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateLocationFsxLustre"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateLocationFsxLustreResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateLocationFsxLustreRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateLocationFsxOntap",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateLocationFsxOntap"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateLocationFsxOntapResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateLocationFsxOntapRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateLocationFsxOpenZfs",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateLocationFsxOpenZfs"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateLocationFsxOpenZfsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateLocationFsxOpenZfsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateLocationFsxWindows",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateLocationFsxWindows"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateLocationFsxWindowsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateLocationFsxWindowsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateLocationHdfs",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateLocationHdfs"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateLocationHdfsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateLocationHdfsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateLocationNfs",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateLocationNfs"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateLocationNfsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateLocationNfsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateLocationObjectStorage",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateLocationObjectStorage"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateLocationObjectStorageResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateLocationObjectStorageRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateLocationS3",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateLocationS3"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateLocationS3Response"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateLocationS3Request"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateLocationSmb",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateLocationSmb"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateLocationSmbResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateLocationSmbRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateTask",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateTask"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateTaskResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateTaskRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteAgent",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteAgent"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteAgentResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteAgentRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteLocation",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteLocation"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteLocationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteLocationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteTask",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteTask"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteTaskResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteTaskRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeAgent",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeAgent"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeAgentResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeAgentRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeDiscoveryJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeDiscoveryJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeDiscoveryJobResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeDiscoveryJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeLocationAzureBlob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeLocationAzureBlob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeLocationAzureBlobResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeLocationAzureBlobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeLocationEfs",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeLocationEfs"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeLocationEfsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeLocationEfsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeLocationFsxLustre",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeLocationFsxLustre"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeLocationFsxLustreResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeLocationFsxLustreRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeLocationFsxOntap",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeLocationFsxOntap"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeLocationFsxOntapResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeLocationFsxOntapRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeLocationFsxOpenZfs",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeLocationFsxOpenZfs"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeLocationFsxOpenZfsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeLocationFsxOpenZfsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeLocationFsxWindows",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeLocationFsxWindows"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeLocationFsxWindowsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeLocationFsxWindowsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeLocationHdfs",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeLocationHdfs"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeLocationHdfsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeLocationHdfsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeLocationNfs",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeLocationNfs"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeLocationNfsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeLocationNfsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeLocationObjectStorage",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeLocationObjectStorage"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeLocationObjectStorageResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeLocationObjectStorageRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeLocationS3",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeLocationS3"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeLocationS3Response"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeLocationS3Request"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeLocationSmb",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeLocationSmb"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeLocationSmbResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeLocationSmbRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeStorageSystem",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeStorageSystem"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeStorageSystemResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeStorageSystemRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeStorageSystemResourceMetrics",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeStorageSystemResourceMetrics"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeStorageSystemResourceMetricsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeStorageSystemResourceMetricsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeStorageSystemResources",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeStorageSystemResources"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeStorageSystemResourcesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeStorageSystemResourcesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeTask",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeTask"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeTaskResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeTaskRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeTaskExecution",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeTaskExecution"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeTaskExecutionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeTaskExecutionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GenerateRecommendations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GenerateRecommendations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GenerateRecommendationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GenerateRecommendationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListAgents",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListAgents"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListAgentsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListAgentsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListDiscoveryJobs",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListDiscoveryJobs"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListDiscoveryJobsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListDiscoveryJobsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListLocations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListLocations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListLocationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListLocationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListStorageSystems",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListStorageSystems"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListStorageSystemsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListStorageSystemsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTaskExecutions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTaskExecutions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTaskExecutionsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTaskExecutionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTasks",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTasks"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTasksResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTasksRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RemoveStorageSystem",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RemoveStorageSystem"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RemoveStorageSystemResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RemoveStorageSystemRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartDiscoveryJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartDiscoveryJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartDiscoveryJobResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartDiscoveryJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartTaskExecution",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartTaskExecution"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartTaskExecutionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartTaskExecutionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StopDiscoveryJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StopDiscoveryJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StopDiscoveryJobResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StopDiscoveryJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateAgent",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateAgent"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateAgentResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateAgentRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateDiscoveryJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateDiscoveryJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateDiscoveryJobResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateDiscoveryJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateLocationAzureBlob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateLocationAzureBlob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateLocationAzureBlobResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateLocationAzureBlobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateLocationHdfs",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateLocationHdfs"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateLocationHdfsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateLocationHdfsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateLocationNfs",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateLocationNfs"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateLocationNfsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateLocationNfsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateLocationObjectStorage",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateLocationObjectStorage"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateLocationObjectStorageResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateLocationObjectStorageRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateLocationSmb",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateLocationSmb"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateLocationSmbResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateLocationSmbRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateStorageSystem",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateStorageSystem"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateStorageSystemResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateStorageSystemRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateTask",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateTask"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateTaskResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateTaskRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateTaskExecution",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateTaskExecution"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateTaskExecutionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateTaskExecutionRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "AddStorageSystemResponse": {
+            "type": "object",
+            "properties": {
+                "StorageSystemArn": {
+                    "$ref": "#/$defs/StorageSystemArn"
+                }
+            }
+        },
+        "StorageSystemArn": {
+            "type": "string"
+        },
+        "AddStorageSystemRequest": {
+            "type": "object",
+            "properties": {
+                "ServerConfiguration": {
+                    "$ref": "#/$defs/DiscoveryServerConfiguration"
+                },
+                "SystemType": {
+                    "$ref": "#/$defs/DiscoverySystemType"
+                },
+                "AgentArns": {
+                    "$ref": "#/$defs/DiscoveryAgentArnList"
+                },
+                "CloudWatchLogGroupArn": {
+                    "$ref": "#/$defs/LogGroupArn"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/InputTagList"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/PtolemyUUID"
+                },
+                "Credentials": {
+                    "$ref": "#/$defs/Credentials"
+                }
+            }
+        },
+        "DiscoveryServerConfiguration": {
+            "type": "object",
+            "properties": {
+                "ServerHostname": {
+                    "$ref": "#/$defs/DiscoveryServerHostname"
+                },
+                "ServerPort": {
+                    "$ref": "#/$defs/DiscoveryServerPort"
+                }
+            }
+        },
+        "DiscoveryServerHostname": {
+            "type": "string"
+        },
+        "DiscoveryServerPort": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DiscoverySystemType": {
+            "enum": [
+                "NetAppONTAP"
+            ]
+        },
+        "DiscoveryAgentArnList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AgentArn"
+            }
+        },
+        "AgentArn": {
+            "type": "string"
+        },
+        "LogGroupArn": {
+            "type": "string"
+        },
+        "InputTagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagListEntry"
+            }
+        },
+        "TagListEntry": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "Name": {
+            "type": "string"
+        },
+        "PtolemyUUID": {
+            "type": "string"
+        },
+        "Credentials": {
+            "type": "object",
+            "properties": {
+                "Username": {
+                    "$ref": "#/$defs/PtolemyUsername"
+                },
+                "Password": {
+                    "$ref": "#/$defs/PtolemyPassword"
+                }
+            }
+        },
+        "PtolemyUsername": {
+            "type": "string"
+        },
+        "PtolemyPassword": {
+            "type": "string"
+        },
+        "CancelTaskExecutionResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "CancelTaskExecutionRequest": {
+            "type": "object",
+            "properties": {
+                "TaskExecutionArn": {
+                    "$ref": "#/$defs/TaskExecutionArn"
+                }
+            }
+        },
+        "TaskExecutionArn": {
+            "type": "string"
+        },
+        "CreateAgentResponse": {
+            "type": "object",
+            "properties": {
+                "AgentArn": {
+                    "$ref": "#/$defs/AgentArn"
+                }
+            }
+        },
+        "CreateAgentRequest": {
+            "type": "object",
+            "properties": {
+                "ActivationKey": {
+                    "$ref": "#/$defs/ActivationKey"
+                },
+                "AgentName": {
+                    "$ref": "#/$defs/TagValue"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/InputTagList"
+                },
+                "VpcEndpointId": {
+                    "$ref": "#/$defs/VpcEndpointId"
+                },
+                "SubnetArns": {
+                    "$ref": "#/$defs/PLSubnetArnList"
+                },
+                "SecurityGroupArns": {
+                    "$ref": "#/$defs/PLSecurityGroupArnList"
+                }
+            }
+        },
+        "ActivationKey": {
+            "type": "string"
+        },
+        "VpcEndpointId": {
+            "type": "string"
+        },
+        "PLSubnetArnList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Ec2SubnetArn"
+            }
+        },
+        "Ec2SubnetArn": {
+            "type": "string"
+        },
+        "PLSecurityGroupArnList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Ec2SecurityGroupArn"
+            }
+        },
+        "Ec2SecurityGroupArn": {
+            "type": "string"
+        },
+        "CreateLocationAzureBlobResponse": {
+            "type": "object",
+            "properties": {
+                "LocationArn": {
+                    "$ref": "#/$defs/LocationArn"
+                }
+            }
+        },
+        "LocationArn": {
+            "type": "string"
+        },
+        "CreateLocationAzureBlobRequest": {
+            "type": "object",
+            "properties": {
+                "ContainerUrl": {
+                    "$ref": "#/$defs/AzureBlobContainerUrl"
+                },
+                "AuthenticationType": {
+                    "$ref": "#/$defs/AzureBlobAuthenticationType"
+                },
+                "SasConfiguration": {
+                    "$ref": "#/$defs/AzureBlobSasConfiguration"
+                },
+                "BlobType": {
+                    "$ref": "#/$defs/AzureBlobType"
+                },
+                "AccessTier": {
+                    "$ref": "#/$defs/AzureAccessTier"
+                },
+                "Subdirectory": {
+                    "$ref": "#/$defs/AzureBlobSubdirectory"
+                },
+                "AgentArns": {
+                    "$ref": "#/$defs/AgentArnList"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/InputTagList"
+                }
+            }
+        },
+        "AzureBlobContainerUrl": {
+            "type": "string"
+        },
+        "AzureBlobAuthenticationType": {
+            "enum": [
+                "SAS"
+            ]
+        },
+        "AzureBlobSasConfiguration": {
+            "type": "object",
+            "properties": {
+                "Token": {
+                    "$ref": "#/$defs/AzureBlobSasToken"
+                }
+            }
+        },
+        "AzureBlobSasToken": {
+            "type": "string"
+        },
+        "AzureBlobType": {
+            "enum": [
+                "BLOCK"
+            ]
+        },
+        "AzureAccessTier": {
+            "enum": [
+                "HOT",
+                "COOL",
+                "ARCHIVE"
+            ]
+        },
+        "AzureBlobSubdirectory": {
+            "type": "string"
+        },
+        "AgentArnList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AgentArn"
+            }
+        },
+        "CreateLocationEfsResponse": {
+            "type": "object",
+            "properties": {
+                "LocationArn": {
+                    "$ref": "#/$defs/LocationArn"
+                }
+            }
+        },
+        "CreateLocationEfsRequest": {
+            "type": "object",
+            "properties": {
+                "Subdirectory": {
+                    "$ref": "#/$defs/EfsSubdirectory"
+                },
+                "EfsFilesystemArn": {
+                    "$ref": "#/$defs/EfsFilesystemArn"
+                },
+                "Ec2Config": {
+                    "$ref": "#/$defs/Ec2Config"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/InputTagList"
+                },
+                "AccessPointArn": {
+                    "$ref": "#/$defs/EfsAccessPointArn"
+                },
+                "FileSystemAccessRoleArn": {
+                    "$ref": "#/$defs/IamRoleArn"
+                },
+                "InTransitEncryption": {
+                    "$ref": "#/$defs/EfsInTransitEncryption"
+                }
+            }
+        },
+        "EfsSubdirectory": {
+            "type": "string"
+        },
+        "EfsFilesystemArn": {
+            "type": "string"
+        },
+        "Ec2Config": {
+            "type": "object",
+            "properties": {
+                "SubnetArn": {
+                    "$ref": "#/$defs/Ec2SubnetArn"
+                },
+                "SecurityGroupArns": {
+                    "$ref": "#/$defs/Ec2SecurityGroupArnList"
+                }
+            }
+        },
+        "Ec2SecurityGroupArnList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Ec2SecurityGroupArn"
+            }
+        },
+        "EfsAccessPointArn": {
+            "type": "string"
+        },
+        "IamRoleArn": {
+            "type": "string"
+        },
+        "EfsInTransitEncryption": {
+            "enum": [
+                "NONE",
+                "TLS1_2"
+            ]
+        },
+        "CreateLocationFsxLustreResponse": {
+            "type": "object",
+            "properties": {
+                "LocationArn": {
+                    "$ref": "#/$defs/LocationArn"
+                }
+            }
+        },
+        "CreateLocationFsxLustreRequest": {
+            "type": "object",
+            "properties": {
+                "FsxFilesystemArn": {
+                    "$ref": "#/$defs/FsxFilesystemArn"
+                },
+                "SecurityGroupArns": {
+                    "$ref": "#/$defs/Ec2SecurityGroupArnList"
+                },
+                "Subdirectory": {
+                    "$ref": "#/$defs/FsxLustreSubdirectory"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/InputTagList"
+                }
+            }
+        },
+        "FsxFilesystemArn": {
+            "type": "string"
+        },
+        "FsxLustreSubdirectory": {
+            "type": "string"
+        },
+        "CreateLocationFsxOntapResponse": {
+            "type": "object",
+            "properties": {
+                "LocationArn": {
+                    "$ref": "#/$defs/LocationArn"
+                }
+            }
+        },
+        "CreateLocationFsxOntapRequest": {
+            "type": "object",
+            "properties": {
+                "Protocol": {
+                    "$ref": "#/$defs/FsxProtocol"
+                },
+                "SecurityGroupArns": {
+                    "$ref": "#/$defs/Ec2SecurityGroupArnList"
+                },
+                "StorageVirtualMachineArn": {
+                    "$ref": "#/$defs/StorageVirtualMachineArn"
+                },
+                "Subdirectory": {
+                    "$ref": "#/$defs/FsxOntapSubdirectory"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/InputTagList"
+                }
+            }
+        },
+        "FsxProtocol": {
+            "type": "object",
+            "properties": {
+                "NFS": {
+                    "$ref": "#/$defs/FsxProtocolNfs"
+                },
+                "SMB": {
+                    "$ref": "#/$defs/FsxProtocolSmb"
+                }
+            }
+        },
+        "FsxProtocolNfs": {
+            "type": "object",
+            "properties": {
+                "MountOptions": {
+                    "$ref": "#/$defs/NfsMountOptions"
+                }
+            }
+        },
+        "NfsMountOptions": {
+            "type": "object",
+            "properties": {
+                "Version": {
+                    "$ref": "#/$defs/NfsVersion"
+                }
+            }
+        },
+        "NfsVersion": {
+            "enum": [
+                "AUTOMATIC",
+                "NFS3",
+                "NFS4_0",
+                "NFS4_1"
+            ]
+        },
+        "FsxProtocolSmb": {
+            "type": "object",
+            "properties": {
+                "Domain": {
+                    "$ref": "#/$defs/SmbDomain"
+                },
+                "MountOptions": {
+                    "$ref": "#/$defs/SmbMountOptions"
+                },
+                "Password": {
+                    "$ref": "#/$defs/SmbPassword"
+                },
+                "User": {
+                    "$ref": "#/$defs/SmbUser"
+                }
+            }
+        },
+        "SmbDomain": {
+            "type": "string"
+        },
+        "SmbMountOptions": {
+            "type": "object",
+            "properties": {
+                "Version": {
+                    "$ref": "#/$defs/SmbVersion"
+                }
+            }
+        },
+        "SmbVersion": {
+            "enum": [
+                "AUTOMATIC",
+                "SMB2",
+                "SMB3",
+                "SMB1",
+                "SMB2_0"
+            ]
+        },
+        "SmbPassword": {
+            "type": "string"
+        },
+        "SmbUser": {
+            "type": "string"
+        },
+        "StorageVirtualMachineArn": {
+            "type": "string"
+        },
+        "FsxOntapSubdirectory": {
+            "type": "string"
+        },
+        "CreateLocationFsxOpenZfsResponse": {
+            "type": "object",
+            "properties": {
+                "LocationArn": {
+                    "$ref": "#/$defs/LocationArn"
+                }
+            }
+        },
+        "CreateLocationFsxOpenZfsRequest": {
+            "type": "object",
+            "properties": {
+                "FsxFilesystemArn": {
+                    "$ref": "#/$defs/FsxFilesystemArn"
+                },
+                "Protocol": {
+                    "$ref": "#/$defs/FsxProtocol"
+                },
+                "SecurityGroupArns": {
+                    "$ref": "#/$defs/Ec2SecurityGroupArnList"
+                },
+                "Subdirectory": {
+                    "$ref": "#/$defs/FsxOpenZfsSubdirectory"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/InputTagList"
+                }
+            }
+        },
+        "FsxOpenZfsSubdirectory": {
+            "type": "string"
+        },
+        "CreateLocationFsxWindowsResponse": {
+            "type": "object",
+            "properties": {
+                "LocationArn": {
+                    "$ref": "#/$defs/LocationArn"
+                }
+            }
+        },
+        "CreateLocationFsxWindowsRequest": {
+            "type": "object",
+            "properties": {
+                "Subdirectory": {
+                    "$ref": "#/$defs/FsxWindowsSubdirectory"
+                },
+                "FsxFilesystemArn": {
+                    "$ref": "#/$defs/FsxFilesystemArn"
+                },
+                "SecurityGroupArns": {
+                    "$ref": "#/$defs/Ec2SecurityGroupArnList"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/InputTagList"
+                },
+                "User": {
+                    "$ref": "#/$defs/SmbUser"
+                },
+                "Domain": {
+                    "$ref": "#/$defs/SmbDomain"
+                },
+                "Password": {
+                    "$ref": "#/$defs/SmbPassword"
+                }
+            }
+        },
+        "FsxWindowsSubdirectory": {
+            "type": "string"
+        },
+        "CreateLocationHdfsResponse": {
+            "type": "object",
+            "properties": {
+                "LocationArn": {
+                    "$ref": "#/$defs/LocationArn"
+                }
+            }
+        },
+        "CreateLocationHdfsRequest": {
+            "type": "object",
+            "properties": {
+                "Subdirectory": {
+                    "$ref": "#/$defs/HdfsSubdirectory"
+                },
+                "NameNodes": {
+                    "$ref": "#/$defs/HdfsNameNodeList"
+                },
+                "BlockSize": {
+                    "$ref": "#/$defs/HdfsBlockSize"
+                },
+                "ReplicationFactor": {
+                    "$ref": "#/$defs/HdfsReplicationFactor"
+                },
+                "KmsKeyProviderUri": {
+                    "$ref": "#/$defs/KmsKeyProviderUri"
+                },
+                "QopConfiguration": {
+                    "$ref": "#/$defs/QopConfiguration"
+                },
+                "AuthenticationType": {
+                    "$ref": "#/$defs/HdfsAuthenticationType"
+                },
+                "SimpleUser": {
+                    "$ref": "#/$defs/HdfsUser"
+                },
+                "KerberosPrincipal": {
+                    "$ref": "#/$defs/KerberosPrincipal"
+                },
+                "KerberosKeytab": {
+                    "$ref": "#/$defs/KerberosKeytabFile"
+                },
+                "KerberosKrb5Conf": {
+                    "$ref": "#/$defs/KerberosKrb5ConfFile"
+                },
+                "AgentArns": {
+                    "$ref": "#/$defs/AgentArnList"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/InputTagList"
+                }
+            }
+        },
+        "HdfsSubdirectory": {
+            "type": "string"
+        },
+        "HdfsNameNodeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/HdfsNameNode"
+            }
+        },
+        "HdfsNameNode": {
+            "type": "object",
+            "properties": {
+                "Hostname": {
+                    "$ref": "#/$defs/HdfsServerHostname"
+                },
+                "Port": {
+                    "$ref": "#/$defs/HdfsServerPort"
+                }
+            }
+        },
+        "HdfsServerHostname": {
+            "type": "string"
+        },
+        "HdfsServerPort": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "HdfsBlockSize": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "HdfsReplicationFactor": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "KmsKeyProviderUri": {
+            "type": "string"
+        },
+        "QopConfiguration": {
+            "type": "object",
+            "properties": {
+                "RpcProtection": {
+                    "$ref": "#/$defs/HdfsRpcProtection"
+                },
+                "DataTransferProtection": {
+                    "$ref": "#/$defs/HdfsDataTransferProtection"
+                }
+            }
+        },
+        "HdfsRpcProtection": {
+            "enum": [
+                "DISABLED",
+                "AUTHENTICATION",
+                "INTEGRITY",
+                "PRIVACY"
+            ]
+        },
+        "HdfsDataTransferProtection": {
+            "enum": [
+                "DISABLED",
+                "AUTHENTICATION",
+                "INTEGRITY",
+                "PRIVACY"
+            ]
+        },
+        "HdfsAuthenticationType": {
+            "enum": [
+                "SIMPLE",
+                "KERBEROS"
+            ]
+        },
+        "HdfsUser": {
+            "type": "string"
+        },
+        "KerberosPrincipal": {
+            "type": "string"
+        },
+        "KerberosKeytabFile": {
+            "type": "string",
+            "format": "binary"
+        },
+        "KerberosKrb5ConfFile": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CreateLocationNfsResponse": {
+            "type": "object",
+            "properties": {
+                "LocationArn": {
+                    "$ref": "#/$defs/LocationArn"
+                }
+            }
+        },
+        "CreateLocationNfsRequest": {
+            "type": "object",
+            "properties": {
+                "Subdirectory": {
+                    "$ref": "#/$defs/NfsSubdirectory"
+                },
+                "ServerHostname": {
+                    "$ref": "#/$defs/ServerHostname"
+                },
+                "OnPremConfig": {
+                    "$ref": "#/$defs/OnPremConfig"
+                },
+                "MountOptions": {
+                    "$ref": "#/$defs/NfsMountOptions"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/InputTagList"
+                }
+            }
+        },
+        "NfsSubdirectory": {
+            "type": "string"
+        },
+        "ServerHostname": {
+            "type": "string"
+        },
+        "OnPremConfig": {
+            "type": "object",
+            "properties": {
+                "AgentArns": {
+                    "$ref": "#/$defs/AgentArnList"
+                }
+            }
+        },
+        "CreateLocationObjectStorageResponse": {
+            "type": "object",
+            "properties": {
+                "LocationArn": {
+                    "$ref": "#/$defs/LocationArn"
+                }
+            }
+        },
+        "CreateLocationObjectStorageRequest": {
+            "type": "object",
+            "properties": {
+                "ServerHostname": {
+                    "$ref": "#/$defs/ServerHostname"
+                },
+                "ServerPort": {
+                    "$ref": "#/$defs/ObjectStorageServerPort"
+                },
+                "ServerProtocol": {
+                    "$ref": "#/$defs/ObjectStorageServerProtocol"
+                },
+                "Subdirectory": {
+                    "$ref": "#/$defs/S3Subdirectory"
+                },
+                "BucketName": {
+                    "$ref": "#/$defs/ObjectStorageBucketName"
+                },
+                "AccessKey": {
+                    "$ref": "#/$defs/ObjectStorageAccessKey"
+                },
+                "SecretKey": {
+                    "$ref": "#/$defs/ObjectStorageSecretKey"
+                },
+                "AgentArns": {
+                    "$ref": "#/$defs/AgentArnList"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/InputTagList"
+                },
+                "ServerCertificate": {
+                    "$ref": "#/$defs/ObjectStorageCertificate"
+                }
+            }
+        },
+        "ObjectStorageServerPort": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ObjectStorageServerProtocol": {
+            "enum": [
+                "HTTPS",
+                "HTTP"
+            ]
+        },
+        "S3Subdirectory": {
+            "type": "string"
+        },
+        "ObjectStorageBucketName": {
+            "type": "string"
+        },
+        "ObjectStorageAccessKey": {
+            "type": "string"
+        },
+        "ObjectStorageSecretKey": {
+            "type": "string"
+        },
+        "ObjectStorageCertificate": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CreateLocationS3Response": {
+            "type": "object",
+            "properties": {
+                "LocationArn": {
+                    "$ref": "#/$defs/LocationArn"
+                }
+            }
+        },
+        "CreateLocationS3Request": {
+            "type": "object",
+            "properties": {
+                "Subdirectory": {
+                    "$ref": "#/$defs/S3Subdirectory"
+                },
+                "S3BucketArn": {
+                    "$ref": "#/$defs/S3BucketArn"
+                },
+                "S3StorageClass": {
+                    "$ref": "#/$defs/S3StorageClass"
+                },
+                "S3Config": {
+                    "$ref": "#/$defs/S3Config"
+                },
+                "AgentArns": {
+                    "$ref": "#/$defs/AgentArnList"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/InputTagList"
+                }
+            }
+        },
+        "S3BucketArn": {
+            "type": "string"
+        },
+        "S3StorageClass": {
+            "enum": [
+                "STANDARD",
+                "STANDARD_IA",
+                "ONEZONE_IA",
+                "INTELLIGENT_TIERING",
+                "GLACIER",
+                "DEEP_ARCHIVE",
+                "OUTPOSTS",
+                "GLACIER_INSTANT_RETRIEVAL"
+            ]
+        },
+        "S3Config": {
+            "type": "object",
+            "properties": {
+                "BucketAccessRoleArn": {
+                    "$ref": "#/$defs/IamRoleArn"
+                }
+            }
+        },
+        "CreateLocationSmbResponse": {
+            "type": "object",
+            "properties": {
+                "LocationArn": {
+                    "$ref": "#/$defs/LocationArn"
+                }
+            }
+        },
+        "CreateLocationSmbRequest": {
+            "type": "object",
+            "properties": {
+                "Subdirectory": {
+                    "$ref": "#/$defs/SmbSubdirectory"
+                },
+                "ServerHostname": {
+                    "$ref": "#/$defs/ServerHostname"
+                },
+                "User": {
+                    "$ref": "#/$defs/SmbUser"
+                },
+                "Domain": {
+                    "$ref": "#/$defs/SmbDomain"
+                },
+                "Password": {
+                    "$ref": "#/$defs/SmbPassword"
+                },
+                "AgentArns": {
+                    "$ref": "#/$defs/AgentArnList"
+                },
+                "MountOptions": {
+                    "$ref": "#/$defs/SmbMountOptions"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/InputTagList"
+                }
+            }
+        },
+        "SmbSubdirectory": {
+            "type": "string"
+        },
+        "CreateTaskResponse": {
+            "type": "object",
+            "properties": {
+                "TaskArn": {
+                    "$ref": "#/$defs/TaskArn"
+                }
+            }
+        },
+        "TaskArn": {
+            "type": "string"
+        },
+        "CreateTaskRequest": {
+            "type": "object",
+            "properties": {
+                "SourceLocationArn": {
+                    "$ref": "#/$defs/LocationArn"
+                },
+                "DestinationLocationArn": {
+                    "$ref": "#/$defs/LocationArn"
+                },
+                "CloudWatchLogGroupArn": {
+                    "$ref": "#/$defs/LogGroupArn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/TagValue"
+                },
+                "Options": {
+                    "$ref": "#/$defs/Options"
+                },
+                "Excludes": {
+                    "$ref": "#/$defs/FilterList"
+                },
+                "Schedule": {
+                    "$ref": "#/$defs/TaskSchedule"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/InputTagList"
+                },
+                "Includes": {
+                    "$ref": "#/$defs/FilterList"
+                },
+                "ManifestConfig": {
+                    "$ref": "#/$defs/ManifestConfig"
+                },
+                "TaskReportConfig": {
+                    "$ref": "#/$defs/TaskReportConfig"
+                }
+            }
+        },
+        "Options": {
+            "type": "object",
+            "properties": {
+                "VerifyMode": {
+                    "$ref": "#/$defs/VerifyMode"
+                },
+                "OverwriteMode": {
+                    "$ref": "#/$defs/OverwriteMode"
+                },
+                "Atime": {
+                    "$ref": "#/$defs/Atime"
+                },
+                "Mtime": {
+                    "$ref": "#/$defs/Mtime"
+                },
+                "Uid": {
+                    "$ref": "#/$defs/Uid"
+                },
+                "Gid": {
+                    "$ref": "#/$defs/Gid"
+                },
+                "PreserveDeletedFiles": {
+                    "$ref": "#/$defs/PreserveDeletedFiles"
+                },
+                "PreserveDevices": {
+                    "$ref": "#/$defs/PreserveDevices"
+                },
+                "PosixPermissions": {
+                    "$ref": "#/$defs/PosixPermissions"
+                },
+                "BytesPerSecond": {
+                    "$ref": "#/$defs/BytesPerSecond"
+                },
+                "TaskQueueing": {
+                    "$ref": "#/$defs/TaskQueueing"
+                },
+                "LogLevel": {
+                    "$ref": "#/$defs/LogLevel"
+                },
+                "TransferMode": {
+                    "$ref": "#/$defs/TransferMode"
+                },
+                "SecurityDescriptorCopyFlags": {
+                    "$ref": "#/$defs/SmbSecurityDescriptorCopyFlags"
+                },
+                "ObjectTags": {
+                    "$ref": "#/$defs/ObjectTags"
+                }
+            }
+        },
+        "VerifyMode": {
+            "enum": [
+                "POINT_IN_TIME_CONSISTENT",
+                "ONLY_FILES_TRANSFERRED",
+                "NONE"
+            ]
+        },
+        "OverwriteMode": {
+            "enum": [
+                "ALWAYS",
+                "NEVER"
+            ]
+        },
+        "Atime": {
+            "enum": [
+                "NONE",
+                "BEST_EFFORT"
+            ]
+        },
+        "Mtime": {
+            "enum": [
+                "NONE",
+                "PRESERVE"
+            ]
+        },
+        "Uid": {
+            "enum": [
+                "NONE",
+                "INT_VALUE",
+                "NAME",
+                "BOTH"
+            ]
+        },
+        "Gid": {
+            "enum": [
+                "NONE",
+                "INT_VALUE",
+                "NAME",
+                "BOTH"
+            ]
+        },
+        "PreserveDeletedFiles": {
+            "enum": [
+                "PRESERVE",
+                "REMOVE"
+            ]
+        },
+        "PreserveDevices": {
+            "enum": [
+                "NONE",
+                "PRESERVE"
+            ]
+        },
+        "PosixPermissions": {
+            "enum": [
+                "NONE",
+                "PRESERVE"
+            ]
+        },
+        "BytesPerSecond": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "TaskQueueing": {
+            "enum": [
+                "ENABLED",
+                "DISABLED"
+            ]
+        },
+        "LogLevel": {
+            "enum": [
+                "OFF",
+                "BASIC",
+                "TRANSFER"
+            ]
+        },
+        "TransferMode": {
+            "enum": [
+                "CHANGED",
+                "ALL"
+            ]
+        },
+        "SmbSecurityDescriptorCopyFlags": {
+            "enum": [
+                "NONE",
+                "OWNER_DACL",
+                "OWNER_DACL_SACL"
+            ]
+        },
+        "ObjectTags": {
+            "enum": [
+                "PRESERVE",
+                "NONE"
+            ]
+        },
+        "FilterList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FilterRule"
+            }
+        },
+        "FilterRule": {
+            "type": "object",
+            "properties": {
+                "FilterType": {
+                    "$ref": "#/$defs/FilterType"
+                },
+                "Value": {
+                    "$ref": "#/$defs/FilterValue"
+                }
+            }
+        },
+        "FilterType": {
+            "enum": [
+                "SIMPLE_PATTERN"
+            ]
+        },
+        "FilterValue": {
+            "type": "string"
+        },
+        "TaskSchedule": {
+            "type": "object",
+            "properties": {
+                "ScheduleExpression": {
+                    "$ref": "#/$defs/ScheduleExpressionCron"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ScheduleStatus"
+                }
+            }
+        },
+        "ScheduleExpressionCron": {
+            "type": "string"
+        },
+        "ScheduleStatus": {
+            "enum": [
+                "ENABLED",
+                "DISABLED"
+            ]
+        },
+        "ManifestConfig": {
+            "type": "object",
+            "properties": {
+                "Action": {
+                    "$ref": "#/$defs/ManifestAction"
+                },
+                "Format": {
+                    "$ref": "#/$defs/ManifestFormat"
+                },
+                "Source": {
+                    "$ref": "#/$defs/SourceManifestConfig"
+                }
+            }
+        },
+        "ManifestAction": {
+            "enum": [
+                "TRANSFER"
+            ]
+        },
+        "ManifestFormat": {
+            "enum": [
+                "CSV"
+            ]
+        },
+        "SourceManifestConfig": {
+            "type": "object",
+            "properties": {
+                "S3": {
+                    "$ref": "#/$defs/S3ManifestConfig"
+                }
+            }
+        },
+        "S3ManifestConfig": {
+            "type": "object",
+            "properties": {
+                "ManifestObjectPath": {
+                    "$ref": "#/$defs/S3Subdirectory"
+                },
+                "BucketAccessRoleArn": {
+                    "$ref": "#/$defs/IamRoleArn"
+                },
+                "S3BucketArn": {
+                    "$ref": "#/$defs/S3BucketArn"
+                },
+                "ManifestObjectVersionId": {
+                    "$ref": "#/$defs/S3ObjectVersionId"
+                }
+            }
+        },
+        "S3ObjectVersionId": {
+            "type": "string"
+        },
+        "TaskReportConfig": {
+            "type": "object",
+            "properties": {
+                "Destination": {
+                    "$ref": "#/$defs/ReportDestination"
+                },
+                "OutputType": {
+                    "$ref": "#/$defs/ReportOutputType"
+                },
+                "ReportLevel": {
+                    "$ref": "#/$defs/ReportLevel"
+                },
+                "ObjectVersionIds": {
+                    "$ref": "#/$defs/ObjectVersionIds"
+                },
+                "Overrides": {
+                    "$ref": "#/$defs/ReportOverrides"
+                }
+            }
+        },
+        "ReportDestination": {
+            "type": "object",
+            "properties": {
+                "S3": {
+                    "$ref": "#/$defs/ReportDestinationS3"
+                }
+            }
+        },
+        "ReportDestinationS3": {
+            "type": "object",
+            "properties": {
+                "Subdirectory": {
+                    "$ref": "#/$defs/S3Subdirectory"
+                },
+                "S3BucketArn": {
+                    "$ref": "#/$defs/S3BucketArn"
+                },
+                "BucketAccessRoleArn": {
+                    "$ref": "#/$defs/IamRoleArn"
+                }
+            }
+        },
+        "ReportOutputType": {
+            "enum": [
+                "SUMMARY_ONLY",
+                "STANDARD"
+            ]
+        },
+        "ReportLevel": {
+            "enum": [
+                "ERRORS_ONLY",
+                "SUCCESSES_AND_ERRORS"
+            ]
+        },
+        "ObjectVersionIds": {
+            "enum": [
+                "INCLUDE",
+                "NONE"
+            ]
+        },
+        "ReportOverrides": {
+            "type": "object",
+            "properties": {
+                "Transferred": {
+                    "$ref": "#/$defs/ReportOverride"
+                },
+                "Verified": {
+                    "$ref": "#/$defs/ReportOverride"
+                },
+                "Deleted": {
+                    "$ref": "#/$defs/ReportOverride"
+                },
+                "Skipped": {
+                    "$ref": "#/$defs/ReportOverride"
+                }
+            }
+        },
+        "ReportOverride": {
+            "type": "object",
+            "properties": {
+                "ReportLevel": {
+                    "$ref": "#/$defs/ReportLevel"
+                }
+            }
+        },
+        "DeleteAgentResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteAgentRequest": {
+            "type": "object",
+            "properties": {
+                "AgentArn": {
+                    "$ref": "#/$defs/AgentArn"
+                }
+            }
+        },
+        "DeleteLocationResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteLocationRequest": {
+            "type": "object",
+            "properties": {
+                "LocationArn": {
+                    "$ref": "#/$defs/LocationArn"
+                }
+            }
+        },
+        "DeleteTaskResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteTaskRequest": {
+            "type": "object",
+            "properties": {
+                "TaskArn": {
+                    "$ref": "#/$defs/TaskArn"
+                }
+            }
+        },
+        "DescribeAgentResponse": {
+            "type": "object",
+            "properties": {
+                "AgentArn": {
+                    "$ref": "#/$defs/AgentArn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/TagValue"
+                },
+                "Status": {
+                    "$ref": "#/$defs/AgentStatus"
+                },
+                "LastConnectionTime": {
+                    "$ref": "#/$defs/Time"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Time"
+                },
+                "EndpointType": {
+                    "$ref": "#/$defs/EndpointType"
+                },
+                "PrivateLinkConfig": {
+                    "$ref": "#/$defs/PrivateLinkConfig"
+                },
+                "Platform": {
+                    "$ref": "#/$defs/Platform"
+                }
+            }
+        },
+        "AgentStatus": {
+            "enum": [
+                "ONLINE",
+                "OFFLINE"
+            ]
+        },
+        "Time": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "EndpointType": {
+            "enum": [
+                "PUBLIC",
+                "PRIVATE_LINK",
+                "FIPS"
+            ]
+        },
+        "PrivateLinkConfig": {
+            "type": "object",
+            "properties": {
+                "VpcEndpointId": {
+                    "$ref": "#/$defs/VpcEndpointId"
+                },
+                "PrivateLinkEndpoint": {
+                    "$ref": "#/$defs/Endpoint"
+                },
+                "SubnetArns": {
+                    "$ref": "#/$defs/PLSubnetArnList"
+                },
+                "SecurityGroupArns": {
+                    "$ref": "#/$defs/PLSecurityGroupArnList"
+                }
+            }
+        },
+        "Endpoint": {
+            "type": "string"
+        },
+        "Platform": {
+            "type": "object",
+            "properties": {
+                "Version": {
+                    "$ref": "#/$defs/AgentVersion"
+                }
+            }
+        },
+        "AgentVersion": {
+            "type": "string"
+        },
+        "DescribeAgentRequest": {
+            "type": "object",
+            "properties": {
+                "AgentArn": {
+                    "$ref": "#/$defs/AgentArn"
+                }
+            }
+        },
+        "DescribeDiscoveryJobResponse": {
+            "type": "object",
+            "properties": {
+                "StorageSystemArn": {
+                    "$ref": "#/$defs/StorageSystemArn"
+                },
+                "DiscoveryJobArn": {
+                    "$ref": "#/$defs/DiscoveryJobArn"
+                },
+                "CollectionDurationMinutes": {
+                    "$ref": "#/$defs/CollectionDurationMinutes"
+                },
+                "Status": {
+                    "$ref": "#/$defs/DiscoveryJobStatus"
+                },
+                "JobStartTime": {
+                    "$ref": "#/$defs/DiscoveryTime"
+                },
+                "JobEndTime": {
+                    "$ref": "#/$defs/DiscoveryTime"
+                }
+            }
+        },
+        "DiscoveryJobArn": {
+            "type": "string"
+        },
+        "CollectionDurationMinutes": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DiscoveryJobStatus": {
+            "enum": [
+                "RUNNING",
+                "WARNING",
+                "TERMINATED",
+                "FAILED",
+                "STOPPED",
+                "COMPLETED",
+                "COMPLETED_WITH_ISSUES"
+            ]
+        },
+        "DiscoveryTime": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "DescribeDiscoveryJobRequest": {
+            "type": "object",
+            "properties": {
+                "DiscoveryJobArn": {
+                    "$ref": "#/$defs/DiscoveryJobArn"
+                }
+            }
+        },
+        "DescribeLocationAzureBlobResponse": {
+            "type": "object",
+            "properties": {
+                "LocationArn": {
+                    "$ref": "#/$defs/LocationArn"
+                },
+                "LocationUri": {
+                    "$ref": "#/$defs/LocationUri"
+                },
+                "AuthenticationType": {
+                    "$ref": "#/$defs/AzureBlobAuthenticationType"
+                },
+                "BlobType": {
+                    "$ref": "#/$defs/AzureBlobType"
+                },
+                "AccessTier": {
+                    "$ref": "#/$defs/AzureAccessTier"
+                },
+                "AgentArns": {
+                    "$ref": "#/$defs/AgentArnList"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Time"
+                }
+            }
+        },
+        "LocationUri": {
+            "type": "string"
+        },
+        "DescribeLocationAzureBlobRequest": {
+            "type": "object",
+            "properties": {
+                "LocationArn": {
+                    "$ref": "#/$defs/LocationArn"
+                }
+            }
+        },
+        "DescribeLocationEfsResponse": {
+            "type": "object",
+            "properties": {
+                "LocationArn": {
+                    "$ref": "#/$defs/LocationArn"
+                },
+                "LocationUri": {
+                    "$ref": "#/$defs/LocationUri"
+                },
+                "Ec2Config": {
+                    "$ref": "#/$defs/Ec2Config"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Time"
+                },
+                "AccessPointArn": {
+                    "$ref": "#/$defs/EfsAccessPointArn"
+                },
+                "FileSystemAccessRoleArn": {
+                    "$ref": "#/$defs/IamRoleArn"
+                },
+                "InTransitEncryption": {
+                    "$ref": "#/$defs/EfsInTransitEncryption"
+                }
+            }
+        },
+        "DescribeLocationEfsRequest": {
+            "type": "object",
+            "properties": {
+                "LocationArn": {
+                    "$ref": "#/$defs/LocationArn"
+                }
+            }
+        },
+        "DescribeLocationFsxLustreResponse": {
+            "type": "object",
+            "properties": {
+                "LocationArn": {
+                    "$ref": "#/$defs/LocationArn"
+                },
+                "LocationUri": {
+                    "$ref": "#/$defs/LocationUri"
+                },
+                "SecurityGroupArns": {
+                    "$ref": "#/$defs/Ec2SecurityGroupArnList"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Time"
+                }
+            }
+        },
+        "DescribeLocationFsxLustreRequest": {
+            "type": "object",
+            "properties": {
+                "LocationArn": {
+                    "$ref": "#/$defs/LocationArn"
+                }
+            }
+        },
+        "DescribeLocationFsxOntapResponse": {
+            "type": "object",
+            "properties": {
+                "CreationTime": {
+                    "$ref": "#/$defs/Time"
+                },
+                "LocationArn": {
+                    "$ref": "#/$defs/LocationArn"
+                },
+                "LocationUri": {
+                    "$ref": "#/$defs/LocationUri"
+                },
+                "Protocol": {
+                    "$ref": "#/$defs/FsxProtocol"
+                },
+                "SecurityGroupArns": {
+                    "$ref": "#/$defs/Ec2SecurityGroupArnList"
+                },
+                "StorageVirtualMachineArn": {
+                    "$ref": "#/$defs/StorageVirtualMachineArn"
+                },
+                "FsxFilesystemArn": {
+                    "$ref": "#/$defs/FsxFilesystemArn"
+                }
+            }
+        },
+        "DescribeLocationFsxOntapRequest": {
+            "type": "object",
+            "properties": {
+                "LocationArn": {
+                    "$ref": "#/$defs/LocationArn"
+                }
+            }
+        },
+        "DescribeLocationFsxOpenZfsResponse": {
+            "type": "object",
+            "properties": {
+                "LocationArn": {
+                    "$ref": "#/$defs/LocationArn"
+                },
+                "LocationUri": {
+                    "$ref": "#/$defs/LocationUri"
+                },
+                "SecurityGroupArns": {
+                    "$ref": "#/$defs/Ec2SecurityGroupArnList"
+                },
+                "Protocol": {
+                    "$ref": "#/$defs/FsxProtocol"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Time"
+                }
+            }
+        },
+        "DescribeLocationFsxOpenZfsRequest": {
+            "type": "object",
+            "properties": {
+                "LocationArn": {
+                    "$ref": "#/$defs/LocationArn"
+                }
+            }
+        },
+        "DescribeLocationFsxWindowsResponse": {
+            "type": "object",
+            "properties": {
+                "LocationArn": {
+                    "$ref": "#/$defs/LocationArn"
+                },
+                "LocationUri": {
+                    "$ref": "#/$defs/LocationUri"
+                },
+                "SecurityGroupArns": {
+                    "$ref": "#/$defs/Ec2SecurityGroupArnList"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Time"
+                },
+                "User": {
+                    "$ref": "#/$defs/SmbUser"
+                },
+                "Domain": {
+                    "$ref": "#/$defs/SmbDomain"
+                }
+            }
+        },
+        "DescribeLocationFsxWindowsRequest": {
+            "type": "object",
+            "properties": {
+                "LocationArn": {
+                    "$ref": "#/$defs/LocationArn"
+                }
+            }
+        },
+        "DescribeLocationHdfsResponse": {
+            "type": "object",
+            "properties": {
+                "LocationArn": {
+                    "$ref": "#/$defs/LocationArn"
+                },
+                "LocationUri": {
+                    "$ref": "#/$defs/LocationUri"
+                },
+                "NameNodes": {
+                    "$ref": "#/$defs/HdfsNameNodeList"
+                },
+                "BlockSize": {
+                    "$ref": "#/$defs/HdfsBlockSize"
+                },
+                "ReplicationFactor": {
+                    "$ref": "#/$defs/HdfsReplicationFactor"
+                },
+                "KmsKeyProviderUri": {
+                    "$ref": "#/$defs/KmsKeyProviderUri"
+                },
+                "QopConfiguration": {
+                    "$ref": "#/$defs/QopConfiguration"
+                },
+                "AuthenticationType": {
+                    "$ref": "#/$defs/HdfsAuthenticationType"
+                },
+                "SimpleUser": {
+                    "$ref": "#/$defs/HdfsUser"
+                },
+                "KerberosPrincipal": {
+                    "$ref": "#/$defs/KerberosPrincipal"
+                },
+                "AgentArns": {
+                    "$ref": "#/$defs/AgentArnList"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Time"
+                }
+            }
+        },
+        "DescribeLocationHdfsRequest": {
+            "type": "object",
+            "properties": {
+                "LocationArn": {
+                    "$ref": "#/$defs/LocationArn"
+                }
+            }
+        },
+        "DescribeLocationNfsResponse": {
+            "type": "object",
+            "properties": {
+                "LocationArn": {
+                    "$ref": "#/$defs/LocationArn"
+                },
+                "LocationUri": {
+                    "$ref": "#/$defs/LocationUri"
+                },
+                "OnPremConfig": {
+                    "$ref": "#/$defs/OnPremConfig"
+                },
+                "MountOptions": {
+                    "$ref": "#/$defs/NfsMountOptions"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Time"
+                }
+            }
+        },
+        "DescribeLocationNfsRequest": {
+            "type": "object",
+            "properties": {
+                "LocationArn": {
+                    "$ref": "#/$defs/LocationArn"
+                }
+            }
+        },
+        "DescribeLocationObjectStorageResponse": {
+            "type": "object",
+            "properties": {
+                "LocationArn": {
+                    "$ref": "#/$defs/LocationArn"
+                },
+                "LocationUri": {
+                    "$ref": "#/$defs/LocationUri"
+                },
+                "AccessKey": {
+                    "$ref": "#/$defs/ObjectStorageAccessKey"
+                },
+                "ServerPort": {
+                    "$ref": "#/$defs/ObjectStorageServerPort"
+                },
+                "ServerProtocol": {
+                    "$ref": "#/$defs/ObjectStorageServerProtocol"
+                },
+                "AgentArns": {
+                    "$ref": "#/$defs/AgentArnList"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Time"
+                },
+                "ServerCertificate": {
+                    "$ref": "#/$defs/ObjectStorageCertificate"
+                }
+            }
+        },
+        "DescribeLocationObjectStorageRequest": {
+            "type": "object",
+            "properties": {
+                "LocationArn": {
+                    "$ref": "#/$defs/LocationArn"
+                }
+            }
+        },
+        "DescribeLocationS3Response": {
+            "type": "object",
+            "properties": {
+                "LocationArn": {
+                    "$ref": "#/$defs/LocationArn"
+                },
+                "LocationUri": {
+                    "$ref": "#/$defs/LocationUri"
+                },
+                "S3StorageClass": {
+                    "$ref": "#/$defs/S3StorageClass"
+                },
+                "S3Config": {
+                    "$ref": "#/$defs/S3Config"
+                },
+                "AgentArns": {
+                    "$ref": "#/$defs/AgentArnList"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Time"
+                }
+            }
+        },
+        "DescribeLocationS3Request": {
+            "type": "object",
+            "properties": {
+                "LocationArn": {
+                    "$ref": "#/$defs/LocationArn"
+                }
+            }
+        },
+        "DescribeLocationSmbResponse": {
+            "type": "object",
+            "properties": {
+                "LocationArn": {
+                    "$ref": "#/$defs/LocationArn"
+                },
+                "LocationUri": {
+                    "$ref": "#/$defs/LocationUri"
+                },
+                "AgentArns": {
+                    "$ref": "#/$defs/AgentArnList"
+                },
+                "User": {
+                    "$ref": "#/$defs/SmbUser"
+                },
+                "Domain": {
+                    "$ref": "#/$defs/SmbDomain"
+                },
+                "MountOptions": {
+                    "$ref": "#/$defs/SmbMountOptions"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Time"
+                }
+            }
+        },
+        "DescribeLocationSmbRequest": {
+            "type": "object",
+            "properties": {
+                "LocationArn": {
+                    "$ref": "#/$defs/LocationArn"
+                }
+            }
+        },
+        "DescribeStorageSystemResponse": {
+            "type": "object",
+            "properties": {
+                "StorageSystemArn": {
+                    "$ref": "#/$defs/StorageSystemArn"
+                },
+                "ServerConfiguration": {
+                    "$ref": "#/$defs/DiscoveryServerConfiguration"
+                },
+                "SystemType": {
+                    "$ref": "#/$defs/DiscoverySystemType"
+                },
+                "AgentArns": {
+                    "$ref": "#/$defs/DiscoveryAgentArnList"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "ErrorMessage": {
+                    "$ref": "#/$defs/ErrorMessage"
+                },
+                "ConnectivityStatus": {
+                    "$ref": "#/$defs/StorageSystemConnectivityStatus"
+                },
+                "CloudWatchLogGroupArn": {
+                    "$ref": "#/$defs/LogGroupArn"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "SecretsManagerArn": {
+                    "$ref": "#/$defs/SecretsManagerArn"
+                }
+            }
+        },
+        "ErrorMessage": {
+            "type": "string"
+        },
+        "StorageSystemConnectivityStatus": {
+            "enum": [
+                "PASS",
+                "FAIL",
+                "UNKNOWN"
+            ]
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "SecretsManagerArn": {
+            "type": "string"
+        },
+        "DescribeStorageSystemRequest": {
+            "type": "object",
+            "properties": {
+                "StorageSystemArn": {
+                    "$ref": "#/$defs/StorageSystemArn"
+                }
+            }
+        },
+        "DescribeStorageSystemResourceMetricsResponse": {
+            "type": "object",
+            "properties": {
+                "Metrics": {
+                    "$ref": "#/$defs/Metrics"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/DiscoveryNextToken"
+                }
+            }
+        },
+        "Metrics": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourceMetrics"
+            }
+        },
+        "ResourceMetrics": {
+            "type": "object",
+            "properties": {
+                "Timestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "P95Metrics": {
+                    "$ref": "#/$defs/P95Metrics"
+                },
+                "Capacity": {
+                    "$ref": "#/$defs/Capacity"
+                },
+                "ResourceId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "ResourceType": {
+                    "$ref": "#/$defs/DiscoveryResourceType"
+                }
+            }
+        },
+        "P95Metrics": {
+            "type": "object",
+            "properties": {
+                "IOPS": {
+                    "$ref": "#/$defs/IOPS"
+                },
+                "Throughput": {
+                    "$ref": "#/$defs/Throughput"
+                },
+                "Latency": {
+                    "$ref": "#/$defs/Latency"
+                }
+            }
+        },
+        "IOPS": {
+            "type": "object",
+            "properties": {
+                "Read": {
+                    "$ref": "#/$defs/NonNegativeDouble"
+                },
+                "Write": {
+                    "$ref": "#/$defs/NonNegativeDouble"
+                },
+                "Other": {
+                    "$ref": "#/$defs/NonNegativeDouble"
+                },
+                "Total": {
+                    "$ref": "#/$defs/NonNegativeDouble"
+                }
+            }
+        },
+        "NonNegativeDouble": {
+            "type": "number",
+            "format": "double"
+        },
+        "Throughput": {
+            "type": "object",
+            "properties": {
+                "Read": {
+                    "$ref": "#/$defs/NonNegativeDouble"
+                },
+                "Write": {
+                    "$ref": "#/$defs/NonNegativeDouble"
+                },
+                "Other": {
+                    "$ref": "#/$defs/NonNegativeDouble"
+                },
+                "Total": {
+                    "$ref": "#/$defs/NonNegativeDouble"
+                }
+            }
+        },
+        "Latency": {
+            "type": "object",
+            "properties": {
+                "Read": {
+                    "$ref": "#/$defs/NonNegativeDouble"
+                },
+                "Write": {
+                    "$ref": "#/$defs/NonNegativeDouble"
+                },
+                "Other": {
+                    "$ref": "#/$defs/NonNegativeDouble"
+                }
+            }
+        },
+        "Capacity": {
+            "type": "object",
+            "properties": {
+                "Used": {
+                    "$ref": "#/$defs/NonNegativeLong"
+                },
+                "Provisioned": {
+                    "$ref": "#/$defs/NonNegativeLong"
+                },
+                "LogicalUsed": {
+                    "$ref": "#/$defs/NonNegativeLong"
+                },
+                "ClusterCloudStorageUsed": {
+                    "$ref": "#/$defs/NonNegativeLong"
+                }
+            }
+        },
+        "NonNegativeLong": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "ResourceId": {
+            "type": "string"
+        },
+        "DiscoveryResourceType": {
+            "enum": [
+                "SVM",
+                "VOLUME",
+                "CLUSTER"
+            ]
+        },
+        "DiscoveryNextToken": {
+            "type": "string"
+        },
+        "DescribeStorageSystemResourceMetricsRequest": {
+            "type": "object",
+            "properties": {
+                "DiscoveryJobArn": {
+                    "$ref": "#/$defs/DiscoveryJobArn"
+                },
+                "ResourceType": {
+                    "$ref": "#/$defs/DiscoveryResourceType"
+                },
+                "ResourceId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "StartTime": {
+                    "$ref": "#/$defs/DiscoveryTime"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/DiscoveryTime"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/DiscoveryMaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/DiscoveryNextToken"
+                }
+            }
+        },
+        "DiscoveryMaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DescribeStorageSystemResourcesResponse": {
+            "type": "object",
+            "properties": {
+                "ResourceDetails": {
+                    "$ref": "#/$defs/ResourceDetails"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/DiscoveryNextToken"
+                }
+            }
+        },
+        "ResourceDetails": {
+            "type": "object",
+            "properties": {
+                "NetAppONTAPSVMs": {
+                    "$ref": "#/$defs/NetAppONTAPSVMs"
+                },
+                "NetAppONTAPVolumes": {
+                    "$ref": "#/$defs/NetAppONTAPVolumes"
+                },
+                "NetAppONTAPClusters": {
+                    "$ref": "#/$defs/NetAppONTAPClusters"
+                }
+            }
+        },
+        "NetAppONTAPSVMs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NetAppONTAPSVM"
+            }
+        },
+        "NetAppONTAPSVM": {
+            "type": "object",
+            "properties": {
+                "ClusterUuid": {
+                    "$ref": "#/$defs/PtolemyUUID"
+                },
+                "ResourceId": {
+                    "$ref": "#/$defs/PtolemyUUID"
+                },
+                "SvmName": {
+                    "$ref": "#/$defs/PtolemyString"
+                },
+                "CifsShareCount": {
+                    "$ref": "#/$defs/NonNegativeLong"
+                },
+                "EnabledProtocols": {
+                    "$ref": "#/$defs/EnabledProtocols"
+                },
+                "TotalCapacityUsed": {
+                    "$ref": "#/$defs/NonNegativeLong"
+                },
+                "TotalCapacityProvisioned": {
+                    "$ref": "#/$defs/NonNegativeLong"
+                },
+                "TotalLogicalCapacityUsed": {
+                    "$ref": "#/$defs/NonNegativeLong"
+                },
+                "MaxP95Performance": {
+                    "$ref": "#/$defs/MaxP95Performance"
+                },
+                "Recommendations": {
+                    "$ref": "#/$defs/Recommendations"
+                },
+                "NfsExportedVolumes": {
+                    "$ref": "#/$defs/NonNegativeLong"
+                },
+                "RecommendationStatus": {
+                    "$ref": "#/$defs/RecommendationStatus"
+                },
+                "TotalSnapshotCapacityUsed": {
+                    "$ref": "#/$defs/NonNegativeLong"
+                },
+                "LunCount": {
+                    "$ref": "#/$defs/NonNegativeLong"
+                }
+            }
+        },
+        "PtolemyString": {
+            "type": "string"
+        },
+        "EnabledProtocols": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PtolemyString"
+            }
+        },
+        "MaxP95Performance": {
+            "type": "object",
+            "properties": {
+                "IopsRead": {
+                    "$ref": "#/$defs/NonNegativeDouble"
+                },
+                "IopsWrite": {
+                    "$ref": "#/$defs/NonNegativeDouble"
+                },
+                "IopsOther": {
+                    "$ref": "#/$defs/NonNegativeDouble"
+                },
+                "IopsTotal": {
+                    "$ref": "#/$defs/NonNegativeDouble"
+                },
+                "ThroughputRead": {
+                    "$ref": "#/$defs/NonNegativeDouble"
+                },
+                "ThroughputWrite": {
+                    "$ref": "#/$defs/NonNegativeDouble"
+                },
+                "ThroughputOther": {
+                    "$ref": "#/$defs/NonNegativeDouble"
+                },
+                "ThroughputTotal": {
+                    "$ref": "#/$defs/NonNegativeDouble"
+                },
+                "LatencyRead": {
+                    "$ref": "#/$defs/NonNegativeDouble"
+                },
+                "LatencyWrite": {
+                    "$ref": "#/$defs/NonNegativeDouble"
+                },
+                "LatencyOther": {
+                    "$ref": "#/$defs/NonNegativeDouble"
+                }
+            }
+        },
+        "Recommendations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Recommendation"
+            }
+        },
+        "Recommendation": {
+            "type": "object",
+            "properties": {
+                "StorageType": {
+                    "$ref": "#/$defs/PtolemyString"
+                },
+                "StorageConfiguration": {
+                    "$ref": "#/$defs/RecommendationsConfigMap"
+                },
+                "EstimatedMonthlyStorageCost": {
+                    "$ref": "#/$defs/PtolemyString"
+                }
+            }
+        },
+        "RecommendationsConfigMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/PtolemyString"
+            }
+        },
+        "RecommendationStatus": {
+            "enum": [
+                "NONE",
+                "IN_PROGRESS",
+                "COMPLETED",
+                "FAILED"
+            ]
+        },
+        "NetAppONTAPVolumes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NetAppONTAPVolume"
+            }
+        },
+        "NetAppONTAPVolume": {
+            "type": "object",
+            "properties": {
+                "VolumeName": {
+                    "$ref": "#/$defs/PtolemyString"
+                },
+                "ResourceId": {
+                    "$ref": "#/$defs/PtolemyUUID"
+                },
+                "CifsShareCount": {
+                    "$ref": "#/$defs/NonNegativeLong"
+                },
+                "SecurityStyle": {
+                    "$ref": "#/$defs/PtolemyString"
+                },
+                "SvmUuid": {
+                    "$ref": "#/$defs/PtolemyUUID"
+                },
+                "SvmName": {
+                    "$ref": "#/$defs/PtolemyString"
+                },
+                "CapacityUsed": {
+                    "$ref": "#/$defs/NonNegativeLong"
+                },
+                "CapacityProvisioned": {
+                    "$ref": "#/$defs/NonNegativeLong"
+                },
+                "LogicalCapacityUsed": {
+                    "$ref": "#/$defs/NonNegativeLong"
+                },
+                "NfsExported": {
+                    "$ref": "#/$defs/PtolemyBoolean"
+                },
+                "SnapshotCapacityUsed": {
+                    "$ref": "#/$defs/NonNegativeLong"
+                },
+                "MaxP95Performance": {
+                    "$ref": "#/$defs/MaxP95Performance"
+                },
+                "Recommendations": {
+                    "$ref": "#/$defs/Recommendations"
+                },
+                "RecommendationStatus": {
+                    "$ref": "#/$defs/RecommendationStatus"
+                },
+                "LunCount": {
+                    "$ref": "#/$defs/NonNegativeLong"
+                }
+            }
+        },
+        "PtolemyBoolean": {
+            "type": "boolean"
+        },
+        "NetAppONTAPClusters": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NetAppONTAPCluster"
+            }
+        },
+        "NetAppONTAPCluster": {
+            "type": "object",
+            "properties": {
+                "CifsShareCount": {
+                    "$ref": "#/$defs/NonNegativeLong"
+                },
+                "NfsExportedVolumes": {
+                    "$ref": "#/$defs/NonNegativeLong"
+                },
+                "ResourceId": {
+                    "$ref": "#/$defs/PtolemyUUID"
+                },
+                "ClusterName": {
+                    "$ref": "#/$defs/PtolemyString"
+                },
+                "MaxP95Performance": {
+                    "$ref": "#/$defs/MaxP95Performance"
+                },
+                "ClusterBlockStorageSize": {
+                    "$ref": "#/$defs/NonNegativeLong"
+                },
+                "ClusterBlockStorageUsed": {
+                    "$ref": "#/$defs/NonNegativeLong"
+                },
+                "ClusterBlockStorageLogicalUsed": {
+                    "$ref": "#/$defs/NonNegativeLong"
+                },
+                "Recommendations": {
+                    "$ref": "#/$defs/Recommendations"
+                },
+                "RecommendationStatus": {
+                    "$ref": "#/$defs/RecommendationStatus"
+                },
+                "LunCount": {
+                    "$ref": "#/$defs/NonNegativeLong"
+                },
+                "ClusterCloudStorageUsed": {
+                    "$ref": "#/$defs/NonNegativeLong"
+                }
+            }
+        },
+        "DescribeStorageSystemResourcesRequest": {
+            "type": "object",
+            "properties": {
+                "DiscoveryJobArn": {
+                    "$ref": "#/$defs/DiscoveryJobArn"
+                },
+                "ResourceType": {
+                    "$ref": "#/$defs/DiscoveryResourceType"
+                },
+                "ResourceIds": {
+                    "$ref": "#/$defs/ResourceIds"
+                },
+                "Filter": {
+                    "$ref": "#/$defs/ResourceFilters"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/DiscoveryMaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/DiscoveryNextToken"
+                }
+            }
+        },
+        "ResourceIds": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourceId"
+            }
+        },
+        "ResourceFilters": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/FilterMembers"
+            }
+        },
+        "FilterMembers": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PtolemyString"
+            }
+        },
+        "DescribeTaskResponse": {
+            "type": "object",
+            "properties": {
+                "TaskArn": {
+                    "$ref": "#/$defs/TaskArn"
+                },
+                "Status": {
+                    "$ref": "#/$defs/TaskStatus"
+                },
+                "Name": {
+                    "$ref": "#/$defs/TagValue"
+                },
+                "CurrentTaskExecutionArn": {
+                    "$ref": "#/$defs/TaskExecutionArn"
+                },
+                "SourceLocationArn": {
+                    "$ref": "#/$defs/LocationArn"
+                },
+                "DestinationLocationArn": {
+                    "$ref": "#/$defs/LocationArn"
+                },
+                "CloudWatchLogGroupArn": {
+                    "$ref": "#/$defs/LogGroupArn"
+                },
+                "SourceNetworkInterfaceArns": {
+                    "$ref": "#/$defs/SourceNetworkInterfaceArns"
+                },
+                "DestinationNetworkInterfaceArns": {
+                    "$ref": "#/$defs/DestinationNetworkInterfaceArns"
+                },
+                "Options": {
+                    "$ref": "#/$defs/Options"
+                },
+                "Excludes": {
+                    "$ref": "#/$defs/FilterList"
+                },
+                "Schedule": {
+                    "$ref": "#/$defs/TaskSchedule"
+                },
+                "ErrorCode": {
+                    "$ref": "#/$defs/string"
+                },
+                "ErrorDetail": {
+                    "$ref": "#/$defs/string"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Time"
+                },
+                "Includes": {
+                    "$ref": "#/$defs/FilterList"
+                },
+                "ManifestConfig": {
+                    "$ref": "#/$defs/ManifestConfig"
+                },
+                "TaskReportConfig": {
+                    "$ref": "#/$defs/TaskReportConfig"
+                },
+                "ScheduleDetails": {
+                    "$ref": "#/$defs/TaskScheduleDetails"
+                }
+            }
+        },
+        "TaskStatus": {
+            "enum": [
+                "AVAILABLE",
+                "CREATING",
+                "QUEUED",
+                "RUNNING",
+                "UNAVAILABLE"
+            ]
+        },
+        "SourceNetworkInterfaceArns": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NetworkInterfaceArn"
+            }
+        },
+        "NetworkInterfaceArn": {
+            "type": "string"
+        },
+        "DestinationNetworkInterfaceArns": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NetworkInterfaceArn"
+            }
+        },
+        "string": {
+            "type": "string"
+        },
+        "TaskScheduleDetails": {
+            "type": "object",
+            "properties": {
+                "StatusUpdateTime": {
+                    "$ref": "#/$defs/Time"
+                },
+                "DisabledReason": {
+                    "$ref": "#/$defs/ScheduleDisabledReason"
+                },
+                "DisabledBy": {
+                    "$ref": "#/$defs/ScheduleDisabledBy"
+                }
+            }
+        },
+        "ScheduleDisabledReason": {
+            "type": "string"
+        },
+        "ScheduleDisabledBy": {
+            "enum": [
+                "USER",
+                "SERVICE"
+            ]
+        },
+        "DescribeTaskRequest": {
+            "type": "object",
+            "properties": {
+                "TaskArn": {
+                    "$ref": "#/$defs/TaskArn"
+                }
+            }
+        },
+        "DescribeTaskExecutionResponse": {
+            "type": "object",
+            "properties": {
+                "TaskExecutionArn": {
+                    "$ref": "#/$defs/TaskExecutionArn"
+                },
+                "Status": {
+                    "$ref": "#/$defs/TaskExecutionStatus"
+                },
+                "Options": {
+                    "$ref": "#/$defs/Options"
+                },
+                "Excludes": {
+                    "$ref": "#/$defs/FilterList"
+                },
+                "Includes": {
+                    "$ref": "#/$defs/FilterList"
+                },
+                "ManifestConfig": {
+                    "$ref": "#/$defs/ManifestConfig"
+                },
+                "StartTime": {
+                    "$ref": "#/$defs/Time"
+                },
+                "EstimatedFilesToTransfer": {
+                    "$ref": "#/$defs/long"
+                },
+                "EstimatedBytesToTransfer": {
+                    "$ref": "#/$defs/long"
+                },
+                "FilesTransferred": {
+                    "$ref": "#/$defs/long"
+                },
+                "BytesWritten": {
+                    "$ref": "#/$defs/long"
+                },
+                "BytesTransferred": {
+                    "$ref": "#/$defs/long"
+                },
+                "BytesCompressed": {
+                    "$ref": "#/$defs/long"
+                },
+                "Result": {
+                    "$ref": "#/$defs/TaskExecutionResultDetail"
+                },
+                "TaskReportConfig": {
+                    "$ref": "#/$defs/TaskReportConfig"
+                },
+                "FilesDeleted": {
+                    "$ref": "#/$defs/long"
+                },
+                "FilesSkipped": {
+                    "$ref": "#/$defs/long"
+                },
+                "FilesVerified": {
+                    "$ref": "#/$defs/long"
+                },
+                "ReportResult": {
+                    "$ref": "#/$defs/ReportResult"
+                },
+                "EstimatedFilesToDelete": {
+                    "$ref": "#/$defs/long"
+                }
+            }
+        },
+        "TaskExecutionStatus": {
+            "enum": [
+                "QUEUED",
+                "CANCELLING",
+                "LAUNCHING",
+                "PREPARING",
+                "TRANSFERRING",
+                "VERIFYING",
+                "SUCCESS",
+                "ERROR"
+            ]
+        },
+        "long": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "TaskExecutionResultDetail": {
+            "type": "object",
+            "properties": {
+                "PrepareDuration": {
+                    "$ref": "#/$defs/Duration"
+                },
+                "PrepareStatus": {
+                    "$ref": "#/$defs/PhaseStatus"
+                },
+                "TotalDuration": {
+                    "$ref": "#/$defs/Duration"
+                },
+                "TransferDuration": {
+                    "$ref": "#/$defs/Duration"
+                },
+                "TransferStatus": {
+                    "$ref": "#/$defs/PhaseStatus"
+                },
+                "VerifyDuration": {
+                    "$ref": "#/$defs/Duration"
+                },
+                "VerifyStatus": {
+                    "$ref": "#/$defs/PhaseStatus"
+                },
+                "ErrorCode": {
+                    "$ref": "#/$defs/string"
+                },
+                "ErrorDetail": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "Duration": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "PhaseStatus": {
+            "enum": [
+                "PENDING",
+                "SUCCESS",
+                "ERROR"
+            ]
+        },
+        "ReportResult": {
+            "type": "object",
+            "properties": {
+                "Status": {
+                    "$ref": "#/$defs/PhaseStatus"
+                },
+                "ErrorCode": {
+                    "$ref": "#/$defs/string"
+                },
+                "ErrorDetail": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "DescribeTaskExecutionRequest": {
+            "type": "object",
+            "properties": {
+                "TaskExecutionArn": {
+                    "$ref": "#/$defs/TaskExecutionArn"
+                }
+            }
+        },
+        "GenerateRecommendationsResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "GenerateRecommendationsRequest": {
+            "type": "object",
+            "properties": {
+                "DiscoveryJobArn": {
+                    "$ref": "#/$defs/DiscoveryJobArn"
+                },
+                "ResourceIds": {
+                    "$ref": "#/$defs/ResourceIds"
+                },
+                "ResourceType": {
+                    "$ref": "#/$defs/DiscoveryResourceType"
+                }
+            }
+        },
+        "ListAgentsResponse": {
+            "type": "object",
+            "properties": {
+                "Agents": {
+                    "$ref": "#/$defs/AgentList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "AgentList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AgentListEntry"
+            }
+        },
+        "AgentListEntry": {
+            "type": "object",
+            "properties": {
+                "AgentArn": {
+                    "$ref": "#/$defs/AgentArn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/TagValue"
+                },
+                "Status": {
+                    "$ref": "#/$defs/AgentStatus"
+                },
+                "Platform": {
+                    "$ref": "#/$defs/Platform"
+                }
+            }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "ListAgentsRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListDiscoveryJobsResponse": {
+            "type": "object",
+            "properties": {
+                "DiscoveryJobs": {
+                    "$ref": "#/$defs/DiscoveryJobList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/DiscoveryNextToken"
+                }
+            }
+        },
+        "DiscoveryJobList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DiscoveryJobListEntry"
+            }
+        },
+        "DiscoveryJobListEntry": {
+            "type": "object",
+            "properties": {
+                "DiscoveryJobArn": {
+                    "$ref": "#/$defs/DiscoveryJobArn"
+                },
+                "Status": {
+                    "$ref": "#/$defs/DiscoveryJobStatus"
+                }
+            }
+        },
+        "ListDiscoveryJobsRequest": {
+            "type": "object",
+            "properties": {
+                "StorageSystemArn": {
+                    "$ref": "#/$defs/StorageSystemArn"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/DiscoveryMaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/DiscoveryNextToken"
+                }
+            }
+        },
+        "ListLocationsResponse": {
+            "type": "object",
+            "properties": {
+                "Locations": {
+                    "$ref": "#/$defs/LocationList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "LocationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LocationListEntry"
+            }
+        },
+        "LocationListEntry": {
+            "type": "object",
+            "properties": {
+                "LocationArn": {
+                    "$ref": "#/$defs/LocationArn"
+                },
+                "LocationUri": {
+                    "$ref": "#/$defs/LocationUri"
+                }
+            }
+        },
+        "ListLocationsRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/LocationFilters"
+                }
+            }
+        },
+        "LocationFilters": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LocationFilter"
+            }
+        },
+        "LocationFilter": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/LocationFilterName"
+                },
+                "Values": {
+                    "$ref": "#/$defs/FilterValues"
+                },
+                "Operator": {
+                    "$ref": "#/$defs/Operator"
+                }
+            }
+        },
+        "LocationFilterName": {
+            "enum": [
+                "LocationUri",
+                "LocationType",
+                "CreationTime"
+            ]
+        },
+        "FilterValues": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FilterAttributeValue"
+            }
+        },
+        "FilterAttributeValue": {
+            "type": "string"
+        },
+        "Operator": {
+            "enum": [
+                "EQ",
+                "NE",
+                "IN",
+                "LE",
+                "LT",
+                "GE",
+                "GT",
+                "CONTAINS",
+                "NOT_CONTAINS",
+                "BEGINS_WITH"
+            ]
+        },
+        "ListStorageSystemsResponse": {
+            "type": "object",
+            "properties": {
+                "StorageSystems": {
+                    "$ref": "#/$defs/StorageSystemList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/DiscoveryNextToken"
+                }
+            }
+        },
+        "StorageSystemList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/StorageSystemListEntry"
+            }
+        },
+        "StorageSystemListEntry": {
+            "type": "object",
+            "properties": {
+                "StorageSystemArn": {
+                    "$ref": "#/$defs/StorageSystemArn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                }
+            }
+        },
+        "ListStorageSystemsRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/DiscoveryMaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/DiscoveryNextToken"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/OutputTagList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "OutputTagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagListEntry"
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/TaggableResourceArn"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "TaggableResourceArn": {
+            "type": "string"
+        },
+        "ListTaskExecutionsResponse": {
+            "type": "object",
+            "properties": {
+                "TaskExecutions": {
+                    "$ref": "#/$defs/TaskExecutionList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "TaskExecutionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TaskExecutionListEntry"
+            }
+        },
+        "TaskExecutionListEntry": {
+            "type": "object",
+            "properties": {
+                "TaskExecutionArn": {
+                    "$ref": "#/$defs/TaskExecutionArn"
+                },
+                "Status": {
+                    "$ref": "#/$defs/TaskExecutionStatus"
+                }
+            }
+        },
+        "ListTaskExecutionsRequest": {
+            "type": "object",
+            "properties": {
+                "TaskArn": {
+                    "$ref": "#/$defs/TaskArn"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListTasksResponse": {
+            "type": "object",
+            "properties": {
+                "Tasks": {
+                    "$ref": "#/$defs/TaskList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "TaskList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TaskListEntry"
+            }
+        },
+        "TaskListEntry": {
+            "type": "object",
+            "properties": {
+                "TaskArn": {
+                    "$ref": "#/$defs/TaskArn"
+                },
+                "Status": {
+                    "$ref": "#/$defs/TaskStatus"
+                },
+                "Name": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "ListTasksRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/TaskFilters"
+                }
+            }
+        },
+        "TaskFilters": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TaskFilter"
+            }
+        },
+        "TaskFilter": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/TaskFilterName"
+                },
+                "Values": {
+                    "$ref": "#/$defs/FilterValues"
+                },
+                "Operator": {
+                    "$ref": "#/$defs/Operator"
+                }
+            }
+        },
+        "TaskFilterName": {
+            "enum": [
+                "LocationId",
+                "CreationTime"
+            ]
+        },
+        "RemoveStorageSystemResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "RemoveStorageSystemRequest": {
+            "type": "object",
+            "properties": {
+                "StorageSystemArn": {
+                    "$ref": "#/$defs/StorageSystemArn"
+                }
+            }
+        },
+        "StartDiscoveryJobResponse": {
+            "type": "object",
+            "properties": {
+                "DiscoveryJobArn": {
+                    "$ref": "#/$defs/DiscoveryJobArn"
+                }
+            }
+        },
+        "StartDiscoveryJobRequest": {
+            "type": "object",
+            "properties": {
+                "StorageSystemArn": {
+                    "$ref": "#/$defs/StorageSystemArn"
+                },
+                "CollectionDurationMinutes": {
+                    "$ref": "#/$defs/CollectionDurationMinutes"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/PtolemyUUID"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/InputTagList"
+                }
+            }
+        },
+        "StartTaskExecutionResponse": {
+            "type": "object",
+            "properties": {
+                "TaskExecutionArn": {
+                    "$ref": "#/$defs/TaskExecutionArn"
+                }
+            }
+        },
+        "StartTaskExecutionRequest": {
+            "type": "object",
+            "properties": {
+                "TaskArn": {
+                    "$ref": "#/$defs/TaskArn"
+                },
+                "OverrideOptions": {
+                    "$ref": "#/$defs/Options"
+                },
+                "Includes": {
+                    "$ref": "#/$defs/FilterList"
+                },
+                "Excludes": {
+                    "$ref": "#/$defs/FilterList"
+                },
+                "ManifestConfig": {
+                    "$ref": "#/$defs/ManifestConfig"
+                },
+                "TaskReportConfig": {
+                    "$ref": "#/$defs/TaskReportConfig"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/InputTagList"
+                }
+            }
+        },
+        "StopDiscoveryJobResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "StopDiscoveryJobRequest": {
+            "type": "object",
+            "properties": {
+                "DiscoveryJobArn": {
+                    "$ref": "#/$defs/DiscoveryJobArn"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/TaggableResourceArn"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/InputTagList"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/TaggableResourceArn"
+                },
+                "Keys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "UpdateAgentResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateAgentRequest": {
+            "type": "object",
+            "properties": {
+                "AgentArn": {
+                    "$ref": "#/$defs/AgentArn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "UpdateDiscoveryJobResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateDiscoveryJobRequest": {
+            "type": "object",
+            "properties": {
+                "DiscoveryJobArn": {
+                    "$ref": "#/$defs/DiscoveryJobArn"
+                },
+                "CollectionDurationMinutes": {
+                    "$ref": "#/$defs/CollectionDurationMinutes"
+                }
+            }
+        },
+        "UpdateLocationAzureBlobResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateLocationAzureBlobRequest": {
+            "type": "object",
+            "properties": {
+                "LocationArn": {
+                    "$ref": "#/$defs/LocationArn"
+                },
+                "Subdirectory": {
+                    "$ref": "#/$defs/AzureBlobSubdirectory"
+                },
+                "AuthenticationType": {
+                    "$ref": "#/$defs/AzureBlobAuthenticationType"
+                },
+                "SasConfiguration": {
+                    "$ref": "#/$defs/AzureBlobSasConfiguration"
+                },
+                "BlobType": {
+                    "$ref": "#/$defs/AzureBlobType"
+                },
+                "AccessTier": {
+                    "$ref": "#/$defs/AzureAccessTier"
+                },
+                "AgentArns": {
+                    "$ref": "#/$defs/AgentArnList"
+                }
+            }
+        },
+        "UpdateLocationHdfsResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateLocationHdfsRequest": {
+            "type": "object",
+            "properties": {
+                "LocationArn": {
+                    "$ref": "#/$defs/LocationArn"
+                },
+                "Subdirectory": {
+                    "$ref": "#/$defs/HdfsSubdirectory"
+                },
+                "NameNodes": {
+                    "$ref": "#/$defs/HdfsNameNodeList"
+                },
+                "BlockSize": {
+                    "$ref": "#/$defs/HdfsBlockSize"
+                },
+                "ReplicationFactor": {
+                    "$ref": "#/$defs/HdfsReplicationFactor"
+                },
+                "KmsKeyProviderUri": {
+                    "$ref": "#/$defs/KmsKeyProviderUri"
+                },
+                "QopConfiguration": {
+                    "$ref": "#/$defs/QopConfiguration"
+                },
+                "AuthenticationType": {
+                    "$ref": "#/$defs/HdfsAuthenticationType"
+                },
+                "SimpleUser": {
+                    "$ref": "#/$defs/HdfsUser"
+                },
+                "KerberosPrincipal": {
+                    "$ref": "#/$defs/KerberosPrincipal"
+                },
+                "KerberosKeytab": {
+                    "$ref": "#/$defs/KerberosKeytabFile"
+                },
+                "KerberosKrb5Conf": {
+                    "$ref": "#/$defs/KerberosKrb5ConfFile"
+                },
+                "AgentArns": {
+                    "$ref": "#/$defs/AgentArnList"
+                }
+            }
+        },
+        "UpdateLocationNfsResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateLocationNfsRequest": {
+            "type": "object",
+            "properties": {
+                "LocationArn": {
+                    "$ref": "#/$defs/LocationArn"
+                },
+                "Subdirectory": {
+                    "$ref": "#/$defs/NfsSubdirectory"
+                },
+                "OnPremConfig": {
+                    "$ref": "#/$defs/OnPremConfig"
+                },
+                "MountOptions": {
+                    "$ref": "#/$defs/NfsMountOptions"
+                }
+            }
+        },
+        "UpdateLocationObjectStorageResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateLocationObjectStorageRequest": {
+            "type": "object",
+            "properties": {
+                "LocationArn": {
+                    "$ref": "#/$defs/LocationArn"
+                },
+                "ServerPort": {
+                    "$ref": "#/$defs/ObjectStorageServerPort"
+                },
+                "ServerProtocol": {
+                    "$ref": "#/$defs/ObjectStorageServerProtocol"
+                },
+                "Subdirectory": {
+                    "$ref": "#/$defs/S3Subdirectory"
+                },
+                "AccessKey": {
+                    "$ref": "#/$defs/ObjectStorageAccessKey"
+                },
+                "SecretKey": {
+                    "$ref": "#/$defs/ObjectStorageSecretKey"
+                },
+                "AgentArns": {
+                    "$ref": "#/$defs/AgentArnList"
+                },
+                "ServerCertificate": {
+                    "$ref": "#/$defs/ObjectStorageCertificate"
+                }
+            }
+        },
+        "UpdateLocationSmbResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateLocationSmbRequest": {
+            "type": "object",
+            "properties": {
+                "LocationArn": {
+                    "$ref": "#/$defs/LocationArn"
+                },
+                "Subdirectory": {
+                    "$ref": "#/$defs/SmbSubdirectory"
+                },
+                "User": {
+                    "$ref": "#/$defs/SmbUser"
+                },
+                "Domain": {
+                    "$ref": "#/$defs/SmbDomain"
+                },
+                "Password": {
+                    "$ref": "#/$defs/SmbPassword"
+                },
+                "AgentArns": {
+                    "$ref": "#/$defs/AgentArnList"
+                },
+                "MountOptions": {
+                    "$ref": "#/$defs/SmbMountOptions"
+                }
+            }
+        },
+        "UpdateStorageSystemResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateStorageSystemRequest": {
+            "type": "object",
+            "properties": {
+                "StorageSystemArn": {
+                    "$ref": "#/$defs/StorageSystemArn"
+                },
+                "ServerConfiguration": {
+                    "$ref": "#/$defs/DiscoveryServerConfiguration"
+                },
+                "AgentArns": {
+                    "$ref": "#/$defs/DiscoveryAgentArnList"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "CloudWatchLogGroupArn": {
+                    "$ref": "#/$defs/LogGroupArn"
+                },
+                "Credentials": {
+                    "$ref": "#/$defs/Credentials"
+                }
+            }
+        },
+        "UpdateTaskResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateTaskRequest": {
+            "type": "object",
+            "properties": {
+                "TaskArn": {
+                    "$ref": "#/$defs/TaskArn"
+                },
+                "Options": {
+                    "$ref": "#/$defs/Options"
+                },
+                "Excludes": {
+                    "$ref": "#/$defs/FilterList"
+                },
+                "Schedule": {
+                    "$ref": "#/$defs/TaskSchedule"
+                },
+                "Name": {
+                    "$ref": "#/$defs/TagValue"
+                },
+                "CloudWatchLogGroupArn": {
+                    "$ref": "#/$defs/LogGroupArn"
+                },
+                "Includes": {
+                    "$ref": "#/$defs/FilterList"
+                },
+                "ManifestConfig": {
+                    "$ref": "#/$defs/ManifestConfig"
+                },
+                "TaskReportConfig": {
+                    "$ref": "#/$defs/TaskReportConfig"
+                }
+            }
+        },
+        "UpdateTaskExecutionResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateTaskExecutionRequest": {
+            "type": "object",
+            "properties": {
+                "TaskExecutionArn": {
+                    "$ref": "#/$defs/TaskExecutionArn"
+                },
+                "Options": {
+                    "$ref": "#/$defs/Options"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://datasync-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://datasync-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://datasync.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://datasync.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

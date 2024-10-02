@@ -1,0 +1,2537 @@
+{
+    "name": "kinesisvideo",
+    "commands": [
+        {
+            "name": "CreateSignalingChannel",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateSignalingChannel"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateSignalingChannelOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateSignalingChannelInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateStream",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateStream"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateStreamOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateStreamInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteEdgeConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteEdgeConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteEdgeConfigurationOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteEdgeConfigurationInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteSignalingChannel",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteSignalingChannel"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteSignalingChannelOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteSignalingChannelInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteStream",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteStream"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteStreamOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteStreamInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeEdgeConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeEdgeConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeEdgeConfigurationOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeEdgeConfigurationInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeImageGenerationConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeImageGenerationConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeImageGenerationConfigurationOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeImageGenerationConfigurationInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeMappedResourceConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeMappedResourceConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeMappedResourceConfigurationOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeMappedResourceConfigurationInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeMediaStorageConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeMediaStorageConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeMediaStorageConfigurationOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeMediaStorageConfigurationInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeNotificationConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeNotificationConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeNotificationConfigurationOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeNotificationConfigurationInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeSignalingChannel",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeSignalingChannel"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeSignalingChannelOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeSignalingChannelInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeStream",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeStream"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeStreamOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeStreamInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetDataEndpoint",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetDataEndpoint"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetDataEndpointOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetDataEndpointInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetSignalingChannelEndpoint",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetSignalingChannelEndpoint"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetSignalingChannelEndpointOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetSignalingChannelEndpointInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListEdgeAgentConfigurations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListEdgeAgentConfigurations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListEdgeAgentConfigurationsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListEdgeAgentConfigurationsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListSignalingChannels",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListSignalingChannels"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListSignalingChannelsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListSignalingChannelsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListStreams",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListStreams"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListStreamsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListStreamsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForStream",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForStream"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForStreamOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForStreamInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartEdgeConfigurationUpdate",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartEdgeConfigurationUpdate"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartEdgeConfigurationUpdateOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartEdgeConfigurationUpdateInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagStream",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagStream"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagStreamOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagStreamInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagStream",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagStream"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagStreamOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagStreamInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateDataRetention",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateDataRetention"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateDataRetentionOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateDataRetentionInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateImageGenerationConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateImageGenerationConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateImageGenerationConfigurationOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateImageGenerationConfigurationInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateMediaStorageConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateMediaStorageConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateMediaStorageConfigurationOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateMediaStorageConfigurationInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateNotificationConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateNotificationConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateNotificationConfigurationOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateNotificationConfigurationInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateSignalingChannel",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateSignalingChannel"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateSignalingChannelOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateSignalingChannelInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateStream",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateStream"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateStreamOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateStreamInput"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CreateSignalingChannelOutput": {
+            "type": "object",
+            "properties": {
+                "ChannelARN": {
+                    "$ref": "#/$defs/ResourceARN"
+                }
+            }
+        },
+        "ResourceARN": {
+            "type": "string"
+        },
+        "CreateSignalingChannelInput": {
+            "type": "object",
+            "properties": {
+                "ChannelName": {
+                    "$ref": "#/$defs/ChannelName"
+                },
+                "ChannelType": {
+                    "$ref": "#/$defs/ChannelType"
+                },
+                "SingleMasterConfiguration": {
+                    "$ref": "#/$defs/SingleMasterConfiguration"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagOnCreateList"
+                }
+            }
+        },
+        "ChannelName": {
+            "type": "string"
+        },
+        "ChannelType": {
+            "enum": [
+                "SINGLE_MASTER",
+                "FULL_MESH"
+            ]
+        },
+        "SingleMasterConfiguration": {
+            "type": "object",
+            "properties": {
+                "MessageTtlSeconds": {
+                    "$ref": "#/$defs/MessageTtlSeconds"
+                }
+            }
+        },
+        "MessageTtlSeconds": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "TagOnCreateList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "CreateStreamOutput": {
+            "type": "object",
+            "properties": {
+                "StreamARN": {
+                    "$ref": "#/$defs/ResourceARN"
+                }
+            }
+        },
+        "CreateStreamInput": {
+            "type": "object",
+            "properties": {
+                "DeviceName": {
+                    "$ref": "#/$defs/DeviceName"
+                },
+                "StreamName": {
+                    "$ref": "#/$defs/StreamName"
+                },
+                "MediaType": {
+                    "$ref": "#/$defs/MediaType"
+                },
+                "KmsKeyId": {
+                    "$ref": "#/$defs/KmsKeyId"
+                },
+                "DataRetentionInHours": {
+                    "$ref": "#/$defs/DataRetentionInHours"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/ResourceTags"
+                }
+            }
+        },
+        "DeviceName": {
+            "type": "string"
+        },
+        "StreamName": {
+            "type": "string"
+        },
+        "MediaType": {
+            "type": "string"
+        },
+        "KmsKeyId": {
+            "type": "string"
+        },
+        "DataRetentionInHours": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ResourceTags": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TagValue"
+            }
+        },
+        "DeleteEdgeConfigurationOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteEdgeConfigurationInput": {
+            "type": "object",
+            "properties": {
+                "StreamName": {
+                    "$ref": "#/$defs/StreamName"
+                },
+                "StreamARN": {
+                    "$ref": "#/$defs/ResourceARN"
+                }
+            }
+        },
+        "DeleteSignalingChannelOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteSignalingChannelInput": {
+            "type": "object",
+            "properties": {
+                "ChannelARN": {
+                    "$ref": "#/$defs/ResourceARN"
+                },
+                "CurrentVersion": {
+                    "$ref": "#/$defs/Version"
+                }
+            }
+        },
+        "Version": {
+            "type": "string"
+        },
+        "DeleteStreamOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteStreamInput": {
+            "type": "object",
+            "properties": {
+                "StreamARN": {
+                    "$ref": "#/$defs/ResourceARN"
+                },
+                "CurrentVersion": {
+                    "$ref": "#/$defs/Version"
+                }
+            }
+        },
+        "DescribeEdgeConfigurationOutput": {
+            "type": "object",
+            "properties": {
+                "StreamName": {
+                    "$ref": "#/$defs/StreamName"
+                },
+                "StreamARN": {
+                    "$ref": "#/$defs/ResourceARN"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastUpdatedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "SyncStatus": {
+                    "$ref": "#/$defs/SyncStatus"
+                },
+                "FailedStatusDetails": {
+                    "$ref": "#/$defs/FailedStatusDetails"
+                },
+                "EdgeConfig": {
+                    "$ref": "#/$defs/EdgeConfig"
+                },
+                "EdgeAgentStatus": {
+                    "$ref": "#/$defs/EdgeAgentStatus"
+                }
+            }
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "SyncStatus": {
+            "enum": [
+                "SYNCING",
+                "ACKNOWLEDGED",
+                "IN_SYNC",
+                "SYNC_FAILED",
+                "DELETING",
+                "DELETE_FAILED",
+                "DELETING_ACKNOWLEDGED"
+            ]
+        },
+        "FailedStatusDetails": {
+            "type": "string"
+        },
+        "EdgeConfig": {
+            "type": "object",
+            "properties": {
+                "HubDeviceArn": {
+                    "$ref": "#/$defs/HubDeviceArn"
+                },
+                "RecorderConfig": {
+                    "$ref": "#/$defs/RecorderConfig"
+                },
+                "UploaderConfig": {
+                    "$ref": "#/$defs/UploaderConfig"
+                },
+                "DeletionConfig": {
+                    "$ref": "#/$defs/DeletionConfig"
+                }
+            }
+        },
+        "HubDeviceArn": {
+            "type": "string"
+        },
+        "RecorderConfig": {
+            "type": "object",
+            "properties": {
+                "MediaSourceConfig": {
+                    "$ref": "#/$defs/MediaSourceConfig"
+                },
+                "ScheduleConfig": {
+                    "$ref": "#/$defs/ScheduleConfig"
+                }
+            }
+        },
+        "MediaSourceConfig": {
+            "type": "object",
+            "properties": {
+                "MediaUriSecretArn": {
+                    "$ref": "#/$defs/MediaUriSecretArn"
+                },
+                "MediaUriType": {
+                    "$ref": "#/$defs/MediaUriType"
+                }
+            }
+        },
+        "MediaUriSecretArn": {
+            "type": "string"
+        },
+        "MediaUriType": {
+            "enum": [
+                "RTSP_URI",
+                "FILE_URI"
+            ]
+        },
+        "ScheduleConfig": {
+            "type": "object",
+            "properties": {
+                "ScheduleExpression": {
+                    "$ref": "#/$defs/ScheduleExpression"
+                },
+                "DurationInSeconds": {
+                    "$ref": "#/$defs/DurationInSeconds"
+                }
+            }
+        },
+        "ScheduleExpression": {
+            "type": "string"
+        },
+        "DurationInSeconds": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "UploaderConfig": {
+            "type": "object",
+            "properties": {
+                "ScheduleConfig": {
+                    "$ref": "#/$defs/ScheduleConfig"
+                }
+            }
+        },
+        "DeletionConfig": {
+            "type": "object",
+            "properties": {
+                "EdgeRetentionInHours": {
+                    "$ref": "#/$defs/EdgeRetentionInHours"
+                },
+                "LocalSizeConfig": {
+                    "$ref": "#/$defs/LocalSizeConfig"
+                },
+                "DeleteAfterUpload": {
+                    "$ref": "#/$defs/DeleteAfterUpload"
+                }
+            }
+        },
+        "EdgeRetentionInHours": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "LocalSizeConfig": {
+            "type": "object",
+            "properties": {
+                "MaxLocalMediaSizeInMB": {
+                    "$ref": "#/$defs/MaxLocalMediaSizeInMB"
+                },
+                "StrategyOnFullSize": {
+                    "$ref": "#/$defs/StrategyOnFullSize"
+                }
+            }
+        },
+        "MaxLocalMediaSizeInMB": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "StrategyOnFullSize": {
+            "enum": [
+                "DELETE_OLDEST_MEDIA",
+                "DENY_NEW_MEDIA"
+            ]
+        },
+        "DeleteAfterUpload": {
+            "type": "boolean"
+        },
+        "EdgeAgentStatus": {
+            "type": "object",
+            "properties": {
+                "LastRecorderStatus": {
+                    "$ref": "#/$defs/LastRecorderStatus"
+                },
+                "LastUploaderStatus": {
+                    "$ref": "#/$defs/LastUploaderStatus"
+                }
+            }
+        },
+        "LastRecorderStatus": {
+            "type": "object",
+            "properties": {
+                "JobStatusDetails": {
+                    "$ref": "#/$defs/JobStatusDetails"
+                },
+                "LastCollectedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastUpdatedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "RecorderStatus": {
+                    "$ref": "#/$defs/RecorderStatus"
+                }
+            }
+        },
+        "JobStatusDetails": {
+            "type": "string"
+        },
+        "RecorderStatus": {
+            "enum": [
+                "SUCCESS",
+                "USER_ERROR",
+                "SYSTEM_ERROR"
+            ]
+        },
+        "LastUploaderStatus": {
+            "type": "object",
+            "properties": {
+                "JobStatusDetails": {
+                    "$ref": "#/$defs/JobStatusDetails"
+                },
+                "LastCollectedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastUpdatedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "UploaderStatus": {
+                    "$ref": "#/$defs/UploaderStatus"
+                }
+            }
+        },
+        "UploaderStatus": {
+            "enum": [
+                "SUCCESS",
+                "USER_ERROR",
+                "SYSTEM_ERROR"
+            ]
+        },
+        "DescribeEdgeConfigurationInput": {
+            "type": "object",
+            "properties": {
+                "StreamName": {
+                    "$ref": "#/$defs/StreamName"
+                },
+                "StreamARN": {
+                    "$ref": "#/$defs/ResourceARN"
+                }
+            }
+        },
+        "DescribeImageGenerationConfigurationOutput": {
+            "type": "object",
+            "properties": {
+                "ImageGenerationConfiguration": {
+                    "$ref": "#/$defs/ImageGenerationConfiguration"
+                }
+            }
+        },
+        "ImageGenerationConfiguration": {
+            "type": "object",
+            "properties": {
+                "Status": {
+                    "$ref": "#/$defs/ConfigurationStatus"
+                },
+                "ImageSelectorType": {
+                    "$ref": "#/$defs/ImageSelectorType"
+                },
+                "DestinationConfig": {
+                    "$ref": "#/$defs/ImageGenerationDestinationConfig"
+                },
+                "SamplingInterval": {
+                    "$ref": "#/$defs/SamplingInterval"
+                },
+                "Format": {
+                    "$ref": "#/$defs/Format"
+                },
+                "FormatConfig": {
+                    "$ref": "#/$defs/FormatConfig"
+                },
+                "WidthPixels": {
+                    "$ref": "#/$defs/WidthPixels"
+                },
+                "HeightPixels": {
+                    "$ref": "#/$defs/HeightPixels"
+                }
+            }
+        },
+        "ConfigurationStatus": {
+            "enum": [
+                "ENABLED",
+                "DISABLED"
+            ]
+        },
+        "ImageSelectorType": {
+            "enum": [
+                "SERVER_TIMESTAMP",
+                "PRODUCER_TIMESTAMP"
+            ]
+        },
+        "ImageGenerationDestinationConfig": {
+            "type": "object",
+            "properties": {
+                "Uri": {
+                    "$ref": "#/$defs/DestinationUri"
+                },
+                "DestinationRegion": {
+                    "$ref": "#/$defs/DestinationRegion"
+                }
+            }
+        },
+        "DestinationUri": {
+            "type": "string"
+        },
+        "DestinationRegion": {
+            "type": "string"
+        },
+        "SamplingInterval": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "Format": {
+            "enum": [
+                "JPEG",
+                "PNG"
+            ]
+        },
+        "FormatConfig": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/FormatConfigValue"
+            }
+        },
+        "FormatConfigValue": {
+            "type": "string"
+        },
+        "WidthPixels": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "HeightPixels": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DescribeImageGenerationConfigurationInput": {
+            "type": "object",
+            "properties": {
+                "StreamName": {
+                    "$ref": "#/$defs/StreamName"
+                },
+                "StreamARN": {
+                    "$ref": "#/$defs/ResourceARN"
+                }
+            }
+        },
+        "DescribeMappedResourceConfigurationOutput": {
+            "type": "object",
+            "properties": {
+                "MappedResourceConfigurationList": {
+                    "$ref": "#/$defs/MappedResourceConfigurationList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "MappedResourceConfigurationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MappedResourceConfigurationListItem"
+            }
+        },
+        "MappedResourceConfigurationListItem": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "$ref": "#/$defs/Type"
+                },
+                "ARN": {
+                    "$ref": "#/$defs/ResourceARN"
+                }
+            }
+        },
+        "Type": {
+            "type": "string"
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "DescribeMappedResourceConfigurationInput": {
+            "type": "object",
+            "properties": {
+                "StreamName": {
+                    "$ref": "#/$defs/StreamName"
+                },
+                "StreamARN": {
+                    "$ref": "#/$defs/ResourceARN"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MappedResourceConfigurationListLimit"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "MappedResourceConfigurationListLimit": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DescribeMediaStorageConfigurationOutput": {
+            "type": "object",
+            "properties": {
+                "MediaStorageConfiguration": {
+                    "$ref": "#/$defs/MediaStorageConfiguration"
+                }
+            }
+        },
+        "MediaStorageConfiguration": {
+            "type": "object",
+            "properties": {
+                "StreamARN": {
+                    "$ref": "#/$defs/ResourceARN"
+                },
+                "Status": {
+                    "$ref": "#/$defs/MediaStorageConfigurationStatus"
+                }
+            }
+        },
+        "MediaStorageConfigurationStatus": {
+            "enum": [
+                "ENABLED",
+                "DISABLED"
+            ]
+        },
+        "DescribeMediaStorageConfigurationInput": {
+            "type": "object",
+            "properties": {
+                "ChannelName": {
+                    "$ref": "#/$defs/ChannelName"
+                },
+                "ChannelARN": {
+                    "$ref": "#/$defs/ResourceARN"
+                }
+            }
+        },
+        "DescribeNotificationConfigurationOutput": {
+            "type": "object",
+            "properties": {
+                "NotificationConfiguration": {
+                    "$ref": "#/$defs/NotificationConfiguration"
+                }
+            }
+        },
+        "NotificationConfiguration": {
+            "type": "object",
+            "properties": {
+                "Status": {
+                    "$ref": "#/$defs/ConfigurationStatus"
+                },
+                "DestinationConfig": {
+                    "$ref": "#/$defs/NotificationDestinationConfig"
+                }
+            }
+        },
+        "NotificationDestinationConfig": {
+            "type": "object",
+            "properties": {
+                "Uri": {
+                    "$ref": "#/$defs/DestinationUri"
+                }
+            }
+        },
+        "DescribeNotificationConfigurationInput": {
+            "type": "object",
+            "properties": {
+                "StreamName": {
+                    "$ref": "#/$defs/StreamName"
+                },
+                "StreamARN": {
+                    "$ref": "#/$defs/ResourceARN"
+                }
+            }
+        },
+        "DescribeSignalingChannelOutput": {
+            "type": "object",
+            "properties": {
+                "ChannelInfo": {
+                    "$ref": "#/$defs/ChannelInfo"
+                }
+            }
+        },
+        "ChannelInfo": {
+            "type": "object",
+            "properties": {
+                "ChannelName": {
+                    "$ref": "#/$defs/ChannelName"
+                },
+                "ChannelARN": {
+                    "$ref": "#/$defs/ResourceARN"
+                },
+                "ChannelType": {
+                    "$ref": "#/$defs/ChannelType"
+                },
+                "ChannelStatus": {
+                    "$ref": "#/$defs/Status"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "SingleMasterConfiguration": {
+                    "$ref": "#/$defs/SingleMasterConfiguration"
+                },
+                "Version": {
+                    "$ref": "#/$defs/Version"
+                }
+            }
+        },
+        "Status": {
+            "enum": [
+                "CREATING",
+                "ACTIVE",
+                "UPDATING",
+                "DELETING"
+            ]
+        },
+        "DescribeSignalingChannelInput": {
+            "type": "object",
+            "properties": {
+                "ChannelName": {
+                    "$ref": "#/$defs/ChannelName"
+                },
+                "ChannelARN": {
+                    "$ref": "#/$defs/ResourceARN"
+                }
+            }
+        },
+        "DescribeStreamOutput": {
+            "type": "object",
+            "properties": {
+                "StreamInfo": {
+                    "$ref": "#/$defs/StreamInfo"
+                }
+            }
+        },
+        "StreamInfo": {
+            "type": "object",
+            "properties": {
+                "DeviceName": {
+                    "$ref": "#/$defs/DeviceName"
+                },
+                "StreamName": {
+                    "$ref": "#/$defs/StreamName"
+                },
+                "StreamARN": {
+                    "$ref": "#/$defs/ResourceARN"
+                },
+                "MediaType": {
+                    "$ref": "#/$defs/MediaType"
+                },
+                "KmsKeyId": {
+                    "$ref": "#/$defs/KmsKeyId"
+                },
+                "Version": {
+                    "$ref": "#/$defs/Version"
+                },
+                "Status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "DataRetentionInHours": {
+                    "$ref": "#/$defs/DataRetentionInHours"
+                }
+            }
+        },
+        "DescribeStreamInput": {
+            "type": "object",
+            "properties": {
+                "StreamName": {
+                    "$ref": "#/$defs/StreamName"
+                },
+                "StreamARN": {
+                    "$ref": "#/$defs/ResourceARN"
+                }
+            }
+        },
+        "GetDataEndpointOutput": {
+            "type": "object",
+            "properties": {
+                "DataEndpoint": {
+                    "$ref": "#/$defs/DataEndpoint"
+                }
+            }
+        },
+        "DataEndpoint": {
+            "type": "string"
+        },
+        "GetDataEndpointInput": {
+            "type": "object",
+            "properties": {
+                "StreamName": {
+                    "$ref": "#/$defs/StreamName"
+                },
+                "StreamARN": {
+                    "$ref": "#/$defs/ResourceARN"
+                },
+                "APIName": {
+                    "$ref": "#/$defs/APIName"
+                }
+            }
+        },
+        "APIName": {
+            "enum": [
+                "PUT_MEDIA",
+                "GET_MEDIA",
+                "LIST_FRAGMENTS",
+                "GET_MEDIA_FOR_FRAGMENT_LIST",
+                "GET_HLS_STREAMING_SESSION_URL",
+                "GET_DASH_STREAMING_SESSION_URL",
+                "GET_CLIP",
+                "GET_IMAGES"
+            ]
+        },
+        "GetSignalingChannelEndpointOutput": {
+            "type": "object",
+            "properties": {
+                "ResourceEndpointList": {
+                    "$ref": "#/$defs/ResourceEndpointList"
+                }
+            }
+        },
+        "ResourceEndpointList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourceEndpointListItem"
+            }
+        },
+        "ResourceEndpointListItem": {
+            "type": "object",
+            "properties": {
+                "Protocol": {
+                    "$ref": "#/$defs/ChannelProtocol"
+                },
+                "ResourceEndpoint": {
+                    "$ref": "#/$defs/ResourceEndpoint"
+                }
+            }
+        },
+        "ChannelProtocol": {
+            "enum": [
+                "WSS",
+                "HTTPS",
+                "WEBRTC"
+            ]
+        },
+        "ResourceEndpoint": {
+            "type": "string"
+        },
+        "GetSignalingChannelEndpointInput": {
+            "type": "object",
+            "properties": {
+                "ChannelARN": {
+                    "$ref": "#/$defs/ResourceARN"
+                },
+                "SingleMasterChannelEndpointConfiguration": {
+                    "$ref": "#/$defs/SingleMasterChannelEndpointConfiguration"
+                }
+            }
+        },
+        "SingleMasterChannelEndpointConfiguration": {
+            "type": "object",
+            "properties": {
+                "Protocols": {
+                    "$ref": "#/$defs/ListOfProtocols"
+                },
+                "Role": {
+                    "$ref": "#/$defs/ChannelRole"
+                }
+            }
+        },
+        "ListOfProtocols": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ChannelProtocol"
+            }
+        },
+        "ChannelRole": {
+            "enum": [
+                "MASTER",
+                "VIEWER"
+            ]
+        },
+        "ListEdgeAgentConfigurationsOutput": {
+            "type": "object",
+            "properties": {
+                "EdgeConfigs": {
+                    "$ref": "#/$defs/ListEdgeAgentConfigurationsEdgeConfigList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListEdgeAgentConfigurationsEdgeConfigList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ListEdgeAgentConfigurationsEdgeConfig"
+            }
+        },
+        "ListEdgeAgentConfigurationsEdgeConfig": {
+            "type": "object",
+            "properties": {
+                "StreamName": {
+                    "$ref": "#/$defs/StreamName"
+                },
+                "StreamARN": {
+                    "$ref": "#/$defs/ResourceARN"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastUpdatedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "SyncStatus": {
+                    "$ref": "#/$defs/SyncStatus"
+                },
+                "FailedStatusDetails": {
+                    "$ref": "#/$defs/FailedStatusDetails"
+                },
+                "EdgeConfig": {
+                    "$ref": "#/$defs/EdgeConfig"
+                }
+            }
+        },
+        "ListEdgeAgentConfigurationsInput": {
+            "type": "object",
+            "properties": {
+                "HubDeviceArn": {
+                    "$ref": "#/$defs/HubDeviceArn"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/ListEdgeAgentConfigurationsInputLimit"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListEdgeAgentConfigurationsInputLimit": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListSignalingChannelsOutput": {
+            "type": "object",
+            "properties": {
+                "ChannelInfoList": {
+                    "$ref": "#/$defs/ChannelInfoList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ChannelInfoList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ChannelInfo"
+            }
+        },
+        "ListSignalingChannelsInput": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/ListStreamsInputLimit"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "ChannelNameCondition": {
+                    "$ref": "#/$defs/ChannelNameCondition"
+                }
+            }
+        },
+        "ListStreamsInputLimit": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ChannelNameCondition": {
+            "type": "object",
+            "properties": {
+                "ComparisonOperator": {
+                    "$ref": "#/$defs/ComparisonOperator"
+                },
+                "ComparisonValue": {
+                    "$ref": "#/$defs/ChannelName"
+                }
+            }
+        },
+        "ComparisonOperator": {
+            "enum": [
+                "BEGINS_WITH"
+            ]
+        },
+        "ListStreamsOutput": {
+            "type": "object",
+            "properties": {
+                "StreamInfoList": {
+                    "$ref": "#/$defs/StreamInfoList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "StreamInfoList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/StreamInfo"
+            }
+        },
+        "ListStreamsInput": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/ListStreamsInputLimit"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "StreamNameCondition": {
+                    "$ref": "#/$defs/StreamNameCondition"
+                }
+            }
+        },
+        "StreamNameCondition": {
+            "type": "object",
+            "properties": {
+                "ComparisonOperator": {
+                    "$ref": "#/$defs/ComparisonOperator"
+                },
+                "ComparisonValue": {
+                    "$ref": "#/$defs/StreamName"
+                }
+            }
+        },
+        "ListTagsForResourceOutput": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/ResourceTags"
+                }
+            }
+        },
+        "ListTagsForResourceInput": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "ResourceARN": {
+                    "$ref": "#/$defs/ResourceARN"
+                }
+            }
+        },
+        "ListTagsForStreamOutput": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/ResourceTags"
+                }
+            }
+        },
+        "ListTagsForStreamInput": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "StreamARN": {
+                    "$ref": "#/$defs/ResourceARN"
+                },
+                "StreamName": {
+                    "$ref": "#/$defs/StreamName"
+                }
+            }
+        },
+        "StartEdgeConfigurationUpdateOutput": {
+            "type": "object",
+            "properties": {
+                "StreamName": {
+                    "$ref": "#/$defs/StreamName"
+                },
+                "StreamARN": {
+                    "$ref": "#/$defs/ResourceARN"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastUpdatedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "SyncStatus": {
+                    "$ref": "#/$defs/SyncStatus"
+                },
+                "FailedStatusDetails": {
+                    "$ref": "#/$defs/FailedStatusDetails"
+                },
+                "EdgeConfig": {
+                    "$ref": "#/$defs/EdgeConfig"
+                }
+            }
+        },
+        "StartEdgeConfigurationUpdateInput": {
+            "type": "object",
+            "properties": {
+                "StreamName": {
+                    "$ref": "#/$defs/StreamName"
+                },
+                "StreamARN": {
+                    "$ref": "#/$defs/ResourceARN"
+                },
+                "EdgeConfig": {
+                    "$ref": "#/$defs/EdgeConfig"
+                }
+            }
+        },
+        "TagResourceOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceInput": {
+            "type": "object",
+            "properties": {
+                "ResourceARN": {
+                    "$ref": "#/$defs/ResourceARN"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "TagStreamOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagStreamInput": {
+            "type": "object",
+            "properties": {
+                "StreamARN": {
+                    "$ref": "#/$defs/ResourceARN"
+                },
+                "StreamName": {
+                    "$ref": "#/$defs/StreamName"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/ResourceTags"
+                }
+            }
+        },
+        "UntagResourceOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceInput": {
+            "type": "object",
+            "properties": {
+                "ResourceARN": {
+                    "$ref": "#/$defs/ResourceARN"
+                },
+                "TagKeyList": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "UntagStreamOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagStreamInput": {
+            "type": "object",
+            "properties": {
+                "StreamARN": {
+                    "$ref": "#/$defs/ResourceARN"
+                },
+                "StreamName": {
+                    "$ref": "#/$defs/StreamName"
+                },
+                "TagKeyList": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "UpdateDataRetentionOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateDataRetentionInput": {
+            "type": "object",
+            "properties": {
+                "StreamName": {
+                    "$ref": "#/$defs/StreamName"
+                },
+                "StreamARN": {
+                    "$ref": "#/$defs/ResourceARN"
+                },
+                "CurrentVersion": {
+                    "$ref": "#/$defs/Version"
+                },
+                "Operation": {
+                    "$ref": "#/$defs/UpdateDataRetentionOperation"
+                },
+                "DataRetentionChangeInHours": {
+                    "$ref": "#/$defs/DataRetentionChangeInHours"
+                }
+            }
+        },
+        "UpdateDataRetentionOperation": {
+            "enum": [
+                "INCREASE_DATA_RETENTION",
+                "DECREASE_DATA_RETENTION"
+            ]
+        },
+        "DataRetentionChangeInHours": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "UpdateImageGenerationConfigurationOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateImageGenerationConfigurationInput": {
+            "type": "object",
+            "properties": {
+                "StreamName": {
+                    "$ref": "#/$defs/StreamName"
+                },
+                "StreamARN": {
+                    "$ref": "#/$defs/ResourceARN"
+                },
+                "ImageGenerationConfiguration": {
+                    "$ref": "#/$defs/ImageGenerationConfiguration"
+                }
+            }
+        },
+        "UpdateMediaStorageConfigurationOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateMediaStorageConfigurationInput": {
+            "type": "object",
+            "properties": {
+                "ChannelARN": {
+                    "$ref": "#/$defs/ResourceARN"
+                },
+                "MediaStorageConfiguration": {
+                    "$ref": "#/$defs/MediaStorageConfiguration"
+                }
+            }
+        },
+        "UpdateNotificationConfigurationOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateNotificationConfigurationInput": {
+            "type": "object",
+            "properties": {
+                "StreamName": {
+                    "$ref": "#/$defs/StreamName"
+                },
+                "StreamARN": {
+                    "$ref": "#/$defs/ResourceARN"
+                },
+                "NotificationConfiguration": {
+                    "$ref": "#/$defs/NotificationConfiguration"
+                }
+            }
+        },
+        "UpdateSignalingChannelOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateSignalingChannelInput": {
+            "type": "object",
+            "properties": {
+                "ChannelARN": {
+                    "$ref": "#/$defs/ResourceARN"
+                },
+                "CurrentVersion": {
+                    "$ref": "#/$defs/Version"
+                },
+                "SingleMasterConfiguration": {
+                    "$ref": "#/$defs/SingleMasterConfiguration"
+                }
+            }
+        },
+        "UpdateStreamOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateStreamInput": {
+            "type": "object",
+            "properties": {
+                "StreamName": {
+                    "$ref": "#/$defs/StreamName"
+                },
+                "StreamARN": {
+                    "$ref": "#/$defs/ResourceARN"
+                },
+                "CurrentVersion": {
+                    "$ref": "#/$defs/Version"
+                },
+                "DeviceName": {
+                    "$ref": "#/$defs/DeviceName"
+                },
+                "MediaType": {
+                    "$ref": "#/$defs/MediaType"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://kinesisvideo-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://kinesisvideo-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://kinesisvideo.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://kinesisvideo.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

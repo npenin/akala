@@ -1,0 +1,1857 @@
+{
+    "name": "cognito-identity",
+    "commands": [
+        {
+            "name": "CreateIdentityPool",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateIdentityPool"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/IdentityPool"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateIdentityPoolInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteIdentities",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteIdentities"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteIdentitiesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteIdentitiesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteIdentityPool",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteIdentityPool"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteIdentityPoolInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeIdentity",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeIdentity"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/IdentityDescription"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeIdentityInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeIdentityPool",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeIdentityPool"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/IdentityPool"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeIdentityPoolInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetCredentialsForIdentity",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetCredentialsForIdentity"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetCredentialsForIdentityResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetCredentialsForIdentityInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetId",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetId"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetIdResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetIdInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetIdentityPoolRoles",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetIdentityPoolRoles"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetIdentityPoolRolesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetIdentityPoolRolesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetOpenIdToken",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetOpenIdToken"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetOpenIdTokenResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetOpenIdTokenInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetOpenIdTokenForDeveloperIdentity",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetOpenIdTokenForDeveloperIdentity"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetOpenIdTokenForDeveloperIdentityResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetOpenIdTokenForDeveloperIdentityInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetPrincipalTagAttributeMap",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetPrincipalTagAttributeMap"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetPrincipalTagAttributeMapResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetPrincipalTagAttributeMapInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListIdentities",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListIdentities"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListIdentitiesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListIdentitiesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListIdentityPools",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListIdentityPools"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListIdentityPoolsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListIdentityPoolsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "LookupDeveloperIdentity",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "LookupDeveloperIdentity"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/LookupDeveloperIdentityResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/LookupDeveloperIdentityInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "MergeDeveloperIdentities",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "MergeDeveloperIdentities"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/MergeDeveloperIdentitiesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/MergeDeveloperIdentitiesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SetIdentityPoolRoles",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SetIdentityPoolRoles"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SetIdentityPoolRolesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SetPrincipalTagAttributeMap",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SetPrincipalTagAttributeMap"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/SetPrincipalTagAttributeMapResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SetPrincipalTagAttributeMapInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UnlinkDeveloperIdentity",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UnlinkDeveloperIdentity"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UnlinkDeveloperIdentityInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UnlinkIdentity",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UnlinkIdentity"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UnlinkIdentityInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateIdentityPool",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateIdentityPool"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/IdentityPool"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/IdentityPool"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "IdentityPool": {
+            "type": "object",
+            "properties": {
+                "IdentityPoolId": {
+                    "$ref": "#/$defs/IdentityPoolId"
+                },
+                "IdentityPoolName": {
+                    "$ref": "#/$defs/IdentityPoolName"
+                },
+                "AllowUnauthenticatedIdentities": {
+                    "$ref": "#/$defs/IdentityPoolUnauthenticated"
+                },
+                "AllowClassicFlow": {
+                    "$ref": "#/$defs/ClassicFlow"
+                },
+                "SupportedLoginProviders": {
+                    "$ref": "#/$defs/IdentityProviders"
+                },
+                "DeveloperProviderName": {
+                    "$ref": "#/$defs/DeveloperProviderName"
+                },
+                "OpenIdConnectProviderARNs": {
+                    "$ref": "#/$defs/OIDCProviderList"
+                },
+                "CognitoIdentityProviders": {
+                    "$ref": "#/$defs/CognitoIdentityProviderList"
+                },
+                "SamlProviderARNs": {
+                    "$ref": "#/$defs/SAMLProviderList"
+                },
+                "IdentityPoolTags": {
+                    "$ref": "#/$defs/IdentityPoolTagsType"
+                }
+            }
+        },
+        "IdentityPoolId": {
+            "type": "string"
+        },
+        "IdentityPoolName": {
+            "type": "string"
+        },
+        "IdentityPoolUnauthenticated": {
+            "type": "boolean"
+        },
+        "ClassicFlow": {
+            "type": "boolean"
+        },
+        "IdentityProviders": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/IdentityProviderId"
+            }
+        },
+        "IdentityProviderId": {
+            "type": "string"
+        },
+        "DeveloperProviderName": {
+            "type": "string"
+        },
+        "OIDCProviderList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ARNString"
+            }
+        },
+        "ARNString": {
+            "type": "string"
+        },
+        "CognitoIdentityProviderList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CognitoIdentityProvider"
+            }
+        },
+        "CognitoIdentityProvider": {
+            "type": "object",
+            "properties": {
+                "ProviderName": {
+                    "$ref": "#/$defs/CognitoIdentityProviderName"
+                },
+                "ClientId": {
+                    "$ref": "#/$defs/CognitoIdentityProviderClientId"
+                },
+                "ServerSideTokenCheck": {
+                    "$ref": "#/$defs/CognitoIdentityProviderTokenCheck"
+                }
+            }
+        },
+        "CognitoIdentityProviderName": {
+            "type": "string"
+        },
+        "CognitoIdentityProviderClientId": {
+            "type": "string"
+        },
+        "CognitoIdentityProviderTokenCheck": {
+            "type": "boolean"
+        },
+        "SAMLProviderList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ARNString"
+            }
+        },
+        "IdentityPoolTagsType": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TagValueType"
+            }
+        },
+        "TagValueType": {
+            "type": "string"
+        },
+        "CreateIdentityPoolInput": {
+            "type": "object",
+            "properties": {
+                "IdentityPoolName": {
+                    "$ref": "#/$defs/IdentityPoolName"
+                },
+                "AllowUnauthenticatedIdentities": {
+                    "$ref": "#/$defs/IdentityPoolUnauthenticated"
+                },
+                "AllowClassicFlow": {
+                    "$ref": "#/$defs/ClassicFlow"
+                },
+                "SupportedLoginProviders": {
+                    "$ref": "#/$defs/IdentityProviders"
+                },
+                "DeveloperProviderName": {
+                    "$ref": "#/$defs/DeveloperProviderName"
+                },
+                "OpenIdConnectProviderARNs": {
+                    "$ref": "#/$defs/OIDCProviderList"
+                },
+                "CognitoIdentityProviders": {
+                    "$ref": "#/$defs/CognitoIdentityProviderList"
+                },
+                "SamlProviderARNs": {
+                    "$ref": "#/$defs/SAMLProviderList"
+                },
+                "IdentityPoolTags": {
+                    "$ref": "#/$defs/IdentityPoolTagsType"
+                }
+            }
+        },
+        "DeleteIdentitiesResponse": {
+            "type": "object",
+            "properties": {
+                "UnprocessedIdentityIds": {
+                    "$ref": "#/$defs/UnprocessedIdentityIdList"
+                }
+            }
+        },
+        "UnprocessedIdentityIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/UnprocessedIdentityId"
+            }
+        },
+        "UnprocessedIdentityId": {
+            "type": "object",
+            "properties": {
+                "IdentityId": {
+                    "$ref": "#/$defs/IdentityId"
+                },
+                "ErrorCode": {
+                    "$ref": "#/$defs/ErrorCode"
+                }
+            }
+        },
+        "IdentityId": {
+            "type": "string"
+        },
+        "ErrorCode": {
+            "enum": [
+                "ACCESS_DENIED",
+                "INTERNAL_SERVER_ERROR"
+            ]
+        },
+        "DeleteIdentitiesInput": {
+            "type": "object",
+            "properties": {
+                "IdentityIdsToDelete": {
+                    "$ref": "#/$defs/IdentityIdList"
+                }
+            }
+        },
+        "IdentityIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/IdentityId"
+            }
+        },
+        "DeleteIdentityPoolInput": {
+            "type": "object",
+            "properties": {
+                "IdentityPoolId": {
+                    "$ref": "#/$defs/IdentityPoolId"
+                }
+            }
+        },
+        "IdentityDescription": {
+            "type": "object",
+            "properties": {
+                "IdentityId": {
+                    "$ref": "#/$defs/IdentityId"
+                },
+                "Logins": {
+                    "$ref": "#/$defs/LoginsList"
+                },
+                "CreationDate": {
+                    "$ref": "#/$defs/DateType"
+                },
+                "LastModifiedDate": {
+                    "$ref": "#/$defs/DateType"
+                }
+            }
+        },
+        "LoginsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/IdentityProviderName"
+            }
+        },
+        "IdentityProviderName": {
+            "type": "string"
+        },
+        "DateType": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "DescribeIdentityInput": {
+            "type": "object",
+            "properties": {
+                "IdentityId": {
+                    "$ref": "#/$defs/IdentityId"
+                }
+            }
+        },
+        "DescribeIdentityPoolInput": {
+            "type": "object",
+            "properties": {
+                "IdentityPoolId": {
+                    "$ref": "#/$defs/IdentityPoolId"
+                }
+            }
+        },
+        "GetCredentialsForIdentityResponse": {
+            "type": "object",
+            "properties": {
+                "IdentityId": {
+                    "$ref": "#/$defs/IdentityId"
+                },
+                "Credentials": {
+                    "$ref": "#/$defs/Credentials"
+                }
+            }
+        },
+        "Credentials": {
+            "type": "object",
+            "properties": {
+                "AccessKeyId": {
+                    "$ref": "#/$defs/AccessKeyString"
+                },
+                "SecretKey": {
+                    "$ref": "#/$defs/SecretKeyString"
+                },
+                "SessionToken": {
+                    "$ref": "#/$defs/SessionTokenString"
+                },
+                "Expiration": {
+                    "$ref": "#/$defs/DateType"
+                }
+            }
+        },
+        "AccessKeyString": {
+            "type": "string"
+        },
+        "SecretKeyString": {
+            "type": "string"
+        },
+        "SessionTokenString": {
+            "type": "string"
+        },
+        "GetCredentialsForIdentityInput": {
+            "type": "object",
+            "properties": {
+                "IdentityId": {
+                    "$ref": "#/$defs/IdentityId"
+                },
+                "Logins": {
+                    "$ref": "#/$defs/LoginsMap"
+                },
+                "CustomRoleArn": {
+                    "$ref": "#/$defs/ARNString"
+                }
+            }
+        },
+        "LoginsMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/IdentityProviderToken"
+            }
+        },
+        "IdentityProviderToken": {
+            "type": "string"
+        },
+        "GetIdResponse": {
+            "type": "object",
+            "properties": {
+                "IdentityId": {
+                    "$ref": "#/$defs/IdentityId"
+                }
+            }
+        },
+        "GetIdInput": {
+            "type": "object",
+            "properties": {
+                "AccountId": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "IdentityPoolId": {
+                    "$ref": "#/$defs/IdentityPoolId"
+                },
+                "Logins": {
+                    "$ref": "#/$defs/LoginsMap"
+                }
+            }
+        },
+        "AccountId": {
+            "type": "string"
+        },
+        "GetIdentityPoolRolesResponse": {
+            "type": "object",
+            "properties": {
+                "IdentityPoolId": {
+                    "$ref": "#/$defs/IdentityPoolId"
+                },
+                "Roles": {
+                    "$ref": "#/$defs/RolesMap"
+                },
+                "RoleMappings": {
+                    "$ref": "#/$defs/RoleMappingMap"
+                }
+            }
+        },
+        "RolesMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/ARNString"
+            }
+        },
+        "RoleMappingMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/RoleMapping"
+            }
+        },
+        "RoleMapping": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "$ref": "#/$defs/RoleMappingType"
+                },
+                "AmbiguousRoleResolution": {
+                    "$ref": "#/$defs/AmbiguousRoleResolutionType"
+                },
+                "RulesConfiguration": {
+                    "$ref": "#/$defs/RulesConfigurationType"
+                }
+            }
+        },
+        "RoleMappingType": {
+            "enum": [
+                "TOKEN",
+                "RULES"
+            ]
+        },
+        "AmbiguousRoleResolutionType": {
+            "enum": [
+                "AUTHENTICATED_ROLE",
+                "DENY"
+            ]
+        },
+        "RulesConfigurationType": {
+            "type": "object",
+            "properties": {
+                "Rules": {
+                    "$ref": "#/$defs/MappingRulesList"
+                }
+            }
+        },
+        "MappingRulesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MappingRule"
+            }
+        },
+        "MappingRule": {
+            "type": "object",
+            "properties": {
+                "Claim": {
+                    "$ref": "#/$defs/ClaimName"
+                },
+                "MatchType": {
+                    "$ref": "#/$defs/MappingRuleMatchType"
+                },
+                "Value": {
+                    "$ref": "#/$defs/ClaimValue"
+                },
+                "RoleARN": {
+                    "$ref": "#/$defs/ARNString"
+                }
+            }
+        },
+        "ClaimName": {
+            "type": "string"
+        },
+        "MappingRuleMatchType": {
+            "enum": [
+                "EQUALS",
+                "CONTAINS",
+                "STARTS_WITH",
+                "NOT_EQUAL"
+            ]
+        },
+        "ClaimValue": {
+            "type": "string"
+        },
+        "GetIdentityPoolRolesInput": {
+            "type": "object",
+            "properties": {
+                "IdentityPoolId": {
+                    "$ref": "#/$defs/IdentityPoolId"
+                }
+            }
+        },
+        "GetOpenIdTokenResponse": {
+            "type": "object",
+            "properties": {
+                "IdentityId": {
+                    "$ref": "#/$defs/IdentityId"
+                },
+                "Token": {
+                    "$ref": "#/$defs/OIDCToken"
+                }
+            }
+        },
+        "OIDCToken": {
+            "type": "string"
+        },
+        "GetOpenIdTokenInput": {
+            "type": "object",
+            "properties": {
+                "IdentityId": {
+                    "$ref": "#/$defs/IdentityId"
+                },
+                "Logins": {
+                    "$ref": "#/$defs/LoginsMap"
+                }
+            }
+        },
+        "GetOpenIdTokenForDeveloperIdentityResponse": {
+            "type": "object",
+            "properties": {
+                "IdentityId": {
+                    "$ref": "#/$defs/IdentityId"
+                },
+                "Token": {
+                    "$ref": "#/$defs/OIDCToken"
+                }
+            }
+        },
+        "GetOpenIdTokenForDeveloperIdentityInput": {
+            "type": "object",
+            "properties": {
+                "IdentityPoolId": {
+                    "$ref": "#/$defs/IdentityPoolId"
+                },
+                "IdentityId": {
+                    "$ref": "#/$defs/IdentityId"
+                },
+                "Logins": {
+                    "$ref": "#/$defs/LoginsMap"
+                },
+                "PrincipalTags": {
+                    "$ref": "#/$defs/PrincipalTags"
+                },
+                "TokenDuration": {
+                    "$ref": "#/$defs/TokenDuration"
+                }
+            }
+        },
+        "PrincipalTags": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/PrincipalTagValue"
+            }
+        },
+        "PrincipalTagValue": {
+            "type": "string"
+        },
+        "TokenDuration": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "GetPrincipalTagAttributeMapResponse": {
+            "type": "object",
+            "properties": {
+                "IdentityPoolId": {
+                    "$ref": "#/$defs/IdentityPoolId"
+                },
+                "IdentityProviderName": {
+                    "$ref": "#/$defs/IdentityProviderName"
+                },
+                "UseDefaults": {
+                    "$ref": "#/$defs/UseDefaults"
+                },
+                "PrincipalTags": {
+                    "$ref": "#/$defs/PrincipalTags"
+                }
+            }
+        },
+        "UseDefaults": {
+            "type": "boolean"
+        },
+        "GetPrincipalTagAttributeMapInput": {
+            "type": "object",
+            "properties": {
+                "IdentityPoolId": {
+                    "$ref": "#/$defs/IdentityPoolId"
+                },
+                "IdentityProviderName": {
+                    "$ref": "#/$defs/IdentityProviderName"
+                }
+            }
+        },
+        "ListIdentitiesResponse": {
+            "type": "object",
+            "properties": {
+                "IdentityPoolId": {
+                    "$ref": "#/$defs/IdentityPoolId"
+                },
+                "Identities": {
+                    "$ref": "#/$defs/IdentitiesList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationKey"
+                }
+            }
+        },
+        "IdentitiesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/IdentityDescription"
+            }
+        },
+        "PaginationKey": {
+            "type": "string"
+        },
+        "ListIdentitiesInput": {
+            "type": "object",
+            "properties": {
+                "IdentityPoolId": {
+                    "$ref": "#/$defs/IdentityPoolId"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/QueryLimit"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationKey"
+                },
+                "HideDisabled": {
+                    "$ref": "#/$defs/HideDisabled"
+                }
+            }
+        },
+        "QueryLimit": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "HideDisabled": {
+            "type": "boolean"
+        },
+        "ListIdentityPoolsResponse": {
+            "type": "object",
+            "properties": {
+                "IdentityPools": {
+                    "$ref": "#/$defs/IdentityPoolsList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationKey"
+                }
+            }
+        },
+        "IdentityPoolsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/IdentityPoolShortDescription"
+            }
+        },
+        "IdentityPoolShortDescription": {
+            "type": "object",
+            "properties": {
+                "IdentityPoolId": {
+                    "$ref": "#/$defs/IdentityPoolId"
+                },
+                "IdentityPoolName": {
+                    "$ref": "#/$defs/IdentityPoolName"
+                }
+            }
+        },
+        "ListIdentityPoolsInput": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/QueryLimit"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationKey"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/IdentityPoolTagsType"
+                }
+            }
+        },
+        "ListTagsForResourceInput": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/ARNString"
+                }
+            }
+        },
+        "LookupDeveloperIdentityResponse": {
+            "type": "object",
+            "properties": {
+                "IdentityId": {
+                    "$ref": "#/$defs/IdentityId"
+                },
+                "DeveloperUserIdentifierList": {
+                    "$ref": "#/$defs/DeveloperUserIdentifierList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationKey"
+                }
+            }
+        },
+        "DeveloperUserIdentifierList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DeveloperUserIdentifier"
+            }
+        },
+        "DeveloperUserIdentifier": {
+            "type": "string"
+        },
+        "LookupDeveloperIdentityInput": {
+            "type": "object",
+            "properties": {
+                "IdentityPoolId": {
+                    "$ref": "#/$defs/IdentityPoolId"
+                },
+                "IdentityId": {
+                    "$ref": "#/$defs/IdentityId"
+                },
+                "DeveloperUserIdentifier": {
+                    "$ref": "#/$defs/DeveloperUserIdentifier"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/QueryLimit"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationKey"
+                }
+            }
+        },
+        "MergeDeveloperIdentitiesResponse": {
+            "type": "object",
+            "properties": {
+                "IdentityId": {
+                    "$ref": "#/$defs/IdentityId"
+                }
+            }
+        },
+        "MergeDeveloperIdentitiesInput": {
+            "type": "object",
+            "properties": {
+                "SourceUserIdentifier": {
+                    "$ref": "#/$defs/DeveloperUserIdentifier"
+                },
+                "DestinationUserIdentifier": {
+                    "$ref": "#/$defs/DeveloperUserIdentifier"
+                },
+                "DeveloperProviderName": {
+                    "$ref": "#/$defs/DeveloperProviderName"
+                },
+                "IdentityPoolId": {
+                    "$ref": "#/$defs/IdentityPoolId"
+                }
+            }
+        },
+        "SetIdentityPoolRolesInput": {
+            "type": "object",
+            "properties": {
+                "IdentityPoolId": {
+                    "$ref": "#/$defs/IdentityPoolId"
+                },
+                "Roles": {
+                    "$ref": "#/$defs/RolesMap"
+                },
+                "RoleMappings": {
+                    "$ref": "#/$defs/RoleMappingMap"
+                }
+            }
+        },
+        "SetPrincipalTagAttributeMapResponse": {
+            "type": "object",
+            "properties": {
+                "IdentityPoolId": {
+                    "$ref": "#/$defs/IdentityPoolId"
+                },
+                "IdentityProviderName": {
+                    "$ref": "#/$defs/IdentityProviderName"
+                },
+                "UseDefaults": {
+                    "$ref": "#/$defs/UseDefaults"
+                },
+                "PrincipalTags": {
+                    "$ref": "#/$defs/PrincipalTags"
+                }
+            }
+        },
+        "SetPrincipalTagAttributeMapInput": {
+            "type": "object",
+            "properties": {
+                "IdentityPoolId": {
+                    "$ref": "#/$defs/IdentityPoolId"
+                },
+                "IdentityProviderName": {
+                    "$ref": "#/$defs/IdentityProviderName"
+                },
+                "UseDefaults": {
+                    "$ref": "#/$defs/UseDefaults"
+                },
+                "PrincipalTags": {
+                    "$ref": "#/$defs/PrincipalTags"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceInput": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/ARNString"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/IdentityPoolTagsType"
+                }
+            }
+        },
+        "UnlinkDeveloperIdentityInput": {
+            "type": "object",
+            "properties": {
+                "IdentityId": {
+                    "$ref": "#/$defs/IdentityId"
+                },
+                "IdentityPoolId": {
+                    "$ref": "#/$defs/IdentityPoolId"
+                },
+                "DeveloperProviderName": {
+                    "$ref": "#/$defs/DeveloperProviderName"
+                },
+                "DeveloperUserIdentifier": {
+                    "$ref": "#/$defs/DeveloperUserIdentifier"
+                }
+            }
+        },
+        "UnlinkIdentityInput": {
+            "type": "object",
+            "properties": {
+                "IdentityId": {
+                    "$ref": "#/$defs/IdentityId"
+                },
+                "Logins": {
+                    "$ref": "#/$defs/LoginsMap"
+                },
+                "LoginsToRemove": {
+                    "$ref": "#/$defs/LoginsList"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceInput": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/ARNString"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/IdentityPoolTagsListType"
+                }
+            }
+        },
+        "IdentityPoolTagsListType": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKeysType"
+            }
+        },
+        "TagKeysType": {
+            "type": "string"
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://cognito-identity-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://cognito-identity-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://cognito-identity.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://cognito-identity.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

@@ -1,0 +1,5216 @@
+{
+    "name": "appflow",
+    "commands": [
+        {
+            "name": "CancelFlowExecutions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CancelFlowExecutions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CancelFlowExecutionsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CancelFlowExecutionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateConnectorProfile",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateConnectorProfile"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateConnectorProfileResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateConnectorProfileRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateFlow",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateFlow"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateFlowResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateFlowRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteConnectorProfile",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteConnectorProfile"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteConnectorProfileResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteConnectorProfileRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteFlow",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteFlow"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteFlowResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteFlowRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeConnector",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeConnector"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeConnectorResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeConnectorRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeConnectorEntity",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeConnectorEntity"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeConnectorEntityResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeConnectorEntityRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeConnectorProfiles",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeConnectorProfiles"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeConnectorProfilesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeConnectorProfilesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeConnectors",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeConnectors"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeConnectorsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeConnectorsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeFlow",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeFlow"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeFlowResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeFlowRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeFlowExecutionRecords",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeFlowExecutionRecords"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeFlowExecutionRecordsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeFlowExecutionRecordsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListConnectorEntities",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListConnectorEntities"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListConnectorEntitiesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListConnectorEntitiesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListConnectors",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListConnectors"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListConnectorsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListConnectorsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListFlows",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListFlows"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListFlowsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListFlowsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RegisterConnector",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RegisterConnector"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RegisterConnectorResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RegisterConnectorRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ResetConnectorMetadataCache",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ResetConnectorMetadataCache"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ResetConnectorMetadataCacheResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ResetConnectorMetadataCacheRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartFlow",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartFlow"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartFlowResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartFlowRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StopFlow",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StopFlow"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StopFlowResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StopFlowRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UnregisterConnector",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UnregisterConnector"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UnregisterConnectorResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UnregisterConnectorRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateConnectorProfile",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateConnectorProfile"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateConnectorProfileResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateConnectorProfileRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateConnectorRegistration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateConnectorRegistration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateConnectorRegistrationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateConnectorRegistrationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateFlow",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateFlow"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateFlowResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateFlowRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CancelFlowExecutionsResponse": {
+            "type": "object",
+            "properties": {
+                "invalidExecutions": {
+                    "$ref": "#/$defs/ExecutionIds"
+                }
+            }
+        },
+        "ExecutionIds": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ExecutionId"
+            }
+        },
+        "ExecutionId": {
+            "type": "string"
+        },
+        "CancelFlowExecutionsRequest": {
+            "type": "object",
+            "properties": {
+                "flowName": {
+                    "$ref": "#/$defs/FlowName"
+                },
+                "executionIds": {
+                    "$ref": "#/$defs/ExecutionIds"
+                }
+            }
+        },
+        "FlowName": {
+            "type": "string"
+        },
+        "CreateConnectorProfileResponse": {
+            "type": "object",
+            "properties": {
+                "connectorProfileArn": {
+                    "$ref": "#/$defs/ConnectorProfileArn"
+                }
+            }
+        },
+        "ConnectorProfileArn": {
+            "type": "string"
+        },
+        "CreateConnectorProfileRequest": {
+            "type": "object",
+            "properties": {
+                "connectorProfileName": {
+                    "$ref": "#/$defs/ConnectorProfileName"
+                },
+                "kmsArn": {
+                    "$ref": "#/$defs/KMSArn"
+                },
+                "connectorType": {
+                    "$ref": "#/$defs/ConnectorType"
+                },
+                "connectorLabel": {
+                    "$ref": "#/$defs/ConnectorLabel"
+                },
+                "connectionMode": {
+                    "$ref": "#/$defs/ConnectionMode"
+                },
+                "connectorProfileConfig": {
+                    "$ref": "#/$defs/ConnectorProfileConfig"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                }
+            }
+        },
+        "ConnectorProfileName": {
+            "type": "string"
+        },
+        "KMSArn": {
+            "type": "string"
+        },
+        "ConnectorType": {
+            "enum": [
+                "SALESFORCE",
+                "SINGULAR",
+                "SLACK",
+                "REDSHIFT",
+                "S3",
+                "MARKETO",
+                "GOOGLEANALYTICS",
+                "ZENDESK",
+                "SERVICENOW",
+                "DATADOG",
+                "TRENDMICRO",
+                "SNOWFLAKE",
+                "DYNATRACE",
+                "INFORNEXUS",
+                "AMPLITUDE",
+                "VEEVA",
+                "EVENTBRIDGE",
+                "LOOKOUTMETRICS",
+                "UPSOLVER",
+                "HONEYCODE",
+                "CUSTOMERPROFILES",
+                "SAPODATA",
+                "CUSTOMCONNECTOR",
+                "PARDOT"
+            ]
+        },
+        "ConnectorLabel": {
+            "type": "string"
+        },
+        "ConnectionMode": {
+            "enum": [
+                "PUBLIC",
+                "PRIVATE"
+            ]
+        },
+        "ConnectorProfileConfig": {
+            "type": "object",
+            "properties": {
+                "connectorProfileProperties": {
+                    "$ref": "#/$defs/ConnectorProfileProperties"
+                },
+                "connectorProfileCredentials": {
+                    "$ref": "#/$defs/ConnectorProfileCredentials"
+                }
+            }
+        },
+        "ConnectorProfileProperties": {
+            "type": "object",
+            "properties": {
+                "Amplitude": {
+                    "$ref": "#/$defs/AmplitudeConnectorProfileProperties"
+                },
+                "Datadog": {
+                    "$ref": "#/$defs/DatadogConnectorProfileProperties"
+                },
+                "Dynatrace": {
+                    "$ref": "#/$defs/DynatraceConnectorProfileProperties"
+                },
+                "GoogleAnalytics": {
+                    "$ref": "#/$defs/GoogleAnalyticsConnectorProfileProperties"
+                },
+                "Honeycode": {
+                    "$ref": "#/$defs/HoneycodeConnectorProfileProperties"
+                },
+                "InforNexus": {
+                    "$ref": "#/$defs/InforNexusConnectorProfileProperties"
+                },
+                "Marketo": {
+                    "$ref": "#/$defs/MarketoConnectorProfileProperties"
+                },
+                "Redshift": {
+                    "$ref": "#/$defs/RedshiftConnectorProfileProperties"
+                },
+                "Salesforce": {
+                    "$ref": "#/$defs/SalesforceConnectorProfileProperties"
+                },
+                "ServiceNow": {
+                    "$ref": "#/$defs/ServiceNowConnectorProfileProperties"
+                },
+                "Singular": {
+                    "$ref": "#/$defs/SingularConnectorProfileProperties"
+                },
+                "Slack": {
+                    "$ref": "#/$defs/SlackConnectorProfileProperties"
+                },
+                "Snowflake": {
+                    "$ref": "#/$defs/SnowflakeConnectorProfileProperties"
+                },
+                "Trendmicro": {
+                    "$ref": "#/$defs/TrendmicroConnectorProfileProperties"
+                },
+                "Veeva": {
+                    "$ref": "#/$defs/VeevaConnectorProfileProperties"
+                },
+                "Zendesk": {
+                    "$ref": "#/$defs/ZendeskConnectorProfileProperties"
+                },
+                "SAPOData": {
+                    "$ref": "#/$defs/SAPODataConnectorProfileProperties"
+                },
+                "CustomConnector": {
+                    "$ref": "#/$defs/CustomConnectorProfileProperties"
+                },
+                "Pardot": {
+                    "$ref": "#/$defs/PardotConnectorProfileProperties"
+                }
+            }
+        },
+        "AmplitudeConnectorProfileProperties": {
+            "type": "object",
+            "properties": {}
+        },
+        "DatadogConnectorProfileProperties": {
+            "type": "object",
+            "properties": {
+                "instanceUrl": {
+                    "$ref": "#/$defs/InstanceUrl"
+                }
+            }
+        },
+        "InstanceUrl": {
+            "type": "string"
+        },
+        "DynatraceConnectorProfileProperties": {
+            "type": "object",
+            "properties": {
+                "instanceUrl": {
+                    "$ref": "#/$defs/InstanceUrl"
+                }
+            }
+        },
+        "GoogleAnalyticsConnectorProfileProperties": {
+            "type": "object",
+            "properties": {}
+        },
+        "HoneycodeConnectorProfileProperties": {
+            "type": "object",
+            "properties": {}
+        },
+        "InforNexusConnectorProfileProperties": {
+            "type": "object",
+            "properties": {
+                "instanceUrl": {
+                    "$ref": "#/$defs/InstanceUrl"
+                }
+            }
+        },
+        "MarketoConnectorProfileProperties": {
+            "type": "object",
+            "properties": {
+                "instanceUrl": {
+                    "$ref": "#/$defs/InstanceUrl"
+                }
+            }
+        },
+        "RedshiftConnectorProfileProperties": {
+            "type": "object",
+            "properties": {
+                "databaseUrl": {
+                    "$ref": "#/$defs/DatabaseUrl"
+                },
+                "bucketName": {
+                    "$ref": "#/$defs/BucketName"
+                },
+                "bucketPrefix": {
+                    "$ref": "#/$defs/BucketPrefix"
+                },
+                "roleArn": {
+                    "$ref": "#/$defs/RoleArn"
+                },
+                "dataApiRoleArn": {
+                    "$ref": "#/$defs/DataApiRoleArn"
+                },
+                "isRedshiftServerless": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "clusterIdentifier": {
+                    "$ref": "#/$defs/ClusterIdentifier"
+                },
+                "workgroupName": {
+                    "$ref": "#/$defs/WorkgroupName"
+                },
+                "databaseName": {
+                    "$ref": "#/$defs/DatabaseName"
+                }
+            }
+        },
+        "DatabaseUrl": {
+            "type": "string"
+        },
+        "BucketName": {
+            "type": "string"
+        },
+        "BucketPrefix": {
+            "type": "string"
+        },
+        "RoleArn": {
+            "type": "string"
+        },
+        "DataApiRoleArn": {
+            "type": "string"
+        },
+        "Boolean": {
+            "type": "boolean"
+        },
+        "ClusterIdentifier": {
+            "type": "string"
+        },
+        "WorkgroupName": {
+            "type": "string"
+        },
+        "DatabaseName": {
+            "type": "string"
+        },
+        "SalesforceConnectorProfileProperties": {
+            "type": "object",
+            "properties": {
+                "instanceUrl": {
+                    "$ref": "#/$defs/InstanceUrl"
+                },
+                "isSandboxEnvironment": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "usePrivateLinkForMetadataAndAuthorization": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "ServiceNowConnectorProfileProperties": {
+            "type": "object",
+            "properties": {
+                "instanceUrl": {
+                    "$ref": "#/$defs/InstanceUrl"
+                }
+            }
+        },
+        "SingularConnectorProfileProperties": {
+            "type": "object",
+            "properties": {}
+        },
+        "SlackConnectorProfileProperties": {
+            "type": "object",
+            "properties": {
+                "instanceUrl": {
+                    "$ref": "#/$defs/InstanceUrl"
+                }
+            }
+        },
+        "SnowflakeConnectorProfileProperties": {
+            "type": "object",
+            "properties": {
+                "warehouse": {
+                    "$ref": "#/$defs/Warehouse"
+                },
+                "stage": {
+                    "$ref": "#/$defs/Stage"
+                },
+                "bucketName": {
+                    "$ref": "#/$defs/BucketName"
+                },
+                "bucketPrefix": {
+                    "$ref": "#/$defs/BucketPrefix"
+                },
+                "privateLinkServiceName": {
+                    "$ref": "#/$defs/PrivateLinkServiceName"
+                },
+                "accountName": {
+                    "$ref": "#/$defs/AccountName"
+                },
+                "region": {
+                    "$ref": "#/$defs/Region"
+                }
+            }
+        },
+        "Warehouse": {
+            "type": "string"
+        },
+        "Stage": {
+            "type": "string"
+        },
+        "PrivateLinkServiceName": {
+            "type": "string"
+        },
+        "AccountName": {
+            "type": "string"
+        },
+        "Region": {
+            "type": "string"
+        },
+        "TrendmicroConnectorProfileProperties": {
+            "type": "object",
+            "properties": {}
+        },
+        "VeevaConnectorProfileProperties": {
+            "type": "object",
+            "properties": {
+                "instanceUrl": {
+                    "$ref": "#/$defs/InstanceUrl"
+                }
+            }
+        },
+        "ZendeskConnectorProfileProperties": {
+            "type": "object",
+            "properties": {
+                "instanceUrl": {
+                    "$ref": "#/$defs/InstanceUrl"
+                }
+            }
+        },
+        "SAPODataConnectorProfileProperties": {
+            "type": "object",
+            "properties": {
+                "applicationHostUrl": {
+                    "$ref": "#/$defs/ApplicationHostUrl"
+                },
+                "applicationServicePath": {
+                    "$ref": "#/$defs/ApplicationServicePath"
+                },
+                "portNumber": {
+                    "$ref": "#/$defs/PortNumber"
+                },
+                "clientNumber": {
+                    "$ref": "#/$defs/ClientNumber"
+                },
+                "logonLanguage": {
+                    "$ref": "#/$defs/LogonLanguage"
+                },
+                "privateLinkServiceName": {
+                    "$ref": "#/$defs/PrivateLinkServiceName"
+                },
+                "oAuthProperties": {
+                    "$ref": "#/$defs/OAuthProperties"
+                },
+                "disableSSO": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "ApplicationHostUrl": {
+            "type": "string"
+        },
+        "ApplicationServicePath": {
+            "type": "string"
+        },
+        "PortNumber": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ClientNumber": {
+            "type": "string"
+        },
+        "LogonLanguage": {
+            "type": "string"
+        },
+        "OAuthProperties": {
+            "type": "object",
+            "properties": {
+                "tokenUrl": {
+                    "$ref": "#/$defs/TokenUrl"
+                },
+                "authCodeUrl": {
+                    "$ref": "#/$defs/AuthCodeUrl"
+                },
+                "oAuthScopes": {
+                    "$ref": "#/$defs/OAuthScopeList"
+                }
+            }
+        },
+        "TokenUrl": {
+            "type": "string"
+        },
+        "AuthCodeUrl": {
+            "type": "string"
+        },
+        "OAuthScopeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/OAuthScope"
+            }
+        },
+        "OAuthScope": {
+            "type": "string"
+        },
+        "CustomConnectorProfileProperties": {
+            "type": "object",
+            "properties": {
+                "profileProperties": {
+                    "$ref": "#/$defs/ProfilePropertiesMap"
+                },
+                "oAuth2Properties": {
+                    "$ref": "#/$defs/OAuth2Properties"
+                }
+            }
+        },
+        "ProfilePropertiesMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/ProfilePropertyValue"
+            }
+        },
+        "ProfilePropertyValue": {
+            "type": "string"
+        },
+        "OAuth2Properties": {
+            "type": "object",
+            "properties": {
+                "tokenUrl": {
+                    "$ref": "#/$defs/TokenUrl"
+                },
+                "oAuth2GrantType": {
+                    "$ref": "#/$defs/OAuth2GrantType"
+                },
+                "tokenUrlCustomProperties": {
+                    "$ref": "#/$defs/TokenUrlCustomProperties"
+                }
+            }
+        },
+        "OAuth2GrantType": {
+            "enum": [
+                "CLIENT_CREDENTIALS",
+                "AUTHORIZATION_CODE",
+                "JWT_BEARER"
+            ]
+        },
+        "TokenUrlCustomProperties": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/CustomPropertyValue"
+            }
+        },
+        "CustomPropertyValue": {
+            "type": "string"
+        },
+        "PardotConnectorProfileProperties": {
+            "type": "object",
+            "properties": {
+                "instanceUrl": {
+                    "$ref": "#/$defs/InstanceUrl"
+                },
+                "isSandboxEnvironment": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "businessUnitId": {
+                    "$ref": "#/$defs/BusinessUnitId"
+                }
+            }
+        },
+        "BusinessUnitId": {
+            "type": "string"
+        },
+        "ConnectorProfileCredentials": {
+            "type": "object",
+            "properties": {
+                "Amplitude": {
+                    "$ref": "#/$defs/AmplitudeConnectorProfileCredentials"
+                },
+                "Datadog": {
+                    "$ref": "#/$defs/DatadogConnectorProfileCredentials"
+                },
+                "Dynatrace": {
+                    "$ref": "#/$defs/DynatraceConnectorProfileCredentials"
+                },
+                "GoogleAnalytics": {
+                    "$ref": "#/$defs/GoogleAnalyticsConnectorProfileCredentials"
+                },
+                "Honeycode": {
+                    "$ref": "#/$defs/HoneycodeConnectorProfileCredentials"
+                },
+                "InforNexus": {
+                    "$ref": "#/$defs/InforNexusConnectorProfileCredentials"
+                },
+                "Marketo": {
+                    "$ref": "#/$defs/MarketoConnectorProfileCredentials"
+                },
+                "Redshift": {
+                    "$ref": "#/$defs/RedshiftConnectorProfileCredentials"
+                },
+                "Salesforce": {
+                    "$ref": "#/$defs/SalesforceConnectorProfileCredentials"
+                },
+                "ServiceNow": {
+                    "$ref": "#/$defs/ServiceNowConnectorProfileCredentials"
+                },
+                "Singular": {
+                    "$ref": "#/$defs/SingularConnectorProfileCredentials"
+                },
+                "Slack": {
+                    "$ref": "#/$defs/SlackConnectorProfileCredentials"
+                },
+                "Snowflake": {
+                    "$ref": "#/$defs/SnowflakeConnectorProfileCredentials"
+                },
+                "Trendmicro": {
+                    "$ref": "#/$defs/TrendmicroConnectorProfileCredentials"
+                },
+                "Veeva": {
+                    "$ref": "#/$defs/VeevaConnectorProfileCredentials"
+                },
+                "Zendesk": {
+                    "$ref": "#/$defs/ZendeskConnectorProfileCredentials"
+                },
+                "SAPOData": {
+                    "$ref": "#/$defs/SAPODataConnectorProfileCredentials"
+                },
+                "CustomConnector": {
+                    "$ref": "#/$defs/CustomConnectorProfileCredentials"
+                },
+                "Pardot": {
+                    "$ref": "#/$defs/PardotConnectorProfileCredentials"
+                }
+            }
+        },
+        "AmplitudeConnectorProfileCredentials": {
+            "type": "object",
+            "properties": {
+                "apiKey": {
+                    "$ref": "#/$defs/ApiKey"
+                },
+                "secretKey": {
+                    "$ref": "#/$defs/SecretKey"
+                }
+            }
+        },
+        "ApiKey": {
+            "type": "string"
+        },
+        "SecretKey": {
+            "type": "string"
+        },
+        "DatadogConnectorProfileCredentials": {
+            "type": "object",
+            "properties": {
+                "apiKey": {
+                    "$ref": "#/$defs/ApiKey"
+                },
+                "applicationKey": {
+                    "$ref": "#/$defs/ApplicationKey"
+                }
+            }
+        },
+        "ApplicationKey": {
+            "type": "string"
+        },
+        "DynatraceConnectorProfileCredentials": {
+            "type": "object",
+            "properties": {
+                "apiToken": {
+                    "$ref": "#/$defs/ApiToken"
+                }
+            }
+        },
+        "ApiToken": {
+            "type": "string"
+        },
+        "GoogleAnalyticsConnectorProfileCredentials": {
+            "type": "object",
+            "properties": {
+                "clientId": {
+                    "$ref": "#/$defs/ClientId"
+                },
+                "clientSecret": {
+                    "$ref": "#/$defs/ClientSecret"
+                },
+                "accessToken": {
+                    "$ref": "#/$defs/AccessToken"
+                },
+                "refreshToken": {
+                    "$ref": "#/$defs/RefreshToken"
+                },
+                "oAuthRequest": {
+                    "$ref": "#/$defs/ConnectorOAuthRequest"
+                }
+            }
+        },
+        "ClientId": {
+            "type": "string"
+        },
+        "ClientSecret": {
+            "type": "string"
+        },
+        "AccessToken": {
+            "type": "string"
+        },
+        "RefreshToken": {
+            "type": "string"
+        },
+        "ConnectorOAuthRequest": {
+            "type": "object",
+            "properties": {
+                "authCode": {
+                    "$ref": "#/$defs/AuthCode"
+                },
+                "redirectUri": {
+                    "$ref": "#/$defs/RedirectUri"
+                }
+            }
+        },
+        "AuthCode": {
+            "type": "string"
+        },
+        "RedirectUri": {
+            "type": "string"
+        },
+        "HoneycodeConnectorProfileCredentials": {
+            "type": "object",
+            "properties": {
+                "accessToken": {
+                    "$ref": "#/$defs/AccessToken"
+                },
+                "refreshToken": {
+                    "$ref": "#/$defs/RefreshToken"
+                },
+                "oAuthRequest": {
+                    "$ref": "#/$defs/ConnectorOAuthRequest"
+                }
+            }
+        },
+        "InforNexusConnectorProfileCredentials": {
+            "type": "object",
+            "properties": {
+                "accessKeyId": {
+                    "$ref": "#/$defs/AccessKeyId"
+                },
+                "userId": {
+                    "$ref": "#/$defs/Username"
+                },
+                "secretAccessKey": {
+                    "$ref": "#/$defs/Key"
+                },
+                "datakey": {
+                    "$ref": "#/$defs/Key"
+                }
+            }
+        },
+        "AccessKeyId": {
+            "type": "string"
+        },
+        "Username": {
+            "type": "string"
+        },
+        "Key": {
+            "type": "string"
+        },
+        "MarketoConnectorProfileCredentials": {
+            "type": "object",
+            "properties": {
+                "clientId": {
+                    "$ref": "#/$defs/ClientId"
+                },
+                "clientSecret": {
+                    "$ref": "#/$defs/ClientSecret"
+                },
+                "accessToken": {
+                    "$ref": "#/$defs/AccessToken"
+                },
+                "oAuthRequest": {
+                    "$ref": "#/$defs/ConnectorOAuthRequest"
+                }
+            }
+        },
+        "RedshiftConnectorProfileCredentials": {
+            "type": "object",
+            "properties": {
+                "username": {
+                    "$ref": "#/$defs/String"
+                },
+                "password": {
+                    "$ref": "#/$defs/Password"
+                }
+            }
+        },
+        "String": {
+            "type": "string"
+        },
+        "Password": {
+            "type": "string"
+        },
+        "SalesforceConnectorProfileCredentials": {
+            "type": "object",
+            "properties": {
+                "accessToken": {
+                    "$ref": "#/$defs/AccessToken"
+                },
+                "refreshToken": {
+                    "$ref": "#/$defs/RefreshToken"
+                },
+                "oAuthRequest": {
+                    "$ref": "#/$defs/ConnectorOAuthRequest"
+                },
+                "clientCredentialsArn": {
+                    "$ref": "#/$defs/ClientCredentialsArn"
+                },
+                "oAuth2GrantType": {
+                    "$ref": "#/$defs/OAuth2GrantType"
+                },
+                "jwtToken": {
+                    "$ref": "#/$defs/JwtToken"
+                }
+            }
+        },
+        "ClientCredentialsArn": {
+            "type": "string"
+        },
+        "JwtToken": {
+            "type": "string"
+        },
+        "ServiceNowConnectorProfileCredentials": {
+            "type": "object",
+            "properties": {
+                "username": {
+                    "$ref": "#/$defs/Username"
+                },
+                "password": {
+                    "$ref": "#/$defs/Password"
+                },
+                "oAuth2Credentials": {
+                    "$ref": "#/$defs/OAuth2Credentials"
+                }
+            }
+        },
+        "OAuth2Credentials": {
+            "type": "object",
+            "properties": {
+                "clientId": {
+                    "$ref": "#/$defs/ClientId"
+                },
+                "clientSecret": {
+                    "$ref": "#/$defs/ClientSecret"
+                },
+                "accessToken": {
+                    "$ref": "#/$defs/AccessToken"
+                },
+                "refreshToken": {
+                    "$ref": "#/$defs/RefreshToken"
+                },
+                "oAuthRequest": {
+                    "$ref": "#/$defs/ConnectorOAuthRequest"
+                }
+            }
+        },
+        "SingularConnectorProfileCredentials": {
+            "type": "object",
+            "properties": {
+                "apiKey": {
+                    "$ref": "#/$defs/ApiKey"
+                }
+            }
+        },
+        "SlackConnectorProfileCredentials": {
+            "type": "object",
+            "properties": {
+                "clientId": {
+                    "$ref": "#/$defs/ClientId"
+                },
+                "clientSecret": {
+                    "$ref": "#/$defs/ClientSecret"
+                },
+                "accessToken": {
+                    "$ref": "#/$defs/AccessToken"
+                },
+                "oAuthRequest": {
+                    "$ref": "#/$defs/ConnectorOAuthRequest"
+                }
+            }
+        },
+        "SnowflakeConnectorProfileCredentials": {
+            "type": "object",
+            "properties": {
+                "username": {
+                    "$ref": "#/$defs/Username"
+                },
+                "password": {
+                    "$ref": "#/$defs/Password"
+                }
+            }
+        },
+        "TrendmicroConnectorProfileCredentials": {
+            "type": "object",
+            "properties": {
+                "apiSecretKey": {
+                    "$ref": "#/$defs/ApiSecretKey"
+                }
+            }
+        },
+        "ApiSecretKey": {
+            "type": "string"
+        },
+        "VeevaConnectorProfileCredentials": {
+            "type": "object",
+            "properties": {
+                "username": {
+                    "$ref": "#/$defs/Username"
+                },
+                "password": {
+                    "$ref": "#/$defs/Password"
+                }
+            }
+        },
+        "ZendeskConnectorProfileCredentials": {
+            "type": "object",
+            "properties": {
+                "clientId": {
+                    "$ref": "#/$defs/ClientId"
+                },
+                "clientSecret": {
+                    "$ref": "#/$defs/ClientSecret"
+                },
+                "accessToken": {
+                    "$ref": "#/$defs/AccessToken"
+                },
+                "oAuthRequest": {
+                    "$ref": "#/$defs/ConnectorOAuthRequest"
+                }
+            }
+        },
+        "SAPODataConnectorProfileCredentials": {
+            "type": "object",
+            "properties": {
+                "basicAuthCredentials": {
+                    "$ref": "#/$defs/BasicAuthCredentials"
+                },
+                "oAuthCredentials": {
+                    "$ref": "#/$defs/OAuthCredentials"
+                }
+            }
+        },
+        "BasicAuthCredentials": {
+            "type": "object",
+            "properties": {
+                "username": {
+                    "$ref": "#/$defs/Username"
+                },
+                "password": {
+                    "$ref": "#/$defs/Password"
+                }
+            }
+        },
+        "OAuthCredentials": {
+            "type": "object",
+            "properties": {
+                "clientId": {
+                    "$ref": "#/$defs/ClientId"
+                },
+                "clientSecret": {
+                    "$ref": "#/$defs/ClientSecret"
+                },
+                "accessToken": {
+                    "$ref": "#/$defs/AccessToken"
+                },
+                "refreshToken": {
+                    "$ref": "#/$defs/RefreshToken"
+                },
+                "oAuthRequest": {
+                    "$ref": "#/$defs/ConnectorOAuthRequest"
+                }
+            }
+        },
+        "CustomConnectorProfileCredentials": {
+            "type": "object",
+            "properties": {
+                "authenticationType": {
+                    "$ref": "#/$defs/AuthenticationType"
+                },
+                "basic": {
+                    "$ref": "#/$defs/BasicAuthCredentials"
+                },
+                "oauth2": {
+                    "$ref": "#/$defs/OAuth2Credentials"
+                },
+                "apiKey": {
+                    "$ref": "#/$defs/ApiKeyCredentials"
+                },
+                "custom": {
+                    "$ref": "#/$defs/CustomAuthCredentials"
+                }
+            }
+        },
+        "AuthenticationType": {
+            "enum": [
+                "OAUTH2",
+                "APIKEY",
+                "BASIC",
+                "CUSTOM"
+            ]
+        },
+        "ApiKeyCredentials": {
+            "type": "object",
+            "properties": {
+                "apiKey": {
+                    "$ref": "#/$defs/ApiKey"
+                },
+                "apiSecretKey": {
+                    "$ref": "#/$defs/ApiSecretKey"
+                }
+            }
+        },
+        "CustomAuthCredentials": {
+            "type": "object",
+            "properties": {
+                "customAuthenticationType": {
+                    "$ref": "#/$defs/CustomAuthenticationType"
+                },
+                "credentialsMap": {
+                    "$ref": "#/$defs/CredentialsMap"
+                }
+            }
+        },
+        "CustomAuthenticationType": {
+            "type": "string"
+        },
+        "CredentialsMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/CredentialsMapValue"
+            }
+        },
+        "CredentialsMapValue": {
+            "type": "string"
+        },
+        "PardotConnectorProfileCredentials": {
+            "type": "object",
+            "properties": {
+                "accessToken": {
+                    "$ref": "#/$defs/AccessToken"
+                },
+                "refreshToken": {
+                    "$ref": "#/$defs/RefreshToken"
+                },
+                "oAuthRequest": {
+                    "$ref": "#/$defs/ConnectorOAuthRequest"
+                },
+                "clientCredentialsArn": {
+                    "$ref": "#/$defs/ClientCredentialsArn"
+                }
+            }
+        },
+        "ClientToken": {
+            "type": "string"
+        },
+        "CreateFlowResponse": {
+            "type": "object",
+            "properties": {
+                "flowArn": {
+                    "$ref": "#/$defs/FlowArn"
+                },
+                "flowStatus": {
+                    "$ref": "#/$defs/FlowStatus"
+                }
+            }
+        },
+        "FlowArn": {
+            "type": "string"
+        },
+        "FlowStatus": {
+            "enum": [
+                "ACTIVE",
+                "DEPRECATED",
+                "DELETED",
+                "DRAFT",
+                "ERRORED",
+                "SUSPENDED"
+            ]
+        },
+        "CreateFlowRequest": {
+            "type": "object",
+            "properties": {
+                "flowName": {
+                    "$ref": "#/$defs/FlowName"
+                },
+                "description": {
+                    "$ref": "#/$defs/FlowDescription"
+                },
+                "kmsArn": {
+                    "$ref": "#/$defs/KMSArn"
+                },
+                "triggerConfig": {
+                    "$ref": "#/$defs/TriggerConfig"
+                },
+                "sourceFlowConfig": {
+                    "$ref": "#/$defs/SourceFlowConfig"
+                },
+                "destinationFlowConfigList": {
+                    "$ref": "#/$defs/DestinationFlowConfigList"
+                },
+                "tasks": {
+                    "$ref": "#/$defs/Tasks"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                },
+                "metadataCatalogConfig": {
+                    "$ref": "#/$defs/MetadataCatalogConfig"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                }
+            }
+        },
+        "FlowDescription": {
+            "type": "string"
+        },
+        "TriggerConfig": {
+            "type": "object",
+            "properties": {
+                "triggerType": {
+                    "$ref": "#/$defs/TriggerType"
+                },
+                "triggerProperties": {
+                    "$ref": "#/$defs/TriggerProperties"
+                }
+            }
+        },
+        "TriggerType": {
+            "enum": [
+                "SCHEDULED",
+                "EVENT",
+                "ONDEMAND"
+            ]
+        },
+        "TriggerProperties": {
+            "type": "object",
+            "properties": {
+                "Scheduled": {
+                    "$ref": "#/$defs/ScheduledTriggerProperties"
+                }
+            }
+        },
+        "ScheduledTriggerProperties": {
+            "type": "object",
+            "properties": {
+                "scheduleExpression": {
+                    "$ref": "#/$defs/ScheduleExpression"
+                },
+                "dataPullMode": {
+                    "$ref": "#/$defs/DataPullMode"
+                },
+                "scheduleStartTime": {
+                    "$ref": "#/$defs/Date"
+                },
+                "scheduleEndTime": {
+                    "$ref": "#/$defs/Date"
+                },
+                "timezone": {
+                    "$ref": "#/$defs/Timezone"
+                },
+                "scheduleOffset": {
+                    "$ref": "#/$defs/ScheduleOffset"
+                },
+                "firstExecutionFrom": {
+                    "$ref": "#/$defs/Date"
+                },
+                "flowErrorDeactivationThreshold": {
+                    "$ref": "#/$defs/FlowErrorDeactivationThreshold"
+                }
+            }
+        },
+        "ScheduleExpression": {
+            "type": "string"
+        },
+        "DataPullMode": {
+            "enum": [
+                "INCREMENTAL",
+                "COMPLETE"
+            ]
+        },
+        "Date": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "Timezone": {
+            "type": "string"
+        },
+        "ScheduleOffset": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "FlowErrorDeactivationThreshold": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "SourceFlowConfig": {
+            "type": "object",
+            "properties": {
+                "connectorType": {
+                    "$ref": "#/$defs/ConnectorType"
+                },
+                "apiVersion": {
+                    "$ref": "#/$defs/ApiVersion"
+                },
+                "connectorProfileName": {
+                    "$ref": "#/$defs/ConnectorProfileName"
+                },
+                "sourceConnectorProperties": {
+                    "$ref": "#/$defs/SourceConnectorProperties"
+                },
+                "incrementalPullConfig": {
+                    "$ref": "#/$defs/IncrementalPullConfig"
+                }
+            }
+        },
+        "ApiVersion": {
+            "type": "string"
+        },
+        "SourceConnectorProperties": {
+            "type": "object",
+            "properties": {
+                "Amplitude": {
+                    "$ref": "#/$defs/AmplitudeSourceProperties"
+                },
+                "Datadog": {
+                    "$ref": "#/$defs/DatadogSourceProperties"
+                },
+                "Dynatrace": {
+                    "$ref": "#/$defs/DynatraceSourceProperties"
+                },
+                "GoogleAnalytics": {
+                    "$ref": "#/$defs/GoogleAnalyticsSourceProperties"
+                },
+                "InforNexus": {
+                    "$ref": "#/$defs/InforNexusSourceProperties"
+                },
+                "Marketo": {
+                    "$ref": "#/$defs/MarketoSourceProperties"
+                },
+                "S3": {
+                    "$ref": "#/$defs/S3SourceProperties"
+                },
+                "Salesforce": {
+                    "$ref": "#/$defs/SalesforceSourceProperties"
+                },
+                "ServiceNow": {
+                    "$ref": "#/$defs/ServiceNowSourceProperties"
+                },
+                "Singular": {
+                    "$ref": "#/$defs/SingularSourceProperties"
+                },
+                "Slack": {
+                    "$ref": "#/$defs/SlackSourceProperties"
+                },
+                "Trendmicro": {
+                    "$ref": "#/$defs/TrendmicroSourceProperties"
+                },
+                "Veeva": {
+                    "$ref": "#/$defs/VeevaSourceProperties"
+                },
+                "Zendesk": {
+                    "$ref": "#/$defs/ZendeskSourceProperties"
+                },
+                "SAPOData": {
+                    "$ref": "#/$defs/SAPODataSourceProperties"
+                },
+                "CustomConnector": {
+                    "$ref": "#/$defs/CustomConnectorSourceProperties"
+                },
+                "Pardot": {
+                    "$ref": "#/$defs/PardotSourceProperties"
+                }
+            }
+        },
+        "AmplitudeSourceProperties": {
+            "type": "object",
+            "properties": {
+                "object": {
+                    "$ref": "#/$defs/Object"
+                }
+            }
+        },
+        "Object": {
+            "type": "string"
+        },
+        "DatadogSourceProperties": {
+            "type": "object",
+            "properties": {
+                "object": {
+                    "$ref": "#/$defs/Object"
+                }
+            }
+        },
+        "DynatraceSourceProperties": {
+            "type": "object",
+            "properties": {
+                "object": {
+                    "$ref": "#/$defs/Object"
+                }
+            }
+        },
+        "GoogleAnalyticsSourceProperties": {
+            "type": "object",
+            "properties": {
+                "object": {
+                    "$ref": "#/$defs/Object"
+                }
+            }
+        },
+        "InforNexusSourceProperties": {
+            "type": "object",
+            "properties": {
+                "object": {
+                    "$ref": "#/$defs/Object"
+                }
+            }
+        },
+        "MarketoSourceProperties": {
+            "type": "object",
+            "properties": {
+                "object": {
+                    "$ref": "#/$defs/Object"
+                }
+            }
+        },
+        "S3SourceProperties": {
+            "type": "object",
+            "properties": {
+                "bucketName": {
+                    "$ref": "#/$defs/BucketName"
+                },
+                "bucketPrefix": {
+                    "$ref": "#/$defs/BucketPrefix"
+                },
+                "s3InputFormatConfig": {
+                    "$ref": "#/$defs/S3InputFormatConfig"
+                }
+            }
+        },
+        "S3InputFormatConfig": {
+            "type": "object",
+            "properties": {
+                "s3InputFileType": {
+                    "$ref": "#/$defs/S3InputFileType"
+                }
+            }
+        },
+        "S3InputFileType": {
+            "enum": [
+                "CSV",
+                "JSON"
+            ]
+        },
+        "SalesforceSourceProperties": {
+            "type": "object",
+            "properties": {
+                "object": {
+                    "$ref": "#/$defs/Object"
+                },
+                "enableDynamicFieldUpdate": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "includeDeletedRecords": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "dataTransferApi": {
+                    "$ref": "#/$defs/SalesforceDataTransferApi"
+                }
+            }
+        },
+        "SalesforceDataTransferApi": {
+            "enum": [
+                "AUTOMATIC",
+                "BULKV2",
+                "REST_SYNC"
+            ]
+        },
+        "ServiceNowSourceProperties": {
+            "type": "object",
+            "properties": {
+                "object": {
+                    "$ref": "#/$defs/Object"
+                }
+            }
+        },
+        "SingularSourceProperties": {
+            "type": "object",
+            "properties": {
+                "object": {
+                    "$ref": "#/$defs/Object"
+                }
+            }
+        },
+        "SlackSourceProperties": {
+            "type": "object",
+            "properties": {
+                "object": {
+                    "$ref": "#/$defs/Object"
+                }
+            }
+        },
+        "TrendmicroSourceProperties": {
+            "type": "object",
+            "properties": {
+                "object": {
+                    "$ref": "#/$defs/Object"
+                }
+            }
+        },
+        "VeevaSourceProperties": {
+            "type": "object",
+            "properties": {
+                "object": {
+                    "$ref": "#/$defs/Object"
+                },
+                "documentType": {
+                    "$ref": "#/$defs/DocumentType"
+                },
+                "includeSourceFiles": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "includeRenditions": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "includeAllVersions": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "DocumentType": {
+            "type": "string"
+        },
+        "ZendeskSourceProperties": {
+            "type": "object",
+            "properties": {
+                "object": {
+                    "$ref": "#/$defs/Object"
+                }
+            }
+        },
+        "SAPODataSourceProperties": {
+            "type": "object",
+            "properties": {
+                "objectPath": {
+                    "$ref": "#/$defs/Object"
+                },
+                "parallelismConfig": {
+                    "$ref": "#/$defs/SAPODataParallelismConfig"
+                },
+                "paginationConfig": {
+                    "$ref": "#/$defs/SAPODataPaginationConfig"
+                }
+            }
+        },
+        "SAPODataParallelismConfig": {
+            "type": "object",
+            "properties": {
+                "maxParallelism": {
+                    "$ref": "#/$defs/SAPODataMaxParallelism"
+                }
+            }
+        },
+        "SAPODataMaxParallelism": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "SAPODataPaginationConfig": {
+            "type": "object",
+            "properties": {
+                "maxPageSize": {
+                    "$ref": "#/$defs/SAPODataMaxPageSize"
+                }
+            }
+        },
+        "SAPODataMaxPageSize": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "CustomConnectorSourceProperties": {
+            "type": "object",
+            "properties": {
+                "entityName": {
+                    "$ref": "#/$defs/EntityName"
+                },
+                "customProperties": {
+                    "$ref": "#/$defs/CustomProperties"
+                },
+                "dataTransferApi": {
+                    "$ref": "#/$defs/DataTransferApi"
+                }
+            }
+        },
+        "EntityName": {
+            "type": "string"
+        },
+        "CustomProperties": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/CustomPropertyValue"
+            }
+        },
+        "DataTransferApi": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/DataTransferApiTypeName"
+                },
+                "Type": {
+                    "$ref": "#/$defs/DataTransferApiType"
+                }
+            }
+        },
+        "DataTransferApiTypeName": {
+            "type": "string"
+        },
+        "DataTransferApiType": {
+            "enum": [
+                "SYNC",
+                "ASYNC",
+                "AUTOMATIC"
+            ]
+        },
+        "PardotSourceProperties": {
+            "type": "object",
+            "properties": {
+                "object": {
+                    "$ref": "#/$defs/Object"
+                }
+            }
+        },
+        "IncrementalPullConfig": {
+            "type": "object",
+            "properties": {
+                "datetimeTypeFieldName": {
+                    "$ref": "#/$defs/DatetimeTypeFieldName"
+                }
+            }
+        },
+        "DatetimeTypeFieldName": {
+            "type": "string"
+        },
+        "DestinationFlowConfigList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DestinationFlowConfig"
+            }
+        },
+        "DestinationFlowConfig": {
+            "type": "object",
+            "properties": {
+                "connectorType": {
+                    "$ref": "#/$defs/ConnectorType"
+                },
+                "apiVersion": {
+                    "$ref": "#/$defs/ApiVersion"
+                },
+                "connectorProfileName": {
+                    "$ref": "#/$defs/ConnectorProfileName"
+                },
+                "destinationConnectorProperties": {
+                    "$ref": "#/$defs/DestinationConnectorProperties"
+                }
+            }
+        },
+        "DestinationConnectorProperties": {
+            "type": "object",
+            "properties": {
+                "Redshift": {
+                    "$ref": "#/$defs/RedshiftDestinationProperties"
+                },
+                "S3": {
+                    "$ref": "#/$defs/S3DestinationProperties"
+                },
+                "Salesforce": {
+                    "$ref": "#/$defs/SalesforceDestinationProperties"
+                },
+                "Snowflake": {
+                    "$ref": "#/$defs/SnowflakeDestinationProperties"
+                },
+                "EventBridge": {
+                    "$ref": "#/$defs/EventBridgeDestinationProperties"
+                },
+                "LookoutMetrics": {
+                    "$ref": "#/$defs/LookoutMetricsDestinationProperties"
+                },
+                "Upsolver": {
+                    "$ref": "#/$defs/UpsolverDestinationProperties"
+                },
+                "Honeycode": {
+                    "$ref": "#/$defs/HoneycodeDestinationProperties"
+                },
+                "CustomerProfiles": {
+                    "$ref": "#/$defs/CustomerProfilesDestinationProperties"
+                },
+                "Zendesk": {
+                    "$ref": "#/$defs/ZendeskDestinationProperties"
+                },
+                "Marketo": {
+                    "$ref": "#/$defs/MarketoDestinationProperties"
+                },
+                "CustomConnector": {
+                    "$ref": "#/$defs/CustomConnectorDestinationProperties"
+                },
+                "SAPOData": {
+                    "$ref": "#/$defs/SAPODataDestinationProperties"
+                }
+            }
+        },
+        "RedshiftDestinationProperties": {
+            "type": "object",
+            "properties": {
+                "object": {
+                    "$ref": "#/$defs/Object"
+                },
+                "intermediateBucketName": {
+                    "$ref": "#/$defs/BucketName"
+                },
+                "bucketPrefix": {
+                    "$ref": "#/$defs/BucketPrefix"
+                },
+                "errorHandlingConfig": {
+                    "$ref": "#/$defs/ErrorHandlingConfig"
+                }
+            }
+        },
+        "ErrorHandlingConfig": {
+            "type": "object",
+            "properties": {
+                "failOnFirstDestinationError": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "bucketPrefix": {
+                    "$ref": "#/$defs/BucketPrefix"
+                },
+                "bucketName": {
+                    "$ref": "#/$defs/BucketName"
+                }
+            }
+        },
+        "S3DestinationProperties": {
+            "type": "object",
+            "properties": {
+                "bucketName": {
+                    "$ref": "#/$defs/BucketName"
+                },
+                "bucketPrefix": {
+                    "$ref": "#/$defs/BucketPrefix"
+                },
+                "s3OutputFormatConfig": {
+                    "$ref": "#/$defs/S3OutputFormatConfig"
+                }
+            }
+        },
+        "S3OutputFormatConfig": {
+            "type": "object",
+            "properties": {
+                "fileType": {
+                    "$ref": "#/$defs/FileType"
+                },
+                "prefixConfig": {
+                    "$ref": "#/$defs/PrefixConfig"
+                },
+                "aggregationConfig": {
+                    "$ref": "#/$defs/AggregationConfig"
+                },
+                "preserveSourceDataTyping": {
+                    "$ref": "#/$defs/JavaBoolean"
+                }
+            }
+        },
+        "FileType": {
+            "enum": [
+                "CSV",
+                "JSON",
+                "PARQUET"
+            ]
+        },
+        "PrefixConfig": {
+            "type": "object",
+            "properties": {
+                "prefixType": {
+                    "$ref": "#/$defs/PrefixType"
+                },
+                "prefixFormat": {
+                    "$ref": "#/$defs/PrefixFormat"
+                },
+                "pathPrefixHierarchy": {
+                    "$ref": "#/$defs/PathPrefixHierarchy"
+                }
+            }
+        },
+        "PrefixType": {
+            "enum": [
+                "FILENAME",
+                "PATH",
+                "PATH_AND_FILENAME"
+            ]
+        },
+        "PrefixFormat": {
+            "enum": [
+                "YEAR",
+                "MONTH",
+                "DAY",
+                "HOUR",
+                "MINUTE"
+            ]
+        },
+        "PathPrefixHierarchy": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PathPrefix"
+            }
+        },
+        "PathPrefix": {
+            "enum": [
+                "EXECUTION_ID",
+                "SCHEMA_VERSION"
+            ]
+        },
+        "AggregationConfig": {
+            "type": "object",
+            "properties": {
+                "aggregationType": {
+                    "$ref": "#/$defs/AggregationType"
+                },
+                "targetFileSize": {
+                    "$ref": "#/$defs/Long"
+                }
+            }
+        },
+        "AggregationType": {
+            "enum": [
+                "NONE",
+                "SINGLE_FILE"
+            ]
+        },
+        "Long": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "JavaBoolean": {
+            "type": "boolean"
+        },
+        "SalesforceDestinationProperties": {
+            "type": "object",
+            "properties": {
+                "object": {
+                    "$ref": "#/$defs/Object"
+                },
+                "idFieldNames": {
+                    "$ref": "#/$defs/IdFieldNameList"
+                },
+                "errorHandlingConfig": {
+                    "$ref": "#/$defs/ErrorHandlingConfig"
+                },
+                "writeOperationType": {
+                    "$ref": "#/$defs/WriteOperationType"
+                },
+                "dataTransferApi": {
+                    "$ref": "#/$defs/SalesforceDataTransferApi"
+                }
+            }
+        },
+        "IdFieldNameList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Name"
+            }
+        },
+        "Name": {
+            "type": "string"
+        },
+        "WriteOperationType": {
+            "enum": [
+                "INSERT",
+                "UPSERT",
+                "UPDATE",
+                "DELETE"
+            ]
+        },
+        "SnowflakeDestinationProperties": {
+            "type": "object",
+            "properties": {
+                "object": {
+                    "$ref": "#/$defs/Object"
+                },
+                "intermediateBucketName": {
+                    "$ref": "#/$defs/BucketName"
+                },
+                "bucketPrefix": {
+                    "$ref": "#/$defs/BucketPrefix"
+                },
+                "errorHandlingConfig": {
+                    "$ref": "#/$defs/ErrorHandlingConfig"
+                }
+            }
+        },
+        "EventBridgeDestinationProperties": {
+            "type": "object",
+            "properties": {
+                "object": {
+                    "$ref": "#/$defs/Object"
+                },
+                "errorHandlingConfig": {
+                    "$ref": "#/$defs/ErrorHandlingConfig"
+                }
+            }
+        },
+        "LookoutMetricsDestinationProperties": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpsolverDestinationProperties": {
+            "type": "object",
+            "properties": {
+                "bucketName": {
+                    "$ref": "#/$defs/UpsolverBucketName"
+                },
+                "bucketPrefix": {
+                    "$ref": "#/$defs/BucketPrefix"
+                },
+                "s3OutputFormatConfig": {
+                    "$ref": "#/$defs/UpsolverS3OutputFormatConfig"
+                }
+            }
+        },
+        "UpsolverBucketName": {
+            "type": "string"
+        },
+        "UpsolverS3OutputFormatConfig": {
+            "type": "object",
+            "properties": {
+                "fileType": {
+                    "$ref": "#/$defs/FileType"
+                },
+                "prefixConfig": {
+                    "$ref": "#/$defs/PrefixConfig"
+                },
+                "aggregationConfig": {
+                    "$ref": "#/$defs/AggregationConfig"
+                }
+            }
+        },
+        "HoneycodeDestinationProperties": {
+            "type": "object",
+            "properties": {
+                "object": {
+                    "$ref": "#/$defs/Object"
+                },
+                "errorHandlingConfig": {
+                    "$ref": "#/$defs/ErrorHandlingConfig"
+                }
+            }
+        },
+        "CustomerProfilesDestinationProperties": {
+            "type": "object",
+            "properties": {
+                "domainName": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "objectTypeName": {
+                    "$ref": "#/$defs/ObjectTypeName"
+                }
+            }
+        },
+        "DomainName": {
+            "type": "string"
+        },
+        "ObjectTypeName": {
+            "type": "string"
+        },
+        "ZendeskDestinationProperties": {
+            "type": "object",
+            "properties": {
+                "object": {
+                    "$ref": "#/$defs/Object"
+                },
+                "idFieldNames": {
+                    "$ref": "#/$defs/IdFieldNameList"
+                },
+                "errorHandlingConfig": {
+                    "$ref": "#/$defs/ErrorHandlingConfig"
+                },
+                "writeOperationType": {
+                    "$ref": "#/$defs/WriteOperationType"
+                }
+            }
+        },
+        "MarketoDestinationProperties": {
+            "type": "object",
+            "properties": {
+                "object": {
+                    "$ref": "#/$defs/Object"
+                },
+                "errorHandlingConfig": {
+                    "$ref": "#/$defs/ErrorHandlingConfig"
+                }
+            }
+        },
+        "CustomConnectorDestinationProperties": {
+            "type": "object",
+            "properties": {
+                "entityName": {
+                    "$ref": "#/$defs/EntityName"
+                },
+                "errorHandlingConfig": {
+                    "$ref": "#/$defs/ErrorHandlingConfig"
+                },
+                "writeOperationType": {
+                    "$ref": "#/$defs/WriteOperationType"
+                },
+                "idFieldNames": {
+                    "$ref": "#/$defs/IdFieldNameList"
+                },
+                "customProperties": {
+                    "$ref": "#/$defs/CustomProperties"
+                }
+            }
+        },
+        "SAPODataDestinationProperties": {
+            "type": "object",
+            "properties": {
+                "objectPath": {
+                    "$ref": "#/$defs/Object"
+                },
+                "successResponseHandlingConfig": {
+                    "$ref": "#/$defs/SuccessResponseHandlingConfig"
+                },
+                "idFieldNames": {
+                    "$ref": "#/$defs/IdFieldNameList"
+                },
+                "errorHandlingConfig": {
+                    "$ref": "#/$defs/ErrorHandlingConfig"
+                },
+                "writeOperationType": {
+                    "$ref": "#/$defs/WriteOperationType"
+                }
+            }
+        },
+        "SuccessResponseHandlingConfig": {
+            "type": "object",
+            "properties": {
+                "bucketPrefix": {
+                    "$ref": "#/$defs/BucketPrefix"
+                },
+                "bucketName": {
+                    "$ref": "#/$defs/BucketName"
+                }
+            }
+        },
+        "Tasks": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Task"
+            }
+        },
+        "Task": {
+            "type": "object",
+            "properties": {
+                "sourceFields": {
+                    "$ref": "#/$defs/SourceFields"
+                },
+                "connectorOperator": {
+                    "$ref": "#/$defs/ConnectorOperator"
+                },
+                "destinationField": {
+                    "$ref": "#/$defs/DestinationField"
+                },
+                "taskType": {
+                    "$ref": "#/$defs/TaskType"
+                },
+                "taskProperties": {
+                    "$ref": "#/$defs/TaskPropertiesMap"
+                }
+            }
+        },
+        "SourceFields": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "ConnectorOperator": {
+            "type": "object",
+            "properties": {
+                "Amplitude": {
+                    "$ref": "#/$defs/AmplitudeConnectorOperator"
+                },
+                "Datadog": {
+                    "$ref": "#/$defs/DatadogConnectorOperator"
+                },
+                "Dynatrace": {
+                    "$ref": "#/$defs/DynatraceConnectorOperator"
+                },
+                "GoogleAnalytics": {
+                    "$ref": "#/$defs/GoogleAnalyticsConnectorOperator"
+                },
+                "InforNexus": {
+                    "$ref": "#/$defs/InforNexusConnectorOperator"
+                },
+                "Marketo": {
+                    "$ref": "#/$defs/MarketoConnectorOperator"
+                },
+                "S3": {
+                    "$ref": "#/$defs/S3ConnectorOperator"
+                },
+                "Salesforce": {
+                    "$ref": "#/$defs/SalesforceConnectorOperator"
+                },
+                "ServiceNow": {
+                    "$ref": "#/$defs/ServiceNowConnectorOperator"
+                },
+                "Singular": {
+                    "$ref": "#/$defs/SingularConnectorOperator"
+                },
+                "Slack": {
+                    "$ref": "#/$defs/SlackConnectorOperator"
+                },
+                "Trendmicro": {
+                    "$ref": "#/$defs/TrendmicroConnectorOperator"
+                },
+                "Veeva": {
+                    "$ref": "#/$defs/VeevaConnectorOperator"
+                },
+                "Zendesk": {
+                    "$ref": "#/$defs/ZendeskConnectorOperator"
+                },
+                "SAPOData": {
+                    "$ref": "#/$defs/SAPODataConnectorOperator"
+                },
+                "CustomConnector": {
+                    "$ref": "#/$defs/Operator"
+                },
+                "Pardot": {
+                    "$ref": "#/$defs/PardotConnectorOperator"
+                }
+            }
+        },
+        "AmplitudeConnectorOperator": {
+            "enum": [
+                "BETWEEN"
+            ]
+        },
+        "DatadogConnectorOperator": {
+            "enum": [
+                "PROJECTION",
+                "BETWEEN",
+                "EQUAL_TO",
+                "ADDITION",
+                "MULTIPLICATION",
+                "DIVISION",
+                "SUBTRACTION",
+                "MASK_ALL",
+                "MASK_FIRST_N",
+                "MASK_LAST_N",
+                "VALIDATE_NON_NULL",
+                "VALIDATE_NON_ZERO",
+                "VALIDATE_NON_NEGATIVE",
+                "VALIDATE_NUMERIC",
+                "NO_OP"
+            ]
+        },
+        "DynatraceConnectorOperator": {
+            "enum": [
+                "PROJECTION",
+                "BETWEEN",
+                "EQUAL_TO",
+                "ADDITION",
+                "MULTIPLICATION",
+                "DIVISION",
+                "SUBTRACTION",
+                "MASK_ALL",
+                "MASK_FIRST_N",
+                "MASK_LAST_N",
+                "VALIDATE_NON_NULL",
+                "VALIDATE_NON_ZERO",
+                "VALIDATE_NON_NEGATIVE",
+                "VALIDATE_NUMERIC",
+                "NO_OP"
+            ]
+        },
+        "GoogleAnalyticsConnectorOperator": {
+            "enum": [
+                "PROJECTION",
+                "BETWEEN"
+            ]
+        },
+        "InforNexusConnectorOperator": {
+            "enum": [
+                "PROJECTION",
+                "BETWEEN",
+                "EQUAL_TO",
+                "ADDITION",
+                "MULTIPLICATION",
+                "DIVISION",
+                "SUBTRACTION",
+                "MASK_ALL",
+                "MASK_FIRST_N",
+                "MASK_LAST_N",
+                "VALIDATE_NON_NULL",
+                "VALIDATE_NON_ZERO",
+                "VALIDATE_NON_NEGATIVE",
+                "VALIDATE_NUMERIC",
+                "NO_OP"
+            ]
+        },
+        "MarketoConnectorOperator": {
+            "enum": [
+                "PROJECTION",
+                "LESS_THAN",
+                "GREATER_THAN",
+                "BETWEEN",
+                "ADDITION",
+                "MULTIPLICATION",
+                "DIVISION",
+                "SUBTRACTION",
+                "MASK_ALL",
+                "MASK_FIRST_N",
+                "MASK_LAST_N",
+                "VALIDATE_NON_NULL",
+                "VALIDATE_NON_ZERO",
+                "VALIDATE_NON_NEGATIVE",
+                "VALIDATE_NUMERIC",
+                "NO_OP"
+            ]
+        },
+        "S3ConnectorOperator": {
+            "enum": [
+                "PROJECTION",
+                "LESS_THAN",
+                "GREATER_THAN",
+                "BETWEEN",
+                "LESS_THAN_OR_EQUAL_TO",
+                "GREATER_THAN_OR_EQUAL_TO",
+                "EQUAL_TO",
+                "NOT_EQUAL_TO",
+                "ADDITION",
+                "MULTIPLICATION",
+                "DIVISION",
+                "SUBTRACTION",
+                "MASK_ALL",
+                "MASK_FIRST_N",
+                "MASK_LAST_N",
+                "VALIDATE_NON_NULL",
+                "VALIDATE_NON_ZERO",
+                "VALIDATE_NON_NEGATIVE",
+                "VALIDATE_NUMERIC",
+                "NO_OP"
+            ]
+        },
+        "SalesforceConnectorOperator": {
+            "enum": [
+                "PROJECTION",
+                "LESS_THAN",
+                "CONTAINS",
+                "GREATER_THAN",
+                "BETWEEN",
+                "LESS_THAN_OR_EQUAL_TO",
+                "GREATER_THAN_OR_EQUAL_TO",
+                "EQUAL_TO",
+                "NOT_EQUAL_TO",
+                "ADDITION",
+                "MULTIPLICATION",
+                "DIVISION",
+                "SUBTRACTION",
+                "MASK_ALL",
+                "MASK_FIRST_N",
+                "MASK_LAST_N",
+                "VALIDATE_NON_NULL",
+                "VALIDATE_NON_ZERO",
+                "VALIDATE_NON_NEGATIVE",
+                "VALIDATE_NUMERIC",
+                "NO_OP"
+            ]
+        },
+        "ServiceNowConnectorOperator": {
+            "enum": [
+                "PROJECTION",
+                "CONTAINS",
+                "LESS_THAN",
+                "GREATER_THAN",
+                "BETWEEN",
+                "LESS_THAN_OR_EQUAL_TO",
+                "GREATER_THAN_OR_EQUAL_TO",
+                "EQUAL_TO",
+                "NOT_EQUAL_TO",
+                "ADDITION",
+                "MULTIPLICATION",
+                "DIVISION",
+                "SUBTRACTION",
+                "MASK_ALL",
+                "MASK_FIRST_N",
+                "MASK_LAST_N",
+                "VALIDATE_NON_NULL",
+                "VALIDATE_NON_ZERO",
+                "VALIDATE_NON_NEGATIVE",
+                "VALIDATE_NUMERIC",
+                "NO_OP"
+            ]
+        },
+        "SingularConnectorOperator": {
+            "enum": [
+                "PROJECTION",
+                "EQUAL_TO",
+                "ADDITION",
+                "MULTIPLICATION",
+                "DIVISION",
+                "SUBTRACTION",
+                "MASK_ALL",
+                "MASK_FIRST_N",
+                "MASK_LAST_N",
+                "VALIDATE_NON_NULL",
+                "VALIDATE_NON_ZERO",
+                "VALIDATE_NON_NEGATIVE",
+                "VALIDATE_NUMERIC",
+                "NO_OP"
+            ]
+        },
+        "SlackConnectorOperator": {
+            "enum": [
+                "PROJECTION",
+                "LESS_THAN",
+                "GREATER_THAN",
+                "BETWEEN",
+                "LESS_THAN_OR_EQUAL_TO",
+                "GREATER_THAN_OR_EQUAL_TO",
+                "EQUAL_TO",
+                "ADDITION",
+                "MULTIPLICATION",
+                "DIVISION",
+                "SUBTRACTION",
+                "MASK_ALL",
+                "MASK_FIRST_N",
+                "MASK_LAST_N",
+                "VALIDATE_NON_NULL",
+                "VALIDATE_NON_ZERO",
+                "VALIDATE_NON_NEGATIVE",
+                "VALIDATE_NUMERIC",
+                "NO_OP"
+            ]
+        },
+        "TrendmicroConnectorOperator": {
+            "enum": [
+                "PROJECTION",
+                "EQUAL_TO",
+                "ADDITION",
+                "MULTIPLICATION",
+                "DIVISION",
+                "SUBTRACTION",
+                "MASK_ALL",
+                "MASK_FIRST_N",
+                "MASK_LAST_N",
+                "VALIDATE_NON_NULL",
+                "VALIDATE_NON_ZERO",
+                "VALIDATE_NON_NEGATIVE",
+                "VALIDATE_NUMERIC",
+                "NO_OP"
+            ]
+        },
+        "VeevaConnectorOperator": {
+            "enum": [
+                "PROJECTION",
+                "LESS_THAN",
+                "GREATER_THAN",
+                "CONTAINS",
+                "BETWEEN",
+                "LESS_THAN_OR_EQUAL_TO",
+                "GREATER_THAN_OR_EQUAL_TO",
+                "EQUAL_TO",
+                "NOT_EQUAL_TO",
+                "ADDITION",
+                "MULTIPLICATION",
+                "DIVISION",
+                "SUBTRACTION",
+                "MASK_ALL",
+                "MASK_FIRST_N",
+                "MASK_LAST_N",
+                "VALIDATE_NON_NULL",
+                "VALIDATE_NON_ZERO",
+                "VALIDATE_NON_NEGATIVE",
+                "VALIDATE_NUMERIC",
+                "NO_OP"
+            ]
+        },
+        "ZendeskConnectorOperator": {
+            "enum": [
+                "PROJECTION",
+                "GREATER_THAN",
+                "ADDITION",
+                "MULTIPLICATION",
+                "DIVISION",
+                "SUBTRACTION",
+                "MASK_ALL",
+                "MASK_FIRST_N",
+                "MASK_LAST_N",
+                "VALIDATE_NON_NULL",
+                "VALIDATE_NON_ZERO",
+                "VALIDATE_NON_NEGATIVE",
+                "VALIDATE_NUMERIC",
+                "NO_OP"
+            ]
+        },
+        "SAPODataConnectorOperator": {
+            "enum": [
+                "PROJECTION",
+                "LESS_THAN",
+                "CONTAINS",
+                "GREATER_THAN",
+                "BETWEEN",
+                "LESS_THAN_OR_EQUAL_TO",
+                "GREATER_THAN_OR_EQUAL_TO",
+                "EQUAL_TO",
+                "NOT_EQUAL_TO",
+                "ADDITION",
+                "MULTIPLICATION",
+                "DIVISION",
+                "SUBTRACTION",
+                "MASK_ALL",
+                "MASK_FIRST_N",
+                "MASK_LAST_N",
+                "VALIDATE_NON_NULL",
+                "VALIDATE_NON_ZERO",
+                "VALIDATE_NON_NEGATIVE",
+                "VALIDATE_NUMERIC",
+                "NO_OP"
+            ]
+        },
+        "Operator": {
+            "enum": [
+                "PROJECTION",
+                "LESS_THAN",
+                "GREATER_THAN",
+                "CONTAINS",
+                "BETWEEN",
+                "LESS_THAN_OR_EQUAL_TO",
+                "GREATER_THAN_OR_EQUAL_TO",
+                "EQUAL_TO",
+                "NOT_EQUAL_TO",
+                "ADDITION",
+                "MULTIPLICATION",
+                "DIVISION",
+                "SUBTRACTION",
+                "MASK_ALL",
+                "MASK_FIRST_N",
+                "MASK_LAST_N",
+                "VALIDATE_NON_NULL",
+                "VALIDATE_NON_ZERO",
+                "VALIDATE_NON_NEGATIVE",
+                "VALIDATE_NUMERIC",
+                "NO_OP"
+            ]
+        },
+        "PardotConnectorOperator": {
+            "enum": [
+                "PROJECTION",
+                "EQUAL_TO",
+                "NO_OP",
+                "ADDITION",
+                "MULTIPLICATION",
+                "DIVISION",
+                "SUBTRACTION",
+                "MASK_ALL",
+                "MASK_FIRST_N",
+                "MASK_LAST_N",
+                "VALIDATE_NON_NULL",
+                "VALIDATE_NON_ZERO",
+                "VALIDATE_NON_NEGATIVE",
+                "VALIDATE_NUMERIC"
+            ]
+        },
+        "DestinationField": {
+            "type": "string"
+        },
+        "TaskType": {
+            "enum": [
+                "ARITHMETIC",
+                "FILTER",
+                "MAP",
+                "MAP_ALL",
+                "MASK",
+                "MERGE",
+                "PASSTHROUGH",
+                "TRUNCATE",
+                "VALIDATE",
+                "PARTITION"
+            ]
+        },
+        "TaskPropertiesMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/Property"
+            }
+        },
+        "Property": {
+            "type": "string"
+        },
+        "TagMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TagValue"
+            }
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "MetadataCatalogConfig": {
+            "type": "object",
+            "properties": {
+                "glueDataCatalog": {
+                    "$ref": "#/$defs/GlueDataCatalogConfig"
+                }
+            }
+        },
+        "GlueDataCatalogConfig": {
+            "type": "object",
+            "properties": {
+                "roleArn": {
+                    "$ref": "#/$defs/GlueDataCatalogIAMRole"
+                },
+                "databaseName": {
+                    "$ref": "#/$defs/GlueDataCatalogDatabaseName"
+                },
+                "tablePrefix": {
+                    "$ref": "#/$defs/GlueDataCatalogTablePrefix"
+                }
+            }
+        },
+        "GlueDataCatalogIAMRole": {
+            "type": "string"
+        },
+        "GlueDataCatalogDatabaseName": {
+            "type": "string"
+        },
+        "GlueDataCatalogTablePrefix": {
+            "type": "string"
+        },
+        "DeleteConnectorProfileResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteConnectorProfileRequest": {
+            "type": "object",
+            "properties": {
+                "connectorProfileName": {
+                    "$ref": "#/$defs/ConnectorProfileName"
+                },
+                "forceDelete": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "DeleteFlowResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteFlowRequest": {
+            "type": "object",
+            "properties": {
+                "flowName": {
+                    "$ref": "#/$defs/FlowName"
+                },
+                "forceDelete": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "DescribeConnectorResponse": {
+            "type": "object",
+            "properties": {
+                "connectorConfiguration": {
+                    "$ref": "#/$defs/ConnectorConfiguration"
+                }
+            }
+        },
+        "ConnectorConfiguration": {
+            "type": "object",
+            "properties": {
+                "canUseAsSource": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "canUseAsDestination": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "supportedDestinationConnectors": {
+                    "$ref": "#/$defs/ConnectorTypeList"
+                },
+                "supportedSchedulingFrequencies": {
+                    "$ref": "#/$defs/SchedulingFrequencyTypeList"
+                },
+                "isPrivateLinkEnabled": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "isPrivateLinkEndpointUrlRequired": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "supportedTriggerTypes": {
+                    "$ref": "#/$defs/TriggerTypeList"
+                },
+                "connectorMetadata": {
+                    "$ref": "#/$defs/ConnectorMetadata"
+                },
+                "connectorType": {
+                    "$ref": "#/$defs/ConnectorType"
+                },
+                "connectorLabel": {
+                    "$ref": "#/$defs/ConnectorLabel"
+                },
+                "connectorDescription": {
+                    "$ref": "#/$defs/ConnectorDescription"
+                },
+                "connectorOwner": {
+                    "$ref": "#/$defs/ConnectorOwner"
+                },
+                "connectorName": {
+                    "$ref": "#/$defs/ConnectorName"
+                },
+                "connectorVersion": {
+                    "$ref": "#/$defs/ConnectorVersion"
+                },
+                "connectorArn": {
+                    "$ref": "#/$defs/ARN"
+                },
+                "connectorModes": {
+                    "$ref": "#/$defs/ConnectorModeList"
+                },
+                "authenticationConfig": {
+                    "$ref": "#/$defs/AuthenticationConfig"
+                },
+                "connectorRuntimeSettings": {
+                    "$ref": "#/$defs/ConnectorRuntimeSettingList"
+                },
+                "supportedApiVersions": {
+                    "$ref": "#/$defs/SupportedApiVersionList"
+                },
+                "supportedOperators": {
+                    "$ref": "#/$defs/SupportedOperatorList"
+                },
+                "supportedWriteOperations": {
+                    "$ref": "#/$defs/SupportedWriteOperationList"
+                },
+                "connectorProvisioningType": {
+                    "$ref": "#/$defs/ConnectorProvisioningType"
+                },
+                "connectorProvisioningConfig": {
+                    "$ref": "#/$defs/ConnectorProvisioningConfig"
+                },
+                "logoURL": {
+                    "$ref": "#/$defs/LogoURL"
+                },
+                "registeredAt": {
+                    "$ref": "#/$defs/Date"
+                },
+                "registeredBy": {
+                    "$ref": "#/$defs/RegisteredBy"
+                },
+                "supportedDataTransferTypes": {
+                    "$ref": "#/$defs/SupportedDataTransferTypeList"
+                },
+                "supportedDataTransferApis": {
+                    "$ref": "#/$defs/SupportedDataTransferApis"
+                }
+            }
+        },
+        "ConnectorTypeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ConnectorType"
+            }
+        },
+        "SchedulingFrequencyTypeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ScheduleFrequencyType"
+            }
+        },
+        "ScheduleFrequencyType": {
+            "enum": [
+                "BYMINUTE",
+                "HOURLY",
+                "DAILY",
+                "WEEKLY",
+                "MONTHLY",
+                "ONCE"
+            ]
+        },
+        "TriggerTypeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TriggerType"
+            }
+        },
+        "ConnectorMetadata": {
+            "type": "object",
+            "properties": {
+                "Amplitude": {
+                    "$ref": "#/$defs/AmplitudeMetadata"
+                },
+                "Datadog": {
+                    "$ref": "#/$defs/DatadogMetadata"
+                },
+                "Dynatrace": {
+                    "$ref": "#/$defs/DynatraceMetadata"
+                },
+                "GoogleAnalytics": {
+                    "$ref": "#/$defs/GoogleAnalyticsMetadata"
+                },
+                "InforNexus": {
+                    "$ref": "#/$defs/InforNexusMetadata"
+                },
+                "Marketo": {
+                    "$ref": "#/$defs/MarketoMetadata"
+                },
+                "Redshift": {
+                    "$ref": "#/$defs/RedshiftMetadata"
+                },
+                "S3": {
+                    "$ref": "#/$defs/S3Metadata"
+                },
+                "Salesforce": {
+                    "$ref": "#/$defs/SalesforceMetadata"
+                },
+                "ServiceNow": {
+                    "$ref": "#/$defs/ServiceNowMetadata"
+                },
+                "Singular": {
+                    "$ref": "#/$defs/SingularMetadata"
+                },
+                "Slack": {
+                    "$ref": "#/$defs/SlackMetadata"
+                },
+                "Snowflake": {
+                    "$ref": "#/$defs/SnowflakeMetadata"
+                },
+                "Trendmicro": {
+                    "$ref": "#/$defs/TrendmicroMetadata"
+                },
+                "Veeva": {
+                    "$ref": "#/$defs/VeevaMetadata"
+                },
+                "Zendesk": {
+                    "$ref": "#/$defs/ZendeskMetadata"
+                },
+                "EventBridge": {
+                    "$ref": "#/$defs/EventBridgeMetadata"
+                },
+                "Upsolver": {
+                    "$ref": "#/$defs/UpsolverMetadata"
+                },
+                "CustomerProfiles": {
+                    "$ref": "#/$defs/CustomerProfilesMetadata"
+                },
+                "Honeycode": {
+                    "$ref": "#/$defs/HoneycodeMetadata"
+                },
+                "SAPOData": {
+                    "$ref": "#/$defs/SAPODataMetadata"
+                },
+                "Pardot": {
+                    "$ref": "#/$defs/PardotMetadata"
+                }
+            }
+        },
+        "AmplitudeMetadata": {
+            "type": "object",
+            "properties": {}
+        },
+        "DatadogMetadata": {
+            "type": "object",
+            "properties": {}
+        },
+        "DynatraceMetadata": {
+            "type": "object",
+            "properties": {}
+        },
+        "GoogleAnalyticsMetadata": {
+            "type": "object",
+            "properties": {
+                "oAuthScopes": {
+                    "$ref": "#/$defs/OAuthScopeList"
+                }
+            }
+        },
+        "InforNexusMetadata": {
+            "type": "object",
+            "properties": {}
+        },
+        "MarketoMetadata": {
+            "type": "object",
+            "properties": {}
+        },
+        "RedshiftMetadata": {
+            "type": "object",
+            "properties": {}
+        },
+        "S3Metadata": {
+            "type": "object",
+            "properties": {}
+        },
+        "SalesforceMetadata": {
+            "type": "object",
+            "properties": {
+                "oAuthScopes": {
+                    "$ref": "#/$defs/OAuthScopeList"
+                },
+                "dataTransferApis": {
+                    "$ref": "#/$defs/SalesforceDataTransferApiList"
+                },
+                "oauth2GrantTypesSupported": {
+                    "$ref": "#/$defs/OAuth2GrantTypeSupportedList"
+                }
+            }
+        },
+        "SalesforceDataTransferApiList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SalesforceDataTransferApi"
+            }
+        },
+        "OAuth2GrantTypeSupportedList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/OAuth2GrantType"
+            }
+        },
+        "ServiceNowMetadata": {
+            "type": "object",
+            "properties": {}
+        },
+        "SingularMetadata": {
+            "type": "object",
+            "properties": {}
+        },
+        "SlackMetadata": {
+            "type": "object",
+            "properties": {
+                "oAuthScopes": {
+                    "$ref": "#/$defs/OAuthScopeList"
+                }
+            }
+        },
+        "SnowflakeMetadata": {
+            "type": "object",
+            "properties": {
+                "supportedRegions": {
+                    "$ref": "#/$defs/RegionList"
+                }
+            }
+        },
+        "RegionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Region"
+            }
+        },
+        "TrendmicroMetadata": {
+            "type": "object",
+            "properties": {}
+        },
+        "VeevaMetadata": {
+            "type": "object",
+            "properties": {}
+        },
+        "ZendeskMetadata": {
+            "type": "object",
+            "properties": {
+                "oAuthScopes": {
+                    "$ref": "#/$defs/OAuthScopeList"
+                }
+            }
+        },
+        "EventBridgeMetadata": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpsolverMetadata": {
+            "type": "object",
+            "properties": {}
+        },
+        "CustomerProfilesMetadata": {
+            "type": "object",
+            "properties": {}
+        },
+        "HoneycodeMetadata": {
+            "type": "object",
+            "properties": {
+                "oAuthScopes": {
+                    "$ref": "#/$defs/OAuthScopeList"
+                }
+            }
+        },
+        "SAPODataMetadata": {
+            "type": "object",
+            "properties": {}
+        },
+        "PardotMetadata": {
+            "type": "object",
+            "properties": {}
+        },
+        "ConnectorDescription": {
+            "type": "string"
+        },
+        "ConnectorOwner": {
+            "type": "string"
+        },
+        "ConnectorName": {
+            "type": "string"
+        },
+        "ConnectorVersion": {
+            "type": "string"
+        },
+        "ARN": {
+            "type": "string"
+        },
+        "ConnectorModeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ConnectorMode"
+            }
+        },
+        "ConnectorMode": {
+            "type": "string"
+        },
+        "AuthenticationConfig": {
+            "type": "object",
+            "properties": {
+                "isBasicAuthSupported": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "isApiKeyAuthSupported": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "isOAuth2Supported": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "isCustomAuthSupported": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "oAuth2Defaults": {
+                    "$ref": "#/$defs/OAuth2Defaults"
+                },
+                "customAuthConfigs": {
+                    "$ref": "#/$defs/CustomAuthConfigList"
+                }
+            }
+        },
+        "OAuth2Defaults": {
+            "type": "object",
+            "properties": {
+                "oauthScopes": {
+                    "$ref": "#/$defs/OAuthScopeList"
+                },
+                "tokenUrls": {
+                    "$ref": "#/$defs/TokenUrlList"
+                },
+                "authCodeUrls": {
+                    "$ref": "#/$defs/AuthCodeUrlList"
+                },
+                "oauth2GrantTypesSupported": {
+                    "$ref": "#/$defs/OAuth2GrantTypeSupportedList"
+                },
+                "oauth2CustomProperties": {
+                    "$ref": "#/$defs/OAuth2CustomPropertiesList"
+                }
+            }
+        },
+        "TokenUrlList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TokenUrl"
+            }
+        },
+        "AuthCodeUrlList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AuthCodeUrl"
+            }
+        },
+        "OAuth2CustomPropertiesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/OAuth2CustomParameter"
+            }
+        },
+        "OAuth2CustomParameter": {
+            "type": "object",
+            "properties": {
+                "key": {
+                    "$ref": "#/$defs/Key"
+                },
+                "isRequired": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "label": {
+                    "$ref": "#/$defs/Label"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "isSensitiveField": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "connectorSuppliedValues": {
+                    "$ref": "#/$defs/ConnectorSuppliedValueList"
+                },
+                "type": {
+                    "$ref": "#/$defs/OAuth2CustomPropType"
+                }
+            }
+        },
+        "Label": {
+            "type": "string"
+        },
+        "Description": {
+            "type": "string"
+        },
+        "ConnectorSuppliedValueList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ConnectorSuppliedValue"
+            }
+        },
+        "ConnectorSuppliedValue": {
+            "type": "string"
+        },
+        "OAuth2CustomPropType": {
+            "enum": [
+                "TOKEN_URL",
+                "AUTH_URL"
+            ]
+        },
+        "CustomAuthConfigList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CustomAuthConfig"
+            }
+        },
+        "CustomAuthConfig": {
+            "type": "object",
+            "properties": {
+                "customAuthenticationType": {
+                    "$ref": "#/$defs/CustomAuthenticationType"
+                },
+                "authParameters": {
+                    "$ref": "#/$defs/AuthParameterList"
+                }
+            }
+        },
+        "AuthParameterList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AuthParameter"
+            }
+        },
+        "AuthParameter": {
+            "type": "object",
+            "properties": {
+                "key": {
+                    "$ref": "#/$defs/Key"
+                },
+                "isRequired": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "label": {
+                    "$ref": "#/$defs/Label"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "isSensitiveField": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "connectorSuppliedValues": {
+                    "$ref": "#/$defs/ConnectorSuppliedValueList"
+                }
+            }
+        },
+        "ConnectorRuntimeSettingList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ConnectorRuntimeSetting"
+            }
+        },
+        "ConnectorRuntimeSetting": {
+            "type": "object",
+            "properties": {
+                "key": {
+                    "$ref": "#/$defs/Key"
+                },
+                "dataType": {
+                    "$ref": "#/$defs/ConnectorRuntimeSettingDataType"
+                },
+                "isRequired": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "label": {
+                    "$ref": "#/$defs/Label"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "scope": {
+                    "$ref": "#/$defs/ConnectorRuntimeSettingScope"
+                },
+                "connectorSuppliedValueOptions": {
+                    "$ref": "#/$defs/ConnectorSuppliedValueOptionList"
+                }
+            }
+        },
+        "ConnectorRuntimeSettingDataType": {
+            "type": "string"
+        },
+        "ConnectorRuntimeSettingScope": {
+            "type": "string"
+        },
+        "ConnectorSuppliedValueOptionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ConnectorSuppliedValue"
+            }
+        },
+        "SupportedApiVersionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SupportedApiVersion"
+            }
+        },
+        "SupportedApiVersion": {
+            "type": "string"
+        },
+        "SupportedOperatorList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Operators"
+            }
+        },
+        "Operators": {
+            "enum": [
+                "PROJECTION",
+                "LESS_THAN",
+                "GREATER_THAN",
+                "CONTAINS",
+                "BETWEEN",
+                "LESS_THAN_OR_EQUAL_TO",
+                "GREATER_THAN_OR_EQUAL_TO",
+                "EQUAL_TO",
+                "NOT_EQUAL_TO",
+                "ADDITION",
+                "MULTIPLICATION",
+                "DIVISION",
+                "SUBTRACTION",
+                "MASK_ALL",
+                "MASK_FIRST_N",
+                "MASK_LAST_N",
+                "VALIDATE_NON_NULL",
+                "VALIDATE_NON_ZERO",
+                "VALIDATE_NON_NEGATIVE",
+                "VALIDATE_NUMERIC",
+                "NO_OP"
+            ]
+        },
+        "SupportedWriteOperationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/WriteOperationType"
+            }
+        },
+        "ConnectorProvisioningType": {
+            "enum": [
+                "LAMBDA"
+            ]
+        },
+        "ConnectorProvisioningConfig": {
+            "type": "object",
+            "properties": {
+                "lambda": {
+                    "$ref": "#/$defs/LambdaConnectorProvisioningConfig"
+                }
+            }
+        },
+        "LambdaConnectorProvisioningConfig": {
+            "type": "object",
+            "properties": {
+                "lambdaArn": {
+                    "$ref": "#/$defs/ARN"
+                }
+            }
+        },
+        "LogoURL": {
+            "type": "string"
+        },
+        "RegisteredBy": {
+            "type": "string"
+        },
+        "SupportedDataTransferTypeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SupportedDataTransferType"
+            }
+        },
+        "SupportedDataTransferType": {
+            "enum": [
+                "RECORD",
+                "FILE"
+            ]
+        },
+        "SupportedDataTransferApis": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DataTransferApi"
+            }
+        },
+        "DescribeConnectorRequest": {
+            "type": "object",
+            "properties": {
+                "connectorType": {
+                    "$ref": "#/$defs/ConnectorType"
+                },
+                "connectorLabel": {
+                    "$ref": "#/$defs/ConnectorLabel"
+                }
+            }
+        },
+        "DescribeConnectorEntityResponse": {
+            "type": "object",
+            "properties": {
+                "connectorEntityFields": {
+                    "$ref": "#/$defs/ConnectorEntityFieldList"
+                }
+            }
+        },
+        "ConnectorEntityFieldList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ConnectorEntityField"
+            }
+        },
+        "ConnectorEntityField": {
+            "type": "object",
+            "properties": {
+                "identifier": {
+                    "$ref": "#/$defs/Identifier"
+                },
+                "parentIdentifier": {
+                    "$ref": "#/$defs/Identifier"
+                },
+                "label": {
+                    "$ref": "#/$defs/Label"
+                },
+                "isPrimaryKey": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "defaultValue": {
+                    "$ref": "#/$defs/String"
+                },
+                "isDeprecated": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "supportedFieldTypeDetails": {
+                    "$ref": "#/$defs/SupportedFieldTypeDetails"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "sourceProperties": {
+                    "$ref": "#/$defs/SourceFieldProperties"
+                },
+                "destinationProperties": {
+                    "$ref": "#/$defs/DestinationFieldProperties"
+                },
+                "customProperties": {
+                    "$ref": "#/$defs/CustomProperties"
+                }
+            }
+        },
+        "Identifier": {
+            "type": "string"
+        },
+        "SupportedFieldTypeDetails": {
+            "type": "object",
+            "properties": {
+                "v1": {
+                    "$ref": "#/$defs/FieldTypeDetails"
+                }
+            }
+        },
+        "FieldTypeDetails": {
+            "type": "object",
+            "properties": {
+                "fieldType": {
+                    "$ref": "#/$defs/FieldType"
+                },
+                "filterOperators": {
+                    "$ref": "#/$defs/FilterOperatorList"
+                },
+                "supportedValues": {
+                    "$ref": "#/$defs/SupportedValueList"
+                },
+                "valueRegexPattern": {
+                    "$ref": "#/$defs/String"
+                },
+                "supportedDateFormat": {
+                    "$ref": "#/$defs/String"
+                },
+                "fieldValueRange": {
+                    "$ref": "#/$defs/Range"
+                },
+                "fieldLengthRange": {
+                    "$ref": "#/$defs/Range"
+                }
+            }
+        },
+        "FieldType": {
+            "type": "string"
+        },
+        "FilterOperatorList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Operator"
+            }
+        },
+        "SupportedValueList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Value"
+            }
+        },
+        "Value": {
+            "type": "string"
+        },
+        "Range": {
+            "type": "object",
+            "properties": {
+                "maximum": {
+                    "$ref": "#/$defs/Double"
+                },
+                "minimum": {
+                    "$ref": "#/$defs/Double"
+                }
+            }
+        },
+        "Double": {
+            "type": "number",
+            "format": "double"
+        },
+        "SourceFieldProperties": {
+            "type": "object",
+            "properties": {
+                "isRetrievable": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "isQueryable": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "isTimestampFieldForIncrementalQueries": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "DestinationFieldProperties": {
+            "type": "object",
+            "properties": {
+                "isCreatable": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "isNullable": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "isUpsertable": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "isUpdatable": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "isDefaultedOnCreate": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "supportedWriteOperations": {
+                    "$ref": "#/$defs/SupportedWriteOperationList"
+                }
+            }
+        },
+        "DescribeConnectorEntityRequest": {
+            "type": "object",
+            "properties": {
+                "connectorEntityName": {
+                    "$ref": "#/$defs/EntityName"
+                },
+                "connectorType": {
+                    "$ref": "#/$defs/ConnectorType"
+                },
+                "connectorProfileName": {
+                    "$ref": "#/$defs/ConnectorProfileName"
+                },
+                "apiVersion": {
+                    "$ref": "#/$defs/ApiVersion"
+                }
+            }
+        },
+        "DescribeConnectorProfilesResponse": {
+            "type": "object",
+            "properties": {
+                "connectorProfileDetails": {
+                    "$ref": "#/$defs/ConnectorProfileDetailList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ConnectorProfileDetailList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ConnectorProfile"
+            }
+        },
+        "ConnectorProfile": {
+            "type": "object",
+            "properties": {
+                "connectorProfileArn": {
+                    "$ref": "#/$defs/ConnectorProfileArn"
+                },
+                "connectorProfileName": {
+                    "$ref": "#/$defs/ConnectorProfileName"
+                },
+                "connectorType": {
+                    "$ref": "#/$defs/ConnectorType"
+                },
+                "connectorLabel": {
+                    "$ref": "#/$defs/ConnectorLabel"
+                },
+                "connectionMode": {
+                    "$ref": "#/$defs/ConnectionMode"
+                },
+                "credentialsArn": {
+                    "$ref": "#/$defs/ARN"
+                },
+                "connectorProfileProperties": {
+                    "$ref": "#/$defs/ConnectorProfileProperties"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Date"
+                },
+                "lastUpdatedAt": {
+                    "$ref": "#/$defs/Date"
+                },
+                "privateConnectionProvisioningState": {
+                    "$ref": "#/$defs/PrivateConnectionProvisioningState"
+                }
+            }
+        },
+        "PrivateConnectionProvisioningState": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "$ref": "#/$defs/PrivateConnectionProvisioningStatus"
+                },
+                "failureMessage": {
+                    "$ref": "#/$defs/PrivateConnectionProvisioningFailureMessage"
+                },
+                "failureCause": {
+                    "$ref": "#/$defs/PrivateConnectionProvisioningFailureCause"
+                }
+            }
+        },
+        "PrivateConnectionProvisioningStatus": {
+            "enum": [
+                "FAILED",
+                "PENDING",
+                "CREATED"
+            ]
+        },
+        "PrivateConnectionProvisioningFailureMessage": {
+            "type": "string"
+        },
+        "PrivateConnectionProvisioningFailureCause": {
+            "enum": [
+                "CONNECTOR_AUTHENTICATION",
+                "CONNECTOR_SERVER",
+                "INTERNAL_SERVER",
+                "ACCESS_DENIED",
+                "VALIDATION"
+            ]
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "DescribeConnectorProfilesRequest": {
+            "type": "object",
+            "properties": {
+                "connectorProfileNames": {
+                    "$ref": "#/$defs/ConnectorProfileNameList"
+                },
+                "connectorType": {
+                    "$ref": "#/$defs/ConnectorType"
+                },
+                "connectorLabel": {
+                    "$ref": "#/$defs/ConnectorLabel"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ConnectorProfileNameList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ConnectorProfileName"
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DescribeConnectorsResponse": {
+            "type": "object",
+            "properties": {
+                "connectorConfigurations": {
+                    "$ref": "#/$defs/ConnectorConfigurationsMap"
+                },
+                "connectors": {
+                    "$ref": "#/$defs/ConnectorList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ConnectorConfigurationsMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/ConnectorConfiguration"
+            }
+        },
+        "ConnectorList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ConnectorDetail"
+            }
+        },
+        "ConnectorDetail": {
+            "type": "object",
+            "properties": {
+                "connectorDescription": {
+                    "$ref": "#/$defs/ConnectorDescription"
+                },
+                "connectorName": {
+                    "$ref": "#/$defs/ConnectorName"
+                },
+                "connectorOwner": {
+                    "$ref": "#/$defs/ConnectorOwner"
+                },
+                "connectorVersion": {
+                    "$ref": "#/$defs/ConnectorVersion"
+                },
+                "applicationType": {
+                    "$ref": "#/$defs/ApplicationType"
+                },
+                "connectorType": {
+                    "$ref": "#/$defs/ConnectorType"
+                },
+                "connectorLabel": {
+                    "$ref": "#/$defs/ConnectorLabel"
+                },
+                "registeredAt": {
+                    "$ref": "#/$defs/Date"
+                },
+                "registeredBy": {
+                    "$ref": "#/$defs/RegisteredBy"
+                },
+                "connectorProvisioningType": {
+                    "$ref": "#/$defs/ConnectorProvisioningType"
+                },
+                "connectorModes": {
+                    "$ref": "#/$defs/ConnectorModeList"
+                },
+                "supportedDataTransferTypes": {
+                    "$ref": "#/$defs/SupportedDataTransferTypeList"
+                }
+            }
+        },
+        "ApplicationType": {
+            "type": "string"
+        },
+        "DescribeConnectorsRequest": {
+            "type": "object",
+            "properties": {
+                "connectorTypes": {
+                    "$ref": "#/$defs/ConnectorTypeList"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "DescribeFlowResponse": {
+            "type": "object",
+            "properties": {
+                "flowArn": {
+                    "$ref": "#/$defs/FlowArn"
+                },
+                "description": {
+                    "$ref": "#/$defs/FlowDescription"
+                },
+                "flowName": {
+                    "$ref": "#/$defs/FlowName"
+                },
+                "kmsArn": {
+                    "$ref": "#/$defs/KMSArn"
+                },
+                "flowStatus": {
+                    "$ref": "#/$defs/FlowStatus"
+                },
+                "flowStatusMessage": {
+                    "$ref": "#/$defs/FlowStatusMessage"
+                },
+                "sourceFlowConfig": {
+                    "$ref": "#/$defs/SourceFlowConfig"
+                },
+                "destinationFlowConfigList": {
+                    "$ref": "#/$defs/DestinationFlowConfigList"
+                },
+                "lastRunExecutionDetails": {
+                    "$ref": "#/$defs/ExecutionDetails"
+                },
+                "triggerConfig": {
+                    "$ref": "#/$defs/TriggerConfig"
+                },
+                "tasks": {
+                    "$ref": "#/$defs/Tasks"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Date"
+                },
+                "lastUpdatedAt": {
+                    "$ref": "#/$defs/Date"
+                },
+                "createdBy": {
+                    "$ref": "#/$defs/CreatedBy"
+                },
+                "lastUpdatedBy": {
+                    "$ref": "#/$defs/UpdatedBy"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                },
+                "metadataCatalogConfig": {
+                    "$ref": "#/$defs/MetadataCatalogConfig"
+                },
+                "lastRunMetadataCatalogDetails": {
+                    "$ref": "#/$defs/MetadataCatalogDetails"
+                },
+                "schemaVersion": {
+                    "$ref": "#/$defs/Long"
+                }
+            }
+        },
+        "FlowStatusMessage": {
+            "type": "string"
+        },
+        "ExecutionDetails": {
+            "type": "object",
+            "properties": {
+                "mostRecentExecutionMessage": {
+                    "$ref": "#/$defs/MostRecentExecutionMessage"
+                },
+                "mostRecentExecutionTime": {
+                    "$ref": "#/$defs/Date"
+                },
+                "mostRecentExecutionStatus": {
+                    "$ref": "#/$defs/ExecutionStatus"
+                }
+            }
+        },
+        "MostRecentExecutionMessage": {
+            "type": "string"
+        },
+        "ExecutionStatus": {
+            "enum": [
+                "INPROGRESS",
+                "SUCCESSFUL",
+                "ERROR",
+                "CANCELSTARTED",
+                "CANCELED"
+            ]
+        },
+        "CreatedBy": {
+            "type": "string"
+        },
+        "UpdatedBy": {
+            "type": "string"
+        },
+        "MetadataCatalogDetails": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MetadataCatalogDetail"
+            }
+        },
+        "MetadataCatalogDetail": {
+            "type": "object",
+            "properties": {
+                "catalogType": {
+                    "$ref": "#/$defs/CatalogType"
+                },
+                "tableName": {
+                    "$ref": "#/$defs/String"
+                },
+                "tableRegistrationOutput": {
+                    "$ref": "#/$defs/RegistrationOutput"
+                },
+                "partitionRegistrationOutput": {
+                    "$ref": "#/$defs/RegistrationOutput"
+                }
+            }
+        },
+        "CatalogType": {
+            "enum": [
+                "GLUE"
+            ]
+        },
+        "RegistrationOutput": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "$ref": "#/$defs/String"
+                },
+                "result": {
+                    "$ref": "#/$defs/String"
+                },
+                "status": {
+                    "$ref": "#/$defs/ExecutionStatus"
+                }
+            }
+        },
+        "DescribeFlowRequest": {
+            "type": "object",
+            "properties": {
+                "flowName": {
+                    "$ref": "#/$defs/FlowName"
+                }
+            }
+        },
+        "DescribeFlowExecutionRecordsResponse": {
+            "type": "object",
+            "properties": {
+                "flowExecutions": {
+                    "$ref": "#/$defs/FlowExecutionList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "FlowExecutionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ExecutionRecord"
+            }
+        },
+        "ExecutionRecord": {
+            "type": "object",
+            "properties": {
+                "executionId": {
+                    "$ref": "#/$defs/ExecutionId"
+                },
+                "executionStatus": {
+                    "$ref": "#/$defs/ExecutionStatus"
+                },
+                "executionResult": {
+                    "$ref": "#/$defs/ExecutionResult"
+                },
+                "startedAt": {
+                    "$ref": "#/$defs/Date"
+                },
+                "lastUpdatedAt": {
+                    "$ref": "#/$defs/Date"
+                },
+                "dataPullStartTime": {
+                    "$ref": "#/$defs/Date"
+                },
+                "dataPullEndTime": {
+                    "$ref": "#/$defs/Date"
+                },
+                "metadataCatalogDetails": {
+                    "$ref": "#/$defs/MetadataCatalogDetails"
+                }
+            }
+        },
+        "ExecutionResult": {
+            "type": "object",
+            "properties": {
+                "errorInfo": {
+                    "$ref": "#/$defs/ErrorInfo"
+                },
+                "bytesProcessed": {
+                    "$ref": "#/$defs/Long"
+                },
+                "bytesWritten": {
+                    "$ref": "#/$defs/Long"
+                },
+                "recordsProcessed": {
+                    "$ref": "#/$defs/Long"
+                },
+                "numParallelProcesses": {
+                    "$ref": "#/$defs/Long"
+                },
+                "maxPageSize": {
+                    "$ref": "#/$defs/Long"
+                }
+            }
+        },
+        "ErrorInfo": {
+            "type": "object",
+            "properties": {
+                "putFailuresCount": {
+                    "$ref": "#/$defs/Long"
+                },
+                "executionMessage": {
+                    "$ref": "#/$defs/ExecutionMessage"
+                }
+            }
+        },
+        "ExecutionMessage": {
+            "type": "string"
+        },
+        "DescribeFlowExecutionRecordsRequest": {
+            "type": "object",
+            "properties": {
+                "flowName": {
+                    "$ref": "#/$defs/FlowName"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListConnectorEntitiesResponse": {
+            "type": "object",
+            "properties": {
+                "connectorEntityMap": {
+                    "$ref": "#/$defs/ConnectorEntityMap"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ConnectorEntityMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/ConnectorEntityList"
+            }
+        },
+        "ConnectorEntityList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ConnectorEntity"
+            }
+        },
+        "ConnectorEntity": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "label": {
+                    "$ref": "#/$defs/Label"
+                },
+                "hasNestedEntities": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "ListConnectorEntitiesRequest": {
+            "type": "object",
+            "properties": {
+                "connectorProfileName": {
+                    "$ref": "#/$defs/ConnectorProfileName"
+                },
+                "connectorType": {
+                    "$ref": "#/$defs/ConnectorType"
+                },
+                "entitiesPath": {
+                    "$ref": "#/$defs/EntitiesPath"
+                },
+                "apiVersion": {
+                    "$ref": "#/$defs/ApiVersion"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/ListEntitiesMaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "EntitiesPath": {
+            "type": "string"
+        },
+        "ListEntitiesMaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListConnectorsResponse": {
+            "type": "object",
+            "properties": {
+                "connectors": {
+                    "$ref": "#/$defs/ConnectorList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListConnectorsRequest": {
+            "type": "object",
+            "properties": {
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListFlowsResponse": {
+            "type": "object",
+            "properties": {
+                "flows": {
+                    "$ref": "#/$defs/FlowList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "FlowList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FlowDefinition"
+            }
+        },
+        "FlowDefinition": {
+            "type": "object",
+            "properties": {
+                "flowArn": {
+                    "$ref": "#/$defs/FlowArn"
+                },
+                "description": {
+                    "$ref": "#/$defs/FlowDescription"
+                },
+                "flowName": {
+                    "$ref": "#/$defs/FlowName"
+                },
+                "flowStatus": {
+                    "$ref": "#/$defs/FlowStatus"
+                },
+                "sourceConnectorType": {
+                    "$ref": "#/$defs/ConnectorType"
+                },
+                "sourceConnectorLabel": {
+                    "$ref": "#/$defs/ConnectorLabel"
+                },
+                "destinationConnectorType": {
+                    "$ref": "#/$defs/ConnectorType"
+                },
+                "destinationConnectorLabel": {
+                    "$ref": "#/$defs/ConnectorLabel"
+                },
+                "triggerType": {
+                    "$ref": "#/$defs/TriggerType"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Date"
+                },
+                "lastUpdatedAt": {
+                    "$ref": "#/$defs/Date"
+                },
+                "createdBy": {
+                    "$ref": "#/$defs/CreatedBy"
+                },
+                "lastUpdatedBy": {
+                    "$ref": "#/$defs/UpdatedBy"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                },
+                "lastRunExecutionDetails": {
+                    "$ref": "#/$defs/ExecutionDetails"
+                }
+            }
+        },
+        "ListFlowsRequest": {
+            "type": "object",
+            "properties": {
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/ARN"
+                }
+            }
+        },
+        "RegisterConnectorResponse": {
+            "type": "object",
+            "properties": {
+                "connectorArn": {
+                    "$ref": "#/$defs/ARN"
+                }
+            }
+        },
+        "RegisterConnectorRequest": {
+            "type": "object",
+            "properties": {
+                "connectorLabel": {
+                    "$ref": "#/$defs/ConnectorLabel"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "connectorProvisioningType": {
+                    "$ref": "#/$defs/ConnectorProvisioningType"
+                },
+                "connectorProvisioningConfig": {
+                    "$ref": "#/$defs/ConnectorProvisioningConfig"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                }
+            }
+        },
+        "ResetConnectorMetadataCacheResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "ResetConnectorMetadataCacheRequest": {
+            "type": "object",
+            "properties": {
+                "connectorProfileName": {
+                    "$ref": "#/$defs/ConnectorProfileName"
+                },
+                "connectorType": {
+                    "$ref": "#/$defs/ConnectorType"
+                },
+                "connectorEntityName": {
+                    "$ref": "#/$defs/EntityName"
+                },
+                "entitiesPath": {
+                    "$ref": "#/$defs/EntitiesPath"
+                },
+                "apiVersion": {
+                    "$ref": "#/$defs/ApiVersion"
+                }
+            }
+        },
+        "StartFlowResponse": {
+            "type": "object",
+            "properties": {
+                "flowArn": {
+                    "$ref": "#/$defs/FlowArn"
+                },
+                "flowStatus": {
+                    "$ref": "#/$defs/FlowStatus"
+                },
+                "executionId": {
+                    "$ref": "#/$defs/ExecutionId"
+                }
+            }
+        },
+        "StartFlowRequest": {
+            "type": "object",
+            "properties": {
+                "flowName": {
+                    "$ref": "#/$defs/FlowName"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                }
+            }
+        },
+        "StopFlowResponse": {
+            "type": "object",
+            "properties": {
+                "flowArn": {
+                    "$ref": "#/$defs/FlowArn"
+                },
+                "flowStatus": {
+                    "$ref": "#/$defs/FlowStatus"
+                }
+            }
+        },
+        "StopFlowRequest": {
+            "type": "object",
+            "properties": {
+                "flowName": {
+                    "$ref": "#/$defs/FlowName"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/ARN"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "UnregisterConnectorResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UnregisterConnectorRequest": {
+            "type": "object",
+            "properties": {
+                "connectorLabel": {
+                    "$ref": "#/$defs/ConnectorLabel"
+                },
+                "forceDelete": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/ARN"
+                },
+                "tagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "UpdateConnectorProfileResponse": {
+            "type": "object",
+            "properties": {
+                "connectorProfileArn": {
+                    "$ref": "#/$defs/ConnectorProfileArn"
+                }
+            }
+        },
+        "UpdateConnectorProfileRequest": {
+            "type": "object",
+            "properties": {
+                "connectorProfileName": {
+                    "$ref": "#/$defs/ConnectorProfileName"
+                },
+                "connectionMode": {
+                    "$ref": "#/$defs/ConnectionMode"
+                },
+                "connectorProfileConfig": {
+                    "$ref": "#/$defs/ConnectorProfileConfig"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                }
+            }
+        },
+        "UpdateConnectorRegistrationResponse": {
+            "type": "object",
+            "properties": {
+                "connectorArn": {
+                    "$ref": "#/$defs/ARN"
+                }
+            }
+        },
+        "UpdateConnectorRegistrationRequest": {
+            "type": "object",
+            "properties": {
+                "connectorLabel": {
+                    "$ref": "#/$defs/ConnectorLabel"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "connectorProvisioningConfig": {
+                    "$ref": "#/$defs/ConnectorProvisioningConfig"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                }
+            }
+        },
+        "UpdateFlowResponse": {
+            "type": "object",
+            "properties": {
+                "flowStatus": {
+                    "$ref": "#/$defs/FlowStatus"
+                }
+            }
+        },
+        "UpdateFlowRequest": {
+            "type": "object",
+            "properties": {
+                "flowName": {
+                    "$ref": "#/$defs/FlowName"
+                },
+                "description": {
+                    "$ref": "#/$defs/FlowDescription"
+                },
+                "triggerConfig": {
+                    "$ref": "#/$defs/TriggerConfig"
+                },
+                "sourceFlowConfig": {
+                    "$ref": "#/$defs/SourceFlowConfig"
+                },
+                "destinationFlowConfigList": {
+                    "$ref": "#/$defs/DestinationFlowConfigList"
+                },
+                "tasks": {
+                    "$ref": "#/$defs/Tasks"
+                },
+                "metadataCatalogConfig": {
+                    "$ref": "#/$defs/MetadataCatalogConfig"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://appflow-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://appflow-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://appflow.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://appflow.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

@@ -1,0 +1,2019 @@
+{
+    "name": "signer",
+    "commands": [
+        {
+            "name": "AddProfilePermission",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AddProfilePermission"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AddProfilePermissionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AddProfilePermissionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CancelSigningProfile",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CancelSigningProfile"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CancelSigningProfileRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeSigningJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeSigningJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeSigningJobResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeSigningJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetRevocationStatus",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetRevocationStatus"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetRevocationStatusResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetRevocationStatusRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetSigningPlatform",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetSigningPlatform"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetSigningPlatformResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetSigningPlatformRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetSigningProfile",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetSigningProfile"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetSigningProfileResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetSigningProfileRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListProfilePermissions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListProfilePermissions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListProfilePermissionsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListProfilePermissionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListSigningJobs",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListSigningJobs"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListSigningJobsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListSigningJobsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListSigningPlatforms",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListSigningPlatforms"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListSigningPlatformsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListSigningPlatformsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListSigningProfiles",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListSigningProfiles"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListSigningProfilesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListSigningProfilesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutSigningProfile",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutSigningProfile"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutSigningProfileResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutSigningProfileRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RemoveProfilePermission",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RemoveProfilePermission"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RemoveProfilePermissionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RemoveProfilePermissionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RevokeSignature",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RevokeSignature"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RevokeSignatureRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RevokeSigningProfile",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RevokeSigningProfile"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RevokeSigningProfileRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SignPayload",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SignPayload"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/SignPayloadResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SignPayloadRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartSigningJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartSigningJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartSigningJobResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartSigningJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "AddProfilePermissionResponse": {
+            "type": "object",
+            "properties": {
+                "revisionId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "String": {
+            "type": "string"
+        },
+        "AddProfilePermissionRequest": {
+            "type": "object",
+            "properties": {
+                "profileName": {
+                    "$ref": "#/$defs/ProfileName"
+                },
+                "profileVersion": {
+                    "$ref": "#/$defs/ProfileVersion"
+                },
+                "action": {
+                    "$ref": "#/$defs/String"
+                },
+                "principal": {
+                    "$ref": "#/$defs/String"
+                },
+                "revisionId": {
+                    "$ref": "#/$defs/String"
+                },
+                "statementId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ProfileName": {
+            "type": "string"
+        },
+        "ProfileVersion": {
+            "type": "string"
+        },
+        "CancelSigningProfileRequest": {
+            "type": "object",
+            "properties": {
+                "profileName": {
+                    "$ref": "#/$defs/ProfileName"
+                }
+            }
+        },
+        "DescribeSigningJobResponse": {
+            "type": "object",
+            "properties": {
+                "jobId": {
+                    "$ref": "#/$defs/JobId"
+                },
+                "source": {
+                    "$ref": "#/$defs/Source"
+                },
+                "signingMaterial": {
+                    "$ref": "#/$defs/SigningMaterial"
+                },
+                "platformId": {
+                    "$ref": "#/$defs/PlatformId"
+                },
+                "platformDisplayName": {
+                    "$ref": "#/$defs/DisplayName"
+                },
+                "profileName": {
+                    "$ref": "#/$defs/ProfileName"
+                },
+                "profileVersion": {
+                    "$ref": "#/$defs/ProfileVersion"
+                },
+                "overrides": {
+                    "$ref": "#/$defs/SigningPlatformOverrides"
+                },
+                "signingParameters": {
+                    "$ref": "#/$defs/SigningParameters"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "completedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "signatureExpiresAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "requestedBy": {
+                    "$ref": "#/$defs/RequestedBy"
+                },
+                "status": {
+                    "$ref": "#/$defs/SigningStatus"
+                },
+                "statusReason": {
+                    "$ref": "#/$defs/StatusReason"
+                },
+                "revocationRecord": {
+                    "$ref": "#/$defs/SigningJobRevocationRecord"
+                },
+                "signedObject": {
+                    "$ref": "#/$defs/SignedObject"
+                },
+                "jobOwner": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "jobInvoker": {
+                    "$ref": "#/$defs/AccountId"
+                }
+            }
+        },
+        "JobId": {
+            "type": "string"
+        },
+        "Source": {
+            "type": "object",
+            "properties": {
+                "s3": {
+                    "$ref": "#/$defs/S3Source"
+                }
+            }
+        },
+        "S3Source": {
+            "type": "object",
+            "properties": {
+                "bucketName": {
+                    "$ref": "#/$defs/BucketName"
+                },
+                "key": {
+                    "$ref": "#/$defs/Key"
+                },
+                "version": {
+                    "$ref": "#/$defs/Version"
+                }
+            }
+        },
+        "BucketName": {
+            "type": "string"
+        },
+        "Key": {
+            "type": "string"
+        },
+        "Version": {
+            "type": "string"
+        },
+        "SigningMaterial": {
+            "type": "object",
+            "properties": {
+                "certificateArn": {
+                    "$ref": "#/$defs/CertificateArn"
+                }
+            }
+        },
+        "CertificateArn": {
+            "type": "string"
+        },
+        "PlatformId": {
+            "type": "string"
+        },
+        "DisplayName": {
+            "type": "string"
+        },
+        "SigningPlatformOverrides": {
+            "type": "object",
+            "properties": {
+                "signingConfiguration": {
+                    "$ref": "#/$defs/SigningConfigurationOverrides"
+                },
+                "signingImageFormat": {
+                    "$ref": "#/$defs/ImageFormat"
+                }
+            }
+        },
+        "SigningConfigurationOverrides": {
+            "type": "object",
+            "properties": {
+                "encryptionAlgorithm": {
+                    "$ref": "#/$defs/EncryptionAlgorithm"
+                },
+                "hashAlgorithm": {
+                    "$ref": "#/$defs/HashAlgorithm"
+                }
+            }
+        },
+        "EncryptionAlgorithm": {
+            "enum": [
+                "RSA",
+                "ECDSA"
+            ]
+        },
+        "HashAlgorithm": {
+            "enum": [
+                "SHA1",
+                "SHA256"
+            ]
+        },
+        "ImageFormat": {
+            "enum": [
+                "JSON",
+                "JSONEmbedded",
+                "JSONDetached"
+            ]
+        },
+        "SigningParameters": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/SigningParameterValue"
+            }
+        },
+        "SigningParameterValue": {
+            "type": "string"
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "RequestedBy": {
+            "type": "string"
+        },
+        "SigningStatus": {
+            "enum": [
+                "InProgress",
+                "Failed",
+                "Succeeded"
+            ]
+        },
+        "StatusReason": {
+            "type": "string"
+        },
+        "SigningJobRevocationRecord": {
+            "type": "object",
+            "properties": {
+                "reason": {
+                    "$ref": "#/$defs/String"
+                },
+                "revokedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "revokedBy": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "SignedObject": {
+            "type": "object",
+            "properties": {
+                "s3": {
+                    "$ref": "#/$defs/S3SignedObject"
+                }
+            }
+        },
+        "S3SignedObject": {
+            "type": "object",
+            "properties": {
+                "bucketName": {
+                    "$ref": "#/$defs/BucketName"
+                },
+                "key": {
+                    "$ref": "#/$defs/Key"
+                }
+            }
+        },
+        "AccountId": {
+            "type": "string"
+        },
+        "DescribeSigningJobRequest": {
+            "type": "object",
+            "properties": {
+                "jobId": {
+                    "$ref": "#/$defs/JobId"
+                }
+            }
+        },
+        "GetRevocationStatusResponse": {
+            "type": "object",
+            "properties": {
+                "revokedEntities": {
+                    "$ref": "#/$defs/RevokedEntities"
+                }
+            }
+        },
+        "RevokedEntities": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "GetRevocationStatusRequest": {
+            "type": "object",
+            "properties": {
+                "signatureTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "platformId": {
+                    "$ref": "#/$defs/PlatformId"
+                },
+                "profileVersionArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "jobArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "certificateHashes": {
+                    "$ref": "#/$defs/CertificateHashes"
+                }
+            }
+        },
+        "Arn": {
+            "type": "string"
+        },
+        "CertificateHashes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "GetSigningPlatformResponse": {
+            "type": "object",
+            "properties": {
+                "platformId": {
+                    "$ref": "#/$defs/PlatformId"
+                },
+                "displayName": {
+                    "$ref": "#/$defs/DisplayName"
+                },
+                "partner": {
+                    "$ref": "#/$defs/String"
+                },
+                "target": {
+                    "$ref": "#/$defs/String"
+                },
+                "category": {
+                    "$ref": "#/$defs/Category"
+                },
+                "signingConfiguration": {
+                    "$ref": "#/$defs/SigningConfiguration"
+                },
+                "signingImageFormat": {
+                    "$ref": "#/$defs/SigningImageFormat"
+                },
+                "maxSizeInMB": {
+                    "$ref": "#/$defs/MaxSizeInMB"
+                },
+                "revocationSupported": {
+                    "$ref": "#/$defs/bool"
+                }
+            }
+        },
+        "Category": {
+            "enum": [
+                "AWSIoT"
+            ]
+        },
+        "SigningConfiguration": {
+            "type": "object",
+            "properties": {
+                "encryptionAlgorithmOptions": {
+                    "$ref": "#/$defs/EncryptionAlgorithmOptions"
+                },
+                "hashAlgorithmOptions": {
+                    "$ref": "#/$defs/HashAlgorithmOptions"
+                }
+            }
+        },
+        "EncryptionAlgorithmOptions": {
+            "type": "object",
+            "properties": {
+                "allowedValues": {
+                    "$ref": "#/$defs/EncryptionAlgorithms"
+                },
+                "defaultValue": {
+                    "$ref": "#/$defs/EncryptionAlgorithm"
+                }
+            }
+        },
+        "EncryptionAlgorithms": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EncryptionAlgorithm"
+            }
+        },
+        "HashAlgorithmOptions": {
+            "type": "object",
+            "properties": {
+                "allowedValues": {
+                    "$ref": "#/$defs/HashAlgorithms"
+                },
+                "defaultValue": {
+                    "$ref": "#/$defs/HashAlgorithm"
+                }
+            }
+        },
+        "HashAlgorithms": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/HashAlgorithm"
+            }
+        },
+        "SigningImageFormat": {
+            "type": "object",
+            "properties": {
+                "supportedFormats": {
+                    "$ref": "#/$defs/ImageFormats"
+                },
+                "defaultFormat": {
+                    "$ref": "#/$defs/ImageFormat"
+                }
+            }
+        },
+        "ImageFormats": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ImageFormat"
+            }
+        },
+        "MaxSizeInMB": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "bool": {
+            "type": "boolean"
+        },
+        "GetSigningPlatformRequest": {
+            "type": "object",
+            "properties": {
+                "platformId": {
+                    "$ref": "#/$defs/PlatformId"
+                }
+            }
+        },
+        "GetSigningProfileResponse": {
+            "type": "object",
+            "properties": {
+                "profileName": {
+                    "$ref": "#/$defs/ProfileName"
+                },
+                "profileVersion": {
+                    "$ref": "#/$defs/ProfileVersion"
+                },
+                "profileVersionArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "revocationRecord": {
+                    "$ref": "#/$defs/SigningProfileRevocationRecord"
+                },
+                "signingMaterial": {
+                    "$ref": "#/$defs/SigningMaterial"
+                },
+                "platformId": {
+                    "$ref": "#/$defs/PlatformId"
+                },
+                "platformDisplayName": {
+                    "$ref": "#/$defs/DisplayName"
+                },
+                "signatureValidityPeriod": {
+                    "$ref": "#/$defs/SignatureValidityPeriod"
+                },
+                "overrides": {
+                    "$ref": "#/$defs/SigningPlatformOverrides"
+                },
+                "signingParameters": {
+                    "$ref": "#/$defs/SigningParameters"
+                },
+                "status": {
+                    "$ref": "#/$defs/SigningProfileStatus"
+                },
+                "statusReason": {
+                    "$ref": "#/$defs/String"
+                },
+                "arn": {
+                    "$ref": "#/$defs/String"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "SigningProfileRevocationRecord": {
+            "type": "object",
+            "properties": {
+                "revocationEffectiveFrom": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "revokedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "revokedBy": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "SignatureValidityPeriod": {
+            "type": "object",
+            "properties": {
+                "value": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "type": {
+                    "$ref": "#/$defs/ValidityType"
+                }
+            }
+        },
+        "Integer": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ValidityType": {
+            "enum": [
+                "DAYS",
+                "MONTHS",
+                "YEARS"
+            ]
+        },
+        "SigningProfileStatus": {
+            "enum": [
+                "Active",
+                "Canceled",
+                "Revoked"
+            ]
+        },
+        "TagMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TagValue"
+            }
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "GetSigningProfileRequest": {
+            "type": "object",
+            "properties": {
+                "profileName": {
+                    "$ref": "#/$defs/ProfileName"
+                },
+                "profileOwner": {
+                    "$ref": "#/$defs/AccountId"
+                }
+            }
+        },
+        "ListProfilePermissionsResponse": {
+            "type": "object",
+            "properties": {
+                "revisionId": {
+                    "$ref": "#/$defs/String"
+                },
+                "policySizeBytes": {
+                    "$ref": "#/$defs/PolicySizeBytes"
+                },
+                "permissions": {
+                    "$ref": "#/$defs/Permissions"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "PolicySizeBytes": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "Permissions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Permission"
+            }
+        },
+        "Permission": {
+            "type": "object",
+            "properties": {
+                "action": {
+                    "$ref": "#/$defs/String"
+                },
+                "principal": {
+                    "$ref": "#/$defs/String"
+                },
+                "statementId": {
+                    "$ref": "#/$defs/String"
+                },
+                "profileVersion": {
+                    "$ref": "#/$defs/ProfileVersion"
+                }
+            }
+        },
+        "ListProfilePermissionsRequest": {
+            "type": "object",
+            "properties": {
+                "profileName": {
+                    "$ref": "#/$defs/ProfileName"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListSigningJobsResponse": {
+            "type": "object",
+            "properties": {
+                "jobs": {
+                    "$ref": "#/$defs/SigningJobs"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "SigningJobs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SigningJob"
+            }
+        },
+        "SigningJob": {
+            "type": "object",
+            "properties": {
+                "jobId": {
+                    "$ref": "#/$defs/JobId"
+                },
+                "source": {
+                    "$ref": "#/$defs/Source"
+                },
+                "signedObject": {
+                    "$ref": "#/$defs/SignedObject"
+                },
+                "signingMaterial": {
+                    "$ref": "#/$defs/SigningMaterial"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "status": {
+                    "$ref": "#/$defs/SigningStatus"
+                },
+                "isRevoked": {
+                    "$ref": "#/$defs/bool"
+                },
+                "profileName": {
+                    "$ref": "#/$defs/ProfileName"
+                },
+                "profileVersion": {
+                    "$ref": "#/$defs/ProfileVersion"
+                },
+                "platformId": {
+                    "$ref": "#/$defs/PlatformId"
+                },
+                "platformDisplayName": {
+                    "$ref": "#/$defs/DisplayName"
+                },
+                "signatureExpiresAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "jobOwner": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "jobInvoker": {
+                    "$ref": "#/$defs/AccountId"
+                }
+            }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "ListSigningJobsRequest": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "$ref": "#/$defs/SigningStatus"
+                },
+                "platformId": {
+                    "$ref": "#/$defs/PlatformId"
+                },
+                "requestedBy": {
+                    "$ref": "#/$defs/RequestedBy"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "isRevoked": {
+                    "$ref": "#/$defs/bool"
+                },
+                "signatureExpiresBefore": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "signatureExpiresAfter": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "jobInvoker": {
+                    "$ref": "#/$defs/AccountId"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListSigningPlatformsResponse": {
+            "type": "object",
+            "properties": {
+                "platforms": {
+                    "$ref": "#/$defs/SigningPlatforms"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "SigningPlatforms": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SigningPlatform"
+            }
+        },
+        "SigningPlatform": {
+            "type": "object",
+            "properties": {
+                "platformId": {
+                    "$ref": "#/$defs/String"
+                },
+                "displayName": {
+                    "$ref": "#/$defs/String"
+                },
+                "partner": {
+                    "$ref": "#/$defs/String"
+                },
+                "target": {
+                    "$ref": "#/$defs/String"
+                },
+                "category": {
+                    "$ref": "#/$defs/Category"
+                },
+                "signingConfiguration": {
+                    "$ref": "#/$defs/SigningConfiguration"
+                },
+                "signingImageFormat": {
+                    "$ref": "#/$defs/SigningImageFormat"
+                },
+                "maxSizeInMB": {
+                    "$ref": "#/$defs/MaxSizeInMB"
+                },
+                "revocationSupported": {
+                    "$ref": "#/$defs/bool"
+                }
+            }
+        },
+        "ListSigningPlatformsRequest": {
+            "type": "object",
+            "properties": {
+                "category": {
+                    "$ref": "#/$defs/String"
+                },
+                "partner": {
+                    "$ref": "#/$defs/String"
+                },
+                "target": {
+                    "$ref": "#/$defs/String"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListSigningProfilesResponse": {
+            "type": "object",
+            "properties": {
+                "profiles": {
+                    "$ref": "#/$defs/SigningProfiles"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "SigningProfiles": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SigningProfile"
+            }
+        },
+        "SigningProfile": {
+            "type": "object",
+            "properties": {
+                "profileName": {
+                    "$ref": "#/$defs/ProfileName"
+                },
+                "profileVersion": {
+                    "$ref": "#/$defs/ProfileVersion"
+                },
+                "profileVersionArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "signingMaterial": {
+                    "$ref": "#/$defs/SigningMaterial"
+                },
+                "signatureValidityPeriod": {
+                    "$ref": "#/$defs/SignatureValidityPeriod"
+                },
+                "platformId": {
+                    "$ref": "#/$defs/PlatformId"
+                },
+                "platformDisplayName": {
+                    "$ref": "#/$defs/DisplayName"
+                },
+                "signingParameters": {
+                    "$ref": "#/$defs/SigningParameters"
+                },
+                "status": {
+                    "$ref": "#/$defs/SigningProfileStatus"
+                },
+                "arn": {
+                    "$ref": "#/$defs/String"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "ListSigningProfilesRequest": {
+            "type": "object",
+            "properties": {
+                "includeCanceled": {
+                    "$ref": "#/$defs/bool"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "platformId": {
+                    "$ref": "#/$defs/PlatformId"
+                },
+                "statuses": {
+                    "$ref": "#/$defs/Statuses"
+                }
+            }
+        },
+        "Statuses": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SigningProfileStatus"
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "PutSigningProfileResponse": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/String"
+                },
+                "profileVersion": {
+                    "$ref": "#/$defs/ProfileVersion"
+                },
+                "profileVersionArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "PutSigningProfileRequest": {
+            "type": "object",
+            "properties": {
+                "profileName": {
+                    "$ref": "#/$defs/ProfileName"
+                },
+                "signingMaterial": {
+                    "$ref": "#/$defs/SigningMaterial"
+                },
+                "signatureValidityPeriod": {
+                    "$ref": "#/$defs/SignatureValidityPeriod"
+                },
+                "platformId": {
+                    "$ref": "#/$defs/PlatformId"
+                },
+                "overrides": {
+                    "$ref": "#/$defs/SigningPlatformOverrides"
+                },
+                "signingParameters": {
+                    "$ref": "#/$defs/SigningParameters"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "RemoveProfilePermissionResponse": {
+            "type": "object",
+            "properties": {
+                "revisionId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "RemoveProfilePermissionRequest": {
+            "type": "object",
+            "properties": {
+                "profileName": {
+                    "$ref": "#/$defs/ProfileName"
+                },
+                "revisionId": {
+                    "$ref": "#/$defs/String"
+                },
+                "statementId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "RevokeSignatureRequest": {
+            "type": "object",
+            "properties": {
+                "jobId": {
+                    "$ref": "#/$defs/JobId"
+                },
+                "jobOwner": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "reason": {
+                    "$ref": "#/$defs/RevocationReasonString"
+                }
+            }
+        },
+        "RevocationReasonString": {
+            "type": "string"
+        },
+        "RevokeSigningProfileRequest": {
+            "type": "object",
+            "properties": {
+                "profileName": {
+                    "$ref": "#/$defs/ProfileName"
+                },
+                "profileVersion": {
+                    "$ref": "#/$defs/ProfileVersion"
+                },
+                "reason": {
+                    "$ref": "#/$defs/RevocationReasonString"
+                },
+                "effectiveTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "SignPayloadResponse": {
+            "type": "object",
+            "properties": {
+                "jobId": {
+                    "$ref": "#/$defs/JobId"
+                },
+                "jobOwner": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "metadata": {
+                    "$ref": "#/$defs/Metadata"
+                },
+                "signature": {
+                    "$ref": "#/$defs/Blob"
+                }
+            }
+        },
+        "Metadata": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "SignPayloadRequest": {
+            "type": "object",
+            "properties": {
+                "profileName": {
+                    "$ref": "#/$defs/ProfileName"
+                },
+                "profileOwner": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "payload": {
+                    "$ref": "#/$defs/Payload"
+                },
+                "payloadFormat": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "Payload": {
+            "type": "string",
+            "format": "binary"
+        },
+        "StartSigningJobResponse": {
+            "type": "object",
+            "properties": {
+                "jobId": {
+                    "$ref": "#/$defs/JobId"
+                },
+                "jobOwner": {
+                    "$ref": "#/$defs/AccountId"
+                }
+            }
+        },
+        "StartSigningJobRequest": {
+            "type": "object",
+            "properties": {
+                "source": {
+                    "$ref": "#/$defs/Source"
+                },
+                "destination": {
+                    "$ref": "#/$defs/Destination"
+                },
+                "profileName": {
+                    "$ref": "#/$defs/ProfileName"
+                },
+                "clientRequestToken": {
+                    "$ref": "#/$defs/ClientRequestToken"
+                },
+                "profileOwner": {
+                    "$ref": "#/$defs/AccountId"
+                }
+            }
+        },
+        "Destination": {
+            "type": "object",
+            "properties": {
+                "s3": {
+                    "$ref": "#/$defs/S3Destination"
+                }
+            }
+        },
+        "S3Destination": {
+            "type": "object",
+            "properties": {
+                "bucketName": {
+                    "$ref": "#/$defs/BucketName"
+                },
+                "prefix": {
+                    "$ref": "#/$defs/Prefix"
+                }
+            }
+        },
+        "Prefix": {
+            "type": "string"
+        },
+        "ClientRequestToken": {
+            "type": "string"
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "tagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://signer-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://signer-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://signer.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://signer.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

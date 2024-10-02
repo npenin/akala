@@ -1,0 +1,5066 @@
+{
+    "name": "codepipeline",
+    "commands": [
+        {
+            "name": "AcknowledgeJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AcknowledgeJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AcknowledgeJobOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AcknowledgeJobInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "AcknowledgeThirdPartyJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AcknowledgeThirdPartyJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AcknowledgeThirdPartyJobOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AcknowledgeThirdPartyJobInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateCustomActionType",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateCustomActionType"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateCustomActionTypeOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateCustomActionTypeInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreatePipeline",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreatePipeline"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreatePipelineOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreatePipelineInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteCustomActionType",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteCustomActionType"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteCustomActionTypeInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeletePipeline",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeletePipeline"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeletePipelineInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteWebhook",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteWebhook"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteWebhookOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteWebhookInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeregisterWebhookWithThirdParty",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeregisterWebhookWithThirdParty"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeregisterWebhookWithThirdPartyOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeregisterWebhookWithThirdPartyInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DisableStageTransition",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DisableStageTransition"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DisableStageTransitionInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "EnableStageTransition",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "EnableStageTransition"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/EnableStageTransitionInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetActionType",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetActionType"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetActionTypeOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetActionTypeInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetJobDetails",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetJobDetails"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetJobDetailsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetJobDetailsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetPipeline",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetPipeline"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetPipelineOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetPipelineInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetPipelineExecution",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetPipelineExecution"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetPipelineExecutionOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetPipelineExecutionInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetPipelineState",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetPipelineState"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetPipelineStateOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetPipelineStateInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetThirdPartyJobDetails",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetThirdPartyJobDetails"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetThirdPartyJobDetailsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetThirdPartyJobDetailsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListActionExecutions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListActionExecutions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListActionExecutionsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListActionExecutionsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListActionTypes",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListActionTypes"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListActionTypesOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListActionTypesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListPipelineExecutions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListPipelineExecutions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListPipelineExecutionsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListPipelineExecutionsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListPipelines",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListPipelines"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListPipelinesOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListPipelinesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListRuleExecutions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListRuleExecutions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListRuleExecutionsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListRuleExecutionsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListRuleTypes",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListRuleTypes"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListRuleTypesOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListRuleTypesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListWebhooks",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListWebhooks"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListWebhooksOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListWebhooksInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "OverrideStageCondition",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "OverrideStageCondition"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/OverrideStageConditionInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PollForJobs",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PollForJobs"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PollForJobsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PollForJobsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PollForThirdPartyJobs",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PollForThirdPartyJobs"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PollForThirdPartyJobsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PollForThirdPartyJobsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutActionRevision",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutActionRevision"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutActionRevisionOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutActionRevisionInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutApprovalResult",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutApprovalResult"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutApprovalResultOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutApprovalResultInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutJobFailureResult",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutJobFailureResult"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutJobFailureResultInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutJobSuccessResult",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutJobSuccessResult"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutJobSuccessResultInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutThirdPartyJobFailureResult",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutThirdPartyJobFailureResult"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutThirdPartyJobFailureResultInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutThirdPartyJobSuccessResult",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutThirdPartyJobSuccessResult"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutThirdPartyJobSuccessResultInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutWebhook",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutWebhook"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutWebhookOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutWebhookInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RegisterWebhookWithThirdParty",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RegisterWebhookWithThirdParty"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RegisterWebhookWithThirdPartyOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RegisterWebhookWithThirdPartyInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RetryStageExecution",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RetryStageExecution"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RetryStageExecutionOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RetryStageExecutionInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RollbackStage",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RollbackStage"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RollbackStageOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RollbackStageInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartPipelineExecution",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartPipelineExecution"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartPipelineExecutionOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartPipelineExecutionInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StopPipelineExecution",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StopPipelineExecution"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StopPipelineExecutionOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StopPipelineExecutionInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateActionType",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateActionType"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateActionTypeInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdatePipeline",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdatePipeline"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdatePipelineOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdatePipelineInput"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "AcknowledgeJobOutput": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "$ref": "#/$defs/JobStatus"
+                }
+            }
+        },
+        "JobStatus": {
+            "enum": [
+                "Created",
+                "Queued",
+                "Dispatched",
+                "InProgress",
+                "TimedOut",
+                "Succeeded",
+                "Failed"
+            ]
+        },
+        "AcknowledgeJobInput": {
+            "type": "object",
+            "properties": {
+                "jobId": {
+                    "$ref": "#/$defs/JobId"
+                },
+                "nonce": {
+                    "$ref": "#/$defs/Nonce"
+                }
+            }
+        },
+        "JobId": {
+            "type": "string"
+        },
+        "Nonce": {
+            "type": "string"
+        },
+        "AcknowledgeThirdPartyJobOutput": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "$ref": "#/$defs/JobStatus"
+                }
+            }
+        },
+        "AcknowledgeThirdPartyJobInput": {
+            "type": "object",
+            "properties": {
+                "jobId": {
+                    "$ref": "#/$defs/ThirdPartyJobId"
+                },
+                "nonce": {
+                    "$ref": "#/$defs/Nonce"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                }
+            }
+        },
+        "ThirdPartyJobId": {
+            "type": "string"
+        },
+        "ClientToken": {
+            "type": "string"
+        },
+        "CreateCustomActionTypeOutput": {
+            "type": "object",
+            "properties": {
+                "actionType": {
+                    "$ref": "#/$defs/ActionType"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "ActionType": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/ActionTypeId"
+                },
+                "settings": {
+                    "$ref": "#/$defs/ActionTypeSettings"
+                },
+                "actionConfigurationProperties": {
+                    "$ref": "#/$defs/ActionConfigurationPropertyList"
+                },
+                "inputArtifactDetails": {
+                    "$ref": "#/$defs/ArtifactDetails"
+                },
+                "outputArtifactDetails": {
+                    "$ref": "#/$defs/ArtifactDetails"
+                }
+            }
+        },
+        "ActionTypeId": {
+            "type": "object",
+            "properties": {
+                "category": {
+                    "$ref": "#/$defs/ActionCategory"
+                },
+                "owner": {
+                    "$ref": "#/$defs/ActionOwner"
+                },
+                "provider": {
+                    "$ref": "#/$defs/ActionProvider"
+                },
+                "version": {
+                    "$ref": "#/$defs/Version"
+                }
+            }
+        },
+        "ActionCategory": {
+            "enum": [
+                "Source",
+                "Build",
+                "Deploy",
+                "Test",
+                "Invoke",
+                "Approval"
+            ]
+        },
+        "ActionOwner": {
+            "enum": [
+                "AWS",
+                "ThirdParty",
+                "Custom"
+            ]
+        },
+        "ActionProvider": {
+            "type": "string"
+        },
+        "Version": {
+            "type": "string"
+        },
+        "ActionTypeSettings": {
+            "type": "object",
+            "properties": {
+                "thirdPartyConfigurationUrl": {
+                    "$ref": "#/$defs/Url"
+                },
+                "entityUrlTemplate": {
+                    "$ref": "#/$defs/UrlTemplate"
+                },
+                "executionUrlTemplate": {
+                    "$ref": "#/$defs/UrlTemplate"
+                },
+                "revisionUrlTemplate": {
+                    "$ref": "#/$defs/UrlTemplate"
+                }
+            }
+        },
+        "Url": {
+            "type": "string"
+        },
+        "UrlTemplate": {
+            "type": "string"
+        },
+        "ActionConfigurationPropertyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ActionConfigurationProperty"
+            }
+        },
+        "ActionConfigurationProperty": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/ActionConfigurationKey"
+                },
+                "required": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "key": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "secret": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "queryable": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "type": {
+                    "$ref": "#/$defs/ActionConfigurationPropertyType"
+                }
+            }
+        },
+        "ActionConfigurationKey": {
+            "type": "string"
+        },
+        "Boolean": {
+            "type": "boolean"
+        },
+        "Description": {
+            "type": "string"
+        },
+        "ActionConfigurationPropertyType": {
+            "enum": [
+                "String",
+                "Number",
+                "Boolean"
+            ]
+        },
+        "ArtifactDetails": {
+            "type": "object",
+            "properties": {
+                "minimumCount": {
+                    "$ref": "#/$defs/MinimumArtifactCount"
+                },
+                "maximumCount": {
+                    "$ref": "#/$defs/MaximumArtifactCount"
+                }
+            }
+        },
+        "MinimumArtifactCount": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "MaximumArtifactCount": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "CreateCustomActionTypeInput": {
+            "type": "object",
+            "properties": {
+                "category": {
+                    "$ref": "#/$defs/ActionCategory"
+                },
+                "provider": {
+                    "$ref": "#/$defs/ActionProvider"
+                },
+                "version": {
+                    "$ref": "#/$defs/Version"
+                },
+                "settings": {
+                    "$ref": "#/$defs/ActionTypeSettings"
+                },
+                "configurationProperties": {
+                    "$ref": "#/$defs/ActionConfigurationPropertyList"
+                },
+                "inputArtifactDetails": {
+                    "$ref": "#/$defs/ArtifactDetails"
+                },
+                "outputArtifactDetails": {
+                    "$ref": "#/$defs/ArtifactDetails"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "CreatePipelineOutput": {
+            "type": "object",
+            "properties": {
+                "pipeline": {
+                    "$ref": "#/$defs/PipelineDeclaration"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "PipelineDeclaration": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/PipelineName"
+                },
+                "roleArn": {
+                    "$ref": "#/$defs/RoleArn"
+                },
+                "artifactStore": {
+                    "$ref": "#/$defs/ArtifactStore"
+                },
+                "artifactStores": {
+                    "$ref": "#/$defs/ArtifactStoreMap"
+                },
+                "stages": {
+                    "$ref": "#/$defs/PipelineStageDeclarationList"
+                },
+                "version": {
+                    "$ref": "#/$defs/PipelineVersion"
+                },
+                "executionMode": {
+                    "$ref": "#/$defs/ExecutionMode"
+                },
+                "pipelineType": {
+                    "$ref": "#/$defs/PipelineType"
+                },
+                "variables": {
+                    "$ref": "#/$defs/PipelineVariableDeclarationList"
+                },
+                "triggers": {
+                    "$ref": "#/$defs/PipelineTriggerDeclarationList"
+                }
+            }
+        },
+        "PipelineName": {
+            "type": "string"
+        },
+        "RoleArn": {
+            "type": "string"
+        },
+        "ArtifactStore": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/$defs/ArtifactStoreType"
+                },
+                "location": {
+                    "$ref": "#/$defs/ArtifactStoreLocation"
+                },
+                "encryptionKey": {
+                    "$ref": "#/$defs/EncryptionKey"
+                }
+            }
+        },
+        "ArtifactStoreType": {
+            "enum": [
+                "S3"
+            ]
+        },
+        "ArtifactStoreLocation": {
+            "type": "string"
+        },
+        "EncryptionKey": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/EncryptionKeyId"
+                },
+                "type": {
+                    "$ref": "#/$defs/EncryptionKeyType"
+                }
+            }
+        },
+        "EncryptionKeyId": {
+            "type": "string"
+        },
+        "EncryptionKeyType": {
+            "enum": [
+                "KMS"
+            ]
+        },
+        "ArtifactStoreMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/ArtifactStore"
+            }
+        },
+        "PipelineStageDeclarationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/StageDeclaration"
+            }
+        },
+        "StageDeclaration": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/StageName"
+                },
+                "blockers": {
+                    "$ref": "#/$defs/StageBlockerDeclarationList"
+                },
+                "actions": {
+                    "$ref": "#/$defs/StageActionDeclarationList"
+                },
+                "onFailure": {
+                    "$ref": "#/$defs/FailureConditions"
+                },
+                "onSuccess": {
+                    "$ref": "#/$defs/SuccessConditions"
+                },
+                "beforeEntry": {
+                    "$ref": "#/$defs/BeforeEntryConditions"
+                }
+            }
+        },
+        "StageName": {
+            "type": "string"
+        },
+        "StageBlockerDeclarationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BlockerDeclaration"
+            }
+        },
+        "BlockerDeclaration": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/BlockerName"
+                },
+                "type": {
+                    "$ref": "#/$defs/BlockerType"
+                }
+            }
+        },
+        "BlockerName": {
+            "type": "string"
+        },
+        "BlockerType": {
+            "enum": [
+                "Schedule"
+            ]
+        },
+        "StageActionDeclarationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ActionDeclaration"
+            }
+        },
+        "ActionDeclaration": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/ActionName"
+                },
+                "actionTypeId": {
+                    "$ref": "#/$defs/ActionTypeId"
+                },
+                "runOrder": {
+                    "$ref": "#/$defs/ActionRunOrder"
+                },
+                "configuration": {
+                    "$ref": "#/$defs/ActionConfigurationMap"
+                },
+                "outputArtifacts": {
+                    "$ref": "#/$defs/OutputArtifactList"
+                },
+                "inputArtifacts": {
+                    "$ref": "#/$defs/InputArtifactList"
+                },
+                "roleArn": {
+                    "$ref": "#/$defs/RoleArn"
+                },
+                "region": {
+                    "$ref": "#/$defs/AWSRegionName"
+                },
+                "namespace": {
+                    "$ref": "#/$defs/ActionNamespace"
+                },
+                "timeoutInMinutes": {
+                    "$ref": "#/$defs/ActionTimeout"
+                }
+            }
+        },
+        "ActionName": {
+            "type": "string"
+        },
+        "ActionRunOrder": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ActionConfigurationMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/ActionConfigurationValue"
+            }
+        },
+        "ActionConfigurationValue": {
+            "type": "string"
+        },
+        "OutputArtifactList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/OutputArtifact"
+            }
+        },
+        "OutputArtifact": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/ArtifactName"
+                }
+            }
+        },
+        "ArtifactName": {
+            "type": "string"
+        },
+        "InputArtifactList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/InputArtifact"
+            }
+        },
+        "InputArtifact": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/ArtifactName"
+                }
+            }
+        },
+        "AWSRegionName": {
+            "type": "string"
+        },
+        "ActionNamespace": {
+            "type": "string"
+        },
+        "ActionTimeout": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "FailureConditions": {
+            "type": "object",
+            "properties": {
+                "result": {
+                    "$ref": "#/$defs/Result"
+                },
+                "conditions": {
+                    "$ref": "#/$defs/ConditionList"
+                }
+            }
+        },
+        "Result": {
+            "enum": [
+                "ROLLBACK",
+                "FAIL"
+            ]
+        },
+        "ConditionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Condition"
+            }
+        },
+        "Condition": {
+            "type": "object",
+            "properties": {
+                "result": {
+                    "$ref": "#/$defs/Result"
+                },
+                "rules": {
+                    "$ref": "#/$defs/RuleDeclarationList"
+                }
+            }
+        },
+        "RuleDeclarationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RuleDeclaration"
+            }
+        },
+        "RuleDeclaration": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/RuleName"
+                },
+                "ruleTypeId": {
+                    "$ref": "#/$defs/RuleTypeId"
+                },
+                "configuration": {
+                    "$ref": "#/$defs/RuleConfigurationMap"
+                },
+                "inputArtifacts": {
+                    "$ref": "#/$defs/InputArtifactList"
+                },
+                "roleArn": {
+                    "$ref": "#/$defs/RoleArn"
+                },
+                "region": {
+                    "$ref": "#/$defs/AWSRegionName"
+                },
+                "timeoutInMinutes": {
+                    "$ref": "#/$defs/RuleTimeout"
+                }
+            }
+        },
+        "RuleName": {
+            "type": "string"
+        },
+        "RuleTypeId": {
+            "type": "object",
+            "properties": {
+                "category": {
+                    "$ref": "#/$defs/RuleCategory"
+                },
+                "owner": {
+                    "$ref": "#/$defs/RuleOwner"
+                },
+                "provider": {
+                    "$ref": "#/$defs/RuleProvider"
+                },
+                "version": {
+                    "$ref": "#/$defs/Version"
+                }
+            }
+        },
+        "RuleCategory": {
+            "enum": [
+                "Rule"
+            ]
+        },
+        "RuleOwner": {
+            "enum": [
+                "AWS"
+            ]
+        },
+        "RuleProvider": {
+            "type": "string"
+        },
+        "RuleConfigurationMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/RuleConfigurationValue"
+            }
+        },
+        "RuleConfigurationValue": {
+            "type": "string"
+        },
+        "RuleTimeout": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "SuccessConditions": {
+            "type": "object",
+            "properties": {
+                "conditions": {
+                    "$ref": "#/$defs/ConditionList"
+                }
+            }
+        },
+        "BeforeEntryConditions": {
+            "type": "object",
+            "properties": {
+                "conditions": {
+                    "$ref": "#/$defs/ConditionList"
+                }
+            }
+        },
+        "PipelineVersion": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ExecutionMode": {
+            "enum": [
+                "QUEUED",
+                "SUPERSEDED",
+                "PARALLEL"
+            ]
+        },
+        "PipelineType": {
+            "enum": [
+                "V1",
+                "V2"
+            ]
+        },
+        "PipelineVariableDeclarationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PipelineVariableDeclaration"
+            }
+        },
+        "PipelineVariableDeclaration": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/PipelineVariableName"
+                },
+                "defaultValue": {
+                    "$ref": "#/$defs/PipelineVariableValue"
+                },
+                "description": {
+                    "$ref": "#/$defs/PipelineVariableDescription"
+                }
+            }
+        },
+        "PipelineVariableName": {
+            "type": "string"
+        },
+        "PipelineVariableValue": {
+            "type": "string"
+        },
+        "PipelineVariableDescription": {
+            "type": "string"
+        },
+        "PipelineTriggerDeclarationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PipelineTriggerDeclaration"
+            }
+        },
+        "PipelineTriggerDeclaration": {
+            "type": "object",
+            "properties": {
+                "providerType": {
+                    "$ref": "#/$defs/PipelineTriggerProviderType"
+                },
+                "gitConfiguration": {
+                    "$ref": "#/$defs/GitConfiguration"
+                }
+            }
+        },
+        "PipelineTriggerProviderType": {
+            "enum": [
+                "CodeStarSourceConnection"
+            ]
+        },
+        "GitConfiguration": {
+            "type": "object",
+            "properties": {
+                "sourceActionName": {
+                    "$ref": "#/$defs/ActionName"
+                },
+                "push": {
+                    "$ref": "#/$defs/GitPushFilterList"
+                },
+                "pullRequest": {
+                    "$ref": "#/$defs/GitPullRequestFilterList"
+                }
+            }
+        },
+        "GitPushFilterList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/GitPushFilter"
+            }
+        },
+        "GitPushFilter": {
+            "type": "object",
+            "properties": {
+                "tags": {
+                    "$ref": "#/$defs/GitTagFilterCriteria"
+                },
+                "branches": {
+                    "$ref": "#/$defs/GitBranchFilterCriteria"
+                },
+                "filePaths": {
+                    "$ref": "#/$defs/GitFilePathFilterCriteria"
+                }
+            }
+        },
+        "GitTagFilterCriteria": {
+            "type": "object",
+            "properties": {
+                "includes": {
+                    "$ref": "#/$defs/GitTagPatternList"
+                },
+                "excludes": {
+                    "$ref": "#/$defs/GitTagPatternList"
+                }
+            }
+        },
+        "GitTagPatternList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/GitTagNamePattern"
+            }
+        },
+        "GitTagNamePattern": {
+            "type": "string"
+        },
+        "GitBranchFilterCriteria": {
+            "type": "object",
+            "properties": {
+                "includes": {
+                    "$ref": "#/$defs/GitBranchPatternList"
+                },
+                "excludes": {
+                    "$ref": "#/$defs/GitBranchPatternList"
+                }
+            }
+        },
+        "GitBranchPatternList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/GitBranchNamePattern"
+            }
+        },
+        "GitBranchNamePattern": {
+            "type": "string"
+        },
+        "GitFilePathFilterCriteria": {
+            "type": "object",
+            "properties": {
+                "includes": {
+                    "$ref": "#/$defs/GitFilePathPatternList"
+                },
+                "excludes": {
+                    "$ref": "#/$defs/GitFilePathPatternList"
+                }
+            }
+        },
+        "GitFilePathPatternList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/GitFilePathPattern"
+            }
+        },
+        "GitFilePathPattern": {
+            "type": "string"
+        },
+        "GitPullRequestFilterList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/GitPullRequestFilter"
+            }
+        },
+        "GitPullRequestFilter": {
+            "type": "object",
+            "properties": {
+                "events": {
+                    "$ref": "#/$defs/GitPullRequestEventTypeList"
+                },
+                "branches": {
+                    "$ref": "#/$defs/GitBranchFilterCriteria"
+                },
+                "filePaths": {
+                    "$ref": "#/$defs/GitFilePathFilterCriteria"
+                }
+            }
+        },
+        "GitPullRequestEventTypeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/GitPullRequestEventType"
+            }
+        },
+        "GitPullRequestEventType": {
+            "enum": [
+                "OPEN",
+                "UPDATED",
+                "CLOSED"
+            ]
+        },
+        "CreatePipelineInput": {
+            "type": "object",
+            "properties": {
+                "pipeline": {
+                    "$ref": "#/$defs/PipelineDeclaration"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "DeleteCustomActionTypeInput": {
+            "type": "object",
+            "properties": {
+                "category": {
+                    "$ref": "#/$defs/ActionCategory"
+                },
+                "provider": {
+                    "$ref": "#/$defs/ActionProvider"
+                },
+                "version": {
+                    "$ref": "#/$defs/Version"
+                }
+            }
+        },
+        "DeletePipelineInput": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/PipelineName"
+                }
+            }
+        },
+        "DeleteWebhookOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteWebhookInput": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/WebhookName"
+                }
+            }
+        },
+        "WebhookName": {
+            "type": "string"
+        },
+        "DeregisterWebhookWithThirdPartyOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeregisterWebhookWithThirdPartyInput": {
+            "type": "object",
+            "properties": {
+                "webhookName": {
+                    "$ref": "#/$defs/WebhookName"
+                }
+            }
+        },
+        "DisableStageTransitionInput": {
+            "type": "object",
+            "properties": {
+                "pipelineName": {
+                    "$ref": "#/$defs/PipelineName"
+                },
+                "stageName": {
+                    "$ref": "#/$defs/StageName"
+                },
+                "transitionType": {
+                    "$ref": "#/$defs/StageTransitionType"
+                },
+                "reason": {
+                    "$ref": "#/$defs/DisabledReason"
+                }
+            }
+        },
+        "StageTransitionType": {
+            "enum": [
+                "Inbound",
+                "Outbound"
+            ]
+        },
+        "DisabledReason": {
+            "type": "string"
+        },
+        "EnableStageTransitionInput": {
+            "type": "object",
+            "properties": {
+                "pipelineName": {
+                    "$ref": "#/$defs/PipelineName"
+                },
+                "stageName": {
+                    "$ref": "#/$defs/StageName"
+                },
+                "transitionType": {
+                    "$ref": "#/$defs/StageTransitionType"
+                }
+            }
+        },
+        "GetActionTypeOutput": {
+            "type": "object",
+            "properties": {
+                "actionType": {
+                    "$ref": "#/$defs/ActionTypeDeclaration"
+                }
+            }
+        },
+        "ActionTypeDeclaration": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "$ref": "#/$defs/ActionTypeDescription"
+                },
+                "executor": {
+                    "$ref": "#/$defs/ActionTypeExecutor"
+                },
+                "id": {
+                    "$ref": "#/$defs/ActionTypeIdentifier"
+                },
+                "inputArtifactDetails": {
+                    "$ref": "#/$defs/ActionTypeArtifactDetails"
+                },
+                "outputArtifactDetails": {
+                    "$ref": "#/$defs/ActionTypeArtifactDetails"
+                },
+                "permissions": {
+                    "$ref": "#/$defs/ActionTypePermissions"
+                },
+                "properties": {
+                    "$ref": "#/$defs/ActionTypeProperties"
+                },
+                "urls": {
+                    "$ref": "#/$defs/ActionTypeUrls"
+                }
+            }
+        },
+        "ActionTypeDescription": {
+            "type": "string"
+        },
+        "ActionTypeExecutor": {
+            "type": "object",
+            "properties": {
+                "configuration": {
+                    "$ref": "#/$defs/ExecutorConfiguration"
+                },
+                "type": {
+                    "$ref": "#/$defs/ExecutorType"
+                },
+                "policyStatementsTemplate": {
+                    "$ref": "#/$defs/PolicyStatementsTemplate"
+                },
+                "jobTimeout": {
+                    "$ref": "#/$defs/JobTimeout"
+                }
+            }
+        },
+        "ExecutorConfiguration": {
+            "type": "object",
+            "properties": {
+                "lambdaExecutorConfiguration": {
+                    "$ref": "#/$defs/LambdaExecutorConfiguration"
+                },
+                "jobWorkerExecutorConfiguration": {
+                    "$ref": "#/$defs/JobWorkerExecutorConfiguration"
+                }
+            }
+        },
+        "LambdaExecutorConfiguration": {
+            "type": "object",
+            "properties": {
+                "lambdaFunctionArn": {
+                    "$ref": "#/$defs/LambdaFunctionArn"
+                }
+            }
+        },
+        "LambdaFunctionArn": {
+            "type": "string"
+        },
+        "JobWorkerExecutorConfiguration": {
+            "type": "object",
+            "properties": {
+                "pollingAccounts": {
+                    "$ref": "#/$defs/PollingAccountList"
+                },
+                "pollingServicePrincipals": {
+                    "$ref": "#/$defs/PollingServicePrincipalList"
+                }
+            }
+        },
+        "PollingAccountList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AccountId"
+            }
+        },
+        "AccountId": {
+            "type": "string"
+        },
+        "PollingServicePrincipalList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ServicePrincipal"
+            }
+        },
+        "ServicePrincipal": {
+            "type": "string"
+        },
+        "ExecutorType": {
+            "enum": [
+                "JobWorker",
+                "Lambda"
+            ]
+        },
+        "PolicyStatementsTemplate": {
+            "type": "string"
+        },
+        "JobTimeout": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ActionTypeIdentifier": {
+            "type": "object",
+            "properties": {
+                "category": {
+                    "$ref": "#/$defs/ActionCategory"
+                },
+                "owner": {
+                    "$ref": "#/$defs/ActionTypeOwner"
+                },
+                "provider": {
+                    "$ref": "#/$defs/ActionProvider"
+                },
+                "version": {
+                    "$ref": "#/$defs/Version"
+                }
+            }
+        },
+        "ActionTypeOwner": {
+            "type": "string"
+        },
+        "ActionTypeArtifactDetails": {
+            "type": "object",
+            "properties": {
+                "minimumCount": {
+                    "$ref": "#/$defs/MinimumActionTypeArtifactCount"
+                },
+                "maximumCount": {
+                    "$ref": "#/$defs/MaximumActionTypeArtifactCount"
+                }
+            }
+        },
+        "MinimumActionTypeArtifactCount": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "MaximumActionTypeArtifactCount": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ActionTypePermissions": {
+            "type": "object",
+            "properties": {
+                "allowedAccounts": {
+                    "$ref": "#/$defs/AllowedAccounts"
+                }
+            }
+        },
+        "AllowedAccounts": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AllowedAccount"
+            }
+        },
+        "AllowedAccount": {
+            "type": "string"
+        },
+        "ActionTypeProperties": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ActionTypeProperty"
+            }
+        },
+        "ActionTypeProperty": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/ActionConfigurationKey"
+                },
+                "optional": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "key": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "noEcho": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "queryable": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "description": {
+                    "$ref": "#/$defs/PropertyDescription"
+                }
+            }
+        },
+        "PropertyDescription": {
+            "type": "string"
+        },
+        "ActionTypeUrls": {
+            "type": "object",
+            "properties": {
+                "configurationUrl": {
+                    "$ref": "#/$defs/Url"
+                },
+                "entityUrlTemplate": {
+                    "$ref": "#/$defs/UrlTemplate"
+                },
+                "executionUrlTemplate": {
+                    "$ref": "#/$defs/UrlTemplate"
+                },
+                "revisionUrlTemplate": {
+                    "$ref": "#/$defs/UrlTemplate"
+                }
+            }
+        },
+        "GetActionTypeInput": {
+            "type": "object",
+            "properties": {
+                "category": {
+                    "$ref": "#/$defs/ActionCategory"
+                },
+                "owner": {
+                    "$ref": "#/$defs/ActionTypeOwner"
+                },
+                "provider": {
+                    "$ref": "#/$defs/ActionProvider"
+                },
+                "version": {
+                    "$ref": "#/$defs/Version"
+                }
+            }
+        },
+        "GetJobDetailsOutput": {
+            "type": "object",
+            "properties": {
+                "jobDetails": {
+                    "$ref": "#/$defs/JobDetails"
+                }
+            }
+        },
+        "JobDetails": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/JobId"
+                },
+                "data": {
+                    "$ref": "#/$defs/JobData"
+                },
+                "accountId": {
+                    "$ref": "#/$defs/AccountId"
+                }
+            }
+        },
+        "JobData": {
+            "type": "object",
+            "properties": {
+                "actionTypeId": {
+                    "$ref": "#/$defs/ActionTypeId"
+                },
+                "actionConfiguration": {
+                    "$ref": "#/$defs/ActionConfiguration"
+                },
+                "pipelineContext": {
+                    "$ref": "#/$defs/PipelineContext"
+                },
+                "inputArtifacts": {
+                    "$ref": "#/$defs/ArtifactList"
+                },
+                "outputArtifacts": {
+                    "$ref": "#/$defs/ArtifactList"
+                },
+                "artifactCredentials": {
+                    "$ref": "#/$defs/AWSSessionCredentials"
+                },
+                "continuationToken": {
+                    "$ref": "#/$defs/ContinuationToken"
+                },
+                "encryptionKey": {
+                    "$ref": "#/$defs/EncryptionKey"
+                }
+            }
+        },
+        "ActionConfiguration": {
+            "type": "object",
+            "properties": {
+                "configuration": {
+                    "$ref": "#/$defs/ActionConfigurationMap"
+                }
+            }
+        },
+        "PipelineContext": {
+            "type": "object",
+            "properties": {
+                "pipelineName": {
+                    "$ref": "#/$defs/PipelineName"
+                },
+                "stage": {
+                    "$ref": "#/$defs/StageContext"
+                },
+                "action": {
+                    "$ref": "#/$defs/ActionContext"
+                },
+                "pipelineArn": {
+                    "$ref": "#/$defs/PipelineArn"
+                },
+                "pipelineExecutionId": {
+                    "$ref": "#/$defs/PipelineExecutionId"
+                }
+            }
+        },
+        "StageContext": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/StageName"
+                }
+            }
+        },
+        "ActionContext": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/ActionName"
+                },
+                "actionExecutionId": {
+                    "$ref": "#/$defs/ActionExecutionId"
+                }
+            }
+        },
+        "ActionExecutionId": {
+            "type": "string"
+        },
+        "PipelineArn": {
+            "type": "string"
+        },
+        "PipelineExecutionId": {
+            "type": "string"
+        },
+        "ArtifactList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Artifact"
+            }
+        },
+        "Artifact": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/ArtifactName"
+                },
+                "revision": {
+                    "$ref": "#/$defs/Revision"
+                },
+                "location": {
+                    "$ref": "#/$defs/ArtifactLocation"
+                }
+            }
+        },
+        "Revision": {
+            "type": "string"
+        },
+        "ArtifactLocation": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/$defs/ArtifactLocationType"
+                },
+                "s3Location": {
+                    "$ref": "#/$defs/S3ArtifactLocation"
+                }
+            }
+        },
+        "ArtifactLocationType": {
+            "enum": [
+                "S3"
+            ]
+        },
+        "S3ArtifactLocation": {
+            "type": "object",
+            "properties": {
+                "bucketName": {
+                    "$ref": "#/$defs/S3BucketName"
+                },
+                "objectKey": {
+                    "$ref": "#/$defs/S3ObjectKey"
+                }
+            }
+        },
+        "S3BucketName": {
+            "type": "string"
+        },
+        "S3ObjectKey": {
+            "type": "string"
+        },
+        "AWSSessionCredentials": {
+            "type": "object",
+            "properties": {
+                "accessKeyId": {
+                    "$ref": "#/$defs/AccessKeyId"
+                },
+                "secretAccessKey": {
+                    "$ref": "#/$defs/SecretAccessKey"
+                },
+                "sessionToken": {
+                    "$ref": "#/$defs/SessionToken"
+                }
+            }
+        },
+        "AccessKeyId": {
+            "type": "string"
+        },
+        "SecretAccessKey": {
+            "type": "string"
+        },
+        "SessionToken": {
+            "type": "string"
+        },
+        "ContinuationToken": {
+            "type": "string"
+        },
+        "GetJobDetailsInput": {
+            "type": "object",
+            "properties": {
+                "jobId": {
+                    "$ref": "#/$defs/JobId"
+                }
+            }
+        },
+        "GetPipelineOutput": {
+            "type": "object",
+            "properties": {
+                "pipeline": {
+                    "$ref": "#/$defs/PipelineDeclaration"
+                },
+                "metadata": {
+                    "$ref": "#/$defs/PipelineMetadata"
+                }
+            }
+        },
+        "PipelineMetadata": {
+            "type": "object",
+            "properties": {
+                "pipelineArn": {
+                    "$ref": "#/$defs/PipelineArn"
+                },
+                "created": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "updated": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "pollingDisabledAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "GetPipelineInput": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/PipelineName"
+                },
+                "version": {
+                    "$ref": "#/$defs/PipelineVersion"
+                }
+            }
+        },
+        "GetPipelineExecutionOutput": {
+            "type": "object",
+            "properties": {
+                "pipelineExecution": {
+                    "$ref": "#/$defs/PipelineExecution"
+                }
+            }
+        },
+        "PipelineExecution": {
+            "type": "object",
+            "properties": {
+                "pipelineName": {
+                    "$ref": "#/$defs/PipelineName"
+                },
+                "pipelineVersion": {
+                    "$ref": "#/$defs/PipelineVersion"
+                },
+                "pipelineExecutionId": {
+                    "$ref": "#/$defs/PipelineExecutionId"
+                },
+                "status": {
+                    "$ref": "#/$defs/PipelineExecutionStatus"
+                },
+                "statusSummary": {
+                    "$ref": "#/$defs/PipelineExecutionStatusSummary"
+                },
+                "artifactRevisions": {
+                    "$ref": "#/$defs/ArtifactRevisionList"
+                },
+                "variables": {
+                    "$ref": "#/$defs/ResolvedPipelineVariableList"
+                },
+                "trigger": {
+                    "$ref": "#/$defs/ExecutionTrigger"
+                },
+                "executionMode": {
+                    "$ref": "#/$defs/ExecutionMode"
+                },
+                "executionType": {
+                    "$ref": "#/$defs/ExecutionType"
+                },
+                "rollbackMetadata": {
+                    "$ref": "#/$defs/PipelineRollbackMetadata"
+                }
+            }
+        },
+        "PipelineExecutionStatus": {
+            "enum": [
+                "Cancelled",
+                "InProgress",
+                "Stopped",
+                "Stopping",
+                "Succeeded",
+                "Superseded",
+                "Failed"
+            ]
+        },
+        "PipelineExecutionStatusSummary": {
+            "type": "string"
+        },
+        "ArtifactRevisionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ArtifactRevision"
+            }
+        },
+        "ArtifactRevision": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/ArtifactName"
+                },
+                "revisionId": {
+                    "$ref": "#/$defs/Revision"
+                },
+                "revisionChangeIdentifier": {
+                    "$ref": "#/$defs/RevisionChangeIdentifier"
+                },
+                "revisionSummary": {
+                    "$ref": "#/$defs/RevisionSummary"
+                },
+                "created": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "revisionUrl": {
+                    "$ref": "#/$defs/Url"
+                }
+            }
+        },
+        "RevisionChangeIdentifier": {
+            "type": "string"
+        },
+        "RevisionSummary": {
+            "type": "string"
+        },
+        "ResolvedPipelineVariableList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResolvedPipelineVariable"
+            }
+        },
+        "ResolvedPipelineVariable": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/String"
+                },
+                "resolvedValue": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "String": {
+            "type": "string"
+        },
+        "ExecutionTrigger": {
+            "type": "object",
+            "properties": {
+                "triggerType": {
+                    "$ref": "#/$defs/TriggerType"
+                },
+                "triggerDetail": {
+                    "$ref": "#/$defs/TriggerDetail"
+                }
+            }
+        },
+        "TriggerType": {
+            "enum": [
+                "CreatePipeline",
+                "StartPipelineExecution",
+                "PollForSourceChanges",
+                "Webhook",
+                "CloudWatchEvent",
+                "PutActionRevision",
+                "WebhookV2",
+                "ManualRollback",
+                "AutomatedRollback"
+            ]
+        },
+        "TriggerDetail": {
+            "type": "string"
+        },
+        "ExecutionType": {
+            "enum": [
+                "STANDARD",
+                "ROLLBACK"
+            ]
+        },
+        "PipelineRollbackMetadata": {
+            "type": "object",
+            "properties": {
+                "rollbackTargetPipelineExecutionId": {
+                    "$ref": "#/$defs/PipelineExecutionId"
+                }
+            }
+        },
+        "GetPipelineExecutionInput": {
+            "type": "object",
+            "properties": {
+                "pipelineName": {
+                    "$ref": "#/$defs/PipelineName"
+                },
+                "pipelineExecutionId": {
+                    "$ref": "#/$defs/PipelineExecutionId"
+                }
+            }
+        },
+        "GetPipelineStateOutput": {
+            "type": "object",
+            "properties": {
+                "pipelineName": {
+                    "$ref": "#/$defs/PipelineName"
+                },
+                "pipelineVersion": {
+                    "$ref": "#/$defs/PipelineVersion"
+                },
+                "stageStates": {
+                    "$ref": "#/$defs/StageStateList"
+                },
+                "created": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "updated": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "StageStateList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/StageState"
+            }
+        },
+        "StageState": {
+            "type": "object",
+            "properties": {
+                "stageName": {
+                    "$ref": "#/$defs/StageName"
+                },
+                "inboundExecution": {
+                    "$ref": "#/$defs/StageExecution"
+                },
+                "inboundExecutions": {
+                    "$ref": "#/$defs/StageExecutionList"
+                },
+                "inboundTransitionState": {
+                    "$ref": "#/$defs/TransitionState"
+                },
+                "actionStates": {
+                    "$ref": "#/$defs/ActionStateList"
+                },
+                "latestExecution": {
+                    "$ref": "#/$defs/StageExecution"
+                },
+                "beforeEntryConditionState": {
+                    "$ref": "#/$defs/StageConditionState"
+                },
+                "onSuccessConditionState": {
+                    "$ref": "#/$defs/StageConditionState"
+                },
+                "onFailureConditionState": {
+                    "$ref": "#/$defs/StageConditionState"
+                }
+            }
+        },
+        "StageExecution": {
+            "type": "object",
+            "properties": {
+                "pipelineExecutionId": {
+                    "$ref": "#/$defs/PipelineExecutionId"
+                },
+                "status": {
+                    "$ref": "#/$defs/StageExecutionStatus"
+                },
+                "type": {
+                    "$ref": "#/$defs/ExecutionType"
+                }
+            }
+        },
+        "StageExecutionStatus": {
+            "enum": [
+                "Cancelled",
+                "InProgress",
+                "Failed",
+                "Stopped",
+                "Stopping",
+                "Succeeded"
+            ]
+        },
+        "StageExecutionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/StageExecution"
+            }
+        },
+        "TransitionState": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "$ref": "#/$defs/Enabled"
+                },
+                "lastChangedBy": {
+                    "$ref": "#/$defs/LastChangedBy"
+                },
+                "lastChangedAt": {
+                    "$ref": "#/$defs/LastChangedAt"
+                },
+                "disabledReason": {
+                    "$ref": "#/$defs/DisabledReason"
+                }
+            }
+        },
+        "Enabled": {
+            "type": "boolean"
+        },
+        "LastChangedBy": {
+            "type": "string"
+        },
+        "LastChangedAt": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "ActionStateList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ActionState"
+            }
+        },
+        "ActionState": {
+            "type": "object",
+            "properties": {
+                "actionName": {
+                    "$ref": "#/$defs/ActionName"
+                },
+                "currentRevision": {
+                    "$ref": "#/$defs/ActionRevision"
+                },
+                "latestExecution": {
+                    "$ref": "#/$defs/ActionExecution"
+                },
+                "entityUrl": {
+                    "$ref": "#/$defs/Url"
+                },
+                "revisionUrl": {
+                    "$ref": "#/$defs/Url"
+                }
+            }
+        },
+        "ActionRevision": {
+            "type": "object",
+            "properties": {
+                "revisionId": {
+                    "$ref": "#/$defs/Revision"
+                },
+                "revisionChangeId": {
+                    "$ref": "#/$defs/RevisionChangeIdentifier"
+                },
+                "created": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ActionExecution": {
+            "type": "object",
+            "properties": {
+                "actionExecutionId": {
+                    "$ref": "#/$defs/ActionExecutionId"
+                },
+                "status": {
+                    "$ref": "#/$defs/ActionExecutionStatus"
+                },
+                "summary": {
+                    "$ref": "#/$defs/ExecutionSummary"
+                },
+                "lastStatusChange": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "token": {
+                    "$ref": "#/$defs/ActionExecutionToken"
+                },
+                "lastUpdatedBy": {
+                    "$ref": "#/$defs/LastUpdatedBy"
+                },
+                "externalExecutionId": {
+                    "$ref": "#/$defs/ExecutionId"
+                },
+                "externalExecutionUrl": {
+                    "$ref": "#/$defs/Url"
+                },
+                "percentComplete": {
+                    "$ref": "#/$defs/Percentage"
+                },
+                "errorDetails": {
+                    "$ref": "#/$defs/ErrorDetails"
+                }
+            }
+        },
+        "ActionExecutionStatus": {
+            "enum": [
+                "InProgress",
+                "Abandoned",
+                "Succeeded",
+                "Failed"
+            ]
+        },
+        "ExecutionSummary": {
+            "type": "string"
+        },
+        "ActionExecutionToken": {
+            "type": "string"
+        },
+        "LastUpdatedBy": {
+            "type": "string"
+        },
+        "ExecutionId": {
+            "type": "string"
+        },
+        "Percentage": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ErrorDetails": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "$ref": "#/$defs/Code"
+                },
+                "message": {
+                    "$ref": "#/$defs/Message"
+                }
+            }
+        },
+        "Code": {
+            "type": "string"
+        },
+        "Message": {
+            "type": "string"
+        },
+        "StageConditionState": {
+            "type": "object",
+            "properties": {
+                "latestExecution": {
+                    "$ref": "#/$defs/StageConditionsExecution"
+                },
+                "conditionStates": {
+                    "$ref": "#/$defs/ConditionStateList"
+                }
+            }
+        },
+        "StageConditionsExecution": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "$ref": "#/$defs/ConditionExecutionStatus"
+                },
+                "summary": {
+                    "$ref": "#/$defs/ExecutionSummary"
+                }
+            }
+        },
+        "ConditionExecutionStatus": {
+            "enum": [
+                "InProgress",
+                "Failed",
+                "Errored",
+                "Succeeded",
+                "Cancelled",
+                "Abandoned",
+                "Overridden"
+            ]
+        },
+        "ConditionStateList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ConditionState"
+            }
+        },
+        "ConditionState": {
+            "type": "object",
+            "properties": {
+                "latestExecution": {
+                    "$ref": "#/$defs/ConditionExecution"
+                },
+                "ruleStates": {
+                    "$ref": "#/$defs/RuleStateList"
+                }
+            }
+        },
+        "ConditionExecution": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "$ref": "#/$defs/ConditionExecutionStatus"
+                },
+                "summary": {
+                    "$ref": "#/$defs/ExecutionSummary"
+                },
+                "lastStatusChange": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "RuleStateList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RuleState"
+            }
+        },
+        "RuleState": {
+            "type": "object",
+            "properties": {
+                "ruleName": {
+                    "$ref": "#/$defs/RuleName"
+                },
+                "currentRevision": {
+                    "$ref": "#/$defs/RuleRevision"
+                },
+                "latestExecution": {
+                    "$ref": "#/$defs/RuleExecution"
+                },
+                "entityUrl": {
+                    "$ref": "#/$defs/Url"
+                },
+                "revisionUrl": {
+                    "$ref": "#/$defs/Url"
+                }
+            }
+        },
+        "RuleRevision": {
+            "type": "object",
+            "properties": {
+                "revisionId": {
+                    "$ref": "#/$defs/Revision"
+                },
+                "revisionChangeId": {
+                    "$ref": "#/$defs/RevisionChangeIdentifier"
+                },
+                "created": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "RuleExecution": {
+            "type": "object",
+            "properties": {
+                "ruleExecutionId": {
+                    "$ref": "#/$defs/RuleExecutionId"
+                },
+                "status": {
+                    "$ref": "#/$defs/RuleExecutionStatus"
+                },
+                "summary": {
+                    "$ref": "#/$defs/ExecutionSummary"
+                },
+                "lastStatusChange": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "token": {
+                    "$ref": "#/$defs/RuleExecutionToken"
+                },
+                "lastUpdatedBy": {
+                    "$ref": "#/$defs/LastUpdatedBy"
+                },
+                "externalExecutionId": {
+                    "$ref": "#/$defs/ExecutionId"
+                },
+                "externalExecutionUrl": {
+                    "$ref": "#/$defs/Url"
+                },
+                "errorDetails": {
+                    "$ref": "#/$defs/ErrorDetails"
+                }
+            }
+        },
+        "RuleExecutionId": {
+            "type": "string"
+        },
+        "RuleExecutionStatus": {
+            "enum": [
+                "InProgress",
+                "Abandoned",
+                "Succeeded",
+                "Failed"
+            ]
+        },
+        "RuleExecutionToken": {
+            "type": "string"
+        },
+        "GetPipelineStateInput": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/PipelineName"
+                }
+            }
+        },
+        "GetThirdPartyJobDetailsOutput": {
+            "type": "object",
+            "properties": {
+                "jobDetails": {
+                    "$ref": "#/$defs/ThirdPartyJobDetails"
+                }
+            }
+        },
+        "ThirdPartyJobDetails": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/ThirdPartyJobId"
+                },
+                "data": {
+                    "$ref": "#/$defs/ThirdPartyJobData"
+                },
+                "nonce": {
+                    "$ref": "#/$defs/Nonce"
+                }
+            }
+        },
+        "ThirdPartyJobData": {
+            "type": "object",
+            "properties": {
+                "actionTypeId": {
+                    "$ref": "#/$defs/ActionTypeId"
+                },
+                "actionConfiguration": {
+                    "$ref": "#/$defs/ActionConfiguration"
+                },
+                "pipelineContext": {
+                    "$ref": "#/$defs/PipelineContext"
+                },
+                "inputArtifacts": {
+                    "$ref": "#/$defs/ArtifactList"
+                },
+                "outputArtifacts": {
+                    "$ref": "#/$defs/ArtifactList"
+                },
+                "artifactCredentials": {
+                    "$ref": "#/$defs/AWSSessionCredentials"
+                },
+                "continuationToken": {
+                    "$ref": "#/$defs/ContinuationToken"
+                },
+                "encryptionKey": {
+                    "$ref": "#/$defs/EncryptionKey"
+                }
+            }
+        },
+        "GetThirdPartyJobDetailsInput": {
+            "type": "object",
+            "properties": {
+                "jobId": {
+                    "$ref": "#/$defs/ThirdPartyJobId"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                }
+            }
+        },
+        "ListActionExecutionsOutput": {
+            "type": "object",
+            "properties": {
+                "actionExecutionDetails": {
+                    "$ref": "#/$defs/ActionExecutionDetailList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ActionExecutionDetailList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ActionExecutionDetail"
+            }
+        },
+        "ActionExecutionDetail": {
+            "type": "object",
+            "properties": {
+                "pipelineExecutionId": {
+                    "$ref": "#/$defs/PipelineExecutionId"
+                },
+                "actionExecutionId": {
+                    "$ref": "#/$defs/ActionExecutionId"
+                },
+                "pipelineVersion": {
+                    "$ref": "#/$defs/PipelineVersion"
+                },
+                "stageName": {
+                    "$ref": "#/$defs/StageName"
+                },
+                "actionName": {
+                    "$ref": "#/$defs/ActionName"
+                },
+                "startTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "lastUpdateTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "updatedBy": {
+                    "$ref": "#/$defs/LastUpdatedBy"
+                },
+                "status": {
+                    "$ref": "#/$defs/ActionExecutionStatus"
+                },
+                "input": {
+                    "$ref": "#/$defs/ActionExecutionInput"
+                },
+                "output": {
+                    "$ref": "#/$defs/ActionExecutionOutput"
+                }
+            }
+        },
+        "ActionExecutionInput": {
+            "type": "object",
+            "properties": {
+                "actionTypeId": {
+                    "$ref": "#/$defs/ActionTypeId"
+                },
+                "configuration": {
+                    "$ref": "#/$defs/ActionConfigurationMap"
+                },
+                "resolvedConfiguration": {
+                    "$ref": "#/$defs/ResolvedActionConfigurationMap"
+                },
+                "roleArn": {
+                    "$ref": "#/$defs/RoleArn"
+                },
+                "region": {
+                    "$ref": "#/$defs/AWSRegionName"
+                },
+                "inputArtifacts": {
+                    "$ref": "#/$defs/ArtifactDetailList"
+                },
+                "namespace": {
+                    "$ref": "#/$defs/ActionNamespace"
+                }
+            }
+        },
+        "ResolvedActionConfigurationMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "ArtifactDetailList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ArtifactDetail"
+            }
+        },
+        "ArtifactDetail": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/ArtifactName"
+                },
+                "s3location": {
+                    "$ref": "#/$defs/S3Location"
+                }
+            }
+        },
+        "S3Location": {
+            "type": "object",
+            "properties": {
+                "bucket": {
+                    "$ref": "#/$defs/S3Bucket"
+                },
+                "key": {
+                    "$ref": "#/$defs/S3Key"
+                }
+            }
+        },
+        "S3Bucket": {
+            "type": "string"
+        },
+        "S3Key": {
+            "type": "string"
+        },
+        "ActionExecutionOutput": {
+            "type": "object",
+            "properties": {
+                "outputArtifacts": {
+                    "$ref": "#/$defs/ArtifactDetailList"
+                },
+                "executionResult": {
+                    "$ref": "#/$defs/ActionExecutionResult"
+                },
+                "outputVariables": {
+                    "$ref": "#/$defs/OutputVariablesMap"
+                }
+            }
+        },
+        "ActionExecutionResult": {
+            "type": "object",
+            "properties": {
+                "externalExecutionId": {
+                    "$ref": "#/$defs/ExternalExecutionId"
+                },
+                "externalExecutionSummary": {
+                    "$ref": "#/$defs/ExternalExecutionSummary"
+                },
+                "externalExecutionUrl": {
+                    "$ref": "#/$defs/Url"
+                },
+                "errorDetails": {
+                    "$ref": "#/$defs/ErrorDetails"
+                }
+            }
+        },
+        "ExternalExecutionId": {
+            "type": "string"
+        },
+        "ExternalExecutionSummary": {
+            "type": "string"
+        },
+        "OutputVariablesMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/OutputVariablesValue"
+            }
+        },
+        "OutputVariablesValue": {
+            "type": "string"
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "ListActionExecutionsInput": {
+            "type": "object",
+            "properties": {
+                "pipelineName": {
+                    "$ref": "#/$defs/PipelineName"
+                },
+                "filter": {
+                    "$ref": "#/$defs/ActionExecutionFilter"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ActionExecutionFilter": {
+            "type": "object",
+            "properties": {
+                "pipelineExecutionId": {
+                    "$ref": "#/$defs/PipelineExecutionId"
+                },
+                "latestInPipelineExecution": {
+                    "$ref": "#/$defs/LatestInPipelineExecutionFilter"
+                }
+            }
+        },
+        "LatestInPipelineExecutionFilter": {
+            "type": "object",
+            "properties": {
+                "pipelineExecutionId": {
+                    "$ref": "#/$defs/PipelineExecutionId"
+                },
+                "startTimeRange": {
+                    "$ref": "#/$defs/StartTimeRange"
+                }
+            }
+        },
+        "StartTimeRange": {
+            "enum": [
+                "Latest",
+                "All"
+            ]
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListActionTypesOutput": {
+            "type": "object",
+            "properties": {
+                "actionTypes": {
+                    "$ref": "#/$defs/ActionTypeList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ActionTypeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ActionType"
+            }
+        },
+        "ListActionTypesInput": {
+            "type": "object",
+            "properties": {
+                "actionOwnerFilter": {
+                    "$ref": "#/$defs/ActionOwner"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "regionFilter": {
+                    "$ref": "#/$defs/AWSRegionName"
+                }
+            }
+        },
+        "ListPipelineExecutionsOutput": {
+            "type": "object",
+            "properties": {
+                "pipelineExecutionSummaries": {
+                    "$ref": "#/$defs/PipelineExecutionSummaryList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "PipelineExecutionSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PipelineExecutionSummary"
+            }
+        },
+        "PipelineExecutionSummary": {
+            "type": "object",
+            "properties": {
+                "pipelineExecutionId": {
+                    "$ref": "#/$defs/PipelineExecutionId"
+                },
+                "status": {
+                    "$ref": "#/$defs/PipelineExecutionStatus"
+                },
+                "statusSummary": {
+                    "$ref": "#/$defs/PipelineExecutionStatusSummary"
+                },
+                "startTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "lastUpdateTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "sourceRevisions": {
+                    "$ref": "#/$defs/SourceRevisionList"
+                },
+                "trigger": {
+                    "$ref": "#/$defs/ExecutionTrigger"
+                },
+                "stopTrigger": {
+                    "$ref": "#/$defs/StopExecutionTrigger"
+                },
+                "executionMode": {
+                    "$ref": "#/$defs/ExecutionMode"
+                },
+                "executionType": {
+                    "$ref": "#/$defs/ExecutionType"
+                },
+                "rollbackMetadata": {
+                    "$ref": "#/$defs/PipelineRollbackMetadata"
+                }
+            }
+        },
+        "SourceRevisionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SourceRevision"
+            }
+        },
+        "SourceRevision": {
+            "type": "object",
+            "properties": {
+                "actionName": {
+                    "$ref": "#/$defs/ActionName"
+                },
+                "revisionId": {
+                    "$ref": "#/$defs/Revision"
+                },
+                "revisionSummary": {
+                    "$ref": "#/$defs/RevisionSummary"
+                },
+                "revisionUrl": {
+                    "$ref": "#/$defs/Url"
+                }
+            }
+        },
+        "StopExecutionTrigger": {
+            "type": "object",
+            "properties": {
+                "reason": {
+                    "$ref": "#/$defs/StopPipelineExecutionReason"
+                }
+            }
+        },
+        "StopPipelineExecutionReason": {
+            "type": "string"
+        },
+        "ListPipelineExecutionsInput": {
+            "type": "object",
+            "properties": {
+                "pipelineName": {
+                    "$ref": "#/$defs/PipelineName"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "filter": {
+                    "$ref": "#/$defs/PipelineExecutionFilter"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "PipelineExecutionFilter": {
+            "type": "object",
+            "properties": {
+                "succeededInStage": {
+                    "$ref": "#/$defs/SucceededInStageFilter"
+                }
+            }
+        },
+        "SucceededInStageFilter": {
+            "type": "object",
+            "properties": {
+                "stageName": {
+                    "$ref": "#/$defs/StageName"
+                }
+            }
+        },
+        "ListPipelinesOutput": {
+            "type": "object",
+            "properties": {
+                "pipelines": {
+                    "$ref": "#/$defs/PipelineList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "PipelineList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PipelineSummary"
+            }
+        },
+        "PipelineSummary": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/PipelineName"
+                },
+                "version": {
+                    "$ref": "#/$defs/PipelineVersion"
+                },
+                "pipelineType": {
+                    "$ref": "#/$defs/PipelineType"
+                },
+                "executionMode": {
+                    "$ref": "#/$defs/ExecutionMode"
+                },
+                "created": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "updated": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListPipelinesInput": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxPipelines"
+                }
+            }
+        },
+        "MaxPipelines": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListRuleExecutionsOutput": {
+            "type": "object",
+            "properties": {
+                "ruleExecutionDetails": {
+                    "$ref": "#/$defs/RuleExecutionDetailList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "RuleExecutionDetailList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RuleExecutionDetail"
+            }
+        },
+        "RuleExecutionDetail": {
+            "type": "object",
+            "properties": {
+                "pipelineExecutionId": {
+                    "$ref": "#/$defs/PipelineExecutionId"
+                },
+                "ruleExecutionId": {
+                    "$ref": "#/$defs/RuleExecutionId"
+                },
+                "pipelineVersion": {
+                    "$ref": "#/$defs/PipelineVersion"
+                },
+                "stageName": {
+                    "$ref": "#/$defs/StageName"
+                },
+                "ruleName": {
+                    "$ref": "#/$defs/RuleName"
+                },
+                "startTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "lastUpdateTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "updatedBy": {
+                    "$ref": "#/$defs/LastUpdatedBy"
+                },
+                "status": {
+                    "$ref": "#/$defs/RuleExecutionStatus"
+                },
+                "input": {
+                    "$ref": "#/$defs/RuleExecutionInput"
+                },
+                "output": {
+                    "$ref": "#/$defs/RuleExecutionOutput"
+                }
+            }
+        },
+        "RuleExecutionInput": {
+            "type": "object",
+            "properties": {
+                "ruleTypeId": {
+                    "$ref": "#/$defs/RuleTypeId"
+                },
+                "configuration": {
+                    "$ref": "#/$defs/RuleConfigurationMap"
+                },
+                "resolvedConfiguration": {
+                    "$ref": "#/$defs/ResolvedRuleConfigurationMap"
+                },
+                "roleArn": {
+                    "$ref": "#/$defs/RoleArn"
+                },
+                "region": {
+                    "$ref": "#/$defs/AWSRegionName"
+                },
+                "inputArtifacts": {
+                    "$ref": "#/$defs/ArtifactDetailList"
+                }
+            }
+        },
+        "ResolvedRuleConfigurationMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "RuleExecutionOutput": {
+            "type": "object",
+            "properties": {
+                "executionResult": {
+                    "$ref": "#/$defs/RuleExecutionResult"
+                }
+            }
+        },
+        "RuleExecutionResult": {
+            "type": "object",
+            "properties": {
+                "externalExecutionId": {
+                    "$ref": "#/$defs/ExternalExecutionId"
+                },
+                "externalExecutionSummary": {
+                    "$ref": "#/$defs/ExternalExecutionSummary"
+                },
+                "externalExecutionUrl": {
+                    "$ref": "#/$defs/Url"
+                },
+                "errorDetails": {
+                    "$ref": "#/$defs/ErrorDetails"
+                }
+            }
+        },
+        "ListRuleExecutionsInput": {
+            "type": "object",
+            "properties": {
+                "pipelineName": {
+                    "$ref": "#/$defs/PipelineName"
+                },
+                "filter": {
+                    "$ref": "#/$defs/RuleExecutionFilter"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "RuleExecutionFilter": {
+            "type": "object",
+            "properties": {
+                "pipelineExecutionId": {
+                    "$ref": "#/$defs/PipelineExecutionId"
+                },
+                "latestInPipelineExecution": {
+                    "$ref": "#/$defs/LatestInPipelineExecutionFilter"
+                }
+            }
+        },
+        "ListRuleTypesOutput": {
+            "type": "object",
+            "properties": {
+                "ruleTypes": {
+                    "$ref": "#/$defs/RuleTypeList"
+                }
+            }
+        },
+        "RuleTypeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RuleType"
+            }
+        },
+        "RuleType": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/RuleTypeId"
+                },
+                "settings": {
+                    "$ref": "#/$defs/RuleTypeSettings"
+                },
+                "ruleConfigurationProperties": {
+                    "$ref": "#/$defs/RuleConfigurationPropertyList"
+                },
+                "inputArtifactDetails": {
+                    "$ref": "#/$defs/ArtifactDetails"
+                }
+            }
+        },
+        "RuleTypeSettings": {
+            "type": "object",
+            "properties": {
+                "thirdPartyConfigurationUrl": {
+                    "$ref": "#/$defs/Url"
+                },
+                "entityUrlTemplate": {
+                    "$ref": "#/$defs/UrlTemplate"
+                },
+                "executionUrlTemplate": {
+                    "$ref": "#/$defs/UrlTemplate"
+                },
+                "revisionUrlTemplate": {
+                    "$ref": "#/$defs/UrlTemplate"
+                }
+            }
+        },
+        "RuleConfigurationPropertyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RuleConfigurationProperty"
+            }
+        },
+        "RuleConfigurationProperty": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/RuleConfigurationKey"
+                },
+                "required": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "key": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "secret": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "queryable": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "type": {
+                    "$ref": "#/$defs/RuleConfigurationPropertyType"
+                }
+            }
+        },
+        "RuleConfigurationKey": {
+            "type": "string"
+        },
+        "RuleConfigurationPropertyType": {
+            "enum": [
+                "String",
+                "Number",
+                "Boolean"
+            ]
+        },
+        "ListRuleTypesInput": {
+            "type": "object",
+            "properties": {
+                "ruleOwnerFilter": {
+                    "$ref": "#/$defs/RuleOwner"
+                },
+                "regionFilter": {
+                    "$ref": "#/$defs/AWSRegionName"
+                }
+            }
+        },
+        "ListTagsForResourceOutput": {
+            "type": "object",
+            "properties": {
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListTagsForResourceInput": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "ResourceArn": {
+            "type": "string"
+        },
+        "ListWebhooksOutput": {
+            "type": "object",
+            "properties": {
+                "webhooks": {
+                    "$ref": "#/$defs/WebhookList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "WebhookList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ListWebhookItem"
+            }
+        },
+        "ListWebhookItem": {
+            "type": "object",
+            "properties": {
+                "definition": {
+                    "$ref": "#/$defs/WebhookDefinition"
+                },
+                "url": {
+                    "$ref": "#/$defs/WebhookUrl"
+                },
+                "errorMessage": {
+                    "$ref": "#/$defs/WebhookErrorMessage"
+                },
+                "errorCode": {
+                    "$ref": "#/$defs/WebhookErrorCode"
+                },
+                "lastTriggered": {
+                    "$ref": "#/$defs/WebhookLastTriggered"
+                },
+                "arn": {
+                    "$ref": "#/$defs/WebhookArn"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "WebhookDefinition": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/WebhookName"
+                },
+                "targetPipeline": {
+                    "$ref": "#/$defs/PipelineName"
+                },
+                "targetAction": {
+                    "$ref": "#/$defs/ActionName"
+                },
+                "filters": {
+                    "$ref": "#/$defs/WebhookFilters"
+                },
+                "authentication": {
+                    "$ref": "#/$defs/WebhookAuthenticationType"
+                },
+                "authenticationConfiguration": {
+                    "$ref": "#/$defs/WebhookAuthConfiguration"
+                }
+            }
+        },
+        "WebhookFilters": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/WebhookFilterRule"
+            }
+        },
+        "WebhookFilterRule": {
+            "type": "object",
+            "properties": {
+                "jsonPath": {
+                    "$ref": "#/$defs/JsonPath"
+                },
+                "matchEquals": {
+                    "$ref": "#/$defs/MatchEquals"
+                }
+            }
+        },
+        "JsonPath": {
+            "type": "string"
+        },
+        "MatchEquals": {
+            "type": "string"
+        },
+        "WebhookAuthenticationType": {
+            "enum": [
+                "GITHUB_HMAC",
+                "IP",
+                "UNAUTHENTICATED"
+            ]
+        },
+        "WebhookAuthConfiguration": {
+            "type": "object",
+            "properties": {
+                "AllowedIPRange": {
+                    "$ref": "#/$defs/WebhookAuthConfigurationAllowedIPRange"
+                },
+                "SecretToken": {
+                    "$ref": "#/$defs/WebhookAuthConfigurationSecretToken"
+                }
+            }
+        },
+        "WebhookAuthConfigurationAllowedIPRange": {
+            "type": "string"
+        },
+        "WebhookAuthConfigurationSecretToken": {
+            "type": "string"
+        },
+        "WebhookUrl": {
+            "type": "string"
+        },
+        "WebhookErrorMessage": {
+            "type": "string"
+        },
+        "WebhookErrorCode": {
+            "type": "string"
+        },
+        "WebhookLastTriggered": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "WebhookArn": {
+            "type": "string"
+        },
+        "ListWebhooksInput": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "OverrideStageConditionInput": {
+            "type": "object",
+            "properties": {
+                "pipelineName": {
+                    "$ref": "#/$defs/PipelineName"
+                },
+                "stageName": {
+                    "$ref": "#/$defs/StageName"
+                },
+                "pipelineExecutionId": {
+                    "$ref": "#/$defs/PipelineExecutionId"
+                },
+                "conditionType": {
+                    "$ref": "#/$defs/ConditionType"
+                }
+            }
+        },
+        "ConditionType": {
+            "enum": [
+                "BEFORE_ENTRY",
+                "ON_SUCCESS"
+            ]
+        },
+        "PollForJobsOutput": {
+            "type": "object",
+            "properties": {
+                "jobs": {
+                    "$ref": "#/$defs/JobList"
+                }
+            }
+        },
+        "JobList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Job"
+            }
+        },
+        "Job": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/JobId"
+                },
+                "data": {
+                    "$ref": "#/$defs/JobData"
+                },
+                "nonce": {
+                    "$ref": "#/$defs/Nonce"
+                },
+                "accountId": {
+                    "$ref": "#/$defs/AccountId"
+                }
+            }
+        },
+        "PollForJobsInput": {
+            "type": "object",
+            "properties": {
+                "actionTypeId": {
+                    "$ref": "#/$defs/ActionTypeId"
+                },
+                "maxBatchSize": {
+                    "$ref": "#/$defs/MaxBatchSize"
+                },
+                "queryParam": {
+                    "$ref": "#/$defs/QueryParamMap"
+                }
+            }
+        },
+        "MaxBatchSize": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "QueryParamMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/ActionConfigurationQueryableValue"
+            }
+        },
+        "ActionConfigurationQueryableValue": {
+            "type": "string"
+        },
+        "PollForThirdPartyJobsOutput": {
+            "type": "object",
+            "properties": {
+                "jobs": {
+                    "$ref": "#/$defs/ThirdPartyJobList"
+                }
+            }
+        },
+        "ThirdPartyJobList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ThirdPartyJob"
+            }
+        },
+        "ThirdPartyJob": {
+            "type": "object",
+            "properties": {
+                "clientId": {
+                    "$ref": "#/$defs/ClientId"
+                },
+                "jobId": {
+                    "$ref": "#/$defs/JobId"
+                }
+            }
+        },
+        "ClientId": {
+            "type": "string"
+        },
+        "PollForThirdPartyJobsInput": {
+            "type": "object",
+            "properties": {
+                "actionTypeId": {
+                    "$ref": "#/$defs/ActionTypeId"
+                },
+                "maxBatchSize": {
+                    "$ref": "#/$defs/MaxBatchSize"
+                }
+            }
+        },
+        "PutActionRevisionOutput": {
+            "type": "object",
+            "properties": {
+                "newRevision": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "pipelineExecutionId": {
+                    "$ref": "#/$defs/PipelineExecutionId"
+                }
+            }
+        },
+        "PutActionRevisionInput": {
+            "type": "object",
+            "properties": {
+                "pipelineName": {
+                    "$ref": "#/$defs/PipelineName"
+                },
+                "stageName": {
+                    "$ref": "#/$defs/StageName"
+                },
+                "actionName": {
+                    "$ref": "#/$defs/ActionName"
+                },
+                "actionRevision": {
+                    "$ref": "#/$defs/ActionRevision"
+                }
+            }
+        },
+        "PutApprovalResultOutput": {
+            "type": "object",
+            "properties": {
+                "approvedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "PutApprovalResultInput": {
+            "type": "object",
+            "properties": {
+                "pipelineName": {
+                    "$ref": "#/$defs/PipelineName"
+                },
+                "stageName": {
+                    "$ref": "#/$defs/StageName"
+                },
+                "actionName": {
+                    "$ref": "#/$defs/ActionName"
+                },
+                "result": {
+                    "$ref": "#/$defs/ApprovalResult"
+                },
+                "token": {
+                    "$ref": "#/$defs/ApprovalToken"
+                }
+            }
+        },
+        "ApprovalResult": {
+            "type": "object",
+            "properties": {
+                "summary": {
+                    "$ref": "#/$defs/ApprovalSummary"
+                },
+                "status": {
+                    "$ref": "#/$defs/ApprovalStatus"
+                }
+            }
+        },
+        "ApprovalSummary": {
+            "type": "string"
+        },
+        "ApprovalStatus": {
+            "enum": [
+                "Approved",
+                "Rejected"
+            ]
+        },
+        "ApprovalToken": {
+            "type": "string"
+        },
+        "PutJobFailureResultInput": {
+            "type": "object",
+            "properties": {
+                "jobId": {
+                    "$ref": "#/$defs/JobId"
+                },
+                "failureDetails": {
+                    "$ref": "#/$defs/FailureDetails"
+                }
+            }
+        },
+        "FailureDetails": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/$defs/FailureType"
+                },
+                "message": {
+                    "$ref": "#/$defs/Message"
+                },
+                "externalExecutionId": {
+                    "$ref": "#/$defs/ExecutionId"
+                }
+            }
+        },
+        "FailureType": {
+            "enum": [
+                "JobFailed",
+                "ConfigurationError",
+                "PermissionError",
+                "RevisionOutOfSync",
+                "RevisionUnavailable",
+                "SystemUnavailable"
+            ]
+        },
+        "PutJobSuccessResultInput": {
+            "type": "object",
+            "properties": {
+                "jobId": {
+                    "$ref": "#/$defs/JobId"
+                },
+                "currentRevision": {
+                    "$ref": "#/$defs/CurrentRevision"
+                },
+                "continuationToken": {
+                    "$ref": "#/$defs/ContinuationToken"
+                },
+                "executionDetails": {
+                    "$ref": "#/$defs/ExecutionDetails"
+                },
+                "outputVariables": {
+                    "$ref": "#/$defs/OutputVariablesMap"
+                }
+            }
+        },
+        "CurrentRevision": {
+            "type": "object",
+            "properties": {
+                "revision": {
+                    "$ref": "#/$defs/Revision"
+                },
+                "changeIdentifier": {
+                    "$ref": "#/$defs/RevisionChangeIdentifier"
+                },
+                "created": {
+                    "$ref": "#/$defs/Time"
+                },
+                "revisionSummary": {
+                    "$ref": "#/$defs/RevisionSummary"
+                }
+            }
+        },
+        "Time": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "ExecutionDetails": {
+            "type": "object",
+            "properties": {
+                "summary": {
+                    "$ref": "#/$defs/ExecutionSummary"
+                },
+                "externalExecutionId": {
+                    "$ref": "#/$defs/ExecutionId"
+                },
+                "percentComplete": {
+                    "$ref": "#/$defs/Percentage"
+                }
+            }
+        },
+        "PutThirdPartyJobFailureResultInput": {
+            "type": "object",
+            "properties": {
+                "jobId": {
+                    "$ref": "#/$defs/ThirdPartyJobId"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                },
+                "failureDetails": {
+                    "$ref": "#/$defs/FailureDetails"
+                }
+            }
+        },
+        "PutThirdPartyJobSuccessResultInput": {
+            "type": "object",
+            "properties": {
+                "jobId": {
+                    "$ref": "#/$defs/ThirdPartyJobId"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                },
+                "currentRevision": {
+                    "$ref": "#/$defs/CurrentRevision"
+                },
+                "continuationToken": {
+                    "$ref": "#/$defs/ContinuationToken"
+                },
+                "executionDetails": {
+                    "$ref": "#/$defs/ExecutionDetails"
+                }
+            }
+        },
+        "PutWebhookOutput": {
+            "type": "object",
+            "properties": {
+                "webhook": {
+                    "$ref": "#/$defs/ListWebhookItem"
+                }
+            }
+        },
+        "PutWebhookInput": {
+            "type": "object",
+            "properties": {
+                "webhook": {
+                    "$ref": "#/$defs/WebhookDefinition"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "RegisterWebhookWithThirdPartyOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "RegisterWebhookWithThirdPartyInput": {
+            "type": "object",
+            "properties": {
+                "webhookName": {
+                    "$ref": "#/$defs/WebhookName"
+                }
+            }
+        },
+        "RetryStageExecutionOutput": {
+            "type": "object",
+            "properties": {
+                "pipelineExecutionId": {
+                    "$ref": "#/$defs/PipelineExecutionId"
+                }
+            }
+        },
+        "RetryStageExecutionInput": {
+            "type": "object",
+            "properties": {
+                "pipelineName": {
+                    "$ref": "#/$defs/PipelineName"
+                },
+                "stageName": {
+                    "$ref": "#/$defs/StageName"
+                },
+                "pipelineExecutionId": {
+                    "$ref": "#/$defs/PipelineExecutionId"
+                },
+                "retryMode": {
+                    "$ref": "#/$defs/StageRetryMode"
+                }
+            }
+        },
+        "StageRetryMode": {
+            "enum": [
+                "FAILED_ACTIONS",
+                "ALL_ACTIONS"
+            ]
+        },
+        "RollbackStageOutput": {
+            "type": "object",
+            "properties": {
+                "pipelineExecutionId": {
+                    "$ref": "#/$defs/PipelineExecutionId"
+                }
+            }
+        },
+        "RollbackStageInput": {
+            "type": "object",
+            "properties": {
+                "pipelineName": {
+                    "$ref": "#/$defs/PipelineName"
+                },
+                "stageName": {
+                    "$ref": "#/$defs/StageName"
+                },
+                "targetPipelineExecutionId": {
+                    "$ref": "#/$defs/PipelineExecutionId"
+                }
+            }
+        },
+        "StartPipelineExecutionOutput": {
+            "type": "object",
+            "properties": {
+                "pipelineExecutionId": {
+                    "$ref": "#/$defs/PipelineExecutionId"
+                }
+            }
+        },
+        "StartPipelineExecutionInput": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/PipelineName"
+                },
+                "variables": {
+                    "$ref": "#/$defs/PipelineVariableList"
+                },
+                "clientRequestToken": {
+                    "$ref": "#/$defs/ClientRequestToken"
+                },
+                "sourceRevisions": {
+                    "$ref": "#/$defs/SourceRevisionOverrideList"
+                }
+            }
+        },
+        "PipelineVariableList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PipelineVariable"
+            }
+        },
+        "PipelineVariable": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/PipelineVariableName"
+                },
+                "value": {
+                    "$ref": "#/$defs/PipelineVariableValue"
+                }
+            }
+        },
+        "ClientRequestToken": {
+            "type": "string"
+        },
+        "SourceRevisionOverrideList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SourceRevisionOverride"
+            }
+        },
+        "SourceRevisionOverride": {
+            "type": "object",
+            "properties": {
+                "actionName": {
+                    "$ref": "#/$defs/ActionName"
+                },
+                "revisionType": {
+                    "$ref": "#/$defs/SourceRevisionType"
+                },
+                "revisionValue": {
+                    "$ref": "#/$defs/Revision"
+                }
+            }
+        },
+        "SourceRevisionType": {
+            "enum": [
+                "COMMIT_ID",
+                "IMAGE_DIGEST",
+                "S3_OBJECT_VERSION_ID",
+                "S3_OBJECT_KEY"
+            ]
+        },
+        "StopPipelineExecutionOutput": {
+            "type": "object",
+            "properties": {
+                "pipelineExecutionId": {
+                    "$ref": "#/$defs/PipelineExecutionId"
+                }
+            }
+        },
+        "StopPipelineExecutionInput": {
+            "type": "object",
+            "properties": {
+                "pipelineName": {
+                    "$ref": "#/$defs/PipelineName"
+                },
+                "pipelineExecutionId": {
+                    "$ref": "#/$defs/PipelineExecutionId"
+                },
+                "abandon": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "reason": {
+                    "$ref": "#/$defs/StopPipelineExecutionReason"
+                }
+            }
+        },
+        "TagResourceOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceInput": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "UntagResourceOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceInput": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "tagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "UpdateActionTypeInput": {
+            "type": "object",
+            "properties": {
+                "actionType": {
+                    "$ref": "#/$defs/ActionTypeDeclaration"
+                }
+            }
+        },
+        "UpdatePipelineOutput": {
+            "type": "object",
+            "properties": {
+                "pipeline": {
+                    "$ref": "#/$defs/PipelineDeclaration"
+                }
+            }
+        },
+        "UpdatePipelineInput": {
+            "type": "object",
+            "properties": {
+                "pipeline": {
+                    "$ref": "#/$defs/PipelineDeclaration"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://codepipeline-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://codepipeline-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://codepipeline.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://codepipeline.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

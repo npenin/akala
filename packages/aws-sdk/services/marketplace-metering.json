@@ -1,0 +1,765 @@
+{
+    "name": "aws-marketplace",
+    "commands": [
+        {
+            "name": "BatchMeterUsage",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchMeterUsage"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchMeterUsageResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchMeterUsageRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "MeterUsage",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "MeterUsage"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/MeterUsageResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/MeterUsageRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RegisterUsage",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RegisterUsage"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RegisterUsageResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RegisterUsageRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ResolveCustomer",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ResolveCustomer"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ResolveCustomerResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ResolveCustomerRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "BatchMeterUsageResult": {
+            "type": "object",
+            "properties": {
+                "Results": {
+                    "$ref": "#/$defs/UsageRecordResultList"
+                },
+                "UnprocessedRecords": {
+                    "$ref": "#/$defs/UsageRecordList"
+                }
+            }
+        },
+        "UsageRecordResultList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/UsageRecordResult"
+            }
+        },
+        "UsageRecordResult": {
+            "type": "object",
+            "properties": {
+                "UsageRecord": {
+                    "$ref": "#/$defs/UsageRecord"
+                },
+                "MeteringRecordId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Status": {
+                    "$ref": "#/$defs/UsageRecordResultStatus"
+                }
+            }
+        },
+        "UsageRecord": {
+            "type": "object",
+            "properties": {
+                "Timestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "CustomerIdentifier": {
+                    "$ref": "#/$defs/CustomerIdentifier"
+                },
+                "Dimension": {
+                    "$ref": "#/$defs/UsageDimension"
+                },
+                "Quantity": {
+                    "$ref": "#/$defs/UsageQuantity"
+                },
+                "UsageAllocations": {
+                    "$ref": "#/$defs/UsageAllocations"
+                }
+            }
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "CustomerIdentifier": {
+            "type": "string"
+        },
+        "UsageDimension": {
+            "type": "string"
+        },
+        "UsageQuantity": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "UsageAllocations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/UsageAllocation"
+            }
+        },
+        "UsageAllocation": {
+            "type": "object",
+            "properties": {
+                "AllocatedUsageQuantity": {
+                    "$ref": "#/$defs/AllocatedUsageQuantity"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "AllocatedUsageQuantity": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "String": {
+            "type": "string"
+        },
+        "UsageRecordResultStatus": {
+            "enum": [
+                "SUCCESS",
+                "CUSTOMER_NOT_SUBSCRIBED",
+                "DUPLICATE_RECORD"
+            ]
+        },
+        "UsageRecordList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/UsageRecord"
+            }
+        },
+        "BatchMeterUsageRequest": {
+            "type": "object",
+            "properties": {
+                "UsageRecords": {
+                    "$ref": "#/$defs/UsageRecordList"
+                },
+                "ProductCode": {
+                    "$ref": "#/$defs/ProductCode"
+                }
+            }
+        },
+        "ProductCode": {
+            "type": "string"
+        },
+        "MeterUsageResult": {
+            "type": "object",
+            "properties": {
+                "MeteringRecordId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "MeterUsageRequest": {
+            "type": "object",
+            "properties": {
+                "ProductCode": {
+                    "$ref": "#/$defs/ProductCode"
+                },
+                "Timestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "UsageDimension": {
+                    "$ref": "#/$defs/UsageDimension"
+                },
+                "UsageQuantity": {
+                    "$ref": "#/$defs/UsageQuantity"
+                },
+                "DryRun": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "UsageAllocations": {
+                    "$ref": "#/$defs/UsageAllocations"
+                }
+            }
+        },
+        "Boolean": {
+            "type": "boolean"
+        },
+        "RegisterUsageResult": {
+            "type": "object",
+            "properties": {
+                "PublicKeyRotationTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Signature": {
+                    "$ref": "#/$defs/NonEmptyString"
+                }
+            }
+        },
+        "NonEmptyString": {
+            "type": "string"
+        },
+        "RegisterUsageRequest": {
+            "type": "object",
+            "properties": {
+                "ProductCode": {
+                    "$ref": "#/$defs/ProductCode"
+                },
+                "PublicKeyVersion": {
+                    "$ref": "#/$defs/VersionInteger"
+                },
+                "Nonce": {
+                    "$ref": "#/$defs/Nonce"
+                }
+            }
+        },
+        "VersionInteger": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "Nonce": {
+            "type": "string"
+        },
+        "ResolveCustomerResult": {
+            "type": "object",
+            "properties": {
+                "CustomerIdentifier": {
+                    "$ref": "#/$defs/CustomerIdentifier"
+                },
+                "ProductCode": {
+                    "$ref": "#/$defs/ProductCode"
+                },
+                "CustomerAWSAccountId": {
+                    "$ref": "#/$defs/CustomerAWSAccountId"
+                }
+            }
+        },
+        "CustomerAWSAccountId": {
+            "type": "string"
+        },
+        "ResolveCustomerRequest": {
+            "type": "object",
+            "properties": {
+                "RegistrationToken": {
+                    "$ref": "#/$defs/NonEmptyString"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://metering.marketplace-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://metering.marketplace-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://metering.marketplace.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "stringEquals",
+                                        "argv": [
+                                            "aws",
+                                            {
+                                                "fn": "getAttr",
+                                                "argv": [
+                                                    {
+                                                        "ref": "PartitionResult"
+                                                    },
+                                                    "name"
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "endpoint": {
+                                    "url": "https://metering.marketplace.{Region}.amazonaws.com",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "stringEquals",
+                                        "argv": [
+                                            "aws-us-gov",
+                                            {
+                                                "fn": "getAttr",
+                                                "argv": [
+                                                    {
+                                                        "ref": "PartitionResult"
+                                                    },
+                                                    "name"
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "endpoint": {
+                                    "url": "https://metering.marketplace.{Region}.amazonaws.com",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://metering.marketplace.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

@@ -1,0 +1,952 @@
+{
+    "name": "iotsecuredtunneling",
+    "commands": [
+        {
+            "name": "CloseTunnel",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CloseTunnel"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CloseTunnelResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CloseTunnelRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeTunnel",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeTunnel"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeTunnelResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeTunnelRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTunnels",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTunnels"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTunnelsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTunnelsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "OpenTunnel",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "OpenTunnel"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/OpenTunnelResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/OpenTunnelRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RotateTunnelAccessToken",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RotateTunnelAccessToken"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RotateTunnelAccessTokenResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RotateTunnelAccessTokenRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CloseTunnelResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "CloseTunnelRequest": {
+            "type": "object",
+            "properties": {
+                "tunnelId": {
+                    "$ref": "#/$defs/TunnelId"
+                },
+                "delete": {
+                    "$ref": "#/$defs/DeleteFlag"
+                }
+            }
+        },
+        "TunnelId": {
+            "type": "string"
+        },
+        "DeleteFlag": {
+            "type": "boolean"
+        },
+        "DescribeTunnelResponse": {
+            "type": "object",
+            "properties": {
+                "tunnel": {
+                    "$ref": "#/$defs/Tunnel"
+                }
+            }
+        },
+        "Tunnel": {
+            "type": "object",
+            "properties": {
+                "tunnelId": {
+                    "$ref": "#/$defs/TunnelId"
+                },
+                "tunnelArn": {
+                    "$ref": "#/$defs/TunnelArn"
+                },
+                "status": {
+                    "$ref": "#/$defs/TunnelStatus"
+                },
+                "sourceConnectionState": {
+                    "$ref": "#/$defs/ConnectionState"
+                },
+                "destinationConnectionState": {
+                    "$ref": "#/$defs/ConnectionState"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "destinationConfig": {
+                    "$ref": "#/$defs/DestinationConfig"
+                },
+                "timeoutConfig": {
+                    "$ref": "#/$defs/TimeoutConfig"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/DateType"
+                },
+                "lastUpdatedAt": {
+                    "$ref": "#/$defs/DateType"
+                }
+            }
+        },
+        "TunnelArn": {
+            "type": "string"
+        },
+        "TunnelStatus": {
+            "enum": [
+                "OPEN",
+                "CLOSED"
+            ]
+        },
+        "ConnectionState": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "$ref": "#/$defs/ConnectionStatus"
+                },
+                "lastUpdatedAt": {
+                    "$ref": "#/$defs/DateType"
+                }
+            }
+        },
+        "ConnectionStatus": {
+            "enum": [
+                "CONNECTED",
+                "DISCONNECTED"
+            ]
+        },
+        "DateType": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "Description": {
+            "type": "string"
+        },
+        "DestinationConfig": {
+            "type": "object",
+            "properties": {
+                "thingName": {
+                    "$ref": "#/$defs/ThingName"
+                },
+                "services": {
+                    "$ref": "#/$defs/ServiceList"
+                }
+            }
+        },
+        "ThingName": {
+            "type": "string"
+        },
+        "ServiceList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Service"
+            }
+        },
+        "Service": {
+            "type": "string"
+        },
+        "TimeoutConfig": {
+            "type": "object",
+            "properties": {
+                "maxLifetimeTimeoutMinutes": {
+                    "$ref": "#/$defs/TimeoutInMin"
+                }
+            }
+        },
+        "TimeoutInMin": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "DescribeTunnelRequest": {
+            "type": "object",
+            "properties": {
+                "tunnelId": {
+                    "$ref": "#/$defs/TunnelId"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                }
+            }
+        },
+        "AmazonResourceName": {
+            "type": "string"
+        },
+        "ListTunnelsResponse": {
+            "type": "object",
+            "properties": {
+                "tunnelSummaries": {
+                    "$ref": "#/$defs/TunnelSummaryList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "TunnelSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TunnelSummary"
+            }
+        },
+        "TunnelSummary": {
+            "type": "object",
+            "properties": {
+                "tunnelId": {
+                    "$ref": "#/$defs/TunnelId"
+                },
+                "tunnelArn": {
+                    "$ref": "#/$defs/TunnelArn"
+                },
+                "status": {
+                    "$ref": "#/$defs/TunnelStatus"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/DateType"
+                },
+                "lastUpdatedAt": {
+                    "$ref": "#/$defs/DateType"
+                }
+            }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "ListTunnelsRequest": {
+            "type": "object",
+            "properties": {
+                "thingName": {
+                    "$ref": "#/$defs/ThingName"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "OpenTunnelResponse": {
+            "type": "object",
+            "properties": {
+                "tunnelId": {
+                    "$ref": "#/$defs/TunnelId"
+                },
+                "tunnelArn": {
+                    "$ref": "#/$defs/TunnelArn"
+                },
+                "sourceAccessToken": {
+                    "$ref": "#/$defs/ClientAccessToken"
+                },
+                "destinationAccessToken": {
+                    "$ref": "#/$defs/ClientAccessToken"
+                }
+            }
+        },
+        "ClientAccessToken": {
+            "type": "string"
+        },
+        "OpenTunnelRequest": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "destinationConfig": {
+                    "$ref": "#/$defs/DestinationConfig"
+                },
+                "timeoutConfig": {
+                    "$ref": "#/$defs/TimeoutConfig"
+                }
+            }
+        },
+        "RotateTunnelAccessTokenResponse": {
+            "type": "object",
+            "properties": {
+                "tunnelArn": {
+                    "$ref": "#/$defs/TunnelArn"
+                },
+                "sourceAccessToken": {
+                    "$ref": "#/$defs/ClientAccessToken"
+                },
+                "destinationAccessToken": {
+                    "$ref": "#/$defs/ClientAccessToken"
+                }
+            }
+        },
+        "RotateTunnelAccessTokenRequest": {
+            "type": "object",
+            "properties": {
+                "tunnelId": {
+                    "$ref": "#/$defs/TunnelId"
+                },
+                "clientMode": {
+                    "$ref": "#/$defs/ClientMode"
+                },
+                "destinationConfig": {
+                    "$ref": "#/$defs/DestinationConfig"
+                }
+            }
+        },
+        "ClientMode": {
+            "enum": [
+                "SOURCE",
+                "DESTINATION",
+                "ALL"
+            ]
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "tagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://api.tunneling.iot-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://api.tunneling.iot-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://api.tunneling.iot.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://api.tunneling.iot.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

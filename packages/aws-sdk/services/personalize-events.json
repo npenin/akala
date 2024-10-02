@@ -1,0 +1,763 @@
+{
+    "name": "personalize",
+    "commands": [
+        {
+            "name": "PutActionInteractions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutActionInteractions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutActionInteractionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutActions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutActions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutActionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutEvents",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutEvents"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutEventsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutItems",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutItems"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutItemsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutUsers",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutUsers"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutUsersRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "PutActionInteractionsRequest": {
+            "type": "object",
+            "properties": {
+                "trackingId": {
+                    "$ref": "#/$defs/StringType"
+                },
+                "actionInteractions": {
+                    "$ref": "#/$defs/ActionInteractionsList"
+                }
+            }
+        },
+        "StringType": {
+            "type": "string"
+        },
+        "ActionInteractionsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ActionInteraction"
+            }
+        },
+        "ActionInteraction": {
+            "type": "object",
+            "properties": {
+                "actionId": {
+                    "$ref": "#/$defs/ActionId"
+                },
+                "userId": {
+                    "$ref": "#/$defs/UserId"
+                },
+                "sessionId": {
+                    "$ref": "#/$defs/StringType"
+                },
+                "timestamp": {
+                    "$ref": "#/$defs/Date"
+                },
+                "eventType": {
+                    "$ref": "#/$defs/StringType"
+                },
+                "eventId": {
+                    "$ref": "#/$defs/StringType"
+                },
+                "recommendationId": {
+                    "$ref": "#/$defs/RecommendationId"
+                },
+                "impression": {
+                    "$ref": "#/$defs/ActionImpression"
+                },
+                "properties": {
+                    "$ref": "#/$defs/SynthesizedJsonActionInteractionProperties"
+                }
+            }
+        },
+        "ActionId": {
+            "type": "string"
+        },
+        "UserId": {
+            "type": "string"
+        },
+        "Date": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "RecommendationId": {
+            "type": "string"
+        },
+        "ActionImpression": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ActionId"
+            }
+        },
+        "SynthesizedJsonActionInteractionProperties": {
+            "type": "string"
+        },
+        "PutActionsRequest": {
+            "type": "object",
+            "properties": {
+                "datasetArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "actions": {
+                    "$ref": "#/$defs/ActionList"
+                }
+            }
+        },
+        "Arn": {
+            "type": "string"
+        },
+        "ActionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Action"
+            }
+        },
+        "Action": {
+            "type": "object",
+            "properties": {
+                "actionId": {
+                    "$ref": "#/$defs/StringType"
+                },
+                "properties": {
+                    "$ref": "#/$defs/SynthesizedJsonActionProperties"
+                }
+            }
+        },
+        "SynthesizedJsonActionProperties": {
+            "type": "string"
+        },
+        "PutEventsRequest": {
+            "type": "object",
+            "properties": {
+                "trackingId": {
+                    "$ref": "#/$defs/StringType"
+                },
+                "userId": {
+                    "$ref": "#/$defs/UserId"
+                },
+                "sessionId": {
+                    "$ref": "#/$defs/StringType"
+                },
+                "eventList": {
+                    "$ref": "#/$defs/EventList"
+                }
+            }
+        },
+        "EventList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Event"
+            }
+        },
+        "Event": {
+            "type": "object",
+            "properties": {
+                "eventId": {
+                    "$ref": "#/$defs/StringType"
+                },
+                "eventType": {
+                    "$ref": "#/$defs/StringType"
+                },
+                "eventValue": {
+                    "$ref": "#/$defs/FloatType"
+                },
+                "itemId": {
+                    "$ref": "#/$defs/ItemId"
+                },
+                "properties": {
+                    "$ref": "#/$defs/SynthesizedJsonEventPropertiesJSON"
+                },
+                "sentAt": {
+                    "$ref": "#/$defs/Date"
+                },
+                "recommendationId": {
+                    "$ref": "#/$defs/RecommendationId"
+                },
+                "impression": {
+                    "$ref": "#/$defs/Impression"
+                },
+                "metricAttribution": {
+                    "$ref": "#/$defs/MetricAttribution"
+                }
+            }
+        },
+        "FloatType": {
+            "type": "number",
+            "format": "float"
+        },
+        "ItemId": {
+            "type": "string"
+        },
+        "SynthesizedJsonEventPropertiesJSON": {
+            "type": "string"
+        },
+        "Impression": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ItemId"
+            }
+        },
+        "MetricAttribution": {
+            "type": "object",
+            "properties": {
+                "eventAttributionSource": {
+                    "$ref": "#/$defs/EventAttributionSource"
+                }
+            }
+        },
+        "EventAttributionSource": {
+            "type": "string"
+        },
+        "PutItemsRequest": {
+            "type": "object",
+            "properties": {
+                "datasetArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "items": {
+                    "$ref": "#/$defs/ItemList"
+                }
+            }
+        },
+        "ItemList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Item"
+            }
+        },
+        "Item": {
+            "type": "object",
+            "properties": {
+                "itemId": {
+                    "$ref": "#/$defs/StringType"
+                },
+                "properties": {
+                    "$ref": "#/$defs/SynthesizedJsonItemProperties"
+                }
+            }
+        },
+        "SynthesizedJsonItemProperties": {
+            "type": "string"
+        },
+        "PutUsersRequest": {
+            "type": "object",
+            "properties": {
+                "datasetArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "users": {
+                    "$ref": "#/$defs/UserList"
+                }
+            }
+        },
+        "UserList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/User"
+            }
+        },
+        "User": {
+            "type": "object",
+            "properties": {
+                "userId": {
+                    "$ref": "#/$defs/StringType"
+                },
+                "properties": {
+                    "$ref": "#/$defs/SynthesizedJsonUserProperties"
+                }
+            }
+        },
+        "SynthesizedJsonUserProperties": {
+            "type": "string"
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://personalize-events-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://personalize-events-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://personalize-events.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://personalize-events.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

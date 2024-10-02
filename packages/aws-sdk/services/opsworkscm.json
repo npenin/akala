@@ -1,0 +1,1747 @@
+{
+    "name": "opsworks-cm",
+    "commands": [
+        {
+            "name": "AssociateNode",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AssociateNode"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AssociateNodeResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AssociateNodeRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateBackup",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateBackup"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateBackupResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateBackupRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateServer",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateServer"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateServerResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateServerRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteBackup",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteBackup"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteBackupResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteBackupRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteServer",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteServer"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteServerResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteServerRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeAccountAttributes",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeAccountAttributes"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeAccountAttributesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeAccountAttributesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeBackups",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeBackups"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeBackupsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeBackupsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeEvents",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeEvents"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeEventsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeEventsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeNodeAssociationStatus",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeNodeAssociationStatus"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeNodeAssociationStatusResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeNodeAssociationStatusRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeServers",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeServers"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeServersResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeServersRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DisassociateNode",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DisassociateNode"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DisassociateNodeResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DisassociateNodeRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ExportServerEngineAttribute",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ExportServerEngineAttribute"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ExportServerEngineAttributeResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ExportServerEngineAttributeRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RestoreServer",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RestoreServer"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RestoreServerResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RestoreServerRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartMaintenance",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartMaintenance"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartMaintenanceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartMaintenanceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateServer",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateServer"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateServerResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateServerRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateServerEngineAttributes",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateServerEngineAttributes"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateServerEngineAttributesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateServerEngineAttributesRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "AssociateNodeResponse": {
+            "type": "object",
+            "properties": {
+                "NodeAssociationStatusToken": {
+                    "$ref": "#/$defs/NodeAssociationStatusToken"
+                }
+            }
+        },
+        "NodeAssociationStatusToken": {
+            "type": "string"
+        },
+        "AssociateNodeRequest": {
+            "type": "object",
+            "properties": {
+                "ServerName": {
+                    "$ref": "#/$defs/ServerName"
+                },
+                "NodeName": {
+                    "$ref": "#/$defs/NodeName"
+                },
+                "EngineAttributes": {
+                    "$ref": "#/$defs/EngineAttributes"
+                }
+            }
+        },
+        "ServerName": {
+            "type": "string"
+        },
+        "NodeName": {
+            "type": "string"
+        },
+        "EngineAttributes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EngineAttribute"
+            }
+        },
+        "EngineAttribute": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/EngineAttributeName"
+                },
+                "Value": {
+                    "$ref": "#/$defs/EngineAttributeValue"
+                }
+            }
+        },
+        "EngineAttributeName": {
+            "type": "string"
+        },
+        "EngineAttributeValue": {
+            "type": "string"
+        },
+        "CreateBackupResponse": {
+            "type": "object",
+            "properties": {
+                "Backup": {
+                    "$ref": "#/$defs/Backup"
+                }
+            }
+        },
+        "Backup": {
+            "type": "object",
+            "properties": {
+                "BackupArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "BackupId": {
+                    "$ref": "#/$defs/BackupId"
+                },
+                "BackupType": {
+                    "$ref": "#/$defs/BackupType"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Description": {
+                    "$ref": "#/$defs/String"
+                },
+                "Engine": {
+                    "$ref": "#/$defs/String"
+                },
+                "EngineModel": {
+                    "$ref": "#/$defs/String"
+                },
+                "EngineVersion": {
+                    "$ref": "#/$defs/String"
+                },
+                "InstanceProfileArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "InstanceType": {
+                    "$ref": "#/$defs/String"
+                },
+                "KeyPair": {
+                    "$ref": "#/$defs/String"
+                },
+                "PreferredBackupWindow": {
+                    "$ref": "#/$defs/TimeWindowDefinition"
+                },
+                "PreferredMaintenanceWindow": {
+                    "$ref": "#/$defs/TimeWindowDefinition"
+                },
+                "S3DataSize": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "S3DataUrl": {
+                    "$ref": "#/$defs/String"
+                },
+                "S3LogUrl": {
+                    "$ref": "#/$defs/String"
+                },
+                "SecurityGroupIds": {
+                    "$ref": "#/$defs/Strings"
+                },
+                "ServerName": {
+                    "$ref": "#/$defs/ServerName"
+                },
+                "ServiceRoleArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "Status": {
+                    "$ref": "#/$defs/BackupStatus"
+                },
+                "StatusDescription": {
+                    "$ref": "#/$defs/String"
+                },
+                "SubnetIds": {
+                    "$ref": "#/$defs/Strings"
+                },
+                "ToolsVersion": {
+                    "$ref": "#/$defs/String"
+                },
+                "UserArn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "String": {
+            "type": "string"
+        },
+        "BackupId": {
+            "type": "string"
+        },
+        "BackupType": {
+            "enum": [
+                "AUTOMATED",
+                "MANUAL"
+            ]
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "TimeWindowDefinition": {
+            "type": "string"
+        },
+        "Integer": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "Strings": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "BackupStatus": {
+            "enum": [
+                "IN_PROGRESS",
+                "OK",
+                "FAILED",
+                "DELETING"
+            ]
+        },
+        "CreateBackupRequest": {
+            "type": "object",
+            "properties": {
+                "ServerName": {
+                    "$ref": "#/$defs/ServerName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/String"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "CreateServerResponse": {
+            "type": "object",
+            "properties": {
+                "Server": {
+                    "$ref": "#/$defs/Server"
+                }
+            }
+        },
+        "Server": {
+            "type": "object",
+            "properties": {
+                "AssociatePublicIpAddress": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "BackupRetentionCount": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "ServerName": {
+                    "$ref": "#/$defs/String"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "CloudFormationStackArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "CustomDomain": {
+                    "$ref": "#/$defs/CustomDomain"
+                },
+                "DisableAutomatedBackup": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "Endpoint": {
+                    "$ref": "#/$defs/String"
+                },
+                "Engine": {
+                    "$ref": "#/$defs/String"
+                },
+                "EngineModel": {
+                    "$ref": "#/$defs/String"
+                },
+                "EngineAttributes": {
+                    "$ref": "#/$defs/EngineAttributes"
+                },
+                "EngineVersion": {
+                    "$ref": "#/$defs/String"
+                },
+                "InstanceProfileArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "InstanceType": {
+                    "$ref": "#/$defs/String"
+                },
+                "KeyPair": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaintenanceStatus": {
+                    "$ref": "#/$defs/MaintenanceStatus"
+                },
+                "PreferredMaintenanceWindow": {
+                    "$ref": "#/$defs/TimeWindowDefinition"
+                },
+                "PreferredBackupWindow": {
+                    "$ref": "#/$defs/TimeWindowDefinition"
+                },
+                "SecurityGroupIds": {
+                    "$ref": "#/$defs/Strings"
+                },
+                "ServiceRoleArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ServerStatus"
+                },
+                "StatusReason": {
+                    "$ref": "#/$defs/String"
+                },
+                "SubnetIds": {
+                    "$ref": "#/$defs/Strings"
+                },
+                "ServerArn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "Boolean": {
+            "type": "boolean"
+        },
+        "CustomDomain": {
+            "type": "string"
+        },
+        "MaintenanceStatus": {
+            "enum": [
+                "SUCCESS",
+                "FAILED"
+            ]
+        },
+        "ServerStatus": {
+            "enum": [
+                "BACKING_UP",
+                "CONNECTION_LOST",
+                "CREATING",
+                "DELETING",
+                "MODIFYING",
+                "FAILED",
+                "HEALTHY",
+                "RUNNING",
+                "RESTORING",
+                "SETUP",
+                "UNDER_MAINTENANCE",
+                "UNHEALTHY",
+                "TERMINATED"
+            ]
+        },
+        "CreateServerRequest": {
+            "type": "object",
+            "properties": {
+                "AssociatePublicIpAddress": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "CustomDomain": {
+                    "$ref": "#/$defs/CustomDomain"
+                },
+                "CustomCertificate": {
+                    "$ref": "#/$defs/CustomCertificate"
+                },
+                "CustomPrivateKey": {
+                    "$ref": "#/$defs/CustomPrivateKey"
+                },
+                "DisableAutomatedBackup": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "Engine": {
+                    "$ref": "#/$defs/String"
+                },
+                "EngineModel": {
+                    "$ref": "#/$defs/String"
+                },
+                "EngineVersion": {
+                    "$ref": "#/$defs/String"
+                },
+                "EngineAttributes": {
+                    "$ref": "#/$defs/EngineAttributes"
+                },
+                "BackupRetentionCount": {
+                    "$ref": "#/$defs/BackupRetentionCountDefinition"
+                },
+                "ServerName": {
+                    "$ref": "#/$defs/ServerName"
+                },
+                "InstanceProfileArn": {
+                    "$ref": "#/$defs/InstanceProfileArn"
+                },
+                "InstanceType": {
+                    "$ref": "#/$defs/String"
+                },
+                "KeyPair": {
+                    "$ref": "#/$defs/KeyPair"
+                },
+                "PreferredMaintenanceWindow": {
+                    "$ref": "#/$defs/TimeWindowDefinition"
+                },
+                "PreferredBackupWindow": {
+                    "$ref": "#/$defs/TimeWindowDefinition"
+                },
+                "SecurityGroupIds": {
+                    "$ref": "#/$defs/Strings"
+                },
+                "ServiceRoleArn": {
+                    "$ref": "#/$defs/ServiceRoleArn"
+                },
+                "SubnetIds": {
+                    "$ref": "#/$defs/Strings"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "BackupId": {
+                    "$ref": "#/$defs/BackupId"
+                }
+            }
+        },
+        "CustomCertificate": {
+            "type": "string"
+        },
+        "CustomPrivateKey": {
+            "type": "string"
+        },
+        "BackupRetentionCountDefinition": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "InstanceProfileArn": {
+            "type": "string"
+        },
+        "KeyPair": {
+            "type": "string"
+        },
+        "ServiceRoleArn": {
+            "type": "string"
+        },
+        "DeleteBackupResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteBackupRequest": {
+            "type": "object",
+            "properties": {
+                "BackupId": {
+                    "$ref": "#/$defs/BackupId"
+                }
+            }
+        },
+        "DeleteServerResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteServerRequest": {
+            "type": "object",
+            "properties": {
+                "ServerName": {
+                    "$ref": "#/$defs/ServerName"
+                }
+            }
+        },
+        "DescribeAccountAttributesResponse": {
+            "type": "object",
+            "properties": {
+                "Attributes": {
+                    "$ref": "#/$defs/AccountAttributes"
+                }
+            }
+        },
+        "AccountAttributes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AccountAttribute"
+            }
+        },
+        "AccountAttribute": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Maximum": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Used": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "DescribeAccountAttributesRequest": {
+            "type": "object",
+            "properties": {}
+        },
+        "DescribeBackupsResponse": {
+            "type": "object",
+            "properties": {
+                "Backups": {
+                    "$ref": "#/$defs/Backups"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "Backups": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Backup"
+            }
+        },
+        "DescribeBackupsRequest": {
+            "type": "object",
+            "properties": {
+                "BackupId": {
+                    "$ref": "#/$defs/BackupId"
+                },
+                "ServerName": {
+                    "$ref": "#/$defs/ServerName"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DescribeEventsResponse": {
+            "type": "object",
+            "properties": {
+                "ServerEvents": {
+                    "$ref": "#/$defs/ServerEvents"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ServerEvents": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ServerEvent"
+            }
+        },
+        "ServerEvent": {
+            "type": "object",
+            "properties": {
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "ServerName": {
+                    "$ref": "#/$defs/String"
+                },
+                "Message": {
+                    "$ref": "#/$defs/String"
+                },
+                "LogUrl": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DescribeEventsRequest": {
+            "type": "object",
+            "properties": {
+                "ServerName": {
+                    "$ref": "#/$defs/ServerName"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "DescribeNodeAssociationStatusResponse": {
+            "type": "object",
+            "properties": {
+                "NodeAssociationStatus": {
+                    "$ref": "#/$defs/NodeAssociationStatus"
+                },
+                "EngineAttributes": {
+                    "$ref": "#/$defs/EngineAttributes"
+                }
+            }
+        },
+        "NodeAssociationStatus": {
+            "enum": [
+                "SUCCESS",
+                "FAILED",
+                "IN_PROGRESS"
+            ]
+        },
+        "DescribeNodeAssociationStatusRequest": {
+            "type": "object",
+            "properties": {
+                "NodeAssociationStatusToken": {
+                    "$ref": "#/$defs/NodeAssociationStatusToken"
+                },
+                "ServerName": {
+                    "$ref": "#/$defs/ServerName"
+                }
+            }
+        },
+        "DescribeServersResponse": {
+            "type": "object",
+            "properties": {
+                "Servers": {
+                    "$ref": "#/$defs/Servers"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "Servers": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Server"
+            }
+        },
+        "DescribeServersRequest": {
+            "type": "object",
+            "properties": {
+                "ServerName": {
+                    "$ref": "#/$defs/ServerName"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "DisassociateNodeResponse": {
+            "type": "object",
+            "properties": {
+                "NodeAssociationStatusToken": {
+                    "$ref": "#/$defs/NodeAssociationStatusToken"
+                }
+            }
+        },
+        "DisassociateNodeRequest": {
+            "type": "object",
+            "properties": {
+                "ServerName": {
+                    "$ref": "#/$defs/ServerName"
+                },
+                "NodeName": {
+                    "$ref": "#/$defs/NodeName"
+                },
+                "EngineAttributes": {
+                    "$ref": "#/$defs/EngineAttributes"
+                }
+            }
+        },
+        "ExportServerEngineAttributeResponse": {
+            "type": "object",
+            "properties": {
+                "EngineAttribute": {
+                    "$ref": "#/$defs/EngineAttribute"
+                },
+                "ServerName": {
+                    "$ref": "#/$defs/ServerName"
+                }
+            }
+        },
+        "ExportServerEngineAttributeRequest": {
+            "type": "object",
+            "properties": {
+                "ExportAttributeName": {
+                    "$ref": "#/$defs/String"
+                },
+                "ServerName": {
+                    "$ref": "#/$defs/ServerName"
+                },
+                "InputAttributes": {
+                    "$ref": "#/$defs/EngineAttributes"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/AWSOpsWorksCMResourceArn"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "AWSOpsWorksCMResourceArn": {
+            "type": "string"
+        },
+        "RestoreServerResponse": {
+            "type": "object",
+            "properties": {
+                "Server": {
+                    "$ref": "#/$defs/Server"
+                }
+            }
+        },
+        "RestoreServerRequest": {
+            "type": "object",
+            "properties": {
+                "BackupId": {
+                    "$ref": "#/$defs/BackupId"
+                },
+                "ServerName": {
+                    "$ref": "#/$defs/ServerName"
+                },
+                "InstanceType": {
+                    "$ref": "#/$defs/String"
+                },
+                "KeyPair": {
+                    "$ref": "#/$defs/KeyPair"
+                }
+            }
+        },
+        "StartMaintenanceResponse": {
+            "type": "object",
+            "properties": {
+                "Server": {
+                    "$ref": "#/$defs/Server"
+                }
+            }
+        },
+        "StartMaintenanceRequest": {
+            "type": "object",
+            "properties": {
+                "ServerName": {
+                    "$ref": "#/$defs/ServerName"
+                },
+                "EngineAttributes": {
+                    "$ref": "#/$defs/EngineAttributes"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/AWSOpsWorksCMResourceArn"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/AWSOpsWorksCMResourceArn"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "UpdateServerResponse": {
+            "type": "object",
+            "properties": {
+                "Server": {
+                    "$ref": "#/$defs/Server"
+                }
+            }
+        },
+        "UpdateServerRequest": {
+            "type": "object",
+            "properties": {
+                "DisableAutomatedBackup": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "BackupRetentionCount": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "ServerName": {
+                    "$ref": "#/$defs/ServerName"
+                },
+                "PreferredMaintenanceWindow": {
+                    "$ref": "#/$defs/TimeWindowDefinition"
+                },
+                "PreferredBackupWindow": {
+                    "$ref": "#/$defs/TimeWindowDefinition"
+                }
+            }
+        },
+        "UpdateServerEngineAttributesResponse": {
+            "type": "object",
+            "properties": {
+                "Server": {
+                    "$ref": "#/$defs/Server"
+                }
+            }
+        },
+        "UpdateServerEngineAttributesRequest": {
+            "type": "object",
+            "properties": {
+                "ServerName": {
+                    "$ref": "#/$defs/ServerName"
+                },
+                "AttributeName": {
+                    "$ref": "#/$defs/AttributeName"
+                },
+                "AttributeValue": {
+                    "$ref": "#/$defs/AttributeValue"
+                }
+            }
+        },
+        "AttributeName": {
+            "type": "string"
+        },
+        "AttributeValue": {
+            "type": "string"
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://opsworks-cm-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://opsworks-cm-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://opsworks-cm.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://opsworks-cm.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

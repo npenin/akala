@@ -1,0 +1,1125 @@
+{
+    "name": "neptune-graph",
+    "commands": [
+        {
+            "name": "CancelQuery",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CancelQuery"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CancelQueryInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ExecuteQuery",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ExecuteQuery"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ExecuteQueryOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ExecuteQueryInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetGraphSummary",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetGraphSummary"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetGraphSummaryOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetGraphSummaryInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetQuery",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetQuery"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetQueryOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetQueryInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListQueries",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListQueries"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListQueriesOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListQueriesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceInput"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CancelQueryInput": {
+            "type": "object",
+            "properties": {
+                "graphIdentifier": {
+                    "$ref": "#/$defs/GraphIdentifier"
+                },
+                "queryId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "GraphIdentifier": {
+            "type": "string"
+        },
+        "ExecuteQueryOutput": {
+            "type": "object",
+            "properties": {
+                "payload": {
+                    "$ref": "#/$defs/QueryResponseBlob"
+                }
+            }
+        },
+        "QueryResponseBlob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "ExecuteQueryInput": {
+            "type": "object",
+            "properties": {
+                "graphIdentifier": {
+                    "$ref": "#/$defs/GraphIdentifier"
+                },
+                "queryString": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "language": {
+                    "$ref": "#/$defs/QueryLanguage"
+                },
+                "parameters": {
+                    "$ref": "#/$defs/DocumentValuedMap"
+                },
+                "planCache": {
+                    "$ref": "#/$defs/PlanCacheType"
+                },
+                "explainMode": {
+                    "$ref": "#/$defs/ExplainMode"
+                },
+                "queryTimeoutMilliseconds": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                }
+            }
+        },
+        "QueryLanguage": {
+            "enum": [
+                "OPEN_CYPHER"
+            ]
+        },
+        "DocumentValuedMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/smithy.api#Document"
+            }
+        },
+        "PlanCacheType": {
+            "enum": [
+                "ENABLED",
+                "DISABLED",
+                "AUTO"
+            ]
+        },
+        "ExplainMode": {
+            "enum": [
+                "STATIC",
+                "DETAILS"
+            ]
+        },
+        "GetGraphSummaryOutput": {
+            "type": "object",
+            "properties": {
+                "version": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "lastStatisticsComputationTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "graphSummary": {
+                    "$ref": "#/$defs/GraphDataSummary"
+                }
+            }
+        },
+        "GraphDataSummary": {
+            "type": "object",
+            "properties": {
+                "numNodes": {
+                    "$ref": "#/$defs/smithy.api#Long"
+                },
+                "numEdges": {
+                    "$ref": "#/$defs/smithy.api#Long"
+                },
+                "numNodeLabels": {
+                    "$ref": "#/$defs/smithy.api#Long"
+                },
+                "numEdgeLabels": {
+                    "$ref": "#/$defs/smithy.api#Long"
+                },
+                "nodeLabels": {
+                    "$ref": "#/$defs/NodeLabels"
+                },
+                "edgeLabels": {
+                    "$ref": "#/$defs/EdgeLabels"
+                },
+                "numNodeProperties": {
+                    "$ref": "#/$defs/smithy.api#Long"
+                },
+                "numEdgeProperties": {
+                    "$ref": "#/$defs/smithy.api#Long"
+                },
+                "nodeProperties": {
+                    "$ref": "#/$defs/LongValuedMapList"
+                },
+                "edgeProperties": {
+                    "$ref": "#/$defs/LongValuedMapList"
+                },
+                "totalNodePropertyValues": {
+                    "$ref": "#/$defs/smithy.api#Long"
+                },
+                "totalEdgePropertyValues": {
+                    "$ref": "#/$defs/smithy.api#Long"
+                },
+                "nodeStructures": {
+                    "$ref": "#/$defs/NodeStructures"
+                },
+                "edgeStructures": {
+                    "$ref": "#/$defs/EdgeStructures"
+                }
+            }
+        },
+        "NodeLabels": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "EdgeLabels": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "LongValuedMapList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LongValuedMap"
+            }
+        },
+        "LongValuedMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/smithy.api#Long"
+            }
+        },
+        "NodeStructures": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NodeStructure"
+            }
+        },
+        "NodeStructure": {
+            "type": "object",
+            "properties": {
+                "count": {
+                    "$ref": "#/$defs/smithy.api#Long"
+                },
+                "nodeProperties": {
+                    "$ref": "#/$defs/NodeProperties"
+                },
+                "distinctOutgoingEdgeLabels": {
+                    "$ref": "#/$defs/OutgoingEdgeLabels"
+                }
+            }
+        },
+        "NodeProperties": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "OutgoingEdgeLabels": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "EdgeStructures": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EdgeStructure"
+            }
+        },
+        "EdgeStructure": {
+            "type": "object",
+            "properties": {
+                "count": {
+                    "$ref": "#/$defs/smithy.api#Long"
+                },
+                "edgeProperties": {
+                    "$ref": "#/$defs/EdgeProperties"
+                }
+            }
+        },
+        "EdgeProperties": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "GetGraphSummaryInput": {
+            "type": "object",
+            "properties": {
+                "graphIdentifier": {
+                    "$ref": "#/$defs/GraphIdentifier"
+                },
+                "mode": {
+                    "$ref": "#/$defs/GraphSummaryMode"
+                }
+            }
+        },
+        "GraphSummaryMode": {
+            "enum": [
+                "BASIC",
+                "DETAILED"
+            ]
+        },
+        "GetQueryOutput": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "queryString": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "waited": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "elapsed": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "state": {
+                    "$ref": "#/$defs/QueryState"
+                }
+            }
+        },
+        "QueryState": {
+            "enum": [
+                "RUNNING",
+                "WAITING",
+                "CANCELLING"
+            ]
+        },
+        "GetQueryInput": {
+            "type": "object",
+            "properties": {
+                "graphIdentifier": {
+                    "$ref": "#/$defs/GraphIdentifier"
+                },
+                "queryId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "ListQueriesOutput": {
+            "type": "object",
+            "properties": {
+                "queries": {
+                    "$ref": "#/$defs/QuerySummaryList"
+                }
+            }
+        },
+        "QuerySummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/QuerySummary"
+            }
+        },
+        "QuerySummary": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "queryString": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "waited": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "elapsed": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "state": {
+                    "$ref": "#/$defs/QueryState"
+                }
+            }
+        },
+        "ListQueriesInput": {
+            "type": "object",
+            "properties": {
+                "graphIdentifier": {
+                    "$ref": "#/$defs/GraphIdentifier"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "state": {
+                    "$ref": "#/$defs/QueryStateInput"
+                }
+            }
+        },
+        "QueryStateInput": {
+            "enum": [
+                "ALL",
+                "RUNNING",
+                "WAITING",
+                "CANCELLING"
+            ]
+        },
+        "ListTagsForResourceOutput": {
+            "type": "object",
+            "properties": {
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "TagMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TagValue"
+            }
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "ListTagsForResourceInput": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "Arn": {
+            "type": "string"
+        },
+        "TagResourceOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceInput": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "UntagResourceOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceInput": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "tagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            },
+            "ApiType": {
+                "required": true,
+                "documentation": "Parameter to determine whether current API is a control plane or dataplane API",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "stringEquals",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "ApiType"
+                                                            },
+                                                            "ControlPlane"
+                                                        ]
+                                                    }
+                                                ],
+                                                "endpoint": {
+                                                    "url": "https://neptune-graph-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            },
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "stringEquals",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "ApiType"
+                                                            },
+                                                            "DataPlane"
+                                                        ]
+                                                    }
+                                                ],
+                                                "error": "Invalid Configuration: fips endpoint is not supported for this API",
+                                                "type": "error"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "Invalid Configuration: Unknown ApiType",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "stringEquals",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "ApiType"
+                                                            },
+                                                            "ControlPlane"
+                                                        ]
+                                                    }
+                                                ],
+                                                "endpoint": {
+                                                    "url": "https://neptune-graph-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            },
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "stringEquals",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "ApiType"
+                                                            },
+                                                            "DataPlane"
+                                                        ]
+                                                    }
+                                                ],
+                                                "error": "Invalid Configuration: fips endpoint is not supported for this API",
+                                                "type": "error"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "Invalid Configuration: Unknown ApiType",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "stringEquals",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "ApiType"
+                                                            },
+                                                            "ControlPlane"
+                                                        ]
+                                                    }
+                                                ],
+                                                "endpoint": {
+                                                    "url": "https://neptune-graph.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            },
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "stringEquals",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "ApiType"
+                                                            },
+                                                            "DataPlane"
+                                                        ]
+                                                    }
+                                                ],
+                                                "endpoint": {
+                                                    "url": "https://neptune-graph.{Region}.on.aws",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "Invalid Configuration: Unknown ApiType",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "stringEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "ApiType"
+                                            },
+                                            "ControlPlane"
+                                        ]
+                                    }
+                                ],
+                                "endpoint": {
+                                    "url": "https://neptune-graph.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "stringEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "ApiType"
+                                            },
+                                            "DataPlane"
+                                        ]
+                                    }
+                                ],
+                                "endpoint": {
+                                    "url": "https://{Region}.neptune-graph.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            },
+                            {
+                                "conditions": [],
+                                "error": "Invalid Configuration: Unknown ApiType",
+                                "type": "error"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

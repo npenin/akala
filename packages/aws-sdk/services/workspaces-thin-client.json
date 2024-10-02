@@ -1,0 +1,1705 @@
+{
+    "name": "thinclient",
+    "commands": [
+        {
+            "name": "CreateEnvironment",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateEnvironment"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateEnvironmentResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateEnvironmentRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteDevice",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteDevice"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteDeviceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteDeviceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteEnvironment",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteEnvironment"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteEnvironmentResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteEnvironmentRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeregisterDevice",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeregisterDevice"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeregisterDeviceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeregisterDeviceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetDevice",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetDevice"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetDeviceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetDeviceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetEnvironment",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetEnvironment"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetEnvironmentResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetEnvironmentRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetSoftwareSet",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetSoftwareSet"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetSoftwareSetResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetSoftwareSetRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListDevices",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListDevices"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListDevicesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListDevicesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListEnvironments",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListEnvironments"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListEnvironmentsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListEnvironmentsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListSoftwareSets",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListSoftwareSets"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListSoftwareSetsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListSoftwareSetsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateDevice",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateDevice"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateDeviceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateDeviceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateEnvironment",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateEnvironment"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateEnvironmentResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateEnvironmentRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateSoftwareSet",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateSoftwareSet"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateSoftwareSetResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateSoftwareSetRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CreateEnvironmentResponse": {
+            "type": "object",
+            "properties": {
+                "environment": {
+                    "$ref": "#/$defs/EnvironmentSummary"
+                }
+            }
+        },
+        "EnvironmentSummary": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/EnvironmentId"
+                },
+                "name": {
+                    "$ref": "#/$defs/EnvironmentName"
+                },
+                "desktopArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "desktopEndpoint": {
+                    "$ref": "#/$defs/DesktopEndpoint"
+                },
+                "desktopType": {
+                    "$ref": "#/$defs/DesktopType"
+                },
+                "activationCode": {
+                    "$ref": "#/$defs/ActivationCode"
+                },
+                "softwareSetUpdateSchedule": {
+                    "$ref": "#/$defs/SoftwareSetUpdateSchedule"
+                },
+                "maintenanceWindow": {
+                    "$ref": "#/$defs/MaintenanceWindow"
+                },
+                "softwareSetUpdateMode": {
+                    "$ref": "#/$defs/SoftwareSetUpdateMode"
+                },
+                "desiredSoftwareSetId": {
+                    "$ref": "#/$defs/SoftwareSetId"
+                },
+                "pendingSoftwareSetId": {
+                    "$ref": "#/$defs/SoftwareSetId"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "updatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "arn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "EnvironmentId": {
+            "type": "string"
+        },
+        "EnvironmentName": {
+            "type": "string"
+        },
+        "Arn": {
+            "type": "string"
+        },
+        "DesktopEndpoint": {
+            "type": "string"
+        },
+        "DesktopType": {
+            "enum": [
+                "WORKSPACES",
+                "APPSTREAM",
+                "WORKSPACES_WEB"
+            ]
+        },
+        "ActivationCode": {
+            "type": "string"
+        },
+        "SoftwareSetUpdateSchedule": {
+            "enum": [
+                "USE_MAINTENANCE_WINDOW",
+                "APPLY_IMMEDIATELY"
+            ]
+        },
+        "MaintenanceWindow": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/$defs/MaintenanceWindowType"
+                },
+                "startTimeHour": {
+                    "$ref": "#/$defs/Hour"
+                },
+                "startTimeMinute": {
+                    "$ref": "#/$defs/Minute"
+                },
+                "endTimeHour": {
+                    "$ref": "#/$defs/Hour"
+                },
+                "endTimeMinute": {
+                    "$ref": "#/$defs/Minute"
+                },
+                "daysOfTheWeek": {
+                    "$ref": "#/$defs/DayOfWeekList"
+                },
+                "applyTimeOf": {
+                    "$ref": "#/$defs/ApplyTimeOf"
+                }
+            }
+        },
+        "MaintenanceWindowType": {
+            "enum": [
+                "SYSTEM",
+                "CUSTOM"
+            ]
+        },
+        "Hour": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "Minute": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DayOfWeekList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DayOfWeek"
+            }
+        },
+        "DayOfWeek": {
+            "enum": [
+                "MONDAY",
+                "TUESDAY",
+                "WEDNESDAY",
+                "THURSDAY",
+                "FRIDAY",
+                "SATURDAY",
+                "SUNDAY"
+            ]
+        },
+        "ApplyTimeOf": {
+            "enum": [
+                "UTC",
+                "DEVICE"
+            ]
+        },
+        "SoftwareSetUpdateMode": {
+            "enum": [
+                "USE_LATEST",
+                "USE_DESIRED"
+            ]
+        },
+        "SoftwareSetId": {
+            "type": "string"
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "CreateEnvironmentRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/EnvironmentName"
+                },
+                "desktopArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "desktopEndpoint": {
+                    "$ref": "#/$defs/DesktopEndpoint"
+                },
+                "softwareSetUpdateSchedule": {
+                    "$ref": "#/$defs/SoftwareSetUpdateSchedule"
+                },
+                "maintenanceWindow": {
+                    "$ref": "#/$defs/MaintenanceWindow"
+                },
+                "softwareSetUpdateMode": {
+                    "$ref": "#/$defs/SoftwareSetUpdateMode"
+                },
+                "desiredSoftwareSetId": {
+                    "$ref": "#/$defs/SoftwareSetId"
+                },
+                "kmsKeyArn": {
+                    "$ref": "#/$defs/KmsKeyArn"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagsMap"
+                },
+                "deviceCreationTags": {
+                    "$ref": "#/$defs/DeviceCreationTagsMap"
+                }
+            }
+        },
+        "KmsKeyArn": {
+            "type": "string"
+        },
+        "ClientToken": {
+            "type": "string"
+        },
+        "TagsMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "DeviceCreationTagsMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/DeviceCreationTagValue"
+            }
+        },
+        "DeviceCreationTagValue": {
+            "type": "string"
+        },
+        "DeleteDeviceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteDeviceRequest": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/DeviceId"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                }
+            }
+        },
+        "DeviceId": {
+            "type": "string"
+        },
+        "DeleteEnvironmentResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteEnvironmentRequest": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/EnvironmentId"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                }
+            }
+        },
+        "DeregisterDeviceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeregisterDeviceRequest": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/DeviceId"
+                },
+                "targetDeviceStatus": {
+                    "$ref": "#/$defs/TargetDeviceStatus"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                }
+            }
+        },
+        "TargetDeviceStatus": {
+            "enum": [
+                "DEREGISTERED",
+                "ARCHIVED"
+            ]
+        },
+        "GetDeviceResponse": {
+            "type": "object",
+            "properties": {
+                "device": {
+                    "$ref": "#/$defs/Device"
+                }
+            }
+        },
+        "Device": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/DeviceId"
+                },
+                "serialNumber": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "name": {
+                    "$ref": "#/$defs/DeviceName"
+                },
+                "model": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "environmentId": {
+                    "$ref": "#/$defs/EnvironmentId"
+                },
+                "status": {
+                    "$ref": "#/$defs/DeviceStatus"
+                },
+                "currentSoftwareSetId": {
+                    "$ref": "#/$defs/SoftwareSetId"
+                },
+                "currentSoftwareSetVersion": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "desiredSoftwareSetId": {
+                    "$ref": "#/$defs/SoftwareSetId"
+                },
+                "pendingSoftwareSetId": {
+                    "$ref": "#/$defs/SoftwareSetId"
+                },
+                "pendingSoftwareSetVersion": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "softwareSetUpdateSchedule": {
+                    "$ref": "#/$defs/SoftwareSetUpdateSchedule"
+                },
+                "softwareSetComplianceStatus": {
+                    "$ref": "#/$defs/DeviceSoftwareSetComplianceStatus"
+                },
+                "softwareSetUpdateStatus": {
+                    "$ref": "#/$defs/SoftwareSetUpdateStatus"
+                },
+                "lastConnectedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "lastPostureAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "updatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "kmsKeyArn": {
+                    "$ref": "#/$defs/KmsKeyArn"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagsMap"
+                }
+            }
+        },
+        "DeviceName": {
+            "type": "string"
+        },
+        "DeviceStatus": {
+            "enum": [
+                "REGISTERED",
+                "DEREGISTERING",
+                "DEREGISTERED",
+                "ARCHIVED"
+            ]
+        },
+        "DeviceSoftwareSetComplianceStatus": {
+            "enum": [
+                "NONE",
+                "COMPLIANT",
+                "NOT_COMPLIANT"
+            ]
+        },
+        "SoftwareSetUpdateStatus": {
+            "enum": [
+                "AVAILABLE",
+                "IN_PROGRESS",
+                "UP_TO_DATE"
+            ]
+        },
+        "GetDeviceRequest": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/DeviceId"
+                }
+            }
+        },
+        "GetEnvironmentResponse": {
+            "type": "object",
+            "properties": {
+                "environment": {
+                    "$ref": "#/$defs/Environment"
+                }
+            }
+        },
+        "Environment": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/EnvironmentId"
+                },
+                "name": {
+                    "$ref": "#/$defs/EnvironmentName"
+                },
+                "desktopArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "desktopEndpoint": {
+                    "$ref": "#/$defs/DesktopEndpoint"
+                },
+                "desktopType": {
+                    "$ref": "#/$defs/DesktopType"
+                },
+                "activationCode": {
+                    "$ref": "#/$defs/ActivationCode"
+                },
+                "registeredDevicesCount": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "softwareSetUpdateSchedule": {
+                    "$ref": "#/$defs/SoftwareSetUpdateSchedule"
+                },
+                "maintenanceWindow": {
+                    "$ref": "#/$defs/MaintenanceWindow"
+                },
+                "softwareSetUpdateMode": {
+                    "$ref": "#/$defs/SoftwareSetUpdateMode"
+                },
+                "desiredSoftwareSetId": {
+                    "$ref": "#/$defs/SoftwareSetId"
+                },
+                "pendingSoftwareSetId": {
+                    "$ref": "#/$defs/SoftwareSetId"
+                },
+                "pendingSoftwareSetVersion": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "softwareSetComplianceStatus": {
+                    "$ref": "#/$defs/EnvironmentSoftwareSetComplianceStatus"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "updatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "kmsKeyArn": {
+                    "$ref": "#/$defs/KmsKeyArn"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagsMap"
+                },
+                "deviceCreationTags": {
+                    "$ref": "#/$defs/DeviceCreationTagsMap"
+                }
+            }
+        },
+        "EnvironmentSoftwareSetComplianceStatus": {
+            "enum": [
+                "NO_REGISTERED_DEVICES",
+                "COMPLIANT",
+                "NOT_COMPLIANT"
+            ]
+        },
+        "GetEnvironmentRequest": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/EnvironmentId"
+                }
+            }
+        },
+        "GetSoftwareSetResponse": {
+            "type": "object",
+            "properties": {
+                "softwareSet": {
+                    "$ref": "#/$defs/SoftwareSet"
+                }
+            }
+        },
+        "SoftwareSet": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/SoftwareSetId"
+                },
+                "version": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "releasedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "supportedUntil": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "validationStatus": {
+                    "$ref": "#/$defs/SoftwareSetValidationStatus"
+                },
+                "software": {
+                    "$ref": "#/$defs/SoftwareList"
+                },
+                "arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagsMap"
+                }
+            }
+        },
+        "SoftwareSetValidationStatus": {
+            "enum": [
+                "VALIDATED",
+                "NOT_VALIDATED"
+            ]
+        },
+        "SoftwareList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Software"
+            }
+        },
+        "Software": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "version": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "GetSoftwareSetRequest": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/SoftwareSetId"
+                }
+            }
+        },
+        "ListDevicesResponse": {
+            "type": "object",
+            "properties": {
+                "devices": {
+                    "$ref": "#/$defs/DeviceList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "DeviceList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DeviceSummary"
+            }
+        },
+        "DeviceSummary": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/DeviceId"
+                },
+                "serialNumber": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "name": {
+                    "$ref": "#/$defs/DeviceName"
+                },
+                "model": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "environmentId": {
+                    "$ref": "#/$defs/EnvironmentId"
+                },
+                "status": {
+                    "$ref": "#/$defs/DeviceStatus"
+                },
+                "currentSoftwareSetId": {
+                    "$ref": "#/$defs/SoftwareSetId"
+                },
+                "desiredSoftwareSetId": {
+                    "$ref": "#/$defs/SoftwareSetId"
+                },
+                "pendingSoftwareSetId": {
+                    "$ref": "#/$defs/SoftwareSetId"
+                },
+                "softwareSetUpdateSchedule": {
+                    "$ref": "#/$defs/SoftwareSetUpdateSchedule"
+                },
+                "lastConnectedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "lastPostureAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "updatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "arn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "PaginationToken": {
+            "type": "string"
+        },
+        "ListDevicesRequest": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListEnvironmentsResponse": {
+            "type": "object",
+            "properties": {
+                "environments": {
+                    "$ref": "#/$defs/EnvironmentList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "EnvironmentList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EnvironmentSummary"
+            }
+        },
+        "ListEnvironmentsRequest": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "ListSoftwareSetsResponse": {
+            "type": "object",
+            "properties": {
+                "softwareSets": {
+                    "$ref": "#/$defs/SoftwareSetList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "SoftwareSetList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SoftwareSetSummary"
+            }
+        },
+        "SoftwareSetSummary": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/SoftwareSetId"
+                },
+                "version": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "releasedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "supportedUntil": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "validationStatus": {
+                    "$ref": "#/$defs/SoftwareSetValidationStatus"
+                },
+                "arn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "ListSoftwareSetsRequest": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "tags": {
+                    "$ref": "#/$defs/TagsMap"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagsMap"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "tagKeys": {
+                    "$ref": "#/$defs/TagKeys"
+                }
+            }
+        },
+        "TagKeys": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "UpdateDeviceResponse": {
+            "type": "object",
+            "properties": {
+                "device": {
+                    "$ref": "#/$defs/DeviceSummary"
+                }
+            }
+        },
+        "UpdateDeviceRequest": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/DeviceId"
+                },
+                "name": {
+                    "$ref": "#/$defs/DeviceName"
+                },
+                "desiredSoftwareSetId": {
+                    "$ref": "#/$defs/SoftwareSetId"
+                },
+                "softwareSetUpdateSchedule": {
+                    "$ref": "#/$defs/SoftwareSetUpdateSchedule"
+                }
+            }
+        },
+        "UpdateEnvironmentResponse": {
+            "type": "object",
+            "properties": {
+                "environment": {
+                    "$ref": "#/$defs/EnvironmentSummary"
+                }
+            }
+        },
+        "UpdateEnvironmentRequest": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/EnvironmentId"
+                },
+                "name": {
+                    "$ref": "#/$defs/EnvironmentName"
+                },
+                "desktopArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "desktopEndpoint": {
+                    "$ref": "#/$defs/DesktopEndpoint"
+                },
+                "softwareSetUpdateSchedule": {
+                    "$ref": "#/$defs/SoftwareSetUpdateSchedule"
+                },
+                "maintenanceWindow": {
+                    "$ref": "#/$defs/MaintenanceWindow"
+                },
+                "softwareSetUpdateMode": {
+                    "$ref": "#/$defs/SoftwareSetUpdateMode"
+                },
+                "desiredSoftwareSetId": {
+                    "$ref": "#/$defs/SoftwareSetIdOrEmptyString"
+                },
+                "deviceCreationTags": {
+                    "$ref": "#/$defs/DeviceCreationTagsMap"
+                }
+            }
+        },
+        "SoftwareSetIdOrEmptyString": {
+            "type": "string"
+        },
+        "UpdateSoftwareSetResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateSoftwareSetRequest": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/SoftwareSetId"
+                },
+                "validationStatus": {
+                    "$ref": "#/$defs/SoftwareSetValidationStatus"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                                "type": "error"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": {
+                                        "ref": "Endpoint"
+                                    },
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "isSet",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ]
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "aws.partition",
+                                        "argv": [
+                                            {
+                                                "ref": "Region"
+                                            }
+                                        ],
+                                        "assign": "PartitionResult"
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseFIPS"
+                                                    },
+                                                    true
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseDualStack"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsFIPS"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsDualStack"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://thinclient-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ],
+                                                        "type": "tree"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseFIPS"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsFIPS"
+                                                                ]
+                                                            },
+                                                            true
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://thinclient-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ],
+                                                        "type": "tree"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "FIPS is enabled but this partition does not support FIPS",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseDualStack"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsDualStack"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://thinclient.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ],
+                                                        "type": "tree"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "DualStack is enabled but this partition does not support DualStack",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://thinclient.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    }
+                                ],
+                                "type": "tree"
+                            }
+                        ],
+                        "type": "tree"
+                    },
+                    {
+                        "conditions": [],
+                        "error": "Invalid Configuration: Missing Region",
+                        "type": "error"
+                    }
+                ],
+                "type": "tree"
+            }
+        ]
+    }
+}

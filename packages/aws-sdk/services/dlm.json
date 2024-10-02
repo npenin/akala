@@ -1,0 +1,1635 @@
+{
+    "name": "dlm",
+    "commands": [
+        {
+            "name": "CreateLifecyclePolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateLifecyclePolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateLifecyclePolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateLifecyclePolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteLifecyclePolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteLifecyclePolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteLifecyclePolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteLifecyclePolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetLifecyclePolicies",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetLifecyclePolicies"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetLifecyclePoliciesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetLifecyclePoliciesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetLifecyclePolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetLifecyclePolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetLifecyclePolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetLifecyclePolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateLifecyclePolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateLifecyclePolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateLifecyclePolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateLifecyclePolicyRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CreateLifecyclePolicyResponse": {
+            "type": "object",
+            "properties": {
+                "PolicyId": {
+                    "$ref": "#/$defs/PolicyId"
+                }
+            }
+        },
+        "PolicyId": {
+            "type": "string"
+        },
+        "CreateLifecyclePolicyRequest": {
+            "type": "object",
+            "properties": {
+                "ExecutionRoleArn": {
+                    "$ref": "#/$defs/ExecutionRoleArn"
+                },
+                "Description": {
+                    "$ref": "#/$defs/PolicyDescription"
+                },
+                "State": {
+                    "$ref": "#/$defs/SettablePolicyStateValues"
+                },
+                "PolicyDetails": {
+                    "$ref": "#/$defs/PolicyDetails"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                },
+                "DefaultPolicy": {
+                    "$ref": "#/$defs/DefaultPolicyTypeValues"
+                },
+                "CreateInterval": {
+                    "$ref": "#/$defs/CreateInterval"
+                },
+                "RetainInterval": {
+                    "$ref": "#/$defs/RetainInterval"
+                },
+                "CopyTags": {
+                    "$ref": "#/$defs/CopyTagsNullable"
+                },
+                "ExtendDeletion": {
+                    "$ref": "#/$defs/ExtendDeletion"
+                },
+                "CrossRegionCopyTargets": {
+                    "$ref": "#/$defs/CrossRegionCopyTargetList"
+                },
+                "Exclusions": {
+                    "$ref": "#/$defs/Exclusions"
+                }
+            }
+        },
+        "ExecutionRoleArn": {
+            "type": "string"
+        },
+        "PolicyDescription": {
+            "type": "string"
+        },
+        "SettablePolicyStateValues": {
+            "enum": [
+                "ENABLED",
+                "DISABLED"
+            ]
+        },
+        "PolicyDetails": {
+            "type": "object",
+            "properties": {
+                "PolicyType": {
+                    "$ref": "#/$defs/PolicyTypeValues"
+                },
+                "ResourceTypes": {
+                    "$ref": "#/$defs/ResourceTypeValuesList"
+                },
+                "ResourceLocations": {
+                    "$ref": "#/$defs/ResourceLocationList"
+                },
+                "TargetTags": {
+                    "$ref": "#/$defs/TargetTagList"
+                },
+                "Schedules": {
+                    "$ref": "#/$defs/ScheduleList"
+                },
+                "Parameters": {
+                    "$ref": "#/$defs/Parameters"
+                },
+                "EventSource": {
+                    "$ref": "#/$defs/EventSource"
+                },
+                "Actions": {
+                    "$ref": "#/$defs/ActionList"
+                },
+                "PolicyLanguage": {
+                    "$ref": "#/$defs/PolicyLanguageValues"
+                },
+                "ResourceType": {
+                    "$ref": "#/$defs/ResourceTypeValues"
+                },
+                "CreateInterval": {
+                    "$ref": "#/$defs/CreateInterval"
+                },
+                "RetainInterval": {
+                    "$ref": "#/$defs/RetainInterval"
+                },
+                "CopyTags": {
+                    "$ref": "#/$defs/CopyTagsNullable"
+                },
+                "CrossRegionCopyTargets": {
+                    "$ref": "#/$defs/CrossRegionCopyTargetList"
+                },
+                "ExtendDeletion": {
+                    "$ref": "#/$defs/ExtendDeletion"
+                },
+                "Exclusions": {
+                    "$ref": "#/$defs/Exclusions"
+                }
+            }
+        },
+        "PolicyTypeValues": {
+            "enum": [
+                "EBS_SNAPSHOT_MANAGEMENT",
+                "IMAGE_MANAGEMENT",
+                "EVENT_BASED_POLICY"
+            ]
+        },
+        "ResourceTypeValuesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourceTypeValues"
+            }
+        },
+        "ResourceTypeValues": {
+            "enum": [
+                "VOLUME",
+                "INSTANCE"
+            ]
+        },
+        "ResourceLocationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourceLocationValues"
+            }
+        },
+        "ResourceLocationValues": {
+            "enum": [
+                "CLOUD",
+                "OUTPOST"
+            ]
+        },
+        "TargetTagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/String"
+                },
+                "Value": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "String": {
+            "type": "string"
+        },
+        "ScheduleList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Schedule"
+            }
+        },
+        "Schedule": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/ScheduleName"
+                },
+                "CopyTags": {
+                    "$ref": "#/$defs/CopyTags"
+                },
+                "TagsToAdd": {
+                    "$ref": "#/$defs/TagsToAddList"
+                },
+                "VariableTags": {
+                    "$ref": "#/$defs/VariableTagsList"
+                },
+                "CreateRule": {
+                    "$ref": "#/$defs/CreateRule"
+                },
+                "RetainRule": {
+                    "$ref": "#/$defs/RetainRule"
+                },
+                "FastRestoreRule": {
+                    "$ref": "#/$defs/FastRestoreRule"
+                },
+                "CrossRegionCopyRules": {
+                    "$ref": "#/$defs/CrossRegionCopyRules"
+                },
+                "ShareRules": {
+                    "$ref": "#/$defs/ShareRules"
+                },
+                "DeprecateRule": {
+                    "$ref": "#/$defs/DeprecateRule"
+                },
+                "ArchiveRule": {
+                    "$ref": "#/$defs/ArchiveRule"
+                }
+            }
+        },
+        "ScheduleName": {
+            "type": "string"
+        },
+        "CopyTags": {
+            "type": "boolean"
+        },
+        "TagsToAddList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "VariableTagsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "CreateRule": {
+            "type": "object",
+            "properties": {
+                "Location": {
+                    "$ref": "#/$defs/LocationValues"
+                },
+                "Interval": {
+                    "$ref": "#/$defs/Interval"
+                },
+                "IntervalUnit": {
+                    "$ref": "#/$defs/IntervalUnitValues"
+                },
+                "Times": {
+                    "$ref": "#/$defs/TimesList"
+                },
+                "CronExpression": {
+                    "$ref": "#/$defs/CronExpression"
+                },
+                "Scripts": {
+                    "$ref": "#/$defs/ScriptsList"
+                }
+            }
+        },
+        "LocationValues": {
+            "enum": [
+                "CLOUD",
+                "OUTPOST_LOCAL"
+            ]
+        },
+        "Interval": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "IntervalUnitValues": {
+            "enum": [
+                "HOURS"
+            ]
+        },
+        "TimesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Time"
+            }
+        },
+        "Time": {
+            "type": "string"
+        },
+        "CronExpression": {
+            "type": "string"
+        },
+        "ScriptsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Script"
+            }
+        },
+        "Script": {
+            "type": "object",
+            "properties": {
+                "Stages": {
+                    "$ref": "#/$defs/StagesList"
+                },
+                "ExecutionHandlerService": {
+                    "$ref": "#/$defs/ExecutionHandlerServiceValues"
+                },
+                "ExecutionHandler": {
+                    "$ref": "#/$defs/ExecutionHandler"
+                },
+                "ExecuteOperationOnScriptFailure": {
+                    "$ref": "#/$defs/ExecuteOperationOnScriptFailure"
+                },
+                "ExecutionTimeout": {
+                    "$ref": "#/$defs/ScriptExecutionTimeout"
+                },
+                "MaximumRetryCount": {
+                    "$ref": "#/$defs/ScriptMaximumRetryCount"
+                }
+            }
+        },
+        "StagesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/StageValues"
+            }
+        },
+        "StageValues": {
+            "enum": [
+                "PRE",
+                "POST"
+            ]
+        },
+        "ExecutionHandlerServiceValues": {
+            "enum": [
+                "AWS_SYSTEMS_MANAGER"
+            ]
+        },
+        "ExecutionHandler": {
+            "type": "string"
+        },
+        "ExecuteOperationOnScriptFailure": {
+            "type": "boolean"
+        },
+        "ScriptExecutionTimeout": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ScriptMaximumRetryCount": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "RetainRule": {
+            "type": "object",
+            "properties": {
+                "Count": {
+                    "$ref": "#/$defs/StandardTierRetainRuleCount"
+                },
+                "Interval": {
+                    "$ref": "#/$defs/StandardTierRetainRuleInterval"
+                },
+                "IntervalUnit": {
+                    "$ref": "#/$defs/RetentionIntervalUnitValues"
+                }
+            }
+        },
+        "StandardTierRetainRuleCount": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "StandardTierRetainRuleInterval": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "RetentionIntervalUnitValues": {
+            "enum": [
+                "DAYS",
+                "WEEKS",
+                "MONTHS",
+                "YEARS"
+            ]
+        },
+        "FastRestoreRule": {
+            "type": "object",
+            "properties": {
+                "Count": {
+                    "$ref": "#/$defs/Count"
+                },
+                "Interval": {
+                    "$ref": "#/$defs/Interval"
+                },
+                "IntervalUnit": {
+                    "$ref": "#/$defs/RetentionIntervalUnitValues"
+                },
+                "AvailabilityZones": {
+                    "$ref": "#/$defs/AvailabilityZoneList"
+                }
+            }
+        },
+        "Count": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "AvailabilityZoneList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AvailabilityZone"
+            }
+        },
+        "AvailabilityZone": {
+            "type": "string"
+        },
+        "CrossRegionCopyRules": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CrossRegionCopyRule"
+            }
+        },
+        "CrossRegionCopyRule": {
+            "type": "object",
+            "properties": {
+                "TargetRegion": {
+                    "$ref": "#/$defs/TargetRegion"
+                },
+                "Target": {
+                    "$ref": "#/$defs/Target"
+                },
+                "Encrypted": {
+                    "$ref": "#/$defs/Encrypted"
+                },
+                "CmkArn": {
+                    "$ref": "#/$defs/CmkArn"
+                },
+                "CopyTags": {
+                    "$ref": "#/$defs/CopyTagsNullable"
+                },
+                "RetainRule": {
+                    "$ref": "#/$defs/CrossRegionCopyRetainRule"
+                },
+                "DeprecateRule": {
+                    "$ref": "#/$defs/CrossRegionCopyDeprecateRule"
+                }
+            }
+        },
+        "TargetRegion": {
+            "type": "string"
+        },
+        "Target": {
+            "type": "string"
+        },
+        "Encrypted": {
+            "type": "boolean"
+        },
+        "CmkArn": {
+            "type": "string"
+        },
+        "CopyTagsNullable": {
+            "type": "boolean"
+        },
+        "CrossRegionCopyRetainRule": {
+            "type": "object",
+            "properties": {
+                "Interval": {
+                    "$ref": "#/$defs/Interval"
+                },
+                "IntervalUnit": {
+                    "$ref": "#/$defs/RetentionIntervalUnitValues"
+                }
+            }
+        },
+        "CrossRegionCopyDeprecateRule": {
+            "type": "object",
+            "properties": {
+                "Interval": {
+                    "$ref": "#/$defs/Interval"
+                },
+                "IntervalUnit": {
+                    "$ref": "#/$defs/RetentionIntervalUnitValues"
+                }
+            }
+        },
+        "ShareRules": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ShareRule"
+            }
+        },
+        "ShareRule": {
+            "type": "object",
+            "properties": {
+                "TargetAccounts": {
+                    "$ref": "#/$defs/ShareTargetAccountList"
+                },
+                "UnshareInterval": {
+                    "$ref": "#/$defs/Interval"
+                },
+                "UnshareIntervalUnit": {
+                    "$ref": "#/$defs/RetentionIntervalUnitValues"
+                }
+            }
+        },
+        "ShareTargetAccountList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AwsAccountId"
+            }
+        },
+        "AwsAccountId": {
+            "type": "string"
+        },
+        "DeprecateRule": {
+            "type": "object",
+            "properties": {
+                "Count": {
+                    "$ref": "#/$defs/Count"
+                },
+                "Interval": {
+                    "$ref": "#/$defs/Interval"
+                },
+                "IntervalUnit": {
+                    "$ref": "#/$defs/RetentionIntervalUnitValues"
+                }
+            }
+        },
+        "ArchiveRule": {
+            "type": "object",
+            "properties": {
+                "RetainRule": {
+                    "$ref": "#/$defs/ArchiveRetainRule"
+                }
+            }
+        },
+        "ArchiveRetainRule": {
+            "type": "object",
+            "properties": {
+                "RetentionArchiveTier": {
+                    "$ref": "#/$defs/RetentionArchiveTier"
+                }
+            }
+        },
+        "RetentionArchiveTier": {
+            "type": "object",
+            "properties": {
+                "Count": {
+                    "$ref": "#/$defs/Count"
+                },
+                "Interval": {
+                    "$ref": "#/$defs/Interval"
+                },
+                "IntervalUnit": {
+                    "$ref": "#/$defs/RetentionIntervalUnitValues"
+                }
+            }
+        },
+        "Parameters": {
+            "type": "object",
+            "properties": {
+                "ExcludeBootVolume": {
+                    "$ref": "#/$defs/ExcludeBootVolume"
+                },
+                "NoReboot": {
+                    "$ref": "#/$defs/NoReboot"
+                },
+                "ExcludeDataVolumeTags": {
+                    "$ref": "#/$defs/ExcludeDataVolumeTagList"
+                }
+            }
+        },
+        "ExcludeBootVolume": {
+            "type": "boolean"
+        },
+        "NoReboot": {
+            "type": "boolean"
+        },
+        "ExcludeDataVolumeTagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "EventSource": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "$ref": "#/$defs/EventSourceValues"
+                },
+                "Parameters": {
+                    "$ref": "#/$defs/EventParameters"
+                }
+            }
+        },
+        "EventSourceValues": {
+            "enum": [
+                "MANAGED_CWE"
+            ]
+        },
+        "EventParameters": {
+            "type": "object",
+            "properties": {
+                "EventType": {
+                    "$ref": "#/$defs/EventTypeValues"
+                },
+                "SnapshotOwner": {
+                    "$ref": "#/$defs/SnapshotOwnerList"
+                },
+                "DescriptionRegex": {
+                    "$ref": "#/$defs/DescriptionRegex"
+                }
+            }
+        },
+        "EventTypeValues": {
+            "enum": [
+                "SHARE_SNAPSHOT"
+            ]
+        },
+        "SnapshotOwnerList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AwsAccountId"
+            }
+        },
+        "DescriptionRegex": {
+            "type": "string"
+        },
+        "ActionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Action"
+            }
+        },
+        "Action": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/ActionName"
+                },
+                "CrossRegionCopy": {
+                    "$ref": "#/$defs/CrossRegionCopyActionList"
+                }
+            }
+        },
+        "ActionName": {
+            "type": "string"
+        },
+        "CrossRegionCopyActionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CrossRegionCopyAction"
+            }
+        },
+        "CrossRegionCopyAction": {
+            "type": "object",
+            "properties": {
+                "Target": {
+                    "$ref": "#/$defs/Target"
+                },
+                "EncryptionConfiguration": {
+                    "$ref": "#/$defs/EncryptionConfiguration"
+                },
+                "RetainRule": {
+                    "$ref": "#/$defs/CrossRegionCopyRetainRule"
+                }
+            }
+        },
+        "EncryptionConfiguration": {
+            "type": "object",
+            "properties": {
+                "Encrypted": {
+                    "$ref": "#/$defs/Encrypted"
+                },
+                "CmkArn": {
+                    "$ref": "#/$defs/CmkArn"
+                }
+            }
+        },
+        "PolicyLanguageValues": {
+            "enum": [
+                "SIMPLIFIED",
+                "STANDARD"
+            ]
+        },
+        "CreateInterval": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "RetainInterval": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "CrossRegionCopyTargetList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CrossRegionCopyTarget"
+            }
+        },
+        "CrossRegionCopyTarget": {
+            "type": "object",
+            "properties": {
+                "TargetRegion": {
+                    "$ref": "#/$defs/TargetRegion"
+                }
+            }
+        },
+        "ExtendDeletion": {
+            "type": "boolean"
+        },
+        "Exclusions": {
+            "type": "object",
+            "properties": {
+                "ExcludeBootVolumes": {
+                    "$ref": "#/$defs/ExcludeBootVolumes"
+                },
+                "ExcludeVolumeTypes": {
+                    "$ref": "#/$defs/ExcludeVolumeTypesList"
+                },
+                "ExcludeTags": {
+                    "$ref": "#/$defs/ExcludeTagsList"
+                }
+            }
+        },
+        "ExcludeBootVolumes": {
+            "type": "boolean"
+        },
+        "ExcludeVolumeTypesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/VolumeTypeValues"
+            }
+        },
+        "VolumeTypeValues": {
+            "type": "string"
+        },
+        "ExcludeTagsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "TagMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TagValue"
+            }
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "DefaultPolicyTypeValues": {
+            "enum": [
+                "VOLUME",
+                "INSTANCE"
+            ]
+        },
+        "DeleteLifecyclePolicyResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteLifecyclePolicyRequest": {
+            "type": "object",
+            "properties": {
+                "PolicyId": {
+                    "$ref": "#/$defs/PolicyId"
+                }
+            }
+        },
+        "GetLifecyclePoliciesResponse": {
+            "type": "object",
+            "properties": {
+                "Policies": {
+                    "$ref": "#/$defs/LifecyclePolicySummaryList"
+                }
+            }
+        },
+        "LifecyclePolicySummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LifecyclePolicySummary"
+            }
+        },
+        "LifecyclePolicySummary": {
+            "type": "object",
+            "properties": {
+                "PolicyId": {
+                    "$ref": "#/$defs/PolicyId"
+                },
+                "Description": {
+                    "$ref": "#/$defs/PolicyDescription"
+                },
+                "State": {
+                    "$ref": "#/$defs/GettablePolicyStateValues"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                },
+                "PolicyType": {
+                    "$ref": "#/$defs/PolicyTypeValues"
+                },
+                "DefaultPolicy": {
+                    "$ref": "#/$defs/DefaultPolicy"
+                }
+            }
+        },
+        "GettablePolicyStateValues": {
+            "enum": [
+                "ENABLED",
+                "DISABLED",
+                "ERROR"
+            ]
+        },
+        "DefaultPolicy": {
+            "type": "boolean"
+        },
+        "GetLifecyclePoliciesRequest": {
+            "type": "object",
+            "properties": {
+                "PolicyIds": {
+                    "$ref": "#/$defs/PolicyIdList"
+                },
+                "State": {
+                    "$ref": "#/$defs/GettablePolicyStateValues"
+                },
+                "ResourceTypes": {
+                    "$ref": "#/$defs/ResourceTypeValuesList"
+                },
+                "TargetTags": {
+                    "$ref": "#/$defs/TargetTagsFilterList"
+                },
+                "TagsToAdd": {
+                    "$ref": "#/$defs/TagsToAddFilterList"
+                },
+                "DefaultPolicyType": {
+                    "$ref": "#/$defs/DefaultPoliciesTypeValues"
+                }
+            }
+        },
+        "PolicyIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PolicyId"
+            }
+        },
+        "TargetTagsFilterList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagFilter"
+            }
+        },
+        "TagFilter": {
+            "type": "string"
+        },
+        "TagsToAddFilterList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagFilter"
+            }
+        },
+        "DefaultPoliciesTypeValues": {
+            "enum": [
+                "VOLUME",
+                "INSTANCE",
+                "ALL"
+            ]
+        },
+        "GetLifecyclePolicyResponse": {
+            "type": "object",
+            "properties": {
+                "Policy": {
+                    "$ref": "#/$defs/LifecyclePolicy"
+                }
+            }
+        },
+        "LifecyclePolicy": {
+            "type": "object",
+            "properties": {
+                "PolicyId": {
+                    "$ref": "#/$defs/PolicyId"
+                },
+                "Description": {
+                    "$ref": "#/$defs/PolicyDescription"
+                },
+                "State": {
+                    "$ref": "#/$defs/GettablePolicyStateValues"
+                },
+                "StatusMessage": {
+                    "$ref": "#/$defs/StatusMessage"
+                },
+                "ExecutionRoleArn": {
+                    "$ref": "#/$defs/ExecutionRoleArn"
+                },
+                "DateCreated": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "DateModified": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "PolicyDetails": {
+                    "$ref": "#/$defs/PolicyDetails"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                },
+                "PolicyArn": {
+                    "$ref": "#/$defs/PolicyArn"
+                },
+                "DefaultPolicy": {
+                    "$ref": "#/$defs/DefaultPolicy"
+                }
+            }
+        },
+        "StatusMessage": {
+            "type": "string"
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "PolicyArn": {
+            "type": "string"
+        },
+        "GetLifecyclePolicyRequest": {
+            "type": "object",
+            "properties": {
+                "PolicyId": {
+                    "$ref": "#/$defs/PolicyId"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/PolicyArn"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/PolicyArn"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/PolicyArn"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "UpdateLifecyclePolicyResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateLifecyclePolicyRequest": {
+            "type": "object",
+            "properties": {
+                "PolicyId": {
+                    "$ref": "#/$defs/PolicyId"
+                },
+                "ExecutionRoleArn": {
+                    "$ref": "#/$defs/ExecutionRoleArn"
+                },
+                "State": {
+                    "$ref": "#/$defs/SettablePolicyStateValues"
+                },
+                "Description": {
+                    "$ref": "#/$defs/PolicyDescription"
+                },
+                "PolicyDetails": {
+                    "$ref": "#/$defs/PolicyDetails"
+                },
+                "CreateInterval": {
+                    "$ref": "#/$defs/CreateInterval"
+                },
+                "RetainInterval": {
+                    "$ref": "#/$defs/RetainInterval"
+                },
+                "CopyTags": {
+                    "$ref": "#/$defs/CopyTagsNullable"
+                },
+                "ExtendDeletion": {
+                    "$ref": "#/$defs/ExtendDeletion"
+                },
+                "CrossRegionCopyTargets": {
+                    "$ref": "#/$defs/CrossRegionCopyTargetList"
+                },
+                "Exclusions": {
+                    "$ref": "#/$defs/Exclusions"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://dlm-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "stringEquals",
+                                                        "argv": [
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "name"
+                                                                ]
+                                                            },
+                                                            "aws-us-gov"
+                                                        ]
+                                                    }
+                                                ],
+                                                "endpoint": {
+                                                    "url": "https://dlm.{Region}.amazonaws.com",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://dlm-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://dlm.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://dlm.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

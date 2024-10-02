@@ -1,0 +1,1186 @@
+{
+    "name": "ssm-quicksetup",
+    "commands": [
+        {
+            "name": "CreateConfigurationManager",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateConfigurationManager"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateConfigurationManagerOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateConfigurationManagerInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteConfigurationManager",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteConfigurationManager"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteConfigurationManagerInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetConfigurationManager",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetConfigurationManager"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetConfigurationManagerOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetConfigurationManagerInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetServiceSettings",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetServiceSettings"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetServiceSettingsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListConfigurationManagers",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListConfigurationManagers"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListConfigurationManagersOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListConfigurationManagersInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListQuickSetupTypes",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListQuickSetupTypes"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListQuickSetupTypesOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateConfigurationDefinition",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateConfigurationDefinition"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateConfigurationDefinitionInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateConfigurationManager",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateConfigurationManager"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateConfigurationManagerInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateServiceSettings",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateServiceSettings"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateServiceSettingsInput"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CreateConfigurationManagerOutput": {
+            "type": "object",
+            "properties": {
+                "ManagerArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "CreateConfigurationManagerInput": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Description": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "ConfigurationDefinitions": {
+                    "$ref": "#/$defs/ConfigurationDefinitionsInputList"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagsMap"
+                }
+            }
+        },
+        "ConfigurationDefinitionsInputList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ConfigurationDefinitionInput"
+            }
+        },
+        "ConfigurationDefinitionInput": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Parameters": {
+                    "$ref": "#/$defs/ConfigurationParametersMap"
+                },
+                "TypeVersion": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "LocalDeploymentExecutionRoleName": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "LocalDeploymentAdministrationRoleArn": {
+                    "$ref": "#/$defs/IAMRoleArn"
+                }
+            }
+        },
+        "ConfigurationParametersMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "IAMRoleArn": {
+            "type": "string"
+        },
+        "TagsMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "DeleteConfigurationManagerInput": {
+            "type": "object",
+            "properties": {
+                "ManagerArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "GetConfigurationManagerOutput": {
+            "type": "object",
+            "properties": {
+                "ManagerArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Description": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Name": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "LastModifiedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "StatusSummaries": {
+                    "$ref": "#/$defs/StatusSummariesList"
+                },
+                "ConfigurationDefinitions": {
+                    "$ref": "#/$defs/ConfigurationDefinitionsList"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagsMap"
+                }
+            }
+        },
+        "StatusSummariesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/StatusSummary"
+            }
+        },
+        "StatusSummary": {
+            "type": "object",
+            "properties": {
+                "StatusType": {
+                    "$ref": "#/$defs/StatusType"
+                },
+                "Status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "StatusMessage": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "LastUpdatedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "StatusDetails": {
+                    "$ref": "#/$defs/StatusDetails"
+                }
+            }
+        },
+        "StatusType": {
+            "enum": [
+                "DEPLOYMENT",
+                "ASYNC_EXECUTIONS"
+            ]
+        },
+        "Status": {
+            "enum": [
+                "INITIALIZING",
+                "DEPLOYING",
+                "SUCCEEDED",
+                "DELETING",
+                "STOPPING",
+                "FAILED",
+                "STOPPED",
+                "DELETE_FAILED",
+                "STOP_FAILED",
+                "NONE"
+            ]
+        },
+        "StatusDetails": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "ConfigurationDefinitionsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ConfigurationDefinition"
+            }
+        },
+        "ConfigurationDefinition": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Parameters": {
+                    "$ref": "#/$defs/ConfigurationParametersMap"
+                },
+                "TypeVersion": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "LocalDeploymentExecutionRoleName": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "LocalDeploymentAdministrationRoleArn": {
+                    "$ref": "#/$defs/IAMRoleArn"
+                },
+                "Id": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "GetConfigurationManagerInput": {
+            "type": "object",
+            "properties": {
+                "ManagerArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "GetServiceSettingsOutput": {
+            "type": "object",
+            "properties": {
+                "ServiceSettings": {
+                    "$ref": "#/$defs/ServiceSettings"
+                }
+            }
+        },
+        "ServiceSettings": {
+            "type": "object",
+            "properties": {
+                "ExplorerEnablingRoleArn": {
+                    "$ref": "#/$defs/IAMRoleArn"
+                }
+            }
+        },
+        "ListConfigurationManagersOutput": {
+            "type": "object",
+            "properties": {
+                "ConfigurationManagersList": {
+                    "$ref": "#/$defs/ConfigurationManagerList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "ConfigurationManagerList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ConfigurationManagerSummary"
+            }
+        },
+        "ConfigurationManagerSummary": {
+            "type": "object",
+            "properties": {
+                "ManagerArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Description": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Name": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "StatusSummaries": {
+                    "$ref": "#/$defs/StatusSummariesList"
+                },
+                "ConfigurationDefinitionSummaries": {
+                    "$ref": "#/$defs/ConfigurationDefinitionSummariesList"
+                }
+            }
+        },
+        "ConfigurationDefinitionSummariesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ConfigurationDefinitionSummary"
+            }
+        },
+        "ConfigurationDefinitionSummary": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Type": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "TypeVersion": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "FirstClassParameters": {
+                    "$ref": "#/$defs/ConfigurationParametersMap"
+                }
+            }
+        },
+        "ListConfigurationManagersInput": {
+            "type": "object",
+            "properties": {
+                "StartingToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "MaxItems": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/FiltersList"
+                }
+            }
+        },
+        "FiltersList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Filter"
+            }
+        },
+        "Filter": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Values": {
+                    "$ref": "#/$defs/FilterValues"
+                }
+            }
+        },
+        "FilterValues": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "ListQuickSetupTypesOutput": {
+            "type": "object",
+            "properties": {
+                "QuickSetupTypeList": {
+                    "$ref": "#/$defs/QuickSetupTypeList"
+                }
+            }
+        },
+        "QuickSetupTypeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/QuickSetupTypeOutput"
+            }
+        },
+        "QuickSetupTypeOutput": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "LatestVersion": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "Tags": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagEntry"
+            }
+        },
+        "TagEntry": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Value": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "TagResourceInput": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagsMap"
+                }
+            }
+        },
+        "UntagResourceInput": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeys"
+                }
+            }
+        },
+        "TagKeys": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "UpdateConfigurationDefinitionInput": {
+            "type": "object",
+            "properties": {
+                "ManagerArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Id": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "TypeVersion": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Parameters": {
+                    "$ref": "#/$defs/ConfigurationParametersMap"
+                },
+                "LocalDeploymentExecutionRoleName": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "LocalDeploymentAdministrationRoleArn": {
+                    "$ref": "#/$defs/IAMRoleArn"
+                }
+            }
+        },
+        "UpdateConfigurationManagerInput": {
+            "type": "object",
+            "properties": {
+                "ManagerArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Name": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Description": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "UpdateServiceSettingsInput": {
+            "type": "object",
+            "properties": {
+                "ExplorerEnablingRoleArn": {
+                    "$ref": "#/$defs/IAMRoleArn"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                                "type": "error"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": {
+                                        "ref": "Endpoint"
+                                    },
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "isSet",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ]
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "aws.partition",
+                                        "argv": [
+                                            {
+                                                "ref": "Region"
+                                            }
+                                        ],
+                                        "assign": "PartitionResult"
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseFIPS"
+                                                    },
+                                                    true
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseDualStack"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsFIPS"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsDualStack"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://ssm-quicksetup-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ],
+                                                        "type": "tree"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseFIPS"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsFIPS"
+                                                                ]
+                                                            },
+                                                            true
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://ssm-quicksetup-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ],
+                                                        "type": "tree"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "FIPS is enabled but this partition does not support FIPS",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseDualStack"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsDualStack"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://ssm-quicksetup.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ],
+                                                        "type": "tree"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "DualStack is enabled but this partition does not support DualStack",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://ssm-quicksetup.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    }
+                                ],
+                                "type": "tree"
+                            }
+                        ],
+                        "type": "tree"
+                    },
+                    {
+                        "conditions": [],
+                        "error": "Invalid Configuration: Missing Region",
+                        "type": "error"
+                    }
+                ],
+                "type": "tree"
+            }
+        ]
+    }
+}

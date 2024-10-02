@@ -1,0 +1,2599 @@
+{
+    "name": "glacier",
+    "commands": [
+        {
+            "name": "AbortMultipartUpload",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AbortMultipartUpload"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AbortMultipartUploadInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "AbortVaultLock",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AbortVaultLock"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AbortVaultLockInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "AddTagsToVault",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AddTagsToVault"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AddTagsToVaultInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CompleteMultipartUpload",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CompleteMultipartUpload"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ArchiveCreationOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CompleteMultipartUploadInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CompleteVaultLock",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CompleteVaultLock"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CompleteVaultLockInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateVault",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateVault"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateVaultOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateVaultInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteArchive",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteArchive"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteArchiveInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteVault",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteVault"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteVaultInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteVaultAccessPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteVaultAccessPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteVaultAccessPolicyInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteVaultNotifications",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteVaultNotifications"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteVaultNotificationsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GlacierJobDescription"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeJobInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeVault",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeVault"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeVaultOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeVaultInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetDataRetrievalPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetDataRetrievalPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetDataRetrievalPolicyOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetDataRetrievalPolicyInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetJobOutput",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetJobOutput"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetJobOutputOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetJobOutputInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetVaultAccessPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetVaultAccessPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetVaultAccessPolicyOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetVaultAccessPolicyInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetVaultLock",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetVaultLock"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetVaultLockOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetVaultLockInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetVaultNotifications",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetVaultNotifications"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetVaultNotificationsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetVaultNotificationsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "InitiateJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "InitiateJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/InitiateJobOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/InitiateJobInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "InitiateMultipartUpload",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "InitiateMultipartUpload"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/InitiateMultipartUploadOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/InitiateMultipartUploadInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "InitiateVaultLock",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "InitiateVaultLock"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/InitiateVaultLockOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/InitiateVaultLockInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListJobs",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListJobs"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListJobsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListJobsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListMultipartUploads",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListMultipartUploads"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListMultipartUploadsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListMultipartUploadsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListParts",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListParts"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListPartsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListPartsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListProvisionedCapacity",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListProvisionedCapacity"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListProvisionedCapacityOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListProvisionedCapacityInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForVault",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForVault"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForVaultOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForVaultInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListVaults",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListVaults"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListVaultsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListVaultsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PurchaseProvisionedCapacity",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PurchaseProvisionedCapacity"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PurchaseProvisionedCapacityOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PurchaseProvisionedCapacityInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RemoveTagsFromVault",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RemoveTagsFromVault"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RemoveTagsFromVaultInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SetDataRetrievalPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SetDataRetrievalPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SetDataRetrievalPolicyInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SetVaultAccessPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SetVaultAccessPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SetVaultAccessPolicyInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SetVaultNotifications",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SetVaultNotifications"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SetVaultNotificationsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UploadArchive",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UploadArchive"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ArchiveCreationOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UploadArchiveInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UploadMultipartPart",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UploadMultipartPart"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UploadMultipartPartOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UploadMultipartPartInput"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "AbortMultipartUploadInput": {
+            "type": "object",
+            "properties": {
+                "accountId": {
+                    "$ref": "#/$defs/string"
+                },
+                "vaultName": {
+                    "$ref": "#/$defs/string"
+                },
+                "uploadId": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "string": {
+            "type": "string"
+        },
+        "AbortVaultLockInput": {
+            "type": "object",
+            "properties": {
+                "accountId": {
+                    "$ref": "#/$defs/string"
+                },
+                "vaultName": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "AddTagsToVaultInput": {
+            "type": "object",
+            "properties": {
+                "accountId": {
+                    "$ref": "#/$defs/string"
+                },
+                "vaultName": {
+                    "$ref": "#/$defs/string"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "TagMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TagValue"
+            }
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "ArchiveCreationOutput": {
+            "type": "object",
+            "properties": {
+                "location": {
+                    "$ref": "#/$defs/string"
+                },
+                "checksum": {
+                    "$ref": "#/$defs/string"
+                },
+                "archiveId": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "CompleteMultipartUploadInput": {
+            "type": "object",
+            "properties": {
+                "accountId": {
+                    "$ref": "#/$defs/string"
+                },
+                "vaultName": {
+                    "$ref": "#/$defs/string"
+                },
+                "uploadId": {
+                    "$ref": "#/$defs/string"
+                },
+                "archiveSize": {
+                    "$ref": "#/$defs/string"
+                },
+                "checksum": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "CompleteVaultLockInput": {
+            "type": "object",
+            "properties": {
+                "accountId": {
+                    "$ref": "#/$defs/string"
+                },
+                "vaultName": {
+                    "$ref": "#/$defs/string"
+                },
+                "lockId": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "CreateVaultOutput": {
+            "type": "object",
+            "properties": {
+                "location": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "CreateVaultInput": {
+            "type": "object",
+            "properties": {
+                "accountId": {
+                    "$ref": "#/$defs/string"
+                },
+                "vaultName": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "DeleteArchiveInput": {
+            "type": "object",
+            "properties": {
+                "accountId": {
+                    "$ref": "#/$defs/string"
+                },
+                "vaultName": {
+                    "$ref": "#/$defs/string"
+                },
+                "archiveId": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "DeleteVaultInput": {
+            "type": "object",
+            "properties": {
+                "accountId": {
+                    "$ref": "#/$defs/string"
+                },
+                "vaultName": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "DeleteVaultAccessPolicyInput": {
+            "type": "object",
+            "properties": {
+                "accountId": {
+                    "$ref": "#/$defs/string"
+                },
+                "vaultName": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "DeleteVaultNotificationsInput": {
+            "type": "object",
+            "properties": {
+                "accountId": {
+                    "$ref": "#/$defs/string"
+                },
+                "vaultName": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "GlacierJobDescription": {
+            "type": "object",
+            "properties": {
+                "JobId": {
+                    "$ref": "#/$defs/string"
+                },
+                "JobDescription": {
+                    "$ref": "#/$defs/string"
+                },
+                "Action": {
+                    "$ref": "#/$defs/ActionCode"
+                },
+                "ArchiveId": {
+                    "$ref": "#/$defs/string"
+                },
+                "VaultARN": {
+                    "$ref": "#/$defs/string"
+                },
+                "CreationDate": {
+                    "$ref": "#/$defs/string"
+                },
+                "Completed": {
+                    "$ref": "#/$defs/boolean"
+                },
+                "StatusCode": {
+                    "$ref": "#/$defs/StatusCode"
+                },
+                "StatusMessage": {
+                    "$ref": "#/$defs/string"
+                },
+                "ArchiveSizeInBytes": {
+                    "$ref": "#/$defs/Size"
+                },
+                "InventorySizeInBytes": {
+                    "$ref": "#/$defs/Size"
+                },
+                "SNSTopic": {
+                    "$ref": "#/$defs/string"
+                },
+                "CompletionDate": {
+                    "$ref": "#/$defs/string"
+                },
+                "SHA256TreeHash": {
+                    "$ref": "#/$defs/string"
+                },
+                "ArchiveSHA256TreeHash": {
+                    "$ref": "#/$defs/string"
+                },
+                "RetrievalByteRange": {
+                    "$ref": "#/$defs/string"
+                },
+                "Tier": {
+                    "$ref": "#/$defs/string"
+                },
+                "InventoryRetrievalParameters": {
+                    "$ref": "#/$defs/InventoryRetrievalJobDescription"
+                },
+                "JobOutputPath": {
+                    "$ref": "#/$defs/string"
+                },
+                "SelectParameters": {
+                    "$ref": "#/$defs/SelectParameters"
+                },
+                "OutputLocation": {
+                    "$ref": "#/$defs/OutputLocation"
+                }
+            }
+        },
+        "ActionCode": {
+            "enum": [
+                "ArchiveRetrieval",
+                "InventoryRetrieval",
+                "Select"
+            ]
+        },
+        "boolean": {
+            "type": "boolean"
+        },
+        "StatusCode": {
+            "enum": [
+                "InProgress",
+                "Succeeded",
+                "Failed"
+            ]
+        },
+        "Size": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "InventoryRetrievalJobDescription": {
+            "type": "object",
+            "properties": {
+                "Format": {
+                    "$ref": "#/$defs/string"
+                },
+                "StartDate": {
+                    "$ref": "#/$defs/DateTime"
+                },
+                "EndDate": {
+                    "$ref": "#/$defs/DateTime"
+                },
+                "Limit": {
+                    "$ref": "#/$defs/string"
+                },
+                "Marker": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "DateTime": {
+            "type": "string"
+        },
+        "SelectParameters": {
+            "type": "object",
+            "properties": {
+                "InputSerialization": {
+                    "$ref": "#/$defs/InputSerialization"
+                },
+                "ExpressionType": {
+                    "$ref": "#/$defs/ExpressionType"
+                },
+                "Expression": {
+                    "$ref": "#/$defs/string"
+                },
+                "OutputSerialization": {
+                    "$ref": "#/$defs/OutputSerialization"
+                }
+            }
+        },
+        "InputSerialization": {
+            "type": "object",
+            "properties": {
+                "csv": {
+                    "$ref": "#/$defs/CSVInput"
+                }
+            }
+        },
+        "CSVInput": {
+            "type": "object",
+            "properties": {
+                "FileHeaderInfo": {
+                    "$ref": "#/$defs/FileHeaderInfo"
+                },
+                "Comments": {
+                    "$ref": "#/$defs/string"
+                },
+                "QuoteEscapeCharacter": {
+                    "$ref": "#/$defs/string"
+                },
+                "RecordDelimiter": {
+                    "$ref": "#/$defs/string"
+                },
+                "FieldDelimiter": {
+                    "$ref": "#/$defs/string"
+                },
+                "QuoteCharacter": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "FileHeaderInfo": {
+            "enum": [
+                "Use",
+                "Ignore",
+                "None"
+            ]
+        },
+        "ExpressionType": {
+            "enum": [
+                "SQL"
+            ]
+        },
+        "OutputSerialization": {
+            "type": "object",
+            "properties": {
+                "csv": {
+                    "$ref": "#/$defs/CSVOutput"
+                }
+            }
+        },
+        "CSVOutput": {
+            "type": "object",
+            "properties": {
+                "QuoteFields": {
+                    "$ref": "#/$defs/QuoteFields"
+                },
+                "QuoteEscapeCharacter": {
+                    "$ref": "#/$defs/string"
+                },
+                "RecordDelimiter": {
+                    "$ref": "#/$defs/string"
+                },
+                "FieldDelimiter": {
+                    "$ref": "#/$defs/string"
+                },
+                "QuoteCharacter": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "QuoteFields": {
+            "enum": [
+                "Always",
+                "AsNeeded"
+            ]
+        },
+        "OutputLocation": {
+            "type": "object",
+            "properties": {
+                "S3": {
+                    "$ref": "#/$defs/S3Location"
+                }
+            }
+        },
+        "S3Location": {
+            "type": "object",
+            "properties": {
+                "BucketName": {
+                    "$ref": "#/$defs/string"
+                },
+                "Prefix": {
+                    "$ref": "#/$defs/string"
+                },
+                "Encryption": {
+                    "$ref": "#/$defs/Encryption"
+                },
+                "CannedACL": {
+                    "$ref": "#/$defs/CannedACL"
+                },
+                "AccessControlList": {
+                    "$ref": "#/$defs/AccessControlPolicyList"
+                },
+                "Tagging": {
+                    "$ref": "#/$defs/hashmap"
+                },
+                "UserMetadata": {
+                    "$ref": "#/$defs/hashmap"
+                },
+                "StorageClass": {
+                    "$ref": "#/$defs/StorageClass"
+                }
+            }
+        },
+        "Encryption": {
+            "type": "object",
+            "properties": {
+                "EncryptionType": {
+                    "$ref": "#/$defs/EncryptionType"
+                },
+                "KMSKeyId": {
+                    "$ref": "#/$defs/string"
+                },
+                "KMSContext": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "EncryptionType": {
+            "enum": [
+                "KMS",
+                "S3"
+            ]
+        },
+        "CannedACL": {
+            "enum": [
+                "Private",
+                "PublicRead",
+                "PublicReadWrite",
+                "AwsExecRead",
+                "AuthenticatedRead",
+                "BucketOwnerRead",
+                "BucketOwnerFullControl"
+            ]
+        },
+        "AccessControlPolicyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Grant"
+            }
+        },
+        "Grant": {
+            "type": "object",
+            "properties": {
+                "Grantee": {
+                    "$ref": "#/$defs/Grantee"
+                },
+                "Permission": {
+                    "$ref": "#/$defs/Permission"
+                }
+            }
+        },
+        "Grantee": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "$ref": "#/$defs/Type"
+                },
+                "DisplayName": {
+                    "$ref": "#/$defs/string"
+                },
+                "URI": {
+                    "$ref": "#/$defs/string"
+                },
+                "ID": {
+                    "$ref": "#/$defs/string"
+                },
+                "EmailAddress": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "Type": {
+            "enum": [
+                "AmazonCustomerByEmail",
+                "CanonicalUser",
+                "Group"
+            ]
+        },
+        "Permission": {
+            "enum": [
+                "FULL_CONTROL",
+                "WRITE",
+                "WRITE_ACP",
+                "READ",
+                "READ_ACP"
+            ]
+        },
+        "hashmap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/string"
+            }
+        },
+        "StorageClass": {
+            "enum": [
+                "Standard",
+                "ReducedRedundancy",
+                "StandardInfrequentAccess"
+            ]
+        },
+        "DescribeJobInput": {
+            "type": "object",
+            "properties": {
+                "accountId": {
+                    "$ref": "#/$defs/string"
+                },
+                "vaultName": {
+                    "$ref": "#/$defs/string"
+                },
+                "jobId": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "DescribeVaultOutput": {
+            "type": "object",
+            "properties": {
+                "VaultARN": {
+                    "$ref": "#/$defs/string"
+                },
+                "VaultName": {
+                    "$ref": "#/$defs/string"
+                },
+                "CreationDate": {
+                    "$ref": "#/$defs/string"
+                },
+                "LastInventoryDate": {
+                    "$ref": "#/$defs/string"
+                },
+                "NumberOfArchives": {
+                    "$ref": "#/$defs/long"
+                },
+                "SizeInBytes": {
+                    "$ref": "#/$defs/long"
+                }
+            }
+        },
+        "long": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "DescribeVaultInput": {
+            "type": "object",
+            "properties": {
+                "accountId": {
+                    "$ref": "#/$defs/string"
+                },
+                "vaultName": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "GetDataRetrievalPolicyOutput": {
+            "type": "object",
+            "properties": {
+                "Policy": {
+                    "$ref": "#/$defs/DataRetrievalPolicy"
+                }
+            }
+        },
+        "DataRetrievalPolicy": {
+            "type": "object",
+            "properties": {
+                "Rules": {
+                    "$ref": "#/$defs/DataRetrievalRulesList"
+                }
+            }
+        },
+        "DataRetrievalRulesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DataRetrievalRule"
+            }
+        },
+        "DataRetrievalRule": {
+            "type": "object",
+            "properties": {
+                "Strategy": {
+                    "$ref": "#/$defs/string"
+                },
+                "BytesPerHour": {
+                    "$ref": "#/$defs/NullableLong"
+                }
+            }
+        },
+        "NullableLong": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "GetDataRetrievalPolicyInput": {
+            "type": "object",
+            "properties": {
+                "accountId": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "GetJobOutputOutput": {
+            "type": "object",
+            "properties": {
+                "body": {
+                    "$ref": "#/$defs/Stream"
+                },
+                "checksum": {
+                    "$ref": "#/$defs/string"
+                },
+                "status": {
+                    "$ref": "#/$defs/httpstatus"
+                },
+                "contentRange": {
+                    "$ref": "#/$defs/string"
+                },
+                "acceptRanges": {
+                    "$ref": "#/$defs/string"
+                },
+                "contentType": {
+                    "$ref": "#/$defs/string"
+                },
+                "archiveDescription": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "Stream": {
+            "type": "string",
+            "format": "binary"
+        },
+        "httpstatus": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "GetJobOutputInput": {
+            "type": "object",
+            "properties": {
+                "accountId": {
+                    "$ref": "#/$defs/string"
+                },
+                "vaultName": {
+                    "$ref": "#/$defs/string"
+                },
+                "jobId": {
+                    "$ref": "#/$defs/string"
+                },
+                "range": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "GetVaultAccessPolicyOutput": {
+            "type": "object",
+            "properties": {
+                "policy": {
+                    "$ref": "#/$defs/VaultAccessPolicy"
+                }
+            }
+        },
+        "VaultAccessPolicy": {
+            "type": "object",
+            "properties": {
+                "Policy": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "GetVaultAccessPolicyInput": {
+            "type": "object",
+            "properties": {
+                "accountId": {
+                    "$ref": "#/$defs/string"
+                },
+                "vaultName": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "GetVaultLockOutput": {
+            "type": "object",
+            "properties": {
+                "Policy": {
+                    "$ref": "#/$defs/string"
+                },
+                "State": {
+                    "$ref": "#/$defs/string"
+                },
+                "ExpirationDate": {
+                    "$ref": "#/$defs/string"
+                },
+                "CreationDate": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "GetVaultLockInput": {
+            "type": "object",
+            "properties": {
+                "accountId": {
+                    "$ref": "#/$defs/string"
+                },
+                "vaultName": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "GetVaultNotificationsOutput": {
+            "type": "object",
+            "properties": {
+                "vaultNotificationConfig": {
+                    "$ref": "#/$defs/VaultNotificationConfig"
+                }
+            }
+        },
+        "VaultNotificationConfig": {
+            "type": "object",
+            "properties": {
+                "SNSTopic": {
+                    "$ref": "#/$defs/string"
+                },
+                "Events": {
+                    "$ref": "#/$defs/NotificationEventList"
+                }
+            }
+        },
+        "NotificationEventList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/string"
+            }
+        },
+        "GetVaultNotificationsInput": {
+            "type": "object",
+            "properties": {
+                "accountId": {
+                    "$ref": "#/$defs/string"
+                },
+                "vaultName": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "InitiateJobOutput": {
+            "type": "object",
+            "properties": {
+                "location": {
+                    "$ref": "#/$defs/string"
+                },
+                "jobId": {
+                    "$ref": "#/$defs/string"
+                },
+                "jobOutputPath": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "InitiateJobInput": {
+            "type": "object",
+            "properties": {
+                "accountId": {
+                    "$ref": "#/$defs/string"
+                },
+                "vaultName": {
+                    "$ref": "#/$defs/string"
+                },
+                "jobParameters": {
+                    "$ref": "#/$defs/JobParameters"
+                }
+            }
+        },
+        "JobParameters": {
+            "type": "object",
+            "properties": {
+                "Format": {
+                    "$ref": "#/$defs/string"
+                },
+                "Type": {
+                    "$ref": "#/$defs/string"
+                },
+                "ArchiveId": {
+                    "$ref": "#/$defs/string"
+                },
+                "Description": {
+                    "$ref": "#/$defs/string"
+                },
+                "SNSTopic": {
+                    "$ref": "#/$defs/string"
+                },
+                "RetrievalByteRange": {
+                    "$ref": "#/$defs/string"
+                },
+                "Tier": {
+                    "$ref": "#/$defs/string"
+                },
+                "InventoryRetrievalParameters": {
+                    "$ref": "#/$defs/InventoryRetrievalJobInput"
+                },
+                "SelectParameters": {
+                    "$ref": "#/$defs/SelectParameters"
+                },
+                "OutputLocation": {
+                    "$ref": "#/$defs/OutputLocation"
+                }
+            }
+        },
+        "InventoryRetrievalJobInput": {
+            "type": "object",
+            "properties": {
+                "StartDate": {
+                    "$ref": "#/$defs/string"
+                },
+                "EndDate": {
+                    "$ref": "#/$defs/string"
+                },
+                "Limit": {
+                    "$ref": "#/$defs/string"
+                },
+                "Marker": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "InitiateMultipartUploadOutput": {
+            "type": "object",
+            "properties": {
+                "location": {
+                    "$ref": "#/$defs/string"
+                },
+                "uploadId": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "InitiateMultipartUploadInput": {
+            "type": "object",
+            "properties": {
+                "accountId": {
+                    "$ref": "#/$defs/string"
+                },
+                "vaultName": {
+                    "$ref": "#/$defs/string"
+                },
+                "archiveDescription": {
+                    "$ref": "#/$defs/string"
+                },
+                "partSize": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "InitiateVaultLockOutput": {
+            "type": "object",
+            "properties": {
+                "lockId": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "InitiateVaultLockInput": {
+            "type": "object",
+            "properties": {
+                "accountId": {
+                    "$ref": "#/$defs/string"
+                },
+                "vaultName": {
+                    "$ref": "#/$defs/string"
+                },
+                "policy": {
+                    "$ref": "#/$defs/VaultLockPolicy"
+                }
+            }
+        },
+        "VaultLockPolicy": {
+            "type": "object",
+            "properties": {
+                "Policy": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "ListJobsOutput": {
+            "type": "object",
+            "properties": {
+                "JobList": {
+                    "$ref": "#/$defs/JobList"
+                },
+                "Marker": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "JobList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/GlacierJobDescription"
+            }
+        },
+        "ListJobsInput": {
+            "type": "object",
+            "properties": {
+                "accountId": {
+                    "$ref": "#/$defs/string"
+                },
+                "vaultName": {
+                    "$ref": "#/$defs/string"
+                },
+                "limit": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "marker": {
+                    "$ref": "#/$defs/string"
+                },
+                "statuscode": {
+                    "$ref": "#/$defs/string"
+                },
+                "completed": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "ListMultipartUploadsOutput": {
+            "type": "object",
+            "properties": {
+                "UploadsList": {
+                    "$ref": "#/$defs/UploadsList"
+                },
+                "Marker": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "UploadsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/UploadListElement"
+            }
+        },
+        "UploadListElement": {
+            "type": "object",
+            "properties": {
+                "MultipartUploadId": {
+                    "$ref": "#/$defs/string"
+                },
+                "VaultARN": {
+                    "$ref": "#/$defs/string"
+                },
+                "ArchiveDescription": {
+                    "$ref": "#/$defs/string"
+                },
+                "PartSizeInBytes": {
+                    "$ref": "#/$defs/long"
+                },
+                "CreationDate": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "ListMultipartUploadsInput": {
+            "type": "object",
+            "properties": {
+                "accountId": {
+                    "$ref": "#/$defs/string"
+                },
+                "vaultName": {
+                    "$ref": "#/$defs/string"
+                },
+                "limit": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "marker": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "ListPartsOutput": {
+            "type": "object",
+            "properties": {
+                "MultipartUploadId": {
+                    "$ref": "#/$defs/string"
+                },
+                "VaultARN": {
+                    "$ref": "#/$defs/string"
+                },
+                "ArchiveDescription": {
+                    "$ref": "#/$defs/string"
+                },
+                "PartSizeInBytes": {
+                    "$ref": "#/$defs/long"
+                },
+                "CreationDate": {
+                    "$ref": "#/$defs/string"
+                },
+                "Parts": {
+                    "$ref": "#/$defs/PartList"
+                },
+                "Marker": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "PartList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PartListElement"
+            }
+        },
+        "PartListElement": {
+            "type": "object",
+            "properties": {
+                "RangeInBytes": {
+                    "$ref": "#/$defs/string"
+                },
+                "SHA256TreeHash": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "ListPartsInput": {
+            "type": "object",
+            "properties": {
+                "accountId": {
+                    "$ref": "#/$defs/string"
+                },
+                "vaultName": {
+                    "$ref": "#/$defs/string"
+                },
+                "uploadId": {
+                    "$ref": "#/$defs/string"
+                },
+                "marker": {
+                    "$ref": "#/$defs/string"
+                },
+                "limit": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                }
+            }
+        },
+        "ListProvisionedCapacityOutput": {
+            "type": "object",
+            "properties": {
+                "ProvisionedCapacityList": {
+                    "$ref": "#/$defs/ProvisionedCapacityList"
+                }
+            }
+        },
+        "ProvisionedCapacityList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ProvisionedCapacityDescription"
+            }
+        },
+        "ProvisionedCapacityDescription": {
+            "type": "object",
+            "properties": {
+                "CapacityId": {
+                    "$ref": "#/$defs/string"
+                },
+                "StartDate": {
+                    "$ref": "#/$defs/string"
+                },
+                "ExpirationDate": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "ListProvisionedCapacityInput": {
+            "type": "object",
+            "properties": {
+                "accountId": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "ListTagsForVaultOutput": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "ListTagsForVaultInput": {
+            "type": "object",
+            "properties": {
+                "accountId": {
+                    "$ref": "#/$defs/string"
+                },
+                "vaultName": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "ListVaultsOutput": {
+            "type": "object",
+            "properties": {
+                "VaultList": {
+                    "$ref": "#/$defs/VaultList"
+                },
+                "Marker": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "VaultList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DescribeVaultOutput"
+            }
+        },
+        "ListVaultsInput": {
+            "type": "object",
+            "properties": {
+                "accountId": {
+                    "$ref": "#/$defs/string"
+                },
+                "marker": {
+                    "$ref": "#/$defs/string"
+                },
+                "limit": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                }
+            }
+        },
+        "PurchaseProvisionedCapacityOutput": {
+            "type": "object",
+            "properties": {
+                "capacityId": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "PurchaseProvisionedCapacityInput": {
+            "type": "object",
+            "properties": {
+                "accountId": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "RemoveTagsFromVaultInput": {
+            "type": "object",
+            "properties": {
+                "accountId": {
+                    "$ref": "#/$defs/string"
+                },
+                "vaultName": {
+                    "$ref": "#/$defs/string"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/string"
+            }
+        },
+        "SetDataRetrievalPolicyInput": {
+            "type": "object",
+            "properties": {
+                "accountId": {
+                    "$ref": "#/$defs/string"
+                },
+                "Policy": {
+                    "$ref": "#/$defs/DataRetrievalPolicy"
+                }
+            }
+        },
+        "SetVaultAccessPolicyInput": {
+            "type": "object",
+            "properties": {
+                "accountId": {
+                    "$ref": "#/$defs/string"
+                },
+                "vaultName": {
+                    "$ref": "#/$defs/string"
+                },
+                "policy": {
+                    "$ref": "#/$defs/VaultAccessPolicy"
+                }
+            }
+        },
+        "SetVaultNotificationsInput": {
+            "type": "object",
+            "properties": {
+                "accountId": {
+                    "$ref": "#/$defs/string"
+                },
+                "vaultName": {
+                    "$ref": "#/$defs/string"
+                },
+                "vaultNotificationConfig": {
+                    "$ref": "#/$defs/VaultNotificationConfig"
+                }
+            }
+        },
+        "UploadArchiveInput": {
+            "type": "object",
+            "properties": {
+                "vaultName": {
+                    "$ref": "#/$defs/string"
+                },
+                "accountId": {
+                    "$ref": "#/$defs/string"
+                },
+                "archiveDescription": {
+                    "$ref": "#/$defs/string"
+                },
+                "checksum": {
+                    "$ref": "#/$defs/string"
+                },
+                "body": {
+                    "$ref": "#/$defs/Stream"
+                }
+            }
+        },
+        "UploadMultipartPartOutput": {
+            "type": "object",
+            "properties": {
+                "checksum": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "UploadMultipartPartInput": {
+            "type": "object",
+            "properties": {
+                "accountId": {
+                    "$ref": "#/$defs/string"
+                },
+                "vaultName": {
+                    "$ref": "#/$defs/string"
+                },
+                "uploadId": {
+                    "$ref": "#/$defs/string"
+                },
+                "checksum": {
+                    "$ref": "#/$defs/string"
+                },
+                "range": {
+                    "$ref": "#/$defs/string"
+                },
+                "body": {
+                    "$ref": "#/$defs/Stream"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://glacier-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "stringEquals",
+                                                        "argv": [
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "name"
+                                                                ]
+                                                            },
+                                                            "aws-us-gov"
+                                                        ]
+                                                    }
+                                                ],
+                                                "endpoint": {
+                                                    "url": "https://glacier.{Region}.amazonaws.com",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://glacier-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://glacier.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://glacier.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

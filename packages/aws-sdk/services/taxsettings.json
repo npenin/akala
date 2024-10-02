@@ -1,0 +1,1561 @@
+{
+    "name": "tax",
+    "commands": [
+        {
+            "name": "BatchDeleteTaxRegistration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchDeleteTaxRegistration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchDeleteTaxRegistrationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchDeleteTaxRegistrationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "BatchPutTaxRegistration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchPutTaxRegistration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchPutTaxRegistrationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchPutTaxRegistrationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteTaxRegistration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteTaxRegistration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteTaxRegistrationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteTaxRegistrationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetTaxRegistration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetTaxRegistration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetTaxRegistrationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetTaxRegistrationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetTaxRegistrationDocument",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetTaxRegistrationDocument"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetTaxRegistrationDocumentResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetTaxRegistrationDocumentRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTaxRegistrations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTaxRegistrations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTaxRegistrationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTaxRegistrationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutTaxRegistration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutTaxRegistration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutTaxRegistrationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutTaxRegistrationRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "BatchDeleteTaxRegistrationResponse": {
+            "type": "object",
+            "properties": {
+                "errors": {
+                    "$ref": "#/$defs/BatchDeleteTaxRegistrationErrors"
+                }
+            }
+        },
+        "BatchDeleteTaxRegistrationErrors": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BatchDeleteTaxRegistrationError"
+            }
+        },
+        "BatchDeleteTaxRegistrationError": {
+            "type": "object",
+            "properties": {
+                "accountId": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "message": {
+                    "$ref": "#/$defs/ErrorMessage"
+                },
+                "code": {
+                    "$ref": "#/$defs/ErrorCode"
+                }
+            }
+        },
+        "AccountId": {
+            "type": "string"
+        },
+        "ErrorMessage": {
+            "type": "string"
+        },
+        "ErrorCode": {
+            "type": "string"
+        },
+        "BatchDeleteTaxRegistrationRequest": {
+            "type": "object",
+            "properties": {
+                "accountIds": {
+                    "$ref": "#/$defs/AccountIds"
+                }
+            }
+        },
+        "AccountIds": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AccountId"
+            }
+        },
+        "BatchPutTaxRegistrationResponse": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "$ref": "#/$defs/TaxRegistrationStatus"
+                },
+                "errors": {
+                    "$ref": "#/$defs/BatchPutTaxRegistrationErrors"
+                }
+            }
+        },
+        "TaxRegistrationStatus": {
+            "enum": [
+                "VERIFIED",
+                "PENDING",
+                "DELETED",
+                "REJECTED"
+            ]
+        },
+        "BatchPutTaxRegistrationErrors": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BatchPutTaxRegistrationError"
+            }
+        },
+        "BatchPutTaxRegistrationError": {
+            "type": "object",
+            "properties": {
+                "accountId": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "message": {
+                    "$ref": "#/$defs/ErrorMessage"
+                },
+                "code": {
+                    "$ref": "#/$defs/ErrorCode"
+                }
+            }
+        },
+        "BatchPutTaxRegistrationRequest": {
+            "type": "object",
+            "properties": {
+                "accountIds": {
+                    "$ref": "#/$defs/AccountIds"
+                },
+                "taxRegistrationEntry": {
+                    "$ref": "#/$defs/TaxRegistrationEntry"
+                }
+            }
+        },
+        "TaxRegistrationEntry": {
+            "type": "object",
+            "properties": {
+                "registrationId": {
+                    "$ref": "#/$defs/RegistrationId"
+                },
+                "registrationType": {
+                    "$ref": "#/$defs/TaxRegistrationType"
+                },
+                "legalName": {
+                    "$ref": "#/$defs/LegalName"
+                },
+                "legalAddress": {
+                    "$ref": "#/$defs/Address"
+                },
+                "sector": {
+                    "$ref": "#/$defs/Sector"
+                },
+                "additionalTaxInformation": {
+                    "$ref": "#/$defs/AdditionalInfoRequest"
+                },
+                "verificationDetails": {
+                    "$ref": "#/$defs/VerificationDetails"
+                },
+                "certifiedEmailId": {
+                    "$ref": "#/$defs/CertifiedEmailId"
+                }
+            }
+        },
+        "RegistrationId": {
+            "type": "string"
+        },
+        "TaxRegistrationType": {
+            "enum": [
+                "VAT",
+                "GST",
+                "CPF",
+                "CNPJ",
+                "SST"
+            ]
+        },
+        "LegalName": {
+            "type": "string"
+        },
+        "Address": {
+            "type": "object",
+            "properties": {
+                "addressLine1": {
+                    "$ref": "#/$defs/AddressLine1"
+                },
+                "addressLine2": {
+                    "$ref": "#/$defs/AddressLine2"
+                },
+                "addressLine3": {
+                    "$ref": "#/$defs/AddressLine3"
+                },
+                "districtOrCounty": {
+                    "$ref": "#/$defs/District"
+                },
+                "city": {
+                    "$ref": "#/$defs/City"
+                },
+                "stateOrRegion": {
+                    "$ref": "#/$defs/State"
+                },
+                "postalCode": {
+                    "$ref": "#/$defs/PostalCode"
+                },
+                "countryCode": {
+                    "$ref": "#/$defs/CountryCode"
+                }
+            }
+        },
+        "AddressLine1": {
+            "type": "string"
+        },
+        "AddressLine2": {
+            "type": "string"
+        },
+        "AddressLine3": {
+            "type": "string"
+        },
+        "District": {
+            "type": "string"
+        },
+        "City": {
+            "type": "string"
+        },
+        "State": {
+            "type": "string"
+        },
+        "PostalCode": {
+            "type": "string"
+        },
+        "CountryCode": {
+            "type": "string"
+        },
+        "Sector": {
+            "enum": [
+                "BUSINESS",
+                "INDIVIDUAL",
+                "PUBLIC_INSTITUTIONS"
+            ]
+        },
+        "AdditionalInfoRequest": {
+            "type": "object",
+            "properties": {
+                "malaysiaAdditionalInfo": {
+                    "$ref": "#/$defs/MalaysiaAdditionalInfo"
+                },
+                "israelAdditionalInfo": {
+                    "$ref": "#/$defs/IsraelAdditionalInfo"
+                },
+                "estoniaAdditionalInfo": {
+                    "$ref": "#/$defs/EstoniaAdditionalInfo"
+                },
+                "canadaAdditionalInfo": {
+                    "$ref": "#/$defs/CanadaAdditionalInfo"
+                },
+                "spainAdditionalInfo": {
+                    "$ref": "#/$defs/SpainAdditionalInfo"
+                },
+                "kenyaAdditionalInfo": {
+                    "$ref": "#/$defs/KenyaAdditionalInfo"
+                },
+                "southKoreaAdditionalInfo": {
+                    "$ref": "#/$defs/SouthKoreaAdditionalInfo"
+                },
+                "turkeyAdditionalInfo": {
+                    "$ref": "#/$defs/TurkeyAdditionalInfo"
+                },
+                "georgiaAdditionalInfo": {
+                    "$ref": "#/$defs/GeorgiaAdditionalInfo"
+                },
+                "italyAdditionalInfo": {
+                    "$ref": "#/$defs/ItalyAdditionalInfo"
+                },
+                "romaniaAdditionalInfo": {
+                    "$ref": "#/$defs/RomaniaAdditionalInfo"
+                },
+                "ukraineAdditionalInfo": {
+                    "$ref": "#/$defs/UkraineAdditionalInfo"
+                },
+                "polandAdditionalInfo": {
+                    "$ref": "#/$defs/PolandAdditionalInfo"
+                },
+                "saudiArabiaAdditionalInfo": {
+                    "$ref": "#/$defs/SaudiArabiaAdditionalInfo"
+                }
+            }
+        },
+        "MalaysiaAdditionalInfo": {
+            "type": "object",
+            "properties": {
+                "serviceTaxCodes": {
+                    "$ref": "#/$defs/MalaysiaServiceTaxCodesList"
+                }
+            }
+        },
+        "MalaysiaServiceTaxCodesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MalaysiaServiceTaxCode"
+            }
+        },
+        "MalaysiaServiceTaxCode": {
+            "enum": [
+                "CONSULTANCY",
+                "DIGITAL_SVC_ELECTRONIC_MEDIUM",
+                "IT_SERVICES",
+                "TRAINING_OR_COACHING"
+            ]
+        },
+        "IsraelAdditionalInfo": {
+            "type": "object",
+            "properties": {
+                "dealerType": {
+                    "$ref": "#/$defs/IsraelDealerType"
+                },
+                "customerType": {
+                    "$ref": "#/$defs/IsraelCustomerType"
+                }
+            }
+        },
+        "IsraelDealerType": {
+            "enum": [
+                "AUTHORIZED",
+                "NON_AUTHORIZED"
+            ]
+        },
+        "IsraelCustomerType": {
+            "enum": [
+                "BUSINESS",
+                "INDIVIDUAL"
+            ]
+        },
+        "EstoniaAdditionalInfo": {
+            "type": "object",
+            "properties": {
+                "registryCommercialCode": {
+                    "$ref": "#/$defs/RegistryCommercialCode"
+                }
+            }
+        },
+        "RegistryCommercialCode": {
+            "type": "string"
+        },
+        "CanadaAdditionalInfo": {
+            "type": "object",
+            "properties": {
+                "provincialSalesTaxId": {
+                    "$ref": "#/$defs/CanadaProvincialSalesTaxIdString"
+                },
+                "canadaQuebecSalesTaxNumber": {
+                    "$ref": "#/$defs/CanadaQuebecSalesTaxNumberString"
+                },
+                "canadaRetailSalesTaxNumber": {
+                    "$ref": "#/$defs/CanadaRetailSalesTaxNumberString"
+                },
+                "isResellerAccount": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "CanadaProvincialSalesTaxIdString": {
+            "type": "string"
+        },
+        "CanadaQuebecSalesTaxNumberString": {
+            "type": "string"
+        },
+        "CanadaRetailSalesTaxNumberString": {
+            "type": "string"
+        },
+        "Boolean": {
+            "type": "boolean"
+        },
+        "SpainAdditionalInfo": {
+            "type": "object",
+            "properties": {
+                "registrationType": {
+                    "$ref": "#/$defs/RegistrationType"
+                }
+            }
+        },
+        "RegistrationType": {
+            "enum": [
+                "INTRA_EU",
+                "LOCAL"
+            ]
+        },
+        "KenyaAdditionalInfo": {
+            "type": "object",
+            "properties": {
+                "personType": {
+                    "$ref": "#/$defs/PersonType"
+                }
+            }
+        },
+        "PersonType": {
+            "enum": [
+                "LEGAL_PERSON",
+                "PHYSICAL_PERSON",
+                "BUSINESS"
+            ]
+        },
+        "SouthKoreaAdditionalInfo": {
+            "type": "object",
+            "properties": {
+                "businessRepresentativeName": {
+                    "$ref": "#/$defs/BusinessRepresentativeName"
+                },
+                "lineOfBusiness": {
+                    "$ref": "#/$defs/LineOfBusiness"
+                },
+                "itemOfBusiness": {
+                    "$ref": "#/$defs/ItemOfBusiness"
+                }
+            }
+        },
+        "BusinessRepresentativeName": {
+            "type": "string"
+        },
+        "LineOfBusiness": {
+            "type": "string"
+        },
+        "ItemOfBusiness": {
+            "type": "string"
+        },
+        "TurkeyAdditionalInfo": {
+            "type": "object",
+            "properties": {
+                "taxOffice": {
+                    "$ref": "#/$defs/TaxOffice"
+                },
+                "kepEmailId": {
+                    "$ref": "#/$defs/KepEmailId"
+                },
+                "secondaryTaxId": {
+                    "$ref": "#/$defs/SecondaryTaxId"
+                },
+                "industries": {
+                    "$ref": "#/$defs/Industries"
+                }
+            }
+        },
+        "TaxOffice": {
+            "type": "string"
+        },
+        "KepEmailId": {
+            "type": "string"
+        },
+        "SecondaryTaxId": {
+            "type": "string"
+        },
+        "Industries": {
+            "enum": [
+                "CIRCULATING_ORG",
+                "PROFESSIONAL_ORG",
+                "BANKS",
+                "INSURANCE",
+                "PENSION_AND_BENEFIT_FUNDS",
+                "DEVELOPMENT_AGENCIES"
+            ]
+        },
+        "GeorgiaAdditionalInfo": {
+            "type": "object",
+            "properties": {
+                "personType": {
+                    "$ref": "#/$defs/PersonType"
+                }
+            }
+        },
+        "ItalyAdditionalInfo": {
+            "type": "object",
+            "properties": {
+                "sdiAccountId": {
+                    "$ref": "#/$defs/SdiAccountId"
+                },
+                "cigNumber": {
+                    "$ref": "#/$defs/CigNumber"
+                },
+                "cupNumber": {
+                    "$ref": "#/$defs/CupNumber"
+                },
+                "taxCode": {
+                    "$ref": "#/$defs/TaxCode"
+                }
+            }
+        },
+        "SdiAccountId": {
+            "type": "string"
+        },
+        "CigNumber": {
+            "type": "string"
+        },
+        "CupNumber": {
+            "type": "string"
+        },
+        "TaxCode": {
+            "type": "string"
+        },
+        "RomaniaAdditionalInfo": {
+            "type": "object",
+            "properties": {
+                "taxRegistrationNumberType": {
+                    "$ref": "#/$defs/TaxRegistrationNumberType"
+                }
+            }
+        },
+        "TaxRegistrationNumberType": {
+            "enum": [
+                "TAX_REGISTRATION_NUMBER",
+                "LOCAL_REGISTRATION_NUMBER"
+            ]
+        },
+        "UkraineAdditionalInfo": {
+            "type": "object",
+            "properties": {
+                "ukraineTrnType": {
+                    "$ref": "#/$defs/UkraineTrnType"
+                }
+            }
+        },
+        "UkraineTrnType": {
+            "enum": [
+                "BUSINESS",
+                "INDIVIDUAL"
+            ]
+        },
+        "PolandAdditionalInfo": {
+            "type": "object",
+            "properties": {
+                "individualRegistrationNumber": {
+                    "$ref": "#/$defs/IndividualRegistrationNumber"
+                },
+                "isGroupVatEnabled": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "IndividualRegistrationNumber": {
+            "type": "string"
+        },
+        "SaudiArabiaAdditionalInfo": {
+            "type": "object",
+            "properties": {
+                "taxRegistrationNumberType": {
+                    "$ref": "#/$defs/SaudiArabiaTaxRegistrationNumberType"
+                }
+            }
+        },
+        "SaudiArabiaTaxRegistrationNumberType": {
+            "enum": [
+                "TAX_REGISTRATION_NUMBER",
+                "TAX_IDENTIFICATION_NUMBER",
+                "COMMERCIAL_REGISTRATION_NUMBER"
+            ]
+        },
+        "VerificationDetails": {
+            "type": "object",
+            "properties": {
+                "dateOfBirth": {
+                    "$ref": "#/$defs/DateOfBirth"
+                },
+                "taxRegistrationDocuments": {
+                    "$ref": "#/$defs/TaxRegistrationDocuments"
+                }
+            }
+        },
+        "DateOfBirth": {
+            "type": "string"
+        },
+        "TaxRegistrationDocuments": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TaxRegistrationDocument"
+            }
+        },
+        "TaxRegistrationDocument": {
+            "type": "object",
+            "properties": {
+                "s3Location": {
+                    "$ref": "#/$defs/SourceS3Location"
+                }
+            }
+        },
+        "SourceS3Location": {
+            "type": "object",
+            "properties": {
+                "bucket": {
+                    "$ref": "#/$defs/S3BucketName"
+                },
+                "key": {
+                    "$ref": "#/$defs/S3Key"
+                }
+            }
+        },
+        "S3BucketName": {
+            "type": "string"
+        },
+        "S3Key": {
+            "type": "string"
+        },
+        "CertifiedEmailId": {
+            "type": "string"
+        },
+        "DeleteTaxRegistrationResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteTaxRegistrationRequest": {
+            "type": "object",
+            "properties": {
+                "accountId": {
+                    "$ref": "#/$defs/AccountId"
+                }
+            }
+        },
+        "GetTaxRegistrationResponse": {
+            "type": "object",
+            "properties": {
+                "taxRegistration": {
+                    "$ref": "#/$defs/TaxRegistration"
+                }
+            }
+        },
+        "TaxRegistration": {
+            "type": "object",
+            "properties": {
+                "registrationId": {
+                    "$ref": "#/$defs/RegistrationId"
+                },
+                "registrationType": {
+                    "$ref": "#/$defs/TaxRegistrationType"
+                },
+                "legalName": {
+                    "$ref": "#/$defs/LegalName"
+                },
+                "status": {
+                    "$ref": "#/$defs/TaxRegistrationStatus"
+                },
+                "sector": {
+                    "$ref": "#/$defs/Sector"
+                },
+                "taxDocumentMetadatas": {
+                    "$ref": "#/$defs/TaxDocumentMetadatas"
+                },
+                "certifiedEmailId": {
+                    "$ref": "#/$defs/CertifiedEmailId"
+                },
+                "additionalTaxInformation": {
+                    "$ref": "#/$defs/AdditionalInfoResponse"
+                },
+                "legalAddress": {
+                    "$ref": "#/$defs/Address"
+                }
+            }
+        },
+        "TaxDocumentMetadatas": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TaxDocumentMetadata"
+            }
+        },
+        "TaxDocumentMetadata": {
+            "type": "object",
+            "properties": {
+                "taxDocumentAccessToken": {
+                    "$ref": "#/$defs/TaxDocumentAccessToken"
+                },
+                "taxDocumentName": {
+                    "$ref": "#/$defs/TaxDocumentName"
+                }
+            }
+        },
+        "TaxDocumentAccessToken": {
+            "type": "string"
+        },
+        "TaxDocumentName": {
+            "type": "string"
+        },
+        "AdditionalInfoResponse": {
+            "type": "object",
+            "properties": {
+                "malaysiaAdditionalInfo": {
+                    "$ref": "#/$defs/MalaysiaAdditionalInfo"
+                },
+                "israelAdditionalInfo": {
+                    "$ref": "#/$defs/IsraelAdditionalInfo"
+                },
+                "estoniaAdditionalInfo": {
+                    "$ref": "#/$defs/EstoniaAdditionalInfo"
+                },
+                "canadaAdditionalInfo": {
+                    "$ref": "#/$defs/CanadaAdditionalInfo"
+                },
+                "brazilAdditionalInfo": {
+                    "$ref": "#/$defs/BrazilAdditionalInfo"
+                },
+                "spainAdditionalInfo": {
+                    "$ref": "#/$defs/SpainAdditionalInfo"
+                },
+                "kenyaAdditionalInfo": {
+                    "$ref": "#/$defs/KenyaAdditionalInfo"
+                },
+                "southKoreaAdditionalInfo": {
+                    "$ref": "#/$defs/SouthKoreaAdditionalInfo"
+                },
+                "turkeyAdditionalInfo": {
+                    "$ref": "#/$defs/TurkeyAdditionalInfo"
+                },
+                "georgiaAdditionalInfo": {
+                    "$ref": "#/$defs/GeorgiaAdditionalInfo"
+                },
+                "italyAdditionalInfo": {
+                    "$ref": "#/$defs/ItalyAdditionalInfo"
+                },
+                "romaniaAdditionalInfo": {
+                    "$ref": "#/$defs/RomaniaAdditionalInfo"
+                },
+                "ukraineAdditionalInfo": {
+                    "$ref": "#/$defs/UkraineAdditionalInfo"
+                },
+                "polandAdditionalInfo": {
+                    "$ref": "#/$defs/PolandAdditionalInfo"
+                },
+                "saudiArabiaAdditionalInfo": {
+                    "$ref": "#/$defs/SaudiArabiaAdditionalInfo"
+                },
+                "indiaAdditionalInfo": {
+                    "$ref": "#/$defs/IndiaAdditionalInfo"
+                }
+            }
+        },
+        "BrazilAdditionalInfo": {
+            "type": "object",
+            "properties": {
+                "ccmCode": {
+                    "$ref": "#/$defs/CcmCode"
+                },
+                "legalNatureCode": {
+                    "$ref": "#/$defs/LegalNatureCode"
+                }
+            }
+        },
+        "CcmCode": {
+            "type": "string"
+        },
+        "LegalNatureCode": {
+            "type": "string"
+        },
+        "IndiaAdditionalInfo": {
+            "type": "object",
+            "properties": {
+                "pan": {
+                    "$ref": "#/$defs/Pan"
+                }
+            }
+        },
+        "Pan": {
+            "type": "string"
+        },
+        "GetTaxRegistrationRequest": {
+            "type": "object",
+            "properties": {
+                "accountId": {
+                    "$ref": "#/$defs/AccountId"
+                }
+            }
+        },
+        "GetTaxRegistrationDocumentResponse": {
+            "type": "object",
+            "properties": {
+                "destinationFilePath": {
+                    "$ref": "#/$defs/DestinationFilePath"
+                }
+            }
+        },
+        "DestinationFilePath": {
+            "type": "string"
+        },
+        "GetTaxRegistrationDocumentRequest": {
+            "type": "object",
+            "properties": {
+                "destinationS3Location": {
+                    "$ref": "#/$defs/DestinationS3Location"
+                },
+                "taxDocumentMetadata": {
+                    "$ref": "#/$defs/TaxDocumentMetadata"
+                }
+            }
+        },
+        "DestinationS3Location": {
+            "type": "object",
+            "properties": {
+                "bucket": {
+                    "$ref": "#/$defs/S3BucketName"
+                },
+                "prefix": {
+                    "$ref": "#/$defs/S3Prefix"
+                }
+            }
+        },
+        "S3Prefix": {
+            "type": "string"
+        },
+        "ListTaxRegistrationsResponse": {
+            "type": "object",
+            "properties": {
+                "accountDetails": {
+                    "$ref": "#/$defs/AccountDetailsList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationTokenString"
+                }
+            }
+        },
+        "AccountDetailsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AccountDetails"
+            }
+        },
+        "AccountDetails": {
+            "type": "object",
+            "properties": {
+                "accountId": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "taxRegistration": {
+                    "$ref": "#/$defs/TaxRegistrationWithJurisdiction"
+                },
+                "taxInheritanceDetails": {
+                    "$ref": "#/$defs/TaxInheritanceDetails"
+                },
+                "accountMetaData": {
+                    "$ref": "#/$defs/AccountMetaData"
+                }
+            }
+        },
+        "TaxRegistrationWithJurisdiction": {
+            "type": "object",
+            "properties": {
+                "registrationId": {
+                    "$ref": "#/$defs/RegistrationId"
+                },
+                "registrationType": {
+                    "$ref": "#/$defs/TaxRegistrationType"
+                },
+                "legalName": {
+                    "$ref": "#/$defs/LegalName"
+                },
+                "status": {
+                    "$ref": "#/$defs/TaxRegistrationStatus"
+                },
+                "sector": {
+                    "$ref": "#/$defs/Sector"
+                },
+                "taxDocumentMetadatas": {
+                    "$ref": "#/$defs/TaxDocumentMetadatas"
+                },
+                "certifiedEmailId": {
+                    "$ref": "#/$defs/CertifiedEmailId"
+                },
+                "additionalTaxInformation": {
+                    "$ref": "#/$defs/AdditionalInfoResponse"
+                },
+                "jurisdiction": {
+                    "$ref": "#/$defs/Jurisdiction"
+                }
+            }
+        },
+        "Jurisdiction": {
+            "type": "object",
+            "properties": {
+                "stateOrRegion": {
+                    "$ref": "#/$defs/State"
+                },
+                "countryCode": {
+                    "$ref": "#/$defs/CountryCode"
+                }
+            }
+        },
+        "TaxInheritanceDetails": {
+            "type": "object",
+            "properties": {
+                "parentEntityId": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "inheritanceObtainedReason": {
+                    "$ref": "#/$defs/InheritanceObtainedReason"
+                }
+            }
+        },
+        "InheritanceObtainedReason": {
+            "type": "string"
+        },
+        "AccountMetaData": {
+            "type": "object",
+            "properties": {
+                "accountName": {
+                    "$ref": "#/$defs/AccountName"
+                },
+                "seller": {
+                    "$ref": "#/$defs/Seller"
+                },
+                "address": {
+                    "$ref": "#/$defs/Address"
+                },
+                "addressType": {
+                    "$ref": "#/$defs/AddressRoleType"
+                },
+                "addressRoleMap": {
+                    "$ref": "#/$defs/AddressRoleMap"
+                }
+            }
+        },
+        "AccountName": {
+            "type": "string"
+        },
+        "Seller": {
+            "type": "string"
+        },
+        "AddressRoleType": {
+            "enum": [
+                "TAX_ADDRESS",
+                "BILLING_ADDRESS",
+                "CONTACT_ADDRESS"
+            ]
+        },
+        "AddressRoleMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/Jurisdiction"
+            }
+        },
+        "PaginationTokenString": {
+            "type": "string"
+        },
+        "ListTaxRegistrationsRequest": {
+            "type": "object",
+            "properties": {
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationTokenString"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "PutTaxRegistrationResponse": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "$ref": "#/$defs/TaxRegistrationStatus"
+                }
+            }
+        },
+        "PutTaxRegistrationRequest": {
+            "type": "object",
+            "properties": {
+                "accountId": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "taxRegistrationEntry": {
+                    "$ref": "#/$defs/TaxRegistrationEntry"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            },
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                                "type": "error"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": {
+                                        "ref": "Endpoint"
+                                    },
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "isSet",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ]
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "aws.partition",
+                                        "argv": [
+                                            {
+                                                "ref": "Region"
+                                            }
+                                        ],
+                                        "assign": "PartitionResult"
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseFIPS"
+                                                    },
+                                                    true
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseDualStack"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsFIPS"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsDualStack"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "endpoint": {
+                                                            "url": "https://tax-fips.{PartitionResult#implicitGlobalRegion}.{PartitionResult#dualStackDnsSuffix}",
+                                                            "properties": {
+                                                                "authSchemes": [
+                                                                    {
+                                                                        "name": "sigv4",
+                                                                        "signingRegion": "{PartitionResult#implicitGlobalRegion}"
+                                                                    }
+                                                                ]
+                                                            },
+                                                            "headers": {}
+                                                        },
+                                                        "type": "endpoint"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseFIPS"
+                                                    },
+                                                    true
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseDualStack"
+                                                    },
+                                                    false
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsFIPS"
+                                                                ]
+                                                            },
+                                                            true
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "endpoint": {
+                                                            "url": "https://tax-fips.{PartitionResult#implicitGlobalRegion}.{PartitionResult#dnsSuffix}",
+                                                            "properties": {
+                                                                "authSchemes": [
+                                                                    {
+                                                                        "name": "sigv4",
+                                                                        "signingRegion": "{PartitionResult#implicitGlobalRegion}"
+                                                                    }
+                                                                ]
+                                                            },
+                                                            "headers": {}
+                                                        },
+                                                        "type": "endpoint"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "FIPS is enabled but this partition does not support FIPS",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseFIPS"
+                                                    },
+                                                    false
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseDualStack"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsDualStack"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "endpoint": {
+                                                            "url": "https://tax.{PartitionResult#implicitGlobalRegion}.{PartitionResult#dualStackDnsSuffix}",
+                                                            "properties": {
+                                                                "authSchemes": [
+                                                                    {
+                                                                        "name": "sigv4",
+                                                                        "signingRegion": "{PartitionResult#implicitGlobalRegion}"
+                                                                    }
+                                                                ]
+                                                            },
+                                                            "headers": {}
+                                                        },
+                                                        "type": "endpoint"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "DualStack is enabled but this partition does not support DualStack",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "endpoint": {
+                                            "url": "https://tax.{PartitionResult#implicitGlobalRegion}.{PartitionResult#dnsSuffix}",
+                                            "properties": {
+                                                "authSchemes": [
+                                                    {
+                                                        "name": "sigv4",
+                                                        "signingRegion": "{PartitionResult#implicitGlobalRegion}"
+                                                    }
+                                                ]
+                                            },
+                                            "headers": {}
+                                        },
+                                        "type": "endpoint"
+                                    }
+                                ],
+                                "type": "tree"
+                            }
+                        ],
+                        "type": "tree"
+                    },
+                    {
+                        "conditions": [],
+                        "error": "Invalid Configuration: Missing Region",
+                        "type": "error"
+                    }
+                ],
+                "type": "tree"
+            }
+        ]
+    }
+}

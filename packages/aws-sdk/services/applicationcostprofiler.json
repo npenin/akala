@@ -1,0 +1,791 @@
+{
+    "name": "application-cost-profiler",
+    "commands": [
+        {
+            "name": "DeleteReportDefinition",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteReportDefinition"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteReportDefinitionResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteReportDefinitionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetReportDefinition",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetReportDefinition"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetReportDefinitionResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetReportDefinitionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ImportApplicationUsage",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ImportApplicationUsage"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ImportApplicationUsageResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ImportApplicationUsageRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListReportDefinitions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListReportDefinitions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListReportDefinitionsResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListReportDefinitionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutReportDefinition",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutReportDefinition"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutReportDefinitionResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutReportDefinitionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateReportDefinition",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateReportDefinition"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateReportDefinitionResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateReportDefinitionRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "DeleteReportDefinitionResult": {
+            "type": "object",
+            "properties": {
+                "reportId": {
+                    "$ref": "#/$defs/ReportId"
+                }
+            }
+        },
+        "ReportId": {
+            "type": "string"
+        },
+        "DeleteReportDefinitionRequest": {
+            "type": "object",
+            "properties": {
+                "reportId": {
+                    "$ref": "#/$defs/ReportId"
+                }
+            }
+        },
+        "GetReportDefinitionResult": {
+            "type": "object",
+            "properties": {
+                "reportId": {
+                    "$ref": "#/$defs/ReportId"
+                },
+                "reportDescription": {
+                    "$ref": "#/$defs/ReportDescription"
+                },
+                "reportFrequency": {
+                    "$ref": "#/$defs/ReportFrequency"
+                },
+                "format": {
+                    "$ref": "#/$defs/Format"
+                },
+                "destinationS3Location": {
+                    "$ref": "#/$defs/S3Location"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "lastUpdated": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ReportDescription": {
+            "type": "string"
+        },
+        "ReportFrequency": {
+            "enum": [
+                "MONTHLY",
+                "DAILY",
+                "ALL"
+            ]
+        },
+        "Format": {
+            "enum": [
+                "CSV",
+                "PARQUET"
+            ]
+        },
+        "S3Location": {
+            "type": "object",
+            "properties": {
+                "bucket": {
+                    "$ref": "#/$defs/S3Bucket"
+                },
+                "prefix": {
+                    "$ref": "#/$defs/S3Prefix"
+                }
+            }
+        },
+        "S3Bucket": {
+            "type": "string"
+        },
+        "S3Prefix": {
+            "type": "string"
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "GetReportDefinitionRequest": {
+            "type": "object",
+            "properties": {
+                "reportId": {
+                    "$ref": "#/$defs/ReportId"
+                }
+            }
+        },
+        "ImportApplicationUsageResult": {
+            "type": "object",
+            "properties": {
+                "importId": {
+                    "$ref": "#/$defs/ImportId"
+                }
+            }
+        },
+        "ImportId": {
+            "type": "string"
+        },
+        "ImportApplicationUsageRequest": {
+            "type": "object",
+            "properties": {
+                "sourceS3Location": {
+                    "$ref": "#/$defs/SourceS3Location"
+                }
+            }
+        },
+        "SourceS3Location": {
+            "type": "object",
+            "properties": {
+                "bucket": {
+                    "$ref": "#/$defs/S3Bucket"
+                },
+                "key": {
+                    "$ref": "#/$defs/S3Key"
+                },
+                "region": {
+                    "$ref": "#/$defs/S3BucketRegion"
+                }
+            }
+        },
+        "S3Key": {
+            "type": "string"
+        },
+        "S3BucketRegion": {
+            "enum": [
+                "AP_EAST_1",
+                "ME_SOUTH_1",
+                "EU_SOUTH_1",
+                "AF_SOUTH_1"
+            ]
+        },
+        "ListReportDefinitionsResult": {
+            "type": "object",
+            "properties": {
+                "reportDefinitions": {
+                    "$ref": "#/$defs/ReportDefinitionList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "ReportDefinitionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ReportDefinition"
+            }
+        },
+        "ReportDefinition": {
+            "type": "object",
+            "properties": {
+                "reportId": {
+                    "$ref": "#/$defs/ReportId"
+                },
+                "reportDescription": {
+                    "$ref": "#/$defs/ReportDescription"
+                },
+                "reportFrequency": {
+                    "$ref": "#/$defs/ReportFrequency"
+                },
+                "format": {
+                    "$ref": "#/$defs/Format"
+                },
+                "destinationS3Location": {
+                    "$ref": "#/$defs/S3Location"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "lastUpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "Token": {
+            "type": "string"
+        },
+        "ListReportDefinitionsRequest": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/Token"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "Integer": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "PutReportDefinitionResult": {
+            "type": "object",
+            "properties": {
+                "reportId": {
+                    "$ref": "#/$defs/ReportId"
+                }
+            }
+        },
+        "PutReportDefinitionRequest": {
+            "type": "object",
+            "properties": {
+                "reportId": {
+                    "$ref": "#/$defs/ReportId"
+                },
+                "reportDescription": {
+                    "$ref": "#/$defs/ReportDescription"
+                },
+                "reportFrequency": {
+                    "$ref": "#/$defs/ReportFrequency"
+                },
+                "format": {
+                    "$ref": "#/$defs/Format"
+                },
+                "destinationS3Location": {
+                    "$ref": "#/$defs/S3Location"
+                }
+            }
+        },
+        "UpdateReportDefinitionResult": {
+            "type": "object",
+            "properties": {
+                "reportId": {
+                    "$ref": "#/$defs/ReportId"
+                }
+            }
+        },
+        "UpdateReportDefinitionRequest": {
+            "type": "object",
+            "properties": {
+                "reportId": {
+                    "$ref": "#/$defs/ReportId"
+                },
+                "reportDescription": {
+                    "$ref": "#/$defs/ReportDescription"
+                },
+                "reportFrequency": {
+                    "$ref": "#/$defs/ReportFrequency"
+                },
+                "format": {
+                    "$ref": "#/$defs/Format"
+                },
+                "destinationS3Location": {
+                    "$ref": "#/$defs/S3Location"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://application-cost-profiler-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://application-cost-profiler-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://application-cost-profiler.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://application-cost-profiler.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

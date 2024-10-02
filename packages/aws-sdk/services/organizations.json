@@ -1,0 +1,4037 @@
+{
+    "name": "organizations",
+    "commands": [
+        {
+            "name": "AcceptHandshake",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AcceptHandshake"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AcceptHandshakeResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AcceptHandshakeRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "AttachPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AttachPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AttachPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CancelHandshake",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CancelHandshake"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CancelHandshakeResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CancelHandshakeRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CloseAccount",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CloseAccount"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CloseAccountRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateAccount",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateAccount"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateAccountResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateAccountRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateGovCloudAccount",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateGovCloudAccount"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateGovCloudAccountResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateGovCloudAccountRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateOrganization",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateOrganization"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateOrganizationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateOrganizationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateOrganizationalUnit",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateOrganizationalUnit"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateOrganizationalUnitResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateOrganizationalUnitRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreatePolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreatePolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreatePolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreatePolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeclineHandshake",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeclineHandshake"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeclineHandshakeResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeclineHandshakeRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteOrganization",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteOrganization"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteOrganizationalUnit",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteOrganizationalUnit"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteOrganizationalUnitRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeletePolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeletePolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeletePolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteResourcePolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteResourcePolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeregisterDelegatedAdministrator",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeregisterDelegatedAdministrator"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeregisterDelegatedAdministratorRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeAccount",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeAccount"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeAccountResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeAccountRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeCreateAccountStatus",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeCreateAccountStatus"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeCreateAccountStatusResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeCreateAccountStatusRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeEffectivePolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeEffectivePolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeEffectivePolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeEffectivePolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeHandshake",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeHandshake"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeHandshakeResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeHandshakeRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeOrganization",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeOrganization"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeOrganizationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeOrganizationalUnit",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeOrganizationalUnit"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeOrganizationalUnitResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeOrganizationalUnitRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribePolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribePolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribePolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribePolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeResourcePolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeResourcePolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeResourcePolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DetachPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DetachPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DetachPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DisableAWSServiceAccess",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DisableAWSServiceAccess"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DisableAWSServiceAccessRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DisablePolicyType",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DisablePolicyType"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DisablePolicyTypeResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DisablePolicyTypeRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "EnableAllFeatures",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "EnableAllFeatures"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/EnableAllFeaturesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/EnableAllFeaturesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "EnableAWSServiceAccess",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "EnableAWSServiceAccess"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/EnableAWSServiceAccessRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "EnablePolicyType",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "EnablePolicyType"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/EnablePolicyTypeResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/EnablePolicyTypeRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "InviteAccountToOrganization",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "InviteAccountToOrganization"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/InviteAccountToOrganizationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/InviteAccountToOrganizationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "LeaveOrganization",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "LeaveOrganization"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListAccounts",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListAccounts"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListAccountsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListAccountsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListAccountsForParent",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListAccountsForParent"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListAccountsForParentResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListAccountsForParentRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListAWSServiceAccessForOrganization",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListAWSServiceAccessForOrganization"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListAWSServiceAccessForOrganizationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListAWSServiceAccessForOrganizationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListChildren",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListChildren"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListChildrenResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListChildrenRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListCreateAccountStatus",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListCreateAccountStatus"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListCreateAccountStatusResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListCreateAccountStatusRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListDelegatedAdministrators",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListDelegatedAdministrators"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListDelegatedAdministratorsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListDelegatedAdministratorsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListDelegatedServicesForAccount",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListDelegatedServicesForAccount"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListDelegatedServicesForAccountResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListDelegatedServicesForAccountRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListHandshakesForAccount",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListHandshakesForAccount"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListHandshakesForAccountResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListHandshakesForAccountRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListHandshakesForOrganization",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListHandshakesForOrganization"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListHandshakesForOrganizationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListHandshakesForOrganizationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListOrganizationalUnitsForParent",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListOrganizationalUnitsForParent"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListOrganizationalUnitsForParentResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListOrganizationalUnitsForParentRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListParents",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListParents"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListParentsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListParentsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListPolicies",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListPolicies"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListPoliciesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListPoliciesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListPoliciesForTarget",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListPoliciesForTarget"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListPoliciesForTargetResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListPoliciesForTargetRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListRoots",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListRoots"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListRootsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListRootsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTargetsForPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTargetsForPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTargetsForPolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTargetsForPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "MoveAccount",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "MoveAccount"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/MoveAccountRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutResourcePolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutResourcePolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutResourcePolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutResourcePolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RegisterDelegatedAdministrator",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RegisterDelegatedAdministrator"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RegisterDelegatedAdministratorRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RemoveAccountFromOrganization",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RemoveAccountFromOrganization"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RemoveAccountFromOrganizationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateOrganizationalUnit",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateOrganizationalUnit"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateOrganizationalUnitResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateOrganizationalUnitRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdatePolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdatePolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdatePolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdatePolicyRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "AcceptHandshakeResponse": {
+            "type": "object",
+            "properties": {
+                "Handshake": {
+                    "$ref": "#/$defs/Handshake"
+                }
+            }
+        },
+        "Handshake": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/HandshakeId"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/HandshakeArn"
+                },
+                "Parties": {
+                    "$ref": "#/$defs/HandshakeParties"
+                },
+                "State": {
+                    "$ref": "#/$defs/HandshakeState"
+                },
+                "RequestedTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "ExpirationTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Action": {
+                    "$ref": "#/$defs/ActionType"
+                },
+                "Resources": {
+                    "$ref": "#/$defs/HandshakeResources"
+                }
+            }
+        },
+        "HandshakeId": {
+            "type": "string"
+        },
+        "HandshakeArn": {
+            "type": "string"
+        },
+        "HandshakeParties": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/HandshakeParty"
+            }
+        },
+        "HandshakeParty": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/HandshakePartyId"
+                },
+                "Type": {
+                    "$ref": "#/$defs/HandshakePartyType"
+                }
+            }
+        },
+        "HandshakePartyId": {
+            "type": "string"
+        },
+        "HandshakePartyType": {
+            "enum": [
+                "ACCOUNT",
+                "ORGANIZATION",
+                "EMAIL"
+            ]
+        },
+        "HandshakeState": {
+            "enum": [
+                "REQUESTED",
+                "OPEN",
+                "CANCELED",
+                "ACCEPTED",
+                "DECLINED",
+                "EXPIRED"
+            ]
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "ActionType": {
+            "enum": [
+                "INVITE_ACCOUNT_TO_ORGANIZATION",
+                "ENABLE_ALL_FEATURES",
+                "APPROVE_ALL_FEATURES",
+                "ADD_ORGANIZATIONS_SERVICE_LINKED_ROLE"
+            ]
+        },
+        "HandshakeResources": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/HandshakeResource"
+            }
+        },
+        "HandshakeResource": {
+            "type": "object",
+            "properties": {
+                "Value": {
+                    "$ref": "#/$defs/HandshakeResourceValue"
+                },
+                "Type": {
+                    "$ref": "#/$defs/HandshakeResourceType"
+                },
+                "Resources": {
+                    "$ref": "#/$defs/HandshakeResources"
+                }
+            }
+        },
+        "HandshakeResourceValue": {
+            "type": "string"
+        },
+        "HandshakeResourceType": {
+            "enum": [
+                "ACCOUNT",
+                "ORGANIZATION",
+                "ORGANIZATION_FEATURE_SET",
+                "EMAIL",
+                "MASTER_EMAIL",
+                "MASTER_NAME",
+                "NOTES",
+                "PARENT_HANDSHAKE"
+            ]
+        },
+        "AcceptHandshakeRequest": {
+            "type": "object",
+            "properties": {
+                "HandshakeId": {
+                    "$ref": "#/$defs/HandshakeId"
+                }
+            }
+        },
+        "AttachPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "PolicyId": {
+                    "$ref": "#/$defs/PolicyId"
+                },
+                "TargetId": {
+                    "$ref": "#/$defs/PolicyTargetId"
+                }
+            }
+        },
+        "PolicyId": {
+            "type": "string"
+        },
+        "PolicyTargetId": {
+            "type": "string"
+        },
+        "CancelHandshakeResponse": {
+            "type": "object",
+            "properties": {
+                "Handshake": {
+                    "$ref": "#/$defs/Handshake"
+                }
+            }
+        },
+        "CancelHandshakeRequest": {
+            "type": "object",
+            "properties": {
+                "HandshakeId": {
+                    "$ref": "#/$defs/HandshakeId"
+                }
+            }
+        },
+        "CloseAccountRequest": {
+            "type": "object",
+            "properties": {
+                "AccountId": {
+                    "$ref": "#/$defs/AccountId"
+                }
+            }
+        },
+        "AccountId": {
+            "type": "string"
+        },
+        "CreateAccountResponse": {
+            "type": "object",
+            "properties": {
+                "CreateAccountStatus": {
+                    "$ref": "#/$defs/CreateAccountStatus"
+                }
+            }
+        },
+        "CreateAccountStatus": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/CreateAccountRequestId"
+                },
+                "AccountName": {
+                    "$ref": "#/$defs/CreateAccountName"
+                },
+                "State": {
+                    "$ref": "#/$defs/CreateAccountState"
+                },
+                "RequestedTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "CompletedTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "AccountId": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "GovCloudAccountId": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "FailureReason": {
+                    "$ref": "#/$defs/CreateAccountFailureReason"
+                }
+            }
+        },
+        "CreateAccountRequestId": {
+            "type": "string"
+        },
+        "CreateAccountName": {
+            "type": "string"
+        },
+        "CreateAccountState": {
+            "enum": [
+                "IN_PROGRESS",
+                "SUCCEEDED",
+                "FAILED"
+            ]
+        },
+        "CreateAccountFailureReason": {
+            "enum": [
+                "ACCOUNT_LIMIT_EXCEEDED",
+                "EMAIL_ALREADY_EXISTS",
+                "INVALID_ADDRESS",
+                "INVALID_EMAIL",
+                "CONCURRENT_ACCOUNT_MODIFICATION",
+                "INTERNAL_FAILURE",
+                "GOVCLOUD_ACCOUNT_ALREADY_EXISTS",
+                "MISSING_BUSINESS_VALIDATION",
+                "FAILED_BUSINESS_VALIDATION",
+                "PENDING_BUSINESS_VALIDATIONv",
+                "INVALID_IDENTITY_FOR_BUSINESS_VALIDATION",
+                "UNKNOWN_BUSINESS_VALIDATION",
+                "MISSING_PAYMENT_INSTRUMENT",
+                "INVALID_PAYMENT_INSTRUMENT",
+                "UPDATE_EXISTING_RESOURCE_POLICY_WITH_TAGS_NOT_SUPPORTED"
+            ]
+        },
+        "CreateAccountRequest": {
+            "type": "object",
+            "properties": {
+                "Email": {
+                    "$ref": "#/$defs/Email"
+                },
+                "AccountName": {
+                    "$ref": "#/$defs/CreateAccountName"
+                },
+                "RoleName": {
+                    "$ref": "#/$defs/RoleName"
+                },
+                "IamUserAccessToBilling": {
+                    "$ref": "#/$defs/IAMUserAccessToBilling"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "Email": {
+            "type": "string"
+        },
+        "RoleName": {
+            "type": "string"
+        },
+        "IAMUserAccessToBilling": {
+            "enum": [
+                "ALLOW",
+                "DENY"
+            ]
+        },
+        "Tags": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "CreateGovCloudAccountResponse": {
+            "type": "object",
+            "properties": {
+                "CreateAccountStatus": {
+                    "$ref": "#/$defs/CreateAccountStatus"
+                }
+            }
+        },
+        "CreateGovCloudAccountRequest": {
+            "type": "object",
+            "properties": {
+                "Email": {
+                    "$ref": "#/$defs/Email"
+                },
+                "AccountName": {
+                    "$ref": "#/$defs/CreateAccountName"
+                },
+                "RoleName": {
+                    "$ref": "#/$defs/RoleName"
+                },
+                "IamUserAccessToBilling": {
+                    "$ref": "#/$defs/IAMUserAccessToBilling"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "CreateOrganizationResponse": {
+            "type": "object",
+            "properties": {
+                "Organization": {
+                    "$ref": "#/$defs/Organization"
+                }
+            }
+        },
+        "Organization": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/OrganizationId"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/OrganizationArn"
+                },
+                "FeatureSet": {
+                    "$ref": "#/$defs/OrganizationFeatureSet"
+                },
+                "MasterAccountArn": {
+                    "$ref": "#/$defs/AccountArn"
+                },
+                "MasterAccountId": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "MasterAccountEmail": {
+                    "$ref": "#/$defs/Email"
+                },
+                "AvailablePolicyTypes": {
+                    "$ref": "#/$defs/PolicyTypes"
+                }
+            }
+        },
+        "OrganizationId": {
+            "type": "string"
+        },
+        "OrganizationArn": {
+            "type": "string"
+        },
+        "OrganizationFeatureSet": {
+            "enum": [
+                "ALL",
+                "CONSOLIDATED_BILLING"
+            ]
+        },
+        "AccountArn": {
+            "type": "string"
+        },
+        "PolicyTypes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PolicyTypeSummary"
+            }
+        },
+        "PolicyTypeSummary": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "$ref": "#/$defs/PolicyType"
+                },
+                "Status": {
+                    "$ref": "#/$defs/PolicyTypeStatus"
+                }
+            }
+        },
+        "PolicyType": {
+            "enum": [
+                "SERVICE_CONTROL_POLICY",
+                "TAG_POLICY",
+                "BACKUP_POLICY",
+                "AISERVICES_OPT_OUT_POLICY",
+                "CHATBOT_POLICY"
+            ]
+        },
+        "PolicyTypeStatus": {
+            "enum": [
+                "ENABLED",
+                "PENDING_ENABLE",
+                "PENDING_DISABLE"
+            ]
+        },
+        "CreateOrganizationRequest": {
+            "type": "object",
+            "properties": {
+                "FeatureSet": {
+                    "$ref": "#/$defs/OrganizationFeatureSet"
+                }
+            }
+        },
+        "CreateOrganizationalUnitResponse": {
+            "type": "object",
+            "properties": {
+                "OrganizationalUnit": {
+                    "$ref": "#/$defs/OrganizationalUnit"
+                }
+            }
+        },
+        "OrganizationalUnit": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/OrganizationalUnitId"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/OrganizationalUnitArn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/OrganizationalUnitName"
+                }
+            }
+        },
+        "OrganizationalUnitId": {
+            "type": "string"
+        },
+        "OrganizationalUnitArn": {
+            "type": "string"
+        },
+        "OrganizationalUnitName": {
+            "type": "string"
+        },
+        "CreateOrganizationalUnitRequest": {
+            "type": "object",
+            "properties": {
+                "ParentId": {
+                    "$ref": "#/$defs/ParentId"
+                },
+                "Name": {
+                    "$ref": "#/$defs/OrganizationalUnitName"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "ParentId": {
+            "type": "string"
+        },
+        "CreatePolicyResponse": {
+            "type": "object",
+            "properties": {
+                "Policy": {
+                    "$ref": "#/$defs/Policy"
+                }
+            }
+        },
+        "Policy": {
+            "type": "object",
+            "properties": {
+                "PolicySummary": {
+                    "$ref": "#/$defs/PolicySummary"
+                },
+                "Content": {
+                    "$ref": "#/$defs/PolicyContent"
+                }
+            }
+        },
+        "PolicySummary": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/PolicyId"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/PolicyArn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/PolicyName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/PolicyDescription"
+                },
+                "Type": {
+                    "$ref": "#/$defs/PolicyType"
+                },
+                "AwsManaged": {
+                    "$ref": "#/$defs/AwsManagedPolicy"
+                }
+            }
+        },
+        "PolicyArn": {
+            "type": "string"
+        },
+        "PolicyName": {
+            "type": "string"
+        },
+        "PolicyDescription": {
+            "type": "string"
+        },
+        "AwsManagedPolicy": {
+            "type": "boolean"
+        },
+        "PolicyContent": {
+            "type": "string"
+        },
+        "CreatePolicyRequest": {
+            "type": "object",
+            "properties": {
+                "Content": {
+                    "$ref": "#/$defs/PolicyContent"
+                },
+                "Description": {
+                    "$ref": "#/$defs/PolicyDescription"
+                },
+                "Name": {
+                    "$ref": "#/$defs/PolicyName"
+                },
+                "Type": {
+                    "$ref": "#/$defs/PolicyType"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "DeclineHandshakeResponse": {
+            "type": "object",
+            "properties": {
+                "Handshake": {
+                    "$ref": "#/$defs/Handshake"
+                }
+            }
+        },
+        "DeclineHandshakeRequest": {
+            "type": "object",
+            "properties": {
+                "HandshakeId": {
+                    "$ref": "#/$defs/HandshakeId"
+                }
+            }
+        },
+        "DeleteOrganizationalUnitRequest": {
+            "type": "object",
+            "properties": {
+                "OrganizationalUnitId": {
+                    "$ref": "#/$defs/OrganizationalUnitId"
+                }
+            }
+        },
+        "DeletePolicyRequest": {
+            "type": "object",
+            "properties": {
+                "PolicyId": {
+                    "$ref": "#/$defs/PolicyId"
+                }
+            }
+        },
+        "DeregisterDelegatedAdministratorRequest": {
+            "type": "object",
+            "properties": {
+                "AccountId": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "ServicePrincipal": {
+                    "$ref": "#/$defs/ServicePrincipal"
+                }
+            }
+        },
+        "ServicePrincipal": {
+            "type": "string"
+        },
+        "DescribeAccountResponse": {
+            "type": "object",
+            "properties": {
+                "Account": {
+                    "$ref": "#/$defs/Account"
+                }
+            }
+        },
+        "Account": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/AccountArn"
+                },
+                "Email": {
+                    "$ref": "#/$defs/Email"
+                },
+                "Name": {
+                    "$ref": "#/$defs/AccountName"
+                },
+                "Status": {
+                    "$ref": "#/$defs/AccountStatus"
+                },
+                "JoinedMethod": {
+                    "$ref": "#/$defs/AccountJoinedMethod"
+                },
+                "JoinedTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "AccountName": {
+            "type": "string"
+        },
+        "AccountStatus": {
+            "enum": [
+                "ACTIVE",
+                "SUSPENDED",
+                "PENDING_CLOSURE"
+            ]
+        },
+        "AccountJoinedMethod": {
+            "enum": [
+                "INVITED",
+                "CREATED"
+            ]
+        },
+        "DescribeAccountRequest": {
+            "type": "object",
+            "properties": {
+                "AccountId": {
+                    "$ref": "#/$defs/AccountId"
+                }
+            }
+        },
+        "DescribeCreateAccountStatusResponse": {
+            "type": "object",
+            "properties": {
+                "CreateAccountStatus": {
+                    "$ref": "#/$defs/CreateAccountStatus"
+                }
+            }
+        },
+        "DescribeCreateAccountStatusRequest": {
+            "type": "object",
+            "properties": {
+                "CreateAccountRequestId": {
+                    "$ref": "#/$defs/CreateAccountRequestId"
+                }
+            }
+        },
+        "DescribeEffectivePolicyResponse": {
+            "type": "object",
+            "properties": {
+                "EffectivePolicy": {
+                    "$ref": "#/$defs/EffectivePolicy"
+                }
+            }
+        },
+        "EffectivePolicy": {
+            "type": "object",
+            "properties": {
+                "PolicyContent": {
+                    "$ref": "#/$defs/PolicyContent"
+                },
+                "LastUpdatedTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "TargetId": {
+                    "$ref": "#/$defs/PolicyTargetId"
+                },
+                "PolicyType": {
+                    "$ref": "#/$defs/EffectivePolicyType"
+                }
+            }
+        },
+        "EffectivePolicyType": {
+            "enum": [
+                "TAG_POLICY",
+                "BACKUP_POLICY",
+                "AISERVICES_OPT_OUT_POLICY",
+                "CHATBOT_POLICY"
+            ]
+        },
+        "DescribeEffectivePolicyRequest": {
+            "type": "object",
+            "properties": {
+                "PolicyType": {
+                    "$ref": "#/$defs/EffectivePolicyType"
+                },
+                "TargetId": {
+                    "$ref": "#/$defs/PolicyTargetId"
+                }
+            }
+        },
+        "DescribeHandshakeResponse": {
+            "type": "object",
+            "properties": {
+                "Handshake": {
+                    "$ref": "#/$defs/Handshake"
+                }
+            }
+        },
+        "DescribeHandshakeRequest": {
+            "type": "object",
+            "properties": {
+                "HandshakeId": {
+                    "$ref": "#/$defs/HandshakeId"
+                }
+            }
+        },
+        "DescribeOrganizationResponse": {
+            "type": "object",
+            "properties": {
+                "Organization": {
+                    "$ref": "#/$defs/Organization"
+                }
+            }
+        },
+        "DescribeOrganizationalUnitResponse": {
+            "type": "object",
+            "properties": {
+                "OrganizationalUnit": {
+                    "$ref": "#/$defs/OrganizationalUnit"
+                }
+            }
+        },
+        "DescribeOrganizationalUnitRequest": {
+            "type": "object",
+            "properties": {
+                "OrganizationalUnitId": {
+                    "$ref": "#/$defs/OrganizationalUnitId"
+                }
+            }
+        },
+        "DescribePolicyResponse": {
+            "type": "object",
+            "properties": {
+                "Policy": {
+                    "$ref": "#/$defs/Policy"
+                }
+            }
+        },
+        "DescribePolicyRequest": {
+            "type": "object",
+            "properties": {
+                "PolicyId": {
+                    "$ref": "#/$defs/PolicyId"
+                }
+            }
+        },
+        "DescribeResourcePolicyResponse": {
+            "type": "object",
+            "properties": {
+                "ResourcePolicy": {
+                    "$ref": "#/$defs/ResourcePolicy"
+                }
+            }
+        },
+        "ResourcePolicy": {
+            "type": "object",
+            "properties": {
+                "ResourcePolicySummary": {
+                    "$ref": "#/$defs/ResourcePolicySummary"
+                },
+                "Content": {
+                    "$ref": "#/$defs/ResourcePolicyContent"
+                }
+            }
+        },
+        "ResourcePolicySummary": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/ResourcePolicyId"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/ResourcePolicyArn"
+                }
+            }
+        },
+        "ResourcePolicyId": {
+            "type": "string"
+        },
+        "ResourcePolicyArn": {
+            "type": "string"
+        },
+        "ResourcePolicyContent": {
+            "type": "string"
+        },
+        "DetachPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "PolicyId": {
+                    "$ref": "#/$defs/PolicyId"
+                },
+                "TargetId": {
+                    "$ref": "#/$defs/PolicyTargetId"
+                }
+            }
+        },
+        "DisableAWSServiceAccessRequest": {
+            "type": "object",
+            "properties": {
+                "ServicePrincipal": {
+                    "$ref": "#/$defs/ServicePrincipal"
+                }
+            }
+        },
+        "DisablePolicyTypeResponse": {
+            "type": "object",
+            "properties": {
+                "Root": {
+                    "$ref": "#/$defs/Root"
+                }
+            }
+        },
+        "Root": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/RootId"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/RootArn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/RootName"
+                },
+                "PolicyTypes": {
+                    "$ref": "#/$defs/PolicyTypes"
+                }
+            }
+        },
+        "RootId": {
+            "type": "string"
+        },
+        "RootArn": {
+            "type": "string"
+        },
+        "RootName": {
+            "type": "string"
+        },
+        "DisablePolicyTypeRequest": {
+            "type": "object",
+            "properties": {
+                "RootId": {
+                    "$ref": "#/$defs/RootId"
+                },
+                "PolicyType": {
+                    "$ref": "#/$defs/PolicyType"
+                }
+            }
+        },
+        "EnableAllFeaturesResponse": {
+            "type": "object",
+            "properties": {
+                "Handshake": {
+                    "$ref": "#/$defs/Handshake"
+                }
+            }
+        },
+        "EnableAllFeaturesRequest": {
+            "type": "object",
+            "properties": {}
+        },
+        "EnableAWSServiceAccessRequest": {
+            "type": "object",
+            "properties": {
+                "ServicePrincipal": {
+                    "$ref": "#/$defs/ServicePrincipal"
+                }
+            }
+        },
+        "EnablePolicyTypeResponse": {
+            "type": "object",
+            "properties": {
+                "Root": {
+                    "$ref": "#/$defs/Root"
+                }
+            }
+        },
+        "EnablePolicyTypeRequest": {
+            "type": "object",
+            "properties": {
+                "RootId": {
+                    "$ref": "#/$defs/RootId"
+                },
+                "PolicyType": {
+                    "$ref": "#/$defs/PolicyType"
+                }
+            }
+        },
+        "InviteAccountToOrganizationResponse": {
+            "type": "object",
+            "properties": {
+                "Handshake": {
+                    "$ref": "#/$defs/Handshake"
+                }
+            }
+        },
+        "InviteAccountToOrganizationRequest": {
+            "type": "object",
+            "properties": {
+                "Target": {
+                    "$ref": "#/$defs/HandshakeParty"
+                },
+                "Notes": {
+                    "$ref": "#/$defs/HandshakeNotes"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "HandshakeNotes": {
+            "type": "string"
+        },
+        "ListAccountsResponse": {
+            "type": "object",
+            "properties": {
+                "Accounts": {
+                    "$ref": "#/$defs/Accounts"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "Accounts": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Account"
+            }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "ListAccountsRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListAccountsForParentResponse": {
+            "type": "object",
+            "properties": {
+                "Accounts": {
+                    "$ref": "#/$defs/Accounts"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListAccountsForParentRequest": {
+            "type": "object",
+            "properties": {
+                "ParentId": {
+                    "$ref": "#/$defs/ParentId"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "ListAWSServiceAccessForOrganizationResponse": {
+            "type": "object",
+            "properties": {
+                "EnabledServicePrincipals": {
+                    "$ref": "#/$defs/EnabledServicePrincipals"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "EnabledServicePrincipals": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EnabledServicePrincipal"
+            }
+        },
+        "EnabledServicePrincipal": {
+            "type": "object",
+            "properties": {
+                "ServicePrincipal": {
+                    "$ref": "#/$defs/ServicePrincipal"
+                },
+                "DateEnabled": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListAWSServiceAccessForOrganizationRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "ListChildrenResponse": {
+            "type": "object",
+            "properties": {
+                "Children": {
+                    "$ref": "#/$defs/Children"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "Children": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Child"
+            }
+        },
+        "Child": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/ChildId"
+                },
+                "Type": {
+                    "$ref": "#/$defs/ChildType"
+                }
+            }
+        },
+        "ChildId": {
+            "type": "string"
+        },
+        "ChildType": {
+            "enum": [
+                "ACCOUNT",
+                "ORGANIZATIONAL_UNIT"
+            ]
+        },
+        "ListChildrenRequest": {
+            "type": "object",
+            "properties": {
+                "ParentId": {
+                    "$ref": "#/$defs/ParentId"
+                },
+                "ChildType": {
+                    "$ref": "#/$defs/ChildType"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "ListCreateAccountStatusResponse": {
+            "type": "object",
+            "properties": {
+                "CreateAccountStatuses": {
+                    "$ref": "#/$defs/CreateAccountStatuses"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "CreateAccountStatuses": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CreateAccountStatus"
+            }
+        },
+        "ListCreateAccountStatusRequest": {
+            "type": "object",
+            "properties": {
+                "States": {
+                    "$ref": "#/$defs/CreateAccountStates"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "CreateAccountStates": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CreateAccountState"
+            }
+        },
+        "ListDelegatedAdministratorsResponse": {
+            "type": "object",
+            "properties": {
+                "DelegatedAdministrators": {
+                    "$ref": "#/$defs/DelegatedAdministrators"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "DelegatedAdministrators": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DelegatedAdministrator"
+            }
+        },
+        "DelegatedAdministrator": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/AccountArn"
+                },
+                "Email": {
+                    "$ref": "#/$defs/Email"
+                },
+                "Name": {
+                    "$ref": "#/$defs/AccountName"
+                },
+                "Status": {
+                    "$ref": "#/$defs/AccountStatus"
+                },
+                "JoinedMethod": {
+                    "$ref": "#/$defs/AccountJoinedMethod"
+                },
+                "JoinedTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "DelegationEnabledDate": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListDelegatedAdministratorsRequest": {
+            "type": "object",
+            "properties": {
+                "ServicePrincipal": {
+                    "$ref": "#/$defs/ServicePrincipal"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "ListDelegatedServicesForAccountResponse": {
+            "type": "object",
+            "properties": {
+                "DelegatedServices": {
+                    "$ref": "#/$defs/DelegatedServices"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "DelegatedServices": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DelegatedService"
+            }
+        },
+        "DelegatedService": {
+            "type": "object",
+            "properties": {
+                "ServicePrincipal": {
+                    "$ref": "#/$defs/ServicePrincipal"
+                },
+                "DelegationEnabledDate": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListDelegatedServicesForAccountRequest": {
+            "type": "object",
+            "properties": {
+                "AccountId": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "ListHandshakesForAccountResponse": {
+            "type": "object",
+            "properties": {
+                "Handshakes": {
+                    "$ref": "#/$defs/Handshakes"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "Handshakes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Handshake"
+            }
+        },
+        "ListHandshakesForAccountRequest": {
+            "type": "object",
+            "properties": {
+                "Filter": {
+                    "$ref": "#/$defs/HandshakeFilter"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "HandshakeFilter": {
+            "type": "object",
+            "properties": {
+                "ActionType": {
+                    "$ref": "#/$defs/ActionType"
+                },
+                "ParentHandshakeId": {
+                    "$ref": "#/$defs/HandshakeId"
+                }
+            }
+        },
+        "ListHandshakesForOrganizationResponse": {
+            "type": "object",
+            "properties": {
+                "Handshakes": {
+                    "$ref": "#/$defs/Handshakes"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListHandshakesForOrganizationRequest": {
+            "type": "object",
+            "properties": {
+                "Filter": {
+                    "$ref": "#/$defs/HandshakeFilter"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "ListOrganizationalUnitsForParentResponse": {
+            "type": "object",
+            "properties": {
+                "OrganizationalUnits": {
+                    "$ref": "#/$defs/OrganizationalUnits"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "OrganizationalUnits": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/OrganizationalUnit"
+            }
+        },
+        "ListOrganizationalUnitsForParentRequest": {
+            "type": "object",
+            "properties": {
+                "ParentId": {
+                    "$ref": "#/$defs/ParentId"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "ListParentsResponse": {
+            "type": "object",
+            "properties": {
+                "Parents": {
+                    "$ref": "#/$defs/Parents"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "Parents": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Parent"
+            }
+        },
+        "Parent": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/ParentId"
+                },
+                "Type": {
+                    "$ref": "#/$defs/ParentType"
+                }
+            }
+        },
+        "ParentType": {
+            "enum": [
+                "ROOT",
+                "ORGANIZATIONAL_UNIT"
+            ]
+        },
+        "ListParentsRequest": {
+            "type": "object",
+            "properties": {
+                "ChildId": {
+                    "$ref": "#/$defs/ChildId"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "ListPoliciesResponse": {
+            "type": "object",
+            "properties": {
+                "Policies": {
+                    "$ref": "#/$defs/Policies"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "Policies": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PolicySummary"
+            }
+        },
+        "ListPoliciesRequest": {
+            "type": "object",
+            "properties": {
+                "Filter": {
+                    "$ref": "#/$defs/PolicyType"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "ListPoliciesForTargetResponse": {
+            "type": "object",
+            "properties": {
+                "Policies": {
+                    "$ref": "#/$defs/Policies"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListPoliciesForTargetRequest": {
+            "type": "object",
+            "properties": {
+                "TargetId": {
+                    "$ref": "#/$defs/PolicyTargetId"
+                },
+                "Filter": {
+                    "$ref": "#/$defs/PolicyType"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "ListRootsResponse": {
+            "type": "object",
+            "properties": {
+                "Roots": {
+                    "$ref": "#/$defs/Roots"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "Roots": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Root"
+            }
+        },
+        "ListRootsRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceId": {
+                    "$ref": "#/$defs/TaggableResourceId"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "TaggableResourceId": {
+            "type": "string"
+        },
+        "ListTargetsForPolicyResponse": {
+            "type": "object",
+            "properties": {
+                "Targets": {
+                    "$ref": "#/$defs/PolicyTargets"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "PolicyTargets": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PolicyTargetSummary"
+            }
+        },
+        "PolicyTargetSummary": {
+            "type": "object",
+            "properties": {
+                "TargetId": {
+                    "$ref": "#/$defs/PolicyTargetId"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/GenericArn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/TargetName"
+                },
+                "Type": {
+                    "$ref": "#/$defs/TargetType"
+                }
+            }
+        },
+        "GenericArn": {
+            "type": "string"
+        },
+        "TargetName": {
+            "type": "string"
+        },
+        "TargetType": {
+            "enum": [
+                "ACCOUNT",
+                "ORGANIZATIONAL_UNIT",
+                "ROOT"
+            ]
+        },
+        "ListTargetsForPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "PolicyId": {
+                    "$ref": "#/$defs/PolicyId"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "MoveAccountRequest": {
+            "type": "object",
+            "properties": {
+                "AccountId": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "SourceParentId": {
+                    "$ref": "#/$defs/ParentId"
+                },
+                "DestinationParentId": {
+                    "$ref": "#/$defs/ParentId"
+                }
+            }
+        },
+        "PutResourcePolicyResponse": {
+            "type": "object",
+            "properties": {
+                "ResourcePolicy": {
+                    "$ref": "#/$defs/ResourcePolicy"
+                }
+            }
+        },
+        "PutResourcePolicyRequest": {
+            "type": "object",
+            "properties": {
+                "Content": {
+                    "$ref": "#/$defs/ResourcePolicyContent"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "RegisterDelegatedAdministratorRequest": {
+            "type": "object",
+            "properties": {
+                "AccountId": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "ServicePrincipal": {
+                    "$ref": "#/$defs/ServicePrincipal"
+                }
+            }
+        },
+        "RemoveAccountFromOrganizationRequest": {
+            "type": "object",
+            "properties": {
+                "AccountId": {
+                    "$ref": "#/$defs/AccountId"
+                }
+            }
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceId": {
+                    "$ref": "#/$defs/TaggableResourceId"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceId": {
+                    "$ref": "#/$defs/TaggableResourceId"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeys"
+                }
+            }
+        },
+        "TagKeys": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "UpdateOrganizationalUnitResponse": {
+            "type": "object",
+            "properties": {
+                "OrganizationalUnit": {
+                    "$ref": "#/$defs/OrganizationalUnit"
+                }
+            }
+        },
+        "UpdateOrganizationalUnitRequest": {
+            "type": "object",
+            "properties": {
+                "OrganizationalUnitId": {
+                    "$ref": "#/$defs/OrganizationalUnitId"
+                },
+                "Name": {
+                    "$ref": "#/$defs/OrganizationalUnitName"
+                }
+            }
+        },
+        "UpdatePolicyResponse": {
+            "type": "object",
+            "properties": {
+                "Policy": {
+                    "$ref": "#/$defs/Policy"
+                }
+            }
+        },
+        "UpdatePolicyRequest": {
+            "type": "object",
+            "properties": {
+                "PolicyId": {
+                    "$ref": "#/$defs/PolicyId"
+                },
+                "Name": {
+                    "$ref": "#/$defs/PolicyName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/PolicyDescription"
+                },
+                "Content": {
+                    "$ref": "#/$defs/PolicyContent"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "stringEquals",
+                                        "argv": [
+                                            {
+                                                "fn": "getAttr",
+                                                "argv": [
+                                                    {
+                                                        "ref": "PartitionResult"
+                                                    },
+                                                    "name"
+                                                ]
+                                            },
+                                            "aws"
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            false
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            false
+                                        ]
+                                    }
+                                ],
+                                "endpoint": {
+                                    "url": "https://organizations.us-east-1.amazonaws.com",
+                                    "properties": {
+                                        "authSchemes": [
+                                            {
+                                                "name": "sigv4",
+                                                "signingName": "organizations",
+                                                "signingRegion": "us-east-1"
+                                            }
+                                        ]
+                                    },
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "stringEquals",
+                                        "argv": [
+                                            {
+                                                "fn": "getAttr",
+                                                "argv": [
+                                                    {
+                                                        "ref": "PartitionResult"
+                                                    },
+                                                    "name"
+                                                ]
+                                            },
+                                            "aws"
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            false
+                                        ]
+                                    }
+                                ],
+                                "endpoint": {
+                                    "url": "https://organizations-fips.us-east-1.amazonaws.com",
+                                    "properties": {
+                                        "authSchemes": [
+                                            {
+                                                "name": "sigv4",
+                                                "signingName": "organizations",
+                                                "signingRegion": "us-east-1"
+                                            }
+                                        ]
+                                    },
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "stringEquals",
+                                        "argv": [
+                                            {
+                                                "fn": "getAttr",
+                                                "argv": [
+                                                    {
+                                                        "ref": "PartitionResult"
+                                                    },
+                                                    "name"
+                                                ]
+                                            },
+                                            "aws-cn"
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            false
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            false
+                                        ]
+                                    }
+                                ],
+                                "endpoint": {
+                                    "url": "https://organizations.cn-northwest-1.amazonaws.com.cn",
+                                    "properties": {
+                                        "authSchemes": [
+                                            {
+                                                "name": "sigv4",
+                                                "signingName": "organizations",
+                                                "signingRegion": "cn-northwest-1"
+                                            }
+                                        ]
+                                    },
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "stringEquals",
+                                        "argv": [
+                                            {
+                                                "fn": "getAttr",
+                                                "argv": [
+                                                    {
+                                                        "ref": "PartitionResult"
+                                                    },
+                                                    "name"
+                                                ]
+                                            },
+                                            "aws-us-gov"
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            false
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            false
+                                        ]
+                                    }
+                                ],
+                                "endpoint": {
+                                    "url": "https://organizations.us-gov-west-1.amazonaws.com",
+                                    "properties": {
+                                        "authSchemes": [
+                                            {
+                                                "name": "sigv4",
+                                                "signingName": "organizations",
+                                                "signingRegion": "us-gov-west-1"
+                                            }
+                                        ]
+                                    },
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "stringEquals",
+                                        "argv": [
+                                            {
+                                                "fn": "getAttr",
+                                                "argv": [
+                                                    {
+                                                        "ref": "PartitionResult"
+                                                    },
+                                                    "name"
+                                                ]
+                                            },
+                                            "aws-us-gov"
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            false
+                                        ]
+                                    }
+                                ],
+                                "endpoint": {
+                                    "url": "https://organizations.us-gov-west-1.amazonaws.com",
+                                    "properties": {
+                                        "authSchemes": [
+                                            {
+                                                "name": "sigv4",
+                                                "signingName": "organizations",
+                                                "signingRegion": "us-gov-west-1"
+                                            }
+                                        ]
+                                    },
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "stringEquals",
+                                        "argv": [
+                                            {
+                                                "fn": "getAttr",
+                                                "argv": [
+                                                    {
+                                                        "ref": "PartitionResult"
+                                                    },
+                                                    "name"
+                                                ]
+                                            },
+                                            "aws-iso"
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            false
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            false
+                                        ]
+                                    }
+                                ],
+                                "endpoint": {
+                                    "url": "https://organizations.us-iso-east-1.c2s.ic.gov",
+                                    "properties": {
+                                        "authSchemes": [
+                                            {
+                                                "name": "sigv4",
+                                                "signingName": "organizations",
+                                                "signingRegion": "us-iso-east-1"
+                                            }
+                                        ]
+                                    },
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "stringEquals",
+                                        "argv": [
+                                            {
+                                                "fn": "getAttr",
+                                                "argv": [
+                                                    {
+                                                        "ref": "PartitionResult"
+                                                    },
+                                                    "name"
+                                                ]
+                                            },
+                                            "aws-iso-b"
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            false
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            false
+                                        ]
+                                    }
+                                ],
+                                "endpoint": {
+                                    "url": "https://organizations.us-isob-east-1.sc2s.sgov.gov",
+                                    "properties": {
+                                        "authSchemes": [
+                                            {
+                                                "name": "sigv4",
+                                                "signingName": "organizations",
+                                                "signingRegion": "us-isob-east-1"
+                                            }
+                                        ]
+                                    },
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "stringEquals",
+                                        "argv": [
+                                            {
+                                                "fn": "getAttr",
+                                                "argv": [
+                                                    {
+                                                        "ref": "PartitionResult"
+                                                    },
+                                                    "name"
+                                                ]
+                                            },
+                                            "aws-iso-f"
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            false
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            false
+                                        ]
+                                    }
+                                ],
+                                "endpoint": {
+                                    "url": "https://organizations.us-isof-south-1.csp.hci.ic.gov",
+                                    "properties": {
+                                        "authSchemes": [
+                                            {
+                                                "name": "sigv4",
+                                                "signingName": "organizations",
+                                                "signingRegion": "us-isof-south-1"
+                                            }
+                                        ]
+                                    },
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://organizations-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://organizations-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://organizations.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://organizations.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

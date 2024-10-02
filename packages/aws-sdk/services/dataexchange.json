@@ -1,0 +1,3470 @@
+{
+    "name": "dataexchange",
+    "commands": [
+        {
+            "name": "CancelJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CancelJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CancelJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateDataSet",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateDataSet"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateDataSetResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateDataSetRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateEventAction",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateEventAction"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateEventActionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateEventActionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateJobResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateRevision",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateRevision"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateRevisionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateRevisionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteAsset",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteAsset"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteAssetRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteDataSet",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteDataSet"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteDataSetRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteEventAction",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteEventAction"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteEventActionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteRevision",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteRevision"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteRevisionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetAsset",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetAsset"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetAssetResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetAssetRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetDataSet",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetDataSet"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetDataSetResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetDataSetRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetEventAction",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetEventAction"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetEventActionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetEventActionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetJobResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetRevision",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetRevision"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetRevisionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetRevisionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListDataSetRevisions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListDataSetRevisions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListDataSetRevisionsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListDataSetRevisionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListDataSets",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListDataSets"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListDataSetsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListDataSetsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListEventActions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListEventActions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListEventActionsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListEventActionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListJobs",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListJobs"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListJobsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListJobsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListRevisionAssets",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListRevisionAssets"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListRevisionAssetsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListRevisionAssetsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RevokeRevision",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RevokeRevision"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RevokeRevisionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RevokeRevisionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SendApiAsset",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SendApiAsset"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/SendApiAssetResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SendApiAssetRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SendDataSetNotification",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SendDataSetNotification"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/SendDataSetNotificationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SendDataSetNotificationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartJobResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateAsset",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateAsset"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateAssetResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateAssetRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateDataSet",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateDataSet"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateDataSetResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateDataSetRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateEventAction",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateEventAction"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateEventActionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateEventActionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateRevision",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateRevision"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateRevisionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateRevisionRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CancelJobRequest": {
+            "type": "object",
+            "properties": {
+                "JobId": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "__string": {
+            "type": "string"
+        },
+        "CreateDataSetResponse": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "AssetType": {
+                    "$ref": "#/$defs/AssetType"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "Id": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Origin": {
+                    "$ref": "#/$defs/Origin"
+                },
+                "OriginDetails": {
+                    "$ref": "#/$defs/OriginDetails"
+                },
+                "SourceId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/MapOf__string"
+                },
+                "UpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "Arn": {
+            "type": "string"
+        },
+        "AssetType": {
+            "type": "string"
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "Description": {
+            "type": "string"
+        },
+        "Id": {
+            "type": "string"
+        },
+        "Name": {
+            "type": "string"
+        },
+        "Origin": {
+            "type": "string"
+        },
+        "OriginDetails": {
+            "type": "object",
+            "properties": {
+                "ProductId": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "MapOf__string": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/__string"
+            }
+        },
+        "CreateDataSetRequest": {
+            "type": "object",
+            "properties": {
+                "AssetType": {
+                    "$ref": "#/$defs/AssetType"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/MapOf__string"
+                }
+            }
+        },
+        "CreateEventActionResponse": {
+            "type": "object",
+            "properties": {
+                "Action": {
+                    "$ref": "#/$defs/Action"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Event": {
+                    "$ref": "#/$defs/Event"
+                },
+                "Id": {
+                    "$ref": "#/$defs/Id"
+                },
+                "UpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "Action": {
+            "type": "object",
+            "properties": {
+                "ExportRevisionToS3": {
+                    "$ref": "#/$defs/AutoExportRevisionToS3RequestDetails"
+                }
+            }
+        },
+        "AutoExportRevisionToS3RequestDetails": {
+            "type": "object",
+            "properties": {
+                "Encryption": {
+                    "$ref": "#/$defs/ExportServerSideEncryption"
+                },
+                "RevisionDestination": {
+                    "$ref": "#/$defs/AutoExportRevisionDestinationEntry"
+                }
+            }
+        },
+        "ExportServerSideEncryption": {
+            "type": "object",
+            "properties": {
+                "KmsKeyArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Type": {
+                    "$ref": "#/$defs/ServerSideEncryptionTypes"
+                }
+            }
+        },
+        "ServerSideEncryptionTypes": {
+            "type": "string"
+        },
+        "AutoExportRevisionDestinationEntry": {
+            "type": "object",
+            "properties": {
+                "Bucket": {
+                    "$ref": "#/$defs/__string"
+                },
+                "KeyPattern": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "Event": {
+            "type": "object",
+            "properties": {
+                "RevisionPublished": {
+                    "$ref": "#/$defs/RevisionPublished"
+                }
+            }
+        },
+        "RevisionPublished": {
+            "type": "object",
+            "properties": {
+                "DataSetId": {
+                    "$ref": "#/$defs/Id"
+                }
+            }
+        },
+        "CreateEventActionRequest": {
+            "type": "object",
+            "properties": {
+                "Action": {
+                    "$ref": "#/$defs/Action"
+                },
+                "Event": {
+                    "$ref": "#/$defs/Event"
+                }
+            }
+        },
+        "CreateJobResponse": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Details": {
+                    "$ref": "#/$defs/ResponseDetails"
+                },
+                "Errors": {
+                    "$ref": "#/$defs/ListOfJobError"
+                },
+                "Id": {
+                    "$ref": "#/$defs/Id"
+                },
+                "State": {
+                    "$ref": "#/$defs/State"
+                },
+                "Type": {
+                    "$ref": "#/$defs/Type"
+                },
+                "UpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ResponseDetails": {
+            "type": "object",
+            "properties": {
+                "ExportAssetToSignedUrl": {
+                    "$ref": "#/$defs/ExportAssetToSignedUrlResponseDetails"
+                },
+                "ExportAssetsToS3": {
+                    "$ref": "#/$defs/ExportAssetsToS3ResponseDetails"
+                },
+                "ExportRevisionsToS3": {
+                    "$ref": "#/$defs/ExportRevisionsToS3ResponseDetails"
+                },
+                "ImportAssetFromSignedUrl": {
+                    "$ref": "#/$defs/ImportAssetFromSignedUrlResponseDetails"
+                },
+                "ImportAssetsFromS3": {
+                    "$ref": "#/$defs/ImportAssetsFromS3ResponseDetails"
+                },
+                "ImportAssetsFromRedshiftDataShares": {
+                    "$ref": "#/$defs/ImportAssetsFromRedshiftDataSharesResponseDetails"
+                },
+                "ImportAssetFromApiGatewayApi": {
+                    "$ref": "#/$defs/ImportAssetFromApiGatewayApiResponseDetails"
+                },
+                "CreateS3DataAccessFromS3Bucket": {
+                    "$ref": "#/$defs/CreateS3DataAccessFromS3BucketResponseDetails"
+                },
+                "ImportAssetsFromLakeFormationTagPolicy": {
+                    "$ref": "#/$defs/ImportAssetsFromLakeFormationTagPolicyResponseDetails"
+                }
+            }
+        },
+        "ExportAssetToSignedUrlResponseDetails": {
+            "type": "object",
+            "properties": {
+                "AssetId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "DataSetId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "RevisionId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "SignedUrl": {
+                    "$ref": "#/$defs/__string"
+                },
+                "SignedUrlExpiresAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ExportAssetsToS3ResponseDetails": {
+            "type": "object",
+            "properties": {
+                "AssetDestinations": {
+                    "$ref": "#/$defs/ListOfAssetDestinationEntry"
+                },
+                "DataSetId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Encryption": {
+                    "$ref": "#/$defs/ExportServerSideEncryption"
+                },
+                "RevisionId": {
+                    "$ref": "#/$defs/Id"
+                }
+            }
+        },
+        "ListOfAssetDestinationEntry": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AssetDestinationEntry"
+            }
+        },
+        "AssetDestinationEntry": {
+            "type": "object",
+            "properties": {
+                "AssetId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Bucket": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Key": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "ExportRevisionsToS3ResponseDetails": {
+            "type": "object",
+            "properties": {
+                "DataSetId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Encryption": {
+                    "$ref": "#/$defs/ExportServerSideEncryption"
+                },
+                "RevisionDestinations": {
+                    "$ref": "#/$defs/ListOfRevisionDestinationEntry"
+                },
+                "EventActionArn": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "ListOfRevisionDestinationEntry": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RevisionDestinationEntry"
+            }
+        },
+        "RevisionDestinationEntry": {
+            "type": "object",
+            "properties": {
+                "Bucket": {
+                    "$ref": "#/$defs/__string"
+                },
+                "KeyPattern": {
+                    "$ref": "#/$defs/__string"
+                },
+                "RevisionId": {
+                    "$ref": "#/$defs/Id"
+                }
+            }
+        },
+        "ImportAssetFromSignedUrlResponseDetails": {
+            "type": "object",
+            "properties": {
+                "AssetName": {
+                    "$ref": "#/$defs/AssetName"
+                },
+                "DataSetId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Md5Hash": {
+                    "$ref": "#/$defs/__stringMin24Max24PatternAZaZ094AZaZ092AZaZ093"
+                },
+                "RevisionId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "SignedUrl": {
+                    "$ref": "#/$defs/__string"
+                },
+                "SignedUrlExpiresAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "AssetName": {
+            "type": "string"
+        },
+        "__stringMin24Max24PatternAZaZ094AZaZ092AZaZ093": {
+            "type": "string"
+        },
+        "ImportAssetsFromS3ResponseDetails": {
+            "type": "object",
+            "properties": {
+                "AssetSources": {
+                    "$ref": "#/$defs/ListOfAssetSourceEntry"
+                },
+                "DataSetId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "RevisionId": {
+                    "$ref": "#/$defs/Id"
+                }
+            }
+        },
+        "ListOfAssetSourceEntry": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AssetSourceEntry"
+            }
+        },
+        "AssetSourceEntry": {
+            "type": "object",
+            "properties": {
+                "Bucket": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Key": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "ImportAssetsFromRedshiftDataSharesResponseDetails": {
+            "type": "object",
+            "properties": {
+                "AssetSources": {
+                    "$ref": "#/$defs/ListOfRedshiftDataShareAssetSourceEntry"
+                },
+                "DataSetId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "RevisionId": {
+                    "$ref": "#/$defs/Id"
+                }
+            }
+        },
+        "ListOfRedshiftDataShareAssetSourceEntry": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RedshiftDataShareAssetSourceEntry"
+            }
+        },
+        "RedshiftDataShareAssetSourceEntry": {
+            "type": "object",
+            "properties": {
+                "DataShareArn": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "ImportAssetFromApiGatewayApiResponseDetails": {
+            "type": "object",
+            "properties": {
+                "ApiDescription": {
+                    "$ref": "#/$defs/ApiDescription"
+                },
+                "ApiId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ApiKey": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ApiName": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ApiSpecificationMd5Hash": {
+                    "$ref": "#/$defs/__stringMin24Max24PatternAZaZ094AZaZ092AZaZ093"
+                },
+                "ApiSpecificationUploadUrl": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ApiSpecificationUploadUrlExpiresAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "DataSetId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "ProtocolType": {
+                    "$ref": "#/$defs/ProtocolType"
+                },
+                "RevisionId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Stage": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "ApiDescription": {
+            "type": "string"
+        },
+        "ProtocolType": {
+            "type": "string"
+        },
+        "CreateS3DataAccessFromS3BucketResponseDetails": {
+            "type": "object",
+            "properties": {
+                "AssetSource": {
+                    "$ref": "#/$defs/S3DataAccessAssetSourceEntry"
+                },
+                "DataSetId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "RevisionId": {
+                    "$ref": "#/$defs/Id"
+                }
+            }
+        },
+        "S3DataAccessAssetSourceEntry": {
+            "type": "object",
+            "properties": {
+                "Bucket": {
+                    "$ref": "#/$defs/__string"
+                },
+                "KeyPrefixes": {
+                    "$ref": "#/$defs/ListOf__string"
+                },
+                "Keys": {
+                    "$ref": "#/$defs/ListOf__string"
+                },
+                "KmsKeysToGrant": {
+                    "$ref": "#/$defs/ListOfKmsKeysToGrant"
+                }
+            }
+        },
+        "ListOf__string": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/__string"
+            }
+        },
+        "ListOfKmsKeysToGrant": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/KmsKeyToGrant"
+            }
+        },
+        "KmsKeyToGrant": {
+            "type": "object",
+            "properties": {
+                "KmsKeyArn": {
+                    "$ref": "#/$defs/KmsKeyArn"
+                }
+            }
+        },
+        "KmsKeyArn": {
+            "type": "string"
+        },
+        "ImportAssetsFromLakeFormationTagPolicyResponseDetails": {
+            "type": "object",
+            "properties": {
+                "CatalogId": {
+                    "$ref": "#/$defs/AwsAccountId"
+                },
+                "Database": {
+                    "$ref": "#/$defs/DatabaseLFTagPolicyAndPermissions"
+                },
+                "Table": {
+                    "$ref": "#/$defs/TableLFTagPolicyAndPermissions"
+                },
+                "RoleArn": {
+                    "$ref": "#/$defs/RoleArn"
+                },
+                "DataSetId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "RevisionId": {
+                    "$ref": "#/$defs/Id"
+                }
+            }
+        },
+        "AwsAccountId": {
+            "type": "string"
+        },
+        "DatabaseLFTagPolicyAndPermissions": {
+            "type": "object",
+            "properties": {
+                "Expression": {
+                    "$ref": "#/$defs/ListOfLFTags"
+                },
+                "Permissions": {
+                    "$ref": "#/$defs/ListOfDatabaseLFTagPolicyPermissions"
+                }
+            }
+        },
+        "ListOfLFTags": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LFTag"
+            }
+        },
+        "LFTag": {
+            "type": "object",
+            "properties": {
+                "TagKey": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "TagValues": {
+                    "$ref": "#/$defs/ListOfLFTagValues"
+                }
+            }
+        },
+        "ListOfLFTagValues": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "ListOfDatabaseLFTagPolicyPermissions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DatabaseLFTagPolicyPermission"
+            }
+        },
+        "DatabaseLFTagPolicyPermission": {
+            "type": "string"
+        },
+        "TableLFTagPolicyAndPermissions": {
+            "type": "object",
+            "properties": {
+                "Expression": {
+                    "$ref": "#/$defs/ListOfLFTags"
+                },
+                "Permissions": {
+                    "$ref": "#/$defs/ListOfTableTagPolicyLFPermissions"
+                }
+            }
+        },
+        "ListOfTableTagPolicyLFPermissions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TableTagPolicyLFPermission"
+            }
+        },
+        "TableTagPolicyLFPermission": {
+            "type": "string"
+        },
+        "RoleArn": {
+            "type": "string"
+        },
+        "ListOfJobError": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/JobError"
+            }
+        },
+        "JobError": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "$ref": "#/$defs/Code"
+                },
+                "Details": {
+                    "$ref": "#/$defs/Details"
+                },
+                "LimitName": {
+                    "$ref": "#/$defs/JobErrorLimitName"
+                },
+                "LimitValue": {
+                    "$ref": "#/$defs/__double"
+                },
+                "Message": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ResourceId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ResourceType": {
+                    "$ref": "#/$defs/JobErrorResourceTypes"
+                }
+            }
+        },
+        "Code": {
+            "type": "string"
+        },
+        "Details": {
+            "type": "object",
+            "properties": {
+                "ImportAssetFromSignedUrlJobErrorDetails": {
+                    "$ref": "#/$defs/ImportAssetFromSignedUrlJobErrorDetails"
+                },
+                "ImportAssetsFromS3JobErrorDetails": {
+                    "$ref": "#/$defs/ListOfAssetSourceEntry"
+                }
+            }
+        },
+        "ImportAssetFromSignedUrlJobErrorDetails": {
+            "type": "object",
+            "properties": {
+                "AssetName": {
+                    "$ref": "#/$defs/AssetName"
+                }
+            }
+        },
+        "JobErrorLimitName": {
+            "type": "string"
+        },
+        "__double": {
+            "type": "number",
+            "format": "double"
+        },
+        "JobErrorResourceTypes": {
+            "type": "string"
+        },
+        "State": {
+            "type": "string"
+        },
+        "Type": {
+            "type": "string"
+        },
+        "CreateJobRequest": {
+            "type": "object",
+            "properties": {
+                "Details": {
+                    "$ref": "#/$defs/RequestDetails"
+                },
+                "Type": {
+                    "$ref": "#/$defs/Type"
+                }
+            }
+        },
+        "RequestDetails": {
+            "type": "object",
+            "properties": {
+                "ExportAssetToSignedUrl": {
+                    "$ref": "#/$defs/ExportAssetToSignedUrlRequestDetails"
+                },
+                "ExportAssetsToS3": {
+                    "$ref": "#/$defs/ExportAssetsToS3RequestDetails"
+                },
+                "ExportRevisionsToS3": {
+                    "$ref": "#/$defs/ExportRevisionsToS3RequestDetails"
+                },
+                "ImportAssetFromSignedUrl": {
+                    "$ref": "#/$defs/ImportAssetFromSignedUrlRequestDetails"
+                },
+                "ImportAssetsFromS3": {
+                    "$ref": "#/$defs/ImportAssetsFromS3RequestDetails"
+                },
+                "ImportAssetsFromRedshiftDataShares": {
+                    "$ref": "#/$defs/ImportAssetsFromRedshiftDataSharesRequestDetails"
+                },
+                "ImportAssetFromApiGatewayApi": {
+                    "$ref": "#/$defs/ImportAssetFromApiGatewayApiRequestDetails"
+                },
+                "CreateS3DataAccessFromS3Bucket": {
+                    "$ref": "#/$defs/CreateS3DataAccessFromS3BucketRequestDetails"
+                },
+                "ImportAssetsFromLakeFormationTagPolicy": {
+                    "$ref": "#/$defs/ImportAssetsFromLakeFormationTagPolicyRequestDetails"
+                }
+            }
+        },
+        "ExportAssetToSignedUrlRequestDetails": {
+            "type": "object",
+            "properties": {
+                "AssetId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "DataSetId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "RevisionId": {
+                    "$ref": "#/$defs/Id"
+                }
+            }
+        },
+        "ExportAssetsToS3RequestDetails": {
+            "type": "object",
+            "properties": {
+                "AssetDestinations": {
+                    "$ref": "#/$defs/ListOfAssetDestinationEntry"
+                },
+                "DataSetId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Encryption": {
+                    "$ref": "#/$defs/ExportServerSideEncryption"
+                },
+                "RevisionId": {
+                    "$ref": "#/$defs/Id"
+                }
+            }
+        },
+        "ExportRevisionsToS3RequestDetails": {
+            "type": "object",
+            "properties": {
+                "DataSetId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Encryption": {
+                    "$ref": "#/$defs/ExportServerSideEncryption"
+                },
+                "RevisionDestinations": {
+                    "$ref": "#/$defs/ListOfRevisionDestinationEntry"
+                }
+            }
+        },
+        "ImportAssetFromSignedUrlRequestDetails": {
+            "type": "object",
+            "properties": {
+                "AssetName": {
+                    "$ref": "#/$defs/AssetName"
+                },
+                "DataSetId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Md5Hash": {
+                    "$ref": "#/$defs/__stringMin24Max24PatternAZaZ094AZaZ092AZaZ093"
+                },
+                "RevisionId": {
+                    "$ref": "#/$defs/Id"
+                }
+            }
+        },
+        "ImportAssetsFromS3RequestDetails": {
+            "type": "object",
+            "properties": {
+                "AssetSources": {
+                    "$ref": "#/$defs/ListOfAssetSourceEntry"
+                },
+                "DataSetId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "RevisionId": {
+                    "$ref": "#/$defs/Id"
+                }
+            }
+        },
+        "ImportAssetsFromRedshiftDataSharesRequestDetails": {
+            "type": "object",
+            "properties": {
+                "AssetSources": {
+                    "$ref": "#/$defs/ListOfRedshiftDataShareAssetSourceEntry"
+                },
+                "DataSetId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "RevisionId": {
+                    "$ref": "#/$defs/Id"
+                }
+            }
+        },
+        "ImportAssetFromApiGatewayApiRequestDetails": {
+            "type": "object",
+            "properties": {
+                "ApiDescription": {
+                    "$ref": "#/$defs/ApiDescription"
+                },
+                "ApiId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ApiKey": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ApiName": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ApiSpecificationMd5Hash": {
+                    "$ref": "#/$defs/__stringMin24Max24PatternAZaZ094AZaZ092AZaZ093"
+                },
+                "DataSetId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "ProtocolType": {
+                    "$ref": "#/$defs/ProtocolType"
+                },
+                "RevisionId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Stage": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "CreateS3DataAccessFromS3BucketRequestDetails": {
+            "type": "object",
+            "properties": {
+                "AssetSource": {
+                    "$ref": "#/$defs/S3DataAccessAssetSourceEntry"
+                },
+                "DataSetId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "RevisionId": {
+                    "$ref": "#/$defs/Id"
+                }
+            }
+        },
+        "ImportAssetsFromLakeFormationTagPolicyRequestDetails": {
+            "type": "object",
+            "properties": {
+                "CatalogId": {
+                    "$ref": "#/$defs/AwsAccountId"
+                },
+                "Database": {
+                    "$ref": "#/$defs/DatabaseLFTagPolicyAndPermissions"
+                },
+                "Table": {
+                    "$ref": "#/$defs/TableLFTagPolicyAndPermissions"
+                },
+                "RoleArn": {
+                    "$ref": "#/$defs/RoleArn"
+                },
+                "DataSetId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "RevisionId": {
+                    "$ref": "#/$defs/Id"
+                }
+            }
+        },
+        "CreateRevisionResponse": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Comment": {
+                    "$ref": "#/$defs/__stringMin0Max16384"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "DataSetId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Finalized": {
+                    "$ref": "#/$defs/__boolean"
+                },
+                "Id": {
+                    "$ref": "#/$defs/Id"
+                },
+                "SourceId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/MapOf__string"
+                },
+                "UpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "RevocationComment": {
+                    "$ref": "#/$defs/__stringMin10Max512"
+                },
+                "Revoked": {
+                    "$ref": "#/$defs/__boolean"
+                },
+                "RevokedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "__stringMin0Max16384": {
+            "type": "string"
+        },
+        "__boolean": {
+            "type": "boolean"
+        },
+        "__stringMin10Max512": {
+            "type": "string"
+        },
+        "CreateRevisionRequest": {
+            "type": "object",
+            "properties": {
+                "Comment": {
+                    "$ref": "#/$defs/__stringMin0Max16384"
+                },
+                "DataSetId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/MapOf__string"
+                }
+            }
+        },
+        "DeleteAssetRequest": {
+            "type": "object",
+            "properties": {
+                "AssetId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "DataSetId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "RevisionId": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "DeleteDataSetRequest": {
+            "type": "object",
+            "properties": {
+                "DataSetId": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "DeleteEventActionRequest": {
+            "type": "object",
+            "properties": {
+                "EventActionId": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "DeleteRevisionRequest": {
+            "type": "object",
+            "properties": {
+                "DataSetId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "RevisionId": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "GetAssetResponse": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "AssetDetails": {
+                    "$ref": "#/$defs/AssetDetails"
+                },
+                "AssetType": {
+                    "$ref": "#/$defs/AssetType"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "DataSetId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Id": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Name": {
+                    "$ref": "#/$defs/AssetName"
+                },
+                "RevisionId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "SourceId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "UpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "AssetDetails": {
+            "type": "object",
+            "properties": {
+                "S3SnapshotAsset": {
+                    "$ref": "#/$defs/S3SnapshotAsset"
+                },
+                "RedshiftDataShareAsset": {
+                    "$ref": "#/$defs/RedshiftDataShareAsset"
+                },
+                "ApiGatewayApiAsset": {
+                    "$ref": "#/$defs/ApiGatewayApiAsset"
+                },
+                "S3DataAccessAsset": {
+                    "$ref": "#/$defs/S3DataAccessAsset"
+                },
+                "LakeFormationDataPermissionAsset": {
+                    "$ref": "#/$defs/LakeFormationDataPermissionAsset"
+                }
+            }
+        },
+        "S3SnapshotAsset": {
+            "type": "object",
+            "properties": {
+                "Size": {
+                    "$ref": "#/$defs/__doubleMin0"
+                }
+            }
+        },
+        "__doubleMin0": {
+            "type": "number",
+            "format": "double"
+        },
+        "RedshiftDataShareAsset": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "ApiGatewayApiAsset": {
+            "type": "object",
+            "properties": {
+                "ApiDescription": {
+                    "$ref": "#/$defs/ApiDescription"
+                },
+                "ApiEndpoint": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ApiId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ApiKey": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ApiName": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ApiSpecificationDownloadUrl": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ApiSpecificationDownloadUrlExpiresAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "ProtocolType": {
+                    "$ref": "#/$defs/ProtocolType"
+                },
+                "Stage": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "S3DataAccessAsset": {
+            "type": "object",
+            "properties": {
+                "Bucket": {
+                    "$ref": "#/$defs/__string"
+                },
+                "KeyPrefixes": {
+                    "$ref": "#/$defs/ListOf__string"
+                },
+                "Keys": {
+                    "$ref": "#/$defs/ListOf__string"
+                },
+                "S3AccessPointAlias": {
+                    "$ref": "#/$defs/__string"
+                },
+                "S3AccessPointArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "KmsKeysToGrant": {
+                    "$ref": "#/$defs/ListOfKmsKeysToGrant"
+                }
+            }
+        },
+        "LakeFormationDataPermissionAsset": {
+            "type": "object",
+            "properties": {
+                "LakeFormationDataPermissionDetails": {
+                    "$ref": "#/$defs/LakeFormationDataPermissionDetails"
+                },
+                "LakeFormationDataPermissionType": {
+                    "$ref": "#/$defs/LakeFormationDataPermissionType"
+                },
+                "Permissions": {
+                    "$ref": "#/$defs/ListOfLFPermissions"
+                },
+                "RoleArn": {
+                    "$ref": "#/$defs/RoleArn"
+                }
+            }
+        },
+        "LakeFormationDataPermissionDetails": {
+            "type": "object",
+            "properties": {
+                "LFTagPolicy": {
+                    "$ref": "#/$defs/LFTagPolicyDetails"
+                }
+            }
+        },
+        "LFTagPolicyDetails": {
+            "type": "object",
+            "properties": {
+                "CatalogId": {
+                    "$ref": "#/$defs/AwsAccountId"
+                },
+                "ResourceType": {
+                    "$ref": "#/$defs/LFResourceType"
+                },
+                "ResourceDetails": {
+                    "$ref": "#/$defs/LFResourceDetails"
+                }
+            }
+        },
+        "LFResourceType": {
+            "type": "string"
+        },
+        "LFResourceDetails": {
+            "type": "object",
+            "properties": {
+                "Database": {
+                    "$ref": "#/$defs/DatabaseLFTagPolicy"
+                },
+                "Table": {
+                    "$ref": "#/$defs/TableLFTagPolicy"
+                }
+            }
+        },
+        "DatabaseLFTagPolicy": {
+            "type": "object",
+            "properties": {
+                "Expression": {
+                    "$ref": "#/$defs/ListOfLFTags"
+                }
+            }
+        },
+        "TableLFTagPolicy": {
+            "type": "object",
+            "properties": {
+                "Expression": {
+                    "$ref": "#/$defs/ListOfLFTags"
+                }
+            }
+        },
+        "LakeFormationDataPermissionType": {
+            "type": "string"
+        },
+        "ListOfLFPermissions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LFPermission"
+            }
+        },
+        "LFPermission": {
+            "type": "string"
+        },
+        "GetAssetRequest": {
+            "type": "object",
+            "properties": {
+                "AssetId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "DataSetId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "RevisionId": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "GetDataSetResponse": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "AssetType": {
+                    "$ref": "#/$defs/AssetType"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "Id": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Origin": {
+                    "$ref": "#/$defs/Origin"
+                },
+                "OriginDetails": {
+                    "$ref": "#/$defs/OriginDetails"
+                },
+                "SourceId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/MapOf__string"
+                },
+                "UpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "GetDataSetRequest": {
+            "type": "object",
+            "properties": {
+                "DataSetId": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "GetEventActionResponse": {
+            "type": "object",
+            "properties": {
+                "Action": {
+                    "$ref": "#/$defs/Action"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Event": {
+                    "$ref": "#/$defs/Event"
+                },
+                "Id": {
+                    "$ref": "#/$defs/Id"
+                },
+                "UpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "GetEventActionRequest": {
+            "type": "object",
+            "properties": {
+                "EventActionId": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "GetJobResponse": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Details": {
+                    "$ref": "#/$defs/ResponseDetails"
+                },
+                "Errors": {
+                    "$ref": "#/$defs/ListOfJobError"
+                },
+                "Id": {
+                    "$ref": "#/$defs/Id"
+                },
+                "State": {
+                    "$ref": "#/$defs/State"
+                },
+                "Type": {
+                    "$ref": "#/$defs/Type"
+                },
+                "UpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "GetJobRequest": {
+            "type": "object",
+            "properties": {
+                "JobId": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "GetRevisionResponse": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Comment": {
+                    "$ref": "#/$defs/__stringMin0Max16384"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "DataSetId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Finalized": {
+                    "$ref": "#/$defs/__boolean"
+                },
+                "Id": {
+                    "$ref": "#/$defs/Id"
+                },
+                "SourceId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/MapOf__string"
+                },
+                "UpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "RevocationComment": {
+                    "$ref": "#/$defs/__stringMin10Max512"
+                },
+                "Revoked": {
+                    "$ref": "#/$defs/__boolean"
+                },
+                "RevokedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "GetRevisionRequest": {
+            "type": "object",
+            "properties": {
+                "DataSetId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "RevisionId": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "ListDataSetRevisionsResponse": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "Revisions": {
+                    "$ref": "#/$defs/ListOfRevisionEntry"
+                }
+            }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "ListOfRevisionEntry": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RevisionEntry"
+            }
+        },
+        "RevisionEntry": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Comment": {
+                    "$ref": "#/$defs/__stringMin0Max16384"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "DataSetId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Finalized": {
+                    "$ref": "#/$defs/__boolean"
+                },
+                "Id": {
+                    "$ref": "#/$defs/Id"
+                },
+                "SourceId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "UpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "RevocationComment": {
+                    "$ref": "#/$defs/__stringMin10Max512"
+                },
+                "Revoked": {
+                    "$ref": "#/$defs/__boolean"
+                },
+                "RevokedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListDataSetRevisionsRequest": {
+            "type": "object",
+            "properties": {
+                "DataSetId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListDataSetsResponse": {
+            "type": "object",
+            "properties": {
+                "DataSets": {
+                    "$ref": "#/$defs/ListOfDataSetEntry"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListOfDataSetEntry": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DataSetEntry"
+            }
+        },
+        "DataSetEntry": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "AssetType": {
+                    "$ref": "#/$defs/AssetType"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "Id": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Origin": {
+                    "$ref": "#/$defs/Origin"
+                },
+                "OriginDetails": {
+                    "$ref": "#/$defs/OriginDetails"
+                },
+                "SourceId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "UpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListDataSetsRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Origin": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "ListEventActionsResponse": {
+            "type": "object",
+            "properties": {
+                "EventActions": {
+                    "$ref": "#/$defs/ListOfEventActionEntry"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListOfEventActionEntry": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EventActionEntry"
+            }
+        },
+        "EventActionEntry": {
+            "type": "object",
+            "properties": {
+                "Action": {
+                    "$ref": "#/$defs/Action"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Event": {
+                    "$ref": "#/$defs/Event"
+                },
+                "Id": {
+                    "$ref": "#/$defs/Id"
+                },
+                "UpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListEventActionsRequest": {
+            "type": "object",
+            "properties": {
+                "EventSourceId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "ListJobsResponse": {
+            "type": "object",
+            "properties": {
+                "Jobs": {
+                    "$ref": "#/$defs/ListOfJobEntry"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListOfJobEntry": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/JobEntry"
+            }
+        },
+        "JobEntry": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Details": {
+                    "$ref": "#/$defs/ResponseDetails"
+                },
+                "Errors": {
+                    "$ref": "#/$defs/ListOfJobError"
+                },
+                "Id": {
+                    "$ref": "#/$defs/Id"
+                },
+                "State": {
+                    "$ref": "#/$defs/State"
+                },
+                "Type": {
+                    "$ref": "#/$defs/Type"
+                },
+                "UpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListJobsRequest": {
+            "type": "object",
+            "properties": {
+                "DataSetId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                },
+                "RevisionId": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "ListRevisionAssetsResponse": {
+            "type": "object",
+            "properties": {
+                "Assets": {
+                    "$ref": "#/$defs/ListOfAssetEntry"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListOfAssetEntry": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AssetEntry"
+            }
+        },
+        "AssetEntry": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "AssetDetails": {
+                    "$ref": "#/$defs/AssetDetails"
+                },
+                "AssetType": {
+                    "$ref": "#/$defs/AssetType"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "DataSetId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Id": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Name": {
+                    "$ref": "#/$defs/AssetName"
+                },
+                "RevisionId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "SourceId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "UpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListRevisionAssetsRequest": {
+            "type": "object",
+            "properties": {
+                "DataSetId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                },
+                "RevisionId": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/MapOf__string"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "RevokeRevisionResponse": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Comment": {
+                    "$ref": "#/$defs/__stringMin0Max16384"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "DataSetId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Finalized": {
+                    "$ref": "#/$defs/__boolean"
+                },
+                "Id": {
+                    "$ref": "#/$defs/Id"
+                },
+                "SourceId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "UpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "RevocationComment": {
+                    "$ref": "#/$defs/__stringMin10Max512"
+                },
+                "Revoked": {
+                    "$ref": "#/$defs/__boolean"
+                },
+                "RevokedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "RevokeRevisionRequest": {
+            "type": "object",
+            "properties": {
+                "DataSetId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "RevisionId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "RevocationComment": {
+                    "$ref": "#/$defs/__stringMin10Max512"
+                }
+            }
+        },
+        "SendApiAssetResponse": {
+            "type": "object",
+            "properties": {
+                "Body": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ResponseHeaders": {
+                    "$ref": "#/$defs/MapOf__string"
+                }
+            }
+        },
+        "SendApiAssetRequest": {
+            "type": "object",
+            "properties": {
+                "Body": {
+                    "$ref": "#/$defs/__string"
+                },
+                "QueryStringParameters": {
+                    "$ref": "#/$defs/MapOf__string"
+                },
+                "AssetId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "DataSetId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "RequestHeaders": {
+                    "$ref": "#/$defs/MapOf__string"
+                },
+                "Method": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Path": {
+                    "$ref": "#/$defs/__string"
+                },
+                "RevisionId": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "SendDataSetNotificationResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "SendDataSetNotificationRequest": {
+            "type": "object",
+            "properties": {
+                "Scope": {
+                    "$ref": "#/$defs/ScopeDetails"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                },
+                "Comment": {
+                    "$ref": "#/$defs/__stringMin0Max4096"
+                },
+                "DataSetId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Details": {
+                    "$ref": "#/$defs/NotificationDetails"
+                },
+                "Type": {
+                    "$ref": "#/$defs/NotificationType"
+                }
+            }
+        },
+        "ScopeDetails": {
+            "type": "object",
+            "properties": {
+                "LakeFormationTagPolicies": {
+                    "$ref": "#/$defs/ListOfLakeFormationTagPolicies"
+                },
+                "RedshiftDataShares": {
+                    "$ref": "#/$defs/ListOfRedshiftDataShares"
+                },
+                "S3DataAccesses": {
+                    "$ref": "#/$defs/ListOfS3DataAccesses"
+                }
+            }
+        },
+        "ListOfLakeFormationTagPolicies": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LakeFormationTagPolicyDetails"
+            }
+        },
+        "LakeFormationTagPolicyDetails": {
+            "type": "object",
+            "properties": {
+                "Database": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Table": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "ListOfRedshiftDataShares": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RedshiftDataShareDetails"
+            }
+        },
+        "RedshiftDataShareDetails": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Database": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Function": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Table": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Schema": {
+                    "$ref": "#/$defs/__string"
+                },
+                "View": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "ListOfS3DataAccesses": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/S3DataAccessDetails"
+            }
+        },
+        "S3DataAccessDetails": {
+            "type": "object",
+            "properties": {
+                "KeyPrefixes": {
+                    "$ref": "#/$defs/ListOf__string"
+                },
+                "Keys": {
+                    "$ref": "#/$defs/ListOf__string"
+                }
+            }
+        },
+        "ClientToken": {
+            "type": "string"
+        },
+        "__stringMin0Max4096": {
+            "type": "string"
+        },
+        "NotificationDetails": {
+            "type": "object",
+            "properties": {
+                "DataUpdate": {
+                    "$ref": "#/$defs/DataUpdateRequestDetails"
+                },
+                "Deprecation": {
+                    "$ref": "#/$defs/DeprecationRequestDetails"
+                },
+                "SchemaChange": {
+                    "$ref": "#/$defs/SchemaChangeRequestDetails"
+                }
+            }
+        },
+        "DataUpdateRequestDetails": {
+            "type": "object",
+            "properties": {
+                "DataUpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "DeprecationRequestDetails": {
+            "type": "object",
+            "properties": {
+                "DeprecationAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "SchemaChangeRequestDetails": {
+            "type": "object",
+            "properties": {
+                "Changes": {
+                    "$ref": "#/$defs/ListOfSchemaChangeDetails"
+                },
+                "SchemaChangeAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListOfSchemaChangeDetails": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SchemaChangeDetails"
+            }
+        },
+        "SchemaChangeDetails": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Type": {
+                    "$ref": "#/$defs/SchemaChangeType"
+                },
+                "Description": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "SchemaChangeType": {
+            "type": "string"
+        },
+        "NotificationType": {
+            "type": "string"
+        },
+        "StartJobResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "StartJobRequest": {
+            "type": "object",
+            "properties": {
+                "JobId": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/MapOf__string"
+                }
+            }
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/ListOf__string"
+                }
+            }
+        },
+        "UpdateAssetResponse": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "AssetDetails": {
+                    "$ref": "#/$defs/AssetDetails"
+                },
+                "AssetType": {
+                    "$ref": "#/$defs/AssetType"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "DataSetId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Id": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Name": {
+                    "$ref": "#/$defs/AssetName"
+                },
+                "RevisionId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "SourceId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "UpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "UpdateAssetRequest": {
+            "type": "object",
+            "properties": {
+                "AssetId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "DataSetId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Name": {
+                    "$ref": "#/$defs/AssetName"
+                },
+                "RevisionId": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "UpdateDataSetResponse": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "AssetType": {
+                    "$ref": "#/$defs/AssetType"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "Id": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Origin": {
+                    "$ref": "#/$defs/Origin"
+                },
+                "OriginDetails": {
+                    "$ref": "#/$defs/OriginDetails"
+                },
+                "SourceId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "UpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "UpdateDataSetRequest": {
+            "type": "object",
+            "properties": {
+                "DataSetId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                }
+            }
+        },
+        "UpdateEventActionResponse": {
+            "type": "object",
+            "properties": {
+                "Action": {
+                    "$ref": "#/$defs/Action"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Event": {
+                    "$ref": "#/$defs/Event"
+                },
+                "Id": {
+                    "$ref": "#/$defs/Id"
+                },
+                "UpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "UpdateEventActionRequest": {
+            "type": "object",
+            "properties": {
+                "Action": {
+                    "$ref": "#/$defs/Action"
+                },
+                "EventActionId": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "UpdateRevisionResponse": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Comment": {
+                    "$ref": "#/$defs/__stringMin0Max16384"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "DataSetId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Finalized": {
+                    "$ref": "#/$defs/__boolean"
+                },
+                "Id": {
+                    "$ref": "#/$defs/Id"
+                },
+                "SourceId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "UpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "RevocationComment": {
+                    "$ref": "#/$defs/__stringMin10Max512"
+                },
+                "Revoked": {
+                    "$ref": "#/$defs/__boolean"
+                },
+                "RevokedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "UpdateRevisionRequest": {
+            "type": "object",
+            "properties": {
+                "Comment": {
+                    "$ref": "#/$defs/__stringMin0Max16384"
+                },
+                "DataSetId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Finalized": {
+                    "$ref": "#/$defs/__boolean"
+                },
+                "RevisionId": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://dataexchange-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://dataexchange-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://dataexchange.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://dataexchange.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

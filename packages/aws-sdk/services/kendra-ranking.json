@@ -1,0 +1,943 @@
+{
+    "name": "kendra-ranking",
+    "commands": [
+        {
+            "name": "CreateRescoreExecutionPlan",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateRescoreExecutionPlan"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateRescoreExecutionPlanResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateRescoreExecutionPlanRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteRescoreExecutionPlan",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteRescoreExecutionPlan"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteRescoreExecutionPlanRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeRescoreExecutionPlan",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeRescoreExecutionPlan"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeRescoreExecutionPlanResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeRescoreExecutionPlanRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListRescoreExecutionPlans",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListRescoreExecutionPlans"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListRescoreExecutionPlansResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListRescoreExecutionPlansRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "Rescore",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "Rescore"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RescoreResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RescoreRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateRescoreExecutionPlan",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateRescoreExecutionPlan"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateRescoreExecutionPlanRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CreateRescoreExecutionPlanResponse": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/RescoreExecutionPlanId"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/RescoreExecutionPlanArn"
+                }
+            }
+        },
+        "RescoreExecutionPlanId": {
+            "type": "string"
+        },
+        "RescoreExecutionPlanArn": {
+            "type": "string"
+        },
+        "CreateRescoreExecutionPlanRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/RescoreExecutionPlanName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "CapacityUnits": {
+                    "$ref": "#/$defs/CapacityUnitsConfiguration"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientTokenName"
+                }
+            }
+        },
+        "RescoreExecutionPlanName": {
+            "type": "string"
+        },
+        "Description": {
+            "type": "string"
+        },
+        "CapacityUnitsConfiguration": {
+            "type": "object",
+            "properties": {
+                "RescoreCapacityUnits": {
+                    "$ref": "#/$defs/RescoreCapacityUnit"
+                }
+            }
+        },
+        "RescoreCapacityUnit": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "ClientTokenName": {
+            "type": "string"
+        },
+        "DeleteRescoreExecutionPlanRequest": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/RescoreExecutionPlanId"
+                }
+            }
+        },
+        "DescribeRescoreExecutionPlanResponse": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/RescoreExecutionPlanId"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/RescoreExecutionPlanArn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/RescoreExecutionPlanName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "CapacityUnits": {
+                    "$ref": "#/$defs/CapacityUnitsConfiguration"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "UpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Status": {
+                    "$ref": "#/$defs/RescoreExecutionPlanStatus"
+                },
+                "ErrorMessage": {
+                    "$ref": "#/$defs/ErrorMessage"
+                }
+            }
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "RescoreExecutionPlanStatus": {
+            "enum": [
+                "CREATING",
+                "UPDATING",
+                "ACTIVE",
+                "DELETING",
+                "FAILED"
+            ]
+        },
+        "ErrorMessage": {
+            "type": "string"
+        },
+        "DescribeRescoreExecutionPlanRequest": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/RescoreExecutionPlanId"
+                }
+            }
+        },
+        "ListRescoreExecutionPlansResponse": {
+            "type": "object",
+            "properties": {
+                "SummaryItems": {
+                    "$ref": "#/$defs/RescoreExecutionPlanSummaryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "RescoreExecutionPlanSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RescoreExecutionPlanSummary"
+            }
+        },
+        "RescoreExecutionPlanSummary": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/RescoreExecutionPlanName"
+                },
+                "Id": {
+                    "$ref": "#/$defs/RescoreExecutionPlanId"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "UpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Status": {
+                    "$ref": "#/$defs/RescoreExecutionPlanStatus"
+                }
+            }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "ListRescoreExecutionPlansRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResultsIntegerForListRescoreExecutionPlansRequest"
+                }
+            }
+        },
+        "MaxResultsIntegerForListRescoreExecutionPlansRequest": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceARN": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                }
+            }
+        },
+        "AmazonResourceName": {
+            "type": "string"
+        },
+        "RescoreResult": {
+            "type": "object",
+            "properties": {
+                "RescoreId": {
+                    "$ref": "#/$defs/RescoreId"
+                },
+                "ResultItems": {
+                    "$ref": "#/$defs/RescoreResultItemList"
+                }
+            }
+        },
+        "RescoreId": {
+            "type": "string"
+        },
+        "RescoreResultItemList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RescoreResultItem"
+            }
+        },
+        "RescoreResultItem": {
+            "type": "object",
+            "properties": {
+                "DocumentId": {
+                    "$ref": "#/$defs/DocumentId"
+                },
+                "Score": {
+                    "$ref": "#/$defs/Float"
+                }
+            }
+        },
+        "DocumentId": {
+            "type": "string"
+        },
+        "Float": {
+            "type": "number",
+            "format": "float"
+        },
+        "RescoreRequest": {
+            "type": "object",
+            "properties": {
+                "RescoreExecutionPlanId": {
+                    "$ref": "#/$defs/RescoreExecutionPlanId"
+                },
+                "SearchQuery": {
+                    "$ref": "#/$defs/SearchQuery"
+                },
+                "Documents": {
+                    "$ref": "#/$defs/DocumentList"
+                }
+            }
+        },
+        "SearchQuery": {
+            "type": "string"
+        },
+        "DocumentList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Document"
+            }
+        },
+        "Document": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/DocumentId"
+                },
+                "GroupId": {
+                    "$ref": "#/$defs/GroupId"
+                },
+                "Title": {
+                    "$ref": "#/$defs/DocumentTitle"
+                },
+                "Body": {
+                    "$ref": "#/$defs/DocumentBody"
+                },
+                "TokenizedTitle": {
+                    "$ref": "#/$defs/TitleTokensList"
+                },
+                "TokenizedBody": {
+                    "$ref": "#/$defs/BodyTokensList"
+                },
+                "OriginalScore": {
+                    "$ref": "#/$defs/Float"
+                }
+            }
+        },
+        "GroupId": {
+            "type": "string"
+        },
+        "DocumentTitle": {
+            "type": "string"
+        },
+        "DocumentBody": {
+            "type": "string"
+        },
+        "TitleTokensList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tokens"
+            }
+        },
+        "Tokens": {
+            "type": "string"
+        },
+        "BodyTokensList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tokens"
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceARN": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceARN": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "UpdateRescoreExecutionPlanRequest": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/RescoreExecutionPlanId"
+                },
+                "Name": {
+                    "$ref": "#/$defs/RescoreExecutionPlanName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "CapacityUnits": {
+                    "$ref": "#/$defs/CapacityUnitsConfiguration"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            true,
+                                            {
+                                                "fn": "getAttr",
+                                                "argv": [
+                                                    {
+                                                        "ref": "PartitionResult"
+                                                    },
+                                                    "supportsDualStack"
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseFIPS"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsFIPS"
+                                                                ]
+                                                            },
+                                                            true
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "endpoint": {
+                                                            "url": "https://kendra-ranking-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                            "properties": {},
+                                                            "headers": {}
+                                                        },
+                                                        "type": "endpoint"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "FIPS is enabled but this partition does not support FIPS",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "endpoint": {
+                                            "url": "https://kendra-ranking.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                            "properties": {},
+                                            "headers": {}
+                                        },
+                                        "type": "endpoint"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://kendra-ranking-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://kendra-ranking.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

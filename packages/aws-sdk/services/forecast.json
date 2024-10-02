@@ -1,0 +1,5443 @@
+{
+    "name": "forecast",
+    "commands": [
+        {
+            "name": "CreateAutoPredictor",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateAutoPredictor"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateAutoPredictorResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateAutoPredictorRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateDataset",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateDataset"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateDatasetResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateDatasetRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateDatasetGroup",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateDatasetGroup"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateDatasetGroupResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateDatasetGroupRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateDatasetImportJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateDatasetImportJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateDatasetImportJobResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateDatasetImportJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateExplainability",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateExplainability"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateExplainabilityResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateExplainabilityRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateExplainabilityExport",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateExplainabilityExport"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateExplainabilityExportResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateExplainabilityExportRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateForecast",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateForecast"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateForecastResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateForecastRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateForecastExportJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateForecastExportJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateForecastExportJobResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateForecastExportJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateMonitor",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateMonitor"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateMonitorResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateMonitorRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreatePredictor",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreatePredictor"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreatePredictorResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreatePredictorRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreatePredictorBacktestExportJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreatePredictorBacktestExportJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreatePredictorBacktestExportJobResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreatePredictorBacktestExportJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateWhatIfAnalysis",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateWhatIfAnalysis"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateWhatIfAnalysisResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateWhatIfAnalysisRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateWhatIfForecast",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateWhatIfForecast"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateWhatIfForecastResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateWhatIfForecastRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateWhatIfForecastExport",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateWhatIfForecastExport"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateWhatIfForecastExportResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateWhatIfForecastExportRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteDataset",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteDataset"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteDatasetRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteDatasetGroup",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteDatasetGroup"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteDatasetGroupRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteDatasetImportJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteDatasetImportJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteDatasetImportJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteExplainability",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteExplainability"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteExplainabilityRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteExplainabilityExport",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteExplainabilityExport"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteExplainabilityExportRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteForecast",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteForecast"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteForecastRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteForecastExportJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteForecastExportJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteForecastExportJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteMonitor",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteMonitor"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteMonitorRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeletePredictor",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeletePredictor"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeletePredictorRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeletePredictorBacktestExportJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeletePredictorBacktestExportJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeletePredictorBacktestExportJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteResourceTree",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteResourceTree"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteResourceTreeRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteWhatIfAnalysis",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteWhatIfAnalysis"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteWhatIfAnalysisRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteWhatIfForecast",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteWhatIfForecast"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteWhatIfForecastRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteWhatIfForecastExport",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteWhatIfForecastExport"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteWhatIfForecastExportRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeAutoPredictor",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeAutoPredictor"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeAutoPredictorResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeAutoPredictorRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeDataset",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeDataset"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeDatasetResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeDatasetRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeDatasetGroup",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeDatasetGroup"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeDatasetGroupResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeDatasetGroupRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeDatasetImportJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeDatasetImportJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeDatasetImportJobResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeDatasetImportJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeExplainability",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeExplainability"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeExplainabilityResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeExplainabilityRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeExplainabilityExport",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeExplainabilityExport"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeExplainabilityExportResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeExplainabilityExportRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeForecast",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeForecast"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeForecastResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeForecastRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeForecastExportJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeForecastExportJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeForecastExportJobResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeForecastExportJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeMonitor",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeMonitor"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeMonitorResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeMonitorRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribePredictor",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribePredictor"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribePredictorResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribePredictorRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribePredictorBacktestExportJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribePredictorBacktestExportJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribePredictorBacktestExportJobResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribePredictorBacktestExportJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeWhatIfAnalysis",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeWhatIfAnalysis"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeWhatIfAnalysisResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeWhatIfAnalysisRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeWhatIfForecast",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeWhatIfForecast"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeWhatIfForecastResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeWhatIfForecastRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeWhatIfForecastExport",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeWhatIfForecastExport"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeWhatIfForecastExportResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeWhatIfForecastExportRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetAccuracyMetrics",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetAccuracyMetrics"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetAccuracyMetricsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetAccuracyMetricsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListDatasetGroups",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListDatasetGroups"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListDatasetGroupsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListDatasetGroupsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListDatasetImportJobs",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListDatasetImportJobs"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListDatasetImportJobsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListDatasetImportJobsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListDatasets",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListDatasets"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListDatasetsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListDatasetsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListExplainabilities",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListExplainabilities"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListExplainabilitiesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListExplainabilitiesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListExplainabilityExports",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListExplainabilityExports"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListExplainabilityExportsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListExplainabilityExportsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListForecastExportJobs",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListForecastExportJobs"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListForecastExportJobsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListForecastExportJobsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListForecasts",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListForecasts"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListForecastsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListForecastsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListMonitorEvaluations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListMonitorEvaluations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListMonitorEvaluationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListMonitorEvaluationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListMonitors",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListMonitors"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListMonitorsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListMonitorsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListPredictorBacktestExportJobs",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListPredictorBacktestExportJobs"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListPredictorBacktestExportJobsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListPredictorBacktestExportJobsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListPredictors",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListPredictors"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListPredictorsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListPredictorsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListWhatIfAnalyses",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListWhatIfAnalyses"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListWhatIfAnalysesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListWhatIfAnalysesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListWhatIfForecastExports",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListWhatIfForecastExports"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListWhatIfForecastExportsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListWhatIfForecastExportsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListWhatIfForecasts",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListWhatIfForecasts"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListWhatIfForecastsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListWhatIfForecastsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ResumeResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ResumeResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ResumeResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StopResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StopResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StopResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateDatasetGroup",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateDatasetGroup"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateDatasetGroupResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateDatasetGroupRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CreateAutoPredictorResponse": {
+            "type": "object",
+            "properties": {
+                "PredictorArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "Arn": {
+            "type": "string"
+        },
+        "CreateAutoPredictorRequest": {
+            "type": "object",
+            "properties": {
+                "PredictorName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "ForecastHorizon": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "ForecastTypes": {
+                    "$ref": "#/$defs/ForecastTypes"
+                },
+                "ForecastDimensions": {
+                    "$ref": "#/$defs/ForecastDimensions"
+                },
+                "ForecastFrequency": {
+                    "$ref": "#/$defs/Frequency"
+                },
+                "DataConfig": {
+                    "$ref": "#/$defs/DataConfig"
+                },
+                "EncryptionConfig": {
+                    "$ref": "#/$defs/EncryptionConfig"
+                },
+                "ReferencePredictorArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "OptimizationMetric": {
+                    "$ref": "#/$defs/OptimizationMetric"
+                },
+                "ExplainPredictor": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                },
+                "MonitorConfig": {
+                    "$ref": "#/$defs/MonitorConfig"
+                },
+                "TimeAlignmentBoundary": {
+                    "$ref": "#/$defs/TimeAlignmentBoundary"
+                }
+            }
+        },
+        "Name": {
+            "type": "string"
+        },
+        "Integer": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ForecastTypes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ForecastType"
+            }
+        },
+        "ForecastType": {
+            "type": "string"
+        },
+        "ForecastDimensions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Name"
+            }
+        },
+        "Frequency": {
+            "type": "string"
+        },
+        "DataConfig": {
+            "type": "object",
+            "properties": {
+                "DatasetGroupArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "AttributeConfigs": {
+                    "$ref": "#/$defs/AttributeConfigs"
+                },
+                "AdditionalDatasets": {
+                    "$ref": "#/$defs/AdditionalDatasets"
+                }
+            }
+        },
+        "AttributeConfigs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AttributeConfig"
+            }
+        },
+        "AttributeConfig": {
+            "type": "object",
+            "properties": {
+                "AttributeName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Transformations": {
+                    "$ref": "#/$defs/Transformations"
+                }
+            }
+        },
+        "Transformations": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/Value"
+            }
+        },
+        "Value": {
+            "type": "string"
+        },
+        "AdditionalDatasets": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AdditionalDataset"
+            }
+        },
+        "AdditionalDataset": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Configuration": {
+                    "$ref": "#/$defs/Configuration"
+                }
+            }
+        },
+        "Configuration": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/Values"
+            }
+        },
+        "Values": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Value"
+            }
+        },
+        "EncryptionConfig": {
+            "type": "object",
+            "properties": {
+                "RoleArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "KMSKeyArn": {
+                    "$ref": "#/$defs/KMSKeyArn"
+                }
+            }
+        },
+        "KMSKeyArn": {
+            "type": "string"
+        },
+        "OptimizationMetric": {
+            "enum": [
+                "WAPE",
+                "RMSE",
+                "AverageWeightedQuantileLoss",
+                "MASE",
+                "MAPE"
+            ]
+        },
+        "Boolean": {
+            "type": "boolean"
+        },
+        "Tags": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "MonitorConfig": {
+            "type": "object",
+            "properties": {
+                "MonitorName": {
+                    "$ref": "#/$defs/Name"
+                }
+            }
+        },
+        "TimeAlignmentBoundary": {
+            "type": "object",
+            "properties": {
+                "Month": {
+                    "$ref": "#/$defs/Month"
+                },
+                "DayOfMonth": {
+                    "$ref": "#/$defs/DayOfMonth"
+                },
+                "DayOfWeek": {
+                    "$ref": "#/$defs/DayOfWeek"
+                },
+                "Hour": {
+                    "$ref": "#/$defs/Hour"
+                }
+            }
+        },
+        "Month": {
+            "enum": [
+                "JANUARY",
+                "FEBRUARY",
+                "MARCH",
+                "APRIL",
+                "MAY",
+                "JUNE",
+                "JULY",
+                "AUGUST",
+                "SEPTEMBER",
+                "OCTOBER",
+                "NOVEMBER",
+                "DECEMBER"
+            ]
+        },
+        "DayOfMonth": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DayOfWeek": {
+            "enum": [
+                "MONDAY",
+                "TUESDAY",
+                "WEDNESDAY",
+                "THURSDAY",
+                "FRIDAY",
+                "SATURDAY",
+                "SUNDAY"
+            ]
+        },
+        "Hour": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "CreateDatasetResponse": {
+            "type": "object",
+            "properties": {
+                "DatasetArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "CreateDatasetRequest": {
+            "type": "object",
+            "properties": {
+                "DatasetName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Domain": {
+                    "$ref": "#/$defs/Domain"
+                },
+                "DatasetType": {
+                    "$ref": "#/$defs/DatasetType"
+                },
+                "DataFrequency": {
+                    "$ref": "#/$defs/Frequency"
+                },
+                "Schema": {
+                    "$ref": "#/$defs/Schema"
+                },
+                "EncryptionConfig": {
+                    "$ref": "#/$defs/EncryptionConfig"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "Domain": {
+            "enum": [
+                "RETAIL",
+                "CUSTOM",
+                "INVENTORY_PLANNING",
+                "EC2_CAPACITY",
+                "WORK_FORCE",
+                "WEB_TRAFFIC",
+                "METRICS"
+            ]
+        },
+        "DatasetType": {
+            "enum": [
+                "TARGET_TIME_SERIES",
+                "RELATED_TIME_SERIES",
+                "ITEM_METADATA"
+            ]
+        },
+        "Schema": {
+            "type": "object",
+            "properties": {
+                "Attributes": {
+                    "$ref": "#/$defs/SchemaAttributes"
+                }
+            }
+        },
+        "SchemaAttributes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SchemaAttribute"
+            }
+        },
+        "SchemaAttribute": {
+            "type": "object",
+            "properties": {
+                "AttributeName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "AttributeType": {
+                    "$ref": "#/$defs/AttributeType"
+                }
+            }
+        },
+        "AttributeType": {
+            "enum": [
+                "STRING",
+                "INTEGER",
+                "FLOAT",
+                "TIMESTAMP",
+                "GEOLOCATION"
+            ]
+        },
+        "CreateDatasetGroupResponse": {
+            "type": "object",
+            "properties": {
+                "DatasetGroupArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "CreateDatasetGroupRequest": {
+            "type": "object",
+            "properties": {
+                "DatasetGroupName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Domain": {
+                    "$ref": "#/$defs/Domain"
+                },
+                "DatasetArns": {
+                    "$ref": "#/$defs/ArnList"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "ArnList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Arn"
+            }
+        },
+        "CreateDatasetImportJobResponse": {
+            "type": "object",
+            "properties": {
+                "DatasetImportJobArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "CreateDatasetImportJobRequest": {
+            "type": "object",
+            "properties": {
+                "DatasetImportJobName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "DatasetArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "DataSource": {
+                    "$ref": "#/$defs/DataSource"
+                },
+                "TimestampFormat": {
+                    "$ref": "#/$defs/TimestampFormat"
+                },
+                "TimeZone": {
+                    "$ref": "#/$defs/TimeZone"
+                },
+                "UseGeolocationForTimeZone": {
+                    "$ref": "#/$defs/UseGeolocationForTimeZone"
+                },
+                "GeolocationFormat": {
+                    "$ref": "#/$defs/GeolocationFormat"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                },
+                "Format": {
+                    "$ref": "#/$defs/Format"
+                },
+                "ImportMode": {
+                    "$ref": "#/$defs/ImportMode"
+                }
+            }
+        },
+        "DataSource": {
+            "type": "object",
+            "properties": {
+                "S3Config": {
+                    "$ref": "#/$defs/S3Config"
+                }
+            }
+        },
+        "S3Config": {
+            "type": "object",
+            "properties": {
+                "Path": {
+                    "$ref": "#/$defs/S3Path"
+                },
+                "RoleArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "KMSKeyArn": {
+                    "$ref": "#/$defs/KMSKeyArn"
+                }
+            }
+        },
+        "S3Path": {
+            "type": "string"
+        },
+        "TimestampFormat": {
+            "type": "string"
+        },
+        "TimeZone": {
+            "type": "string"
+        },
+        "UseGeolocationForTimeZone": {
+            "type": "boolean"
+        },
+        "GeolocationFormat": {
+            "type": "string"
+        },
+        "Format": {
+            "type": "string"
+        },
+        "ImportMode": {
+            "enum": [
+                "FULL",
+                "INCREMENTAL"
+            ]
+        },
+        "CreateExplainabilityResponse": {
+            "type": "object",
+            "properties": {
+                "ExplainabilityArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "CreateExplainabilityRequest": {
+            "type": "object",
+            "properties": {
+                "ExplainabilityName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "ExplainabilityConfig": {
+                    "$ref": "#/$defs/ExplainabilityConfig"
+                },
+                "DataSource": {
+                    "$ref": "#/$defs/DataSource"
+                },
+                "Schema": {
+                    "$ref": "#/$defs/Schema"
+                },
+                "EnableVisualization": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "StartDateTime": {
+                    "$ref": "#/$defs/LocalDateTime"
+                },
+                "EndDateTime": {
+                    "$ref": "#/$defs/LocalDateTime"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "ExplainabilityConfig": {
+            "type": "object",
+            "properties": {
+                "TimeSeriesGranularity": {
+                    "$ref": "#/$defs/TimeSeriesGranularity"
+                },
+                "TimePointGranularity": {
+                    "$ref": "#/$defs/TimePointGranularity"
+                }
+            }
+        },
+        "TimeSeriesGranularity": {
+            "enum": [
+                "ALL",
+                "SPECIFIC"
+            ]
+        },
+        "TimePointGranularity": {
+            "enum": [
+                "ALL",
+                "SPECIFIC"
+            ]
+        },
+        "LocalDateTime": {
+            "type": "string"
+        },
+        "CreateExplainabilityExportResponse": {
+            "type": "object",
+            "properties": {
+                "ExplainabilityExportArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "CreateExplainabilityExportRequest": {
+            "type": "object",
+            "properties": {
+                "ExplainabilityExportName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "ExplainabilityArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Destination": {
+                    "$ref": "#/$defs/DataDestination"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                },
+                "Format": {
+                    "$ref": "#/$defs/Format"
+                }
+            }
+        },
+        "DataDestination": {
+            "type": "object",
+            "properties": {
+                "S3Config": {
+                    "$ref": "#/$defs/S3Config"
+                }
+            }
+        },
+        "CreateForecastResponse": {
+            "type": "object",
+            "properties": {
+                "ForecastArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "CreateForecastRequest": {
+            "type": "object",
+            "properties": {
+                "ForecastName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "PredictorArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "ForecastTypes": {
+                    "$ref": "#/$defs/ForecastTypes"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                },
+                "TimeSeriesSelector": {
+                    "$ref": "#/$defs/TimeSeriesSelector"
+                }
+            }
+        },
+        "TimeSeriesSelector": {
+            "type": "object",
+            "properties": {
+                "TimeSeriesIdentifiers": {
+                    "$ref": "#/$defs/TimeSeriesIdentifiers"
+                }
+            }
+        },
+        "TimeSeriesIdentifiers": {
+            "type": "object",
+            "properties": {
+                "DataSource": {
+                    "$ref": "#/$defs/DataSource"
+                },
+                "Schema": {
+                    "$ref": "#/$defs/Schema"
+                },
+                "Format": {
+                    "$ref": "#/$defs/Format"
+                }
+            }
+        },
+        "CreateForecastExportJobResponse": {
+            "type": "object",
+            "properties": {
+                "ForecastExportJobArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "CreateForecastExportJobRequest": {
+            "type": "object",
+            "properties": {
+                "ForecastExportJobName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "ForecastArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Destination": {
+                    "$ref": "#/$defs/DataDestination"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                },
+                "Format": {
+                    "$ref": "#/$defs/Format"
+                }
+            }
+        },
+        "CreateMonitorResponse": {
+            "type": "object",
+            "properties": {
+                "MonitorArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "CreateMonitorRequest": {
+            "type": "object",
+            "properties": {
+                "MonitorName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "CreatePredictorResponse": {
+            "type": "object",
+            "properties": {
+                "PredictorArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "CreatePredictorRequest": {
+            "type": "object",
+            "properties": {
+                "PredictorName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "AlgorithmArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "ForecastHorizon": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "ForecastTypes": {
+                    "$ref": "#/$defs/ForecastTypes"
+                },
+                "PerformAutoML": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "AutoMLOverrideStrategy": {
+                    "$ref": "#/$defs/AutoMLOverrideStrategy"
+                },
+                "PerformHPO": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "TrainingParameters": {
+                    "$ref": "#/$defs/TrainingParameters"
+                },
+                "EvaluationParameters": {
+                    "$ref": "#/$defs/EvaluationParameters"
+                },
+                "HPOConfig": {
+                    "$ref": "#/$defs/HyperParameterTuningJobConfig"
+                },
+                "InputDataConfig": {
+                    "$ref": "#/$defs/InputDataConfig"
+                },
+                "FeaturizationConfig": {
+                    "$ref": "#/$defs/FeaturizationConfig"
+                },
+                "EncryptionConfig": {
+                    "$ref": "#/$defs/EncryptionConfig"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                },
+                "OptimizationMetric": {
+                    "$ref": "#/$defs/OptimizationMetric"
+                }
+            }
+        },
+        "AutoMLOverrideStrategy": {
+            "enum": [
+                "LatencyOptimized",
+                "AccuracyOptimized"
+            ]
+        },
+        "TrainingParameters": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/ParameterValue"
+            }
+        },
+        "ParameterValue": {
+            "type": "string"
+        },
+        "EvaluationParameters": {
+            "type": "object",
+            "properties": {
+                "NumberOfBacktestWindows": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "BackTestWindowOffset": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "HyperParameterTuningJobConfig": {
+            "type": "object",
+            "properties": {
+                "ParameterRanges": {
+                    "$ref": "#/$defs/ParameterRanges"
+                }
+            }
+        },
+        "ParameterRanges": {
+            "type": "object",
+            "properties": {
+                "CategoricalParameterRanges": {
+                    "$ref": "#/$defs/CategoricalParameterRanges"
+                },
+                "ContinuousParameterRanges": {
+                    "$ref": "#/$defs/ContinuousParameterRanges"
+                },
+                "IntegerParameterRanges": {
+                    "$ref": "#/$defs/IntegerParameterRanges"
+                }
+            }
+        },
+        "CategoricalParameterRanges": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CategoricalParameterRange"
+            }
+        },
+        "CategoricalParameterRange": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Values": {
+                    "$ref": "#/$defs/Values"
+                }
+            }
+        },
+        "ContinuousParameterRanges": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ContinuousParameterRange"
+            }
+        },
+        "ContinuousParameterRange": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "MaxValue": {
+                    "$ref": "#/$defs/Double"
+                },
+                "MinValue": {
+                    "$ref": "#/$defs/Double"
+                },
+                "ScalingType": {
+                    "$ref": "#/$defs/ScalingType"
+                }
+            }
+        },
+        "Double": {
+            "type": "number",
+            "format": "double"
+        },
+        "ScalingType": {
+            "enum": [
+                "Auto",
+                "Linear",
+                "Logarithmic",
+                "ReverseLogarithmic"
+            ]
+        },
+        "IntegerParameterRanges": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/IntegerParameterRange"
+            }
+        },
+        "IntegerParameterRange": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "MaxValue": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "MinValue": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "ScalingType": {
+                    "$ref": "#/$defs/ScalingType"
+                }
+            }
+        },
+        "InputDataConfig": {
+            "type": "object",
+            "properties": {
+                "DatasetGroupArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "SupplementaryFeatures": {
+                    "$ref": "#/$defs/SupplementaryFeatures"
+                }
+            }
+        },
+        "SupplementaryFeatures": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SupplementaryFeature"
+            }
+        },
+        "SupplementaryFeature": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Value": {
+                    "$ref": "#/$defs/Value"
+                }
+            }
+        },
+        "FeaturizationConfig": {
+            "type": "object",
+            "properties": {
+                "ForecastFrequency": {
+                    "$ref": "#/$defs/Frequency"
+                },
+                "ForecastDimensions": {
+                    "$ref": "#/$defs/ForecastDimensions"
+                },
+                "Featurizations": {
+                    "$ref": "#/$defs/Featurizations"
+                }
+            }
+        },
+        "Featurizations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Featurization"
+            }
+        },
+        "Featurization": {
+            "type": "object",
+            "properties": {
+                "AttributeName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "FeaturizationPipeline": {
+                    "$ref": "#/$defs/FeaturizationPipeline"
+                }
+            }
+        },
+        "FeaturizationPipeline": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FeaturizationMethod"
+            }
+        },
+        "FeaturizationMethod": {
+            "type": "object",
+            "properties": {
+                "FeaturizationMethodName": {
+                    "$ref": "#/$defs/FeaturizationMethodName"
+                },
+                "FeaturizationMethodParameters": {
+                    "$ref": "#/$defs/FeaturizationMethodParameters"
+                }
+            }
+        },
+        "FeaturizationMethodName": {
+            "enum": [
+                "filling"
+            ]
+        },
+        "FeaturizationMethodParameters": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/ParameterValue"
+            }
+        },
+        "CreatePredictorBacktestExportJobResponse": {
+            "type": "object",
+            "properties": {
+                "PredictorBacktestExportJobArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "CreatePredictorBacktestExportJobRequest": {
+            "type": "object",
+            "properties": {
+                "PredictorBacktestExportJobName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "PredictorArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Destination": {
+                    "$ref": "#/$defs/DataDestination"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                },
+                "Format": {
+                    "$ref": "#/$defs/Format"
+                }
+            }
+        },
+        "CreateWhatIfAnalysisResponse": {
+            "type": "object",
+            "properties": {
+                "WhatIfAnalysisArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "CreateWhatIfAnalysisRequest": {
+            "type": "object",
+            "properties": {
+                "WhatIfAnalysisName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "ForecastArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "TimeSeriesSelector": {
+                    "$ref": "#/$defs/TimeSeriesSelector"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "CreateWhatIfForecastResponse": {
+            "type": "object",
+            "properties": {
+                "WhatIfForecastArn": {
+                    "$ref": "#/$defs/LongArn"
+                }
+            }
+        },
+        "LongArn": {
+            "type": "string"
+        },
+        "CreateWhatIfForecastRequest": {
+            "type": "object",
+            "properties": {
+                "WhatIfForecastName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "WhatIfAnalysisArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "TimeSeriesTransformations": {
+                    "$ref": "#/$defs/TimeSeriesTransformations"
+                },
+                "TimeSeriesReplacementsDataSource": {
+                    "$ref": "#/$defs/TimeSeriesReplacementsDataSource"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "TimeSeriesTransformations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TimeSeriesTransformation"
+            }
+        },
+        "TimeSeriesTransformation": {
+            "type": "object",
+            "properties": {
+                "Action": {
+                    "$ref": "#/$defs/Action"
+                },
+                "TimeSeriesConditions": {
+                    "$ref": "#/$defs/TimeSeriesConditions"
+                }
+            }
+        },
+        "Action": {
+            "type": "object",
+            "properties": {
+                "AttributeName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Operation": {
+                    "$ref": "#/$defs/Operation"
+                },
+                "Value": {
+                    "$ref": "#/$defs/Double"
+                }
+            }
+        },
+        "Operation": {
+            "enum": [
+                "ADD",
+                "SUBTRACT",
+                "MULTIPLY",
+                "DIVIDE"
+            ]
+        },
+        "TimeSeriesConditions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TimeSeriesCondition"
+            }
+        },
+        "TimeSeriesCondition": {
+            "type": "object",
+            "properties": {
+                "AttributeName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "AttributeValue": {
+                    "$ref": "#/$defs/AttributeValue"
+                },
+                "Condition": {
+                    "$ref": "#/$defs/Condition"
+                }
+            }
+        },
+        "AttributeValue": {
+            "type": "string"
+        },
+        "Condition": {
+            "enum": [
+                "EQUALS",
+                "NOT_EQUALS",
+                "LESS_THAN",
+                "GREATER_THAN"
+            ]
+        },
+        "TimeSeriesReplacementsDataSource": {
+            "type": "object",
+            "properties": {
+                "S3Config": {
+                    "$ref": "#/$defs/S3Config"
+                },
+                "Schema": {
+                    "$ref": "#/$defs/Schema"
+                },
+                "Format": {
+                    "$ref": "#/$defs/Format"
+                },
+                "TimestampFormat": {
+                    "$ref": "#/$defs/TimestampFormat"
+                }
+            }
+        },
+        "CreateWhatIfForecastExportResponse": {
+            "type": "object",
+            "properties": {
+                "WhatIfForecastExportArn": {
+                    "$ref": "#/$defs/LongArn"
+                }
+            }
+        },
+        "CreateWhatIfForecastExportRequest": {
+            "type": "object",
+            "properties": {
+                "WhatIfForecastExportName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "WhatIfForecastArns": {
+                    "$ref": "#/$defs/WhatIfForecastArnListForExport"
+                },
+                "Destination": {
+                    "$ref": "#/$defs/DataDestination"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                },
+                "Format": {
+                    "$ref": "#/$defs/Format"
+                }
+            }
+        },
+        "WhatIfForecastArnListForExport": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LongArn"
+            }
+        },
+        "DeleteDatasetRequest": {
+            "type": "object",
+            "properties": {
+                "DatasetArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "DeleteDatasetGroupRequest": {
+            "type": "object",
+            "properties": {
+                "DatasetGroupArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "DeleteDatasetImportJobRequest": {
+            "type": "object",
+            "properties": {
+                "DatasetImportJobArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "DeleteExplainabilityRequest": {
+            "type": "object",
+            "properties": {
+                "ExplainabilityArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "DeleteExplainabilityExportRequest": {
+            "type": "object",
+            "properties": {
+                "ExplainabilityExportArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "DeleteForecastRequest": {
+            "type": "object",
+            "properties": {
+                "ForecastArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "DeleteForecastExportJobRequest": {
+            "type": "object",
+            "properties": {
+                "ForecastExportJobArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "DeleteMonitorRequest": {
+            "type": "object",
+            "properties": {
+                "MonitorArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "DeletePredictorRequest": {
+            "type": "object",
+            "properties": {
+                "PredictorArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "DeletePredictorBacktestExportJobRequest": {
+            "type": "object",
+            "properties": {
+                "PredictorBacktestExportJobArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "DeleteResourceTreeRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "DeleteWhatIfAnalysisRequest": {
+            "type": "object",
+            "properties": {
+                "WhatIfAnalysisArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "DeleteWhatIfForecastRequest": {
+            "type": "object",
+            "properties": {
+                "WhatIfForecastArn": {
+                    "$ref": "#/$defs/LongArn"
+                }
+            }
+        },
+        "DeleteWhatIfForecastExportRequest": {
+            "type": "object",
+            "properties": {
+                "WhatIfForecastExportArn": {
+                    "$ref": "#/$defs/LongArn"
+                }
+            }
+        },
+        "DescribeAutoPredictorResponse": {
+            "type": "object",
+            "properties": {
+                "PredictorArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "PredictorName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "ForecastHorizon": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "ForecastTypes": {
+                    "$ref": "#/$defs/ForecastTypes"
+                },
+                "ForecastFrequency": {
+                    "$ref": "#/$defs/Frequency"
+                },
+                "ForecastDimensions": {
+                    "$ref": "#/$defs/ForecastDimensions"
+                },
+                "DatasetImportJobArns": {
+                    "$ref": "#/$defs/ArnList"
+                },
+                "DataConfig": {
+                    "$ref": "#/$defs/DataConfig"
+                },
+                "EncryptionConfig": {
+                    "$ref": "#/$defs/EncryptionConfig"
+                },
+                "ReferencePredictorSummary": {
+                    "$ref": "#/$defs/ReferencePredictorSummary"
+                },
+                "EstimatedTimeRemainingInMinutes": {
+                    "$ref": "#/$defs/Long"
+                },
+                "Status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "Message": {
+                    "$ref": "#/$defs/Message"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastModificationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "OptimizationMetric": {
+                    "$ref": "#/$defs/OptimizationMetric"
+                },
+                "ExplainabilityInfo": {
+                    "$ref": "#/$defs/ExplainabilityInfo"
+                },
+                "MonitorInfo": {
+                    "$ref": "#/$defs/MonitorInfo"
+                },
+                "TimeAlignmentBoundary": {
+                    "$ref": "#/$defs/TimeAlignmentBoundary"
+                }
+            }
+        },
+        "ReferencePredictorSummary": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "State": {
+                    "$ref": "#/$defs/State"
+                }
+            }
+        },
+        "State": {
+            "enum": [
+                "Active",
+                "Deleted"
+            ]
+        },
+        "Long": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "Status": {
+            "type": "string"
+        },
+        "Message": {
+            "type": "string"
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "ExplainabilityInfo": {
+            "type": "object",
+            "properties": {
+                "ExplainabilityArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Status": {
+                    "$ref": "#/$defs/Status"
+                }
+            }
+        },
+        "MonitorInfo": {
+            "type": "object",
+            "properties": {
+                "MonitorArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Status": {
+                    "$ref": "#/$defs/Status"
+                }
+            }
+        },
+        "DescribeAutoPredictorRequest": {
+            "type": "object",
+            "properties": {
+                "PredictorArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "DescribeDatasetResponse": {
+            "type": "object",
+            "properties": {
+                "DatasetArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "DatasetName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Domain": {
+                    "$ref": "#/$defs/Domain"
+                },
+                "DatasetType": {
+                    "$ref": "#/$defs/DatasetType"
+                },
+                "DataFrequency": {
+                    "$ref": "#/$defs/Frequency"
+                },
+                "Schema": {
+                    "$ref": "#/$defs/Schema"
+                },
+                "EncryptionConfig": {
+                    "$ref": "#/$defs/EncryptionConfig"
+                },
+                "Status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastModificationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "DescribeDatasetRequest": {
+            "type": "object",
+            "properties": {
+                "DatasetArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "DescribeDatasetGroupResponse": {
+            "type": "object",
+            "properties": {
+                "DatasetGroupName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "DatasetGroupArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "DatasetArns": {
+                    "$ref": "#/$defs/ArnList"
+                },
+                "Domain": {
+                    "$ref": "#/$defs/Domain"
+                },
+                "Status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastModificationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "DescribeDatasetGroupRequest": {
+            "type": "object",
+            "properties": {
+                "DatasetGroupArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "DescribeDatasetImportJobResponse": {
+            "type": "object",
+            "properties": {
+                "DatasetImportJobName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "DatasetImportJobArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "DatasetArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "TimestampFormat": {
+                    "$ref": "#/$defs/TimestampFormat"
+                },
+                "TimeZone": {
+                    "$ref": "#/$defs/TimeZone"
+                },
+                "UseGeolocationForTimeZone": {
+                    "$ref": "#/$defs/UseGeolocationForTimeZone"
+                },
+                "GeolocationFormat": {
+                    "$ref": "#/$defs/GeolocationFormat"
+                },
+                "DataSource": {
+                    "$ref": "#/$defs/DataSource"
+                },
+                "EstimatedTimeRemainingInMinutes": {
+                    "$ref": "#/$defs/Long"
+                },
+                "FieldStatistics": {
+                    "$ref": "#/$defs/FieldStatistics"
+                },
+                "DataSize": {
+                    "$ref": "#/$defs/Double"
+                },
+                "Status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "Message": {
+                    "$ref": "#/$defs/Message"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastModificationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Format": {
+                    "$ref": "#/$defs/Format"
+                },
+                "ImportMode": {
+                    "$ref": "#/$defs/ImportMode"
+                }
+            }
+        },
+        "FieldStatistics": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/Statistics"
+            }
+        },
+        "Statistics": {
+            "type": "object",
+            "properties": {
+                "Count": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "CountDistinct": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "CountNull": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "CountNan": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Min": {
+                    "$ref": "#/$defs/String"
+                },
+                "Max": {
+                    "$ref": "#/$defs/String"
+                },
+                "Avg": {
+                    "$ref": "#/$defs/Double"
+                },
+                "Stddev": {
+                    "$ref": "#/$defs/Double"
+                },
+                "CountLong": {
+                    "$ref": "#/$defs/Long"
+                },
+                "CountDistinctLong": {
+                    "$ref": "#/$defs/Long"
+                },
+                "CountNullLong": {
+                    "$ref": "#/$defs/Long"
+                },
+                "CountNanLong": {
+                    "$ref": "#/$defs/Long"
+                }
+            }
+        },
+        "String": {
+            "type": "string"
+        },
+        "DescribeDatasetImportJobRequest": {
+            "type": "object",
+            "properties": {
+                "DatasetImportJobArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "DescribeExplainabilityResponse": {
+            "type": "object",
+            "properties": {
+                "ExplainabilityArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "ExplainabilityName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "ExplainabilityConfig": {
+                    "$ref": "#/$defs/ExplainabilityConfig"
+                },
+                "EnableVisualization": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "DataSource": {
+                    "$ref": "#/$defs/DataSource"
+                },
+                "Schema": {
+                    "$ref": "#/$defs/Schema"
+                },
+                "StartDateTime": {
+                    "$ref": "#/$defs/LocalDateTime"
+                },
+                "EndDateTime": {
+                    "$ref": "#/$defs/LocalDateTime"
+                },
+                "EstimatedTimeRemainingInMinutes": {
+                    "$ref": "#/$defs/Long"
+                },
+                "Message": {
+                    "$ref": "#/$defs/Message"
+                },
+                "Status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastModificationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "DescribeExplainabilityRequest": {
+            "type": "object",
+            "properties": {
+                "ExplainabilityArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "DescribeExplainabilityExportResponse": {
+            "type": "object",
+            "properties": {
+                "ExplainabilityExportArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "ExplainabilityExportName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "ExplainabilityArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Destination": {
+                    "$ref": "#/$defs/DataDestination"
+                },
+                "Message": {
+                    "$ref": "#/$defs/Message"
+                },
+                "Status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastModificationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Format": {
+                    "$ref": "#/$defs/Format"
+                }
+            }
+        },
+        "DescribeExplainabilityExportRequest": {
+            "type": "object",
+            "properties": {
+                "ExplainabilityExportArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "DescribeForecastResponse": {
+            "type": "object",
+            "properties": {
+                "ForecastArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "ForecastName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "ForecastTypes": {
+                    "$ref": "#/$defs/ForecastTypes"
+                },
+                "PredictorArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "DatasetGroupArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "EstimatedTimeRemainingInMinutes": {
+                    "$ref": "#/$defs/Long"
+                },
+                "Status": {
+                    "$ref": "#/$defs/String"
+                },
+                "Message": {
+                    "$ref": "#/$defs/ErrorMessage"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastModificationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "TimeSeriesSelector": {
+                    "$ref": "#/$defs/TimeSeriesSelector"
+                }
+            }
+        },
+        "ErrorMessage": {
+            "type": "string"
+        },
+        "DescribeForecastRequest": {
+            "type": "object",
+            "properties": {
+                "ForecastArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "DescribeForecastExportJobResponse": {
+            "type": "object",
+            "properties": {
+                "ForecastExportJobArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "ForecastExportJobName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "ForecastArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Destination": {
+                    "$ref": "#/$defs/DataDestination"
+                },
+                "Message": {
+                    "$ref": "#/$defs/Message"
+                },
+                "Status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastModificationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Format": {
+                    "$ref": "#/$defs/Format"
+                }
+            }
+        },
+        "DescribeForecastExportJobRequest": {
+            "type": "object",
+            "properties": {
+                "ForecastExportJobArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "DescribeMonitorResponse": {
+            "type": "object",
+            "properties": {
+                "MonitorName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "MonitorArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "LastEvaluationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastEvaluationState": {
+                    "$ref": "#/$defs/EvaluationState"
+                },
+                "Baseline": {
+                    "$ref": "#/$defs/Baseline"
+                },
+                "Message": {
+                    "$ref": "#/$defs/Message"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastModificationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EstimatedEvaluationTimeRemainingInMinutes": {
+                    "$ref": "#/$defs/Long"
+                }
+            }
+        },
+        "EvaluationState": {
+            "type": "string"
+        },
+        "Baseline": {
+            "type": "object",
+            "properties": {
+                "PredictorBaseline": {
+                    "$ref": "#/$defs/PredictorBaseline"
+                }
+            }
+        },
+        "PredictorBaseline": {
+            "type": "object",
+            "properties": {
+                "BaselineMetrics": {
+                    "$ref": "#/$defs/BaselineMetrics"
+                }
+            }
+        },
+        "BaselineMetrics": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BaselineMetric"
+            }
+        },
+        "BaselineMetric": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Value": {
+                    "$ref": "#/$defs/Double"
+                }
+            }
+        },
+        "DescribeMonitorRequest": {
+            "type": "object",
+            "properties": {
+                "MonitorArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "DescribePredictorResponse": {
+            "type": "object",
+            "properties": {
+                "PredictorArn": {
+                    "$ref": "#/$defs/Name"
+                },
+                "PredictorName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "AlgorithmArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "AutoMLAlgorithmArns": {
+                    "$ref": "#/$defs/ArnList"
+                },
+                "ForecastHorizon": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "ForecastTypes": {
+                    "$ref": "#/$defs/ForecastTypes"
+                },
+                "PerformAutoML": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "AutoMLOverrideStrategy": {
+                    "$ref": "#/$defs/AutoMLOverrideStrategy"
+                },
+                "PerformHPO": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "TrainingParameters": {
+                    "$ref": "#/$defs/TrainingParameters"
+                },
+                "EvaluationParameters": {
+                    "$ref": "#/$defs/EvaluationParameters"
+                },
+                "HPOConfig": {
+                    "$ref": "#/$defs/HyperParameterTuningJobConfig"
+                },
+                "InputDataConfig": {
+                    "$ref": "#/$defs/InputDataConfig"
+                },
+                "FeaturizationConfig": {
+                    "$ref": "#/$defs/FeaturizationConfig"
+                },
+                "EncryptionConfig": {
+                    "$ref": "#/$defs/EncryptionConfig"
+                },
+                "PredictorExecutionDetails": {
+                    "$ref": "#/$defs/PredictorExecutionDetails"
+                },
+                "EstimatedTimeRemainingInMinutes": {
+                    "$ref": "#/$defs/Long"
+                },
+                "IsAutoPredictor": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "DatasetImportJobArns": {
+                    "$ref": "#/$defs/ArnList"
+                },
+                "Status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "Message": {
+                    "$ref": "#/$defs/Message"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastModificationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "OptimizationMetric": {
+                    "$ref": "#/$defs/OptimizationMetric"
+                }
+            }
+        },
+        "PredictorExecutionDetails": {
+            "type": "object",
+            "properties": {
+                "PredictorExecutions": {
+                    "$ref": "#/$defs/PredictorExecutions"
+                }
+            }
+        },
+        "PredictorExecutions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PredictorExecution"
+            }
+        },
+        "PredictorExecution": {
+            "type": "object",
+            "properties": {
+                "AlgorithmArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "TestWindows": {
+                    "$ref": "#/$defs/TestWindowDetails"
+                }
+            }
+        },
+        "TestWindowDetails": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TestWindowSummary"
+            }
+        },
+        "TestWindowSummary": {
+            "type": "object",
+            "properties": {
+                "TestWindowStart": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "TestWindowEnd": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "Message": {
+                    "$ref": "#/$defs/ErrorMessage"
+                }
+            }
+        },
+        "DescribePredictorRequest": {
+            "type": "object",
+            "properties": {
+                "PredictorArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "DescribePredictorBacktestExportJobResponse": {
+            "type": "object",
+            "properties": {
+                "PredictorBacktestExportJobArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "PredictorBacktestExportJobName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "PredictorArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Destination": {
+                    "$ref": "#/$defs/DataDestination"
+                },
+                "Message": {
+                    "$ref": "#/$defs/Message"
+                },
+                "Status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastModificationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Format": {
+                    "$ref": "#/$defs/Format"
+                }
+            }
+        },
+        "DescribePredictorBacktestExportJobRequest": {
+            "type": "object",
+            "properties": {
+                "PredictorBacktestExportJobArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "DescribeWhatIfAnalysisResponse": {
+            "type": "object",
+            "properties": {
+                "WhatIfAnalysisName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "WhatIfAnalysisArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "ForecastArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "EstimatedTimeRemainingInMinutes": {
+                    "$ref": "#/$defs/Long"
+                },
+                "Status": {
+                    "$ref": "#/$defs/String"
+                },
+                "Message": {
+                    "$ref": "#/$defs/ErrorMessage"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastModificationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "TimeSeriesSelector": {
+                    "$ref": "#/$defs/TimeSeriesSelector"
+                }
+            }
+        },
+        "DescribeWhatIfAnalysisRequest": {
+            "type": "object",
+            "properties": {
+                "WhatIfAnalysisArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "DescribeWhatIfForecastResponse": {
+            "type": "object",
+            "properties": {
+                "WhatIfForecastName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "WhatIfForecastArn": {
+                    "$ref": "#/$defs/LongArn"
+                },
+                "WhatIfAnalysisArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "EstimatedTimeRemainingInMinutes": {
+                    "$ref": "#/$defs/Long"
+                },
+                "Status": {
+                    "$ref": "#/$defs/String"
+                },
+                "Message": {
+                    "$ref": "#/$defs/ErrorMessage"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastModificationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "TimeSeriesTransformations": {
+                    "$ref": "#/$defs/TimeSeriesTransformations"
+                },
+                "TimeSeriesReplacementsDataSource": {
+                    "$ref": "#/$defs/TimeSeriesReplacementsDataSource"
+                },
+                "ForecastTypes": {
+                    "$ref": "#/$defs/ForecastTypes"
+                }
+            }
+        },
+        "DescribeWhatIfForecastRequest": {
+            "type": "object",
+            "properties": {
+                "WhatIfForecastArn": {
+                    "$ref": "#/$defs/LongArn"
+                }
+            }
+        },
+        "DescribeWhatIfForecastExportResponse": {
+            "type": "object",
+            "properties": {
+                "WhatIfForecastExportArn": {
+                    "$ref": "#/$defs/LongArn"
+                },
+                "WhatIfForecastExportName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "WhatIfForecastArns": {
+                    "$ref": "#/$defs/LongArnList"
+                },
+                "Destination": {
+                    "$ref": "#/$defs/DataDestination"
+                },
+                "Message": {
+                    "$ref": "#/$defs/Message"
+                },
+                "Status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EstimatedTimeRemainingInMinutes": {
+                    "$ref": "#/$defs/Long"
+                },
+                "LastModificationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Format": {
+                    "$ref": "#/$defs/Format"
+                }
+            }
+        },
+        "LongArnList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LongArn"
+            }
+        },
+        "DescribeWhatIfForecastExportRequest": {
+            "type": "object",
+            "properties": {
+                "WhatIfForecastExportArn": {
+                    "$ref": "#/$defs/LongArn"
+                }
+            }
+        },
+        "GetAccuracyMetricsResponse": {
+            "type": "object",
+            "properties": {
+                "PredictorEvaluationResults": {
+                    "$ref": "#/$defs/PredictorEvaluationResults"
+                },
+                "IsAutoPredictor": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "AutoMLOverrideStrategy": {
+                    "$ref": "#/$defs/AutoMLOverrideStrategy"
+                },
+                "OptimizationMetric": {
+                    "$ref": "#/$defs/OptimizationMetric"
+                }
+            }
+        },
+        "PredictorEvaluationResults": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EvaluationResult"
+            }
+        },
+        "EvaluationResult": {
+            "type": "object",
+            "properties": {
+                "AlgorithmArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "TestWindows": {
+                    "$ref": "#/$defs/TestWindows"
+                }
+            }
+        },
+        "TestWindows": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/WindowSummary"
+            }
+        },
+        "WindowSummary": {
+            "type": "object",
+            "properties": {
+                "TestWindowStart": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "TestWindowEnd": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "ItemCount": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "EvaluationType": {
+                    "$ref": "#/$defs/EvaluationType"
+                },
+                "Metrics": {
+                    "$ref": "#/$defs/Metrics"
+                }
+            }
+        },
+        "EvaluationType": {
+            "enum": [
+                "SUMMARY",
+                "COMPUTED"
+            ]
+        },
+        "Metrics": {
+            "type": "object",
+            "properties": {
+                "RMSE": {
+                    "$ref": "#/$defs/Double"
+                },
+                "WeightedQuantileLosses": {
+                    "$ref": "#/$defs/WeightedQuantileLosses"
+                },
+                "ErrorMetrics": {
+                    "$ref": "#/$defs/ErrorMetrics"
+                },
+                "AverageWeightedQuantileLoss": {
+                    "$ref": "#/$defs/Double"
+                }
+            }
+        },
+        "WeightedQuantileLosses": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/WeightedQuantileLoss"
+            }
+        },
+        "WeightedQuantileLoss": {
+            "type": "object",
+            "properties": {
+                "Quantile": {
+                    "$ref": "#/$defs/Double"
+                },
+                "LossValue": {
+                    "$ref": "#/$defs/Double"
+                }
+            }
+        },
+        "ErrorMetrics": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ErrorMetric"
+            }
+        },
+        "ErrorMetric": {
+            "type": "object",
+            "properties": {
+                "ForecastType": {
+                    "$ref": "#/$defs/ForecastType"
+                },
+                "WAPE": {
+                    "$ref": "#/$defs/Double"
+                },
+                "RMSE": {
+                    "$ref": "#/$defs/Double"
+                },
+                "MASE": {
+                    "$ref": "#/$defs/Double"
+                },
+                "MAPE": {
+                    "$ref": "#/$defs/Double"
+                }
+            }
+        },
+        "GetAccuracyMetricsRequest": {
+            "type": "object",
+            "properties": {
+                "PredictorArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "ListDatasetGroupsResponse": {
+            "type": "object",
+            "properties": {
+                "DatasetGroups": {
+                    "$ref": "#/$defs/DatasetGroups"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "DatasetGroups": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DatasetGroupSummary"
+            }
+        },
+        "DatasetGroupSummary": {
+            "type": "object",
+            "properties": {
+                "DatasetGroupArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "DatasetGroupName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastModificationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "ListDatasetGroupsRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListDatasetImportJobsResponse": {
+            "type": "object",
+            "properties": {
+                "DatasetImportJobs": {
+                    "$ref": "#/$defs/DatasetImportJobs"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "DatasetImportJobs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DatasetImportJobSummary"
+            }
+        },
+        "DatasetImportJobSummary": {
+            "type": "object",
+            "properties": {
+                "DatasetImportJobArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "DatasetImportJobName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "DataSource": {
+                    "$ref": "#/$defs/DataSource"
+                },
+                "Status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "Message": {
+                    "$ref": "#/$defs/ErrorMessage"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastModificationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "ImportMode": {
+                    "$ref": "#/$defs/ImportMode"
+                }
+            }
+        },
+        "ListDatasetImportJobsRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/Filters"
+                }
+            }
+        },
+        "Filters": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Filter"
+            }
+        },
+        "Filter": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/String"
+                },
+                "Value": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Condition": {
+                    "$ref": "#/$defs/FilterConditionString"
+                }
+            }
+        },
+        "FilterConditionString": {
+            "enum": [
+                "IS",
+                "IS_NOT"
+            ]
+        },
+        "ListDatasetsResponse": {
+            "type": "object",
+            "properties": {
+                "Datasets": {
+                    "$ref": "#/$defs/Datasets"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "Datasets": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DatasetSummary"
+            }
+        },
+        "DatasetSummary": {
+            "type": "object",
+            "properties": {
+                "DatasetArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "DatasetName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "DatasetType": {
+                    "$ref": "#/$defs/DatasetType"
+                },
+                "Domain": {
+                    "$ref": "#/$defs/Domain"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastModificationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListDatasetsRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "ListExplainabilitiesResponse": {
+            "type": "object",
+            "properties": {
+                "Explainabilities": {
+                    "$ref": "#/$defs/Explainabilities"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "Explainabilities": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ExplainabilitySummary"
+            }
+        },
+        "ExplainabilitySummary": {
+            "type": "object",
+            "properties": {
+                "ExplainabilityArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "ExplainabilityName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "ExplainabilityConfig": {
+                    "$ref": "#/$defs/ExplainabilityConfig"
+                },
+                "Status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "Message": {
+                    "$ref": "#/$defs/Message"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastModificationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListExplainabilitiesRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/Filters"
+                }
+            }
+        },
+        "ListExplainabilityExportsResponse": {
+            "type": "object",
+            "properties": {
+                "ExplainabilityExports": {
+                    "$ref": "#/$defs/ExplainabilityExports"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ExplainabilityExports": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ExplainabilityExportSummary"
+            }
+        },
+        "ExplainabilityExportSummary": {
+            "type": "object",
+            "properties": {
+                "ExplainabilityExportArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "ExplainabilityExportName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Destination": {
+                    "$ref": "#/$defs/DataDestination"
+                },
+                "Status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "Message": {
+                    "$ref": "#/$defs/ErrorMessage"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastModificationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListExplainabilityExportsRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/Filters"
+                }
+            }
+        },
+        "ListForecastExportJobsResponse": {
+            "type": "object",
+            "properties": {
+                "ForecastExportJobs": {
+                    "$ref": "#/$defs/ForecastExportJobs"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ForecastExportJobs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ForecastExportJobSummary"
+            }
+        },
+        "ForecastExportJobSummary": {
+            "type": "object",
+            "properties": {
+                "ForecastExportJobArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "ForecastExportJobName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Destination": {
+                    "$ref": "#/$defs/DataDestination"
+                },
+                "Status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "Message": {
+                    "$ref": "#/$defs/ErrorMessage"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastModificationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListForecastExportJobsRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/Filters"
+                }
+            }
+        },
+        "ListForecastsResponse": {
+            "type": "object",
+            "properties": {
+                "Forecasts": {
+                    "$ref": "#/$defs/Forecasts"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "Forecasts": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ForecastSummary"
+            }
+        },
+        "ForecastSummary": {
+            "type": "object",
+            "properties": {
+                "ForecastArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "ForecastName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "PredictorArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "CreatedUsingAutoPredictor": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "DatasetGroupArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "Status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "Message": {
+                    "$ref": "#/$defs/ErrorMessage"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastModificationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListForecastsRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/Filters"
+                }
+            }
+        },
+        "ListMonitorEvaluationsResponse": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "PredictorMonitorEvaluations": {
+                    "$ref": "#/$defs/PredictorMonitorEvaluations"
+                }
+            }
+        },
+        "PredictorMonitorEvaluations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PredictorMonitorEvaluation"
+            }
+        },
+        "PredictorMonitorEvaluation": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "MonitorArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "EvaluationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EvaluationState": {
+                    "$ref": "#/$defs/EvaluationState"
+                },
+                "WindowStartDatetime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "WindowEndDatetime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "PredictorEvent": {
+                    "$ref": "#/$defs/PredictorEvent"
+                },
+                "MonitorDataSource": {
+                    "$ref": "#/$defs/MonitorDataSource"
+                },
+                "MetricResults": {
+                    "$ref": "#/$defs/MetricResults"
+                },
+                "NumItemsEvaluated": {
+                    "$ref": "#/$defs/Long"
+                },
+                "Message": {
+                    "$ref": "#/$defs/Message"
+                }
+            }
+        },
+        "PredictorEvent": {
+            "type": "object",
+            "properties": {
+                "Detail": {
+                    "$ref": "#/$defs/Detail"
+                },
+                "Datetime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "Detail": {
+            "type": "string"
+        },
+        "MonitorDataSource": {
+            "type": "object",
+            "properties": {
+                "DatasetImportJobArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "ForecastArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "PredictorArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "MetricResults": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MetricResult"
+            }
+        },
+        "MetricResult": {
+            "type": "object",
+            "properties": {
+                "MetricName": {
+                    "$ref": "#/$defs/MetricName"
+                },
+                "MetricValue": {
+                    "$ref": "#/$defs/Double"
+                }
+            }
+        },
+        "MetricName": {
+            "type": "string"
+        },
+        "ListMonitorEvaluationsRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "MonitorArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/Filters"
+                }
+            }
+        },
+        "ListMonitorsResponse": {
+            "type": "object",
+            "properties": {
+                "Monitors": {
+                    "$ref": "#/$defs/Monitors"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "Monitors": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MonitorSummary"
+            }
+        },
+        "MonitorSummary": {
+            "type": "object",
+            "properties": {
+                "MonitorArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "MonitorName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastModificationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListMonitorsRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/Filters"
+                }
+            }
+        },
+        "ListPredictorBacktestExportJobsResponse": {
+            "type": "object",
+            "properties": {
+                "PredictorBacktestExportJobs": {
+                    "$ref": "#/$defs/PredictorBacktestExportJobs"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "PredictorBacktestExportJobs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PredictorBacktestExportJobSummary"
+            }
+        },
+        "PredictorBacktestExportJobSummary": {
+            "type": "object",
+            "properties": {
+                "PredictorBacktestExportJobArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "PredictorBacktestExportJobName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Destination": {
+                    "$ref": "#/$defs/DataDestination"
+                },
+                "Status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "Message": {
+                    "$ref": "#/$defs/ErrorMessage"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastModificationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListPredictorBacktestExportJobsRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/Filters"
+                }
+            }
+        },
+        "ListPredictorsResponse": {
+            "type": "object",
+            "properties": {
+                "Predictors": {
+                    "$ref": "#/$defs/Predictors"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "Predictors": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PredictorSummary"
+            }
+        },
+        "PredictorSummary": {
+            "type": "object",
+            "properties": {
+                "PredictorArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "PredictorName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "DatasetGroupArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "IsAutoPredictor": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "ReferencePredictorSummary": {
+                    "$ref": "#/$defs/ReferencePredictorSummary"
+                },
+                "Status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "Message": {
+                    "$ref": "#/$defs/ErrorMessage"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastModificationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListPredictorsRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/Filters"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "ListWhatIfAnalysesResponse": {
+            "type": "object",
+            "properties": {
+                "WhatIfAnalyses": {
+                    "$ref": "#/$defs/WhatIfAnalyses"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "WhatIfAnalyses": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/WhatIfAnalysisSummary"
+            }
+        },
+        "WhatIfAnalysisSummary": {
+            "type": "object",
+            "properties": {
+                "WhatIfAnalysisArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "WhatIfAnalysisName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "ForecastArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "Message": {
+                    "$ref": "#/$defs/ErrorMessage"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastModificationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListWhatIfAnalysesRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/Filters"
+                }
+            }
+        },
+        "ListWhatIfForecastExportsResponse": {
+            "type": "object",
+            "properties": {
+                "WhatIfForecastExports": {
+                    "$ref": "#/$defs/WhatIfForecastExports"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "WhatIfForecastExports": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/WhatIfForecastExportSummary"
+            }
+        },
+        "WhatIfForecastExportSummary": {
+            "type": "object",
+            "properties": {
+                "WhatIfForecastExportArn": {
+                    "$ref": "#/$defs/LongArn"
+                },
+                "WhatIfForecastArns": {
+                    "$ref": "#/$defs/WhatIfForecastArnListForExport"
+                },
+                "WhatIfForecastExportName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Destination": {
+                    "$ref": "#/$defs/DataDestination"
+                },
+                "Status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "Message": {
+                    "$ref": "#/$defs/ErrorMessage"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastModificationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListWhatIfForecastExportsRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/Filters"
+                }
+            }
+        },
+        "ListWhatIfForecastsResponse": {
+            "type": "object",
+            "properties": {
+                "WhatIfForecasts": {
+                    "$ref": "#/$defs/WhatIfForecasts"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "WhatIfForecasts": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/WhatIfForecastSummary"
+            }
+        },
+        "WhatIfForecastSummary": {
+            "type": "object",
+            "properties": {
+                "WhatIfForecastArn": {
+                    "$ref": "#/$defs/LongArn"
+                },
+                "WhatIfForecastName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "WhatIfAnalysisArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "Message": {
+                    "$ref": "#/$defs/ErrorMessage"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastModificationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListWhatIfForecastsRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/Filters"
+                }
+            }
+        },
+        "ResumeResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "StopResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeys"
+                }
+            }
+        },
+        "TagKeys": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "UpdateDatasetGroupResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateDatasetGroupRequest": {
+            "type": "object",
+            "properties": {
+                "DatasetGroupArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "DatasetArns": {
+                    "$ref": "#/$defs/ArnList"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://forecast-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://forecast-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://forecast.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://forecast.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

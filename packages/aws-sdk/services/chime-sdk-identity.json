@@ -1,0 +1,2305 @@
+{
+    "name": "chime",
+    "commands": [
+        {
+            "name": "CreateAppInstance",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateAppInstance"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateAppInstanceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateAppInstanceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateAppInstanceAdmin",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateAppInstanceAdmin"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateAppInstanceAdminResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateAppInstanceAdminRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateAppInstanceBot",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateAppInstanceBot"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateAppInstanceBotResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateAppInstanceBotRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateAppInstanceUser",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateAppInstanceUser"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateAppInstanceUserResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateAppInstanceUserRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteAppInstance",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteAppInstance"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteAppInstanceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteAppInstanceAdmin",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteAppInstanceAdmin"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteAppInstanceAdminRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteAppInstanceBot",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteAppInstanceBot"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteAppInstanceBotRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteAppInstanceUser",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteAppInstanceUser"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteAppInstanceUserRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeregisterAppInstanceUserEndpoint",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeregisterAppInstanceUserEndpoint"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeregisterAppInstanceUserEndpointRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeAppInstance",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeAppInstance"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeAppInstanceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeAppInstanceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeAppInstanceAdmin",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeAppInstanceAdmin"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeAppInstanceAdminResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeAppInstanceAdminRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeAppInstanceBot",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeAppInstanceBot"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeAppInstanceBotResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeAppInstanceBotRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeAppInstanceUser",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeAppInstanceUser"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeAppInstanceUserResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeAppInstanceUserRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeAppInstanceUserEndpoint",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeAppInstanceUserEndpoint"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeAppInstanceUserEndpointResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeAppInstanceUserEndpointRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetAppInstanceRetentionSettings",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetAppInstanceRetentionSettings"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetAppInstanceRetentionSettingsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetAppInstanceRetentionSettingsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListAppInstanceAdmins",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListAppInstanceAdmins"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListAppInstanceAdminsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListAppInstanceAdminsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListAppInstanceBots",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListAppInstanceBots"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListAppInstanceBotsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListAppInstanceBotsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListAppInstances",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListAppInstances"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListAppInstancesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListAppInstancesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListAppInstanceUserEndpoints",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListAppInstanceUserEndpoints"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListAppInstanceUserEndpointsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListAppInstanceUserEndpointsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListAppInstanceUsers",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListAppInstanceUsers"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListAppInstanceUsersResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListAppInstanceUsersRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutAppInstanceRetentionSettings",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutAppInstanceRetentionSettings"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutAppInstanceRetentionSettingsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutAppInstanceRetentionSettingsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutAppInstanceUserExpirationSettings",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutAppInstanceUserExpirationSettings"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutAppInstanceUserExpirationSettingsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutAppInstanceUserExpirationSettingsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RegisterAppInstanceUserEndpoint",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RegisterAppInstanceUserEndpoint"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RegisterAppInstanceUserEndpointResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RegisterAppInstanceUserEndpointRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateAppInstance",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateAppInstance"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateAppInstanceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateAppInstanceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateAppInstanceBot",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateAppInstanceBot"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateAppInstanceBotResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateAppInstanceBotRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateAppInstanceUser",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateAppInstanceUser"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateAppInstanceUserResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateAppInstanceUserRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateAppInstanceUserEndpoint",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateAppInstanceUserEndpoint"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateAppInstanceUserEndpointResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateAppInstanceUserEndpointRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CreateAppInstanceResponse": {
+            "type": "object",
+            "properties": {
+                "AppInstanceArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                }
+            }
+        },
+        "ChimeArn": {
+            "type": "string"
+        },
+        "CreateAppInstanceRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/NonEmptyResourceName"
+                },
+                "Metadata": {
+                    "$ref": "#/$defs/Metadata"
+                },
+                "ClientRequestToken": {
+                    "$ref": "#/$defs/ClientRequestToken"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "NonEmptyResourceName": {
+            "type": "string"
+        },
+        "Metadata": {
+            "type": "string"
+        },
+        "ClientRequestToken": {
+            "type": "string"
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "CreateAppInstanceAdminResponse": {
+            "type": "object",
+            "properties": {
+                "AppInstanceAdmin": {
+                    "$ref": "#/$defs/Identity"
+                },
+                "AppInstanceArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                }
+            }
+        },
+        "Identity": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/ResourceName"
+                }
+            }
+        },
+        "ResourceName": {
+            "type": "string"
+        },
+        "CreateAppInstanceAdminRequest": {
+            "type": "object",
+            "properties": {
+                "AppInstanceAdminArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "AppInstanceArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                }
+            }
+        },
+        "CreateAppInstanceBotResponse": {
+            "type": "object",
+            "properties": {
+                "AppInstanceBotArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                }
+            }
+        },
+        "CreateAppInstanceBotRequest": {
+            "type": "object",
+            "properties": {
+                "AppInstanceArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/ResourceName"
+                },
+                "Metadata": {
+                    "$ref": "#/$defs/Metadata"
+                },
+                "ClientRequestToken": {
+                    "$ref": "#/$defs/ClientRequestToken"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "Configuration": {
+                    "$ref": "#/$defs/Configuration"
+                }
+            }
+        },
+        "Configuration": {
+            "type": "object",
+            "properties": {
+                "Lex": {
+                    "$ref": "#/$defs/LexConfiguration"
+                }
+            }
+        },
+        "LexConfiguration": {
+            "type": "object",
+            "properties": {
+                "RespondsTo": {
+                    "$ref": "#/$defs/RespondsTo"
+                },
+                "InvokedBy": {
+                    "$ref": "#/$defs/InvokedBy"
+                },
+                "LexBotAliasArn": {
+                    "$ref": "#/$defs/LexBotAliasArn"
+                },
+                "LocaleId": {
+                    "$ref": "#/$defs/String"
+                },
+                "WelcomeIntent": {
+                    "$ref": "#/$defs/LexIntentName"
+                }
+            }
+        },
+        "RespondsTo": {
+            "enum": [
+                "STANDARD_MESSAGES"
+            ]
+        },
+        "InvokedBy": {
+            "type": "object",
+            "properties": {
+                "StandardMessages": {
+                    "$ref": "#/$defs/StandardMessages"
+                },
+                "TargetedMessages": {
+                    "$ref": "#/$defs/TargetedMessages"
+                }
+            }
+        },
+        "StandardMessages": {
+            "enum": [
+                "AUTO",
+                "ALL",
+                "MENTIONS",
+                "NONE"
+            ]
+        },
+        "TargetedMessages": {
+            "enum": [
+                "ALL",
+                "NONE"
+            ]
+        },
+        "LexBotAliasArn": {
+            "type": "string"
+        },
+        "String": {
+            "type": "string"
+        },
+        "LexIntentName": {
+            "type": "string"
+        },
+        "CreateAppInstanceUserResponse": {
+            "type": "object",
+            "properties": {
+                "AppInstanceUserArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                }
+            }
+        },
+        "CreateAppInstanceUserRequest": {
+            "type": "object",
+            "properties": {
+                "AppInstanceArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "AppInstanceUserId": {
+                    "$ref": "#/$defs/UserId"
+                },
+                "Name": {
+                    "$ref": "#/$defs/UserName"
+                },
+                "Metadata": {
+                    "$ref": "#/$defs/Metadata"
+                },
+                "ClientRequestToken": {
+                    "$ref": "#/$defs/ClientRequestToken"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "ExpirationSettings": {
+                    "$ref": "#/$defs/ExpirationSettings"
+                }
+            }
+        },
+        "UserId": {
+            "type": "string"
+        },
+        "UserName": {
+            "type": "string"
+        },
+        "ExpirationSettings": {
+            "type": "object",
+            "properties": {
+                "ExpirationDays": {
+                    "$ref": "#/$defs/ExpirationDays"
+                },
+                "ExpirationCriterion": {
+                    "$ref": "#/$defs/ExpirationCriterion"
+                }
+            }
+        },
+        "ExpirationDays": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ExpirationCriterion": {
+            "enum": [
+                "CREATED_TIMESTAMP"
+            ]
+        },
+        "DeleteAppInstanceRequest": {
+            "type": "object",
+            "properties": {
+                "AppInstanceArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                }
+            }
+        },
+        "DeleteAppInstanceAdminRequest": {
+            "type": "object",
+            "properties": {
+                "AppInstanceAdminArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "AppInstanceArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                }
+            }
+        },
+        "DeleteAppInstanceBotRequest": {
+            "type": "object",
+            "properties": {
+                "AppInstanceBotArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                }
+            }
+        },
+        "DeleteAppInstanceUserRequest": {
+            "type": "object",
+            "properties": {
+                "AppInstanceUserArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                }
+            }
+        },
+        "DeregisterAppInstanceUserEndpointRequest": {
+            "type": "object",
+            "properties": {
+                "AppInstanceUserArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "EndpointId": {
+                    "$ref": "#/$defs/String64"
+                }
+            }
+        },
+        "String64": {
+            "type": "string"
+        },
+        "DescribeAppInstanceResponse": {
+            "type": "object",
+            "properties": {
+                "AppInstance": {
+                    "$ref": "#/$defs/AppInstance"
+                }
+            }
+        },
+        "AppInstance": {
+            "type": "object",
+            "properties": {
+                "AppInstanceArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/NonEmptyResourceName"
+                },
+                "CreatedTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastUpdatedTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Metadata": {
+                    "$ref": "#/$defs/Metadata"
+                }
+            }
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "DescribeAppInstanceRequest": {
+            "type": "object",
+            "properties": {
+                "AppInstanceArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                }
+            }
+        },
+        "DescribeAppInstanceAdminResponse": {
+            "type": "object",
+            "properties": {
+                "AppInstanceAdmin": {
+                    "$ref": "#/$defs/AppInstanceAdmin"
+                }
+            }
+        },
+        "AppInstanceAdmin": {
+            "type": "object",
+            "properties": {
+                "Admin": {
+                    "$ref": "#/$defs/Identity"
+                },
+                "AppInstanceArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "CreatedTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "DescribeAppInstanceAdminRequest": {
+            "type": "object",
+            "properties": {
+                "AppInstanceAdminArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "AppInstanceArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                }
+            }
+        },
+        "DescribeAppInstanceBotResponse": {
+            "type": "object",
+            "properties": {
+                "AppInstanceBot": {
+                    "$ref": "#/$defs/AppInstanceBot"
+                }
+            }
+        },
+        "AppInstanceBot": {
+            "type": "object",
+            "properties": {
+                "AppInstanceBotArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/ResourceName"
+                },
+                "Configuration": {
+                    "$ref": "#/$defs/Configuration"
+                },
+                "CreatedTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastUpdatedTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Metadata": {
+                    "$ref": "#/$defs/Metadata"
+                }
+            }
+        },
+        "DescribeAppInstanceBotRequest": {
+            "type": "object",
+            "properties": {
+                "AppInstanceBotArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                }
+            }
+        },
+        "DescribeAppInstanceUserResponse": {
+            "type": "object",
+            "properties": {
+                "AppInstanceUser": {
+                    "$ref": "#/$defs/AppInstanceUser"
+                }
+            }
+        },
+        "AppInstanceUser": {
+            "type": "object",
+            "properties": {
+                "AppInstanceUserArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/UserName"
+                },
+                "Metadata": {
+                    "$ref": "#/$defs/Metadata"
+                },
+                "CreatedTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastUpdatedTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "ExpirationSettings": {
+                    "$ref": "#/$defs/ExpirationSettings"
+                }
+            }
+        },
+        "DescribeAppInstanceUserRequest": {
+            "type": "object",
+            "properties": {
+                "AppInstanceUserArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                }
+            }
+        },
+        "DescribeAppInstanceUserEndpointResponse": {
+            "type": "object",
+            "properties": {
+                "AppInstanceUserEndpoint": {
+                    "$ref": "#/$defs/AppInstanceUserEndpoint"
+                }
+            }
+        },
+        "AppInstanceUserEndpoint": {
+            "type": "object",
+            "properties": {
+                "AppInstanceUserArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "EndpointId": {
+                    "$ref": "#/$defs/String64"
+                },
+                "Name": {
+                    "$ref": "#/$defs/SensitiveString1600"
+                },
+                "Type": {
+                    "$ref": "#/$defs/AppInstanceUserEndpointType"
+                },
+                "ResourceArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "EndpointAttributes": {
+                    "$ref": "#/$defs/EndpointAttributes"
+                },
+                "CreatedTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastUpdatedTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "AllowMessages": {
+                    "$ref": "#/$defs/AllowMessages"
+                },
+                "EndpointState": {
+                    "$ref": "#/$defs/EndpointState"
+                }
+            }
+        },
+        "SensitiveString1600": {
+            "type": "string"
+        },
+        "AppInstanceUserEndpointType": {
+            "enum": [
+                "APNS",
+                "APNS_SANDBOX",
+                "GCM"
+            ]
+        },
+        "EndpointAttributes": {
+            "type": "object",
+            "properties": {
+                "DeviceToken": {
+                    "$ref": "#/$defs/NonEmptySensitiveString1600"
+                },
+                "VoipDeviceToken": {
+                    "$ref": "#/$defs/NonEmptySensitiveString1600"
+                }
+            }
+        },
+        "NonEmptySensitiveString1600": {
+            "type": "string"
+        },
+        "AllowMessages": {
+            "enum": [
+                "ALL",
+                "NONE"
+            ]
+        },
+        "EndpointState": {
+            "type": "object",
+            "properties": {
+                "Status": {
+                    "$ref": "#/$defs/EndpointStatus"
+                },
+                "StatusReason": {
+                    "$ref": "#/$defs/EndpointStatusReason"
+                }
+            }
+        },
+        "EndpointStatus": {
+            "enum": [
+                "ACTIVE",
+                "INACTIVE"
+            ]
+        },
+        "EndpointStatusReason": {
+            "enum": [
+                "INVALID_DEVICE_TOKEN",
+                "INVALID_PINPOINT_ARN"
+            ]
+        },
+        "DescribeAppInstanceUserEndpointRequest": {
+            "type": "object",
+            "properties": {
+                "AppInstanceUserArn": {
+                    "$ref": "#/$defs/String1600"
+                },
+                "EndpointId": {
+                    "$ref": "#/$defs/String64"
+                }
+            }
+        },
+        "String1600": {
+            "type": "string"
+        },
+        "GetAppInstanceRetentionSettingsResponse": {
+            "type": "object",
+            "properties": {
+                "AppInstanceRetentionSettings": {
+                    "$ref": "#/$defs/AppInstanceRetentionSettings"
+                },
+                "InitiateDeletionTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "AppInstanceRetentionSettings": {
+            "type": "object",
+            "properties": {
+                "ChannelRetentionSettings": {
+                    "$ref": "#/$defs/ChannelRetentionSettings"
+                }
+            }
+        },
+        "ChannelRetentionSettings": {
+            "type": "object",
+            "properties": {
+                "RetentionDays": {
+                    "$ref": "#/$defs/RetentionDays"
+                }
+            }
+        },
+        "RetentionDays": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "GetAppInstanceRetentionSettingsRequest": {
+            "type": "object",
+            "properties": {
+                "AppInstanceArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                }
+            }
+        },
+        "ListAppInstanceAdminsResponse": {
+            "type": "object",
+            "properties": {
+                "AppInstanceArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "AppInstanceAdmins": {
+                    "$ref": "#/$defs/AppInstanceAdminList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "AppInstanceAdminList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AppInstanceAdminSummary"
+            }
+        },
+        "AppInstanceAdminSummary": {
+            "type": "object",
+            "properties": {
+                "Admin": {
+                    "$ref": "#/$defs/Identity"
+                }
+            }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "ListAppInstanceAdminsRequest": {
+            "type": "object",
+            "properties": {
+                "AppInstanceArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListAppInstanceBotsResponse": {
+            "type": "object",
+            "properties": {
+                "AppInstanceArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "AppInstanceBots": {
+                    "$ref": "#/$defs/AppInstanceBotList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "AppInstanceBotList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AppInstanceBotSummary"
+            }
+        },
+        "AppInstanceBotSummary": {
+            "type": "object",
+            "properties": {
+                "AppInstanceBotArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/ResourceName"
+                },
+                "Metadata": {
+                    "$ref": "#/$defs/Metadata"
+                }
+            }
+        },
+        "ListAppInstanceBotsRequest": {
+            "type": "object",
+            "properties": {
+                "AppInstanceArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListAppInstancesResponse": {
+            "type": "object",
+            "properties": {
+                "AppInstances": {
+                    "$ref": "#/$defs/AppInstanceList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "AppInstanceList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AppInstanceSummary"
+            }
+        },
+        "AppInstanceSummary": {
+            "type": "object",
+            "properties": {
+                "AppInstanceArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/NonEmptyResourceName"
+                },
+                "Metadata": {
+                    "$ref": "#/$defs/Metadata"
+                }
+            }
+        },
+        "ListAppInstancesRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListAppInstanceUserEndpointsResponse": {
+            "type": "object",
+            "properties": {
+                "AppInstanceUserEndpoints": {
+                    "$ref": "#/$defs/AppInstanceUserEndpointSummaryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "AppInstanceUserEndpointSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AppInstanceUserEndpointSummary"
+            }
+        },
+        "AppInstanceUserEndpointSummary": {
+            "type": "object",
+            "properties": {
+                "AppInstanceUserArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "EndpointId": {
+                    "$ref": "#/$defs/String64"
+                },
+                "Name": {
+                    "$ref": "#/$defs/SensitiveString1600"
+                },
+                "Type": {
+                    "$ref": "#/$defs/AppInstanceUserEndpointType"
+                },
+                "AllowMessages": {
+                    "$ref": "#/$defs/AllowMessages"
+                },
+                "EndpointState": {
+                    "$ref": "#/$defs/EndpointState"
+                }
+            }
+        },
+        "ListAppInstanceUserEndpointsRequest": {
+            "type": "object",
+            "properties": {
+                "AppInstanceUserArn": {
+                    "$ref": "#/$defs/SensitiveChimeArn"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "SensitiveChimeArn": {
+            "type": "string"
+        },
+        "ListAppInstanceUsersResponse": {
+            "type": "object",
+            "properties": {
+                "AppInstanceArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "AppInstanceUsers": {
+                    "$ref": "#/$defs/AppInstanceUserList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "AppInstanceUserList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AppInstanceUserSummary"
+            }
+        },
+        "AppInstanceUserSummary": {
+            "type": "object",
+            "properties": {
+                "AppInstanceUserArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/UserName"
+                },
+                "Metadata": {
+                    "$ref": "#/$defs/Metadata"
+                }
+            }
+        },
+        "ListAppInstanceUsersRequest": {
+            "type": "object",
+            "properties": {
+                "AppInstanceArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceARN": {
+                    "$ref": "#/$defs/ChimeArn"
+                }
+            }
+        },
+        "PutAppInstanceRetentionSettingsResponse": {
+            "type": "object",
+            "properties": {
+                "AppInstanceRetentionSettings": {
+                    "$ref": "#/$defs/AppInstanceRetentionSettings"
+                },
+                "InitiateDeletionTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "PutAppInstanceRetentionSettingsRequest": {
+            "type": "object",
+            "properties": {
+                "AppInstanceArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "AppInstanceRetentionSettings": {
+                    "$ref": "#/$defs/AppInstanceRetentionSettings"
+                }
+            }
+        },
+        "PutAppInstanceUserExpirationSettingsResponse": {
+            "type": "object",
+            "properties": {
+                "AppInstanceUserArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "ExpirationSettings": {
+                    "$ref": "#/$defs/ExpirationSettings"
+                }
+            }
+        },
+        "PutAppInstanceUserExpirationSettingsRequest": {
+            "type": "object",
+            "properties": {
+                "AppInstanceUserArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "ExpirationSettings": {
+                    "$ref": "#/$defs/ExpirationSettings"
+                }
+            }
+        },
+        "RegisterAppInstanceUserEndpointResponse": {
+            "type": "object",
+            "properties": {
+                "AppInstanceUserArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "EndpointId": {
+                    "$ref": "#/$defs/String64"
+                }
+            }
+        },
+        "RegisterAppInstanceUserEndpointRequest": {
+            "type": "object",
+            "properties": {
+                "AppInstanceUserArn": {
+                    "$ref": "#/$defs/SensitiveChimeArn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/SensitiveString1600"
+                },
+                "Type": {
+                    "$ref": "#/$defs/AppInstanceUserEndpointType"
+                },
+                "ResourceArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "EndpointAttributes": {
+                    "$ref": "#/$defs/EndpointAttributes"
+                },
+                "ClientRequestToken": {
+                    "$ref": "#/$defs/ClientRequestToken"
+                },
+                "AllowMessages": {
+                    "$ref": "#/$defs/AllowMessages"
+                }
+            }
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceARN": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceARN": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "UpdateAppInstanceResponse": {
+            "type": "object",
+            "properties": {
+                "AppInstanceArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                }
+            }
+        },
+        "UpdateAppInstanceRequest": {
+            "type": "object",
+            "properties": {
+                "AppInstanceArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/NonEmptyResourceName"
+                },
+                "Metadata": {
+                    "$ref": "#/$defs/Metadata"
+                }
+            }
+        },
+        "UpdateAppInstanceBotResponse": {
+            "type": "object",
+            "properties": {
+                "AppInstanceBotArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                }
+            }
+        },
+        "UpdateAppInstanceBotRequest": {
+            "type": "object",
+            "properties": {
+                "AppInstanceBotArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/ResourceName"
+                },
+                "Metadata": {
+                    "$ref": "#/$defs/Metadata"
+                },
+                "Configuration": {
+                    "$ref": "#/$defs/Configuration"
+                }
+            }
+        },
+        "UpdateAppInstanceUserResponse": {
+            "type": "object",
+            "properties": {
+                "AppInstanceUserArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                }
+            }
+        },
+        "UpdateAppInstanceUserRequest": {
+            "type": "object",
+            "properties": {
+                "AppInstanceUserArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/UserName"
+                },
+                "Metadata": {
+                    "$ref": "#/$defs/Metadata"
+                }
+            }
+        },
+        "UpdateAppInstanceUserEndpointResponse": {
+            "type": "object",
+            "properties": {
+                "AppInstanceUserArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "EndpointId": {
+                    "$ref": "#/$defs/String64"
+                }
+            }
+        },
+        "UpdateAppInstanceUserEndpointRequest": {
+            "type": "object",
+            "properties": {
+                "AppInstanceUserArn": {
+                    "$ref": "#/$defs/ChimeArn"
+                },
+                "EndpointId": {
+                    "$ref": "#/$defs/String64"
+                },
+                "Name": {
+                    "$ref": "#/$defs/SensitiveString1600"
+                },
+                "AllowMessages": {
+                    "$ref": "#/$defs/AllowMessages"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://identity-chime-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://identity-chime-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://identity-chime.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://identity-chime.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

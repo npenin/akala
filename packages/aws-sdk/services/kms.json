@@ -1,0 +1,3991 @@
+{
+    "name": "kms",
+    "commands": [
+        {
+            "name": "CancelKeyDeletion",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CancelKeyDeletion"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CancelKeyDeletionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CancelKeyDeletionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ConnectCustomKeyStore",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ConnectCustomKeyStore"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ConnectCustomKeyStoreResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ConnectCustomKeyStoreRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateAlias",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateAlias"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateAliasRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateCustomKeyStore",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateCustomKeyStore"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateCustomKeyStoreResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateCustomKeyStoreRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateGrant",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateGrant"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateGrantResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateGrantRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateKey",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateKey"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateKeyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateKeyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "Decrypt",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "Decrypt"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DecryptResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DecryptRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteAlias",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteAlias"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteAliasRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteCustomKeyStore",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteCustomKeyStore"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteCustomKeyStoreResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteCustomKeyStoreRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteImportedKeyMaterial",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteImportedKeyMaterial"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteImportedKeyMaterialRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeriveSharedSecret",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeriveSharedSecret"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeriveSharedSecretResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeriveSharedSecretRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeCustomKeyStores",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeCustomKeyStores"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeCustomKeyStoresResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeCustomKeyStoresRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeKey",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeKey"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeKeyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeKeyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DisableKey",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DisableKey"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DisableKeyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DisableKeyRotation",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DisableKeyRotation"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DisableKeyRotationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DisconnectCustomKeyStore",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DisconnectCustomKeyStore"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DisconnectCustomKeyStoreResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DisconnectCustomKeyStoreRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "EnableKey",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "EnableKey"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/EnableKeyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "EnableKeyRotation",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "EnableKeyRotation"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/EnableKeyRotationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "Encrypt",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "Encrypt"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/EncryptResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/EncryptRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GenerateDataKey",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GenerateDataKey"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GenerateDataKeyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GenerateDataKeyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GenerateDataKeyPair",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GenerateDataKeyPair"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GenerateDataKeyPairResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GenerateDataKeyPairRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GenerateDataKeyPairWithoutPlaintext",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GenerateDataKeyPairWithoutPlaintext"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GenerateDataKeyPairWithoutPlaintextResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GenerateDataKeyPairWithoutPlaintextRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GenerateDataKeyWithoutPlaintext",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GenerateDataKeyWithoutPlaintext"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GenerateDataKeyWithoutPlaintextResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GenerateDataKeyWithoutPlaintextRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GenerateMac",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GenerateMac"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GenerateMacResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GenerateMacRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GenerateRandom",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GenerateRandom"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GenerateRandomResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GenerateRandomRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetKeyPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetKeyPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetKeyPolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetKeyPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetKeyRotationStatus",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetKeyRotationStatus"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetKeyRotationStatusResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetKeyRotationStatusRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetParametersForImport",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetParametersForImport"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetParametersForImportResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetParametersForImportRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetPublicKey",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetPublicKey"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetPublicKeyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetPublicKeyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ImportKeyMaterial",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ImportKeyMaterial"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ImportKeyMaterialResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ImportKeyMaterialRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListAliases",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListAliases"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListAliasesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListAliasesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListGrants",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListGrants"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListGrantsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListGrantsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListKeyPolicies",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListKeyPolicies"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListKeyPoliciesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListKeyPoliciesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListKeyRotations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListKeyRotations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListKeyRotationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListKeyRotationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListKeys",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListKeys"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListKeysResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListKeysRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListResourceTags",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListResourceTags"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListResourceTagsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListResourceTagsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListRetirableGrants",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListRetirableGrants"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListGrantsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListRetirableGrantsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutKeyPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PutKeyPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutKeyPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ReEncrypt",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ReEncrypt"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ReEncryptResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ReEncryptRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ReplicateKey",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ReplicateKey"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ReplicateKeyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ReplicateKeyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RetireGrant",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RetireGrant"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RetireGrantRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RevokeGrant",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RevokeGrant"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RevokeGrantRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RotateKeyOnDemand",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RotateKeyOnDemand"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RotateKeyOnDemandResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RotateKeyOnDemandRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ScheduleKeyDeletion",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ScheduleKeyDeletion"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ScheduleKeyDeletionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ScheduleKeyDeletionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "Sign",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "Sign"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/SignResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SignRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateAlias",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateAlias"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateAliasRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateCustomKeyStore",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateCustomKeyStore"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateCustomKeyStoreResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateCustomKeyStoreRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateKeyDescription",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateKeyDescription"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateKeyDescriptionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdatePrimaryRegion",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdatePrimaryRegion"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdatePrimaryRegionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "Verify",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "Verify"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/VerifyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/VerifyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "VerifyMac",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "VerifyMac"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/VerifyMacResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/VerifyMacRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CancelKeyDeletionResponse": {
+            "type": "object",
+            "properties": {
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                }
+            }
+        },
+        "KeyIdType": {
+            "type": "string"
+        },
+        "CancelKeyDeletionRequest": {
+            "type": "object",
+            "properties": {
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                }
+            }
+        },
+        "ConnectCustomKeyStoreResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "ConnectCustomKeyStoreRequest": {
+            "type": "object",
+            "properties": {
+                "CustomKeyStoreId": {
+                    "$ref": "#/$defs/CustomKeyStoreIdType"
+                }
+            }
+        },
+        "CustomKeyStoreIdType": {
+            "type": "string"
+        },
+        "CreateAliasRequest": {
+            "type": "object",
+            "properties": {
+                "AliasName": {
+                    "$ref": "#/$defs/AliasNameType"
+                },
+                "TargetKeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                }
+            }
+        },
+        "AliasNameType": {
+            "type": "string"
+        },
+        "CreateCustomKeyStoreResponse": {
+            "type": "object",
+            "properties": {
+                "CustomKeyStoreId": {
+                    "$ref": "#/$defs/CustomKeyStoreIdType"
+                }
+            }
+        },
+        "CreateCustomKeyStoreRequest": {
+            "type": "object",
+            "properties": {
+                "CustomKeyStoreName": {
+                    "$ref": "#/$defs/CustomKeyStoreNameType"
+                },
+                "CloudHsmClusterId": {
+                    "$ref": "#/$defs/CloudHsmClusterIdType"
+                },
+                "TrustAnchorCertificate": {
+                    "$ref": "#/$defs/TrustAnchorCertificateType"
+                },
+                "KeyStorePassword": {
+                    "$ref": "#/$defs/KeyStorePasswordType"
+                },
+                "CustomKeyStoreType": {
+                    "$ref": "#/$defs/CustomKeyStoreType"
+                },
+                "XksProxyUriEndpoint": {
+                    "$ref": "#/$defs/XksProxyUriEndpointType"
+                },
+                "XksProxyUriPath": {
+                    "$ref": "#/$defs/XksProxyUriPathType"
+                },
+                "XksProxyVpcEndpointServiceName": {
+                    "$ref": "#/$defs/XksProxyVpcEndpointServiceNameType"
+                },
+                "XksProxyAuthenticationCredential": {
+                    "$ref": "#/$defs/XksProxyAuthenticationCredentialType"
+                },
+                "XksProxyConnectivity": {
+                    "$ref": "#/$defs/XksProxyConnectivityType"
+                }
+            }
+        },
+        "CustomKeyStoreNameType": {
+            "type": "string"
+        },
+        "CloudHsmClusterIdType": {
+            "type": "string"
+        },
+        "TrustAnchorCertificateType": {
+            "type": "string"
+        },
+        "KeyStorePasswordType": {
+            "type": "string"
+        },
+        "CustomKeyStoreType": {
+            "enum": [
+                "AWS_CLOUDHSM",
+                "EXTERNAL_KEY_STORE"
+            ]
+        },
+        "XksProxyUriEndpointType": {
+            "type": "string"
+        },
+        "XksProxyUriPathType": {
+            "type": "string"
+        },
+        "XksProxyVpcEndpointServiceNameType": {
+            "type": "string"
+        },
+        "XksProxyAuthenticationCredentialType": {
+            "type": "object",
+            "properties": {
+                "AccessKeyId": {
+                    "$ref": "#/$defs/XksProxyAuthenticationAccessKeyIdType"
+                },
+                "RawSecretAccessKey": {
+                    "$ref": "#/$defs/XksProxyAuthenticationRawSecretAccessKeyType"
+                }
+            }
+        },
+        "XksProxyAuthenticationAccessKeyIdType": {
+            "type": "string"
+        },
+        "XksProxyAuthenticationRawSecretAccessKeyType": {
+            "type": "string"
+        },
+        "XksProxyConnectivityType": {
+            "enum": [
+                "PUBLIC_ENDPOINT",
+                "VPC_ENDPOINT_SERVICE"
+            ]
+        },
+        "CreateGrantResponse": {
+            "type": "object",
+            "properties": {
+                "GrantToken": {
+                    "$ref": "#/$defs/GrantTokenType"
+                },
+                "GrantId": {
+                    "$ref": "#/$defs/GrantIdType"
+                }
+            }
+        },
+        "GrantTokenType": {
+            "type": "string"
+        },
+        "GrantIdType": {
+            "type": "string"
+        },
+        "CreateGrantRequest": {
+            "type": "object",
+            "properties": {
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "GranteePrincipal": {
+                    "$ref": "#/$defs/PrincipalIdType"
+                },
+                "RetiringPrincipal": {
+                    "$ref": "#/$defs/PrincipalIdType"
+                },
+                "Operations": {
+                    "$ref": "#/$defs/GrantOperationList"
+                },
+                "Constraints": {
+                    "$ref": "#/$defs/GrantConstraints"
+                },
+                "GrantTokens": {
+                    "$ref": "#/$defs/GrantTokenList"
+                },
+                "Name": {
+                    "$ref": "#/$defs/GrantNameType"
+                },
+                "DryRun": {
+                    "$ref": "#/$defs/NullableBooleanType"
+                }
+            }
+        },
+        "PrincipalIdType": {
+            "type": "string"
+        },
+        "GrantOperationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/GrantOperation"
+            }
+        },
+        "GrantOperation": {
+            "enum": [
+                "Decrypt",
+                "Encrypt",
+                "GenerateDataKey",
+                "GenerateDataKeyWithoutPlaintext",
+                "ReEncryptFrom",
+                "ReEncryptTo",
+                "Sign",
+                "Verify",
+                "GetPublicKey",
+                "CreateGrant",
+                "RetireGrant",
+                "DescribeKey",
+                "GenerateDataKeyPair",
+                "GenerateDataKeyPairWithoutPlaintext",
+                "GenerateMac",
+                "VerifyMac",
+                "DeriveSharedSecret"
+            ]
+        },
+        "GrantConstraints": {
+            "type": "object",
+            "properties": {
+                "EncryptionContextSubset": {
+                    "$ref": "#/$defs/EncryptionContextType"
+                },
+                "EncryptionContextEquals": {
+                    "$ref": "#/$defs/EncryptionContextType"
+                }
+            }
+        },
+        "EncryptionContextType": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/EncryptionContextValue"
+            }
+        },
+        "EncryptionContextValue": {
+            "type": "string"
+        },
+        "GrantTokenList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/GrantTokenType"
+            }
+        },
+        "GrantNameType": {
+            "type": "string"
+        },
+        "NullableBooleanType": {
+            "type": "boolean"
+        },
+        "CreateKeyResponse": {
+            "type": "object",
+            "properties": {
+                "KeyMetadata": {
+                    "$ref": "#/$defs/KeyMetadata"
+                }
+            }
+        },
+        "KeyMetadata": {
+            "type": "object",
+            "properties": {
+                "AWSAccountId": {
+                    "$ref": "#/$defs/AWSAccountIdType"
+                },
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/ArnType"
+                },
+                "CreationDate": {
+                    "$ref": "#/$defs/DateType"
+                },
+                "Enabled": {
+                    "$ref": "#/$defs/BooleanType"
+                },
+                "Description": {
+                    "$ref": "#/$defs/DescriptionType"
+                },
+                "KeyUsage": {
+                    "$ref": "#/$defs/KeyUsageType"
+                },
+                "KeyState": {
+                    "$ref": "#/$defs/KeyState"
+                },
+                "DeletionDate": {
+                    "$ref": "#/$defs/DateType"
+                },
+                "ValidTo": {
+                    "$ref": "#/$defs/DateType"
+                },
+                "Origin": {
+                    "$ref": "#/$defs/OriginType"
+                },
+                "CustomKeyStoreId": {
+                    "$ref": "#/$defs/CustomKeyStoreIdType"
+                },
+                "CloudHsmClusterId": {
+                    "$ref": "#/$defs/CloudHsmClusterIdType"
+                },
+                "ExpirationModel": {
+                    "$ref": "#/$defs/ExpirationModelType"
+                },
+                "KeyManager": {
+                    "$ref": "#/$defs/KeyManagerType"
+                },
+                "CustomerMasterKeySpec": {
+                    "$ref": "#/$defs/CustomerMasterKeySpec"
+                },
+                "KeySpec": {
+                    "$ref": "#/$defs/KeySpec"
+                },
+                "EncryptionAlgorithms": {
+                    "$ref": "#/$defs/EncryptionAlgorithmSpecList"
+                },
+                "SigningAlgorithms": {
+                    "$ref": "#/$defs/SigningAlgorithmSpecList"
+                },
+                "KeyAgreementAlgorithms": {
+                    "$ref": "#/$defs/KeyAgreementAlgorithmSpecList"
+                },
+                "MultiRegion": {
+                    "$ref": "#/$defs/NullableBooleanType"
+                },
+                "MultiRegionConfiguration": {
+                    "$ref": "#/$defs/MultiRegionConfiguration"
+                },
+                "PendingDeletionWindowInDays": {
+                    "$ref": "#/$defs/PendingWindowInDaysType"
+                },
+                "MacAlgorithms": {
+                    "$ref": "#/$defs/MacAlgorithmSpecList"
+                },
+                "XksKeyConfiguration": {
+                    "$ref": "#/$defs/XksKeyConfigurationType"
+                }
+            }
+        },
+        "AWSAccountIdType": {
+            "type": "string"
+        },
+        "ArnType": {
+            "type": "string"
+        },
+        "DateType": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "BooleanType": {
+            "type": "boolean"
+        },
+        "DescriptionType": {
+            "type": "string"
+        },
+        "KeyUsageType": {
+            "enum": [
+                "SIGN_VERIFY",
+                "ENCRYPT_DECRYPT",
+                "GENERATE_VERIFY_MAC",
+                "KEY_AGREEMENT"
+            ]
+        },
+        "KeyState": {
+            "enum": [
+                "Creating",
+                "Enabled",
+                "Disabled",
+                "PendingDeletion",
+                "PendingImport",
+                "PendingReplicaDeletion",
+                "Unavailable",
+                "Updating"
+            ]
+        },
+        "OriginType": {
+            "enum": [
+                "AWS_KMS",
+                "EXTERNAL",
+                "AWS_CLOUDHSM",
+                "EXTERNAL_KEY_STORE"
+            ]
+        },
+        "ExpirationModelType": {
+            "enum": [
+                "KEY_MATERIAL_EXPIRES",
+                "KEY_MATERIAL_DOES_NOT_EXPIRE"
+            ]
+        },
+        "KeyManagerType": {
+            "enum": [
+                "AWS",
+                "CUSTOMER"
+            ]
+        },
+        "CustomerMasterKeySpec": {
+            "enum": [
+                "RSA_2048",
+                "RSA_3072",
+                "RSA_4096",
+                "ECC_NIST_P256",
+                "ECC_NIST_P384",
+                "ECC_NIST_P521",
+                "ECC_SECG_P256K1",
+                "SYMMETRIC_DEFAULT",
+                "HMAC_224",
+                "HMAC_256",
+                "HMAC_384",
+                "HMAC_512",
+                "SM2"
+            ]
+        },
+        "KeySpec": {
+            "enum": [
+                "RSA_2048",
+                "RSA_3072",
+                "RSA_4096",
+                "ECC_NIST_P256",
+                "ECC_NIST_P384",
+                "ECC_NIST_P521",
+                "ECC_SECG_P256K1",
+                "SYMMETRIC_DEFAULT",
+                "HMAC_224",
+                "HMAC_256",
+                "HMAC_384",
+                "HMAC_512",
+                "SM2"
+            ]
+        },
+        "EncryptionAlgorithmSpecList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EncryptionAlgorithmSpec"
+            }
+        },
+        "EncryptionAlgorithmSpec": {
+            "enum": [
+                "SYMMETRIC_DEFAULT",
+                "RSAES_OAEP_SHA_1",
+                "RSAES_OAEP_SHA_256",
+                "SM2PKE"
+            ]
+        },
+        "SigningAlgorithmSpecList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SigningAlgorithmSpec"
+            }
+        },
+        "SigningAlgorithmSpec": {
+            "enum": [
+                "RSASSA_PSS_SHA_256",
+                "RSASSA_PSS_SHA_384",
+                "RSASSA_PSS_SHA_512",
+                "RSASSA_PKCS1_V1_5_SHA_256",
+                "RSASSA_PKCS1_V1_5_SHA_384",
+                "RSASSA_PKCS1_V1_5_SHA_512",
+                "ECDSA_SHA_256",
+                "ECDSA_SHA_384",
+                "ECDSA_SHA_512",
+                "SM2DSA"
+            ]
+        },
+        "KeyAgreementAlgorithmSpecList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/KeyAgreementAlgorithmSpec"
+            }
+        },
+        "KeyAgreementAlgorithmSpec": {
+            "enum": [
+                "ECDH"
+            ]
+        },
+        "MultiRegionConfiguration": {
+            "type": "object",
+            "properties": {
+                "MultiRegionKeyType": {
+                    "$ref": "#/$defs/MultiRegionKeyType"
+                },
+                "PrimaryKey": {
+                    "$ref": "#/$defs/MultiRegionKey"
+                },
+                "ReplicaKeys": {
+                    "$ref": "#/$defs/MultiRegionKeyList"
+                }
+            }
+        },
+        "MultiRegionKeyType": {
+            "enum": [
+                "PRIMARY",
+                "REPLICA"
+            ]
+        },
+        "MultiRegionKey": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/ArnType"
+                },
+                "Region": {
+                    "$ref": "#/$defs/RegionType"
+                }
+            }
+        },
+        "RegionType": {
+            "type": "string"
+        },
+        "MultiRegionKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MultiRegionKey"
+            }
+        },
+        "PendingWindowInDaysType": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "MacAlgorithmSpecList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MacAlgorithmSpec"
+            }
+        },
+        "MacAlgorithmSpec": {
+            "enum": [
+                "HMAC_SHA_224",
+                "HMAC_SHA_256",
+                "HMAC_SHA_384",
+                "HMAC_SHA_512"
+            ]
+        },
+        "XksKeyConfigurationType": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/XksKeyIdType"
+                }
+            }
+        },
+        "XksKeyIdType": {
+            "type": "string"
+        },
+        "CreateKeyRequest": {
+            "type": "object",
+            "properties": {
+                "Policy": {
+                    "$ref": "#/$defs/PolicyType"
+                },
+                "Description": {
+                    "$ref": "#/$defs/DescriptionType"
+                },
+                "KeyUsage": {
+                    "$ref": "#/$defs/KeyUsageType"
+                },
+                "CustomerMasterKeySpec": {
+                    "$ref": "#/$defs/CustomerMasterKeySpec"
+                },
+                "KeySpec": {
+                    "$ref": "#/$defs/KeySpec"
+                },
+                "Origin": {
+                    "$ref": "#/$defs/OriginType"
+                },
+                "CustomKeyStoreId": {
+                    "$ref": "#/$defs/CustomKeyStoreIdType"
+                },
+                "BypassPolicyLockoutSafetyCheck": {
+                    "$ref": "#/$defs/BooleanType"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "MultiRegion": {
+                    "$ref": "#/$defs/NullableBooleanType"
+                },
+                "XksKeyId": {
+                    "$ref": "#/$defs/XksKeyIdType"
+                }
+            }
+        },
+        "PolicyType": {
+            "type": "string"
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "TagKey": {
+                    "$ref": "#/$defs/TagKeyType"
+                },
+                "TagValue": {
+                    "$ref": "#/$defs/TagValueType"
+                }
+            }
+        },
+        "TagKeyType": {
+            "type": "string"
+        },
+        "TagValueType": {
+            "type": "string"
+        },
+        "DecryptResponse": {
+            "type": "object",
+            "properties": {
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "Plaintext": {
+                    "$ref": "#/$defs/PlaintextType"
+                },
+                "EncryptionAlgorithm": {
+                    "$ref": "#/$defs/EncryptionAlgorithmSpec"
+                },
+                "CiphertextForRecipient": {
+                    "$ref": "#/$defs/CiphertextType"
+                }
+            }
+        },
+        "PlaintextType": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CiphertextType": {
+            "type": "string",
+            "format": "binary"
+        },
+        "DecryptRequest": {
+            "type": "object",
+            "properties": {
+                "CiphertextBlob": {
+                    "$ref": "#/$defs/CiphertextType"
+                },
+                "EncryptionContext": {
+                    "$ref": "#/$defs/EncryptionContextType"
+                },
+                "GrantTokens": {
+                    "$ref": "#/$defs/GrantTokenList"
+                },
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "EncryptionAlgorithm": {
+                    "$ref": "#/$defs/EncryptionAlgorithmSpec"
+                },
+                "Recipient": {
+                    "$ref": "#/$defs/RecipientInfo"
+                },
+                "DryRun": {
+                    "$ref": "#/$defs/NullableBooleanType"
+                }
+            }
+        },
+        "RecipientInfo": {
+            "type": "object",
+            "properties": {
+                "KeyEncryptionAlgorithm": {
+                    "$ref": "#/$defs/KeyEncryptionMechanism"
+                },
+                "AttestationDocument": {
+                    "$ref": "#/$defs/AttestationDocumentType"
+                }
+            }
+        },
+        "KeyEncryptionMechanism": {
+            "enum": [
+                "RSAES_OAEP_SHA_256"
+            ]
+        },
+        "AttestationDocumentType": {
+            "type": "string",
+            "format": "binary"
+        },
+        "DeleteAliasRequest": {
+            "type": "object",
+            "properties": {
+                "AliasName": {
+                    "$ref": "#/$defs/AliasNameType"
+                }
+            }
+        },
+        "DeleteCustomKeyStoreResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteCustomKeyStoreRequest": {
+            "type": "object",
+            "properties": {
+                "CustomKeyStoreId": {
+                    "$ref": "#/$defs/CustomKeyStoreIdType"
+                }
+            }
+        },
+        "DeleteImportedKeyMaterialRequest": {
+            "type": "object",
+            "properties": {
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                }
+            }
+        },
+        "DeriveSharedSecretResponse": {
+            "type": "object",
+            "properties": {
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "SharedSecret": {
+                    "$ref": "#/$defs/PlaintextType"
+                },
+                "CiphertextForRecipient": {
+                    "$ref": "#/$defs/CiphertextType"
+                },
+                "KeyAgreementAlgorithm": {
+                    "$ref": "#/$defs/KeyAgreementAlgorithmSpec"
+                },
+                "KeyOrigin": {
+                    "$ref": "#/$defs/OriginType"
+                }
+            }
+        },
+        "DeriveSharedSecretRequest": {
+            "type": "object",
+            "properties": {
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "KeyAgreementAlgorithm": {
+                    "$ref": "#/$defs/KeyAgreementAlgorithmSpec"
+                },
+                "PublicKey": {
+                    "$ref": "#/$defs/PublicKeyType"
+                },
+                "GrantTokens": {
+                    "$ref": "#/$defs/GrantTokenList"
+                },
+                "DryRun": {
+                    "$ref": "#/$defs/NullableBooleanType"
+                },
+                "Recipient": {
+                    "$ref": "#/$defs/RecipientInfo"
+                }
+            }
+        },
+        "PublicKeyType": {
+            "type": "string",
+            "format": "binary"
+        },
+        "DescribeCustomKeyStoresResponse": {
+            "type": "object",
+            "properties": {
+                "CustomKeyStores": {
+                    "$ref": "#/$defs/CustomKeyStoresList"
+                },
+                "NextMarker": {
+                    "$ref": "#/$defs/MarkerType"
+                },
+                "Truncated": {
+                    "$ref": "#/$defs/BooleanType"
+                }
+            }
+        },
+        "CustomKeyStoresList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CustomKeyStoresListEntry"
+            }
+        },
+        "CustomKeyStoresListEntry": {
+            "type": "object",
+            "properties": {
+                "CustomKeyStoreId": {
+                    "$ref": "#/$defs/CustomKeyStoreIdType"
+                },
+                "CustomKeyStoreName": {
+                    "$ref": "#/$defs/CustomKeyStoreNameType"
+                },
+                "CloudHsmClusterId": {
+                    "$ref": "#/$defs/CloudHsmClusterIdType"
+                },
+                "TrustAnchorCertificate": {
+                    "$ref": "#/$defs/TrustAnchorCertificateType"
+                },
+                "ConnectionState": {
+                    "$ref": "#/$defs/ConnectionStateType"
+                },
+                "ConnectionErrorCode": {
+                    "$ref": "#/$defs/ConnectionErrorCodeType"
+                },
+                "CreationDate": {
+                    "$ref": "#/$defs/DateType"
+                },
+                "CustomKeyStoreType": {
+                    "$ref": "#/$defs/CustomKeyStoreType"
+                },
+                "XksProxyConfiguration": {
+                    "$ref": "#/$defs/XksProxyConfigurationType"
+                }
+            }
+        },
+        "ConnectionStateType": {
+            "enum": [
+                "CONNECTED",
+                "CONNECTING",
+                "FAILED",
+                "DISCONNECTED",
+                "DISCONNECTING"
+            ]
+        },
+        "ConnectionErrorCodeType": {
+            "enum": [
+                "INVALID_CREDENTIALS",
+                "CLUSTER_NOT_FOUND",
+                "NETWORK_ERRORS",
+                "INTERNAL_ERROR",
+                "INSUFFICIENT_CLOUDHSM_HSMS",
+                "USER_LOCKED_OUT",
+                "USER_NOT_FOUND",
+                "USER_LOGGED_IN",
+                "SUBNET_NOT_FOUND",
+                "INSUFFICIENT_FREE_ADDRESSES_IN_SUBNET",
+                "XKS_PROXY_ACCESS_DENIED",
+                "XKS_PROXY_NOT_REACHABLE",
+                "XKS_VPC_ENDPOINT_SERVICE_NOT_FOUND",
+                "XKS_PROXY_INVALID_RESPONSE",
+                "XKS_PROXY_INVALID_CONFIGURATION",
+                "XKS_VPC_ENDPOINT_SERVICE_INVALID_CONFIGURATION",
+                "XKS_PROXY_TIMED_OUT",
+                "XKS_PROXY_INVALID_TLS_CONFIGURATION"
+            ]
+        },
+        "XksProxyConfigurationType": {
+            "type": "object",
+            "properties": {
+                "Connectivity": {
+                    "$ref": "#/$defs/XksProxyConnectivityType"
+                },
+                "AccessKeyId": {
+                    "$ref": "#/$defs/XksProxyAuthenticationAccessKeyIdType"
+                },
+                "UriEndpoint": {
+                    "$ref": "#/$defs/XksProxyUriEndpointType"
+                },
+                "UriPath": {
+                    "$ref": "#/$defs/XksProxyUriPathType"
+                },
+                "VpcEndpointServiceName": {
+                    "$ref": "#/$defs/XksProxyVpcEndpointServiceNameType"
+                }
+            }
+        },
+        "MarkerType": {
+            "type": "string"
+        },
+        "DescribeCustomKeyStoresRequest": {
+            "type": "object",
+            "properties": {
+                "CustomKeyStoreId": {
+                    "$ref": "#/$defs/CustomKeyStoreIdType"
+                },
+                "CustomKeyStoreName": {
+                    "$ref": "#/$defs/CustomKeyStoreNameType"
+                },
+                "Limit": {
+                    "$ref": "#/$defs/LimitType"
+                },
+                "Marker": {
+                    "$ref": "#/$defs/MarkerType"
+                }
+            }
+        },
+        "LimitType": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DescribeKeyResponse": {
+            "type": "object",
+            "properties": {
+                "KeyMetadata": {
+                    "$ref": "#/$defs/KeyMetadata"
+                }
+            }
+        },
+        "DescribeKeyRequest": {
+            "type": "object",
+            "properties": {
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "GrantTokens": {
+                    "$ref": "#/$defs/GrantTokenList"
+                }
+            }
+        },
+        "DisableKeyRequest": {
+            "type": "object",
+            "properties": {
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                }
+            }
+        },
+        "DisableKeyRotationRequest": {
+            "type": "object",
+            "properties": {
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                }
+            }
+        },
+        "DisconnectCustomKeyStoreResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DisconnectCustomKeyStoreRequest": {
+            "type": "object",
+            "properties": {
+                "CustomKeyStoreId": {
+                    "$ref": "#/$defs/CustomKeyStoreIdType"
+                }
+            }
+        },
+        "EnableKeyRequest": {
+            "type": "object",
+            "properties": {
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                }
+            }
+        },
+        "EnableKeyRotationRequest": {
+            "type": "object",
+            "properties": {
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "RotationPeriodInDays": {
+                    "$ref": "#/$defs/RotationPeriodInDaysType"
+                }
+            }
+        },
+        "RotationPeriodInDaysType": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "EncryptResponse": {
+            "type": "object",
+            "properties": {
+                "CiphertextBlob": {
+                    "$ref": "#/$defs/CiphertextType"
+                },
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "EncryptionAlgorithm": {
+                    "$ref": "#/$defs/EncryptionAlgorithmSpec"
+                }
+            }
+        },
+        "EncryptRequest": {
+            "type": "object",
+            "properties": {
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "Plaintext": {
+                    "$ref": "#/$defs/PlaintextType"
+                },
+                "EncryptionContext": {
+                    "$ref": "#/$defs/EncryptionContextType"
+                },
+                "GrantTokens": {
+                    "$ref": "#/$defs/GrantTokenList"
+                },
+                "EncryptionAlgorithm": {
+                    "$ref": "#/$defs/EncryptionAlgorithmSpec"
+                },
+                "DryRun": {
+                    "$ref": "#/$defs/NullableBooleanType"
+                }
+            }
+        },
+        "GenerateDataKeyResponse": {
+            "type": "object",
+            "properties": {
+                "CiphertextBlob": {
+                    "$ref": "#/$defs/CiphertextType"
+                },
+                "Plaintext": {
+                    "$ref": "#/$defs/PlaintextType"
+                },
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "CiphertextForRecipient": {
+                    "$ref": "#/$defs/CiphertextType"
+                }
+            }
+        },
+        "GenerateDataKeyRequest": {
+            "type": "object",
+            "properties": {
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "EncryptionContext": {
+                    "$ref": "#/$defs/EncryptionContextType"
+                },
+                "NumberOfBytes": {
+                    "$ref": "#/$defs/NumberOfBytesType"
+                },
+                "KeySpec": {
+                    "$ref": "#/$defs/DataKeySpec"
+                },
+                "GrantTokens": {
+                    "$ref": "#/$defs/GrantTokenList"
+                },
+                "Recipient": {
+                    "$ref": "#/$defs/RecipientInfo"
+                },
+                "DryRun": {
+                    "$ref": "#/$defs/NullableBooleanType"
+                }
+            }
+        },
+        "NumberOfBytesType": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DataKeySpec": {
+            "enum": [
+                "AES_256",
+                "AES_128"
+            ]
+        },
+        "GenerateDataKeyPairResponse": {
+            "type": "object",
+            "properties": {
+                "PrivateKeyCiphertextBlob": {
+                    "$ref": "#/$defs/CiphertextType"
+                },
+                "PrivateKeyPlaintext": {
+                    "$ref": "#/$defs/PlaintextType"
+                },
+                "PublicKey": {
+                    "$ref": "#/$defs/PublicKeyType"
+                },
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "KeyPairSpec": {
+                    "$ref": "#/$defs/DataKeyPairSpec"
+                },
+                "CiphertextForRecipient": {
+                    "$ref": "#/$defs/CiphertextType"
+                }
+            }
+        },
+        "DataKeyPairSpec": {
+            "enum": [
+                "RSA_2048",
+                "RSA_3072",
+                "RSA_4096",
+                "ECC_NIST_P256",
+                "ECC_NIST_P384",
+                "ECC_NIST_P521",
+                "ECC_SECG_P256K1",
+                "SM2"
+            ]
+        },
+        "GenerateDataKeyPairRequest": {
+            "type": "object",
+            "properties": {
+                "EncryptionContext": {
+                    "$ref": "#/$defs/EncryptionContextType"
+                },
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "KeyPairSpec": {
+                    "$ref": "#/$defs/DataKeyPairSpec"
+                },
+                "GrantTokens": {
+                    "$ref": "#/$defs/GrantTokenList"
+                },
+                "Recipient": {
+                    "$ref": "#/$defs/RecipientInfo"
+                },
+                "DryRun": {
+                    "$ref": "#/$defs/NullableBooleanType"
+                }
+            }
+        },
+        "GenerateDataKeyPairWithoutPlaintextResponse": {
+            "type": "object",
+            "properties": {
+                "PrivateKeyCiphertextBlob": {
+                    "$ref": "#/$defs/CiphertextType"
+                },
+                "PublicKey": {
+                    "$ref": "#/$defs/PublicKeyType"
+                },
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "KeyPairSpec": {
+                    "$ref": "#/$defs/DataKeyPairSpec"
+                }
+            }
+        },
+        "GenerateDataKeyPairWithoutPlaintextRequest": {
+            "type": "object",
+            "properties": {
+                "EncryptionContext": {
+                    "$ref": "#/$defs/EncryptionContextType"
+                },
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "KeyPairSpec": {
+                    "$ref": "#/$defs/DataKeyPairSpec"
+                },
+                "GrantTokens": {
+                    "$ref": "#/$defs/GrantTokenList"
+                },
+                "DryRun": {
+                    "$ref": "#/$defs/NullableBooleanType"
+                }
+            }
+        },
+        "GenerateDataKeyWithoutPlaintextResponse": {
+            "type": "object",
+            "properties": {
+                "CiphertextBlob": {
+                    "$ref": "#/$defs/CiphertextType"
+                },
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                }
+            }
+        },
+        "GenerateDataKeyWithoutPlaintextRequest": {
+            "type": "object",
+            "properties": {
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "EncryptionContext": {
+                    "$ref": "#/$defs/EncryptionContextType"
+                },
+                "KeySpec": {
+                    "$ref": "#/$defs/DataKeySpec"
+                },
+                "NumberOfBytes": {
+                    "$ref": "#/$defs/NumberOfBytesType"
+                },
+                "GrantTokens": {
+                    "$ref": "#/$defs/GrantTokenList"
+                },
+                "DryRun": {
+                    "$ref": "#/$defs/NullableBooleanType"
+                }
+            }
+        },
+        "GenerateMacResponse": {
+            "type": "object",
+            "properties": {
+                "Mac": {
+                    "$ref": "#/$defs/CiphertextType"
+                },
+                "MacAlgorithm": {
+                    "$ref": "#/$defs/MacAlgorithmSpec"
+                },
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                }
+            }
+        },
+        "GenerateMacRequest": {
+            "type": "object",
+            "properties": {
+                "Message": {
+                    "$ref": "#/$defs/PlaintextType"
+                },
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "MacAlgorithm": {
+                    "$ref": "#/$defs/MacAlgorithmSpec"
+                },
+                "GrantTokens": {
+                    "$ref": "#/$defs/GrantTokenList"
+                },
+                "DryRun": {
+                    "$ref": "#/$defs/NullableBooleanType"
+                }
+            }
+        },
+        "GenerateRandomResponse": {
+            "type": "object",
+            "properties": {
+                "Plaintext": {
+                    "$ref": "#/$defs/PlaintextType"
+                },
+                "CiphertextForRecipient": {
+                    "$ref": "#/$defs/CiphertextType"
+                }
+            }
+        },
+        "GenerateRandomRequest": {
+            "type": "object",
+            "properties": {
+                "NumberOfBytes": {
+                    "$ref": "#/$defs/NumberOfBytesType"
+                },
+                "CustomKeyStoreId": {
+                    "$ref": "#/$defs/CustomKeyStoreIdType"
+                },
+                "Recipient": {
+                    "$ref": "#/$defs/RecipientInfo"
+                }
+            }
+        },
+        "GetKeyPolicyResponse": {
+            "type": "object",
+            "properties": {
+                "Policy": {
+                    "$ref": "#/$defs/PolicyType"
+                },
+                "PolicyName": {
+                    "$ref": "#/$defs/PolicyNameType"
+                }
+            }
+        },
+        "PolicyNameType": {
+            "type": "string"
+        },
+        "GetKeyPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "PolicyName": {
+                    "$ref": "#/$defs/PolicyNameType"
+                }
+            }
+        },
+        "GetKeyRotationStatusResponse": {
+            "type": "object",
+            "properties": {
+                "KeyRotationEnabled": {
+                    "$ref": "#/$defs/BooleanType"
+                },
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "RotationPeriodInDays": {
+                    "$ref": "#/$defs/RotationPeriodInDaysType"
+                },
+                "NextRotationDate": {
+                    "$ref": "#/$defs/DateType"
+                },
+                "OnDemandRotationStartDate": {
+                    "$ref": "#/$defs/DateType"
+                }
+            }
+        },
+        "GetKeyRotationStatusRequest": {
+            "type": "object",
+            "properties": {
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                }
+            }
+        },
+        "GetParametersForImportResponse": {
+            "type": "object",
+            "properties": {
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "ImportToken": {
+                    "$ref": "#/$defs/CiphertextType"
+                },
+                "PublicKey": {
+                    "$ref": "#/$defs/PlaintextType"
+                },
+                "ParametersValidTo": {
+                    "$ref": "#/$defs/DateType"
+                }
+            }
+        },
+        "GetParametersForImportRequest": {
+            "type": "object",
+            "properties": {
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "WrappingAlgorithm": {
+                    "$ref": "#/$defs/AlgorithmSpec"
+                },
+                "WrappingKeySpec": {
+                    "$ref": "#/$defs/WrappingKeySpec"
+                }
+            }
+        },
+        "AlgorithmSpec": {
+            "enum": [
+                "RSAES_PKCS1_V1_5",
+                "RSAES_OAEP_SHA_1",
+                "RSAES_OAEP_SHA_256",
+                "RSA_AES_KEY_WRAP_SHA_1",
+                "RSA_AES_KEY_WRAP_SHA_256",
+                "SM2PKE"
+            ]
+        },
+        "WrappingKeySpec": {
+            "enum": [
+                "RSA_2048",
+                "RSA_3072",
+                "RSA_4096",
+                "SM2"
+            ]
+        },
+        "GetPublicKeyResponse": {
+            "type": "object",
+            "properties": {
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "PublicKey": {
+                    "$ref": "#/$defs/PublicKeyType"
+                },
+                "CustomerMasterKeySpec": {
+                    "$ref": "#/$defs/CustomerMasterKeySpec"
+                },
+                "KeySpec": {
+                    "$ref": "#/$defs/KeySpec"
+                },
+                "KeyUsage": {
+                    "$ref": "#/$defs/KeyUsageType"
+                },
+                "EncryptionAlgorithms": {
+                    "$ref": "#/$defs/EncryptionAlgorithmSpecList"
+                },
+                "SigningAlgorithms": {
+                    "$ref": "#/$defs/SigningAlgorithmSpecList"
+                },
+                "KeyAgreementAlgorithms": {
+                    "$ref": "#/$defs/KeyAgreementAlgorithmSpecList"
+                }
+            }
+        },
+        "GetPublicKeyRequest": {
+            "type": "object",
+            "properties": {
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "GrantTokens": {
+                    "$ref": "#/$defs/GrantTokenList"
+                }
+            }
+        },
+        "ImportKeyMaterialResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "ImportKeyMaterialRequest": {
+            "type": "object",
+            "properties": {
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "ImportToken": {
+                    "$ref": "#/$defs/CiphertextType"
+                },
+                "EncryptedKeyMaterial": {
+                    "$ref": "#/$defs/CiphertextType"
+                },
+                "ValidTo": {
+                    "$ref": "#/$defs/DateType"
+                },
+                "ExpirationModel": {
+                    "$ref": "#/$defs/ExpirationModelType"
+                }
+            }
+        },
+        "ListAliasesResponse": {
+            "type": "object",
+            "properties": {
+                "Aliases": {
+                    "$ref": "#/$defs/AliasList"
+                },
+                "NextMarker": {
+                    "$ref": "#/$defs/MarkerType"
+                },
+                "Truncated": {
+                    "$ref": "#/$defs/BooleanType"
+                }
+            }
+        },
+        "AliasList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AliasListEntry"
+            }
+        },
+        "AliasListEntry": {
+            "type": "object",
+            "properties": {
+                "AliasName": {
+                    "$ref": "#/$defs/AliasNameType"
+                },
+                "AliasArn": {
+                    "$ref": "#/$defs/ArnType"
+                },
+                "TargetKeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "CreationDate": {
+                    "$ref": "#/$defs/DateType"
+                },
+                "LastUpdatedDate": {
+                    "$ref": "#/$defs/DateType"
+                }
+            }
+        },
+        "ListAliasesRequest": {
+            "type": "object",
+            "properties": {
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "Limit": {
+                    "$ref": "#/$defs/LimitType"
+                },
+                "Marker": {
+                    "$ref": "#/$defs/MarkerType"
+                }
+            }
+        },
+        "ListGrantsResponse": {
+            "type": "object",
+            "properties": {
+                "Grants": {
+                    "$ref": "#/$defs/GrantList"
+                },
+                "NextMarker": {
+                    "$ref": "#/$defs/MarkerType"
+                },
+                "Truncated": {
+                    "$ref": "#/$defs/BooleanType"
+                }
+            }
+        },
+        "GrantList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/GrantListEntry"
+            }
+        },
+        "GrantListEntry": {
+            "type": "object",
+            "properties": {
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "GrantId": {
+                    "$ref": "#/$defs/GrantIdType"
+                },
+                "Name": {
+                    "$ref": "#/$defs/GrantNameType"
+                },
+                "CreationDate": {
+                    "$ref": "#/$defs/DateType"
+                },
+                "GranteePrincipal": {
+                    "$ref": "#/$defs/PrincipalIdType"
+                },
+                "RetiringPrincipal": {
+                    "$ref": "#/$defs/PrincipalIdType"
+                },
+                "IssuingAccount": {
+                    "$ref": "#/$defs/PrincipalIdType"
+                },
+                "Operations": {
+                    "$ref": "#/$defs/GrantOperationList"
+                },
+                "Constraints": {
+                    "$ref": "#/$defs/GrantConstraints"
+                }
+            }
+        },
+        "ListGrantsRequest": {
+            "type": "object",
+            "properties": {
+                "Limit": {
+                    "$ref": "#/$defs/LimitType"
+                },
+                "Marker": {
+                    "$ref": "#/$defs/MarkerType"
+                },
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "GrantId": {
+                    "$ref": "#/$defs/GrantIdType"
+                },
+                "GranteePrincipal": {
+                    "$ref": "#/$defs/PrincipalIdType"
+                }
+            }
+        },
+        "ListKeyPoliciesResponse": {
+            "type": "object",
+            "properties": {
+                "PolicyNames": {
+                    "$ref": "#/$defs/PolicyNameList"
+                },
+                "NextMarker": {
+                    "$ref": "#/$defs/MarkerType"
+                },
+                "Truncated": {
+                    "$ref": "#/$defs/BooleanType"
+                }
+            }
+        },
+        "PolicyNameList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PolicyNameType"
+            }
+        },
+        "ListKeyPoliciesRequest": {
+            "type": "object",
+            "properties": {
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "Limit": {
+                    "$ref": "#/$defs/LimitType"
+                },
+                "Marker": {
+                    "$ref": "#/$defs/MarkerType"
+                }
+            }
+        },
+        "ListKeyRotationsResponse": {
+            "type": "object",
+            "properties": {
+                "Rotations": {
+                    "$ref": "#/$defs/RotationsList"
+                },
+                "NextMarker": {
+                    "$ref": "#/$defs/MarkerType"
+                },
+                "Truncated": {
+                    "$ref": "#/$defs/BooleanType"
+                }
+            }
+        },
+        "RotationsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RotationsListEntry"
+            }
+        },
+        "RotationsListEntry": {
+            "type": "object",
+            "properties": {
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "RotationDate": {
+                    "$ref": "#/$defs/DateType"
+                },
+                "RotationType": {
+                    "$ref": "#/$defs/RotationType"
+                }
+            }
+        },
+        "RotationType": {
+            "enum": [
+                "AUTOMATIC",
+                "ON_DEMAND"
+            ]
+        },
+        "ListKeyRotationsRequest": {
+            "type": "object",
+            "properties": {
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "Limit": {
+                    "$ref": "#/$defs/LimitType"
+                },
+                "Marker": {
+                    "$ref": "#/$defs/MarkerType"
+                }
+            }
+        },
+        "ListKeysResponse": {
+            "type": "object",
+            "properties": {
+                "Keys": {
+                    "$ref": "#/$defs/KeyList"
+                },
+                "NextMarker": {
+                    "$ref": "#/$defs/MarkerType"
+                },
+                "Truncated": {
+                    "$ref": "#/$defs/BooleanType"
+                }
+            }
+        },
+        "KeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/KeyListEntry"
+            }
+        },
+        "KeyListEntry": {
+            "type": "object",
+            "properties": {
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "KeyArn": {
+                    "$ref": "#/$defs/ArnType"
+                }
+            }
+        },
+        "ListKeysRequest": {
+            "type": "object",
+            "properties": {
+                "Limit": {
+                    "$ref": "#/$defs/LimitType"
+                },
+                "Marker": {
+                    "$ref": "#/$defs/MarkerType"
+                }
+            }
+        },
+        "ListResourceTagsResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "NextMarker": {
+                    "$ref": "#/$defs/MarkerType"
+                },
+                "Truncated": {
+                    "$ref": "#/$defs/BooleanType"
+                }
+            }
+        },
+        "ListResourceTagsRequest": {
+            "type": "object",
+            "properties": {
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "Limit": {
+                    "$ref": "#/$defs/LimitType"
+                },
+                "Marker": {
+                    "$ref": "#/$defs/MarkerType"
+                }
+            }
+        },
+        "ListRetirableGrantsRequest": {
+            "type": "object",
+            "properties": {
+                "Limit": {
+                    "$ref": "#/$defs/LimitType"
+                },
+                "Marker": {
+                    "$ref": "#/$defs/MarkerType"
+                },
+                "RetiringPrincipal": {
+                    "$ref": "#/$defs/PrincipalIdType"
+                }
+            }
+        },
+        "PutKeyPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "PolicyName": {
+                    "$ref": "#/$defs/PolicyNameType"
+                },
+                "Policy": {
+                    "$ref": "#/$defs/PolicyType"
+                },
+                "BypassPolicyLockoutSafetyCheck": {
+                    "$ref": "#/$defs/BooleanType"
+                }
+            }
+        },
+        "ReEncryptResponse": {
+            "type": "object",
+            "properties": {
+                "CiphertextBlob": {
+                    "$ref": "#/$defs/CiphertextType"
+                },
+                "SourceKeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "SourceEncryptionAlgorithm": {
+                    "$ref": "#/$defs/EncryptionAlgorithmSpec"
+                },
+                "DestinationEncryptionAlgorithm": {
+                    "$ref": "#/$defs/EncryptionAlgorithmSpec"
+                }
+            }
+        },
+        "ReEncryptRequest": {
+            "type": "object",
+            "properties": {
+                "CiphertextBlob": {
+                    "$ref": "#/$defs/CiphertextType"
+                },
+                "SourceEncryptionContext": {
+                    "$ref": "#/$defs/EncryptionContextType"
+                },
+                "SourceKeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "DestinationKeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "DestinationEncryptionContext": {
+                    "$ref": "#/$defs/EncryptionContextType"
+                },
+                "SourceEncryptionAlgorithm": {
+                    "$ref": "#/$defs/EncryptionAlgorithmSpec"
+                },
+                "DestinationEncryptionAlgorithm": {
+                    "$ref": "#/$defs/EncryptionAlgorithmSpec"
+                },
+                "GrantTokens": {
+                    "$ref": "#/$defs/GrantTokenList"
+                },
+                "DryRun": {
+                    "$ref": "#/$defs/NullableBooleanType"
+                }
+            }
+        },
+        "ReplicateKeyResponse": {
+            "type": "object",
+            "properties": {
+                "ReplicaKeyMetadata": {
+                    "$ref": "#/$defs/KeyMetadata"
+                },
+                "ReplicaPolicy": {
+                    "$ref": "#/$defs/PolicyType"
+                },
+                "ReplicaTags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "ReplicateKeyRequest": {
+            "type": "object",
+            "properties": {
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "ReplicaRegion": {
+                    "$ref": "#/$defs/RegionType"
+                },
+                "Policy": {
+                    "$ref": "#/$defs/PolicyType"
+                },
+                "BypassPolicyLockoutSafetyCheck": {
+                    "$ref": "#/$defs/BooleanType"
+                },
+                "Description": {
+                    "$ref": "#/$defs/DescriptionType"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "RetireGrantRequest": {
+            "type": "object",
+            "properties": {
+                "GrantToken": {
+                    "$ref": "#/$defs/GrantTokenType"
+                },
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "GrantId": {
+                    "$ref": "#/$defs/GrantIdType"
+                },
+                "DryRun": {
+                    "$ref": "#/$defs/NullableBooleanType"
+                }
+            }
+        },
+        "RevokeGrantRequest": {
+            "type": "object",
+            "properties": {
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "GrantId": {
+                    "$ref": "#/$defs/GrantIdType"
+                },
+                "DryRun": {
+                    "$ref": "#/$defs/NullableBooleanType"
+                }
+            }
+        },
+        "RotateKeyOnDemandResponse": {
+            "type": "object",
+            "properties": {
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                }
+            }
+        },
+        "RotateKeyOnDemandRequest": {
+            "type": "object",
+            "properties": {
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                }
+            }
+        },
+        "ScheduleKeyDeletionResponse": {
+            "type": "object",
+            "properties": {
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "DeletionDate": {
+                    "$ref": "#/$defs/DateType"
+                },
+                "KeyState": {
+                    "$ref": "#/$defs/KeyState"
+                },
+                "PendingWindowInDays": {
+                    "$ref": "#/$defs/PendingWindowInDaysType"
+                }
+            }
+        },
+        "ScheduleKeyDeletionRequest": {
+            "type": "object",
+            "properties": {
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "PendingWindowInDays": {
+                    "$ref": "#/$defs/PendingWindowInDaysType"
+                }
+            }
+        },
+        "SignResponse": {
+            "type": "object",
+            "properties": {
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "Signature": {
+                    "$ref": "#/$defs/CiphertextType"
+                },
+                "SigningAlgorithm": {
+                    "$ref": "#/$defs/SigningAlgorithmSpec"
+                }
+            }
+        },
+        "SignRequest": {
+            "type": "object",
+            "properties": {
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "Message": {
+                    "$ref": "#/$defs/PlaintextType"
+                },
+                "MessageType": {
+                    "$ref": "#/$defs/MessageType"
+                },
+                "GrantTokens": {
+                    "$ref": "#/$defs/GrantTokenList"
+                },
+                "SigningAlgorithm": {
+                    "$ref": "#/$defs/SigningAlgorithmSpec"
+                },
+                "DryRun": {
+                    "$ref": "#/$defs/NullableBooleanType"
+                }
+            }
+        },
+        "MessageType": {
+            "enum": [
+                "RAW",
+                "DIGEST"
+            ]
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKeyType"
+            }
+        },
+        "UpdateAliasRequest": {
+            "type": "object",
+            "properties": {
+                "AliasName": {
+                    "$ref": "#/$defs/AliasNameType"
+                },
+                "TargetKeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                }
+            }
+        },
+        "UpdateCustomKeyStoreResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateCustomKeyStoreRequest": {
+            "type": "object",
+            "properties": {
+                "CustomKeyStoreId": {
+                    "$ref": "#/$defs/CustomKeyStoreIdType"
+                },
+                "NewCustomKeyStoreName": {
+                    "$ref": "#/$defs/CustomKeyStoreNameType"
+                },
+                "KeyStorePassword": {
+                    "$ref": "#/$defs/KeyStorePasswordType"
+                },
+                "CloudHsmClusterId": {
+                    "$ref": "#/$defs/CloudHsmClusterIdType"
+                },
+                "XksProxyUriEndpoint": {
+                    "$ref": "#/$defs/XksProxyUriEndpointType"
+                },
+                "XksProxyUriPath": {
+                    "$ref": "#/$defs/XksProxyUriPathType"
+                },
+                "XksProxyVpcEndpointServiceName": {
+                    "$ref": "#/$defs/XksProxyVpcEndpointServiceNameType"
+                },
+                "XksProxyAuthenticationCredential": {
+                    "$ref": "#/$defs/XksProxyAuthenticationCredentialType"
+                },
+                "XksProxyConnectivity": {
+                    "$ref": "#/$defs/XksProxyConnectivityType"
+                }
+            }
+        },
+        "UpdateKeyDescriptionRequest": {
+            "type": "object",
+            "properties": {
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "Description": {
+                    "$ref": "#/$defs/DescriptionType"
+                }
+            }
+        },
+        "UpdatePrimaryRegionRequest": {
+            "type": "object",
+            "properties": {
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "PrimaryRegion": {
+                    "$ref": "#/$defs/RegionType"
+                }
+            }
+        },
+        "VerifyResponse": {
+            "type": "object",
+            "properties": {
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "SignatureValid": {
+                    "$ref": "#/$defs/BooleanType"
+                },
+                "SigningAlgorithm": {
+                    "$ref": "#/$defs/SigningAlgorithmSpec"
+                }
+            }
+        },
+        "VerifyRequest": {
+            "type": "object",
+            "properties": {
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "Message": {
+                    "$ref": "#/$defs/PlaintextType"
+                },
+                "MessageType": {
+                    "$ref": "#/$defs/MessageType"
+                },
+                "Signature": {
+                    "$ref": "#/$defs/CiphertextType"
+                },
+                "SigningAlgorithm": {
+                    "$ref": "#/$defs/SigningAlgorithmSpec"
+                },
+                "GrantTokens": {
+                    "$ref": "#/$defs/GrantTokenList"
+                },
+                "DryRun": {
+                    "$ref": "#/$defs/NullableBooleanType"
+                }
+            }
+        },
+        "VerifyMacResponse": {
+            "type": "object",
+            "properties": {
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "MacValid": {
+                    "$ref": "#/$defs/BooleanType"
+                },
+                "MacAlgorithm": {
+                    "$ref": "#/$defs/MacAlgorithmSpec"
+                }
+            }
+        },
+        "VerifyMacRequest": {
+            "type": "object",
+            "properties": {
+                "Message": {
+                    "$ref": "#/$defs/PlaintextType"
+                },
+                "KeyId": {
+                    "$ref": "#/$defs/KeyIdType"
+                },
+                "MacAlgorithm": {
+                    "$ref": "#/$defs/MacAlgorithmSpec"
+                },
+                "Mac": {
+                    "$ref": "#/$defs/CiphertextType"
+                },
+                "GrantTokens": {
+                    "$ref": "#/$defs/GrantTokenList"
+                },
+                "DryRun": {
+                    "$ref": "#/$defs/NullableBooleanType"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://kms-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://kms-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://kms.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://kms.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

@@ -1,0 +1,771 @@
+{
+    "name": "identitystore",
+    "commands": [
+        {
+            "name": "GetGroupId",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetGroupId"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetGroupIdResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetGroupIdRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetGroupMembershipId",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetGroupMembershipId"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetGroupMembershipIdResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetGroupMembershipIdRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetUserId",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetUserId"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetUserIdResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetUserIdRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "IsMemberInGroups",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "IsMemberInGroups"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/IsMemberInGroupsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/IsMemberInGroupsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListGroupMembershipsForMember",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListGroupMembershipsForMember"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListGroupMembershipsForMemberResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListGroupMembershipsForMemberRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "GetGroupIdResponse": {
+            "type": "object",
+            "properties": {
+                "GroupId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "IdentityStoreId": {
+                    "$ref": "#/$defs/IdentityStoreId"
+                }
+            }
+        },
+        "ResourceId": {
+            "type": "string"
+        },
+        "IdentityStoreId": {
+            "type": "string"
+        },
+        "GetGroupIdRequest": {
+            "type": "object",
+            "properties": {
+                "IdentityStoreId": {
+                    "$ref": "#/$defs/IdentityStoreId"
+                },
+                "AlternateIdentifier": {
+                    "$ref": "#/$defs/AlternateIdentifier"
+                }
+            }
+        },
+        "AlternateIdentifier": {
+            "type": "object",
+            "properties": {
+                "ExternalId": {
+                    "$ref": "#/$defs/ExternalId"
+                },
+                "UniqueAttribute": {
+                    "$ref": "#/$defs/UniqueAttribute"
+                }
+            }
+        },
+        "ExternalId": {
+            "type": "object",
+            "properties": {
+                "Issuer": {
+                    "$ref": "#/$defs/ExternalIdIssuer"
+                },
+                "Id": {
+                    "$ref": "#/$defs/ExternalIdIdentifier"
+                }
+            }
+        },
+        "ExternalIdIssuer": {
+            "type": "string"
+        },
+        "ExternalIdIdentifier": {
+            "type": "string"
+        },
+        "UniqueAttribute": {
+            "type": "object",
+            "properties": {
+                "AttributePath": {
+                    "$ref": "#/$defs/AttributePath"
+                },
+                "AttributeValue": {
+                    "$ref": "#/$defs/AttributeValue"
+                }
+            }
+        },
+        "AttributePath": {
+            "type": "string"
+        },
+        "AttributeValue": {},
+        "GetGroupMembershipIdResponse": {
+            "type": "object",
+            "properties": {
+                "MembershipId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "IdentityStoreId": {
+                    "$ref": "#/$defs/IdentityStoreId"
+                }
+            }
+        },
+        "GetGroupMembershipIdRequest": {
+            "type": "object",
+            "properties": {
+                "IdentityStoreId": {
+                    "$ref": "#/$defs/IdentityStoreId"
+                },
+                "GroupId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "MemberId": {
+                    "$ref": "#/$defs/MemberId"
+                }
+            }
+        },
+        "MemberId": {
+            "type": "object",
+            "properties": {
+                "UserId": {
+                    "$ref": "#/$defs/ResourceId"
+                }
+            }
+        },
+        "GetUserIdResponse": {
+            "type": "object",
+            "properties": {
+                "UserId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "IdentityStoreId": {
+                    "$ref": "#/$defs/IdentityStoreId"
+                }
+            }
+        },
+        "GetUserIdRequest": {
+            "type": "object",
+            "properties": {
+                "IdentityStoreId": {
+                    "$ref": "#/$defs/IdentityStoreId"
+                },
+                "AlternateIdentifier": {
+                    "$ref": "#/$defs/AlternateIdentifier"
+                }
+            }
+        },
+        "IsMemberInGroupsResponse": {
+            "type": "object",
+            "properties": {
+                "Results": {
+                    "$ref": "#/$defs/GroupMembershipExistenceResults"
+                }
+            }
+        },
+        "GroupMembershipExistenceResults": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/GroupMembershipExistenceResult"
+            }
+        },
+        "GroupMembershipExistenceResult": {
+            "type": "object",
+            "properties": {
+                "GroupId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "MemberId": {
+                    "$ref": "#/$defs/MemberId"
+                },
+                "MembershipExists": {
+                    "$ref": "#/$defs/SensitiveBooleanType"
+                }
+            }
+        },
+        "SensitiveBooleanType": {
+            "type": "boolean"
+        },
+        "IsMemberInGroupsRequest": {
+            "type": "object",
+            "properties": {
+                "IdentityStoreId": {
+                    "$ref": "#/$defs/IdentityStoreId"
+                },
+                "MemberId": {
+                    "$ref": "#/$defs/MemberId"
+                },
+                "GroupIds": {
+                    "$ref": "#/$defs/GroupIds"
+                }
+            }
+        },
+        "GroupIds": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourceId"
+            }
+        },
+        "ListGroupMembershipsForMemberResponse": {
+            "type": "object",
+            "properties": {
+                "GroupMemberships": {
+                    "$ref": "#/$defs/GroupMemberships"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "GroupMemberships": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/GroupMembership"
+            }
+        },
+        "GroupMembership": {
+            "type": "object",
+            "properties": {
+                "IdentityStoreId": {
+                    "$ref": "#/$defs/IdentityStoreId"
+                },
+                "MembershipId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "GroupId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "MemberId": {
+                    "$ref": "#/$defs/MemberId"
+                }
+            }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "ListGroupMembershipsForMemberRequest": {
+            "type": "object",
+            "properties": {
+                "IdentityStoreId": {
+                    "$ref": "#/$defs/IdentityStoreId"
+                },
+                "MemberId": {
+                    "$ref": "#/$defs/MemberId"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://identitystore-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "stringEquals",
+                                                        "argv": [
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "name"
+                                                                ]
+                                                            },
+                                                            "aws-us-gov"
+                                                        ]
+                                                    }
+                                                ],
+                                                "endpoint": {
+                                                    "url": "https://identitystore.{Region}.amazonaws.com",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://identitystore-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://identitystore.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://identitystore.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

@@ -1,0 +1,1163 @@
+{
+    "name": "resource-explorer-2",
+    "commands": [
+        {
+            "name": "BatchGetView",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchGetView"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchGetViewOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchGetViewInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DisassociateDefaultView",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DisassociateDefaultView"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetAccountLevelServiceConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetAccountLevelServiceConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetAccountLevelServiceConfigurationOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetDefaultView",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetDefaultView"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetDefaultViewOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetIndex",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetIndex"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetIndexOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListIndexesForMembers",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListIndexesForMembers"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListIndexesForMembersOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListIndexesForMembersInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListResources",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListResources"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListResourcesOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListResourcesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListSupportedResourceTypes",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListSupportedResourceTypes"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListSupportedResourceTypesOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListSupportedResourceTypesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "Search",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "Search"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/SearchOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SearchInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceInput"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "BatchGetViewOutput": {
+            "type": "object",
+            "properties": {
+                "Views": {
+                    "$ref": "#/$defs/ViewList"
+                },
+                "Errors": {
+                    "$ref": "#/$defs/BatchGetViewErrors"
+                }
+            }
+        },
+        "ViewList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/View"
+            }
+        },
+        "View": {
+            "type": "object",
+            "properties": {
+                "ViewArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Owner": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "LastUpdatedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "Scope": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "IncludedProperties": {
+                    "$ref": "#/$defs/IncludedPropertyList"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/SearchFilter"
+                }
+            }
+        },
+        "IncludedPropertyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/IncludedProperty"
+            }
+        },
+        "IncludedProperty": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "SearchFilter": {
+            "type": "object",
+            "properties": {
+                "FilterString": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "BatchGetViewErrors": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BatchGetViewError"
+            }
+        },
+        "BatchGetViewError": {
+            "type": "object",
+            "properties": {
+                "ViewArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "ErrorMessage": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "BatchGetViewInput": {
+            "type": "object",
+            "properties": {
+                "ViewArns": {
+                    "$ref": "#/$defs/ViewArnList"
+                }
+            }
+        },
+        "ViewArnList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "GetAccountLevelServiceConfigurationOutput": {
+            "type": "object",
+            "properties": {
+                "OrgConfiguration": {
+                    "$ref": "#/$defs/OrgConfiguration"
+                }
+            }
+        },
+        "OrgConfiguration": {
+            "type": "object",
+            "properties": {
+                "AWSServiceAccessStatus": {
+                    "$ref": "#/$defs/AWSServiceAccessStatus"
+                },
+                "ServiceLinkedRole": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "AWSServiceAccessStatus": {
+            "type": "string"
+        },
+        "GetDefaultViewOutput": {
+            "type": "object",
+            "properties": {
+                "ViewArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "GetIndexOutput": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Type": {
+                    "$ref": "#/$defs/IndexType"
+                },
+                "State": {
+                    "$ref": "#/$defs/IndexState"
+                },
+                "ReplicatingFrom": {
+                    "$ref": "#/$defs/RegionList"
+                },
+                "ReplicatingTo": {
+                    "$ref": "#/$defs/RegionList"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "LastUpdatedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "IndexType": {
+            "type": "string"
+        },
+        "IndexState": {
+            "type": "string"
+        },
+        "RegionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "TagMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "ListIndexesForMembersOutput": {
+            "type": "object",
+            "properties": {
+                "Indexes": {
+                    "$ref": "#/$defs/MemberIndexList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "MemberIndexList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MemberIndex"
+            }
+        },
+        "MemberIndex": {
+            "type": "object",
+            "properties": {
+                "AccountId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Region": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Type": {
+                    "$ref": "#/$defs/IndexType"
+                }
+            }
+        },
+        "ListIndexesForMembersInput": {
+            "type": "object",
+            "properties": {
+                "AccountIdList": {
+                    "$ref": "#/$defs/AccountIdList"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "AccountIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AccountId"
+            }
+        },
+        "AccountId": {
+            "type": "string"
+        },
+        "ListResourcesOutput": {
+            "type": "object",
+            "properties": {
+                "Resources": {
+                    "$ref": "#/$defs/ResourceList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "ViewArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "ResourceList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Resource"
+            }
+        },
+        "Resource": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "OwningAccountId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Region": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "ResourceType": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Service": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "LastReportedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "Properties": {
+                    "$ref": "#/$defs/ResourcePropertyList"
+                }
+            }
+        },
+        "ResourcePropertyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourceProperty"
+            }
+        },
+        "ResourceProperty": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "LastReportedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "Data": {
+                    "$ref": "#/$defs/smithy.api#Document"
+                }
+            }
+        },
+        "ListResourcesInput": {
+            "type": "object",
+            "properties": {
+                "Filters": {
+                    "$ref": "#/$defs/SearchFilter"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "ViewArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "ListSupportedResourceTypesOutput": {
+            "type": "object",
+            "properties": {
+                "ResourceTypes": {
+                    "$ref": "#/$defs/ResourceTypeList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "ResourceTypeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SupportedResourceType"
+            }
+        },
+        "SupportedResourceType": {
+            "type": "object",
+            "properties": {
+                "Service": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "ResourceType": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "ListSupportedResourceTypesInput": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                }
+            }
+        },
+        "ListTagsForResourceOutput": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "ListTagsForResourceInput": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "SearchOutput": {
+            "type": "object",
+            "properties": {
+                "Resources": {
+                    "$ref": "#/$defs/ResourceList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "ViewArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Count": {
+                    "$ref": "#/$defs/ResourceCount"
+                }
+            }
+        },
+        "ResourceCount": {
+            "type": "object",
+            "properties": {
+                "TotalResources": {
+                    "$ref": "#/$defs/smithy.api#Long"
+                },
+                "Complete": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                }
+            }
+        },
+        "SearchInput": {
+            "type": "object",
+            "properties": {
+                "QueryString": {
+                    "$ref": "#/$defs/QueryString"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "ViewArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "QueryString": {
+            "type": "string"
+        },
+        "TagResourceOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceInput": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "UntagResourceOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceInput": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "tagKeys": {
+                    "$ref": "#/$defs/StringList"
+                }
+            }
+        },
+        "StringList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://resource-explorer-2-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://resource-explorer-2-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://resource-explorer-2.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://resource-explorer-2.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

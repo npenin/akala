@@ -1,0 +1,1580 @@
+{
+    "name": "transcribe",
+    "commands": [
+        {
+            "name": "StartCallAnalyticsStreamTranscription",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartCallAnalyticsStreamTranscription"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartCallAnalyticsStreamTranscriptionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartCallAnalyticsStreamTranscriptionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartMedicalStreamTranscription",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartMedicalStreamTranscription"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartMedicalStreamTranscriptionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartMedicalStreamTranscriptionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartStreamTranscription",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartStreamTranscription"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartStreamTranscriptionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartStreamTranscriptionRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "StartCallAnalyticsStreamTranscriptionResponse": {
+            "type": "object",
+            "properties": {
+                "RequestId": {
+                    "$ref": "#/$defs/RequestId"
+                },
+                "LanguageCode": {
+                    "$ref": "#/$defs/CallAnalyticsLanguageCode"
+                },
+                "MediaSampleRateHertz": {
+                    "$ref": "#/$defs/MediaSampleRateHertz"
+                },
+                "MediaEncoding": {
+                    "$ref": "#/$defs/MediaEncoding"
+                },
+                "VocabularyName": {
+                    "$ref": "#/$defs/VocabularyName"
+                },
+                "SessionId": {
+                    "$ref": "#/$defs/SessionId"
+                },
+                "CallAnalyticsTranscriptResultStream": {
+                    "$ref": "#/$defs/CallAnalyticsTranscriptResultStream"
+                },
+                "VocabularyFilterName": {
+                    "$ref": "#/$defs/VocabularyFilterName"
+                },
+                "VocabularyFilterMethod": {
+                    "$ref": "#/$defs/VocabularyFilterMethod"
+                },
+                "LanguageModelName": {
+                    "$ref": "#/$defs/ModelName"
+                },
+                "EnablePartialResultsStabilization": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "PartialResultsStability": {
+                    "$ref": "#/$defs/PartialResultsStability"
+                },
+                "ContentIdentificationType": {
+                    "$ref": "#/$defs/ContentIdentificationType"
+                },
+                "ContentRedactionType": {
+                    "$ref": "#/$defs/ContentRedactionType"
+                },
+                "PiiEntityTypes": {
+                    "$ref": "#/$defs/PiiEntityTypes"
+                }
+            }
+        },
+        "RequestId": {
+            "type": "string"
+        },
+        "CallAnalyticsLanguageCode": {
+            "enum": [
+                "EN_US",
+                "EN_GB",
+                "ES_US",
+                "FR_CA",
+                "FR_FR",
+                "EN_AU",
+                "IT_IT",
+                "DE_DE",
+                "PT_BR"
+            ]
+        },
+        "MediaSampleRateHertz": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "MediaEncoding": {
+            "enum": [
+                "PCM",
+                "OGG_OPUS",
+                "FLAC"
+            ]
+        },
+        "VocabularyName": {
+            "type": "string"
+        },
+        "SessionId": {
+            "type": "string"
+        },
+        "CallAnalyticsTranscriptResultStream": {
+            "type": "object",
+            "properties": {
+                "UtteranceEvent": {
+                    "$ref": "#/$defs/UtteranceEvent"
+                },
+                "CategoryEvent": {
+                    "$ref": "#/$defs/CategoryEvent"
+                },
+                "BadRequestException": {
+                    "$ref": "#/$defs/BadRequestException"
+                },
+                "LimitExceededException": {
+                    "$ref": "#/$defs/LimitExceededException"
+                },
+                "InternalFailureException": {
+                    "$ref": "#/$defs/InternalFailureException"
+                },
+                "ConflictException": {
+                    "$ref": "#/$defs/ConflictException"
+                },
+                "ServiceUnavailableException": {
+                    "$ref": "#/$defs/ServiceUnavailableException"
+                }
+            }
+        },
+        "UtteranceEvent": {
+            "type": "object",
+            "properties": {
+                "UtteranceId": {
+                    "$ref": "#/$defs/String"
+                },
+                "IsPartial": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "ParticipantRole": {
+                    "$ref": "#/$defs/ParticipantRole"
+                },
+                "BeginOffsetMillis": {
+                    "$ref": "#/$defs/Long"
+                },
+                "EndOffsetMillis": {
+                    "$ref": "#/$defs/Long"
+                },
+                "Transcript": {
+                    "$ref": "#/$defs/String"
+                },
+                "Items": {
+                    "$ref": "#/$defs/CallAnalyticsItemList"
+                },
+                "Entities": {
+                    "$ref": "#/$defs/CallAnalyticsEntityList"
+                },
+                "Sentiment": {
+                    "$ref": "#/$defs/Sentiment"
+                },
+                "IssuesDetected": {
+                    "$ref": "#/$defs/IssuesDetected"
+                }
+            }
+        },
+        "String": {
+            "type": "string"
+        },
+        "Boolean": {
+            "type": "boolean"
+        },
+        "ParticipantRole": {
+            "enum": [
+                "AGENT",
+                "CUSTOMER"
+            ]
+        },
+        "Long": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "CallAnalyticsItemList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CallAnalyticsItem"
+            }
+        },
+        "CallAnalyticsItem": {
+            "type": "object",
+            "properties": {
+                "BeginOffsetMillis": {
+                    "$ref": "#/$defs/Long"
+                },
+                "EndOffsetMillis": {
+                    "$ref": "#/$defs/Long"
+                },
+                "Type": {
+                    "$ref": "#/$defs/ItemType"
+                },
+                "Content": {
+                    "$ref": "#/$defs/String"
+                },
+                "Confidence": {
+                    "$ref": "#/$defs/Confidence"
+                },
+                "VocabularyFilterMatch": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "Stable": {
+                    "$ref": "#/$defs/Stable"
+                }
+            }
+        },
+        "ItemType": {
+            "enum": [
+                "PRONUNCIATION",
+                "PUNCTUATION"
+            ]
+        },
+        "Confidence": {
+            "type": "number",
+            "format": "double"
+        },
+        "Stable": {
+            "type": "boolean"
+        },
+        "CallAnalyticsEntityList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CallAnalyticsEntity"
+            }
+        },
+        "CallAnalyticsEntity": {
+            "type": "object",
+            "properties": {
+                "BeginOffsetMillis": {
+                    "$ref": "#/$defs/Long"
+                },
+                "EndOffsetMillis": {
+                    "$ref": "#/$defs/Long"
+                },
+                "Category": {
+                    "$ref": "#/$defs/String"
+                },
+                "Type": {
+                    "$ref": "#/$defs/String"
+                },
+                "Content": {
+                    "$ref": "#/$defs/String"
+                },
+                "Confidence": {
+                    "$ref": "#/$defs/Confidence"
+                }
+            }
+        },
+        "Sentiment": {
+            "enum": [
+                "POSITIVE",
+                "NEGATIVE",
+                "MIXED",
+                "NEUTRAL"
+            ]
+        },
+        "IssuesDetected": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/IssueDetected"
+            }
+        },
+        "IssueDetected": {
+            "type": "object",
+            "properties": {
+                "CharacterOffsets": {
+                    "$ref": "#/$defs/CharacterOffsets"
+                }
+            }
+        },
+        "CharacterOffsets": {
+            "type": "object",
+            "properties": {
+                "Begin": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "End": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "Integer": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "CategoryEvent": {
+            "type": "object",
+            "properties": {
+                "MatchedCategories": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "MatchedDetails": {
+                    "$ref": "#/$defs/MatchedCategoryDetails"
+                }
+            }
+        },
+        "StringList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "MatchedCategoryDetails": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/PointsOfInterest"
+            }
+        },
+        "PointsOfInterest": {
+            "type": "object",
+            "properties": {
+                "TimestampRanges": {
+                    "$ref": "#/$defs/TimestampRanges"
+                }
+            }
+        },
+        "TimestampRanges": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TimestampRange"
+            }
+        },
+        "TimestampRange": {
+            "type": "object",
+            "properties": {
+                "BeginOffsetMillis": {
+                    "$ref": "#/$defs/Long"
+                },
+                "EndOffsetMillis": {
+                    "$ref": "#/$defs/Long"
+                }
+            }
+        },
+        "BadRequestException": {
+            "type": "object",
+            "properties": {
+                "Message": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "LimitExceededException": {
+            "type": "object",
+            "properties": {
+                "Message": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "InternalFailureException": {
+            "type": "object",
+            "properties": {
+                "Message": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ConflictException": {
+            "type": "object",
+            "properties": {
+                "Message": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ServiceUnavailableException": {
+            "type": "object",
+            "properties": {
+                "Message": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "VocabularyFilterName": {
+            "type": "string"
+        },
+        "VocabularyFilterMethod": {
+            "enum": [
+                "REMOVE",
+                "MASK",
+                "TAG"
+            ]
+        },
+        "ModelName": {
+            "type": "string"
+        },
+        "PartialResultsStability": {
+            "enum": [
+                "HIGH",
+                "MEDIUM",
+                "LOW"
+            ]
+        },
+        "ContentIdentificationType": {
+            "enum": [
+                "PII"
+            ]
+        },
+        "ContentRedactionType": {
+            "enum": [
+                "PII"
+            ]
+        },
+        "PiiEntityTypes": {
+            "type": "string"
+        },
+        "StartCallAnalyticsStreamTranscriptionRequest": {
+            "type": "object",
+            "properties": {
+                "LanguageCode": {
+                    "$ref": "#/$defs/CallAnalyticsLanguageCode"
+                },
+                "MediaSampleRateHertz": {
+                    "$ref": "#/$defs/MediaSampleRateHertz"
+                },
+                "MediaEncoding": {
+                    "$ref": "#/$defs/MediaEncoding"
+                },
+                "VocabularyName": {
+                    "$ref": "#/$defs/VocabularyName"
+                },
+                "SessionId": {
+                    "$ref": "#/$defs/SessionId"
+                },
+                "AudioStream": {
+                    "$ref": "#/$defs/AudioStream"
+                },
+                "VocabularyFilterName": {
+                    "$ref": "#/$defs/VocabularyFilterName"
+                },
+                "VocabularyFilterMethod": {
+                    "$ref": "#/$defs/VocabularyFilterMethod"
+                },
+                "LanguageModelName": {
+                    "$ref": "#/$defs/ModelName"
+                },
+                "EnablePartialResultsStabilization": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "PartialResultsStability": {
+                    "$ref": "#/$defs/PartialResultsStability"
+                },
+                "ContentIdentificationType": {
+                    "$ref": "#/$defs/ContentIdentificationType"
+                },
+                "ContentRedactionType": {
+                    "$ref": "#/$defs/ContentRedactionType"
+                },
+                "PiiEntityTypes": {
+                    "$ref": "#/$defs/PiiEntityTypes"
+                }
+            }
+        },
+        "AudioStream": {
+            "type": "object",
+            "properties": {
+                "AudioEvent": {
+                    "$ref": "#/$defs/AudioEvent"
+                },
+                "ConfigurationEvent": {
+                    "$ref": "#/$defs/ConfigurationEvent"
+                }
+            }
+        },
+        "AudioEvent": {
+            "type": "object",
+            "properties": {
+                "AudioChunk": {
+                    "$ref": "#/$defs/AudioChunk"
+                }
+            }
+        },
+        "AudioChunk": {
+            "type": "string",
+            "format": "binary"
+        },
+        "ConfigurationEvent": {
+            "type": "object",
+            "properties": {
+                "ChannelDefinitions": {
+                    "$ref": "#/$defs/ChannelDefinitions"
+                },
+                "PostCallAnalyticsSettings": {
+                    "$ref": "#/$defs/PostCallAnalyticsSettings"
+                }
+            }
+        },
+        "ChannelDefinitions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ChannelDefinition"
+            }
+        },
+        "ChannelDefinition": {
+            "type": "object",
+            "properties": {
+                "ChannelId": {
+                    "$ref": "#/$defs/ChannelId"
+                },
+                "ParticipantRole": {
+                    "$ref": "#/$defs/ParticipantRole"
+                }
+            }
+        },
+        "ChannelId": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "PostCallAnalyticsSettings": {
+            "type": "object",
+            "properties": {
+                "OutputLocation": {
+                    "$ref": "#/$defs/String"
+                },
+                "DataAccessRoleArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "ContentRedactionOutput": {
+                    "$ref": "#/$defs/ContentRedactionOutput"
+                },
+                "OutputEncryptionKMSKeyId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ContentRedactionOutput": {
+            "enum": [
+                "REDACTED",
+                "REDACTED_AND_UNREDACTED"
+            ]
+        },
+        "StartMedicalStreamTranscriptionResponse": {
+            "type": "object",
+            "properties": {
+                "RequestId": {
+                    "$ref": "#/$defs/RequestId"
+                },
+                "LanguageCode": {
+                    "$ref": "#/$defs/LanguageCode"
+                },
+                "MediaSampleRateHertz": {
+                    "$ref": "#/$defs/MediaSampleRateHertz"
+                },
+                "MediaEncoding": {
+                    "$ref": "#/$defs/MediaEncoding"
+                },
+                "VocabularyName": {
+                    "$ref": "#/$defs/VocabularyName"
+                },
+                "Specialty": {
+                    "$ref": "#/$defs/Specialty"
+                },
+                "Type": {
+                    "$ref": "#/$defs/Type"
+                },
+                "ShowSpeakerLabel": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "SessionId": {
+                    "$ref": "#/$defs/SessionId"
+                },
+                "TranscriptResultStream": {
+                    "$ref": "#/$defs/MedicalTranscriptResultStream"
+                },
+                "EnableChannelIdentification": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "NumberOfChannels": {
+                    "$ref": "#/$defs/NumberOfChannels"
+                },
+                "ContentIdentificationType": {
+                    "$ref": "#/$defs/MedicalContentIdentificationType"
+                }
+            }
+        },
+        "LanguageCode": {
+            "enum": [
+                "EN_US",
+                "EN_GB",
+                "ES_US",
+                "FR_CA",
+                "FR_FR",
+                "EN_AU",
+                "IT_IT",
+                "DE_DE",
+                "PT_BR",
+                "JA_JP",
+                "KO_KR",
+                "ZH_CN",
+                "HI_IN",
+                "TH_TH"
+            ]
+        },
+        "Specialty": {
+            "enum": [
+                "PRIMARYCARE",
+                "CARDIOLOGY",
+                "NEUROLOGY",
+                "ONCOLOGY",
+                "RADIOLOGY",
+                "UROLOGY"
+            ]
+        },
+        "Type": {
+            "enum": [
+                "CONVERSATION",
+                "DICTATION"
+            ]
+        },
+        "MedicalTranscriptResultStream": {
+            "type": "object",
+            "properties": {
+                "TranscriptEvent": {
+                    "$ref": "#/$defs/MedicalTranscriptEvent"
+                },
+                "BadRequestException": {
+                    "$ref": "#/$defs/BadRequestException"
+                },
+                "LimitExceededException": {
+                    "$ref": "#/$defs/LimitExceededException"
+                },
+                "InternalFailureException": {
+                    "$ref": "#/$defs/InternalFailureException"
+                },
+                "ConflictException": {
+                    "$ref": "#/$defs/ConflictException"
+                },
+                "ServiceUnavailableException": {
+                    "$ref": "#/$defs/ServiceUnavailableException"
+                }
+            }
+        },
+        "MedicalTranscriptEvent": {
+            "type": "object",
+            "properties": {
+                "Transcript": {
+                    "$ref": "#/$defs/MedicalTranscript"
+                }
+            }
+        },
+        "MedicalTranscript": {
+            "type": "object",
+            "properties": {
+                "Results": {
+                    "$ref": "#/$defs/MedicalResultList"
+                }
+            }
+        },
+        "MedicalResultList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MedicalResult"
+            }
+        },
+        "MedicalResult": {
+            "type": "object",
+            "properties": {
+                "ResultId": {
+                    "$ref": "#/$defs/String"
+                },
+                "StartTime": {
+                    "$ref": "#/$defs/Double"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/Double"
+                },
+                "IsPartial": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "Alternatives": {
+                    "$ref": "#/$defs/MedicalAlternativeList"
+                },
+                "ChannelId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "Double": {
+            "type": "number",
+            "format": "double"
+        },
+        "MedicalAlternativeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MedicalAlternative"
+            }
+        },
+        "MedicalAlternative": {
+            "type": "object",
+            "properties": {
+                "Transcript": {
+                    "$ref": "#/$defs/String"
+                },
+                "Items": {
+                    "$ref": "#/$defs/MedicalItemList"
+                },
+                "Entities": {
+                    "$ref": "#/$defs/MedicalEntityList"
+                }
+            }
+        },
+        "MedicalItemList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MedicalItem"
+            }
+        },
+        "MedicalItem": {
+            "type": "object",
+            "properties": {
+                "StartTime": {
+                    "$ref": "#/$defs/Double"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/Double"
+                },
+                "Type": {
+                    "$ref": "#/$defs/ItemType"
+                },
+                "Content": {
+                    "$ref": "#/$defs/String"
+                },
+                "Confidence": {
+                    "$ref": "#/$defs/Confidence"
+                },
+                "Speaker": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "MedicalEntityList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MedicalEntity"
+            }
+        },
+        "MedicalEntity": {
+            "type": "object",
+            "properties": {
+                "StartTime": {
+                    "$ref": "#/$defs/Double"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/Double"
+                },
+                "Category": {
+                    "$ref": "#/$defs/String"
+                },
+                "Content": {
+                    "$ref": "#/$defs/String"
+                },
+                "Confidence": {
+                    "$ref": "#/$defs/Confidence"
+                }
+            }
+        },
+        "NumberOfChannels": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "MedicalContentIdentificationType": {
+            "enum": [
+                "PHI"
+            ]
+        },
+        "StartMedicalStreamTranscriptionRequest": {
+            "type": "object",
+            "properties": {
+                "LanguageCode": {
+                    "$ref": "#/$defs/LanguageCode"
+                },
+                "MediaSampleRateHertz": {
+                    "$ref": "#/$defs/MediaSampleRateHertz"
+                },
+                "MediaEncoding": {
+                    "$ref": "#/$defs/MediaEncoding"
+                },
+                "VocabularyName": {
+                    "$ref": "#/$defs/VocabularyName"
+                },
+                "Specialty": {
+                    "$ref": "#/$defs/Specialty"
+                },
+                "Type": {
+                    "$ref": "#/$defs/Type"
+                },
+                "ShowSpeakerLabel": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "SessionId": {
+                    "$ref": "#/$defs/SessionId"
+                },
+                "AudioStream": {
+                    "$ref": "#/$defs/AudioStream"
+                },
+                "EnableChannelIdentification": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "NumberOfChannels": {
+                    "$ref": "#/$defs/NumberOfChannels"
+                },
+                "ContentIdentificationType": {
+                    "$ref": "#/$defs/MedicalContentIdentificationType"
+                }
+            }
+        },
+        "StartStreamTranscriptionResponse": {
+            "type": "object",
+            "properties": {
+                "RequestId": {
+                    "$ref": "#/$defs/RequestId"
+                },
+                "LanguageCode": {
+                    "$ref": "#/$defs/LanguageCode"
+                },
+                "MediaSampleRateHertz": {
+                    "$ref": "#/$defs/MediaSampleRateHertz"
+                },
+                "MediaEncoding": {
+                    "$ref": "#/$defs/MediaEncoding"
+                },
+                "VocabularyName": {
+                    "$ref": "#/$defs/VocabularyName"
+                },
+                "SessionId": {
+                    "$ref": "#/$defs/SessionId"
+                },
+                "TranscriptResultStream": {
+                    "$ref": "#/$defs/TranscriptResultStream"
+                },
+                "VocabularyFilterName": {
+                    "$ref": "#/$defs/VocabularyFilterName"
+                },
+                "VocabularyFilterMethod": {
+                    "$ref": "#/$defs/VocabularyFilterMethod"
+                },
+                "ShowSpeakerLabel": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "EnableChannelIdentification": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "NumberOfChannels": {
+                    "$ref": "#/$defs/NumberOfChannels"
+                },
+                "EnablePartialResultsStabilization": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "PartialResultsStability": {
+                    "$ref": "#/$defs/PartialResultsStability"
+                },
+                "ContentIdentificationType": {
+                    "$ref": "#/$defs/ContentIdentificationType"
+                },
+                "ContentRedactionType": {
+                    "$ref": "#/$defs/ContentRedactionType"
+                },
+                "PiiEntityTypes": {
+                    "$ref": "#/$defs/PiiEntityTypes"
+                },
+                "LanguageModelName": {
+                    "$ref": "#/$defs/ModelName"
+                },
+                "IdentifyLanguage": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "LanguageOptions": {
+                    "$ref": "#/$defs/LanguageOptions"
+                },
+                "PreferredLanguage": {
+                    "$ref": "#/$defs/LanguageCode"
+                },
+                "IdentifyMultipleLanguages": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "VocabularyNames": {
+                    "$ref": "#/$defs/VocabularyNames"
+                },
+                "VocabularyFilterNames": {
+                    "$ref": "#/$defs/VocabularyFilterNames"
+                }
+            }
+        },
+        "TranscriptResultStream": {
+            "type": "object",
+            "properties": {
+                "TranscriptEvent": {
+                    "$ref": "#/$defs/TranscriptEvent"
+                },
+                "BadRequestException": {
+                    "$ref": "#/$defs/BadRequestException"
+                },
+                "LimitExceededException": {
+                    "$ref": "#/$defs/LimitExceededException"
+                },
+                "InternalFailureException": {
+                    "$ref": "#/$defs/InternalFailureException"
+                },
+                "ConflictException": {
+                    "$ref": "#/$defs/ConflictException"
+                },
+                "ServiceUnavailableException": {
+                    "$ref": "#/$defs/ServiceUnavailableException"
+                }
+            }
+        },
+        "TranscriptEvent": {
+            "type": "object",
+            "properties": {
+                "Transcript": {
+                    "$ref": "#/$defs/Transcript"
+                }
+            }
+        },
+        "Transcript": {
+            "type": "object",
+            "properties": {
+                "Results": {
+                    "$ref": "#/$defs/ResultList"
+                }
+            }
+        },
+        "ResultList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Result"
+            }
+        },
+        "Result": {
+            "type": "object",
+            "properties": {
+                "ResultId": {
+                    "$ref": "#/$defs/String"
+                },
+                "StartTime": {
+                    "$ref": "#/$defs/Double"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/Double"
+                },
+                "IsPartial": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "Alternatives": {
+                    "$ref": "#/$defs/AlternativeList"
+                },
+                "ChannelId": {
+                    "$ref": "#/$defs/String"
+                },
+                "LanguageCode": {
+                    "$ref": "#/$defs/LanguageCode"
+                },
+                "LanguageIdentification": {
+                    "$ref": "#/$defs/LanguageIdentification"
+                }
+            }
+        },
+        "AlternativeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Alternative"
+            }
+        },
+        "Alternative": {
+            "type": "object",
+            "properties": {
+                "Transcript": {
+                    "$ref": "#/$defs/String"
+                },
+                "Items": {
+                    "$ref": "#/$defs/ItemList"
+                },
+                "Entities": {
+                    "$ref": "#/$defs/EntityList"
+                }
+            }
+        },
+        "ItemList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Item"
+            }
+        },
+        "Item": {
+            "type": "object",
+            "properties": {
+                "StartTime": {
+                    "$ref": "#/$defs/Double"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/Double"
+                },
+                "Type": {
+                    "$ref": "#/$defs/ItemType"
+                },
+                "Content": {
+                    "$ref": "#/$defs/String"
+                },
+                "VocabularyFilterMatch": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "Speaker": {
+                    "$ref": "#/$defs/String"
+                },
+                "Confidence": {
+                    "$ref": "#/$defs/Confidence"
+                },
+                "Stable": {
+                    "$ref": "#/$defs/Stable"
+                }
+            }
+        },
+        "EntityList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Entity"
+            }
+        },
+        "Entity": {
+            "type": "object",
+            "properties": {
+                "StartTime": {
+                    "$ref": "#/$defs/Double"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/Double"
+                },
+                "Category": {
+                    "$ref": "#/$defs/String"
+                },
+                "Type": {
+                    "$ref": "#/$defs/String"
+                },
+                "Content": {
+                    "$ref": "#/$defs/String"
+                },
+                "Confidence": {
+                    "$ref": "#/$defs/Confidence"
+                }
+            }
+        },
+        "LanguageIdentification": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LanguageWithScore"
+            }
+        },
+        "LanguageWithScore": {
+            "type": "object",
+            "properties": {
+                "LanguageCode": {
+                    "$ref": "#/$defs/LanguageCode"
+                },
+                "Score": {
+                    "$ref": "#/$defs/Double"
+                }
+            }
+        },
+        "LanguageOptions": {
+            "type": "string"
+        },
+        "VocabularyNames": {
+            "type": "string"
+        },
+        "VocabularyFilterNames": {
+            "type": "string"
+        },
+        "StartStreamTranscriptionRequest": {
+            "type": "object",
+            "properties": {
+                "LanguageCode": {
+                    "$ref": "#/$defs/LanguageCode"
+                },
+                "MediaSampleRateHertz": {
+                    "$ref": "#/$defs/MediaSampleRateHertz"
+                },
+                "MediaEncoding": {
+                    "$ref": "#/$defs/MediaEncoding"
+                },
+                "VocabularyName": {
+                    "$ref": "#/$defs/VocabularyName"
+                },
+                "SessionId": {
+                    "$ref": "#/$defs/SessionId"
+                },
+                "AudioStream": {
+                    "$ref": "#/$defs/AudioStream"
+                },
+                "VocabularyFilterName": {
+                    "$ref": "#/$defs/VocabularyFilterName"
+                },
+                "VocabularyFilterMethod": {
+                    "$ref": "#/$defs/VocabularyFilterMethod"
+                },
+                "ShowSpeakerLabel": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "EnableChannelIdentification": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "NumberOfChannels": {
+                    "$ref": "#/$defs/NumberOfChannels"
+                },
+                "EnablePartialResultsStabilization": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "PartialResultsStability": {
+                    "$ref": "#/$defs/PartialResultsStability"
+                },
+                "ContentIdentificationType": {
+                    "$ref": "#/$defs/ContentIdentificationType"
+                },
+                "ContentRedactionType": {
+                    "$ref": "#/$defs/ContentRedactionType"
+                },
+                "PiiEntityTypes": {
+                    "$ref": "#/$defs/PiiEntityTypes"
+                },
+                "LanguageModelName": {
+                    "$ref": "#/$defs/ModelName"
+                },
+                "IdentifyLanguage": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "LanguageOptions": {
+                    "$ref": "#/$defs/LanguageOptions"
+                },
+                "PreferredLanguage": {
+                    "$ref": "#/$defs/LanguageCode"
+                },
+                "IdentifyMultipleLanguages": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "VocabularyNames": {
+                    "$ref": "#/$defs/VocabularyNames"
+                },
+                "VocabularyFilterNames": {
+                    "$ref": "#/$defs/VocabularyFilterNames"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://transcribestreaming-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://transcribestreaming-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://transcribestreaming.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://transcribestreaming.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

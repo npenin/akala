@@ -1,0 +1,1730 @@
+{
+    "name": "ds",
+    "commands": [
+        {
+            "name": "AddGroupMember",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AddGroupMember"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AddGroupMemberResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AddGroupMemberRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateGroup",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateGroup"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateGroupResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateGroupRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateUser",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateUser"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateUserResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateUserRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteGroup",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteGroup"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteGroupResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteGroupRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteUser",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteUser"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteUserResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteUserRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeGroup",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeGroup"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeGroupResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeGroupRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeUser",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DescribeUser"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeUserResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeUserRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DisableUser",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DisableUser"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DisableUserResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DisableUserRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListGroupMembers",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListGroupMembers"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListGroupMembersResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListGroupMembersRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListGroups",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListGroups"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListGroupsResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListGroupsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListGroupsForMember",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListGroupsForMember"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListGroupsForMemberResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListGroupsForMemberRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListUsers",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListUsers"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListUsersResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListUsersRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RemoveGroupMember",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RemoveGroupMember"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RemoveGroupMemberResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RemoveGroupMemberRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SearchGroups",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SearchGroups"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/SearchGroupsResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SearchGroupsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SearchUsers",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SearchUsers"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/SearchUsersResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SearchUsersRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateGroup",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateGroup"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateGroupResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateGroupRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateUser",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateUser"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateUserResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateUserRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "AddGroupMemberResult": {
+            "type": "object",
+            "properties": {}
+        },
+        "AddGroupMemberRequest": {
+            "type": "object",
+            "properties": {
+                "DirectoryId": {
+                    "$ref": "#/$defs/DirectoryId"
+                },
+                "GroupName": {
+                    "$ref": "#/$defs/GroupName"
+                },
+                "MemberName": {
+                    "$ref": "#/$defs/MemberName"
+                },
+                "MemberRealm": {
+                    "$ref": "#/$defs/Realm"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                }
+            }
+        },
+        "DirectoryId": {
+            "type": "string"
+        },
+        "GroupName": {
+            "type": "string"
+        },
+        "MemberName": {
+            "type": "string"
+        },
+        "Realm": {
+            "type": "string"
+        },
+        "ClientToken": {
+            "type": "string"
+        },
+        "CreateGroupResult": {
+            "type": "object",
+            "properties": {
+                "DirectoryId": {
+                    "$ref": "#/$defs/DirectoryId"
+                },
+                "SAMAccountName": {
+                    "$ref": "#/$defs/GroupName"
+                },
+                "SID": {
+                    "$ref": "#/$defs/SID"
+                }
+            }
+        },
+        "SID": {
+            "type": "string"
+        },
+        "CreateGroupRequest": {
+            "type": "object",
+            "properties": {
+                "DirectoryId": {
+                    "$ref": "#/$defs/DirectoryId"
+                },
+                "SAMAccountName": {
+                    "$ref": "#/$defs/GroupName"
+                },
+                "GroupType": {
+                    "$ref": "#/$defs/GroupType"
+                },
+                "GroupScope": {
+                    "$ref": "#/$defs/GroupScope"
+                },
+                "OtherAttributes": {
+                    "$ref": "#/$defs/Attributes"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                }
+            }
+        },
+        "GroupType": {
+            "enum": [
+                "DISTRIBUTION",
+                "SECURITY"
+            ]
+        },
+        "GroupScope": {
+            "enum": [
+                "DOMAIN_LOCAL",
+                "GLOBAL",
+                "UNIVERSAL",
+                "BUILTIN_LOCAL"
+            ]
+        },
+        "Attributes": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/AttributeValue"
+            }
+        },
+        "AttributeValue": {
+            "type": "object",
+            "properties": {
+                "S": {
+                    "$ref": "#/$defs/StringAttributeValue"
+                },
+                "N": {
+                    "$ref": "#/$defs/NumberAttributeValue"
+                },
+                "BOOL": {
+                    "$ref": "#/$defs/BooleanAttributeValue"
+                },
+                "SS": {
+                    "$ref": "#/$defs/StringSetAttributeValue"
+                }
+            }
+        },
+        "StringAttributeValue": {
+            "type": "string"
+        },
+        "NumberAttributeValue": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "BooleanAttributeValue": {
+            "type": "boolean"
+        },
+        "StringSetAttributeValue": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/StringAttributeValue"
+            }
+        },
+        "CreateUserResult": {
+            "type": "object",
+            "properties": {
+                "DirectoryId": {
+                    "$ref": "#/$defs/DirectoryId"
+                },
+                "SID": {
+                    "$ref": "#/$defs/SID"
+                },
+                "SAMAccountName": {
+                    "$ref": "#/$defs/UserName"
+                }
+            }
+        },
+        "UserName": {
+            "type": "string"
+        },
+        "CreateUserRequest": {
+            "type": "object",
+            "properties": {
+                "DirectoryId": {
+                    "$ref": "#/$defs/DirectoryId"
+                },
+                "SAMAccountName": {
+                    "$ref": "#/$defs/UserName"
+                },
+                "EmailAddress": {
+                    "$ref": "#/$defs/EmailAddress"
+                },
+                "GivenName": {
+                    "$ref": "#/$defs/GivenName"
+                },
+                "Surname": {
+                    "$ref": "#/$defs/Surname"
+                },
+                "OtherAttributes": {
+                    "$ref": "#/$defs/Attributes"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                }
+            }
+        },
+        "EmailAddress": {
+            "type": "string"
+        },
+        "GivenName": {
+            "type": "string"
+        },
+        "Surname": {
+            "type": "string"
+        },
+        "DeleteGroupResult": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteGroupRequest": {
+            "type": "object",
+            "properties": {
+                "DirectoryId": {
+                    "$ref": "#/$defs/DirectoryId"
+                },
+                "SAMAccountName": {
+                    "$ref": "#/$defs/GroupName"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                }
+            }
+        },
+        "DeleteUserResult": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteUserRequest": {
+            "type": "object",
+            "properties": {
+                "DirectoryId": {
+                    "$ref": "#/$defs/DirectoryId"
+                },
+                "SAMAccountName": {
+                    "$ref": "#/$defs/UserName"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                }
+            }
+        },
+        "DescribeGroupResult": {
+            "type": "object",
+            "properties": {
+                "DirectoryId": {
+                    "$ref": "#/$defs/DirectoryId"
+                },
+                "Realm": {
+                    "$ref": "#/$defs/Realm"
+                },
+                "SID": {
+                    "$ref": "#/$defs/SID"
+                },
+                "SAMAccountName": {
+                    "$ref": "#/$defs/GroupName"
+                },
+                "DistinguishedName": {
+                    "$ref": "#/$defs/DistinguishedName"
+                },
+                "GroupType": {
+                    "$ref": "#/$defs/GroupType"
+                },
+                "GroupScope": {
+                    "$ref": "#/$defs/GroupScope"
+                },
+                "OtherAttributes": {
+                    "$ref": "#/$defs/Attributes"
+                }
+            }
+        },
+        "DistinguishedName": {
+            "type": "string"
+        },
+        "DescribeGroupRequest": {
+            "type": "object",
+            "properties": {
+                "DirectoryId": {
+                    "$ref": "#/$defs/DirectoryId"
+                },
+                "Realm": {
+                    "$ref": "#/$defs/Realm"
+                },
+                "SAMAccountName": {
+                    "$ref": "#/$defs/GroupName"
+                },
+                "OtherAttributes": {
+                    "$ref": "#/$defs/LdapDisplayNameList"
+                }
+            }
+        },
+        "LdapDisplayNameList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LdapDisplayName"
+            }
+        },
+        "LdapDisplayName": {
+            "type": "string"
+        },
+        "DescribeUserResult": {
+            "type": "object",
+            "properties": {
+                "DirectoryId": {
+                    "$ref": "#/$defs/DirectoryId"
+                },
+                "Realm": {
+                    "$ref": "#/$defs/Realm"
+                },
+                "SID": {
+                    "$ref": "#/$defs/SID"
+                },
+                "SAMAccountName": {
+                    "$ref": "#/$defs/UserName"
+                },
+                "DistinguishedName": {
+                    "$ref": "#/$defs/DistinguishedName"
+                },
+                "UserPrincipalName": {
+                    "$ref": "#/$defs/UserPrincipalName"
+                },
+                "EmailAddress": {
+                    "$ref": "#/$defs/EmailAddress"
+                },
+                "GivenName": {
+                    "$ref": "#/$defs/GivenName"
+                },
+                "Surname": {
+                    "$ref": "#/$defs/Surname"
+                },
+                "Enabled": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                },
+                "OtherAttributes": {
+                    "$ref": "#/$defs/Attributes"
+                }
+            }
+        },
+        "UserPrincipalName": {
+            "type": "string"
+        },
+        "DescribeUserRequest": {
+            "type": "object",
+            "properties": {
+                "DirectoryId": {
+                    "$ref": "#/$defs/DirectoryId"
+                },
+                "SAMAccountName": {
+                    "$ref": "#/$defs/UserName"
+                },
+                "OtherAttributes": {
+                    "$ref": "#/$defs/LdapDisplayNameList"
+                },
+                "Realm": {
+                    "$ref": "#/$defs/Realm"
+                }
+            }
+        },
+        "DisableUserResult": {
+            "type": "object",
+            "properties": {}
+        },
+        "DisableUserRequest": {
+            "type": "object",
+            "properties": {
+                "DirectoryId": {
+                    "$ref": "#/$defs/DirectoryId"
+                },
+                "SAMAccountName": {
+                    "$ref": "#/$defs/UserName"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                }
+            }
+        },
+        "ListGroupMembersResult": {
+            "type": "object",
+            "properties": {
+                "DirectoryId": {
+                    "$ref": "#/$defs/DirectoryId"
+                },
+                "Realm": {
+                    "$ref": "#/$defs/Realm"
+                },
+                "MemberRealm": {
+                    "$ref": "#/$defs/Realm"
+                },
+                "Members": {
+                    "$ref": "#/$defs/MemberList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "MemberList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Member"
+            }
+        },
+        "Member": {
+            "type": "object",
+            "properties": {
+                "SID": {
+                    "$ref": "#/$defs/SID"
+                },
+                "SAMAccountName": {
+                    "$ref": "#/$defs/MemberName"
+                },
+                "MemberType": {
+                    "$ref": "#/$defs/MemberType"
+                }
+            }
+        },
+        "MemberType": {
+            "enum": [
+                "USER",
+                "GROUP",
+                "COMPUTER"
+            ]
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "ListGroupMembersRequest": {
+            "type": "object",
+            "properties": {
+                "DirectoryId": {
+                    "$ref": "#/$defs/DirectoryId"
+                },
+                "Realm": {
+                    "$ref": "#/$defs/Realm"
+                },
+                "MemberRealm": {
+                    "$ref": "#/$defs/Realm"
+                },
+                "SAMAccountName": {
+                    "$ref": "#/$defs/GroupName"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListGroupsResult": {
+            "type": "object",
+            "properties": {
+                "DirectoryId": {
+                    "$ref": "#/$defs/DirectoryId"
+                },
+                "Realm": {
+                    "$ref": "#/$defs/Realm"
+                },
+                "Groups": {
+                    "$ref": "#/$defs/GroupSummaryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "GroupSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/GroupSummary"
+            }
+        },
+        "GroupSummary": {
+            "type": "object",
+            "properties": {
+                "SID": {
+                    "$ref": "#/$defs/SID"
+                },
+                "SAMAccountName": {
+                    "$ref": "#/$defs/GroupName"
+                },
+                "GroupType": {
+                    "$ref": "#/$defs/GroupType"
+                },
+                "GroupScope": {
+                    "$ref": "#/$defs/GroupScope"
+                }
+            }
+        },
+        "ListGroupsRequest": {
+            "type": "object",
+            "properties": {
+                "DirectoryId": {
+                    "$ref": "#/$defs/DirectoryId"
+                },
+                "Realm": {
+                    "$ref": "#/$defs/Realm"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "ListGroupsForMemberResult": {
+            "type": "object",
+            "properties": {
+                "DirectoryId": {
+                    "$ref": "#/$defs/DirectoryId"
+                },
+                "Realm": {
+                    "$ref": "#/$defs/Realm"
+                },
+                "MemberRealm": {
+                    "$ref": "#/$defs/Realm"
+                },
+                "Groups": {
+                    "$ref": "#/$defs/GroupSummaryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListGroupsForMemberRequest": {
+            "type": "object",
+            "properties": {
+                "DirectoryId": {
+                    "$ref": "#/$defs/DirectoryId"
+                },
+                "Realm": {
+                    "$ref": "#/$defs/Realm"
+                },
+                "MemberRealm": {
+                    "$ref": "#/$defs/Realm"
+                },
+                "SAMAccountName": {
+                    "$ref": "#/$defs/MemberName"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "ListUsersResult": {
+            "type": "object",
+            "properties": {
+                "DirectoryId": {
+                    "$ref": "#/$defs/DirectoryId"
+                },
+                "Realm": {
+                    "$ref": "#/$defs/Realm"
+                },
+                "Users": {
+                    "$ref": "#/$defs/UserSummaryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "UserSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/UserSummary"
+            }
+        },
+        "UserSummary": {
+            "type": "object",
+            "properties": {
+                "SID": {
+                    "$ref": "#/$defs/SID"
+                },
+                "SAMAccountName": {
+                    "$ref": "#/$defs/UserName"
+                },
+                "GivenName": {
+                    "$ref": "#/$defs/GivenName"
+                },
+                "Surname": {
+                    "$ref": "#/$defs/Surname"
+                },
+                "Enabled": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                }
+            }
+        },
+        "ListUsersRequest": {
+            "type": "object",
+            "properties": {
+                "DirectoryId": {
+                    "$ref": "#/$defs/DirectoryId"
+                },
+                "Realm": {
+                    "$ref": "#/$defs/Realm"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "RemoveGroupMemberResult": {
+            "type": "object",
+            "properties": {}
+        },
+        "RemoveGroupMemberRequest": {
+            "type": "object",
+            "properties": {
+                "DirectoryId": {
+                    "$ref": "#/$defs/DirectoryId"
+                },
+                "GroupName": {
+                    "$ref": "#/$defs/GroupName"
+                },
+                "MemberName": {
+                    "$ref": "#/$defs/MemberName"
+                },
+                "MemberRealm": {
+                    "$ref": "#/$defs/Realm"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                }
+            }
+        },
+        "SearchGroupsResult": {
+            "type": "object",
+            "properties": {
+                "DirectoryId": {
+                    "$ref": "#/$defs/DirectoryId"
+                },
+                "Realm": {
+                    "$ref": "#/$defs/Realm"
+                },
+                "Groups": {
+                    "$ref": "#/$defs/GroupList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "GroupList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Group"
+            }
+        },
+        "Group": {
+            "type": "object",
+            "properties": {
+                "SID": {
+                    "$ref": "#/$defs/SID"
+                },
+                "SAMAccountName": {
+                    "$ref": "#/$defs/GroupName"
+                },
+                "DistinguishedName": {
+                    "$ref": "#/$defs/DistinguishedName"
+                },
+                "GroupType": {
+                    "$ref": "#/$defs/GroupType"
+                },
+                "GroupScope": {
+                    "$ref": "#/$defs/GroupScope"
+                },
+                "OtherAttributes": {
+                    "$ref": "#/$defs/Attributes"
+                }
+            }
+        },
+        "SearchGroupsRequest": {
+            "type": "object",
+            "properties": {
+                "DirectoryId": {
+                    "$ref": "#/$defs/DirectoryId"
+                },
+                "SearchString": {
+                    "$ref": "#/$defs/SearchString"
+                },
+                "SearchAttributes": {
+                    "$ref": "#/$defs/LdapDisplayNameList"
+                },
+                "Realm": {
+                    "$ref": "#/$defs/Realm"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "SearchString": {
+            "type": "string"
+        },
+        "SearchUsersResult": {
+            "type": "object",
+            "properties": {
+                "DirectoryId": {
+                    "$ref": "#/$defs/DirectoryId"
+                },
+                "Realm": {
+                    "$ref": "#/$defs/Realm"
+                },
+                "Users": {
+                    "$ref": "#/$defs/UserList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "UserList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/User"
+            }
+        },
+        "User": {
+            "type": "object",
+            "properties": {
+                "SID": {
+                    "$ref": "#/$defs/SID"
+                },
+                "SAMAccountName": {
+                    "$ref": "#/$defs/UserName"
+                },
+                "DistinguishedName": {
+                    "$ref": "#/$defs/DistinguishedName"
+                },
+                "UserPrincipalName": {
+                    "$ref": "#/$defs/UserPrincipalName"
+                },
+                "EmailAddress": {
+                    "$ref": "#/$defs/EmailAddress"
+                },
+                "GivenName": {
+                    "$ref": "#/$defs/GivenName"
+                },
+                "Surname": {
+                    "$ref": "#/$defs/Surname"
+                },
+                "Enabled": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                },
+                "OtherAttributes": {
+                    "$ref": "#/$defs/Attributes"
+                }
+            }
+        },
+        "SearchUsersRequest": {
+            "type": "object",
+            "properties": {
+                "DirectoryId": {
+                    "$ref": "#/$defs/DirectoryId"
+                },
+                "Realm": {
+                    "$ref": "#/$defs/Realm"
+                },
+                "SearchString": {
+                    "$ref": "#/$defs/SearchString"
+                },
+                "SearchAttributes": {
+                    "$ref": "#/$defs/LdapDisplayNameList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "UpdateGroupResult": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateGroupRequest": {
+            "type": "object",
+            "properties": {
+                "DirectoryId": {
+                    "$ref": "#/$defs/DirectoryId"
+                },
+                "SAMAccountName": {
+                    "$ref": "#/$defs/GroupName"
+                },
+                "GroupType": {
+                    "$ref": "#/$defs/GroupType"
+                },
+                "GroupScope": {
+                    "$ref": "#/$defs/GroupScope"
+                },
+                "OtherAttributes": {
+                    "$ref": "#/$defs/Attributes"
+                },
+                "UpdateType": {
+                    "$ref": "#/$defs/UpdateType"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                }
+            }
+        },
+        "UpdateType": {
+            "enum": [
+                "ADD",
+                "REPLACE",
+                "REMOVE"
+            ]
+        },
+        "UpdateUserResult": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateUserRequest": {
+            "type": "object",
+            "properties": {
+                "DirectoryId": {
+                    "$ref": "#/$defs/DirectoryId"
+                },
+                "SAMAccountName": {
+                    "$ref": "#/$defs/UserName"
+                },
+                "EmailAddress": {
+                    "$ref": "#/$defs/EmailAddress"
+                },
+                "GivenName": {
+                    "$ref": "#/$defs/GivenName"
+                },
+                "Surname": {
+                    "$ref": "#/$defs/Surname"
+                },
+                "OtherAttributes": {
+                    "$ref": "#/$defs/Attributes"
+                },
+                "UpdateType": {
+                    "$ref": "#/$defs/UpdateType"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                                "type": "error"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": {
+                                        "ref": "Endpoint"
+                                    },
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "isSet",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ]
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "aws.partition",
+                                        "argv": [
+                                            {
+                                                "ref": "Region"
+                                            }
+                                        ],
+                                        "assign": "PartitionResult"
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseFIPS"
+                                                    },
+                                                    true
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseDualStack"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsFIPS"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsDualStack"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://ds-data-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ],
+                                                        "type": "tree"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseFIPS"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsFIPS"
+                                                                ]
+                                                            },
+                                                            true
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://ds-data-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ],
+                                                        "type": "tree"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "FIPS is enabled but this partition does not support FIPS",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseDualStack"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsDualStack"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://ds-data.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ],
+                                                        "type": "tree"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "DualStack is enabled but this partition does not support DualStack",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://ds-data.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    }
+                                ],
+                                "type": "tree"
+                            }
+                        ],
+                        "type": "tree"
+                    },
+                    {
+                        "conditions": [],
+                        "error": "Invalid Configuration: Missing Region",
+                        "type": "error"
+                    }
+                ],
+                "type": "tree"
+            }
+        ]
+    }
+}

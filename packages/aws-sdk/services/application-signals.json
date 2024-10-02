@@ -1,0 +1,1376 @@
+{
+    "name": "application-signals",
+    "commands": [
+        {
+            "name": "BatchGetServiceLevelObjectiveBudgetReport",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "BatchGetServiceLevelObjectiveBudgetReport"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchGetServiceLevelObjectiveBudgetReportOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchGetServiceLevelObjectiveBudgetReportInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetService",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetService"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetServiceOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetServiceInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListServiceDependencies",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListServiceDependencies"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListServiceDependenciesOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListServiceDependenciesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListServiceDependents",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListServiceDependents"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListServiceDependentsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListServiceDependentsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListServiceOperations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListServiceOperations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListServiceOperationsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListServiceOperationsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListServices",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListServices"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListServicesOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListServicesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartDiscovery",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartDiscovery"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartDiscoveryOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartDiscoveryInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "BatchGetServiceLevelObjectiveBudgetReportOutput": {
+            "type": "object",
+            "properties": {
+                "Timestamp": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "Reports": {
+                    "$ref": "#/$defs/ServiceLevelObjectiveBudgetReports"
+                },
+                "Errors": {
+                    "$ref": "#/$defs/ServiceLevelObjectiveBudgetReportErrors"
+                }
+            }
+        },
+        "ServiceLevelObjectiveBudgetReports": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ServiceLevelObjectiveBudgetReport"
+            }
+        },
+        "ServiceLevelObjectiveBudgetReport": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/ServiceLevelObjectiveArn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/ServiceLevelObjectiveName"
+                },
+                "EvaluationType": {
+                    "$ref": "#/$defs/EvaluationType"
+                },
+                "BudgetStatus": {
+                    "$ref": "#/$defs/ServiceLevelObjectiveBudgetStatus"
+                },
+                "Attainment": {
+                    "$ref": "#/$defs/Attainment"
+                },
+                "TotalBudgetSeconds": {
+                    "$ref": "#/$defs/TotalBudgetSeconds"
+                },
+                "BudgetSecondsRemaining": {
+                    "$ref": "#/$defs/BudgetSecondsRemaining"
+                },
+                "TotalBudgetRequests": {
+                    "$ref": "#/$defs/TotalBudgetRequests"
+                },
+                "BudgetRequestsRemaining": {
+                    "$ref": "#/$defs/BudgetRequestsRemaining"
+                },
+                "Sli": {
+                    "$ref": "#/$defs/ServiceLevelIndicator"
+                },
+                "RequestBasedSli": {
+                    "$ref": "#/$defs/RequestBasedServiceLevelIndicator"
+                },
+                "Goal": {
+                    "$ref": "#/$defs/Goal"
+                }
+            }
+        },
+        "ServiceLevelObjectiveArn": {
+            "type": "string"
+        },
+        "ServiceLevelObjectiveName": {
+            "type": "string"
+        },
+        "EvaluationType": {
+            "enum": [
+                "PERIOD_BASED",
+                "REQUEST_BASED"
+            ]
+        },
+        "ServiceLevelObjectiveBudgetStatus": {
+            "enum": [
+                "OK",
+                "WARNING",
+                "BREACHED",
+                "INSUFFICIENT_DATA"
+            ]
+        },
+        "Attainment": {
+            "type": "number",
+            "format": "double"
+        },
+        "TotalBudgetSeconds": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "BudgetSecondsRemaining": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "TotalBudgetRequests": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "BudgetRequestsRemaining": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ServiceLevelIndicator": {
+            "type": "object",
+            "properties": {
+                "SliMetric": {
+                    "$ref": "#/$defs/ServiceLevelIndicatorMetric"
+                },
+                "MetricThreshold": {
+                    "$ref": "#/$defs/ServiceLevelIndicatorMetricThreshold"
+                },
+                "ComparisonOperator": {
+                    "$ref": "#/$defs/ServiceLevelIndicatorComparisonOperator"
+                }
+            }
+        },
+        "ServiceLevelIndicatorMetric": {
+            "type": "object",
+            "properties": {
+                "KeyAttributes": {
+                    "$ref": "#/$defs/Attributes"
+                },
+                "OperationName": {
+                    "$ref": "#/$defs/OperationName"
+                },
+                "MetricType": {
+                    "$ref": "#/$defs/ServiceLevelIndicatorMetricType"
+                },
+                "MetricDataQueries": {
+                    "$ref": "#/$defs/MetricDataQueries"
+                }
+            }
+        },
+        "Attributes": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/KeyAttributeValue"
+            }
+        },
+        "KeyAttributeValue": {
+            "type": "string"
+        },
+        "OperationName": {
+            "type": "string"
+        },
+        "ServiceLevelIndicatorMetricType": {
+            "enum": [
+                "LATENCY",
+                "AVAILABILITY"
+            ]
+        },
+        "MetricDataQueries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MetricDataQuery"
+            }
+        },
+        "MetricDataQuery": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/MetricId"
+                },
+                "MetricStat": {
+                    "$ref": "#/$defs/MetricStat"
+                },
+                "Expression": {
+                    "$ref": "#/$defs/MetricExpression"
+                },
+                "Label": {
+                    "$ref": "#/$defs/MetricLabel"
+                },
+                "ReturnData": {
+                    "$ref": "#/$defs/ReturnData"
+                },
+                "Period": {
+                    "$ref": "#/$defs/Period"
+                },
+                "AccountId": {
+                    "$ref": "#/$defs/AccountId"
+                }
+            }
+        },
+        "MetricId": {
+            "type": "string"
+        },
+        "MetricStat": {
+            "type": "object",
+            "properties": {
+                "Metric": {
+                    "$ref": "#/$defs/Metric"
+                },
+                "Period": {
+                    "$ref": "#/$defs/Period"
+                },
+                "Stat": {
+                    "$ref": "#/$defs/Stat"
+                },
+                "Unit": {
+                    "$ref": "#/$defs/StandardUnit"
+                }
+            }
+        },
+        "Metric": {
+            "type": "object",
+            "properties": {
+                "Namespace": {
+                    "$ref": "#/$defs/Namespace"
+                },
+                "MetricName": {
+                    "$ref": "#/$defs/MetricName"
+                },
+                "Dimensions": {
+                    "$ref": "#/$defs/Dimensions"
+                }
+            }
+        },
+        "Namespace": {
+            "type": "string"
+        },
+        "MetricName": {
+            "type": "string"
+        },
+        "Dimensions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Dimension"
+            }
+        },
+        "Dimension": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/DimensionName"
+                },
+                "Value": {
+                    "$ref": "#/$defs/DimensionValue"
+                }
+            }
+        },
+        "DimensionName": {
+            "type": "string"
+        },
+        "DimensionValue": {
+            "type": "string"
+        },
+        "Period": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "Stat": {
+            "type": "string"
+        },
+        "StandardUnit": {
+            "enum": [
+                "MICROSECONDS",
+                "MILLISECONDS",
+                "SECONDS",
+                "BYTES",
+                "KILOBYTES",
+                "MEGABYTES",
+                "GIGABYTES",
+                "TERABYTES",
+                "BITS",
+                "KILOBITS",
+                "MEGABITS",
+                "GIGABITS",
+                "TERABITS",
+                "PERCENT",
+                "COUNT",
+                "BYTES_SECOND",
+                "KILOBYTES_SECOND",
+                "MEGABYTES_SECOND",
+                "GIGABYTES_SECOND",
+                "TERABYTES_SECOND",
+                "BITS_SECOND",
+                "KILOBITS_SECOND",
+                "MEGABITS_SECOND",
+                "GIGABITS_SECOND",
+                "TERABITS_SECOND",
+                "COUNT_SECOND",
+                "NONE"
+            ]
+        },
+        "MetricExpression": {
+            "type": "string"
+        },
+        "MetricLabel": {
+            "type": "string"
+        },
+        "ReturnData": {
+            "type": "boolean"
+        },
+        "AccountId": {
+            "type": "string"
+        },
+        "ServiceLevelIndicatorMetricThreshold": {
+            "type": "number",
+            "format": "double"
+        },
+        "ServiceLevelIndicatorComparisonOperator": {
+            "enum": [
+                "GREATER_THAN_OR_EQUAL_TO",
+                "GREATER_THAN",
+                "LESS_THAN",
+                "LESS_THAN_OR_EQUAL_TO"
+            ]
+        },
+        "RequestBasedServiceLevelIndicator": {
+            "type": "object",
+            "properties": {
+                "RequestBasedSliMetric": {
+                    "$ref": "#/$defs/RequestBasedServiceLevelIndicatorMetric"
+                },
+                "MetricThreshold": {
+                    "$ref": "#/$defs/ServiceLevelIndicatorMetricThreshold"
+                },
+                "ComparisonOperator": {
+                    "$ref": "#/$defs/ServiceLevelIndicatorComparisonOperator"
+                }
+            }
+        },
+        "RequestBasedServiceLevelIndicatorMetric": {
+            "type": "object",
+            "properties": {
+                "KeyAttributes": {
+                    "$ref": "#/$defs/Attributes"
+                },
+                "OperationName": {
+                    "$ref": "#/$defs/OperationName"
+                },
+                "MetricType": {
+                    "$ref": "#/$defs/ServiceLevelIndicatorMetricType"
+                },
+                "TotalRequestCountMetric": {
+                    "$ref": "#/$defs/MetricDataQueries"
+                },
+                "MonitoredRequestCountMetric": {
+                    "$ref": "#/$defs/MonitoredRequestCountMetricDataQueries"
+                }
+            }
+        },
+        "MonitoredRequestCountMetricDataQueries": {
+            "type": "object",
+            "properties": {
+                "GoodCountMetric": {
+                    "$ref": "#/$defs/MetricDataQueries"
+                },
+                "BadCountMetric": {
+                    "$ref": "#/$defs/MetricDataQueries"
+                }
+            }
+        },
+        "Goal": {
+            "type": "object",
+            "properties": {
+                "Interval": {
+                    "$ref": "#/$defs/Interval"
+                },
+                "AttainmentGoal": {
+                    "$ref": "#/$defs/AttainmentGoal"
+                },
+                "WarningThreshold": {
+                    "$ref": "#/$defs/WarningThreshold"
+                }
+            }
+        },
+        "Interval": {
+            "type": "object",
+            "properties": {
+                "RollingInterval": {
+                    "$ref": "#/$defs/RollingInterval"
+                },
+                "CalendarInterval": {
+                    "$ref": "#/$defs/CalendarInterval"
+                }
+            }
+        },
+        "RollingInterval": {
+            "type": "object",
+            "properties": {
+                "DurationUnit": {
+                    "$ref": "#/$defs/DurationUnit"
+                },
+                "Duration": {
+                    "$ref": "#/$defs/RollingIntervalDuration"
+                }
+            }
+        },
+        "DurationUnit": {
+            "enum": [
+                "MINUTE",
+                "HOUR",
+                "DAY",
+                "MONTH"
+            ]
+        },
+        "RollingIntervalDuration": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "CalendarInterval": {
+            "type": "object",
+            "properties": {
+                "StartTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "DurationUnit": {
+                    "$ref": "#/$defs/DurationUnit"
+                },
+                "Duration": {
+                    "$ref": "#/$defs/CalendarIntervalDuration"
+                }
+            }
+        },
+        "CalendarIntervalDuration": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "AttainmentGoal": {
+            "type": "number",
+            "format": "double"
+        },
+        "WarningThreshold": {
+            "type": "number",
+            "format": "double"
+        },
+        "ServiceLevelObjectiveBudgetReportErrors": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ServiceLevelObjectiveBudgetReportError"
+            }
+        },
+        "ServiceLevelObjectiveBudgetReportError": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/ServiceLevelObjectiveName"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/ServiceLevelObjectiveArn"
+                },
+                "ErrorCode": {
+                    "$ref": "#/$defs/ServiceLevelObjectiveBudgetReportErrorCode"
+                },
+                "ErrorMessage": {
+                    "$ref": "#/$defs/ServiceLevelObjectiveBudgetReportErrorMessage"
+                }
+            }
+        },
+        "ServiceLevelObjectiveBudgetReportErrorCode": {
+            "type": "string"
+        },
+        "ServiceLevelObjectiveBudgetReportErrorMessage": {
+            "type": "string"
+        },
+        "BatchGetServiceLevelObjectiveBudgetReportInput": {
+            "type": "object",
+            "properties": {
+                "Timestamp": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "SloIds": {
+                    "$ref": "#/$defs/ServiceLevelObjectiveIds"
+                }
+            }
+        },
+        "ServiceLevelObjectiveIds": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "GetServiceOutput": {
+            "type": "object",
+            "properties": {
+                "Service": {
+                    "$ref": "#/$defs/Service"
+                },
+                "StartTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "LogGroupReferences": {
+                    "$ref": "#/$defs/LogGroupReferences"
+                }
+            }
+        },
+        "Service": {
+            "type": "object",
+            "properties": {
+                "KeyAttributes": {
+                    "$ref": "#/$defs/Attributes"
+                },
+                "AttributeMaps": {
+                    "$ref": "#/$defs/AttributeMaps"
+                },
+                "MetricReferences": {
+                    "$ref": "#/$defs/MetricReferences"
+                },
+                "LogGroupReferences": {
+                    "$ref": "#/$defs/LogGroupReferences"
+                }
+            }
+        },
+        "AttributeMaps": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AttributeMap"
+            }
+        },
+        "AttributeMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "MetricReferences": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MetricReference"
+            }
+        },
+        "MetricReference": {
+            "type": "object",
+            "properties": {
+                "Namespace": {
+                    "$ref": "#/$defs/Namespace"
+                },
+                "MetricType": {
+                    "$ref": "#/$defs/MetricType"
+                },
+                "Dimensions": {
+                    "$ref": "#/$defs/Dimensions"
+                },
+                "MetricName": {
+                    "$ref": "#/$defs/MetricName"
+                }
+            }
+        },
+        "MetricType": {
+            "type": "string"
+        },
+        "LogGroupReferences": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Attributes"
+            }
+        },
+        "GetServiceInput": {
+            "type": "object",
+            "properties": {
+                "StartTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "KeyAttributes": {
+                    "$ref": "#/$defs/Attributes"
+                }
+            }
+        },
+        "ListServiceDependenciesOutput": {
+            "type": "object",
+            "properties": {
+                "StartTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "ServiceDependencies": {
+                    "$ref": "#/$defs/ServiceDependencies"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ServiceDependencies": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ServiceDependency"
+            }
+        },
+        "ServiceDependency": {
+            "type": "object",
+            "properties": {
+                "OperationName": {
+                    "$ref": "#/$defs/OperationName"
+                },
+                "DependencyKeyAttributes": {
+                    "$ref": "#/$defs/Attributes"
+                },
+                "DependencyOperationName": {
+                    "$ref": "#/$defs/OperationName"
+                },
+                "MetricReferences": {
+                    "$ref": "#/$defs/MetricReferences"
+                }
+            }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "ListServiceDependenciesInput": {
+            "type": "object",
+            "properties": {
+                "StartTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "KeyAttributes": {
+                    "$ref": "#/$defs/Attributes"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/ListServiceDependenciesMaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListServiceDependenciesMaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListServiceDependentsOutput": {
+            "type": "object",
+            "properties": {
+                "StartTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "ServiceDependents": {
+                    "$ref": "#/$defs/ServiceDependents"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ServiceDependents": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ServiceDependent"
+            }
+        },
+        "ServiceDependent": {
+            "type": "object",
+            "properties": {
+                "OperationName": {
+                    "$ref": "#/$defs/OperationName"
+                },
+                "DependentKeyAttributes": {
+                    "$ref": "#/$defs/Attributes"
+                },
+                "DependentOperationName": {
+                    "$ref": "#/$defs/OperationName"
+                },
+                "MetricReferences": {
+                    "$ref": "#/$defs/MetricReferences"
+                }
+            }
+        },
+        "ListServiceDependentsInput": {
+            "type": "object",
+            "properties": {
+                "StartTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "KeyAttributes": {
+                    "$ref": "#/$defs/Attributes"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/ListServiceDependentsMaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListServiceDependentsMaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListServiceOperationsOutput": {
+            "type": "object",
+            "properties": {
+                "StartTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "ServiceOperations": {
+                    "$ref": "#/$defs/ServiceOperations"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ServiceOperations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ServiceOperation"
+            }
+        },
+        "ServiceOperation": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/OperationName"
+                },
+                "MetricReferences": {
+                    "$ref": "#/$defs/MetricReferences"
+                }
+            }
+        },
+        "ListServiceOperationsInput": {
+            "type": "object",
+            "properties": {
+                "StartTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "KeyAttributes": {
+                    "$ref": "#/$defs/Attributes"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/ListServiceOperationMaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListServiceOperationMaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListServicesOutput": {
+            "type": "object",
+            "properties": {
+                "StartTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "ServiceSummaries": {
+                    "$ref": "#/$defs/ServiceSummaries"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ServiceSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ServiceSummary"
+            }
+        },
+        "ServiceSummary": {
+            "type": "object",
+            "properties": {
+                "KeyAttributes": {
+                    "$ref": "#/$defs/Attributes"
+                },
+                "AttributeMaps": {
+                    "$ref": "#/$defs/AttributeMaps"
+                },
+                "MetricReferences": {
+                    "$ref": "#/$defs/MetricReferences"
+                }
+            }
+        },
+        "ListServicesInput": {
+            "type": "object",
+            "properties": {
+                "StartTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/ListServicesMaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListServicesMaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                }
+            }
+        },
+        "AmazonResourceName": {
+            "type": "string"
+        },
+        "StartDiscoveryOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "StartDiscoveryInput": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            },
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "isSet",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ]
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "aws.partition",
+                                        "argv": [
+                                            {
+                                                "ref": "Region"
+                                            }
+                                        ],
+                                        "assign": "PartitionResult"
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseFIPS"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "endpoint": {
+                                            "url": "https://application-signals-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                            "properties": {},
+                                            "headers": {}
+                                        },
+                                        "type": "endpoint"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "endpoint": {
+                                            "url": "https://application-signals.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                            "properties": {},
+                                            "headers": {}
+                                        },
+                                        "type": "endpoint"
+                                    }
+                                ],
+                                "type": "tree"
+                            }
+                        ],
+                        "type": "tree"
+                    },
+                    {
+                        "conditions": [],
+                        "error": "Invalid Configuration: Missing Region",
+                        "type": "error"
+                    }
+                ],
+                "type": "tree"
+            }
+        ]
+    }
+}

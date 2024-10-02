@@ -1,0 +1,1504 @@
+{
+    "name": "iotdeviceadvisor",
+    "commands": [
+        {
+            "name": "CreateSuiteDefinition",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateSuiteDefinition"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateSuiteDefinitionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateSuiteDefinitionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteSuiteDefinition",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteSuiteDefinition"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteSuiteDefinitionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteSuiteDefinitionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetEndpoint",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetEndpoint"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetEndpointResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetEndpointRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetSuiteDefinition",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetSuiteDefinition"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetSuiteDefinitionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetSuiteDefinitionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetSuiteRun",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetSuiteRun"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetSuiteRunResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetSuiteRunRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetSuiteRunReport",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetSuiteRunReport"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetSuiteRunReportResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetSuiteRunReportRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListSuiteDefinitions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListSuiteDefinitions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListSuiteDefinitionsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListSuiteDefinitionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListSuiteRuns",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListSuiteRuns"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListSuiteRunsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListSuiteRunsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartSuiteRun",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartSuiteRun"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartSuiteRunResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartSuiteRunRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StopSuiteRun",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StopSuiteRun"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StopSuiteRunResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StopSuiteRunRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateSuiteDefinition",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateSuiteDefinition"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateSuiteDefinitionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateSuiteDefinitionRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CreateSuiteDefinitionResponse": {
+            "type": "object",
+            "properties": {
+                "suiteDefinitionId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "suiteDefinitionArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "suiteDefinitionName": {
+                    "$ref": "#/$defs/SuiteDefinitionName"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "UUID": {
+            "type": "string"
+        },
+        "AmazonResourceName": {
+            "type": "string"
+        },
+        "SuiteDefinitionName": {
+            "type": "string"
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "CreateSuiteDefinitionRequest": {
+            "type": "object",
+            "properties": {
+                "suiteDefinitionConfiguration": {
+                    "$ref": "#/$defs/SuiteDefinitionConfiguration"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "SuiteDefinitionConfiguration": {
+            "type": "object",
+            "properties": {
+                "suiteDefinitionName": {
+                    "$ref": "#/$defs/SuiteDefinitionName"
+                },
+                "devices": {
+                    "$ref": "#/$defs/DeviceUnderTestList"
+                },
+                "intendedForQualification": {
+                    "$ref": "#/$defs/IntendedForQualificationBoolean"
+                },
+                "isLongDurationTest": {
+                    "$ref": "#/$defs/IsLongDurationTestBoolean"
+                },
+                "rootGroup": {
+                    "$ref": "#/$defs/RootGroup"
+                },
+                "devicePermissionRoleArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "protocol": {
+                    "$ref": "#/$defs/Protocol"
+                }
+            }
+        },
+        "DeviceUnderTestList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DeviceUnderTest"
+            }
+        },
+        "DeviceUnderTest": {
+            "type": "object",
+            "properties": {
+                "thingArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "certificateArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "deviceRoleArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                }
+            }
+        },
+        "IntendedForQualificationBoolean": {
+            "type": "boolean"
+        },
+        "IsLongDurationTestBoolean": {
+            "type": "boolean"
+        },
+        "RootGroup": {
+            "type": "string"
+        },
+        "Protocol": {
+            "enum": [
+                "MqttV3_1_1",
+                "MqttV5",
+                "MqttV3_1_1_OverWebSocket",
+                "MqttV5_OverWebSocket"
+            ]
+        },
+        "TagMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/String256"
+            }
+        },
+        "String256": {
+            "type": "string"
+        },
+        "DeleteSuiteDefinitionResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteSuiteDefinitionRequest": {
+            "type": "object",
+            "properties": {
+                "suiteDefinitionId": {
+                    "$ref": "#/$defs/UUID"
+                }
+            }
+        },
+        "GetEndpointResponse": {
+            "type": "object",
+            "properties": {
+                "endpoint": {
+                    "$ref": "#/$defs/Endpoint"
+                }
+            }
+        },
+        "Endpoint": {
+            "type": "string"
+        },
+        "GetEndpointRequest": {
+            "type": "object",
+            "properties": {
+                "thingArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "certificateArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "deviceRoleArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "authenticationMethod": {
+                    "$ref": "#/$defs/AuthenticationMethod"
+                }
+            }
+        },
+        "AuthenticationMethod": {
+            "enum": [
+                "X509ClientCertificate",
+                "SignatureVersion4"
+            ]
+        },
+        "GetSuiteDefinitionResponse": {
+            "type": "object",
+            "properties": {
+                "suiteDefinitionId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "suiteDefinitionArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "suiteDefinitionVersion": {
+                    "$ref": "#/$defs/SuiteDefinitionVersion"
+                },
+                "latestVersion": {
+                    "$ref": "#/$defs/SuiteDefinitionVersion"
+                },
+                "suiteDefinitionConfiguration": {
+                    "$ref": "#/$defs/SuiteDefinitionConfiguration"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "lastModifiedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "SuiteDefinitionVersion": {
+            "type": "string"
+        },
+        "GetSuiteDefinitionRequest": {
+            "type": "object",
+            "properties": {
+                "suiteDefinitionId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "suiteDefinitionVersion": {
+                    "$ref": "#/$defs/SuiteDefinitionVersion"
+                }
+            }
+        },
+        "GetSuiteRunResponse": {
+            "type": "object",
+            "properties": {
+                "suiteDefinitionId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "suiteDefinitionVersion": {
+                    "$ref": "#/$defs/SuiteDefinitionVersion"
+                },
+                "suiteRunId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "suiteRunArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "suiteRunConfiguration": {
+                    "$ref": "#/$defs/SuiteRunConfiguration"
+                },
+                "testResult": {
+                    "$ref": "#/$defs/TestResult"
+                },
+                "startTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "endTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "status": {
+                    "$ref": "#/$defs/SuiteRunStatus"
+                },
+                "errorReason": {
+                    "$ref": "#/$defs/ErrorReason"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "SuiteRunConfiguration": {
+            "type": "object",
+            "properties": {
+                "primaryDevice": {
+                    "$ref": "#/$defs/DeviceUnderTest"
+                },
+                "selectedTestList": {
+                    "$ref": "#/$defs/SelectedTestList"
+                },
+                "parallelRun": {
+                    "$ref": "#/$defs/ParallelRun"
+                }
+            }
+        },
+        "SelectedTestList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/UUID"
+            }
+        },
+        "ParallelRun": {
+            "type": "boolean"
+        },
+        "TestResult": {
+            "type": "object",
+            "properties": {
+                "groups": {
+                    "$ref": "#/$defs/GroupResultList"
+                }
+            }
+        },
+        "GroupResultList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/GroupResult"
+            }
+        },
+        "GroupResult": {
+            "type": "object",
+            "properties": {
+                "groupId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "groupName": {
+                    "$ref": "#/$defs/GroupName"
+                },
+                "tests": {
+                    "$ref": "#/$defs/TestCaseRuns"
+                }
+            }
+        },
+        "GroupName": {
+            "type": "string"
+        },
+        "TestCaseRuns": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TestCaseRun"
+            }
+        },
+        "TestCaseRun": {
+            "type": "object",
+            "properties": {
+                "testCaseRunId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "testCaseDefinitionId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "testCaseDefinitionName": {
+                    "$ref": "#/$defs/TestCaseDefinitionName"
+                },
+                "status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "startTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "endTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "logUrl": {
+                    "$ref": "#/$defs/LogUrl"
+                },
+                "warnings": {
+                    "$ref": "#/$defs/Warnings"
+                },
+                "failure": {
+                    "$ref": "#/$defs/Failure"
+                },
+                "testScenarios": {
+                    "$ref": "#/$defs/TestCaseScenariosList"
+                }
+            }
+        },
+        "TestCaseDefinitionName": {
+            "type": "string"
+        },
+        "Status": {
+            "enum": [
+                "PASS",
+                "FAIL",
+                "CANCELED",
+                "PENDING",
+                "RUNNING",
+                "STOPPING",
+                "STOPPED",
+                "PASS_WITH_WARNINGS",
+                "ERROR"
+            ]
+        },
+        "LogUrl": {
+            "type": "string"
+        },
+        "Warnings": {
+            "type": "string"
+        },
+        "Failure": {
+            "type": "string"
+        },
+        "TestCaseScenariosList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TestCaseScenario"
+            }
+        },
+        "TestCaseScenario": {
+            "type": "object",
+            "properties": {
+                "testCaseScenarioId": {
+                    "$ref": "#/$defs/TestCaseScenarioId"
+                },
+                "testCaseScenarioType": {
+                    "$ref": "#/$defs/TestCaseScenarioType"
+                },
+                "status": {
+                    "$ref": "#/$defs/TestCaseScenarioStatus"
+                },
+                "failure": {
+                    "$ref": "#/$defs/Failure"
+                },
+                "systemMessage": {
+                    "$ref": "#/$defs/SystemMessage"
+                }
+            }
+        },
+        "TestCaseScenarioId": {
+            "type": "string"
+        },
+        "TestCaseScenarioType": {
+            "enum": [
+                "Advanced",
+                "Basic"
+            ]
+        },
+        "TestCaseScenarioStatus": {
+            "enum": [
+                "PASS",
+                "FAIL",
+                "CANCELED",
+                "PENDING",
+                "RUNNING",
+                "STOPPING",
+                "STOPPED",
+                "PASS_WITH_WARNINGS",
+                "ERROR"
+            ]
+        },
+        "SystemMessage": {
+            "type": "string"
+        },
+        "SuiteRunStatus": {
+            "enum": [
+                "PASS",
+                "FAIL",
+                "CANCELED",
+                "PENDING",
+                "RUNNING",
+                "STOPPING",
+                "STOPPED",
+                "PASS_WITH_WARNINGS",
+                "ERROR"
+            ]
+        },
+        "ErrorReason": {
+            "type": "string"
+        },
+        "GetSuiteRunRequest": {
+            "type": "object",
+            "properties": {
+                "suiteDefinitionId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "suiteRunId": {
+                    "$ref": "#/$defs/UUID"
+                }
+            }
+        },
+        "GetSuiteRunReportResponse": {
+            "type": "object",
+            "properties": {
+                "qualificationReportDownloadUrl": {
+                    "$ref": "#/$defs/QualificationReportDownloadUrl"
+                }
+            }
+        },
+        "QualificationReportDownloadUrl": {
+            "type": "string"
+        },
+        "GetSuiteRunReportRequest": {
+            "type": "object",
+            "properties": {
+                "suiteDefinitionId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "suiteRunId": {
+                    "$ref": "#/$defs/UUID"
+                }
+            }
+        },
+        "ListSuiteDefinitionsResponse": {
+            "type": "object",
+            "properties": {
+                "suiteDefinitionInformationList": {
+                    "$ref": "#/$defs/SuiteDefinitionInformationList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "SuiteDefinitionInformationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SuiteDefinitionInformation"
+            }
+        },
+        "SuiteDefinitionInformation": {
+            "type": "object",
+            "properties": {
+                "suiteDefinitionId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "suiteDefinitionName": {
+                    "$ref": "#/$defs/SuiteDefinitionName"
+                },
+                "defaultDevices": {
+                    "$ref": "#/$defs/DeviceUnderTestList"
+                },
+                "intendedForQualification": {
+                    "$ref": "#/$defs/IntendedForQualificationBoolean"
+                },
+                "isLongDurationTest": {
+                    "$ref": "#/$defs/IsLongDurationTestBoolean"
+                },
+                "protocol": {
+                    "$ref": "#/$defs/Protocol"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "Token": {
+            "type": "string"
+        },
+        "ListSuiteDefinitionsRequest": {
+            "type": "object",
+            "properties": {
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListSuiteRunsResponse": {
+            "type": "object",
+            "properties": {
+                "suiteRunsList": {
+                    "$ref": "#/$defs/SuiteRunsList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "SuiteRunsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SuiteRunInformation"
+            }
+        },
+        "SuiteRunInformation": {
+            "type": "object",
+            "properties": {
+                "suiteDefinitionId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "suiteDefinitionVersion": {
+                    "$ref": "#/$defs/SuiteDefinitionVersion"
+                },
+                "suiteDefinitionName": {
+                    "$ref": "#/$defs/SuiteDefinitionName"
+                },
+                "suiteRunId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "startedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "endAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "status": {
+                    "$ref": "#/$defs/SuiteRunStatus"
+                },
+                "passed": {
+                    "$ref": "#/$defs/SuiteRunResultCount"
+                },
+                "failed": {
+                    "$ref": "#/$defs/SuiteRunResultCount"
+                }
+            }
+        },
+        "SuiteRunResultCount": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListSuiteRunsRequest": {
+            "type": "object",
+            "properties": {
+                "suiteDefinitionId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "suiteDefinitionVersion": {
+                    "$ref": "#/$defs/SuiteDefinitionVersion"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                }
+            }
+        },
+        "StartSuiteRunResponse": {
+            "type": "object",
+            "properties": {
+                "suiteRunId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "suiteRunArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "endpoint": {
+                    "$ref": "#/$defs/Endpoint"
+                }
+            }
+        },
+        "StartSuiteRunRequest": {
+            "type": "object",
+            "properties": {
+                "suiteDefinitionId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "suiteDefinitionVersion": {
+                    "$ref": "#/$defs/SuiteDefinitionVersion"
+                },
+                "suiteRunConfiguration": {
+                    "$ref": "#/$defs/SuiteRunConfiguration"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "StopSuiteRunResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "StopSuiteRunRequest": {
+            "type": "object",
+            "properties": {
+                "suiteDefinitionId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "suiteRunId": {
+                    "$ref": "#/$defs/UUID"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "tagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String128"
+            }
+        },
+        "String128": {
+            "type": "string"
+        },
+        "UpdateSuiteDefinitionResponse": {
+            "type": "object",
+            "properties": {
+                "suiteDefinitionId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "suiteDefinitionArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "suiteDefinitionName": {
+                    "$ref": "#/$defs/SuiteDefinitionName"
+                },
+                "suiteDefinitionVersion": {
+                    "$ref": "#/$defs/SuiteDefinitionVersion"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "lastUpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "UpdateSuiteDefinitionRequest": {
+            "type": "object",
+            "properties": {
+                "suiteDefinitionId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "suiteDefinitionConfiguration": {
+                    "$ref": "#/$defs/SuiteDefinitionConfiguration"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseDualStack"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "endpoint": {
+                            "url": {
+                                "ref": "Endpoint"
+                            },
+                            "properties": {},
+                            "headers": {}
+                        },
+                        "type": "endpoint"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Region"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "aws.partition",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ],
+                                "assign": "PartitionResult"
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    },
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://api.iotdeviceadvisor-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseFIPS"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsFIPS"
+                                                        ]
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://api.iotdeviceadvisor-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "FIPS is enabled but this partition does not support FIPS",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    true,
+                                                    {
+                                                        "fn": "getAttr",
+                                                        "argv": [
+                                                            {
+                                                                "ref": "PartitionResult"
+                                                            },
+                                                            "supportsDualStack"
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://api.iotdeviceadvisor.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "error": "DualStack is enabled but this partition does not support DualStack",
+                                        "type": "error"
+                                    }
+                                ],
+                                "type": "tree"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": "https://api.iotdeviceadvisor.{Region}.{PartitionResult#dnsSuffix}",
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "error": "Invalid Configuration: Missing Region",
+                "type": "error"
+            }
+        ]
+    }
+}

@@ -1,0 +1,1454 @@
+{
+    "name": "docdb-elastic",
+    "commands": [
+        {
+            "name": "CopyClusterSnapshot",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CopyClusterSnapshot"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CopyClusterSnapshotOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CopyClusterSnapshotInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateCluster",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateCluster"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateClusterOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateClusterInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateClusterSnapshot",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CreateClusterSnapshot"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateClusterSnapshotOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateClusterSnapshotInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteCluster",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteCluster"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteClusterOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteClusterInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteClusterSnapshot",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "DeleteClusterSnapshot"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteClusterSnapshotOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteClusterSnapshotInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetCluster",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetCluster"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetClusterOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetClusterInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetClusterSnapshot",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GetClusterSnapshot"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetClusterSnapshotOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetClusterSnapshotInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListClusters",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListClusters"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListClustersOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListClustersInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListClusterSnapshots",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListClusterSnapshots"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListClusterSnapshotsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListClusterSnapshotsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RestoreClusterFromSnapshot",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RestoreClusterFromSnapshot"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RestoreClusterFromSnapshotOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RestoreClusterFromSnapshotInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartCluster",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StartCluster"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartClusterOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartClusterInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StopCluster",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StopCluster"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StopClusterOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StopClusterInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateCluster",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "UpdateCluster"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateClusterOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateClusterInput"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CopyClusterSnapshotOutput": {
+            "type": "object",
+            "properties": {
+                "snapshot": {
+                    "$ref": "#/$defs/ClusterSnapshot"
+                }
+            }
+        },
+        "ClusterSnapshot": {
+            "type": "object",
+            "properties": {
+                "subnetIds": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "snapshotName": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "snapshotArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "snapshotCreationTime": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "clusterArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "clusterCreationTime": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "vpcSecurityGroupIds": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "adminUserName": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "kmsKeyId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "snapshotType": {
+                    "$ref": "#/$defs/SnapshotType"
+                }
+            }
+        },
+        "StringList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "Status": {
+            "type": "string"
+        },
+        "SnapshotType": {
+            "type": "string"
+        },
+        "CopyClusterSnapshotInput": {
+            "type": "object",
+            "properties": {
+                "snapshotArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "targetSnapshotName": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "kmsKeyId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "copyTags": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "TagMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TagValue"
+            }
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "CreateClusterOutput": {
+            "type": "object",
+            "properties": {
+                "cluster": {
+                    "$ref": "#/$defs/Cluster"
+                }
+            }
+        },
+        "Cluster": {
+            "type": "object",
+            "properties": {
+                "clusterName": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "clusterArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "clusterEndpoint": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "createTime": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "adminUserName": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "authType": {
+                    "$ref": "#/$defs/Auth"
+                },
+                "shardCapacity": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "shardCount": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "vpcSecurityGroupIds": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "subnetIds": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "preferredMaintenanceWindow": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "kmsKeyId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "shards": {
+                    "$ref": "#/$defs/ShardList"
+                },
+                "backupRetentionPeriod": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "preferredBackupWindow": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "shardInstanceCount": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                }
+            }
+        },
+        "Auth": {
+            "type": "string"
+        },
+        "ShardList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Shard"
+            }
+        },
+        "Shard": {
+            "type": "object",
+            "properties": {
+                "shardId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "createTime": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "status": {
+                    "$ref": "#/$defs/Status"
+                }
+            }
+        },
+        "CreateClusterInput": {
+            "type": "object",
+            "properties": {
+                "clusterName": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "authType": {
+                    "$ref": "#/$defs/Auth"
+                },
+                "adminUserName": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "adminUserPassword": {
+                    "$ref": "#/$defs/Password"
+                },
+                "shardCapacity": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "shardCount": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "vpcSecurityGroupIds": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "subnetIds": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "kmsKeyId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "preferredMaintenanceWindow": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                },
+                "backupRetentionPeriod": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "preferredBackupWindow": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "shardInstanceCount": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                }
+            }
+        },
+        "Password": {
+            "type": "string"
+        },
+        "CreateClusterSnapshotOutput": {
+            "type": "object",
+            "properties": {
+                "snapshot": {
+                    "$ref": "#/$defs/ClusterSnapshot"
+                }
+            }
+        },
+        "CreateClusterSnapshotInput": {
+            "type": "object",
+            "properties": {
+                "clusterArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "snapshotName": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "DeleteClusterOutput": {
+            "type": "object",
+            "properties": {
+                "cluster": {
+                    "$ref": "#/$defs/Cluster"
+                }
+            }
+        },
+        "DeleteClusterInput": {
+            "type": "object",
+            "properties": {
+                "clusterArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "DeleteClusterSnapshotOutput": {
+            "type": "object",
+            "properties": {
+                "snapshot": {
+                    "$ref": "#/$defs/ClusterSnapshot"
+                }
+            }
+        },
+        "DeleteClusterSnapshotInput": {
+            "type": "object",
+            "properties": {
+                "snapshotArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "GetClusterOutput": {
+            "type": "object",
+            "properties": {
+                "cluster": {
+                    "$ref": "#/$defs/Cluster"
+                }
+            }
+        },
+        "GetClusterInput": {
+            "type": "object",
+            "properties": {
+                "clusterArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "GetClusterSnapshotOutput": {
+            "type": "object",
+            "properties": {
+                "snapshot": {
+                    "$ref": "#/$defs/ClusterSnapshot"
+                }
+            }
+        },
+        "GetClusterSnapshotInput": {
+            "type": "object",
+            "properties": {
+                "snapshotArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "ListClustersOutput": {
+            "type": "object",
+            "properties": {
+                "clusters": {
+                    "$ref": "#/$defs/ClusterList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "ClusterList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ClusterInList"
+            }
+        },
+        "ClusterInList": {
+            "type": "object",
+            "properties": {
+                "clusterName": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "clusterArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "status": {
+                    "$ref": "#/$defs/Status"
+                }
+            }
+        },
+        "PaginationToken": {
+            "type": "string"
+        },
+        "ListClustersInput": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                }
+            }
+        },
+        "ListClusterSnapshotsOutput": {
+            "type": "object",
+            "properties": {
+                "snapshots": {
+                    "$ref": "#/$defs/ClusterSnapshotList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "ClusterSnapshotList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ClusterSnapshotInList"
+            }
+        },
+        "ClusterSnapshotInList": {
+            "type": "object",
+            "properties": {
+                "snapshotName": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "snapshotArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "clusterArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "snapshotCreationTime": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "ListClusterSnapshotsInput": {
+            "type": "object",
+            "properties": {
+                "clusterArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "snapshotType": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "Arn": {
+            "type": "string"
+        },
+        "RestoreClusterFromSnapshotOutput": {
+            "type": "object",
+            "properties": {
+                "cluster": {
+                    "$ref": "#/$defs/Cluster"
+                }
+            }
+        },
+        "RestoreClusterFromSnapshotInput": {
+            "type": "object",
+            "properties": {
+                "clusterName": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "snapshotArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "vpcSecurityGroupIds": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "subnetIds": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "kmsKeyId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                },
+                "shardCapacity": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "shardInstanceCount": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                }
+            }
+        },
+        "StartClusterOutput": {
+            "type": "object",
+            "properties": {
+                "cluster": {
+                    "$ref": "#/$defs/Cluster"
+                }
+            }
+        },
+        "StartClusterInput": {
+            "type": "object",
+            "properties": {
+                "clusterArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "StopClusterOutput": {
+            "type": "object",
+            "properties": {
+                "cluster": {
+                    "$ref": "#/$defs/Cluster"
+                }
+            }
+        },
+        "StopClusterInput": {
+            "type": "object",
+            "properties": {
+                "clusterArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "tagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "UpdateClusterOutput": {
+            "type": "object",
+            "properties": {
+                "cluster": {
+                    "$ref": "#/$defs/Cluster"
+                }
+            }
+        },
+        "UpdateClusterInput": {
+            "type": "object",
+            "properties": {
+                "clusterArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "authType": {
+                    "$ref": "#/$defs/Auth"
+                },
+                "shardCapacity": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "shardCount": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "vpcSecurityGroupIds": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "subnetIds": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "adminUserPassword": {
+                    "$ref": "#/$defs/Password"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "preferredMaintenanceWindow": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "backupRetentionPeriod": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "preferredBackupWindow": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "shardInstanceCount": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                }
+            }
+        }
+    },
+    "state": {
+        "version": "1.0",
+        "parameters": {
+            "Region": {
+                "builtIn": "AWS::Region",
+                "required": false,
+                "documentation": "The AWS region used to dispatch the request.",
+                "type": "String"
+            },
+            "UseDualStack": {
+                "builtIn": "AWS::UseDualStack",
+                "required": true,
+                "default": false,
+                "documentation": "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
+                "type": "Boolean"
+            },
+            "UseFIPS": {
+                "builtIn": "AWS::UseFIPS",
+                "required": true,
+                "default": false,
+                "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                "type": "Boolean"
+            },
+            "Endpoint": {
+                "builtIn": "SDK::Endpoint",
+                "required": false,
+                "documentation": "Override the endpoint used to send this request",
+                "type": "String"
+            }
+        },
+        "rules": [
+            {
+                "conditions": [
+                    {
+                        "fn": "isSet",
+                        "argv": [
+                            {
+                                "ref": "Endpoint"
+                            }
+                        ]
+                    }
+                ],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "booleanEquals",
+                                "argv": [
+                                    {
+                                        "ref": "UseFIPS"
+                                    },
+                                    true
+                                ]
+                            }
+                        ],
+                        "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                        "type": "error"
+                    },
+                    {
+                        "conditions": [],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "booleanEquals",
+                                        "argv": [
+                                            {
+                                                "ref": "UseDualStack"
+                                            },
+                                            true
+                                        ]
+                                    }
+                                ],
+                                "error": "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                                "type": "error"
+                            },
+                            {
+                                "conditions": [],
+                                "endpoint": {
+                                    "url": {
+                                        "ref": "Endpoint"
+                                    },
+                                    "properties": {},
+                                    "headers": {}
+                                },
+                                "type": "endpoint"
+                            }
+                        ],
+                        "type": "tree"
+                    }
+                ],
+                "type": "tree"
+            },
+            {
+                "conditions": [],
+                "rules": [
+                    {
+                        "conditions": [
+                            {
+                                "fn": "isSet",
+                                "argv": [
+                                    {
+                                        "ref": "Region"
+                                    }
+                                ]
+                            }
+                        ],
+                        "rules": [
+                            {
+                                "conditions": [
+                                    {
+                                        "fn": "aws.partition",
+                                        "argv": [
+                                            {
+                                                "ref": "Region"
+                                            }
+                                        ],
+                                        "assign": "PartitionResult"
+                                    }
+                                ],
+                                "rules": [
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseFIPS"
+                                                    },
+                                                    true
+                                                ]
+                                            },
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseDualStack"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsFIPS"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsDualStack"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://docdb-elastic-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ],
+                                                        "type": "tree"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseFIPS"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsFIPS"
+                                                                ]
+                                                            },
+                                                            true
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://docdb-elastic-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ],
+                                                        "type": "tree"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "FIPS is enabled but this partition does not support FIPS",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [
+                                            {
+                                                "fn": "booleanEquals",
+                                                "argv": [
+                                                    {
+                                                        "ref": "UseDualStack"
+                                                    },
+                                                    true
+                                                ]
+                                            }
+                                        ],
+                                        "rules": [
+                                            {
+                                                "conditions": [
+                                                    {
+                                                        "fn": "booleanEquals",
+                                                        "argv": [
+                                                            true,
+                                                            {
+                                                                "fn": "getAttr",
+                                                                "argv": [
+                                                                    {
+                                                                        "ref": "PartitionResult"
+                                                                    },
+                                                                    "supportsDualStack"
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "rules": [
+                                                    {
+                                                        "conditions": [],
+                                                        "rules": [
+                                                            {
+                                                                "conditions": [],
+                                                                "endpoint": {
+                                                                    "url": "https://docdb-elastic.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                    "properties": {},
+                                                                    "headers": {}
+                                                                },
+                                                                "type": "endpoint"
+                                                            }
+                                                        ],
+                                                        "type": "tree"
+                                                    }
+                                                ],
+                                                "type": "tree"
+                                            },
+                                            {
+                                                "conditions": [],
+                                                "error": "DualStack is enabled but this partition does not support DualStack",
+                                                "type": "error"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    },
+                                    {
+                                        "conditions": [],
+                                        "rules": [
+                                            {
+                                                "conditions": [],
+                                                "endpoint": {
+                                                    "url": "https://docdb-elastic.{Region}.{PartitionResult#dnsSuffix}",
+                                                    "properties": {},
+                                                    "headers": {}
+                                                },
+                                                "type": "endpoint"
+                                            }
+                                        ],
+                                        "type": "tree"
+                                    }
+                                ],
+                                "type": "tree"
+                            }
+                        ],
+                        "type": "tree"
+                    },
+                    {
+                        "conditions": [],
+                        "error": "Invalid Configuration: Missing Region",
+                        "type": "error"
+                    }
+                ],
+                "type": "tree"
+            }
+        ]
+    }
+}
